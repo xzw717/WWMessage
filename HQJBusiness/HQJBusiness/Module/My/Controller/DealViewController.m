@@ -1,0 +1,223 @@
+//
+//  DealViewController.m
+//  HQJBusiness
+//
+//  Created by mymac on 2016/12/13.
+//  Copyright © 2016年 Fujian first time iot technology investment co., LTD. All rights reserved.
+//
+
+#import "DealViewController.h"
+#import "CashSalesViewController.h"
+#import "BonusExchangeViewController.h"
+#import "BuyZHViewController.h"
+#import "SetZHViewController.h"
+
+@interface DealViewController () <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) UITableView *dealTableView;
+@property (nonatomic,strong) NSArray *titleArray;
+@end
+
+@implementation DealViewController
+-(UITableView *)dealTableView {
+    if ( _dealTableView == nil ) {
+        _dealTableView = [[UITableView alloc]init];
+        _dealTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT);
+        _dealTableView.backgroundColor = DefaultBackgroundColor;
+        _dealTableView.delegate = self;
+        _dealTableView.dataSource = self;
+        
+        _dealTableView.scrollEnabled = NO;
+//        [_dealTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    
+        UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 30)];
+        footerView.backgroundColor = DefaultBackgroundColor;
+        
+        _dealTableView.tableFooterView = footerView;
+        
+        
+        
+        [self.view addSubview:_dealTableView];
+    }
+    
+    
+    return _dealTableView;
+}
+
+-(NSArray *)titleArray {
+    if ( _titleArray == nil ) {
+        if ([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+            _titleArray = @[@[@"现金销售",
+                              @"积分兑现",
+                              @"现金提现"],
+                            @[@"购买ZH值",
+                              @"ZH值设定"]];
+
+        } else if ([[NameSingle shareInstance].role isEqualToString:@"战略合作商家"]) {
+            _titleArray = @[@[@"现金销售",
+                              @"现金提现"],
+                            @[@"购买ZH值",
+                              @"ZH值设定"]];
+        } else {
+            _titleArray = @[@[@"现金提现"]];
+        }
+           }
+    return _titleArray;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    
+    return self.titleArray.count;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = DefaultBackgroundColor;
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 15;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.titleArray.count == 1) {
+        return 1;
+    }else {
+        if (section == 0) {
+            NSArray *arry = self.titleArray[0];
+            return arry.count;
+        } else {
+            NSArray *arrys = self.titleArray[1];
+            
+            return arrys.count;
+            
+        }
+
+    }
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    static NSString *cellID = @"cellid";
+   
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if ( cell == nil ) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:cellID];
+        cell.textLabel.text = self.titleArray[indexPath.section][indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    return cell;
+   
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
+            [self.navigationController pushViewController:CVC animated:YES];
+        } else if (indexPath.section == 0 && indexPath.row == 1) {
+            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+            BVC.ViewControllerTitle = @"积分兑现";
+            [self.navigationController pushViewController:BVC animated:YES];
+        } else if (indexPath.section == 0 && indexPath.row == 2){
+            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+            BVC.ViewControllerTitle = @"现金提现";
+            [self.navigationController pushViewController:BVC animated:YES];
+        } else if (indexPath.section == 1 && indexPath.row == 0){
+            
+            
+            BuyZHViewController *buyVC = [[BuyZHViewController alloc]init];
+            [self.navigationController pushViewController:buyVC animated:YES];
+            
+            
+        } else {
+            
+            SetZHViewController *SVC = [[SetZHViewController alloc]init];
+            
+            [self.navigationController pushViewController:SVC animated:YES];
+            
+            
+        }
+
+        
+    } else if ([[NameSingle shareInstance].role isEqualToString:@"战略合作商家"]) {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
+            [self.navigationController pushViewController:CVC animated:YES];
+        } else if (indexPath.section == 0 && indexPath.row == 1) {
+            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+            BVC.ViewControllerTitle = @"现金提现";
+            [self.navigationController pushViewController:BVC animated:YES];
+        } else if (indexPath.section == 1 && indexPath.row == 0){
+            
+            
+            BuyZHViewController *buyVC = [[BuyZHViewController alloc]init];
+            [self.navigationController pushViewController:buyVC animated:YES];
+            
+            
+        } else {
+            
+            SetZHViewController *SVC = [[SetZHViewController alloc]init];
+            
+            [self.navigationController pushViewController:SVC animated:YES];
+            
+            
+        }
+
+    } else {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+           
+            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+            BVC.ViewControllerTitle = @"现金提现";
+            [self.navigationController pushViewController:BVC animated:YES];
+
+            
+        } 
+    }
+    
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+}
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.zw_title = @"交易";
+    self.view.backgroundColor = DefaultBackgroundColor;
+    [self.dealTableView reloadData];
+
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+
+
+}
+//-(BOOL)backOnAnInterface {
+//   return  [super backOnAnInterface];
+//}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
