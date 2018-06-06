@@ -51,21 +51,25 @@
     
     NSString *urlStr ;
     
+    NSMutableDictionary *dict;
     if (isGet) {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/getPwdSMS/mobile/%@/pwdtype/loginpwd",AppSel_URL,self.modelTextField.text];
+        dict = @{@"pwdtype":@1,@"mobile":self.modelTextField.text}.mutableCopy;
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetPwdSMSInterface];
     } else {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
+        dict = @{@"inputCode":self.verificationCodeTextField,@"mobile":self.modelTextField.text}.mutableCopy;
+//        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInputSMSActionInterface];
     }
     
     
     HQJLog(@"---%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         
         if (!isGet) {
             [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
         }
         
-        if([dic[@"error"]integerValue] != 0) {
+        if([dic[@"code"]integerValue] != 49000) {
             self.getCodeButton.enabled = YES;
 
             [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];

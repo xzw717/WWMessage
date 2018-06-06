@@ -13,6 +13,9 @@ static AFHTTPSessionManager *httpManager = nil;
 @implementation RequestEngine
 +(void)HQJBusinessRequestDetailsUrl:(NSString *)urlStr complete:(void (^)(NSDictionary *dic))complete andError:(void(^)(NSError *error))errors ShowHUD:(BOOL)show
 {
+    [self HQJBusinessRequestDetailsUrl:urlStr parameters:nil complete:complete andError:errors ShowHUD:show];
+}
++(void)HQJBusinessRequestDetailsUrl:(NSString *)urlStr parameters:(id)parameters complete:(void (^)(NSDictionary *dic))complete andError:(void(^)(NSError *error))errors ShowHUD:(BOOL)show{
     if (show == YES) {
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         [SVProgressHUD showWithStatus:@"加载中..."];
@@ -28,8 +31,8 @@ static AFHTTPSessionManager *httpManager = nil;
     NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
-    [manager POST:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
+    [manager POST:url parameters:nil progress:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
         if (complete)
         {
             if (show == YES) {
@@ -37,7 +40,7 @@ static AFHTTPSessionManager *httpManager = nil;
             }
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             complete(responseObject);
-
+            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -53,20 +56,17 @@ static AFHTTPSessionManager *httpManager = nil;
             [SVProgressHUD showErrorWithStatus:@"请求超时,请稍候重试"];
             
         } else if ([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"JSON text did not start with array or object and option to allow fragments not set."]){
-//            [SVProgressHUD showErrorWithStatus:@""];
-
+            //            [SVProgressHUD showErrorWithStatus:@""];
+            
         } else {
             [SVProgressHUD showErrorWithStatus:@"没有找到服务器,请稍候重试"];
-
+            
         }
         
         HQJLog(@"Error:%@",error);
         
     }];
-    
-    
 }
-
 + (AFHTTPSessionManager *)getAFManager{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

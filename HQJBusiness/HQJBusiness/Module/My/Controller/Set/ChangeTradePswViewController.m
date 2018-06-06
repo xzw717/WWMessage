@@ -111,20 +111,22 @@
 -(void)getcodeRequst:(BOOL)isGet {
     
     NSString *urlStr ;
-    
+    NSMutableDictionary *dict;
     if (isGet) {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/getPwdSMS/mobile/%@/pwdtype/tradepwd",AppSel_URL,[NameSingle shareInstance].mobile];
+        dict = @{@"pwdtype":@"2",@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetPwdSMSInterface];
     } else {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,[NameSingle shareInstance].mobile];
+        dict = @{@"inputCode":self.verificationCodeTextField,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
+        //        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInputSMSActionInterface];
     }
 //    HQJLog(@"---%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if (!isGet) {
             [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
         }
         
-        if([dic[@"error"]integerValue] != 0) {
+        if([dic[@"code"]integerValue] != 49000) {
             [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
         } else {
             if (isGet == NO) {
