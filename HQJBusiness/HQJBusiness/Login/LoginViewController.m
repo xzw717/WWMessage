@@ -310,16 +310,17 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 //    HQJLog(@"网络状态:%@",[ManagerEngine networkStatus])
     if (isNetWork == YES) {
+        NSMutableDictionary *dict = @{@"username":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
   
-        NSString *urlText = [NSString stringWithFormat:@"%@loginCheck/username/%@/password/%@/membertype/2",Api_URL,self.userNameText.text,self.PswText.text];
+        NSString *urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
         
-        [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl complete:^(NSDictionary *dic) {
+        [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 
-        if ([dic[@"error"]integerValue] != 0) {
+        if ([dic[@"code"]integerValue] != 49000) {
             
             [self.testActivityIndicator stopAnimating];
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
             
         } else {

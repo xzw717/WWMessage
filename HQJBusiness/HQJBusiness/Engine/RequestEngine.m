@@ -31,7 +31,7 @@ static AFHTTPSessionManager *httpManager = nil;
     NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
-    [manager POST:url parameters:nil progress:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (complete)
         {

@@ -30,8 +30,6 @@ pod 'JKCountDownButton'
 pod 'SWTableViewCell', '~> 0.3.7'
 
 use_frameworks!
-
-#, :git => 'https://github.com/zhao0/ReactiveCocoa.git', :tag => '2.5.2'
 pod 'ReactiveObjC'
-
+#pod 'ReactiveCocoa', :git => 'https://github.com/zhao0/ReactiveCocoa.git', :tag => '2.5.2'
 end

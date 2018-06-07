@@ -12,11 +12,9 @@
  */
 /************************************域名（开始）**********************************************/
 
-/// 物物地图积分及用户信息相关域名
+/// 物物地图商家版商家版新积分相关域名
 extern NSString *const HQJBBonusDomainName;
-/// 物物地图积分AA付款相关域名
-extern NSString *const HQJBBonusDomainAAName;
-/// 物物地图相关域名
+/// 物物地图商家版相关域名
 extern NSString *const HQJBDomainName;
 /// 意见反馈
 extern NSString *const HQJBFeedbackDomainName;
@@ -26,7 +24,7 @@ extern NSString *const HQJBVersionInformationDomainName;
 extern NSString *const HQJBUpdataAPPDomainName;
 /// 更新APP的地址
 extern NSString *const HQJBItunesDomainName;
-/// 物物地图 图片域名
+/// 物物地图商家版 图片域名
 extern NSString *const HQJBImageDomainName;
 /************************************域名（结束）**********************************************/
 

@@ -114,11 +114,11 @@
     NSMutableDictionary *dict;
     if (isGet) {
         dict = @{@"pwdtype":@"2",@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
-        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetPwdSMSInterface];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
     } else {
         dict = @{@"inputCode":self.verificationCodeTextField,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
         //        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
-        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInputSMSActionInterface];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputSMSActionInterface];
     }
 //    HQJLog(@"---%@",urlStr);
     [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {

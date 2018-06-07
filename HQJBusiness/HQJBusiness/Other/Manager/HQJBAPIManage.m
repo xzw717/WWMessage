@@ -9,15 +9,14 @@
 #import "HQJBAPIManage.h"
 
 #ifdef DEBUG  //测试阶段
-//NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
-NSString *const HQJBDomainName = @"http://47.98.45.218:8080/wuwuInterface";
+NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface";
 //47.98.45.218 http://192.168.16.200:8080/wuwuInterface/
-NSString *const HQJBBonusDomainAAName = @"http://192.168.16.110:8080/aa";
+//NSString *const HQJBBonusDomainAAName = @"http://192.168.16.110:8080/aa";
 
 #else         //发布阶段
 

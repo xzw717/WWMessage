@@ -157,7 +157,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
 -(void)newPswRequst {
-    
+//    NSMutableDictionary *dict =
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/inputNewpwdAction/newpwd/%@/pwdtype/%@/mobile/%@",AppSel_URL,self.newsPswTextField.text,_pswType,_mobileStr];
     
     [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {

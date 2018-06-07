@@ -54,11 +54,11 @@
     NSMutableDictionary *dict;
     if (isGet) {
         dict = @{@"pwdtype":@1,@"mobile":self.modelTextField.text}.mutableCopy;
-        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetPwdSMSInterface];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
     } else {
         dict = @{@"inputCode":self.verificationCodeTextField,@"mobile":self.modelTextField.text}.mutableCopy;
 //        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
-        urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInputSMSActionInterface];
+        urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputSMSActionInterface];
     }
     
     
