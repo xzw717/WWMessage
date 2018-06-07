@@ -10,13 +10,15 @@
 #import "PaymentCodeModel.h"
 @implementation PaymentCodeViewModel
 - (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)())isNull {
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/0",AppSel_URL,MmberidStr];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"resultCode"]integerValue] == 0) {
-            NSArray *modelArray = [PaymentCodeModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"]];
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"type":@0}.mutableCopy;
+//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/payCode/%@/type/0",AppSel_URL,MmberidStr];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPayCodeInterface];
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
+            NSArray *modelArray = [PaymentCodeModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
             !codelist ? :codelist(modelArray);
         }
-        if ([dic[@"resultCode"]integerValue] == 49001) {
+        if ([dic[@"code"]integerValue] == 49001) {
             !isNull ? : isNull();
         }
     } andError:^(NSError *error) {
@@ -25,10 +27,12 @@
 }
 
 - (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)())complete {
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/2/id/%@",AppSel_URL,MmberidStr,codeid];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"resultCode"]integerValue] == 0) {
-            [SVProgressHUD showSuccessWithStatus:dic[@"resultHint"]];
+    NSMutableDictionary *dict = @{@"memberId":MmberidStr,@"id":codeid}.mutableCopy;
+//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/2/id/%@",AppSel_URL,MmberidStr,codeid];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
+            [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
             !complete ? : complete();
         }
     } andError:^(NSError *error) {
@@ -39,9 +43,11 @@
 - (void)paymentCodeAddList:(NSString *)codeurl codetype:(NSString *)type complete:(void (^)(NSString *str))complete {
     /// UTF-8 编码
     NSString * encodeString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)codeurl, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode?memberid=%@&type=1&codetype=%@&codeurl=%@",AppSel_URL,MmberidStr,type,encodeString];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-            !complete ? : complete(dic[@"resultHint"]);
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString}.mutableCopy;
+//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode?memberid=%@&type=1&codetype=%@&codeurl=%@",AppSel_URL,MmberidStr,type,encodeString];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddPayCodeInterface];
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+            !complete ? : complete(dic[@"msg"]);
         
     } andError:^(NSError *error) {
     } ShowHUD:YES];

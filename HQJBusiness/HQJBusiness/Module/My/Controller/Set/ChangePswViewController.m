@@ -178,7 +178,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
         } else {
             [ChangePswViewModel changePswWithOldpwd:_oldPsWTextField.text andNewpwd:_oneNewPsWTextField.text andBlock:^(NSDictionary * changepswBlock) {
-                if ([changepswBlock[@"error"]integerValue] == 0) {
+                if ([changepswBlock[@"code"]integerValue] == 49000) {
                     
                     [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                     [ManagerEngine SVPAfter:@"操作成功" complete:^{

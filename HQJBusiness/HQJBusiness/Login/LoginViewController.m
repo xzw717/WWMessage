@@ -310,17 +310,25 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 //    HQJLog(@"网络状态:%@",[ManagerEngine networkStatus])
     if (isNetWork == YES) {
-  
+//        NSMutableDictionary *dict;
+//        NSString *urlText;
+//        if ([ManagerEngine valiMobile:self.userNameText.text]) {
+//            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckByMobileInterface];
+//            dict = @{@"mobile":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
+//        }else{
+//            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
+//            dict = @{@"username":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
+//        }
 //        NSString *urlText = [NSString stringWithFormat:@"%@loginCheck/username/%@/password/%@/membertype/2",Api_URL,self.userNameText.text,self.PswText.text];HQJBBonusDomainName
-         NSString *urlText = [NSString stringWithFormat:@"%@%@",Api_URL,self.userNameText.text,self.PswText.text];
+        NSMutableDictionary *dict = @{@"mobile":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
+        NSString *urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckByMobileInterface];
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-        
-        [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl complete:^(NSDictionary *dic) {
+        [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 
-        if ([dic[@"error"]integerValue] != 0) {
+        if ([dic[@"code"]integerValue] != 49000) {
             
             [self.testActivityIndicator stopAnimating];
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:@"用户名或者密码错误"];
             [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
             
         } else {

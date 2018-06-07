@@ -90,7 +90,7 @@
     self.cashView.proportionTextField.delegate = self;
     
     
-    if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]){
+    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
         self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(120).widthIs(WIDTH);
         [self.bonusView setTitleStr:@"积分消费时：" andplaceholderStr:@"例如：15"];
         self.bonusView.proportionTextField.delegate = self;
@@ -115,7 +115,7 @@
         return [values boolValue]?[ManagerEngine getColor:@"323232"]:[ManagerEngine getColor:@"999999"];
     }];
     
-    if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]){
+    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
    
         RACSignal *validBounsSignal = [self.bonusView.proportionTextField.rac_textSignal map:^id(NSString *value) {
             
@@ -135,7 +135,7 @@
                     [SVProgressHUD showInfoWithStatus:@"ZH值比率调整申请，还在审核中，请耐心等候处理"];
         } else {
             
-            if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]){
+            if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
 
                 HQJLog(@"---111-");
 
@@ -191,7 +191,7 @@
         self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(120).widthIs(WIDTH);
 
     }
-    if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
         self.submitButton.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.bonusView,30).heightIs(44).widthIs(WIDTH - kEDGE * 2);
 
     } else {
@@ -266,7 +266,7 @@
         _model = sender;
         self.cashView.proportionTextField.text = [NSString stringWithFormat:@"%.0f",[_model.cashZH floatValue] *100];
         
-        if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]){
+        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
             
             self.bonusView.proportionTextField.text = [NSString stringWithFormat:@"%.0f",[_model.bonusZH floatValue] *100];
 

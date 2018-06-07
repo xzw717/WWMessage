@@ -9,7 +9,7 @@
 #import "AppVersionManager.h"
 @interface AppVersionManager ()
 
-//https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8            物物地图    kAPPType  1
+//https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8            物物地图商家版    kAPPType  1
 //https://itunes.apple.com/cn/app/%E6%9C%8D%E5%8A%A1%E5%95%86/id1170386541?mt=8                     服务商     kAPPType  2
 //https://itunes.apple.com/cn/app/%E5%90%88%E5%85%B6%E5%AE%B6%E5%95%86%E5%AE%B6/id1193866813?mt=8   商家       kAPPType  3
 

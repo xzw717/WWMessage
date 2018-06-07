@@ -193,7 +193,7 @@
 
     [ManagerEngine dimssLoadView:self.nextButton andtitle:@"确认支付"];
     if([self.payModeLabel.text isEqualToString:@"积分支付，"]){
-        if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
             if ([_numerStr doubleValue] * 4 > [self.model.bonus doubleValue]) {
                 [SVProgressHUD showErrorWithStatus:@"你的积分好像不够了"];
             } else {
@@ -210,7 +210,7 @@
             }
         } else {
             
-            [SVProgressHUD showErrorWithStatus:@"积分购买仅限战略股份商家"];
+            [SVProgressHUD showErrorWithStatus:@"积分购买仅限股份商家"];
         }
        
     } else if([self.payModeLabel.text isEqualToString:@"微信支付，"]) {
