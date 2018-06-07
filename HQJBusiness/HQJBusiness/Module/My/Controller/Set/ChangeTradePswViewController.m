@@ -187,7 +187,7 @@
 }
 
 -(BOOL)codeLength:(NSString *)text {
-    if (text.length == 4) {
+    if (text.length == 6) {
         return YES;
     } else {
         return NO;

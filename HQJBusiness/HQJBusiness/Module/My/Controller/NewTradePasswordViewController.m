@@ -51,6 +51,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return _okButtn;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"新密码";

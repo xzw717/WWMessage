@@ -311,7 +311,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //    HQJLog(@"网络状态:%@",[ManagerEngine networkStatus])
     if (isNetWork == YES) {
   
-        NSString *urlText = [NSString stringWithFormat:@"%@loginCheck/username/%@/password/%@/membertype/2",Api_URL,self.userNameText.text,self.PswText.text];
+//        NSString *urlText = [NSString stringWithFormat:@"%@loginCheck/username/%@/password/%@/membertype/2",Api_URL,self.userNameText.text,self.PswText.text];HQJBBonusDomainName
+         NSString *urlText = [NSString stringWithFormat:@"%@%@",Api_URL,self.userNameText.text,self.PswText.text];
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
         
         [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl complete:^(NSDictionary *dic) {
