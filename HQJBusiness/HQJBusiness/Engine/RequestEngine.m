@@ -15,6 +15,7 @@ static AFHTTPSessionManager *httpManager = nil;
 {
     [self HQJBusinessRequestDetailsUrl:urlStr parameters:nil complete:complete andError:errors ShowHUD:show];
 }
+
 +(void)HQJBusinessRequestDetailsUrl:(NSString *)urlStr parameters:(id)parameters complete:(void (^)(NSDictionary *dic))complete andError:(void(^)(NSError *error))errors ShowHUD:(BOOL)show{
     if (show == YES) {
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];

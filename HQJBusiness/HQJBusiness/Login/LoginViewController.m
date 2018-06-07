@@ -312,7 +312,10 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if (isNetWork == YES) {
         NSMutableDictionary *dict = @{@"username":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
   
+
         NSString *urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
+
+//        NSString *urlText = [NSString stringWithFormat:@"%@loginCheck/username/%@/password/%@/membertype/2",Api_URL,self.userNameText.text,self.PswText.text];HQJBBonusDomainName
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
         
         [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
