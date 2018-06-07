@@ -127,13 +127,13 @@
         }
         
         if([dic[@"code"]integerValue] != 49000) {
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         } else {
             if (isGet == NO) {
                 
                 NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
                 NewPswVC.viewControllerStr = @"SetViewController";
-                NewPswVC.pswType = @"tradepwd";
+                NewPswVC.pswType = 2;
                 NewPswVC.mobileStr = [NameSingle shareInstance].mobile;
                 [self.navigationController pushViewController:NewPswVC animated:YES];
             } else {

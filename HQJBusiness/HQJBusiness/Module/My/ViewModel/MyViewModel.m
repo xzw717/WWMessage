@@ -17,16 +17,15 @@
 @implementation MyViewModel
 
 - (void)myRequst {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/myInfor/id/%@",AppSel_URL,MmberidStr];
-    
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
+//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/myInfor/id/%@",AppSel_URL,MmberidStr];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
-        [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+        [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
-                
             }
         } andError:^(NSError *error) {
             if (self.myrequstErrorBlock) {

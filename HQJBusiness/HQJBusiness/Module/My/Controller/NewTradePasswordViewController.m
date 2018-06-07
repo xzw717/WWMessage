@@ -57,7 +57,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     self.zw_title = @"新密码";
     [self initializeTheView];
     [self setSignal];
-    if (![_pswType isEqualToString:@"tradepwd"]) {
+    if (_pswType != 2) {
         _newsPswTextField.keyboardType = UIKeyboardTypeASCIICapable;
     }
 }
@@ -93,7 +93,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     }];
     [[self.okButtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         [ManagerEngine loadDateView:self.okButtn andPoint:CGPointMake(self.okButtn.mj_w / 2, self.okButtn.mj_h / 2)];
-        if ([_pswType isEqualToString:@"tradepwd"]) {
+        if (_pswType == 2) {
             if (self.newsPswTextField.text.length != 6) {
                 [ManagerEngine dimssLoadView:self.okButtn andtitle:@"确定"];
                 [SVProgressHUD showErrorWithStatus:@"交易密码要设置6位哦"];
@@ -115,7 +115,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 - (BOOL)pswlength:(NSString *)text {
-     if ([_pswType isEqualToString:@"tradepwd"]) {
+     if (_pswType == 2) {
          if (text.length >0 && text.length <=6) {
              return YES;
          } else {
@@ -135,7 +135,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         return YES;
     }
     
-    if ([_pswType isEqualToString:@"tradepwd"]) {
+    if (_pswType == 2) {
         if (self.newsPswTextField.text.length >=6) {
             return NO;
         } else {
@@ -158,11 +158,12 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
 -(void)newPswRequst {
-//    NSMutableDictionary *dict =
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/inputNewpwdAction/newpwd/%@/pwdtype/%@/mobile/%@",AppSel_URL,self.newsPswTextField.text,_pswType,_mobileStr];
+    NSMutableDictionary *dict = @{@"newpwd":self.newsPswTextField.text,@"pwdtype":[NSNumber numberWithInteger:self.pswType],@"mobile":_mobileStr}.mutableCopy;
+//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/inputNewpwdAction/newpwd/%@/pwdtype/%@/mobile/%@",AppSel_URL,self.newsPswTextField.text,_pswType,_mobileStr];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             [ManagerEngine SVPAfter:@"修改成功" complete:^{
                 [self popViews];

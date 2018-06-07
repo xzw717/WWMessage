@@ -10,6 +10,6 @@
 
 @interface NewTradePasswordViewController : ZW_ViewController
 @property (nonatomic,copy)NSString *viewControllerStr;
-@property (nonatomic,strong)NSString *pswType;
+@property (nonatomic,assign)NSInteger pswType;
 @property (nonatomic,strong)NSString *mobileStr;
 @end

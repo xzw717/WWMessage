@@ -32,6 +32,10 @@ NSString *const HQJBImageDomainName = @"http://wuwuditu.img-cn-hangzhou.aliyuncs
 
 
 /*_____________________________我是分割线________________________________________*/
+///获取商家信息
+NSString *const HQJBGetMerchantInfoInterface = @"/merchant/getMerchantInfo?";
+/// 修改登录密码
+NSString *const HQJBPasswordSaveActionInterface = @"/merchant/passwordSaveAction?";
 /// 获取修改交易密码的短信验证码
 NSString *const HQJBGetPwdSMSInterface = @"/merchant/getPwdSMS?";
 /// 校验短信验证码
@@ -40,6 +44,8 @@ NSString *const HQJBInputSMSActionInterface = @"/merchant/inputSMSAction?";
 NSString *const HQJBInputNewpwdActionInterface = @"/merchant/inputNewpwdAction?";
 /// 商家登录
 NSString *const HQJBLoginCheckInterface = @"/merchant/loginCheck?";
+/// 商家通过手机号登录
+NSString *const HQJBLoginCheckByMobileInterface = @"/merchant/loginCheckByMobile?";
 /// 查询商家收款码
 NSString *const HQJBPayCodeInterface = @"/merchant/payCode?";
 /// 添加商家收款码

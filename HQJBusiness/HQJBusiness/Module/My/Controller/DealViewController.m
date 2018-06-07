@@ -45,14 +45,14 @@
 
 -(NSArray *)titleArray {
     if ( _titleArray == nil ) {
-        if ([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+        if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
             _titleArray = @[@[@"现金销售",
                               @"积分兑现",
                               @"现金提现"],
                             @[@"购买ZH值",
                               @"ZH值设定"]];
 
-        } else if ([[NameSingle shareInstance].role isEqualToString:@"战略合作商家"]) {
+        } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
             _titleArray = @[@[@"现金销售",
                               @"现金提现"],
                             @[@"购买ZH值",
@@ -112,8 +112,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+    HQJLog(@"[NameSingle shareInstance].role = %@",[NameSingle shareInstance].role);
+    if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];
@@ -142,7 +142,7 @@
         }
 
         
-    } else if ([[NameSingle shareInstance].role isEqualToString:@"战略合作商家"]) {
+    } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];

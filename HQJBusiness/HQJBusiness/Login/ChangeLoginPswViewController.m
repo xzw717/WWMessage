@@ -72,14 +72,19 @@
         if([dic[@"code"]integerValue] != 49000) {
             self.getCodeButton.enabled = YES;
 
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         } else {
             if (isGet == NO) {
-                NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
-                NewPswVC.viewControllerStr = @"LoginViewController";
-                NewPswVC.pswType = @"loginpwd";
-                NewPswVC.mobileStr = self.modelTextField.text;
-                [self.navigationController pushViewController:NewPswVC animated:YES];
+                HQJLog(@"self.verificationCodeTextField.text = %@",self.verificationCodeTextField.text);
+                if([self.verificationCodeTextField.text isEqualToString:dic[@"val"]]){
+                    NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
+                    NewPswVC.viewControllerStr = @"LoginViewController";
+                    NewPswVC.pswType = 1;
+                    NewPswVC.mobileStr = self.modelTextField.text;
+                    [self.navigationController pushViewController:NewPswVC animated:YES];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"验证码输入有误"];
+                }
             } else {
 
                 [self.getCodeButton startCountDownWithSecond:60];
