@@ -27,7 +27,7 @@
 }
 
 - (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)())complete {
-    NSMutableDictionary *dict = @{@"memberId":MmberidStr,@"id":codeid}.mutableCopy;
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"id":codeid}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/2/id/%@",AppSel_URL,MmberidStr,codeid];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
     [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {

@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-      self.RequstwithType = @"myApplication";
+      self.RequstwithType = @"applyList";
     
     [self requst];
 }

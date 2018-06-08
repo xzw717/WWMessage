@@ -16,15 +16,19 @@
 
 + (void)detailRequsttype:(NSString *)type types:(NSString *)types page:(NSString *)page listBlock:(void(^)(NSArray <DetailModel *>*sender))detailBlock {
     NSString *urlStr;
+    NSMutableDictionary *dict;
     if (types) {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@/page/%@/type/%@",AppSel_URL,type,MmberidStr,page,[types isEqualToString:@"线下支付"] ? @"2" : @"1"] ;
+        dict = @{@"memberid":MmberidStr,@"page":page,@"type":[types isEqualToString:@"线下支付"] ? @"2" : @"1"}.mutableCopy;
+//        urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@/page/%@/type/%@",AppSel_URL,type,MmberidStr,page,[types isEqualToString:@"线下支付"] ? @"2" : @"1"] ;
+        urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     } else {
-        urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@/page/%@",AppSel_URL,type,MmberidStr,page] ;
+        dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
+        urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     }
     HQJLog(@"-%@",urlStr);
     [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         
-        if ([dic[@"error"]integerValue] == 0) {
+        if ([dic[@"code"]integerValue] == 49000) {
             
             NSArray *resultArray = dic[@"result"];
             NSMutableArray *modelArray = [NSMutableArray array];
@@ -39,7 +43,7 @@
             
             
         } else {
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
     } andError:^(NSError *error) {
         

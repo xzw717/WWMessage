@@ -8,11 +8,9 @@
 
 #import "ChangeTradePswViewController.h"
 
-@interface ChangeTradePswViewController ()
-
-
-
-
+@interface ChangeTradePswViewController (){
+    NSString *val;
+}
 
 
 @end
@@ -115,29 +113,15 @@
     if (isGet) {
         dict = @{@"pwdtype":@"2",@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
         urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
-    } else {
-        dict = @{@"inputCode":self.verificationCodeTextField,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
-        //        urlStr = [NSString stringWithFormat:@"%@AppSel2/inputSMSAction/inputCode/%@/mobile/%@",AppSel_URL,self.verificationCodeTextField.text,self.modelTextField.text];
-        urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputSMSActionInterface];
-    }
-//    HQJLog(@"---%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if (!isGet) {
-            [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
-        }
-        
-        if([dic[@"code"]integerValue] != 49000) {
-            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-        } else {
-            if (isGet == NO) {
-                
-                NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
-                NewPswVC.viewControllerStr = @"SetViewController";
-                NewPswVC.pswType = 2;
-                NewPswVC.mobileStr = [NameSingle shareInstance].mobile;
-                [self.navigationController pushViewController:NewPswVC animated:YES];
+        [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+            if (!isGet) {
+                [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
+            }
+            
+            if([dic[@"code"]integerValue] != 49000) {
+                [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             } else {
-                
+                val =  (NSString *)dic[@"result"][@"val"];
                 [self.getCodeButton startCountDownWithSecond:60];
                 
                 [self.getCodeButton countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
@@ -149,17 +133,28 @@
                     return @"重新获取";
                     
                 }];
-
             }
-        }
-        
-    } andError:^(NSError *error) {
-        if (!isGet) {
+            
+        } andError:^(NSError *error) {
+            if (!isGet) {
+                [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
+            }
+            
+        } ShowHUD:NO];
+    } else {
+        if([self.verificationCodeTextField.text isEqualToString:val]){
+            NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
+            NewPswVC.viewControllerStr = @"SetViewController";
+            NewPswVC.pswType = 2;
+            NewPswVC.mobileStr = [NameSingle shareInstance].mobile;
+            [self.navigationController pushViewController:NewPswVC animated:YES];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"验证码输入有误"];
             [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
-
         }
-        
-    } ShowHUD:NO];
+    }
+//    HQJLog(@"---%@",urlStr);
+    
     
     
 }

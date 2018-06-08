@@ -36,8 +36,8 @@ extern NSString *const HQJBGetMerchantInfoInterface;
 extern NSString *const HQJBPasswordSaveActionInterface;
 /// 获取修改交易密码的短信验证码
 extern NSString *const HQJBGetPwdSMSInterface;
-/// 校验短信验证码
-extern NSString *const HQJBInputSMSActionInterface;
+///// 校验短信验证码
+//extern NSString *const HQJBInputSMSActionInterface;
 /// 修改交易密码
 extern NSString *const HQJBInputNewpwdActionInterface;
 /// 商家登录
@@ -50,8 +50,18 @@ extern NSString *const HQJBPayCodeInterface;
 extern NSString *const HQJBAddPayCodeInterface;
 /// 删除商家收款码
 extern NSString *const HQJBDelPayCodeInterface;
-
-
+/// 待审核申请（全部）
+extern NSString *const HQJBApplyListInterface;
+/// 待审核申请（购买ZH值）
+extern NSString *const HQJBZHPurchaseApplyListInterface;
+/// 待审核申请（现金提取）
+extern NSString *const HQJBCashDrawApplyListInterface;
+///积分交易明细
+extern NSString *const HQJBScoreTradeListInterface;
+///现金交易明细
+extern NSString *const HQJBCashTradeListInterface;
+///积分兑现明细
+extern NSString *const HQJBScoreExchangeListInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject
