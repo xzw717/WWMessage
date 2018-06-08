@@ -14,7 +14,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhGet/memberid/%@",AppSel_URL,MmberidStr];
     HQJLog(@"%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         BonusExchangeModel *model = [BonusExchangeModel mj_objectWithKeyValues:dic[@"result"]];
         buyBlock(model);
     } andError:^(NSError *error) {
@@ -27,7 +27,7 @@
 + (void)generateTradeidRequstAmount:(NSString *)amount andBlock:(void(^)(id Tradeid))sender {
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/generateTradeid/memberid/%@/amount/%@",AppSel_URL,MmberidStr,amount];
     HQJLog(@"链接是：%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             if (sender) {
                 sender(dic[@"result"]);
@@ -50,7 +50,7 @@
 +(void)payRequstWithAmount:(NSString *)amount andPassword:(NSString *)psw andPopViewController:(ZW_ViewController *)zw_self {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhGetByBonusAction/amount/%@/tradepwd/%@/memberid/%@",AppSel_URL,amount,psw,MmberidStr];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             zw_self.viewControllerName = @"DealViewController";
             [SVProgressHUD showSuccessWithStatus:@"购买成功"];

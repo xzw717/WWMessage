@@ -22,7 +22,7 @@
     
     
     HQJLog(@"-%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if([dic[@"resultCode"]integerValue] == 2700 ) {
             
             NSArray *resultArray = (NSArray *)dic[@"resultMsg"][@"orderList"];
@@ -50,7 +50,7 @@
 + (void)requestCustomerInformationWith:(NSString *)customerID
                               complete:(void(^)(NSString *mobile,NSString *realname))complete {
     NSString *strUrl = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=Api&a=getMemberInfo&mobile=%@&membertype=customer",AppSel_URL,customerID];
-    [RequestEngine HQJBusinessRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             if (complete) {
                 complete(dic[@"result"][@"mobile"],dic[@"result"][@"realname"]);

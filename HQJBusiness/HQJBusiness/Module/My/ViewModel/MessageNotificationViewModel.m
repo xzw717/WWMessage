@@ -21,7 +21,7 @@
 }
 - (void)messageRequstpage:(NSInteger)pages state:(ReadingState)state complete:(void(^)(id x))complete error:(void(^)(NSError *error))errors{
     NSString *urlStr = [NSString stringWithFormat:@"%@shopmessage/findShopMessageList.action?memberid=%@&page=%ld&isread=%ld",OrderTest_URL,MmberidStr,(long)pages,(long)state];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         NSArray *resultMsgArray = dic[@"resultMsg"];
        
         if (resultMsgArray.count == 0 && pages == 1) {

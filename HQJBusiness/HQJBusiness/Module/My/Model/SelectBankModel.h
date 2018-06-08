@@ -10,23 +10,20 @@
 
 @interface SelectBankModel : NSObject
 
-@property (nonatomic,strong)NSString *addtime;
+@property (nonatomic,strong)NSString *createTime;
 
 
 @property (nonatomic,strong)NSString *id;
 
 
-@property (nonatomic,strong)NSString *payBankId;
+@property (nonatomic,strong)NSString *bankId;
+
+@property (nonatomic,strong)NSString *bankCard;
+
+@property (nonatomic,strong)NSDictionary *bankDetail;
 
 
-@property (nonatomic,strong)NSDictionary *bank;
-
-
-@property (nonatomic,strong)NSString *sellerid;
-
-
-@property (nonatomic,strong)NSString *payAccount;
-
+@property (nonatomic,strong)NSString *mid;
 
 @property (nonatomic,strong)NSString *payName;
 

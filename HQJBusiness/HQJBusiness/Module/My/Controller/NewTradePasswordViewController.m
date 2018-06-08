@@ -162,7 +162,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/inputNewpwdAction/newpwd/%@/pwdtype/%@/mobile/%@",AppSel_URL,self.newsPswTextField.text,_pswType,_mobileStr];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             [ManagerEngine SVPAfter:@"修改成功" complete:^{

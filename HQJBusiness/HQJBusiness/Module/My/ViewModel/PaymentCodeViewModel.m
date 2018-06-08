@@ -13,7 +13,7 @@
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"type":@0}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/payCode/%@/type/0",AppSel_URL,MmberidStr];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPayCodeInterface];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             NSArray *modelArray = [PaymentCodeModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
             !codelist ? :codelist(modelArray);
@@ -30,7 +30,7 @@
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"id":codeid}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/2/id/%@",AppSel_URL,MmberidStr,codeid];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
             !complete ? : complete();
@@ -46,7 +46,7 @@
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode?memberid=%@&type=1&codetype=%@&codeurl=%@",AppSel_URL,MmberidStr,type,encodeString];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddPayCodeInterface];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             !complete ? : complete(dic[@"msg"]);
         
     } andError:^(NSError *error) {

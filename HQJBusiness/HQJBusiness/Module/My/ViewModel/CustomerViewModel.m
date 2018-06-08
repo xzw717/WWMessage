@@ -16,7 +16,7 @@
 +(void)intoRequstZHRatio:(void(^)(id sender))intoBlock {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/cashSalesShow/memberid/%@",AppSel_URL,MmberidStr];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         intoBlock(dic[@"result"]);
     } andError:^(NSError *error) {
         
@@ -28,7 +28,7 @@
 
 + (void)customerrequstNumer:(NSString *)numer andSender:(void(^)(id sender))customerBlock {
     NSString *urlStr = [NSString stringWithFormat:@"%@getMemberInfo/mobile/%@/membertype/customer",Api_URL,numer];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         CustomerModel *model = [CustomerModel mj_objectWithKeyValues:dic[@"result"]];
         customerBlock(model);
     } andError:^(NSError *error) {
@@ -42,7 +42,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/cashSales/memberid/%@/cusId/%@/ZH/%@/tradepwd/%@/amount/%@",AppSel_URL,MmberidStr,cusId,zh,psw,amount];
 
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
     
             submitBlcok(dic[@"result"][@"errmsg"]);
         

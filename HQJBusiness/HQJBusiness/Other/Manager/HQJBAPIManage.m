@@ -14,7 +14,7 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface";
+NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface/merchant/";
 //47.98.45.218 http://192.168.16.200:8080/wuwuInterface/
 //NSString *const HQJBBonusDomainAAName = @"http://192.168.16.110:8080/aa";
 
@@ -33,37 +33,47 @@ NSString *const HQJBImageDomainName = @"http://wuwuditu.img-cn-hangzhou.aliyuncs
 
 /*_____________________________我是分割线________________________________________*/
 ///获取商家信息
-NSString *const HQJBGetMerchantInfoInterface = @"/merchant/getMerchantInfo?";
+NSString *const HQJBGetMerchantInfoInterface = @"getMerchantInfo?";
 /// 修改登录密码
-NSString *const HQJBPasswordSaveActionInterface = @"/merchant/passwordSaveAction?";
-/// 获取修改交易密码的短信验证码
-NSString *const HQJBGetPwdSMSInterface = @"/merchant/getPwdSMS?";
+NSString *const HQJBPasswordSaveActionInterface = @"passwordSaveAction?";
 ///// 校验短信验证码
 //NSString *const HQJBInputSMSActionInterface = @"/merchant/inputSMSAction?";
+/// 获取修改交易密码的短信验证码
+NSString *const HQJBGetPwdSMSInterface = @"getPwdSMS?";
+/// 校验短信验证码
+NSString *const HQJBInputSMSActionInterface = @"inputSMSAction?";
 /// 修改交易密码
-NSString *const HQJBInputNewpwdActionInterface = @"/merchant/inputNewpwdAction?";
+NSString *const HQJBInputNewpwdActionInterface = @"inputNewpwdAction?";
 /// 商家登录
-NSString *const HQJBLoginCheckInterface = @"/merchant/loginCheck?";
+NSString *const HQJBLoginCheckInterface = @"loginCheck?";
 /// 商家通过手机号登录
-NSString *const HQJBLoginCheckByMobileInterface = @"/merchant/loginCheckByMobile?";
+NSString *const HQJBLoginCheckByMobileInterface = @"loginCheckByMobile?";
 /// 查询商家收款码
-NSString *const HQJBPayCodeInterface = @"/merchant/payCode?";
+NSString *const HQJBPayCodeInterface = @"payCode?";
 /// 添加商家收款码
-NSString *const HQJBAddPayCodeInterface = @"/merchant/addPayCode?";
+NSString *const HQJBAddPayCodeInterface = @"addPayCode?";
 /// 删除商家收款码
-NSString *const HQJBDelPayCodeInterface = @"/merchant/delPayCode?";
+NSString *const HQJBDelPayCodeInterface = @"delPayCode?";
 /// 待审核申请（全部）
 NSString *const HQJBApplyListInterface = @"/merchant/applyList?";
 /// 待审核申请（购买ZH值）
-NSString *const HQJBZHPurchaseApplyListInterface = @"/merchant/zhPurchaseApplyList?";
+NSString *const HQJBZHPurchaseApplyListInterface = @"zhPurchaseApplyList?";
 /// 待审核申请（现金提取）
-NSString *const HQJBCashDrawApplyListInterface = @"/merchant/cashDrawApplyList?";
+NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList?";
 ///积分交易明细
-NSString *const HQJBScoreTradeListInterface = @"/merchant/scoreTradeList?";;
+NSString *const HQJBScoreTradeListInterface = @"scoreTradeList?";;
 ///现金交易明细
-NSString *const HQJBCashTradeListInterface = @"/merchant/cashTradeList?";;
+NSString *const HQJBCashTradeListInterface = @"cashTradeList?";;
 ///积分兑现明细
-NSString *const HQJBScoreExchangeListInterface = @"/merchant/scoreExchangeList?";;
+NSString *const HQJBScoreExchangeListInterface = @"scoreExchangeList?";;
+/// 获取添加银行卡的手机短信验证码
+NSString *const HQJBGetSMSInterface = @"getSMS?";
+/// 添加银行卡
+NSString *const HQJBAddBankCardInterface = @"addBankCard?";
+/// 银行列表
+NSString *const HQJBBankAccountInterface = @"bankAccount?";
+/// 获取商家银行卡列表
+NSString *const HQJBAccountListInterface = @"bankList?";
 
 @implementation HQJBAPIManage
 

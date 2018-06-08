@@ -10,12 +10,12 @@
 #import "SelectBankModel.h"
 
 @implementation SelectBankViewModel
-+(void) selectBankBLock:(void (^)(id sender))select {
++ (void)selectBankBLock:(void (^)(id sender))select {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/accountList/memberid/%@",AppSel_URL,MmberidStr];
-    HQJLog(@"%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"error"] integerValue] == 0) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAccountListInterface];
+    HQJLog(@"%@",MmberidStr);
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:@{@"memberid":MmberidStr} complete:^(NSDictionary *dic) {
+        if ([dic[@"code"] integerValue] == 49000) {
             NSArray *resultAry = dic[@"result"];
             NSMutableArray *modelArray = [NSMutableArray arrayWithCapacity:resultAry.count];
             for (NSDictionary *dicOne in resultAry) {
@@ -25,15 +25,13 @@
             if (select) {
                 select(modelArray);
             }
-
+            
         }
-        
         
         
     } andError:^(NSError *error) {
         
     } ShowHUD:NO];
-    
-    
+  
 }
 @end

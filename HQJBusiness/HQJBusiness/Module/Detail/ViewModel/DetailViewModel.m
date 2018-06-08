@@ -26,7 +26,7 @@
         urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     }
     HQJLog(@"-%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         
         if ([dic[@"code"]integerValue] == 49000) {
             

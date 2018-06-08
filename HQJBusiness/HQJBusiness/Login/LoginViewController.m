@@ -323,7 +323,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         NSMutableDictionary *dict = @{@"mobile":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
         NSString *urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckByMobileInterface];
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-        [RequestEngine HQJBusinessRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
+        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 
         if ([dic[@"code"]integerValue] != 49000) {
             

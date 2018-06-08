@@ -77,13 +77,13 @@
 -(void)setModel:(SelectBankModel *)model {
     _model = model;
     
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:model.bank[@"bankBigIcon"]]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:model.bankDetail[@"bankIcon"]]];
     
     self.bankNameLabel.zw_color = [ManagerEngine getColor:@"999999"];
   
-    self.bankNameLabel.needChangeStr = [NSString stringWithFormat:@"(尾号%@)",model.payAccount];
+    self.bankNameLabel.needChangeStr = [NSString stringWithFormat:@"(尾号%@)",model.bankCard];
   
-    self.bankNameLabel.text = [NSString stringWithFormat:@"%@(尾号%@)",model.bank[@"bankName"],model.payAccount];
+    self.bankNameLabel.text = [NSString stringWithFormat:@"%@(尾号%@)",model.bankDetail[@"bankName"],model.bankCard];
     
     self.userNameLabel.text = model.payName;
     

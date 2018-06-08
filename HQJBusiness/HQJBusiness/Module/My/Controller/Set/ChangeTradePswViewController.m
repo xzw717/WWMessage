@@ -107,31 +107,39 @@
 }
 
 -(void)getcodeRequst:(BOOL)isGet {
-    
-    NSString *urlStr ;
+    NSString *urlStr;
     NSMutableDictionary *dict;
     if (isGet) {
         dict = @{@"pwdtype":@"2",@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
         urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
-        [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        
+        HQJLog(@"---%@",urlStr);
+        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             if (!isGet) {
                 [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
             }
             
             if([dic[@"code"]integerValue] != 49000) {
+                self.getCodeButton.enabled = YES;
+                
                 [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             } else {
+                
                 val =  (NSString *)dic[@"result"][@"val"];
+                
                 [self.getCodeButton startCountDownWithSecond:60];
                 
                 [self.getCodeButton countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+                    self.getCodeButton.enabled = NO;
+                    self.getCodeButton.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+                    
                     NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
                     return title;
                 }];
                 [self.getCodeButton countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
                     countDownButton.enabled = YES;
+                    self.getCodeButton.backgroundColor = DefaultAPPColor;
                     return @"重新获取";
-                    
                 }];
             }
             
@@ -140,8 +148,11 @@
                 [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
             }
             
-        } ShowHUD:NO];
+        } ShowHUD:YES];
+        
+        
     } else {
+        HQJLog(@"self.verificationCodeTextField.text = %@ val = %@",self.verificationCodeTextField.text,val);
         if([self.verificationCodeTextField.text isEqualToString:val]){
             NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
             NewPswVC.viewControllerStr = @"SetViewController";
@@ -153,10 +164,7 @@
             [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
         }
     }
-//    HQJLog(@"---%@",urlStr);
-    
-    
-    
+
 }
 
 -(void)setSignal {

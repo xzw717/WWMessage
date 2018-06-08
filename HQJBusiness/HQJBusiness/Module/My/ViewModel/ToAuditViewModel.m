@@ -30,8 +30,7 @@
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@/merchant/%@?",HQJBBonusDomainName,type];
     HQJLog(@"....%@",urlStr);
-    
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
         if ([type isEqualToString:@"applyList"]) {
             NSArray *listarray = dic[@"result"];
             NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];
