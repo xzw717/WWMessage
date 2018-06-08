@@ -121,7 +121,7 @@
         urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputSMSActionInterface];
     }
 //    HQJLog(@"---%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if (!isGet) {
             [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
         }

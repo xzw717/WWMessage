@@ -140,7 +140,7 @@
     [tableView setEditing:YES animated:YES];
     SelectBankModel *model = self.bankListArray[indexPath.row];
     NSDictionary *bankDic = [NSDictionary dictionary];
-    bankDic = @{@"icon":model.bank[@"banksmallIcon"],@"payName":model.payName,@"payAccount":model.payAccount,@"id":model.id};
+    bankDic = @{@"icon":model.bankDetail[@"bankIcon"],@"payName":model.payName,@"payAccount":model.bankCard,@"id":model.mid};
     [[NSNotificationCenter defaultCenter]postNotificationName:@"selectbank" object:nil userInfo:bankDic];
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -151,7 +151,7 @@
 - (void)deleteCardRequst:(NSInteger)index {
     SelectBankModel *model = self.bankListArray[index];
     NSString *strUrl = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=AppSel2&a=bankAccountDel&sellerid=%@&id=%@",AppSel_URL,[NameSingle shareInstance].memberid,model.id];
-    [RequestEngine HQJBusinessRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"删除成功"];
         } else {

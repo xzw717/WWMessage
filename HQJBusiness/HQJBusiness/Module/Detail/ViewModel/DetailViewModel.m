@@ -22,7 +22,7 @@
         urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@/page/%@",AppSel_URL,type,MmberidStr,page] ;
     }
     HQJLog(@"-%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         
         if ([dic[@"error"]integerValue] == 0) {
             

@@ -22,7 +22,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
-        [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
@@ -81,7 +81,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/homeIBanner",AppSel_URL];
     
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             if (sender) {
                 sender(dic[@"result"]);

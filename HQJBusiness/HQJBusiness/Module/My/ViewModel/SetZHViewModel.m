@@ -13,7 +13,7 @@
 + (void)getBonusZHCashZHWithBlock:(void(^)(id sender))proportion {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhSet/memberid/%@",AppSel_URL,MmberidStr];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             SetZHModel *model = [SetZHModel mj_objectWithKeyValues:dic[@"result"]];
             proportion(model);
@@ -26,7 +26,7 @@
 + (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhSetAction/memberid/%@/bonusZH/%@/cashZH/%@",AppSel_URL,MmberidStr,bonus,cash ];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             [SVProgressHUD showSuccessWithStatus:@"操作成功"];
             [ManagerEngine SVPAfter:@"操作成功" complete:^{

@@ -21,7 +21,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@",AppSel_URL,urlType,MmberidStr];
 
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         BonusExchangeModel *model = [BonusExchangeModel mj_objectWithKeyValues:dic[@"result"]];
 
         exchaneBlock(model);
@@ -45,7 +45,7 @@
     
 //    HQJLog(@"dizhi :%@",urlStr);
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         
         if (blocks) {
             blocks(dic);

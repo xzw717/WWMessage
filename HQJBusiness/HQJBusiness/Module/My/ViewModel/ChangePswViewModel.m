@@ -13,7 +13,7 @@
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"membertype":@1,@"pwdtype":@1,@"oldpwd":old,@"newpwd":new}.mutableCopy;
 //    NSString *urlStr =[NSString stringWithFormat:@"%@passwordSaveAction/memberid/%@/membertype/seller/pwdtype/loginpwd/oldpwd/%@/newpwd/%@",Api_URL,MmberidStr,old,new];
     NSString *urlStr =[NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPasswordSaveActionInterface];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
         if (sender) {
             sender(dic);
         }

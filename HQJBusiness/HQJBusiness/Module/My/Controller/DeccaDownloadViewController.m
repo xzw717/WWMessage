@@ -99,7 +99,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 - (void)requstFid:(void(^)(NSString *fid,NSString *mobile,NSString *realname))complete {
     NSString *codeStr = [NameSingle shareInstance].memberid;
     NSString *urlStr = [NSString stringWithFormat:@"%@AppCus/getSellerInfo/memberid/%@",AppSel_URL,codeStr];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         complete(dic[@"result"][@"fid"],dic[@"result"][@"mobile"],dic[@"result"][@"realname"]);
     } andError:^(NSError *error) {
         

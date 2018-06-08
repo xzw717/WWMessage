@@ -15,7 +15,7 @@
     
     NSString *urlStr =[NSString stringWithFormat:@"%@AppSel2/myInforModify/memberid/%@",AppSel_URL,MmberidStr];
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             informationModel *model = [informationModel mj_objectWithKeyValues:dic[@"result"]];
             if (sender) {

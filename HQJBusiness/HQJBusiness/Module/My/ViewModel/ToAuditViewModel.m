@@ -33,7 +33,7 @@
     
     HQJLog(@"....%@",urlStr);
     
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         if ([type isEqualToString:@"myApplication"]) {
             NSArray *listarray = dic[@"result"][@"mylist"];
             NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];

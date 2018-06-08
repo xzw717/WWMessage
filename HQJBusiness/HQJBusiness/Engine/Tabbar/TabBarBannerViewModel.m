@@ -17,7 +17,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@system/banner.action?type=2",OrderTest_URL];
     HQJLog(@"图片：%@",urlStr);
 
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         NSArray *resultMsgArray = dic[@"resultMsg"];
         NSMutableArray *modelArray = [NSMutableArray arrayWithCapacity:resultMsgArray.count];
         for (NSDictionary *dicOne in resultMsgArray) {
@@ -37,7 +37,7 @@
     
     
     NSString *urlStr = [NSString stringWithFormat:@"%@system/icon.action?type=2",OrderTest_URL];
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         NSArray *resultMsgArray = dic[@"resultMsg"];
         
         tabbarBlock(resultMsgArray);

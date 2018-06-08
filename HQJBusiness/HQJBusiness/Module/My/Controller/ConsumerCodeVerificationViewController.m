@@ -92,7 +92,7 @@
 - (void)useConsumerCode:(NSString *)code {
     NSString *url = [NSString stringWithFormat:@"%@salecode/employcode.action?memberid=%@&sale_code=%@",OrderTest_URL,MmberidStr,code];
     @weakify(self);
-    [RequestEngine HQJBusinessRequestDetailsUrl:url complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url complete:^(NSDictionary *dic) {
         @strongify(self);
         if ([dic[@"resultCode"]integerValue] == 2200) {
             [self alertMessage:@"核销成功"];

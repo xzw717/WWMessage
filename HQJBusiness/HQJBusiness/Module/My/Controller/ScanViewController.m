@@ -56,7 +56,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"http://shoptest.heqijia.net/salecode/shopcheckcode.action?memberid=%@&sale_code=%@",MmberidStr,code];
     HQJLog(@"%@",urlStr);
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"Qrcode" object:nil userInfo:@{@"state":dic[@"resultMsg"][@"state"]}];
         

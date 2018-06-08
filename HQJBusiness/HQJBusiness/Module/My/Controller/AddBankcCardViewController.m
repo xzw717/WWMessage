@@ -53,6 +53,9 @@
 /// 获取验证码
 @property (nonatomic,strong) JKCountDownButton *getCodeButton;
 
+/// 后台返回的验证码
+@property (nonatomic,strong) NSString *getcode;
+
 @end
 
 @implementation AddBankcCardViewController
@@ -309,8 +312,8 @@
 
 
 -(void)bankNameRequst {
-    
-    [RequestEngine HQJBusinessRequestDetailsUrl:[NSString stringWithFormat:@"%@AppSel2/bankAccount",AppSel_URL] complete:^(NSDictionary *dic) {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBBankAccountInterface];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlString complete:^(NSDictionary *dic) {
         
         
         NSArray *resultAry = dic[@"result"];
@@ -383,7 +386,13 @@
                 
                 if(self.cardTextField.text.length >=16 && self.cardTextField.text.length <=19) {
                     if (self.verificationCodeTextField.text.length > 0) {
-                        [self addBankCardRequst];
+                        if ([self.verificationCodeTextField.text isEqualToString:self.getcode]) {
+                            [self addBankCardRequst];
+                        } else {
+                            [SVProgressHUD showErrorWithStatus:@"验证码输入错误"];
+
+                        }
+                        
 
                     } else {
                         [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
@@ -431,52 +440,62 @@
 #pragma mark --- 获取验证码
 - (void)getcodeRequst {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=Api&a=getSMS&mobile=%@&membertype=seller&realname=%@",AppSel_URL,[NameSingle shareInstance].mobile,[NameSingle shareInstance].name];
-  
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        
-      
-        if([dic[@"error"]integerValue] != 0) {
+    
+    
+//    NSString *urlStr = [NSString stringWithFormat:@"%@%@?mobile=%@&membertype=1&realname=%@",HQJBBonusDomainName,@"/merchant/getSMS",[NameSingle shareInstance].mobile,[NameSingle shareInstance].name];
+    NSDictionary *dict = @{@"mobile":[NameSingle shareInstance].mobile,@"membertype":@1,@"realname":[NameSingle shareInstance].name};
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetSMSInterface];
+//    HQJLog(@"------%@",dict[@"realname"]);
+    @weakify(self);
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        @strongify(self);
+        if([dic[@"code"]integerValue] != 49000) {
             
             [SVProgressHUD showErrorWithStatus:@"发送失败"];
         } else {
- 
+            self.getcode = dic[@"result"][@"val"];
             [SVProgressHUD showSuccessWithStatus:@"发送成功"];
-
+            
             [self.getCodeButton startCountDownWithSecond:180];
-
+            
             [self.getCodeButton countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
                 NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
                 return title;
             }];
             
             [self.getCodeButton countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-                    countDownButton.enabled = YES;
-                    return @"重新获取";
+                countDownButton.enabled = YES;
+                return @"重新获取";
             }];
         }
-        
     } andError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"发送失败"];
-
-        
     } ShowHUD:NO];
     
+    
+  
+
     
 }
 
 #pragma mark ---
 -(void)addBankCardRequst {
 
-    NSString *urlString = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=AppSel2&a=bankAccountAction&sellerid=%@&id=customer&validatecode=%@&mobile=%@&payBankId=%@&payAccount=%@&payName=%@&bankBranch=%@",AppSel_URL,MmberidStr,self.verificationCodeTextField.text,[NameSingle shareInstance].mobile,_bankIdStr,self.cardTextField.text,self.nameTextField.text,self.branchTextField.text];
-    
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *urlString = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=AppSel2&a=bankAccountAction&sellerid=%@&id=customer&validatecode=%@&mobile=%@&payBankId=%@&payAccount=%@&payName=%@&bankBranch=%@",AppSel_URL,MmberidStr,self.verificationCodeTextField.text,[NameSingle shareInstance].mobile,_bankIdStr,self.cardTextField.text,self.nameTextField.text,self.branchTextField.text];
+    NSDictionary *dict = @{@"sellerid":MmberidStr,
+                           @"validatecode":self.verificationCodeTextField.text,
+                           @"mobile":[NameSingle shareInstance].mobile,
+                           @"payBankId":_bankIdStr,
+                           @"payAccount":self.cardTextField.text,
+                           @"payName":self.nameTextField.text,
+                           @"bankBranch":self.branchTextField.text};
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddBankCardInterface];
+
+//    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     HQJLog(@"------%@",urlString);
-    
-    
-    [RequestEngine HQJBusinessRequestDetailsUrl:urlString complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlString parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             [ManagerEngine dimssLoadView:self.okButton andtitle:@"确定"];
             [SVProgressHUD showSuccessWithStatus:@"添加成功"];
             [ManagerEngine SVPAfter:@"添加成功" complete:^{
@@ -486,11 +505,12 @@
             [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
         }
         
-     
         
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
+    
+
     
 }
 
