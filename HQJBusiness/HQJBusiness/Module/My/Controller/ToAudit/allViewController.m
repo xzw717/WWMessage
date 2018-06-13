@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-      self.RequstwithType = @"applyList";
+    self.RequstwithType = HQJBApplyListInterface;
     
     [self requst];
 }

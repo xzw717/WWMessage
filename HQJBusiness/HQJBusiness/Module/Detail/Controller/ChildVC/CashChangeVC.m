@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 3;
-    self.type = @"cashChangeList";
+    self.type = @"cashDrawList";
 
-    [self requstType:@"cashChangeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self requstType:@"cashDrawList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 }
 

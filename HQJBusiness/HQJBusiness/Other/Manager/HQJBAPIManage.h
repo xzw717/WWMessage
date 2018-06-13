@@ -62,6 +62,10 @@ extern NSString *const HQJBScoreTradeListInterface;
 extern NSString *const HQJBCashTradeListInterface;
 ///积分兑现明细
 extern NSString *const HQJBScoreExchangeListInterface;
+///获取商家台卡信息
+extern NSString *const HQJBGetMerchantBasicInfoInterface;
+
+
 
 /// 获取添加银行卡的手机短信验证码
 extern NSString *const HQJBGetSMSInterface;
