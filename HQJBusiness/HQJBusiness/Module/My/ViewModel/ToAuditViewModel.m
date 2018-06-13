@@ -31,7 +31,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/merchant/%@?",HQJBBonusDomainName,type];
     HQJLog(@"....%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
-        if ([type isEqualToString:@"applyList"]) {
+        if ([type isEqualToString:HQJBApplyListInterface]) {
             NSArray *listarray = dic[@"result"];
             NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];
             for (NSDictionary *dicOne in listarray) {
@@ -39,23 +39,23 @@
                 [listModelAry addObject:model];
             }
             
-//            NSArray *zhSetarray = dic[@"result"][@"zhset"];
-//            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
-//
-//            for (NSDictionary *dicOne in zhSetarray) {
-//
-//
-//                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
-//                [zhSetModelAry addObject:model];
-//            }
+            NSArray *zhSetarray = dic[@"result"][@"zhset"];
+            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
+
+            for (NSDictionary *dicOne in zhSetarray) {
+
+
+                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
+                [zhSetModelAry addObject:model];
+            }
             
             
             
-//            sender(listModelAry);
-//            zhSender(zhSetModelAry);
+            sender(listModelAry);
+            zhSender(zhSetModelAry);
             completion();
         } else {
-            if([type isEqualToString:@"zhPurchaseApplyList"]) {
+            if([type isEqualToString:HQJBZHPurchaseApplyListInterface]) {
                 
                 NSArray *zhSetarray = dic[@"result"];
                 NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];

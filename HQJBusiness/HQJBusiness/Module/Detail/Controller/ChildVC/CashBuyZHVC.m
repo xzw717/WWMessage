@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 5;
-    self.type = @"zhGetByCashList";
+    self.type = @"cashPurchaseZHList";
 
-    [self requstType:@"zhGetByCashList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self requstType:@"cashPurchaseZHList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 }
 

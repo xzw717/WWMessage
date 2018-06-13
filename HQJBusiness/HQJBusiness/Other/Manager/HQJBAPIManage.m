@@ -55,17 +55,21 @@ NSString *const HQJBAddPayCodeInterface = @"addPayCode?";
 /// 删除商家收款码
 NSString *const HQJBDelPayCodeInterface = @"delPayCode?";
 /// 待审核申请（全部）
-NSString *const HQJBApplyListInterface = @"/merchant/applyList?";
+NSString *const HQJBApplyListInterface = @"/merchant/applyList";
 /// 待审核申请（购买ZH值）
-NSString *const HQJBZHPurchaseApplyListInterface = @"zhPurchaseApplyList?";
+NSString *const HQJBZHPurchaseApplyListInterface = @"zhPurchaseApplyList";
 /// 待审核申请（现金提取）
-NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList?";
+NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList";
 ///积分交易明细
-NSString *const HQJBScoreTradeListInterface = @"scoreTradeList?";;
+NSString *const HQJBScoreTradeListInterface = @"scoreTradeList";
 ///现金交易明细
-NSString *const HQJBCashTradeListInterface = @"cashTradeList?";;
+NSString *const HQJBCashTradeListInterface = @"cashTradeList";
 ///积分兑现明细
-NSString *const HQJBScoreExchangeListInterface = @"scoreExchangeList?";;
+NSString *const HQJBScoreExchangeListInterface = @"scoreExchangeList";
+///获取商家台卡信息
+NSString *const HQJBGetMerchantBasicInfoInterface = @"getMerchantBasicInfo?";
+
+
 /// 获取添加银行卡的手机短信验证码
 NSString *const HQJBGetSMSInterface = @"getSMS?";
 /// 添加银行卡

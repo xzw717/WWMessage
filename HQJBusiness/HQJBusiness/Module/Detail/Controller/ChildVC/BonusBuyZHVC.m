@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 4;
-    self.type = @"zhGetByBonusList";
+    self.type = @"scorePurchaseZHList";
 
-    [self requstType:@"zhGetByBonusList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self requstType:@"scorePurchaseZHList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 }
 

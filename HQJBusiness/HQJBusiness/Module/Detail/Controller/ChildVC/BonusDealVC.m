@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 0;
-    self.type = @"scoreTradeList";
-    [self requstType:@"scoreTradeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    self.type = HQJBScoreTradeListInterface;
+    [self requstType:HQJBScoreTradeListInterface andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 
 }

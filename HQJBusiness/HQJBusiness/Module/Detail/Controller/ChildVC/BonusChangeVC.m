@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 2;
-    self.type = @"scoreExchangeList";
+    self.type = HQJBScoreExchangeListInterface;
 
-    [self requstType:@"scoreExchangeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self requstType:HQJBScoreExchangeListInterface andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 }
 

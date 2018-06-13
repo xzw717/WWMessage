@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ZHSetModel : NSObject
-@property (nonatomic,copy)NSString *facilitatorid ;
-@property (nonatomic,copy)NSString *sellerid ;
+@property (nonatomic,copy)NSString *parentId ;
+@property (nonatomic,copy)NSString *memberid ;
 @property (nonatomic,copy)NSString *cashZH ;
 @property (nonatomic,copy)NSString *bonusZH ;
 @property (nonatomic,copy)NSString *addtime ;
