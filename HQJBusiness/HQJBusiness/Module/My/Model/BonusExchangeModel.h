@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BonusExchangeModel : NSObject
-@property (nonatomic,copy) NSString *bonus;
+@property (nonatomic,copy) NSString *score;
 @property (nonatomic,copy) NSString *cash;
 @property (nonatomic,copy) NSString *frealname;
 @end

@@ -12,23 +12,15 @@
 @implementation BonusExchangeViewModel
 +(void)bonusExchaneViewmodelRequstandViewControllerTitle:(NSString *)str AndBack:(void(^)(id sender))exchaneBlock {
     
-    static NSString *urlType;
-    if ([str isEqualToString:@"积分兑现"]) {
-        urlType = @"bonusChange";
-    } else {
-        urlType = @"cashChange";
-    }
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@",AppSel_URL,urlType,MmberidStr];
-
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBScoreQueryInterface];
+    NSDictionary *dict = @{@"memberid":MmberidStr};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         BonusExchangeModel *model = [BonusExchangeModel mj_objectWithKeyValues:dic[@"result"]];
-
+        
         exchaneBlock(model);
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
-    
     
 }
 
@@ -36,26 +28,27 @@
     
     static NSString *urlType;
     if ([str isEqualToString:@"积分兑现"]) {
-        urlType = @"bonusChangeAction";
+        urlType = HQJBCashExchangeInterface;
     } else {
-        urlType = @"cashChangeAction";
+        urlType = HQJBDrawCashInterface;
     }
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/amount/%@/tradepwd/%@/memberid/%@/accountid/%@",AppSel_URL,urlType,amount,psw,MmberidStr,accountid];
-    
-//    HQJLog(@"dizhi :%@",urlStr);
-    
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,urlType];
+    NSDictionary *dict = @{@"memberid":MmberidStr,
+                               @"accountid":accountid,
+                           @"amount":amount,
+                           @"tradepwd":psw};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         
         if (blocks) {
             blocks(dic);
         }
         
-    
         
     } andError:^(NSError *error) {
         
-    } ShowHUD:NO];
+    } ShowHUD:YES];
+    
 }
 
 @end

@@ -81,9 +81,9 @@
     
     self.bankNameLabel.zw_color = [ManagerEngine getColor:@"999999"];
   
-    self.bankNameLabel.needChangeStr = [NSString stringWithFormat:@"(尾号%@)",model.bankCard];
+    self.bankNameLabel.needChangeStr = [NSString stringWithFormat:@"(尾号%@)",[self cardNumberInercept:model.bankCard]];
   
-    self.bankNameLabel.text = [NSString stringWithFormat:@"%@(尾号%@)",model.bankDetail[@"bankName"],model.bankCard];
+    self.bankNameLabel.text = [NSString stringWithFormat:@"%@(尾号%@)",model.bankDetail[@"bankName"],[self cardNumberInercept:model.bankCard]];
     
     self.userNameLabel.text = model.payName;
     
@@ -92,5 +92,8 @@
     [self setView];
 }
 
+- (NSString *)cardNumberInercept:(NSString *)number {
+    return  [number substringFromIndex:number.length- 4];
+}
 
 @end

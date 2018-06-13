@@ -60,7 +60,28 @@ NSString *const HQJBAddBankCardInterface = @"addBankCard?";
 NSString *const HQJBBankAccountInterface = @"bankAccount?";
 /// 获取商家银行卡列表
 NSString *const HQJBAccountListInterface = @"bankList?";
-
+/// 获取买家信息（通过memberid)
+NSString *const HQJBGetConsumerInfoByIdInterface = @"getConsumerInfoById";
+/// 获取买家信息（通过mobile)
+NSString *const HQJBGetConsumerInfoByMobileInterface = @"getConsumerInfoByMobile";
+/// 获取商家赠送ZH值比例
+NSString *const HQJBGetMerchantZHRateInterface = @"getMerchantZHRate";
+/// 银行卡提现
+NSString *const HQJBDrawCashInterface = @"drawCash";
+/// 积分兑现
+NSString *const HQJBCashExchangeInterface = @"cashExchange";
+/// 积分查询
+NSString *const HQJBScoreQueryInterface = @"scoreQuery";
+/// ZH查询
+NSString *const HQJBZhQueryInterface = @"zhQuery";
+/// 购买ZH值（使用积分购买）
+NSString *const HQJBPurchseZhUsingScoreInterface = @"purchseZhUsingScore";
+/// 购买ZH值（使用支付宝购买）
+NSString *const HQJBPurchseZhUsingAlipayInterface = @"purchseZhUsingAlipay";
+///获取ZH值设定
+NSString *const HQJBGetZhRateInterface = @"getZhRate";
+///设定ZH值比例
+NSString *const HQJBSetZhRateInterface = @"setZhRate";
 @implementation HQJBAPIManage
 
 @end

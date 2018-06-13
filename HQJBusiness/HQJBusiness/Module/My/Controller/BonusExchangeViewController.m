@@ -184,7 +184,7 @@
         _model = sender;
         if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
             
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f个积分",[_model.bonus floatValue]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f个积分",[_model.score floatValue]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
             
         } else {
             
@@ -292,7 +292,7 @@
           
             [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:_ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
                 
-                if ([dic[@"error"]integerValue] == 0) {
+                if ([dic[@"code"]integerValue] == 49000) {
                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
                     [ManagerEngine SVPAfter:@"提交成功" complete:^{
                         

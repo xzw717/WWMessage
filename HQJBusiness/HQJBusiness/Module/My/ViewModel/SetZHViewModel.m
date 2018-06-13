@@ -11,23 +11,28 @@
 
 @implementation SetZHViewModel
 + (void)getBonusZHCashZHWithBlock:(void(^)(id sender))proportion {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhSet/memberid/%@",AppSel_URL,MmberidStr];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetZhRateInterface];
+    NSDictionary *dict = @{@"memberid":MmberidStr};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             SetZHModel *model = [SetZHModel mj_objectWithKeyValues:dic[@"result"]];
             proportion(model);
         }
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
+    
+    
+    
 }
 
 + (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/zhSetAction/memberid/%@/bonusZH/%@/cashZH/%@",AppSel_URL,MmberidStr,bonus,cash ];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSetZhRateInterface];
+    NSDictionary *dict = @{@"memberid":MmberidStr,
+                           @"bonusZH":bonus,
+                           @"cashZH":cash};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"操作成功"];
             [ManagerEngine SVPAfter:@"操作成功" complete:^{
                 [zw_self.navigationController popViewControllerAnimated:YES];
@@ -38,9 +43,7 @@
         }
     } andError:^(NSError *error) {
         
-    } ShowHUD:NO];
-    
-    
+    } ShowHUD:YES];
 }
 
 

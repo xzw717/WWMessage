@@ -8,7 +8,6 @@
 
 #import "OrderViewModel.h"
 #import "OrderModel.h"
-
 @implementation OrderViewModel
 - (void)orderRequstWithPage:(NSInteger)page andType:(NSInteger)type andReturnBlock:(void(^)(id sender))output {
     
@@ -49,8 +48,10 @@
 
 + (void)requestCustomerInformationWith:(NSString *)customerID
                               complete:(void(^)(NSString *mobile,NSString *realname))complete {
-    NSString *strUrl = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=Api&a=getMemberInfo&mobile=%@&membertype=customer",AppSel_URL,customerID];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByIdInterface];
+    NSDictionary *dict = @{@"memberid":customerID,
+                           @"membertype":@1};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"error"]integerValue] == 0) {
             if (complete) {
                 complete(dic[@"result"][@"mobile"],dic[@"result"][@"realname"]);
@@ -61,6 +62,7 @@
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
+  
 }
 
 @end

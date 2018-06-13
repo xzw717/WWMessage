@@ -58,6 +58,28 @@ extern NSString *const HQJBAddBankCardInterface;
 extern NSString *const HQJBBankAccountInterface;
 /// 获取商家银行卡列表
 extern NSString *const HQJBAccountListInterface;
+/// 获取买家信息（通过memberid)
+extern NSString *const HQJBGetConsumerInfoByIdInterface ;
+/// 获取买家信息（通过mobile)
+extern NSString *const HQJBGetConsumerInfoByMobileInterface;
+/// 获取商家赠送ZH值比例
+extern NSString *const HQJBGetMerchantZHRateInterface;
+/// 银行卡提现
+extern NSString *const HQJBDrawCashInterface;
+/// 积分兑现
+extern NSString *const HQJBCashExchangeInterface;
+/// 积分查询
+extern NSString *const HQJBScoreQueryInterface;
+/// ZH查询
+extern NSString *const HQJBZhQueryInterface;
+/// 购买ZH值（使用积分购买）
+extern NSString *const HQJBPurchseZhUsingScoreInterface;
+/// 购买ZH值（使用支付宝购买）
+extern NSString *const HQJBPurchseZhUsingAlipayInterface;
+///获取ZH值设定
+extern NSString *const HQJBGetZhRateInterface;
+///设定ZH值比例
+extern NSString *const HQJBSetZhRateInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

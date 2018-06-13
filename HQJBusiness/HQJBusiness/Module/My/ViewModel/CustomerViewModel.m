@@ -15,26 +15,29 @@
 
 +(void)intoRequstZHRatio:(void(^)(id sender))intoBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/cashSalesShow/memberid/%@",AppSel_URL,MmberidStr];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        intoBlock(dic[@"result"]);
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantZHRateInterface];
+    NSDictionary *dict = @{@"memberid":MmberidStr};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        intoBlock(dic[@"result"][@"cashZH"]);
     } andError:^(NSError *error) {
         
-    } ShowHUD:NO];
+    } ShowHUD:YES];
+    
     
     
 }
 
 
 + (void)customerrequstNumer:(NSString *)numer andSender:(void(^)(id sender))customerBlock {
-    NSString *urlStr = [NSString stringWithFormat:@"%@getMemberInfo/mobile/%@/membertype/customer",Api_URL,numer];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByMobileInterface];
+    NSDictionary *dict = @{@"mobile":numer,
+                           @"membertype":@1};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         CustomerModel *model = [CustomerModel mj_objectWithKeyValues:dic[@"result"]];
         customerBlock(model);
     } andError:^(NSError *error) {
         
-    } ShowHUD:NO]
-    ;
+    } ShowHUD:NO];
 }
 
 
