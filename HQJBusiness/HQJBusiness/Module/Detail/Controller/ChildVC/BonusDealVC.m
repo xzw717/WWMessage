@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 0;
-    self.type = @"myBonusList";
-    [self requstType:@"myBonusList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    self.type = @"scoreTradeList";
+    [self requstType:@"scoreTradeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 
 }

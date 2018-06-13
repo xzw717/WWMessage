@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.RequstwithType = @"myZHSetApplication";
+    self.RequstwithType = @"zhPurchaseApplyList";
     [self requst];
 
     // Do any additional setup after loading the view.

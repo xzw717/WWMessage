@@ -27,38 +27,35 @@
 
 + (void)toAuditRequstwithType:(NSString *)type andBlock:(void(^)(id listBlock))sender andZHsetBlock:(void(^)(id zhBlock))zhSender andCompletion:(void(^)())completion  {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/%@/memberid/%@",AppSel_URL,type,MmberidStr];
-
-    
-    
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
+    NSString *urlStr = [NSString stringWithFormat:@"%@/merchant/%@?",HQJBBonusDomainName,type];
     HQJLog(@"....%@",urlStr);
-    
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([type isEqualToString:@"myApplication"]) {
-            NSArray *listarray = dic[@"result"][@"mylist"];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
+        if ([type isEqualToString:@"applyList"]) {
+            NSArray *listarray = dic[@"result"];
             NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];
             for (NSDictionary *dicOne in listarray) {
                 MyListModel *model = [MyListModel mj_objectWithKeyValues:dicOne];
                 [listModelAry addObject:model];
             }
             
-            NSArray *zhSetarray = dic[@"result"][@"zhset"];
-            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
+//            NSArray *zhSetarray = dic[@"result"][@"zhset"];
+//            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
+//
+//            for (NSDictionary *dicOne in zhSetarray) {
+//
+//
+//                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
+//                [zhSetModelAry addObject:model];
+//            }
             
-            for (NSDictionary *dicOne in zhSetarray) {
-                
-                
-                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
-                [zhSetModelAry addObject:model];
-            }
             
             
-            
-            sender(listModelAry);
-            zhSender(zhSetModelAry);
+//            sender(listModelAry);
+//            zhSender(zhSetModelAry);
             completion();
         } else {
-            if([type isEqualToString:@"myZHSetApplication"]) {
+            if([type isEqualToString:@"zhPurchaseApplyList"]) {
                 
                 NSArray *zhSetarray = dic[@"result"];
                 NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
@@ -72,7 +69,7 @@
                 sender(@[]);
                 zhSender(zhSetModelAry);
                 completion();
-
+                
             } else {
                 NSArray *listarray = dic[@"result"];
                 NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];
@@ -84,8 +81,8 @@
                 zhSender(@[]);
                 completion();
             }
-                    }
-      
+        }
+        
         
     } andError:^(NSError *error) {
         

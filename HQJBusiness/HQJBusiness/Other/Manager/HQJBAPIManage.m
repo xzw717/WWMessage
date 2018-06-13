@@ -36,6 +36,8 @@ NSString *const HQJBImageDomainName = @"http://wuwuditu.img-cn-hangzhou.aliyuncs
 NSString *const HQJBGetMerchantInfoInterface = @"getMerchantInfo?";
 /// 修改登录密码
 NSString *const HQJBPasswordSaveActionInterface = @"passwordSaveAction?";
+///// 校验短信验证码
+//NSString *const HQJBInputSMSActionInterface = @"/merchant/inputSMSAction?";
 /// 获取修改交易密码的短信验证码
 NSString *const HQJBGetPwdSMSInterface = @"getPwdSMS?";
 /// 校验短信验证码
@@ -52,6 +54,18 @@ NSString *const HQJBPayCodeInterface = @"payCode?";
 NSString *const HQJBAddPayCodeInterface = @"addPayCode?";
 /// 删除商家收款码
 NSString *const HQJBDelPayCodeInterface = @"delPayCode?";
+/// 待审核申请（全部）
+NSString *const HQJBApplyListInterface = @"/merchant/applyList?";
+/// 待审核申请（购买ZH值）
+NSString *const HQJBZHPurchaseApplyListInterface = @"zhPurchaseApplyList?";
+/// 待审核申请（现金提取）
+NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList?";
+///积分交易明细
+NSString *const HQJBScoreTradeListInterface = @"scoreTradeList?";;
+///现金交易明细
+NSString *const HQJBCashTradeListInterface = @"cashTradeList?";;
+///积分兑现明细
+NSString *const HQJBScoreExchangeListInterface = @"scoreExchangeList?";;
 /// 获取添加银行卡的手机短信验证码
 NSString *const HQJBGetSMSInterface = @"getSMS?";
 /// 添加银行卡

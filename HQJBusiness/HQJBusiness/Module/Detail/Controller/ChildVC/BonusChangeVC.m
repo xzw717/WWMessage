@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.typePage = 2;
-    self.type = @"bonusChangeList";
+    self.type = @"scoreExchangeList";
 
-    [self requstType:@"bonusChangeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self requstType:@"scoreExchangeList" andPage:[NSString stringWithFormat:@"%ld",(long)self.page]];
 
 }
 
