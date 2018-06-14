@@ -14,7 +14,7 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface/merchant/";
+NSString *const HQJBBonusDomainName = @"http://192.168.16.200:8080/wuwuInterface/merchant/";
 //47.98.45.218 http://192.168.16.200:8080/wuwuInterface/
 //NSString *const HQJBBonusDomainAAName = @"http://192.168.16.110:8080/aa";
 
@@ -55,11 +55,18 @@ NSString *const HQJBAddPayCodeInterface = @"addPayCode?";
 /// 删除商家收款码
 NSString *const HQJBDelPayCodeInterface = @"delPayCode?";
 /// 待审核申请（全部）
-NSString *const HQJBApplyListInterface = @"/merchant/applyList";
+NSString *const HQJBApplyListInterface = @"applyList";
 /// 待审核申请（购买ZH值）
 NSString *const HQJBZHPurchaseApplyListInterface = @"zhPurchaseApplyList";
 /// 待审核申请（现金提取）
 NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList";
+/// 待审核申请（积分兑现)
+NSString *const HQJBScoreExchangeInterface = @"scoreExchange";
+/// 待审核申请（ZH值设定）
+NSString *const HQJBZHSetupInterface = @"zhSetup";
+
+
+
 ///积分交易明细
 NSString *const HQJBScoreTradeListInterface = @"scoreTradeList";
 ///现金交易明细
@@ -68,7 +75,8 @@ NSString *const HQJBCashTradeListInterface = @"cashTradeList";
 NSString *const HQJBScoreExchangeListInterface = @"scoreExchangeList";
 ///获取商家台卡信息
 NSString *const HQJBGetMerchantBasicInfoInterface = @"getMerchantBasicInfo?";
-
+///获取商家个人信息
+NSString *const HQJBGetMerchantMasterInfoInterface = @"getMerchantMasterInfo?";
 
 /// 获取添加银行卡的手机短信验证码
 NSString *const HQJBGetSMSInterface = @"getSMS?";

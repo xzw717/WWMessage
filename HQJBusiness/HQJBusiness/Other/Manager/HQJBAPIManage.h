@@ -56,6 +56,11 @@ extern NSString *const HQJBApplyListInterface;
 extern NSString *const HQJBZHPurchaseApplyListInterface;
 /// 待审核申请（现金提取）
 extern NSString *const HQJBCashDrawApplyListInterface;
+/// 待审核申请（积分兑现）
+extern NSString *const HQJBScoreExchangeInterface;
+/// 待审核申请（ZH值设定）
+extern NSString *const HQJBZHSetupInterface;
+
 ///积分交易明细
 extern NSString *const HQJBScoreTradeListInterface;
 ///现金交易明细
@@ -64,7 +69,8 @@ extern NSString *const HQJBCashTradeListInterface;
 extern NSString *const HQJBScoreExchangeListInterface;
 ///获取商家台卡信息
 extern NSString *const HQJBGetMerchantBasicInfoInterface;
-
+///获取商家个人信息
+extern NSString *const HQJBGetMerchantMasterInfoInterface;
 
 
 /// 获取添加银行卡的手机短信验证码

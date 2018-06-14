@@ -168,7 +168,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
             [ManagerEngine SVPAfter:@"修改成功" complete:^{
                 [self popViews];
             }];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"修改失败"];
+            [ManagerEngine dimssLoadView:self.okButtn andtitle:@"确定"];
         }
+        
     } andError:^(NSError *error) {
         [ManagerEngine dimssLoadView:self.okButtn andtitle:@"确定"];
 

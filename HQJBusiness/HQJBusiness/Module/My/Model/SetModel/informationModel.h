@@ -29,7 +29,7 @@
 
 @property (nonatomic,copy)NSString *discount;
 
-@property (nonatomic,copy)NSString *ZH;
+@property (nonatomic,copy)NSString *zh;
 
 @property (nonatomic,copy)NSString *cash;
 

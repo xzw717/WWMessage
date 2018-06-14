@@ -12,11 +12,11 @@
 @implementation InformationViewModel
 
 + (void)informationRequstBlock:(void(^)(id infoBlock))sender {
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
+    NSString *urlStr =[NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantMasterInfoInterface];
     
-    NSString *urlStr =[NSString stringWithFormat:@"%@AppSel2/myInforModify/memberid/%@",AppSel_URL,MmberidStr];
-    
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             informationModel *model = [informationModel mj_objectWithKeyValues:dic[@"result"]];
             if (sender) {
                 sender(model);
