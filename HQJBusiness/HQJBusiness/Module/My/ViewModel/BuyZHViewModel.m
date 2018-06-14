@@ -26,10 +26,11 @@
 
 + (void)generateTradeidRequstAmount:(NSString *)amount andBlock:(void(^)(id Tradeid))sender {
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingScoreInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingAlipayInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":amount};
-    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             if (sender) {
                 sender(dic[@"result"]);

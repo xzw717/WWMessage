@@ -41,17 +41,21 @@
 }
 
 
-+(void)submitRequstCustomerid:(NSString *)cusId andZH:(NSString *)zh andPsw:(NSString *)psw andAmount:(NSString *)amount andReturn:(void(^)(id sneder))submitBlcok {
++ (void)submitRequstCustomerid:(NSString *)cusId andZH:(NSString *)zh andPsw:(NSString *)psw andAmount:(NSString *)amount andReturn:(void(^)(id sneder))submitBlcok {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/cashSales/memberid/%@/cusId/%@/ZH/%@/tradepwd/%@/amount/%@",AppSel_URL,MmberidStr,cusId,zh,psw,amount];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBCashSalesInterface];
+    NSDictionary *dict = @{@"memberid":MmberidStr,
+                           @"cusId":cusId,
+                           @"ZH":zh,
+                           @"amount":amount,
+                           @"tradepwd":psw};
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        submitBlcok(dic[@"errmsg"]);
 
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
-    
-            submitBlcok(dic[@"result"][@"errmsg"]);
-        
     } andError:^(NSError *error) {
         
     } ShowHUD:NO];
+ 
 }
 
 

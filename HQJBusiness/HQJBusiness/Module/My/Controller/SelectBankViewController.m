@@ -150,15 +150,19 @@
 #pragma mark --- 删除 银行卡
 - (void)deleteCardRequst:(NSInteger)index {
     SelectBankModel *model = self.bankListArray[index];
-    NSString *strUrl = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=AppSel2&a=bankAccountDel&sellerid=%@&id=%@",AppSel_URL,[NameSingle shareInstance].memberid,model.id];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDeleteBankCardInterface];
+    NSDictionary *dict = @{@"bankid":model.card};
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"删除成功"];
         } else {
             [SVProgressHUD showErrorWithStatus:@"删除失败"];
         }
     } andError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"删除失败"];
+
     } ShowHUD:YES];
+    
+    
 }
 @end

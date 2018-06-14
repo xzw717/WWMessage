@@ -81,7 +81,7 @@
 
 -(ZW_Label *)BeneficiaryLabel {
     if ( _BeneficiaryLabel == nil ) {
-        _BeneficiaryLabel = [[ZW_Label alloc]initWithStr:[NSString stringWithFormat:@"%@：%@",_manageStr,_model.frealname] addSubView:self.view];
+        _BeneficiaryLabel = [[ZW_Label alloc]initWithStr:[NSString stringWithFormat:@"%@：%@",_manageStr,_model.parentName] addSubView:self.view];
     }
     return _BeneficiaryLabel;
 }
@@ -184,11 +184,11 @@
         _model = sender;
         if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
             
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f个积分",[_model.score floatValue]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f个积分",_model.score.score] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
             
         } else {
             
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f元现金",[_model.cash floatValue]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f元现金",_model.score.cash] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
 
             
         }

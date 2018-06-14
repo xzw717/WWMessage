@@ -81,7 +81,7 @@
     [BuyZHViewModel buyZH:^(id sender) {
         
         self.model = sender;
-        if ([_numerStr doubleValue] * 4 > [self.model.score doubleValue]) {
+        if ([_numerStr doubleValue] * 4 > self.model.score.score) {
             
 //            HQJLog(@"%f\n%f",[_numerStr doubleValue] * 4,[self.model.bonus doubleValue]);
             /**
@@ -194,7 +194,7 @@
     [ManagerEngine dimssLoadView:self.nextButton andtitle:@"确认支付"];
     if([self.payModeLabel.text isEqualToString:@"积分支付，"]){
         if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
-            if ([_numerStr doubleValue] * 4 > [self.model.score doubleValue]) {
+            if ([_numerStr doubleValue] * 4 > self.model.score.score) {
                 [SVProgressHUD showErrorWithStatus:@"你的积分好像不够了"];
             } else {
                 _pswView = [[LrdPasswordAlertView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
@@ -219,7 +219,7 @@
         
     } else if([self.payModeLabel.text isEqualToString:@"支付宝支付，"]) {
 //
-       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.frealname,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2]];
+       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2]];
       
     } else {
         [SVProgressHUD showInfoWithStatus:@"暂未开放"];

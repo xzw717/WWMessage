@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@interface score : NSObject
+@property (nonatomic,assign) double score;
+@property (nonatomic,assign) double cash;
+@property (nonatomic,assign) double zhValue;
+@end
+
 @interface BonusExchangeModel : NSObject
-@property (nonatomic,copy) NSString *score;
-@property (nonatomic,copy) NSString *cash;
-@property (nonatomic,copy) NSString *frealname;
+@property (nonatomic,copy) score *score;
+@property (nonatomic,copy) NSString *ownName;
+@property (nonatomic,copy) NSString *parentName;
 @end

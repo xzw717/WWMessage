@@ -96,10 +96,15 @@ NSString *const HQJBZhQueryInterface = @"zhQuery";
 NSString *const HQJBPurchseZhUsingScoreInterface = @"purchseZhUsingScore";
 /// 购买ZH值（使用支付宝购买）
 NSString *const HQJBPurchseZhUsingAlipayInterface = @"purchseZhUsingAlipay";
-///获取ZH值设定
+/// 获取ZH值设定
 NSString *const HQJBGetZhRateInterface = @"getZhRate";
-///设定ZH值比例
+/// 设定ZH值比例
 NSString *const HQJBSetZhRateInterface = @"setZhRate";
+/// 现金销售
+NSString *const HQJBCashSalesInterface = @"cashSales";
+/// 删除银行卡
+NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
+
 @implementation HQJBAPIManage
 
 @end
