@@ -28,11 +28,11 @@
 + (void)toAuditRequstwithType:(NSString *)type andBlock:(void(^)(id listBlock))sender andZHsetBlock:(void(^)(id zhBlock))zhSender andCompletion:(void(^)())completion  {
     
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@/merchant/%@?",HQJBBonusDomainName,type];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     HQJLog(@"....%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
         if ([type isEqualToString:HQJBApplyListInterface]) {
-            NSArray *listarray = dic[@"result"];
+            NSArray *listarray = dic[@"result"][@"applies"];
             NSMutableArray *listModelAry =[NSMutableArray arrayWithCapacity:listarray.count];
             for (NSDictionary *dicOne in listarray) {
                 MyListModel *model = [MyListModel mj_objectWithKeyValues:dicOne];
@@ -55,7 +55,7 @@
             zhSender(zhSetModelAry);
             completion();
         } else {
-            if([type isEqualToString:HQJBZHPurchaseApplyListInterface]) {
+            if([type isEqualToString:HQJBZHSetupInterface]) {
                 
                 NSArray *zhSetarray = dic[@"result"];
                 NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];

@@ -92,7 +92,7 @@
 
             break;
         case 5:
-            self.dateilLabel.text = model.ZH;
+            self.dateilLabel.text = model.zh;
 
             break;
         case 6:

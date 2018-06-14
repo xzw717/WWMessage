@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.RequstwithType = HQJBZHPurchaseApplyListInterface;
+    self.RequstwithType = HQJBZHSetupInterface;
     [self requst];
 
     // Do any additional setup after loading the view.
