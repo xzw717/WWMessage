@@ -15,7 +15,11 @@
 @end
 
 @interface BonusExchangeModel : NSObject
-@property (nonatomic,copy) score *score;
+@property (nonatomic,strong) score *score;
 @property (nonatomic,copy) NSString *ownName;
 @property (nonatomic,copy) NSString *parentName;
 @end
+
+
+
+

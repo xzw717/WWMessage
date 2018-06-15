@@ -7,7 +7,13 @@
 //
 
 #import "BonusExchangeModel.h"
+@implementation score
+
+@end
+
 
 @implementation BonusExchangeModel
-
+//+ (NSDictionary *)mj_objectClassInArray {
+//    return @{@"score":[score class]};
+//}
 @end
