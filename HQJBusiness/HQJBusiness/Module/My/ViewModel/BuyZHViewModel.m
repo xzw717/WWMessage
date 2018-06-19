@@ -53,7 +53,7 @@
     NSDictionary *dict = @{@"memberid":MmberidStr,
                                @"tradepwd":psw,
                                @"amount":amount};
-    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             zw_self.viewControllerName = @"DealViewController";
             [SVProgressHUD showSuccessWithStatus:@"购买成功"];
@@ -66,10 +66,10 @@
             
             [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
         }
-        
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
+
     
 }
 @end

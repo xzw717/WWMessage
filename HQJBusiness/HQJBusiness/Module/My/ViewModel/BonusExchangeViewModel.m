@@ -38,8 +38,7 @@
                                @"accountid":accountid,
                            @"amount":amount,
                            @"tradepwd":psw};
-    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if (blocks) {
             blocks(dic);
         }
@@ -48,7 +47,7 @@
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
-    
+  
 }
 
 @end

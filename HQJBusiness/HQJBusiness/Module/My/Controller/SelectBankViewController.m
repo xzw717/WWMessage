@@ -140,7 +140,7 @@
     [tableView setEditing:YES animated:YES];
     SelectBankModel *model = self.bankListArray[indexPath.row];
     NSDictionary *bankDic = [NSDictionary dictionary];
-    bankDic = @{@"icon":model.bankDetail[@"bankIcon"],@"payName":model.payName,@"payAccount":model.bankCard,@"id":model.mid};
+    bankDic = @{@"icon":model.bankDetail[@"bankIcon"],@"payName":model.bankDetail[@"bankName"],@"payAccount":model.bankCard,@"id":model.mid};
     [[NSNotificationCenter defaultCenter]postNotificationName:@"selectbank" object:nil userInfo:bankDic];
     [self.navigationController popViewControllerAnimated:YES];
     

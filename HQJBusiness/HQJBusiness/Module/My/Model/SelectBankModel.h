@@ -25,6 +25,6 @@
 
 @property (nonatomic,strong)NSString *mid;
 
-@property (nonatomic,strong)NSString *payName;
+@property (nonatomic,strong)NSString *bankType;
 
 @end
