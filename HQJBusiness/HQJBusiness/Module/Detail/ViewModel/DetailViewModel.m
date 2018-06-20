@@ -25,8 +25,8 @@
         dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
         urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     }
-    HQJLog(@"-%@",urlStr);
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+    HQJLog(@"-%@ dict = %@",urlStr,dict);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         
         if ([dic[@"code"]integerValue] == 49000) {
             

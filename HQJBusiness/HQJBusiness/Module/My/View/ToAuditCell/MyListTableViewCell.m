@@ -107,7 +107,7 @@
     
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradetype];
     
-    self.timerLabel.text = model.tradetime;
+    self.timerLabel.text =[ManagerEngine reverseSwitchTimer:model.tradetime];
     if (model.camount) {
         self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",[model.camount floatValue],twoUnitStr];
     } else {
