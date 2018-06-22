@@ -27,8 +27,8 @@
 + (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSetZhRateInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
-                           @"bonusZH":bonus,
-                           @"cashZH":cash};
+                           @"bonuszh":bonus,
+                           @"cashzh":cash};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"操作成功"];

@@ -293,16 +293,21 @@
             [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:_ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
                 
                 if ([dic[@"code"]integerValue] == 49000) {
+                  
                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                    
+//                    [SVProgressHUD dismissWithCompletion:^{
+//
+//                    }];
                     [ManagerEngine SVPAfter:@"提交成功" complete:^{
-                        
                         [self.navigationController popViewControllerAnimated:YES];
-                        
+
+
                     }];
                 } else {
                     [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
-
-                    [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+//SVProgressHUD
+                    [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
                 }
 
             }];

@@ -21,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [SVProgressHUD setMinimumDismissTimeInterval:2.f];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 
     
