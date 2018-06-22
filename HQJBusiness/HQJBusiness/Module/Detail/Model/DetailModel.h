@@ -39,6 +39,8 @@
 
 @property (nonatomic,copy)NSString *tradetype;
 
+@property (nonatomic,copy)NSString *tradeDesc;
+
 @property (nonatomic,copy)NSString *flag;
 
 @property (nonatomic,copy)NSString *is_aatrade;

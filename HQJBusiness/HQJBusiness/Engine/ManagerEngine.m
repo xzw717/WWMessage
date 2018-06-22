@@ -693,15 +693,25 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark --
 #pragma mark --- 时间戳转时间
 +(NSString *)reverseSwitchTimer:(NSString *)str {
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[str integerValue]/1000 ];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[str integerValue]/1000];
     NSString *confromTimespStr = [formatter stringFromDate: confromTimesp];
     return confromTimespStr;
 }
-
+#pragma mark --- 时间戳转时间
++(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str{
+    double time = [str doubleValue];
+    NSDate *myDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    //将时间转换为字符串
+    NSString *timeS = [formatter stringFromDate:myDate];
+    return timeS;
+}
 + (CIImage *)outputImageStr:(NSString *)str {
     // 1.创建过滤器
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];

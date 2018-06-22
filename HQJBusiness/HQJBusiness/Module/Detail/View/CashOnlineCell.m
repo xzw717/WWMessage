@@ -34,7 +34,7 @@
         self.nameLabel.zw_color = [ManagerEngine getColor:@"999999"];
         self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.frealname,mobile];
 
-        if ([model.tradetype isEqualToString:@"现金消费"]) {
+        if ([model.tradeDesc isEqualToString:@"现金消费"]) {
             self.tradetypeLabel.hidden = YES;
         } else {
             self.tradetypeLabel.hidden = NO;
@@ -42,8 +42,8 @@
         self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
         self.amountDetailsLabel.text = [NSString stringWithFormat:@"(ZH:%@)",model.camount];
         self.timeLabel.text = model.tradetime;
-        self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradetype];
-        [self setlayoutOnline:[model.tradetype isEqualToString:@"现金消费"] ? NO : YES];
+        self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
+        [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
         
     }];
 }

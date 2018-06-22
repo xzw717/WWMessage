@@ -109,7 +109,7 @@ NSString *const HQJBGetZhRateInterface = @"getZhRate";
 /// 设定ZH值比例
 NSString *const HQJBSetZhRateInterface = @"setZhRate";
 /// 现金销售
-NSString *const HQJBCashSalesInterface = @"cashSales";
+NSString *const HQJBCashSalesInterface = @"cashSells?";
 /// 删除银行卡
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
 

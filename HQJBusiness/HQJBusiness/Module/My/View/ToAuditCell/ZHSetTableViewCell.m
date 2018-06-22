@@ -107,12 +107,11 @@
     _model = model;
     self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[model.bonusZH doubleValue] * 100];
     
-    self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine reverseSwitchTimer:model.addtime]];
-    
+    self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
     
     self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[model.cashZH doubleValue] * 100];
     
-    self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine reverseSwitchTimer:model.addtime]];
+    self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
     
     CGFloat titleWidth = [ManagerEngine setTextWidthStr:self.oneTitleLable.text andFont:[UIFont systemFontOfSize:16]];
     CGFloat oneNumerWith = [ManagerEngine setTextWidthStr:self.oneNumerical.text andFont:[UIFont systemFontOfSize:18.0]];

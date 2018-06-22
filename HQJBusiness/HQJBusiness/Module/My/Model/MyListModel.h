@@ -25,6 +25,7 @@
 @property (nonatomic,copy)NSString *currency ;
 @property (nonatomic,copy)NSString *amount ;
 @property (nonatomic,copy)NSString *tradetype ;
+@property (nonatomic,copy)NSString *tradeDesc ;
 @property (nonatomic,copy)NSString *comment ;
 @property (nonatomic,copy)NSString *flag ;
 @property (nonatomic,copy)NSString *is_aatrade ;

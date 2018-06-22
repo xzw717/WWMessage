@@ -436,10 +436,9 @@
     
     NSString *ZHStr =  [NSString stringWithFormat:@"%.5f",[self.payFigureTextField.text doubleValue] / 2 * [_ZHRatio doubleValue]];
     [CustomerViewModel submitRequstCustomerid:_model.memberid andZH:ZHStr andPsw:self.pswTextField.text andAmount:self.payFigureTextField.text andReturn:^(id sender) {
+
         
-        
-        
-        if ([sender isEqualToString:@"SUCCESS"]) {
+        if ([sender isEqualToString:@"操作成功"]) {
             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
             [ManagerEngine SVPAfter:@"提交成功" complete:^{
                 [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];

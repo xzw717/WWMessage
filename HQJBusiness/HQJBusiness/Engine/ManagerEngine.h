@@ -262,7 +262,13 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 +(NSString *_Nonnull)reverseSwitchTimer:(NSString *_Nonnull)str ;
 
-
+/**
+ 时间戳转化
+ 
+ @param str 时间戳
+ @return 时间
+ */
++(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str;
 
 /**
  生成二维码

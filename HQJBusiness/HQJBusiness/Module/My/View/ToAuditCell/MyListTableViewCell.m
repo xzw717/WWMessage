@@ -90,14 +90,14 @@
     NSString *oneUnitStr;
     NSString *twoUnitStr;
     
-    if ([model.tradetype isEqualToString:@"积分兑现"]) {
+    if ([model.tradeDesc isEqualToString:@"积分兑现"]) {
         oneUnitStr = @"个";
     } else {
         oneUnitStr = @"元";
     }
     
     
-    if ([model.tradetype isEqualToString:@"现金购买ZH值"]) {
+    if ([model.tradeDesc isEqualToString:@"现金购买ZH值"]) {
         twoUnitStr = @"ZH";
     } else {
         twoUnitStr = @"元";
@@ -105,9 +105,9 @@
     
     self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",model.amount,oneUnitStr];
     
-    self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradetype];
+    self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradeDesc];
     
-    self.timerLabel.text =[ManagerEngine reverseSwitchTimer:model.tradetime];
+    self.timerLabel.text =[ManagerEngine zzReverseSwitchTimer:model.tradetime];
     if (model.camount) {
         self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",[model.camount floatValue],twoUnitStr];
     } else {

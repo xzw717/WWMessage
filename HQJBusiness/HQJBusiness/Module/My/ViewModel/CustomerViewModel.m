@@ -45,12 +45,12 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBCashSalesInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
-                           @"cusId":cusId,
-                           @"ZH":zh,
+                           @"cusid":cusId,
+                           @"zh":zh,
                            @"amount":amount,
                            @"tradepwd":psw};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        submitBlcok(dic[@"errmsg"]);
+        submitBlcok(dic[@"msg"]);
 
     } andError:^(NSError *error) {
         
