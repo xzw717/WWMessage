@@ -89,32 +89,38 @@
     
     NSString *oneUnitStr;
     NSString *twoUnitStr;
-    
-    if ([model.tradeDesc isEqualToString:@"积分兑现"]) {
-        oneUnitStr = @"个";
-    } else {
-        oneUnitStr = @"元";
-    }
-    
-    
-    if ([model.tradeDesc isEqualToString:@"现金购买ZH值"]) {
+    if (model.tradetype.integerValue == 5) {
+        oneUnitStr = @"积分";
+        twoUnitStr = @"元";
+    } else if (model.tradetype.integerValue == 11){
+        oneUnitStr = @"积分";
         twoUnitStr = @"ZH";
-    } else {
+    }else if (model.tradetype.integerValue == 2){
+        oneUnitStr = @"ZH";
+        twoUnitStr = @"元";
+    }else if (model.tradetype.integerValue == 13){
+        oneUnitStr = @"元";
+        twoUnitStr = @"ZH";
+    }else{
+        oneUnitStr = @"元";
         twoUnitStr = @"元";
     }
-    
-    self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",model.amount,oneUnitStr];
-    
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradeDesc];
     
     self.timerLabel.text =[ManagerEngine zzReverseSwitchTimer:model.tradetime];
+    NSString *amountTwoLabelStr;
+    
     if (model.camount) {
-        self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",[model.camount floatValue],twoUnitStr];
+        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.camount.floatValue];
     } else {
-        self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",[model.amount floatValue],twoUnitStr];
+        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
     }
-    
-    
+
+    self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",model.amount,oneUnitStr];
+    self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",amountTwoLabelStr,twoUnitStr];
+    if (model.tradetype.integerValue == 13){
+        self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",amountTwoLabelStr.floatValue/2,twoUnitStr];
+    }
     [self setView];
 
 }

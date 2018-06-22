@@ -105,11 +105,11 @@
 -(void)setModel:(ZHSetModel *)model {
     
     _model = model;
-    self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[model.bonusZH doubleValue] * 100];
+    self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[model.bonusZH doubleValue]];
     
     self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
     
-    self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[model.cashZH doubleValue] * 100];
+    self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[model.cashZH doubleValue]];
     
     self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
     
