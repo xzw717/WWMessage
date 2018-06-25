@@ -41,15 +41,17 @@ DZNEmptyDataSetDelegate>
     
     _tableView.contentInset = UIEdgeInsetsZero;
     
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
         [self requst];
         
         
     }];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _page ++;
+        [self requst];
+    }];
 
-    _tableView.mj_header = header;
-    header.lastUpdatedTimeLabel.hidden = YES;
     return _tableView;
 }
 
@@ -74,19 +76,23 @@ DZNEmptyDataSetDelegate>
 -(void) requst {
     
 
-    [ToAuditViewModel toAuditRequstwithType:_RequstwithType andBlock:^(id listBlock) {
+    [ToAuditViewModel toAuditRequstwithType:_RequstwithType page:_page andBlock:^(id listBlock) {
         if (1 == _page ) {
             [self.listArrayOne removeAllObjects];
         }
-        [self.listArrayOne addObjectsFromArray:listBlock];
-        
-        
+        NSArray *list = (NSArray *)listBlock;
+        if(list.count>0){
+            [self.listArrayOne addObjectsFromArray:listBlock];
+        }
+
     } andZHsetBlock:^(id zhBlock) {
         if (1 == _page ) {
             [self.listArrayTwo removeAllObjects];
         }
-        [self.listArrayTwo addObjectsFromArray:zhBlock];
-        
+        NSArray *list = (NSArray *)zhBlock;
+        if(list.count>0){
+            [self.listArrayTwo addObjectsFromArray:zhBlock];
+        }
     } andCompletion:^{
         if (1 == _page ) {
             [self.listArray removeAllObjects];
@@ -97,7 +103,7 @@ DZNEmptyDataSetDelegate>
         [self.listArray addObjectsFromArray:self.listArrayTwo];
         [self.tableView reloadData];
         
-        [self.tableView.mj_header endRefreshing];
+        [self endRefresh];
 
         
     }];
@@ -112,7 +118,6 @@ DZNEmptyDataSetDelegate>
 #pragma mark - Table view data source
 
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return self.listArray.count;
@@ -120,71 +125,31 @@ DZNEmptyDataSetDelegate>
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    if (self.listArrayOne.count != 0) {
-        if (indexPath.row <=self.listArrayOne.count - 1) {
-            MyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell" forIndexPath:indexPath];
-            cell.model = self.listArrayOne[indexPath.row];
-            return cell;
-            
-        } else{
-            
-            ZHSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZHSetCell" forIndexPath:indexPath];
-            NSInteger i = self.listArrayOne.count - indexPath.row;
 
-           
-            cell.model = self.listArrayTwo[[self integets:i]];
-            return cell;
-            
-        }
-
-    } else {
+    id object = self.listArray[indexPath.row];
+    if ([object isKindOfClass:[MyListModel class]]) {
+        MyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell" forIndexPath:indexPath];
+        cell.model = object;
+        return cell;
+    }else{
         ZHSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZHSetCell" forIndexPath:indexPath];
-        
-        _model = self.listArrayTwo[indexPath.row];
-        
-        cell.model = _model;
-   
-
-        
-        
-        
-        
+        cell.model = object;
         return cell;
     }
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-    if (self.listArrayOne.count != 0) {
-        
-        if (indexPath.row <= self.listArrayOne.count - 1) {
-            return 70;
-        } else {
-            
-            NSInteger i = self.listArrayOne.count - indexPath.row;
-            
-            _model = self.listArrayTwo[[self integets:i]];
-            if ([_model.bonusZH floatValue] == 0 || [_model.cashZH floatValue] == 0) {
-                return 70;
-            } else {
-                return 140;
-            }
-            
-        }
-
-    } else {
-        _model = self.listArrayTwo[ indexPath.row];
-        if ([_model.bonusZH floatValue] == 0 || [_model.cashZH floatValue] == 0) {
+    id object = self.listArray[indexPath.row];
+    if ([object isKindOfClass:[MyListModel class]]) {
+        return 70;
+    }else{
+        ZHSetModel *model = object;
+        if ([model.bonusZH floatValue] == 0 || [model.cashZH floatValue] == 0) {
             return 70;
         } else {
             return 140;
         }
-        
     }
-
-    
 }
 
 #pragma mark --
@@ -203,11 +168,18 @@ DZNEmptyDataSetDelegate>
 }
 //空白页点击事件
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
+    _page = 1;
     [self requst];
     
 }
     
-
+#pragma mark --- 停止刷新 并刷新表格
+-(void)endRefresh {
+    [self.tableView reloadData];
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
 
 /*
 // Override to support conditional editing of the table view.

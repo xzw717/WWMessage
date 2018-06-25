@@ -68,7 +68,9 @@
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
     if (page == 1 || page == 3 || page == 5 ) {
         self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
-
+        if(page == 5){
+            self.amountLabel.text = [NSString stringWithFormat:@"%ld元",model.amount.integerValue * 2];
+        }
     } else {
         self.amountLabel.text = [NSString stringWithFormat:@"%@个",model.amount];
 

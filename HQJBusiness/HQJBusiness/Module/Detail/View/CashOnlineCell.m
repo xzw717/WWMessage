@@ -41,7 +41,7 @@
         }
         self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
         self.amountDetailsLabel.text = [NSString stringWithFormat:@"(ZH:%@)",model.camount];
-        self.timeLabel.text = model.tradetime;
+        self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
         
