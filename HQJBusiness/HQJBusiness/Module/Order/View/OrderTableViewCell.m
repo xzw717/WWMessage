@@ -31,7 +31,7 @@
 - (void)setOrderGoodsModel:(GoodsModel *)orderGoodsModel {
     _orderGoodsModel  = orderGoodsModel;
     self.countLabel.hidden = NO;
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImageTest_URL,orderGoodsModel.mainpicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,orderGoodsModel.mainpicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
     self.nameLabel.text = orderGoodsModel.goodsname;
     self.countLabel.text =  [NSString stringWithFormat:@"x%ld",(long)orderGoodsModel.goodscount];
     self.priceLabel.text =  [NSString stringWithFormat:@"¥%.2f",orderGoodsModel.goodsprice];
@@ -41,7 +41,7 @@
 - (void)setOrderModel:(OrderModel *)orderModel {
     _orderModel = orderModel;
     self.countLabel.hidden = YES;
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImageTest_URL,orderModel.shoppicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,orderModel.shoppicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
     self.nameLabel.text = @"匿名";
     self.priceLabel.text = [NSString stringWithFormat:@"转账金额：¥%.2f",orderModel.price];
 }

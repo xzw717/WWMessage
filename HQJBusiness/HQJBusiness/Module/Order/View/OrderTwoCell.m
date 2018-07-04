@@ -176,7 +176,7 @@
     
     self.stateLabel.text = model.state;
     
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImageTest_URL,model.goodspicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,model.goodspicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
     
     self.goodsNameLabel.text = model.name;
     

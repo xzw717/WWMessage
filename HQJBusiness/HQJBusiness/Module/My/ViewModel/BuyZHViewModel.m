@@ -47,7 +47,7 @@
 }
 
 
-+(void)payRequstWithAmount:(NSString *)amount andPassword:(NSString *)psw andPopViewController:(ZW_ViewController *)zw_self {
++ (void)payRequstWithAmount:(NSString *)amount andPassword:(NSString *)psw andPopViewController:(ZW_ViewController *)zw_self {
  
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingScoreInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,

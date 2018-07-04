@@ -13,7 +13,7 @@
 @property (nonatomic,strong)NSString *createTime;
 
 
-@property (nonatomic,strong)NSString *card;
+@property (nonatomic,strong)NSString *bid;
 
 
 @property (nonatomic,strong)NSString *bankId;

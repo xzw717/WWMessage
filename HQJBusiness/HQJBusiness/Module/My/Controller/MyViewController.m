@@ -251,7 +251,7 @@
         @strongify(self);
         for (TabBarBannerModel * picturemdoel in sender) {
           
-            [self.bannerArray addObject:[NSString stringWithFormat:@"%@%@",ImageTest_URL,picturemdoel.src]];
+            [self.bannerArray addObject:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,picturemdoel.src]];
             
         }
         self.myTableView.tableHeaderView = [self setCycleScrollView];

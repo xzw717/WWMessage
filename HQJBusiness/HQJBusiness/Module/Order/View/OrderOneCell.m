@@ -90,7 +90,7 @@
 
 -(void)setModel:(OrderModel *)model {
     _model = model;
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImageTest_URL,model.shoppicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,model.shoppicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
     
     if (model.username) {
         self.nameLabel.text = model.username;

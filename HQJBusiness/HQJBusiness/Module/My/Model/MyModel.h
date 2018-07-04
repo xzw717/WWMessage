@@ -12,7 +12,7 @@
 @property (nonatomic,copy)NSString *memberid;
 @property (nonatomic,copy)NSString *loginname;
 @property (nonatomic,copy)NSString *realname;
-@property (nonatomic,copy)NSString *ZH;
+@property (nonatomic,copy)NSString *zh;
 @property (nonatomic,copy)NSString *bonus;
 @property (nonatomic,copy)NSString *cashZH;
 @property (nonatomic,copy)NSString *bonusZH;

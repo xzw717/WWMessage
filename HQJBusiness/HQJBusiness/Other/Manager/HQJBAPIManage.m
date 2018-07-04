@@ -28,6 +28,7 @@ NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A
 NSString *const HQJBBonusDomainName = @"http://114.55.74.24/";
 #endif
 
+
 NSString *const HQJBImageDomainName = @"http://wuwuditu.img-cn-hangzhou.aliyuncs.com/";
 
 

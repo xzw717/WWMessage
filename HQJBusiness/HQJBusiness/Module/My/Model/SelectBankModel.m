@@ -9,7 +9,5 @@
 #import "SelectBankModel.h"
 
 @implementation SelectBankModel
-+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"id":@"card"};
-}
+
 @end

@@ -77,7 +77,7 @@
 -(void)setModel:(SelectBankModel *)model {
     _model = model;
     
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:model.bankDetail[@"bankIcon"]]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://47.98.45.218:8080/wuwuInterface/%@",model.bankDetail[@"bankIcon"]]]];
     
     self.bankNameLabel.zw_color = [ManagerEngine getColor:@"999999"];
   

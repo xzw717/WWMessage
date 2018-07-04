@@ -29,7 +29,7 @@
 }
 
 - (void)settitleImage:(NSString *)imageStr name:(NSString *)name price:(NSString *)price count:(NSString *)count {
-    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ImageTest_URL,imageStr]] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,imageStr]] placeholderImage:[UIImage imageNamed:@"default_image"]];
     self.nameLabel.text = name;
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@",price];
     self.countLabel.text = [NSString stringWithFormat:@"x%@",count];

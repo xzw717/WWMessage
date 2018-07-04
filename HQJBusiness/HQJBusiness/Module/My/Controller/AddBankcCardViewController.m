@@ -485,10 +485,10 @@
     NSDictionary *dict = @{@"sellerid":MmberidStr,
                            @"validatecode":self.verificationCodeTextField.text,
                            @"mobile":[NameSingle shareInstance].mobile,
-                           @"payBankId":_bankIdStr,
-                           @"payAccount":self.cardTextField.text,
-                           @"payName":self.nameTextField.text,
-                           @"bankBranch":self.branchTextField.text};
+                           @"paybankid":_bankIdStr,
+                           @"payaccount":self.cardTextField.text,
+                           @"payname":self.nameTextField.text,
+                           @"bankbranch":self.branchTextField.text};
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddBankCardInterface];
 
 //    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
