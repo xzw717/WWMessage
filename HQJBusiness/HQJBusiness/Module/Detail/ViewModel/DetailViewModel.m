@@ -15,7 +15,17 @@
 
 
 + (void)detailRequsttype:(NSString *)type types:(NSString *)types page:(NSString *)page listBlock:(void(^)(NSArray <DetailModel *>*sender))detailBlock {
-    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
+    NSMutableDictionary *dict;
+    if (types) {
+        if ([types isEqualToString:@"线上支付"]) {
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@2}.mutableCopy;
+        }else{
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@1}.mutableCopy;
+        }
+    }else{
+        dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
+        
+    }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     HQJLog(@"-%@ dict = %@",urlStr,dict);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
@@ -25,29 +35,12 @@
             NSArray *resultArray = dic[@"result"];
             NSMutableArray *modelArray = [NSMutableArray array];
             modelArray =  [DetailModel mj_objectArrayWithKeyValuesArray:resultArray];
-            NSMutableArray *resluts = @[].mutableCopy;
-            if(types){
-                for (DetailModel *model in modelArray) {
-                    if ([types isEqualToString:@"线下支付"]) {
-                        if (model.tradetype.integerValue == 1||model.tradetype.integerValue == 10) {
-                            [resluts addObject:model];
-                        }
-                    }else{
-                        if (model.tradetype.integerValue == 12||model.tradetype.integerValue == 13||model.tradetype.integerValue == 14) {
-                            [resluts addObject:model];
-                        }
-                    }
-                }
-                
-            }else{
-                resluts = modelArray;
-            }
 //            for (NSDictionary *dicOne in resultArray) {
 //                DetailModel *model = [DetailModel mj_objectWithKeyValues:dicOne];
 //                [modelArray addObject:model];
 //            }
             if (detailBlock) {
-                detailBlock(resluts);
+                detailBlock(modelArray);
             }
             
             
