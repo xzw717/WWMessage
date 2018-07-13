@@ -18,8 +18,8 @@ DZNEmptyDataSetDelegate>
 
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong) NSMutableArray *listArray;
-@property (nonatomic,strong) NSMutableArray *listArrayOne;
-@property (nonatomic,strong) NSMutableArray *listArrayTwo;
+//@property (nonatomic,strong) NSMutableArray *listArrayOne;
+//@property (nonatomic,strong) NSMutableArray *listArrayTwo;
 @property (nonatomic,strong) ZHSetModel* model;
 @property (nonatomic,assign) NSInteger  page;
 @end
@@ -63,8 +63,8 @@ DZNEmptyDataSetDelegate>
     
     [self.view addSubview:self.tableView];
     self.listArray = [NSMutableArray array];
-    self.listArrayOne = [NSMutableArray array];
-    self.listArrayTwo = [NSMutableArray array];
+//    self.listArrayOne = [NSMutableArray array];
+//    self.listArrayTwo = [NSMutableArray array];
     _model =[[ZHSetModel alloc]init];
     _page = 1;
     
@@ -76,33 +76,24 @@ DZNEmptyDataSetDelegate>
 -(void) requst {
     
 
-    [ToAuditViewModel toAuditRequstwithType:_RequstwithType page:_page andBlock:^(id listBlock) {
-        if (1 == _page ) {
-            [self.listArrayOne removeAllObjects];
+    [ToAuditViewModel toAuditRequstwithType:_RequstwithType page:_page andBlock:^(NSMutableArray *listBlock) {
+        if (listBlock.count>0) {
+            if (1 == _page ) {
+                [self.listArray removeAllObjects];
+            }
+            NSArray *list = (NSArray *)listBlock;
+            if(list.count>0){
+                [self.listArray addObjectsFromArray:listBlock];
+            }
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"没有更多数据了"];
         }
-        NSArray *list = (NSArray *)listBlock;
-        if(list.count>0){
-            [self.listArrayOne addObjectsFromArray:listBlock];
-        }
+        
 
-    } andZHsetBlock:^(id zhBlock) {
-        if (1 == _page ) {
-            [self.listArrayTwo removeAllObjects];
-        }
-        NSArray *list = (NSArray *)zhBlock;
-        if(list.count>0){
-            [self.listArrayTwo addObjectsFromArray:zhBlock];
-        }
     } andCompletion:^{
-        if (1 == _page ) {
-            [self.listArray removeAllObjects];
-        }
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
-        [self.listArray addObjectsFromArray:self.listArrayOne];
-        [self.listArray addObjectsFromArray:self.listArrayTwo];
         [self.tableView reloadData];
-        
         [self endRefresh];
 
         
