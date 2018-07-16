@@ -49,14 +49,14 @@
             _titleArray = @[@[@"现金销售",
                               @"积分兑现",
                               @"现金提现"],
-                            @[@"购买ZH值",
-                              @"ZH值设定"]];
+                            @[@"购买RY值",
+                              @"RY值设定"]];
 
         } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
             _titleArray = @[@[@"现金销售",
                               @"现金提现"],
-                            @[@"购买ZH值",
-                              @"ZH值设定"]];
+                            @[@"购买RY值",
+                              @"RY值设定"]];
         } else {
             _titleArray = @[@[@"现金提现"]];
         }

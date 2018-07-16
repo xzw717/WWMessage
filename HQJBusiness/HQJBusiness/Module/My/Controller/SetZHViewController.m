@@ -81,7 +81,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"ZH值设定";
+    self.zw_title = @"RY值设定";
     _model = [[SetZHModel alloc]init];
     
     
@@ -132,7 +132,7 @@
     [[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         if ([_model.ZHSet integerValue] == 1) {
 
-                    [SVProgressHUD showInfoWithStatus:@"ZH值比率调整申请，还在审核中，请耐心等候处理"];
+                    [SVProgressHUD showInfoWithStatus:@"RY值比率调整申请，还在审核中，请耐心等候处理"];
         } else {
             
             if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
@@ -179,7 +179,7 @@
     if ([value integerValue] > 0 ) {
         NSString *str;
         [str floatValue];
-            self.cashView.detaileLabelStr  = [NSString stringWithFormat:@"消费100元，赠送%.2f个ZH值。",[value floatValue] *0.01 * 100 * 0.5 ];
+            self.cashView.detaileLabelStr  = [NSString stringWithFormat:@"消费100元，赠送%.2f个RY值。",[value floatValue] *0.01 * 100 * 0.5 ];
             self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(165).widthIs(WIDTH);
 
 
@@ -206,7 +206,7 @@
     
     
     if ([value integerValue] > 0 ) {
-            self.bonusView.detaileLabelStr = [NSString stringWithFormat:@"消费200积分，赠送%.2f个ZH值。",[value floatValue] *0.01 * 200  * 0.25 ];
+            self.bonusView.detaileLabelStr = [NSString stringWithFormat:@"消费200积分，赠送%.2f个RY值。",[value floatValue] *0.01 * 200  * 0.25 ];
             self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(165).widthIs(WIDTH);
             
             

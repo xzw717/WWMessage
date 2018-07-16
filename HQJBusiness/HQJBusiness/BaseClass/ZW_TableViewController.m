@@ -119,9 +119,17 @@ DZNEmptyDataSetDelegate>
 
     id object = self.listArray[indexPath.row];
     if ([object isKindOfClass:[MyListModel class]]) {
-        MyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell" forIndexPath:indexPath];
-        cell.model = object;
-        return cell;
+        MyListModel *model = object;
+        if (model.tradetype.integerValue == 9) {
+            ZHSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZHSetCell" forIndexPath:indexPath];
+            cell.model = object;
+            return cell;
+        }else{
+            MyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell" forIndexPath:indexPath];
+            cell.model = object;
+            return cell;
+        }
+        
     }else{
         ZHSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZHSetCell" forIndexPath:indexPath];
         cell.model = object;
@@ -132,7 +140,16 @@ DZNEmptyDataSetDelegate>
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = self.listArray[indexPath.row];
     if ([object isKindOfClass:[MyListModel class]]) {
-        return 70;
+        MyListModel *model = object;
+        if (model.tradetype.integerValue == 9) {
+            if ([model.scoreRate floatValue] == 0 || [model.cashRate floatValue] == 0) {
+                return 70;
+            } else {
+                return 140;
+            }
+        }else{
+            return 70;
+        }
     }else{
         ZHSetModel *model = object;
         if ([model.bonusZH floatValue] == 0 || [model.cashZH floatValue] == 0) {

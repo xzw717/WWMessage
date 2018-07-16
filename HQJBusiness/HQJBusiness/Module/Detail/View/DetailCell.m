@@ -80,7 +80,7 @@
             self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@元)",model.camount];
 
         } else {
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(ZH:%@)",model.camount];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.camount];
 
         }
     }

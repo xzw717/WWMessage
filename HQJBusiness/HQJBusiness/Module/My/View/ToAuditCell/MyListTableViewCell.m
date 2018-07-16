@@ -94,13 +94,13 @@
         twoUnitStr = @"元";
     } else if (model.tradetype.integerValue == 11){
         oneUnitStr = @"积分";
-        twoUnitStr = @"ZH";
+        twoUnitStr = @"RY";
     }else if (model.tradetype.integerValue == 2){
-        oneUnitStr = @"ZH";
+        oneUnitStr = @"RY";
         twoUnitStr = @"元";
     }else if (model.tradetype.integerValue == 13){
         oneUnitStr = @"元";
-        twoUnitStr = @"ZH";
+        twoUnitStr = @"RY";
     }else{
         oneUnitStr = @"元";
         twoUnitStr = @"元";

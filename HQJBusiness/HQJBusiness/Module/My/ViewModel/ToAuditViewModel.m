@@ -39,15 +39,15 @@
                 [listModelAry addObject:model];
             }
             
-            NSArray *zhSetarray = dic[@"result"][@"zhset"];
-            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
-
-            for (NSDictionary *dicOne in zhSetarray) {
-                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
-                [zhSetModelAry addObject:model];
-            }
+//            NSArray *zhSetarray = dic[@"result"][@"zhset"];
+//            NSMutableArray *zhSetModelAry =[NSMutableArray arrayWithCapacity:zhSetarray.count];
+//
+//            for (NSDictionary *dicOne in zhSetarray) {
+//                ZHSetModel *model = [ZHSetModel mj_objectWithKeyValues:dicOne];
+//                [zhSetModelAry addObject:model];
+//            }
             
-            [listModelAry addObjectsFromArray:zhSetModelAry];
+//            [listModelAry addObjectsFromArray:zhSetModelAry];
             
             sender(listModelAry);
             completion();
