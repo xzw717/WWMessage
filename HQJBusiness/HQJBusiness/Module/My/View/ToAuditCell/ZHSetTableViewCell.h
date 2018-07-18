@@ -10,5 +10,5 @@
 #import "ZHSetModel.h"
 
 @interface ZHSetTableViewCell : ZW_TableViewCell
-@property (nonatomic,strong) ZHSetModel *model;
+@property (nonatomic,weak) id model;
 @end

@@ -31,6 +31,8 @@
 @property (nonatomic,copy)NSString *is_aatrade ;
 @property (nonatomic,copy)NSString *is_aamaster ;
 @property (nonatomic,copy)NSString *camount ;
-
+//修改zh比例所需字段，其他不用
+@property (nonatomic,copy)NSString *scoreRate ;
+@property (nonatomic,copy)NSString *cashRate ;
 
 @end

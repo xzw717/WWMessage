@@ -114,7 +114,7 @@
         _allZHLabelS = [[UILabel alloc]init];
         _allZHLabelS.font = [UIFont systemFontOfSize:15.0];
         _allZHLabelS.textAlignment = NSTextAlignmentCenter;
-        _allZHLabelS.text = @"ZH值余额";
+        _allZHLabelS.text = @"RY值余额";
         _allZHLabelS.textColor = [ManagerEngine getColor:@"323232"];
         [self addSubview:_allZHLabelS];
         

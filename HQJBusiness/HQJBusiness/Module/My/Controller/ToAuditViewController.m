@@ -48,7 +48,7 @@
     
     NSArray *childVC = @[allVC, buyZHVC, cashVC, bonusVC,ZHVC];
     
-    NSArray *title_arr = @[@"全部", @"购买ZH",@"现金提现", @"积分兑现", @"ZH比例"];
+    NSArray *title_arr = @[@"全部", @"购买RY",@"现金提现", @"积分兑现", @"RY比例"];
     
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, kNAVHEIGHT , WIDTH, HEIGHT - kNAVHEIGHT)];

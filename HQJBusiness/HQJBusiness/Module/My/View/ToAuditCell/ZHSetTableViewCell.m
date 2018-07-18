@@ -7,6 +7,8 @@
 //
 
 #import "ZHSetTableViewCell.h"
+#import "MyListModel.h"
+
 @interface ZHSetTableViewCell()
 
 @property (nonatomic,strong)ZW_Label *oneTitleLable;
@@ -22,10 +24,10 @@
 @implementation ZHSetTableViewCell
 -(ZW_Label *)oneTitleLable {
     if (!_oneTitleLable) {
-        _oneTitleLable = [[ZW_Label alloc]initWithStr:@"积分消费时，赠送ZH值比例：" addSubView:self];
+        _oneTitleLable = [[ZW_Label alloc]initWithStr:@"积分消费时，赠送RY值比例：" addSubView:self];
         _oneTitleLable.font = [UIFont systemFontOfSize:16.0];
         _oneTitleLable.hidden = YES;
-
+        
     }
     return _oneTitleLable;
 }
@@ -68,7 +70,7 @@
 
 -(ZW_Label *)twoTitleLable {
     if (!_twoTitleLable) {
-        _twoTitleLable = [[ZW_Label alloc]initWithStr:@"现金消费时，赠送ZH值比例：" addSubView:self];
+        _twoTitleLable = [[ZW_Label alloc]initWithStr:@"现金消费时，赠送RY值比例：" addSubView:self];
         _twoTitleLable.font = [UIFont systemFontOfSize:16.0];
         _twoTitleLable.hidden = YES;
     }
@@ -81,9 +83,9 @@
         _twoNumerical = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
         _twoNumerical.font = [UIFont systemFontOfSize:18.0];
         _twoNumerical.textColor = DefaultAPPColor;
-//        _twoNumerical.hidden = YES;
-
-
+        //        _twoNumerical.hidden = YES;
+        
+        
     }
     return _twoNumerical;
 }
@@ -93,25 +95,38 @@
         _twoTimerLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
         _twoTimerLabel.font = [UIFont systemFontOfSize:12.0];
         _twoTimerLabel.textColor = [ManagerEngine getColor:@"999999"];
-//        _twoTimerLabel.hidden = YES;
+        //        _twoTimerLabel.hidden = YES;
     }
     return _twoTimerLabel;
 }
 
 
 
-
-
--(void)setModel:(ZHSetModel *)model {
+-(void)setModel:(id)model {
     
     _model = model;
-    self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[model.bonusZH doubleValue]];
     
-    self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
-    
-    self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[model.cashZH doubleValue]];
-    
-    self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:model.addtime]];
+    if ([_model isKindOfClass:[MyListModel class]]) {
+        MyListModel *object = model;
+        
+        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.scoreRate doubleValue]];
+        
+        self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.tradetime]];
+        
+        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashRate doubleValue]];
+        
+        self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.tradetime]];
+        
+    }else{
+        ZHSetModel *object = model;
+        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.bonusZH doubleValue]];
+        
+        self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.addtime]];
+        
+        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashZH doubleValue]];
+        
+        self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.addtime]];
+    }
     
     CGFloat titleWidth = [ManagerEngine setTextWidthStr:self.oneTitleLable.text andFont:[UIFont systemFontOfSize:16]];
     CGFloat oneNumerWith = [ManagerEngine setTextWidthStr:self.oneNumerical.text andFont:[UIFont systemFontOfSize:18.0]];
@@ -119,95 +134,141 @@
     CGFloat twoNumerWith = [ManagerEngine setTextWidthStr:self.twoNumerical.text andFont:[UIFont systemFontOfSize:18.0]];
     
     CGFloat timerWidth = [ManagerEngine setTextWidthStr:self.oneTimerLabel.text andFont:[UIFont systemFontOfSize:12.0]];
- 
-    
-    
-    
-    
-    if([model.cashZH floatValue] == 0 ){
-        
-        
-        
-        
-        self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
-        self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(oneNumerWith);
-        self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
-        
-        self.oneTitleLable.hidden = NO;
-        self.oneNumerical.hidden  = NO;
-        self.oneTimerLabel.hidden = NO;
-        
-        self.twoTitleLable.hidden = YES;
-        self.twoTitleLable.hidden = YES;
-        self.twoTitleLable.hidden = YES;
-        self.lineView.hidden = YES;
-        
-    
-        
-    } else if ([model.bonusZH floatValue] == 0) {
-        
-        self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
-        self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(twoNumerWith);
-        self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
-        
-        self.twoTitleLable.hidden = NO;
-        self.twoTitleLable.hidden = NO;
-        self.twoTitleLable.hidden = NO;
-        
-        self.oneTitleLable.hidden = YES;
-        self.oneNumerical.hidden  = YES;
-        self.oneTimerLabel.hidden = YES;
-        self.lineView.hidden = YES;
-    } else {
-        
-      
-        
-        self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
-        self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topEqualToView(self.oneTitleLable).heightIs(18).widthIs(oneNumerWith);
-        self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
-        
-        
-        self.lineView.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self,70).heightIs(0.5).widthIs(self.mj_w - kEDGE);
-        
-        
-        self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self.lineView,20).heightIs(16).widthIs(titleWidth);
-        self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topEqualToView(self.twoTitleLable).heightIs(18).widthIs(twoNumerWith);
-        self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
-
-     
-        self.oneTitleLable.hidden = NO;
-        self.oneNumerical.hidden  = NO;
-        self.oneTimerLabel.hidden = NO;
-        
-        self.twoTitleLable.hidden = NO;
-        self.twoTitleLable.hidden = NO;
-        self.twoTitleLable.hidden = NO;
-        self.lineView.hidden = NO;
-        
-        
+    if ([_model isKindOfClass:[MyListModel class]]) {
+        MyListModel *object = model;
+        if([object.cashRate floatValue] == 0 ){
+            
+            
+            self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(oneNumerWith);
+            self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            self.oneTitleLable.hidden = NO;
+            self.oneNumerical.hidden  = NO;
+            self.oneTimerLabel.hidden = NO;
+            
+            self.twoTitleLable.hidden = YES;
+            self.twoTitleLable.hidden = YES;
+            self.twoTitleLable.hidden = YES;
+            self.lineView.hidden = YES;
+            
+            
+            
+        } else if ([object.scoreRate floatValue] == 0) {
+            
+            self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(twoNumerWith);
+            self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            
+            self.oneTitleLable.hidden = YES;
+            self.oneNumerical.hidden  = YES;
+            self.oneTimerLabel.hidden = YES;
+            self.lineView.hidden = YES;
+        } else {
+            
+            
+            
+            self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topEqualToView(self.oneTitleLable).heightIs(18).widthIs(oneNumerWith);
+            self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            
+            self.lineView.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self,70).heightIs(0.5).widthIs(self.mj_w - kEDGE);
+            
+            
+            self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self.lineView,20).heightIs(16).widthIs(titleWidth);
+            self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topEqualToView(self.twoTitleLable).heightIs(18).widthIs(twoNumerWith);
+            self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            
+            self.oneTitleLable.hidden = NO;
+            self.oneNumerical.hidden  = NO;
+            self.oneTimerLabel.hidden = NO;
+            
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.lineView.hidden = NO;
+            
+            
+        }
+    }else{
+        ZHSetModel *object = model;
+        if([object.cashZH floatValue] == 0 ){
+            
+            
+            self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(oneNumerWith);
+            self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            self.oneTitleLable.hidden = NO;
+            self.oneNumerical.hidden  = NO;
+            self.oneTimerLabel.hidden = NO;
+            
+            self.twoTitleLable.hidden = YES;
+            self.twoTitleLable.hidden = YES;
+            self.twoTitleLable.hidden = YES;
+            self.lineView.hidden = YES;
+            
+            
+            
+        } else if ([object.bonusZH floatValue] == 0) {
+            
+            self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topSpaceToView(self,18).heightIs(18).widthIs(twoNumerWith);
+            self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            
+            self.oneTitleLable.hidden = YES;
+            self.oneNumerical.hidden  = YES;
+            self.oneTimerLabel.hidden = YES;
+            self.lineView.hidden = YES;
+        } else {
+            
+            
+            
+            self.oneTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self,20).heightIs(16).widthIs(titleWidth);
+            self.oneNumerical .sd_layout.leftSpaceToView(self.oneTitleLable,0).topEqualToView(self.oneTitleLable).heightIs(18).widthIs(oneNumerWith);
+            self.oneTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.oneTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            
+            self.lineView.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self,70).heightIs(0.5).widthIs(self.mj_w - kEDGE);
+            
+            
+            self.twoTitleLable.sd_layout.leftSpaceToView(self,18).topSpaceToView(self.lineView,20).heightIs(16).widthIs(titleWidth);
+            self.twoNumerical .sd_layout.leftSpaceToView(self.twoTitleLable,0).topEqualToView(self.twoTitleLable).heightIs(18).widthIs(twoNumerWith);
+            self.twoTimerLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self.twoTitleLable,10).heightIs(12).widthIs(timerWidth);
+            
+            
+            self.oneTitleLable.hidden = NO;
+            self.oneNumerical.hidden  = NO;
+            self.oneTimerLabel.hidden = NO;
+            
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.twoTitleLable.hidden = NO;
+            self.lineView.hidden = NO;
+            
+            
+        }
     }
     
     
 }
 
 
-
--(void)setChildView {
-    
-    
-    
-    
-    
-    
-    
-    
-}
-
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-       
-
+        
+        
     }
     return self;
 }
@@ -222,8 +283,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 @end
+

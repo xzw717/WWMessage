@@ -40,7 +40,7 @@
             self.tradetypeLabel.hidden = NO;
         }
         self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
-        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(ZH:%@)",model.camount];
+        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.camount];
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
