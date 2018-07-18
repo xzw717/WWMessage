@@ -47,7 +47,7 @@ DZNEmptyDataSetDelegate>
         
         
     }];
-    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         _page ++;
         [self requst];
     }];
