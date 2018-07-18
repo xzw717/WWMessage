@@ -48,8 +48,11 @@
 @property (nonatomic,strong) ZW_TextField *selectBankTextField;
 
 @property (nonatomic,strong) UIView *selectLeftView;
-
+/**
+ 选择的银行卡id
+ */
 @property (nonatomic,strong)NSString *cardIDStr;
+
 @end
 
 @implementation BonusExchangeViewController
@@ -236,7 +239,7 @@
     
     
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(selectInfo:) name:@"selectbank" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(selectInfo:) name:kActionBank object:nil];
     
 }
 - (void)dealloc {
@@ -288,29 +291,35 @@
             [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
             [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
         } else {
-            
-          
-            [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:_ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
-                
-                if ([dic[@"code"]integerValue] == 49000) {
-                  
-                    [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+            if ([self.selectBankTextField.text isEqualToString:@""]) {
+                 [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
+                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+
+            } else {
+                [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:_ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
                     
-//                    [SVProgressHUD dismissWithCompletion:^{
-//
-//                    }];
-                    [ManagerEngine SVPAfter:@"提交成功" complete:^{
-                        [self.navigationController popViewControllerAnimated:YES];
-
-
-                    }];
-                } else {
-                    [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
-//SVProgressHUD
-                    [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-                }
-
-            }];
+                    if ([dic[@"code"]integerValue] == 49000) {
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                        
+                        //                    [SVProgressHUD dismissWithCompletion:^{
+                        //
+                        //                    }];
+                        [ManagerEngine SVPAfter:@"提交成功" complete:^{
+                            [self.navigationController popViewControllerAnimated:YES];
+                            
+                            
+                        }];
+                    } else {
+                        [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                        //SVProgressHUD
+                        [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                    }
+                    
+                }];
+            }
+          
+          
         }
         
         
@@ -496,15 +505,27 @@
 -(void)selectInfo:(NSNotification *)info {
     
     HQJLog(@"我的选择是：%@",info.userInfo);
-    NSString *texts = [NSString stringWithFormat:@"%@(尾号%@)",info.userInfo[@"payName"],info.userInfo[@"payAccount"]];
-    NSMutableAttributedString *attributeString  = [[NSMutableAttributedString alloc]initWithString:texts];
     
-    NSRange range = [texts rangeOfString:[NSString stringWithFormat:@"(尾号%@)",info.userInfo[@"payAccount"]]];
+    if (info.userInfo[@"deleted"]) {
+        if ( self.cardIDStr && [info.userInfo[@"deleted"] isEqualToString:self.cardIDStr] ) {
+            self.selectBankTextField.text = @"";
+            [self.selectBankTextField setLeftViewWithimageName:nil];
+
+        }
+
+    } else {
+        NSString *texts = [NSString stringWithFormat:@"%@(尾号%@)",info.userInfo[@"payName"],info.userInfo[@"payAccount"]];
+        NSMutableAttributedString *attributeString  = [[NSMutableAttributedString alloc]initWithString:texts];
+        
+        NSRange range = [texts rangeOfString:[NSString stringWithFormat:@"(尾号%@)",info.userInfo[@"payAccount"]]];
+        
+        [attributeString setAttributes:@{NSForegroundColorAttributeName:[ManagerEngine getColor:@"999999"],NSFontAttributeName:[UIFont systemFontOfSize:15.0],NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleNone]} range:range];
+        self.cardIDStr = info.userInfo[@"id"];
+        self.selectBankTextField.attributedText = attributeString;
+        [self.selectBankTextField setLeftViewWithimageName:info.userInfo[@"icon"]];
+    }
     
-    [attributeString setAttributes:@{NSForegroundColorAttributeName:[ManagerEngine getColor:@"999999"],NSFontAttributeName:[UIFont systemFontOfSize:15.0],NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleNone]} range:range];
-    self.cardIDStr = info.userInfo[@"id"];
-    self.selectBankTextField.attributedText = attributeString;
-    [self.selectBankTextField setLeftViewWithimageName:info.userInfo[@"icon"]];
+
     
 }
 

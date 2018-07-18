@@ -520,7 +520,7 @@ static const CGFloat  sAlertTimer = 3.0;
          
          */
         
-        NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$";
+        NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(198)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$";
         
         /**
          
@@ -536,7 +536,7 @@ static const CGFloat  sAlertTimer = 3.0;
          
          */
         
-        NSString *CT_NUM = @"^((133)|(153)|(177)|(173)|(18[0,1,9]))\\d{8}$";
+        NSString *CT_NUM = @"^((133)|(153)|(177)|(173)|(199)|(18[0,1,9]))\\d{8}$";
         
         NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
         

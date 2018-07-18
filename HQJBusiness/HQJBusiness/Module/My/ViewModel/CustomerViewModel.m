@@ -49,6 +49,7 @@
                            @"zh":zh,
                            @"amount":amount,
                            @"tradepwd":psw};
+    
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         submitBlcok(dic[@"msg"]);
 

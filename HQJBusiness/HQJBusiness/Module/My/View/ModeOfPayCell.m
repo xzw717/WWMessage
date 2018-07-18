@@ -21,25 +21,20 @@
 }
 
 -(void)setIsArrearage:(BOOL)isArrearage {
-    
+//    @"微信支付",@"icon_wechat_pay_normal", @"银联支付",@"union_pay",  测试 刘海燕说：让微信和银联不可选
+
     if (isArrearage) {
-        self.titleLabelArray = @[@[@"微信支付",
-                                   @"支付宝支付",
-                                   @"银联支付",
+        self.titleLabelArray = @[@[@"支付宝支付",
                                    @"积分支付(余额不足)"]];
-        self.titleImageViewArray = @[@[@"icon_wechat_pay_normal",
-                                       @"icon_alipay_normal",
-                                       @"union_pay",
+        self.titleImageViewArray = @[@[@"icon_alipay_normal",
                                        @"icon_integration_normal"]];
     } else {
+        
+//         @"微信支付",@"icon_wechat_pay_normal",@"银联支付" @"union_pay"
         self.titleLabelArray = @[@[@"积分支付",
-                                   @"微信支付",
-                                   @"支付宝支付",
-                                   @"银联支付"]];
+                                  @"支付宝支付"]];
         self.titleImageViewArray = @[@[@"icon_integration_normal",
-                                       @"icon_wechat_pay_normal",
-                                       @"icon_alipay_normal",
-                                       @"union_pay"]];
+                                       @"icon_alipay_normal"]];
     }
  
     

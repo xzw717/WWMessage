@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SetZHModel : NSObject
-@property (nonatomic,copy)NSString *ZHSet;
+@property (nonatomic,copy)NSString *zhSet;
 @property (nonatomic,copy)NSString *cashZH;
 @property (nonatomic,copy)NSString *bonusZH;
 
