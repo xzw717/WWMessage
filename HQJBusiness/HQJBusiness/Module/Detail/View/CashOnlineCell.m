@@ -29,18 +29,18 @@
 
 - (void)setModel {
     [RACObserve(self, cashModel)subscribeNext:^(DetailModel *model) {
-        NSString *mobile = [model.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        NSString *mobile = [model.tmobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         self.nameLabel.needChangeStr =[NSString stringWithFormat:@"(%@)",mobile];
         self.nameLabel.zw_color = [ManagerEngine getColor:@"999999"];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.frealname,mobile];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.trealname,mobile];
 
         if ([model.tradeDesc isEqualToString:@"现金消费"]) {
             self.tradetypeLabel.hidden = YES;
         } else {
             self.tradetypeLabel.hidden = NO;
         }
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
-        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.camount];
+        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.cash];
+        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.zh];
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
