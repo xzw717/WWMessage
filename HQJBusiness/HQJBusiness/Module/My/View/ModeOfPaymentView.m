@@ -9,7 +9,8 @@
 #import "ModeOfPaymentView.h"
 #import "ModeOfPayCell.h"
 
-
+/// table 的高度   60 * 2 + 45
+static CGFloat const kTableHeight = 165.f;
 @interface ModeOfPaymentView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UIView *backgroundView;
@@ -32,7 +33,7 @@
         _table = [[UITableView alloc]init];
         _table.delegate = self;
         _table.dataSource = self;
-        _table.frame = CGRectMake(0, 0, WIDTH, 285);
+        _table.frame = CGRectMake(0, 0, WIDTH, kTableHeight);
         
         _table.scrollEnabled = NO;
         [_table registerClass:[ModeOfPayCell class] forCellReuseIdentifier:@"cellid"];
@@ -89,7 +90,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 4;
+        return 2;
     
 }
 -(ModeOfPayCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,10 +175,10 @@
     
     [_table reloadData];
     
-    _backgroundView.frame = CGRectMake(0, HEIGHT, WIDTH, 285) ;
+    _backgroundView.frame = CGRectMake(0, HEIGHT, WIDTH, kTableHeight) ;
     
     [UIView animateWithDuration:0.5 animations:^{
-        _backgroundView.frame = CGRectMake(0, HEIGHT - 285, WIDTH, 285);
+        _backgroundView.frame = CGRectMake(0, HEIGHT - kTableHeight, WIDTH, kTableHeight);
 
 
     } completion:^(BOOL finished) {
@@ -197,7 +198,7 @@
     
     [UIView animateWithDuration:0.5 animations:^{
         
-        _backgroundView.frame = CGRectMake(0, HEIGHT , WIDTH, 285);
+        _backgroundView.frame = CGRectMake(0, HEIGHT , WIDTH, kTableHeight);
 
     } completion:^(BOOL finished) {
         

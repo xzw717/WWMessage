@@ -34,7 +34,7 @@
             
             if (model.incomeBToday) {
                 self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",model.incomeBToday];
-                self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",model.incomeCToday];
+                self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",model.incomCToday];
                 self.allZHLabel.text = model.zh;
             } else {
                 

@@ -12,6 +12,11 @@
 #import "SelectBankModel.h"
 #import "AddBankcCardViewController.h"
 #import "HQJBusinessAlertView.h"
+
+
+NSString *const kActionBank = @"actionBank";
+
+
 @interface SelectBankViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *bankTableView;
 @property (nonatomic,strong)NSMutableArray * bankListArray;
@@ -140,8 +145,8 @@
     [tableView setEditing:YES animated:YES];
     SelectBankModel *model = self.bankListArray[indexPath.row];
     NSDictionary *bankDic = [NSDictionary dictionary];
-    bankDic = @{@"icon":model.bankDetail[@"bankIcon"],@"payName":model.bankDetail[@"bankName"],@"payAccount":model.bankCard,@"id":model.mid};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"selectbank" object:nil userInfo:bankDic];
+    bankDic = @{@"icon":model.bankDetail[@"bankIcon"],@"payName":model.bankDetail[@"bankName"],@"payAccount":model.bankCard,@"id":model.bid};
+    [[NSNotificationCenter defaultCenter]postNotificationName:kActionBank object:nil userInfo:bankDic];
     [self.navigationController popViewControllerAnimated:YES];
     
     
@@ -155,6 +160,7 @@
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kActionBank object:nil userInfo:@{@"deleted":model.bid}];
         } else {
             [SVProgressHUD showErrorWithStatus:@"删除失败"];
         }

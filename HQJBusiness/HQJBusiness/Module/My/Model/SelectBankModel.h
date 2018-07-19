@@ -12,7 +12,7 @@
 
 @property (nonatomic,strong)NSString *createTime;
 
-
+/// 银行卡id
 @property (nonatomic,strong)NSString *bid;
 
 
@@ -21,8 +21,7 @@
 @property (nonatomic,strong)NSString *bankCard;
 
 @property (nonatomic,strong)NSDictionary *bankDetail;
-
-
+/// 用户id
 @property (nonatomic,strong)NSString *mid;
 
 @property (nonatomic,strong)NSString *bankType;

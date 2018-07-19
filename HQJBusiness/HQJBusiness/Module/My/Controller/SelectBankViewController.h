@@ -8,6 +8,8 @@
 
 #import "ZW_ViewController.h"
 
+extern NSString *const kActionBank ;
+
 @interface SelectBankViewController : ZW_ViewController
 
 @end

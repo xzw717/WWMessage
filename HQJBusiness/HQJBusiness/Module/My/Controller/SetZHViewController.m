@@ -46,6 +46,7 @@
 -(SetZHView *)cashView {
     if(!_cashView ){
         _cashView =[[SetZHView alloc]init];
+        _cashView.proportionTextField.delegate = self;
         [self.view addSubview:_cashView];
     }
     
@@ -56,7 +57,9 @@
     
     if(!_bonusView ){
         _bonusView =[[SetZHView alloc]init];
+        _bonusView.proportionTextField.delegate = self;
         [self.view addSubview:_bonusView];
+        
     }
     
     return _bonusView;
@@ -107,10 +110,15 @@
     
     RACSignal *validCashSignal = [self.cashView.proportionTextField.rac_textSignal map:^id(NSString *value) {
         
-        [self updateCashDetaile:value];
-        
+        if (value.integerValue > 100) {
+            self.cashView.proportionTextField.text = @"100";
+        }
+        [self updateCashDetaile];
+
         return @([self textFieldChanged:value]);
     }];
+    
+    
     RAC(self.cashView.proportionTextField,textColor) = [validCashSignal map:^id(NSNumber *values) {
         return [values boolValue]?[ManagerEngine getColor:@"323232"]:[ManagerEngine getColor:@"999999"];
     }];
@@ -118,8 +126,10 @@
     if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
    
         RACSignal *validBounsSignal = [self.bonusView.proportionTextField.rac_textSignal map:^id(NSString *value) {
-            
-            [self updateBonusDetaile:value];
+            if (value.integerValue > 100) {
+                self.bonusView.proportionTextField.text = @"100";
+            }
+            [self updateBonusDetaile];
             return @([self textFieldChanged:value]);
         }];
         RAC(self.bonusView.proportionTextField,textColor) = [validBounsSignal map:^id(NSNumber *values) {
@@ -127,10 +137,11 @@
         }];
     
     }
-    
+  
 
     [[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        if ([_model.ZHSet integerValue] == 1) {
+    
+        if ([_model.zhSet integerValue] > 0) {
 
                     [SVProgressHUD showInfoWithStatus:@"RY值比率调整申请，还在审核中，请耐心等候处理"];
         } else {
@@ -138,17 +149,26 @@
             if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
 
                 HQJLog(@"---111-");
+                if ([self.cashView.proportionTextField.text isEqualToString:@""] || [self.bonusView.proportionTextField.text isEqualToString:@""]) {
+                    [SVProgressHUD showInfoWithStatus:@"比例不能为空"];
+                } else {
+                    [SetZHViewModel setBonusZH:self.bonusView.proportionTextField.text andCashZH:self.cashView.proportionTextField.text andViewController:self];
 
+                }
                 
-                [SetZHViewModel setBonusZH:self.bonusView.proportionTextField.text andCashZH:self.cashView.proportionTextField.text andViewController:self];
 
             } else {
-                [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.mj_w/2, self.submitButton.mj_h/2)];
-
-                HQJLog(@"--222--");
-
-                
-                [SetZHViewModel setBonusZH:@"0" andCashZH:self.cashView.proportionTextField.text andViewController:self];
+                if ([self.cashView.proportionTextField.text isEqualToString:@""]) {
+                    [SVProgressHUD showInfoWithStatus:@"比例不能为空"];
+                } else {
+                    [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.mj_w/2, self.submitButton.mj_h/2)];
+                    
+                    HQJLog(@"--222--");
+                    
+                    
+                    [SetZHViewModel setBonusZH:@"0" andCashZH:self.cashView.proportionTextField.text andViewController:self];
+                }
+             
 
                 
             }
@@ -159,6 +179,11 @@
 
     
 }
+
+
+
+
+
 
 
 #pragma mark ----条件
@@ -172,17 +197,13 @@
 }
 
 
--(void)updateCashDetaile:(id)value {
+-(void)updateCashDetaile {
     
     
     
-    if ([value integerValue] > 0 ) {
-        NSString *str;
-        [str floatValue];
-            self.cashView.detaileLabelStr  = [NSString stringWithFormat:@"消费100元，赠送%.2f个RY值。",[value floatValue] *0.01 * 100 * 0.5 ];
-            self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(165).widthIs(WIDTH);
-
-
+    if ([self.cashView.proportionTextField.text integerValue] > 0 ) {
+      
+            self.cashView.detaileLabelStr  = [NSString stringWithFormat:@"消费100元，赠送%.2f个RY值。",[self.cashView.proportionTextField.text floatValue] *0.01 * 100 * 0.5 ];
         
     } else {
         
@@ -201,16 +222,11 @@
     
 }
 
--(void)updateBonusDetaile:(id)value  {
+
+- (void)updateBonusDetaile  {
+    if ([self.bonusView.proportionTextField.text integerValue] > 0 ) {
+            self.bonusView.detaileLabelStr = [NSString stringWithFormat:@"消费200积分，赠送%.2f个RY值。",[self.bonusView.proportionTextField.text floatValue] *0.01 * 200  * 0.25 ];
     
-    
-    
-    if ([value integerValue] > 0 ) {
-            self.bonusView.detaileLabelStr = [NSString stringWithFormat:@"消费200积分，赠送%.2f个RY值。",[value floatValue] *0.01 * 200  * 0.25 ];
-            self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(165).widthIs(WIDTH);
-            
-            
-        
     } else {
         
         self.bonusView.detaileLabelStr = @"";
@@ -225,38 +241,55 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (textField == self.cashView.proportionTextField) {
-        if ([textField.text isEqualToString:@""]) {
-            if ([string isEqualToString:@"0"]) {
-                return NO;
+    if ([string isEqualToString:@""]) {
+        return YES;
+    } else {
+    
+    if (textField.text.length <= 3 && textField.text.integerValue <= 100 ) {
+        
+        if (textField == self.cashView.proportionTextField) {
+            if ([textField.text isEqualToString:@""]) {
+                if ([string isEqualToString:@"0"]) {
+                    return NO;
+                } else {
+                    return YES;
+                }
             } else {
+                
                 return YES;
             }
+            
         } else {
             
-            return YES;
+            if ([textField.text isEqualToString:@""]) {
+                if ([string isEqualToString:@"0"]) {
+                    return NO;
+                } else {
+                    return YES;
+                }
+                
+            } else {
+                
+                return YES;
+                
+            }
+            
+            
         }
+        
+        
     } else {
         
-        if ([textField.text isEqualToString:@""]) {
-            if ([string isEqualToString:@"0"]) {
-                return NO;
-            } else {
-                return YES;
-            }
-        } else {
-            
-            return YES;
-        }
+        return NO;
         
-        
+    }
+    
         
     }
     
     
-    
-    
 }
+
 
 #pragma mark --
 #pragma mark --- 进入时请求原始比例

@@ -91,6 +91,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             if (indexPath.row == 2) {
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+                cell.accessoryType = UITableViewCellAccessoryNone;
                 CellLine(cell);
                 
             }
@@ -224,7 +225,7 @@
     } else if (index == 1) {
         return @[@"系统通知",
                  @"帮助与反馈",
-                 @"关于"];
+                 @"版本"];
     } else {
         return nil;
     }
