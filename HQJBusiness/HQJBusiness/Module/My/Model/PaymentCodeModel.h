@@ -15,4 +15,7 @@
 @property (nonatomic, strong) NSString *codeurl;
 @property (nonatomic, strong) NSString *addtime;
 @property (nonatomic, strong) NSString *flag;
+//原来的codetype
+@property (nonatomic, strong) NSString *useage;
+
 @end
