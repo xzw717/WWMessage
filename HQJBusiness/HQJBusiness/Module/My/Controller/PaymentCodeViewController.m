@@ -42,7 +42,7 @@
     AddPaymentCodeViewController *addcode = [[AddPaymentCodeViewController alloc]init];
     NSMutableArray *array = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8", nil];
     for (PaymentCodeModel *model in self.listArray) {
-        [array removeObject:model.codetype];
+        [array removeObject:model.useage];
     }
     addcode.codeTypelistArray = array;
     [self.navigationController pushViewController:addcode animated:YES];

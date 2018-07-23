@@ -57,30 +57,32 @@
 -(void)setModel:(DetailModel *)model andPaging:(NSInteger)page {
     
     if (page <= 1) {
-        NSString *mobile = [model.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        NSString *mobile = [model.tmobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         self.nameLabel.needChangeStr =[NSString stringWithFormat:@"(%@)",mobile];
         self.nameLabel.zw_color = [ManagerEngine getColor:@"999999"];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.frealname,mobile];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.trealname,mobile];
     } else {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@",model.trealname];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@",model.frealname];
 
     }
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
     if (page == 1 || page == 3 || page == 5 ) {
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.amount];
-        if(page == 5){
-            self.amountLabel.text = [NSString stringWithFormat:@"%ld元",model.amount.integerValue * 2];
-        }
+        //old amount
+        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.cash];
+//        if(page == 5){
+//            self.amountLabel.text = [NSString stringWithFormat:@"%ld元",model.score.integerValue * 2];
+//        }
     } else {
-        self.amountLabel.text = [NSString stringWithFormat:@"%@个",model.amount];
+        self.amountLabel.text = [NSString stringWithFormat:@"%@个",model.score];
 
     }
     if (page != 3) {
         if (page == 2) {
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@元)",model.camount];
+            //old camount
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@元)",model.cash];
 
         } else {
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.camount];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.zh];
 
         }
     }

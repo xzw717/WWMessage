@@ -51,6 +51,11 @@
 
 @property (nonatomic,copy)NSString *mobile;
 
+//new add
+@property (nonatomic,copy)NSString *zh;
+@property (nonatomic,copy)NSString *score;
+@property (nonatomic,copy)NSString *cash;
+
 
 
 @end

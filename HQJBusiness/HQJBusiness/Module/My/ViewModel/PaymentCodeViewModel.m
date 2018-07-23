@@ -43,7 +43,7 @@
 - (void)paymentCodeAddList:(NSString *)codeurl codetype:(NSString *)type complete:(void (^)(NSString *str))complete {
     /// UTF-8 编码
     NSString * encodeString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)codeurl, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
-    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString}.mutableCopy;
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString,@"codetype":type}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode?memberid=%@&type=1&codetype=%@&codeurl=%@",AppSel_URL,MmberidStr,type,encodeString];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
