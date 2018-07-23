@@ -158,7 +158,10 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
 -(void)newPswRequst {
-    NSMutableDictionary *dict = @{@"newpwd":self.newsPswTextField.text,@"pwdtype":[NSNumber numberWithInteger:self.pswType],@"mobile":_mobileStr}.mutableCopy;
+    NSMutableDictionary *dict = @{@"newpwd":self.newsPswTextField.text,
+                                  @"pwdtype":[NSNumber numberWithInteger:self.pswType],
+                                  @"mobile":_mobileStr,
+                                  @"inputcode":self.inputcode}.mutableCopy;
 //    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/inputNewpwdAction/newpwd/%@/pwdtype/%@/mobile/%@",AppSel_URL,self.newsPswTextField.text,_pswType,_mobileStr];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
     

@@ -8,9 +8,7 @@
 
 #import "ChangeLoginPswViewController.h"
 
-@interface ChangeLoginPswViewController (){
-    NSString *val;
-}
+@interface ChangeLoginPswViewController ()
 @property (nonatomic,strong)ZW_TextField *modelTextField;
 @end
 
@@ -66,7 +64,7 @@
                 [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             } else {
                 
-                val =  (NSString *)dic[@"result"][@"val"];
+        
                 
                 [self.getCodeButton startCountDownWithSecond:60];
                 
@@ -93,17 +91,13 @@
         
         
     } else {
-        HQJLog(@"self.verificationCodeTextField.text = %@ val = %@",self.verificationCodeTextField.text,val);
-        if([self.verificationCodeTextField.text isEqualToString:val]){
-            NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
-            NewPswVC.viewControllerStr = @"LoginViewController";
-            NewPswVC.pswType = 1;
-            NewPswVC.mobileStr = self.modelTextField.text;
-            [self.navigationController pushViewController:NewPswVC animated:YES];
-        }else{
-            [SVProgressHUD showErrorWithStatus:@"验证码输入有误"];
-            [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
-        }
+        NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
+        NewPswVC.viewControllerStr = @"LoginViewController";
+        NewPswVC.pswType = 1;
+        NewPswVC.inputcode = self.verificationCodeTextField.text;
+        NewPswVC.mobileStr = self.modelTextField.text;
+        [self.navigationController pushViewController:NewPswVC animated:YES];
+      
     }
     
 }

@@ -9,7 +9,7 @@
 #import "ChangePswViewModel.h"
 
 @implementation ChangePswViewModel
-+(void)changePswWithOldpwd:(NSString *)old andNewpwd:(NSString *)new andBlock:(void(^)(id changepswBlock))sender{
++ (void)changePswWithOldpwd:(NSString *)old andNewpwd:(NSString *)new andBlock:(void(^)(id changepswBlock))sender{
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"membertype":@1,@"pwdtype":@1,@"oldpwd":old,@"newpwd":new}.mutableCopy;
 //    NSString *urlStr =[NSString stringWithFormat:@"%@passwordSaveAction/memberid/%@/membertype/seller/pwdtype/loginpwd/oldpwd/%@/newpwd/%@",Api_URL,MmberidStr,old,new];
     NSString *urlStr =[NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPasswordSaveActionInterface];

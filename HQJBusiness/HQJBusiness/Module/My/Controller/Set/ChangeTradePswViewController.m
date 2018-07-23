@@ -8,9 +8,7 @@
 
 #import "ChangeTradePswViewController.h"
 
-@interface ChangeTradePswViewController (){
-    NSString *val;
-}
+@interface ChangeTradePswViewController ()
 
 
 @end
@@ -110,7 +108,7 @@
     NSString *urlStr;
     NSMutableDictionary *dict;
     if (isGet) {
-        dict = @{@"pwdtype":@"2",@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
+        dict = @{@"pwdtype":@2,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
         urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
         
         HQJLog(@"---%@",urlStr);
@@ -125,7 +123,6 @@
                 [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             } else {
                 
-                val =  (NSString *)dic[@"result"][@"val"];
                 
                 [self.getCodeButton startCountDownWithSecond:60];
                 
@@ -152,17 +149,13 @@
         
         
     } else {
-        HQJLog(@"self.verificationCodeTextField.text = %@ val = %@",self.verificationCodeTextField.text,val);
-        if([self.verificationCodeTextField.text isEqualToString:val]){
-            NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
-            NewPswVC.viewControllerStr = @"SetViewController";
-            NewPswVC.pswType = 2;
-            NewPswVC.mobileStr = [NameSingle shareInstance].mobile;
-            [self.navigationController pushViewController:NewPswVC animated:YES];
-        }else{
-            [SVProgressHUD showErrorWithStatus:@"验证码输入有误"];
-            [ManagerEngine dimssLoadView:self.nextButton andtitle:@"下一步"];
-        }
+        NewTradePasswordViewController *NewPswVC = [[NewTradePasswordViewController alloc]init];
+        NewPswVC.viewControllerStr = @"SetViewController";
+        NewPswVC.pswType = 2;
+        NewPswVC.inputcode = self.verificationCodeTextField.text;
+        NewPswVC.mobileStr = [NameSingle shareInstance].mobile;
+        [self.navigationController pushViewController:NewPswVC animated:YES];
+       
     }
 
 }

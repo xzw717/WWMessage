@@ -291,7 +291,14 @@
             [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
             [SVProgressHUD showErrorWithStatus:@"付款金额要大于 0"];
         } else {
-            [self submitRequst];
+            if (_model.memberid) {
+                 [self submitRequst];
+            } else {
+                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                [SVProgressHUD showErrorWithStatus:@"请检查支付方手机号"];
+
+            }
+           
         }
         
         
@@ -435,6 +442,7 @@
 -(void)submitRequst {
     
     NSString *ZHStr =  [NSString stringWithFormat:@"%.5f",[self.payFigureTextField.text doubleValue] / 2 * [_ZHRatio doubleValue]];
+    
     [CustomerViewModel submitRequstCustomerid:_model.memberid andZH:ZHStr andPsw:self.pswTextField.text andAmount:self.payFigureTextField.text andReturn:^(id sender) {
 
         

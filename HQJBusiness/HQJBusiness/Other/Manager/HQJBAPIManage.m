@@ -14,8 +14,8 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-//NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface/merchant/";
-NSString *const HQJBBonusDomainName = @"http://192.168.1.33:8080/wuwuInterface/merchant/";
+NSString *const HQJBBonusDomainName = @"http://192.168.16.200:8080/wuwuInterface/merchant/";
+//NSString *const HQJBBonusDomainName = @"http://192.168.1.33:8080/wuwuInterface/merchant/";
 
 
 //47.98.45.218 http://192.168.16.200:8080/wuwuInterface/

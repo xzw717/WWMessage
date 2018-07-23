@@ -9,7 +9,8 @@
 #import "ZW_ViewController.h"
 
 @interface NewTradePasswordViewController : ZW_ViewController
-@property (nonatomic,copy)NSString *viewControllerStr;
-@property (nonatomic,assign)NSInteger pswType;
-@property (nonatomic,strong)NSString *mobileStr;
+@property (nonatomic, copy  ) NSString *viewControllerStr;
+@property (nonatomic, assign) NSInteger pswType;
+@property (nonatomic, strong) NSString *mobileStr;
+@property (nonatomic, strong) NSString *inputcode;
 @end

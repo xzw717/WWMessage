@@ -53,8 +53,6 @@
 /// 获取验证码
 @property (nonatomic,strong) JKCountDownButton *getCodeButton;
 
-/// 后台返回的验证码
-@property (nonatomic,strong) NSString *getcode;
 
 @end
 
@@ -386,13 +384,7 @@
                 
                 if(self.cardTextField.text.length >=16 && self.cardTextField.text.length <=19) {
                     if (self.verificationCodeTextField.text.length > 0) {
-                        if ([self.verificationCodeTextField.text isEqualToString:self.getcode]) {
                             [self addBankCardRequst];
-                        } else {
-                            [SVProgressHUD showErrorWithStatus:@"验证码输入错误"];
-
-                        }
-                        
 
                     } else {
                         [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
@@ -453,7 +445,6 @@
             
             [SVProgressHUD showErrorWithStatus:@"发送失败"];
         } else {
-            self.getcode = dic[@"result"][@"val"];
             [SVProgressHUD showSuccessWithStatus:@"发送成功"];
             
             [self.getCodeButton startCountDownWithSecond:180];

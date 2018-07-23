@@ -85,7 +85,7 @@
   
     self.bankNameLabel.text = [NSString stringWithFormat:@"%@(尾号%@)",model.bankDetail[@"bankName"],[self cardNumberInercept:model.bankCard]];
     
-    self.userNameLabel.text = model.bankDetail[@"bankName"];
+    self.userNameLabel.text = model.realname ? model.realname : @"";
     
     
     

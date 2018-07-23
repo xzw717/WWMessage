@@ -26,4 +26,6 @@
 
 @property (nonatomic,strong)NSString *bankType;
 
+/// 持卡人姓名
+@property (nonatomic,strong)NSString *realname;
 @end
