@@ -8,7 +8,6 @@
 
 #import "ZW_ViewController.h"
 #import "JKCountDownButton.h"
-#import "NewTradePasswordViewController.h"
 
 @interface ChangeTradePswViewController : ZW_ViewController
 
@@ -18,11 +17,6 @@
 
 @property (nonatomic,strong)JKCountDownButton *getCodeButton;
 
-@property (nonatomic,strong)UIButton *nextButton;
+@property (nonatomic,assign)NSInteger pswType;
 
-@property (nonatomic,strong)NSString *pswTypeStr;
-
--(void)initializeTheView;
-
--(void)getcodeRequst:(BOOL)isGet;
 @end
