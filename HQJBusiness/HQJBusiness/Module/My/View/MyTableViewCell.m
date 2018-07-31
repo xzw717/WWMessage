@@ -35,7 +35,7 @@
             if (model.incomeBToday) {
                 self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",model.incomeBToday];
                 self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",model.incomCToday];
-                self.allZHLabel.text = model.zh;
+                self.allZHLabel.text = [NSString stringWithFormat:@"%.2f",model.zh];
             } else {
                 
                 
@@ -55,7 +55,7 @@
 - (UILabel *)todayBonusLabel {
     if ( _todayBonusLabel == nil ) {
         _todayBonusLabel = [[UILabel alloc]init];
-        _todayBonusLabel.font = [UIFont systemFontOfSize:17.0];
+        _todayBonusLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
         _todayBonusLabel.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabel.textColor = [ManagerEngine getColor:@"12b312"];
         [self addSubview:_todayBonusLabel];
@@ -66,7 +66,7 @@
 - (UILabel *)todayCashLabel {
     if ( _todayCashLabel == nil ) {
         _todayCashLabel = [[UILabel alloc]init];
-        _todayCashLabel.font = [UIFont systemFontOfSize:17.0];
+        _todayCashLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
         _todayCashLabel.textAlignment = NSTextAlignmentCenter;
         _todayCashLabel.textColor = [ManagerEngine getColor:@"12b312"];
         [self addSubview:_todayCashLabel];
@@ -77,7 +77,7 @@
 - (UILabel *)allZHLabel {
     if ( _allZHLabel == nil ) {
         _allZHLabel = [[UILabel alloc]init];
-        _allZHLabel.font = [UIFont systemFontOfSize:17.0];
+        _allZHLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
         _allZHLabel.textAlignment = NSTextAlignmentCenter;
         _allZHLabel.textColor = [ManagerEngine getColor:@"18abf5"];
         [self addSubview:_allZHLabel];
@@ -88,7 +88,7 @@
 - (UILabel *)todayBonusLabelS {
     if ( _todayBonusLabelS == nil ) {
         _todayBonusLabelS = [[UILabel alloc]init];
-        _todayBonusLabelS.font = [UIFont systemFontOfSize:15.0];
+        _todayBonusLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
         _todayBonusLabelS.text = @"当日积分收入";
         _todayBonusLabelS.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabelS.textColor = [ManagerEngine getColor:@"323232"];
@@ -100,7 +100,7 @@
 - (UILabel *)todayCashLabelS {
     if ( _todayCashLabelS == nil ) {
         _todayCashLabelS = [[UILabel alloc]init];
-        _todayCashLabelS.font = [UIFont systemFontOfSize:15.0];
+        _todayCashLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
         _todayCashLabelS.textAlignment = NSTextAlignmentCenter;
         _todayCashLabelS.text = @"当日现金收入";
         _todayCashLabelS.textColor = [ManagerEngine getColor:@"323232"];
@@ -112,7 +112,7 @@
 - (UILabel *)allZHLabelS {
     if ( _allZHLabelS == nil ) {
         _allZHLabelS = [[UILabel alloc]init];
-        _allZHLabelS.font = [UIFont systemFontOfSize:15.0];
+        _allZHLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
         _allZHLabelS.textAlignment = NSTextAlignmentCenter;
         _allZHLabelS.text = @"RY值余额";
         _allZHLabelS.textColor = [ManagerEngine getColor:@"323232"];
@@ -134,11 +134,11 @@
 //    [self.todayBonusLabel sd_resetLayout];
 //    [self.todayBonusLabelS sd_resetLayout];
     
-    CGFloat todayBonusSWidth = [ManagerEngine setTextWidthStr:self.todayBonusLabelS.text andFont:[UIFont systemFontOfSize:15.0]];
+    CGFloat todayBonusSWidth = [ManagerEngine setTextWidthStr:self.todayBonusLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
 
-    CGFloat todayCashSWidth = [ManagerEngine setTextWidthStr:self.todayCashLabelS.text andFont:[UIFont systemFontOfSize:15.0]];
+    CGFloat todayCashSWidth = [ManagerEngine setTextWidthStr:self.todayCashLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
     
-    CGFloat ZHSWidth = [ManagerEngine setTextWidthStr:self.allZHLabelS.text andFont:[UIFont systemFontOfSize:15.0]];
+    CGFloat ZHSWidth = [ManagerEngine setTextWidthStr:self.allZHLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
     
     CGFloat SpacerWidth  = (WIDTH - 15 * 2 - ZHSWidth - todayBonusSWidth - todayCashSWidth) / 2;
 
@@ -152,7 +152,7 @@
     
     self.todayCashLabelS.sd_layout.leftSpaceToView(self.todayBonusLabelS,SpacerWidth).topSpaceToView(self.todayCashLabel,10).heightIs(15).widthIs(todayCashSWidth);
     
-    self.allZHLabel.sd_layout.leftSpaceToView(self.todayCashLabel,SpacerWidth).topEqualToView(self.todayCashLabel).heightIs(18).widthIs(ZHSWidth);
+    self.allZHLabel.sd_layout.leftSpaceToView(self.todayCashLabel,SpacerWidth).topEqualToView(self.todayCashLabel).widthIs(ZHSWidth);
     
     self.allZHLabelS.sd_layout.leftSpaceToView(self,WIDTH - 15 - ZHSWidth).topSpaceToView(self.allZHLabel,10).heightIs(15).widthIs(ZHSWidth);
 }

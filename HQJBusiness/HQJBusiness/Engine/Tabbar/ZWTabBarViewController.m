@@ -43,15 +43,18 @@
     
     UIImage *mainImage      = [UIImage imageNamed:@"icon_mine_normal"];
     UIImage *mainImageS     = [[UIImage imageNamed:@"icon_mine_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *NearImage      = [UIImage imageNamed:@"icon_details_normal"];
+    
+   UIImage *NearImage      = [UIImage imageNamed:@"icon_details_normal"];
     UIImage *NearImageS     = [[UIImage imageNamed:@"icon_details_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     UIImage *BusinessImage  = [UIImage imageNamed:@"icon_order_normal"];
     UIImage *BusinessImageS = [[UIImage imageNamed:@"icon_order_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *MyImage        = [UIImage imageNamed:@"icon_commodity_normal"];
-    UIImage *MyImageS       = [[UIImage imageNamed:@"icon_commodity_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    MyVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:MyImage selectedImage:MyImageS];
-    DetailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:mainImage selectedImage:mainImageS];
+//    UIImage *MyImage        = [UIImage imageNamed:@"icon_commodity_normal"];
+//    UIImage *MyImageS       = [[UIImage imageNamed:@"icon_commodity_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    MyVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
+    DetailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
     CommodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
     OrderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
     

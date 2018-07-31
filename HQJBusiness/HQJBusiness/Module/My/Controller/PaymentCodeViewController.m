@@ -52,6 +52,10 @@
     @weakify(self);
     [self.viewModel paymentCodeRequstList:^(NSArray *models) {
         @strongify(self);
+        if (models.count <= 0) {
+            [SVProgressHUD showInfoWithStatus:@"还未绑定收款码，请添加收款码"];
+
+        }
         [self.listArray removeAllObjects];
         [self.listArray addObjectsFromArray:models];
         [self.paymentCodeTableView reloadData];
