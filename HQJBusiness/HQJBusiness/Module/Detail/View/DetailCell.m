@@ -68,21 +68,21 @@
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
     if (page == 1 || page == 3 || page == 5 ) {
         //old amount
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.cash];
+        self.amountLabel.text = [NSString stringWithFormat:@"%.2f元",model.cash.floatValue];
 //        if(page == 5){
 //            self.amountLabel.text = [NSString stringWithFormat:@"%ld元",model.score.integerValue * 2];
 //        }
     } else {
-        self.amountLabel.text = [NSString stringWithFormat:@"%@个",model.score];
+        self.amountLabel.text = [NSString stringWithFormat:@"%.5f个",model.score.floatValue];
 
     }
     if (page != 3) {
         if (page == 2) {
             //old camount
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@元)",model.cash];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%.2f元)",model.cash.floatValue];
 
         } else {
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.zh];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%.5f)",model.zh.floatValue];
 
         }
     }

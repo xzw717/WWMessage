@@ -126,6 +126,7 @@
         
         } else if (indexPath.row == 2){
             ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
+            CTVC.pswType = 2;
             [self.navigationController pushViewController:CTVC animated:YES];
         } else {
             PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];

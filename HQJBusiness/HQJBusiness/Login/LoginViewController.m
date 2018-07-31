@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "ZWTabBarViewController.h"
 #import "MyViewController.h"
-#import "ChangeLoginPswViewController.h"
+#import "ChangeTradePswViewController.h"
 #import "TabbarManager.h"
 #import "AppDelegate.h"
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -100,12 +100,14 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [_forgetPswBtn setTitleColor:[ManagerEngine getColor:@"18abf5"] forState:UIControlStateNormal];
         _forgetPswBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_forgetPswBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            ChangeLoginPswViewController *LVC =[[ChangeLoginPswViewController alloc]init];
+            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
+            CTVC.pswType = 1;
+            [self.navigationController pushViewController:CTVC animated:YES];
+           
 //            ZWNavigationController *Nav = [[ZWNavigationController alloc]initWithRootViewController:RVC];
 //            [self.navigationController presentModalViewController:Nav animated:YES];
 
 //            self.view.window.rootViewController = Nav;
-            [self.navigationController pushViewController:LVC animated:YES];
             
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_forgetPswBtn];
