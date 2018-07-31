@@ -39,8 +39,8 @@
         } else {
             self.tradetypeLabel.hidden = NO;
         }
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",model.cash];
-        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",model.zh];
+        self.amountLabel.text = [NSString stringWithFormat:@"%.2f元",model.cash.floatValue];
+        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%.5f)",model.zh.floatValue];
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
