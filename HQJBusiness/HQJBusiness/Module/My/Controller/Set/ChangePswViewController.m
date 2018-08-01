@@ -189,7 +189,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                 } else {
                     [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
 
-                    [SVProgressHUD showErrorWithStatus:changepswBlock[@"result"][@"errmsg"]];
+                    [SVProgressHUD showErrorWithStatus:changepswBlock[@"msg"]];
                 }
 
             }];
