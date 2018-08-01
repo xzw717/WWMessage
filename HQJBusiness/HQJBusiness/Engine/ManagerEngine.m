@@ -501,7 +501,6 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark --
 #pragma mark ---判断手机号码格式是否正确
 + (BOOL)valiMobile:(NSString *)mobile
-
 {
     
     mobile = [mobile stringByReplacingOccurrencesOfString:@" " withString:@""];

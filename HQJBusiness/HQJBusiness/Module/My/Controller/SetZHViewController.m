@@ -88,13 +88,13 @@
     _model = [[SetZHModel alloc]init];
     
     
-    self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(120).widthIs(WIDTH);
+    self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(S_RatioH(120)).widthIs(WIDTH);
     [self.cashView setTitleStr:@"现金消费时：" andplaceholderStr:@"例如：20"];
     self.cashView.proportionTextField.delegate = self;
     
     
     if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
-        self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(120).widthIs(WIDTH);
+        self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(S_RatioH(120)).widthIs(WIDTH);
         [self.bonusView setTitleStr:@"积分消费时：" andplaceholderStr:@"例如：15"];
         self.bonusView.proportionTextField.delegate = self;
     }
@@ -209,7 +209,7 @@
         
             self.cashView.detaileLabelStr= @"";
 
-        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(120).widthIs(WIDTH);
+        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(S_RatioH(120.f+15.f+10.f)).widthIs(WIDTH);
 
     }
     if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
@@ -231,7 +231,7 @@
         
         self.bonusView.detaileLabelStr = @"";
         
-        self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(120).widthIs(WIDTH);
+        self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(S_RatioH(120.f+15.f+10.f)).widthIs(WIDTH);
         
     }
     

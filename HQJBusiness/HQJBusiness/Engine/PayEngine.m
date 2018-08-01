@@ -55,7 +55,7 @@
     order.subject = Subject; //商品标题
     order.body = nameStr; //商品描述
     order.totalFee = pice; //商品价格
-    order.notifyURL = [NSString stringWithFormat:@"%@AppSel2/notifyurl",AppSel_URL]; //回调URL
+    order.notifyURL = [NSString stringWithFormat:@"%@alipayCallback",HQJBBonusDomainName]; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

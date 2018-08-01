@@ -212,7 +212,7 @@
         NSString *nameStr = !x.realname ? @"" : x.realname;
         NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         if (x.mobile) {
-             [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,mobileStr] andisNav:YES andColor:DefaultAPPColor];
+             [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
         }
        
 
@@ -256,11 +256,11 @@
         }
         self.myTableView.tableHeaderView = [self setCycleScrollView];
         
-        
-        
     }];
     
+    
     [self.titleView.activityIndicator stopAnimating];
+    
     [_viewModel  setMyrequstBlock:^(MyModel * xzw_model) {
         @strongify(self);
         self.model = xzw_model;
