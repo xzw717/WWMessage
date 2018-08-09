@@ -493,7 +493,7 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
         
         

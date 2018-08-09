@@ -39,7 +39,7 @@
             
         } else {
             
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
     } andError:^(NSError *error) {
         
@@ -64,7 +64,7 @@
             
         } else {
             
-            [SVProgressHUD showErrorWithStatus:dic[@"result"][@"errmsg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
     } andError:^(NSError *error) {
         
