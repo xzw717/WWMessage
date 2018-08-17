@@ -44,7 +44,7 @@
 }
 
 - (void)setTitleModel:(PaymentCodeModel *)model {
-    [self setTitle:[self rankDateSource][model.codetype] isAddCode:NO];
+    [self setTitle:[self rankDateSource][model.useage] isAddCode:NO];
 }
 
 - (void)setPaymentCodeType:(NSString *)type  {

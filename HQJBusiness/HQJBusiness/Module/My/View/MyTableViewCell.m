@@ -144,17 +144,42 @@
 
    
     
-    self.todayBonusLabel.sd_layout.leftSpaceToView(self,15).topSpaceToView(self,16).heightIs(18).widthIs(todayBonusSWidth);
     
-    self.todayBonusLabelS.sd_layout.leftEqualToView(self.todayBonusLabel).topSpaceToView(self.todayBonusLabel,10).heightIs(15).widthIs(todayBonusSWidth);
+    self.todayBonusLabel.sd_layout.
+    leftSpaceToView(self,0).
+    topSpaceToView(self,16).
+    heightIs(18).
+    widthIs(WIDTH / 3);
     
-    self.todayCashLabel.sd_layout.leftSpaceToView(self.todayBonusLabel,SpacerWidth).topEqualToView(self.todayBonusLabel).heightIs(18).widthIs(todayCashSWidth);
     
-    self.todayCashLabelS.sd_layout.leftSpaceToView(self.todayBonusLabelS,SpacerWidth).topSpaceToView(self.todayCashLabel,10).heightIs(15).widthIs(todayCashSWidth);
+    self.todayBonusLabelS.sd_layout.
+    leftEqualToView(self.todayBonusLabel).
+    topSpaceToView(self.todayBonusLabel,10).
+    heightIs(15).
+    widthIs(WIDTH / 3);
     
-    self.allZHLabel.sd_layout.leftSpaceToView(self.todayCashLabel,SpacerWidth).topEqualToView(self.todayCashLabel).widthIs(ZHSWidth);
+    self.todayCashLabel.sd_layout.
+    leftSpaceToView(self.todayBonusLabel,0).
+    topEqualToView(self.todayBonusLabel).
+    heightIs(18).
+    widthIs(WIDTH / 3);
     
-    self.allZHLabelS.sd_layout.leftSpaceToView(self,WIDTH - 15 - ZHSWidth).topSpaceToView(self.allZHLabel,10).heightIs(15).widthIs(ZHSWidth);
+    self.todayCashLabelS.sd_layout.
+    leftSpaceToView(self.todayBonusLabelS,0).
+    topEqualToView(self.todayBonusLabelS).
+    heightIs(15).
+    widthIs(WIDTH / 3);
+    
+    self.allZHLabel.sd_layout.
+    leftSpaceToView(self.todayCashLabel,0).
+    topEqualToView(self.todayBonusLabel).
+    widthIs(WIDTH / 3);
+    
+    self.allZHLabelS.sd_layout.
+    leftEqualToView(self.allZHLabel).
+    topEqualToView(self.todayBonusLabelS).
+    heightIs(15).
+    widthIs(WIDTH / 3);
 }
 
 

@@ -98,8 +98,6 @@
 		1F36C9351F4599B000A47738 /* OrderTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36C9341F4599B000A47738 /* OrderTableViewHeader.m */; };
 		1F36C9381F45A27000A47738 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36C9371F45A27000A47738 /* GoodsModel.m */; };
 		1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949DB1E0C1A9A00A3662D /* UINavigationBar+Awesome.m */; };
-		1F3949DF1E0CC05900A3662D /* NewTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949DE1E0CC05900A3662D /* NewTradePasswordViewController.m */; };
-		1F3949E21E0CD49000A3662D /* ChangeLoginPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949E11E0CD49000A3662D /* ChangeLoginPswViewController.m */; };
 		1F3949E61E0D0FA500A3662D /* DetailBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949E51E0D0FA500A3662D /* DetailBaseVC.m */; };
 		1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949E81E0D14F200A3662D /* DetailModel.m */; };
 		1F3949EC1E0D16C200A3662D /* DetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949EB1E0D16C200A3662D /* DetailViewModel.m */; };
@@ -491,10 +489,6 @@
 		1F36C9371F45A27000A47738 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		1F3949DA1E0C1A9A00A3662D /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		1F3949DB1E0C1A9A00A3662D /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
-		1F3949DD1E0CC05900A3662D /* NewTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradePasswordViewController.h; sourceTree = "<group>"; };
-		1F3949DE1E0CC05900A3662D /* NewTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradePasswordViewController.m; sourceTree = "<group>"; };
-		1F3949E01E0CD49000A3662D /* ChangeLoginPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangeLoginPswViewController.h; path = Login/ChangeLoginPswViewController.h; sourceTree = "<group>"; };
-		1F3949E11E0CD49000A3662D /* ChangeLoginPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangeLoginPswViewController.m; path = Login/ChangeLoginPswViewController.m; sourceTree = "<group>"; };
 		1F3949E41E0D0FA500A3662D /* DetailBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailBaseVC.h; path = ChildVC/DetailBaseVC.h; sourceTree = "<group>"; };
 		1F3949E51E0D0FA500A3662D /* DetailBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailBaseVC.m; path = ChildVC/DetailBaseVC.m; sourceTree = "<group>"; };
 		1F3949E71E0D14F200A3662D /* DetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailModel.h; sourceTree = "<group>"; };
@@ -1670,8 +1664,6 @@
 			children = (
 				1F960D4E1DFE735B003E3D17 /* LoginViewController.h */,
 				1F960D4F1DFE735B003E3D17 /* LoginViewController.m */,
-				1F3949E01E0CD49000A3662D /* ChangeLoginPswViewController.h */,
-				1F3949E11E0CD49000A3662D /* ChangeLoginPswViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1811,8 +1803,6 @@
 				1F12C9EC1E0B7C4D00CF6CB7 /* AddressDetailsViewController.m */,
 				1F12C9F41E0BB60F00CF6CB7 /* ChangeTradePswViewController.h */,
 				1F12C9F51E0BB60F00CF6CB7 /* ChangeTradePswViewController.m */,
-				1F3949DD1E0CC05900A3662D /* NewTradePasswordViewController.h */,
-				1F3949DE1E0CC05900A3662D /* NewTradePasswordViewController.m */,
 				1FEAF03A1F7B7CF9004E2F77 /* PaymentCodeViewController.h */,
 				1FEAF03B1F7B7CF9004E2F77 /* PaymentCodeViewController.m */,
 				1FA6A9EA1F7F971600F2C945 /* AddPaymentCodeViewController.h */,
@@ -2115,7 +2105,6 @@
 				1F960D391DFE3E51003E3D17 /* UIAlertView+BlocksKit.m in Sources */,
 				1F3949F81E0D1D1100A3662D /* CashChangeVC.m in Sources */,
 				1F960D221DFE3E51003E3D17 /* NSMutableArray+BlocksKit.m in Sources */,
-				1F3949DF1E0CC05900A3662D /* NewTradePasswordViewController.m in Sources */,
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
@@ -2237,7 +2226,6 @@
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
-				1F3949E21E0CD49000A3662D /* ChangeLoginPswViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
 				1F12C9DA1E0B5AA100CF6CB7 /* ZW_imageView.m in Sources */,
