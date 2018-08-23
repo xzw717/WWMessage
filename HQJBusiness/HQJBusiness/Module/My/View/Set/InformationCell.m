@@ -67,7 +67,6 @@
 
 -(void)setModel:(informationModel *)model andindexPath:(NSIndexPath *)indexPath {
    
-//    HQJLog(@"---model.array：%@", self.titleArray[indexPath.row]);
     self.titleLabel.text = self.titleArray[indexPath.row];
    
     switch (indexPath.row) {
@@ -75,7 +74,10 @@
             self.dateilLabel.text = model.realname;
             break;
         case 1:
-            self.dateilLabel.text = [model.mobile  stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+            
+                HQJLog(@"---model.mobile：%@", model.mobile);
+
+            self.dateilLabel.text = model.mobile ? [model.mobile  stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"] :@"";
 
             break;
         case 2:
@@ -96,7 +98,13 @@
 
             break;
         case 6:
-            self.dateilLabel.text  = [model.license stringByReplacingCharactersInRange:NSMakeRange(4, 11) withString:@"********"];
+              HQJLog(@"---model.license：%@", model.license);
+            if (model.license && model.license != nil && model.license.length > 13) {
+                self.dateilLabel.text  = [model.license stringByReplacingCharactersInRange:NSMakeRange(4, 11) withString:@"********"];
+
+            } else {
+                self.dateilLabel.text  = @"";
+            }
             break;
         default:
             break;

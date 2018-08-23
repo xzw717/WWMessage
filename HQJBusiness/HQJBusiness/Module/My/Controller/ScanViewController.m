@@ -27,7 +27,7 @@
         @strongify(self);
         if (self.isAddCode) {
             [self.viewModel paymentCodeAddList:str codetype:self.addcodeType complete:^(NSString *str){
-                if ([str isEqualToString:@"添加成功"]) {
+                if ([str isEqualToString:@"操作成功"]) {
                     NSNotification *notification =[NSNotification notificationWithName:@"addCodeSuccess" object:nil userInfo:@{@"codeType":self.addcodeType}];
                     //通过通知中心发送通知
                     [[NSNotificationCenter defaultCenter] postNotification:notification];
