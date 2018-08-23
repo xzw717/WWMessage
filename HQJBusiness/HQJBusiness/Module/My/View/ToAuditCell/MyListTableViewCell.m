@@ -89,37 +89,49 @@
     
     NSString *oneUnitStr;
     NSString *twoUnitStr;
+    NSString *oneAmountStr;
+    NSString *twoAmountStr;
+    if (model.camount) {
+        twoAmountStr = model.camount;
+        //        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.camount.floatValue];
+    } else {
+        twoAmountStr = model.amount;
+        //        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
+    }
     if (model.tradetype.integerValue == 5) {
         oneUnitStr = @"积分";
         twoUnitStr = @"元";
+        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
+        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
     } else if (model.tradetype.integerValue == 11){
         oneUnitStr = @"积分";
         twoUnitStr = @"RY";
+        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
+        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
     }else if (model.tradetype.integerValue == 2){
         oneUnitStr = @"RY";
         twoUnitStr = @"元";
+        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
+        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
     }else if (model.tradetype.integerValue == 13){
         oneUnitStr = @"元";
         twoUnitStr = @"RY";
+        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
+        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
     }else{
         oneUnitStr = @"元";
         twoUnitStr = @"元";
+        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
+        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
     }
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradeDesc];
     
     self.timerLabel.text =[ManagerEngine zzReverseSwitchTimer:model.tradetime];
-    NSString *amountTwoLabelStr;
-    
-    if (model.camount) {
-        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.camount.floatValue];
-    } else {
-        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
-    }
 
-    self.amountOneLabel.text = [NSString stringWithFormat:@"%.2f%@",model.amount.floatValue,oneUnitStr];
-    self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",amountTwoLabelStr,twoUnitStr];
+    self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",oneAmountStr,oneUnitStr];
+    self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",twoAmountStr,twoUnitStr];
     if (model.tradetype.integerValue == 13){
-        self.amountTwoLabel.text = [NSString stringWithFormat:@"%.2f%@",amountTwoLabelStr.floatValue/2,twoUnitStr];
+        self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",twoAmountStr.floatValue/2] afterPoint:5],twoUnitStr];
     }
     [self setView];
 

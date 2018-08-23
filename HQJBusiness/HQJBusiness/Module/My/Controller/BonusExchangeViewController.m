@@ -186,12 +186,11 @@
     [BonusExchangeViewModel bonusExchaneViewmodelRequstandViewControllerTitle:_ViewControllerTitle AndBack:^(id sender) {
         _model = sender;
         if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
-            
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f个积分",_model.score.score] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@个积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.score] afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
             
         } else {
             
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%.2f元现金",_model.score.cash] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
 
             
         }
@@ -253,9 +252,9 @@
     RACSignal *validBounsSignal = [self.BonusNumerTextField.rac_textSignal map:^id(NSString *value) {
        
         if ([value isEqualToString:@""]) {
-            self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现0.000元"];
+            self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现0.00元"];
         } else {
-                self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现%.3f元",[value doubleValue] / 2 ];
+            self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2] ];
            
         }
         [self updateCash];

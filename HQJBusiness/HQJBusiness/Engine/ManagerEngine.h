@@ -279,4 +279,13 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (CIImage *_Nonnull)outputImageStr:(NSString *_Nonnull)str;
 + (UIImage *_Nonnull)createNonInterpolatedUIImageFormCIImage:(CIImage *_Nonnull)image withSize:(CGFloat) size;
+
+/**
+ 截取指定小数点几位的字符串
+ 
+ @param number 传入的字符串
+ @param position 需要保留的位数
+ */
++(NSString *_Nonnull)retainScale:(NSString *_Nonnull)number afterPoint:(int)position;
+
 @end

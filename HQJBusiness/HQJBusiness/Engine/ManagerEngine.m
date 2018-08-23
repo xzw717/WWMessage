@@ -744,4 +744,28 @@ static const CGFloat  sAlertTimer = 3.0;
 }
 
 
+#pragma mark --- 截取指定小数点几位的字符串
++(NSString *_Nonnull)retainScale:(NSString *_Nonnull)number afterPoint:(int)position{
+    
+    NSDecimalNumberHandler* handler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:position raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    
+    NSDecimalNumber *roundedOunces = [[[NSDecimalNumber alloc] initWithFloat:number.doubleValue] decimalNumberByRoundingAccordingToBehavior:handler];
+    NSString *result = [NSString stringWithFormat:@"%@",roundedOunces];
+    if ([result containsString:@"."]) {
+        NSRange range = [result rangeOfString:@"."];
+        NSString *sub = [result substringFromIndex:range.location + 1];
+        if (sub.length<position) {
+            for (int i = 0; i < position - sub.length ; i ++) {
+                result  = [result stringByAppendingString:@"0"];
+            }
+        }
+    }else{
+        result = [result stringByAppendingString:@"."];
+        for (int i = 0; i < position ; i ++) {
+            result  = [result stringByAppendingString:@"0"];
+        }
+    }
+    return result;
+    
+}
 @end
