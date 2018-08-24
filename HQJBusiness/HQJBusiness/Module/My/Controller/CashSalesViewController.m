@@ -249,7 +249,7 @@
     RACSignal *validBounsSignal = [self.payFigureTextField.rac_textSignal map:^id(NSString *value) {
         
         if ([value isEqualToString:@""]) {
-            self.ZHlabel.text = [NSString stringWithFormat:@"赠送0.00RY值"];
+            self.ZHlabel.text = [NSString stringWithFormat:@"赠送0.00000RY值"];
         } else {
             if (_ZHRatio) {
                 self.ZHlabel.text = [NSString stringWithFormat:@"赠送%.5fRY值",[value doubleValue] / 2 * [_ZHRatio doubleValue]];

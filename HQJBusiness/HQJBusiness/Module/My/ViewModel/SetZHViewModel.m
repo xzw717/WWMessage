@@ -24,7 +24,7 @@
     
 }
 
-+ (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self {
++ (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self  {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSetZhRateInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"bonuszh":bonus,
