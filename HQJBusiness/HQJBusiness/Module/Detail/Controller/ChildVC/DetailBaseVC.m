@@ -46,6 +46,9 @@ DZNEmptyDataSetDelegate>
         _page ++;
         [self requstType:_type andPage:[NSString stringWithFormat:@"%ld",(long)_page]];
     }];
+    
+    _tableView.emptyDataSetSource = self;
+    _tableView.emptyDataSetDelegate = self;
     return _tableView;
 }
 
@@ -72,8 +75,8 @@ DZNEmptyDataSetDelegate>
 
             }
         }
-        self.tableView.emptyDataSetSource = self;
-        self.tableView.emptyDataSetDelegate = self;
+//        self.tableView.emptyDataSetSource = self;
+//        self.tableView.emptyDataSetDelegate = self;
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];

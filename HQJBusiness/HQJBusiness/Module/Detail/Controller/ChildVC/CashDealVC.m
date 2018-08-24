@@ -69,8 +69,8 @@ DZNEmptyDataSetDelegate
 //            }
 //        }
 //    }];
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
+//    self.tableView.emptyDataSetSource = self;
+//    self.tableView.emptyDataSetDelegate = self;
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     [self.tableView reloadData];
@@ -150,8 +150,9 @@ DZNEmptyDataSetDelegate
         }];
         
     }];
+    _tableView.emptyDataSetSource = self;
+    _tableView.emptyDataSetDelegate = self;
     return _tableView;
 }
-
 
 @end
