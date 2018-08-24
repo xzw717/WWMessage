@@ -62,7 +62,7 @@
         self.nameLabel.zw_color = [ManagerEngine getColor:@"999999"];
         self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.trealname,mobile];
     } else {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@",model.frealname];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@",model.trealname];
 
     }
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];

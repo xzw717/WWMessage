@@ -93,7 +93,7 @@ DZNEmptyDataSetDelegate>
     } andCompletion:^{
         self.tableView.emptyDataSetSource = self;
         self.tableView.emptyDataSetDelegate = self;
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
         [self endRefresh];
 
         
