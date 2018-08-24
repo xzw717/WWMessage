@@ -33,15 +33,14 @@
         [RACObserve(self, model)subscribeNext:^(MyModel *model) {
             
             if (model.incomeBToday) {
-                self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",model.incomeBToday];
-                self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",model.incomCToday];
-                self.allZHLabel.text = [NSString stringWithFormat:@"%.2f",model.zh];
+                self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomeBToday afterPoint:2]];
+                self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomCToday afterPoint:2]];
+                self.allZHLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",model.zh] afterPoint:2]];
             } else {
-                
-                
-                self.todayBonusLabel.text = @"+0";
-                self.todayCashLabel.text = @"+0";
-                self.allZHLabel.text = @"0";
+
+                self.todayBonusLabel.text = @"+0.00";
+                self.todayCashLabel.text = @"+0.00";
+                self.allZHLabel.text = @"0.00";
                 
             }
         }];

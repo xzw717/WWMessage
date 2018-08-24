@@ -86,15 +86,15 @@
 
             break;
         case 3:
-            self.dateilLabel.text = model.bonus;
+            self.dateilLabel.text = [ManagerEngine retainScale:model.bonus afterPoint:5];
 
             break;
         case 4:
-            self.dateilLabel.text = model.cash;
+            self.dateilLabel.text = [ManagerEngine retainScale:model.cash afterPoint:2];
 
             break;
         case 5:
-            self.dateilLabel.text = model.zh;
+            self.dateilLabel.text = [ManagerEngine retainScale:model.zh afterPoint:5];;
 
             break;
         case 6:

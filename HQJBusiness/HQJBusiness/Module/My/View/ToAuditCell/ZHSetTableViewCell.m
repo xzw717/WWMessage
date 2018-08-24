@@ -109,21 +109,25 @@
     if ([_model isKindOfClass:[MyListModel class]]) {
         MyListModel *object = model;
         
-        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.scoreRate doubleValue]];
-        
+        self.oneNumerical.text =  [NSString stringWithFormat:@"%@%%",[ManagerEngine retainScale:object.scoreRate afterPoint:5]];
+//        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.scoreRate doubleValue]];
+//
         self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.tradetime]];
         
-        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashRate doubleValue]];
-        
+        self.twoNumerical.text =  [NSString stringWithFormat:@"%@%%",[ManagerEngine retainScale:object.cashRate afterPoint:5]];
+//
+//        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashRate doubleValue]];
+//
         self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.tradetime]];
         
     }else{
         ZHSetModel *object = model;
-        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.bonusZH doubleValue]];
+        self.oneNumerical.text =  [NSString stringWithFormat:@"%@%%",[ManagerEngine retainScale:object.bonusZH afterPoint:5]];
+//        self.oneNumerical.text =  [NSString stringWithFormat:@"%.2f%%",[object.bonusZH doubleValue]];
         
         self.oneTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.addtime]];
-        
-        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashZH doubleValue]];
+        self.twoNumerical.text =  [NSString stringWithFormat:@"%@%%",[ManagerEngine retainScale:object.cashZH afterPoint:5]];
+//        self.twoNumerical.text=  [NSString stringWithFormat:@"%.2f%%",[object.cashZH doubleValue]];
         
         self.twoTimerLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine zzReverseSwitchTimer:object.addtime]];
     }

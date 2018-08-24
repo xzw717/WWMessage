@@ -86,7 +86,7 @@
     
     [BuyZHViewModel buyZH:^(id sender) {
         _model = sender;
-        [self.titleView setTitleStr: [NSString stringWithFormat:@"当前商家账户有%.2f个积分",_model.score.score] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+        [self.titleView setTitleStr: [NSString stringWithFormat:@"当前商家账户有%@个积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.score] afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
         [self setViewframe];
 
     }];
