@@ -39,6 +39,7 @@ DZNEmptyDataSetDelegate
     SelectButtonView *view1 = [[SelectButtonView alloc]initWithFrame:CGRectMake(0, kNAVHEIGHT + 44 , WIDTH, 40)];
     view1.titleStr = ^(NSString *buttonTitle) {
         [self.listArray  removeAllObjects];
+          _page = 1;
           [self requstPage:@"1" title:buttonTitle complete:^{
             [self setDataSource];
         }];
@@ -135,6 +136,12 @@ DZNEmptyDataSetDelegate
         [_tableView registerClass:[CashOnlineCell class] forCellReuseIdentifier:@"cellid"];
     }
     _tableView.contentInset = UIEdgeInsetsZero;
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requstPage:[NSString stringWithFormat:@"%ld",(long)_page] title:_selecttypeStr == nil ? @"线上支付" : _selecttypeStr complete:^{
+            [self setDataSource];
+        }];
+    }];
     
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         _page ++;

@@ -34,12 +34,11 @@ DZNEmptyDataSetDelegate>
     _tableView.contentInset = UIEdgeInsetsZero;
   
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
+        _page = 1;
         [self requstType:_type andPage:@"1"];
         
         
     }];
-    
     _tableView.mj_header = header;
     header.lastUpdatedTimeLabel.hidden = YES;
     
