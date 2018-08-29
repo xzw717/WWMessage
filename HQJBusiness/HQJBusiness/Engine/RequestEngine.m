@@ -30,9 +30,11 @@ static AFHTTPSessionManager *httpManager = nil;
     
     //检查地址中是否有中文
 //    NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    HQJLog(@"hashCode\n%@",HashCode);
+    if(parameters) if(![urlStr isEqualToString:HQJBLoginCheckInterface]) if(HashCode)[parameter setValue:HashCode forKey:@"hash"];
+    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",HashCode,parameter,parameters);
+    [manager POST:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (complete) {
             if (show == YES) {
@@ -86,8 +88,11 @@ static AFHTTPSessionManager *httpManager = nil;
     
     //检查地址中是否有中文
     //    NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [manager GET:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    HQJLog(@"hashCode\n%@",HashCode);
+    if(parameters) if(![urlStr isEqualToString:HQJBLoginCheckInterface]) if(HashCode)[parameter setValue:HashCode forKey:@"hash"];
+//    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",HashCode,parameter,parameters);
+    [manager GET:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (complete)  {
             if (show == YES) {
                 [SVProgressHUD dismiss];

@@ -343,14 +343,14 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                         dic[@"result"][@"loginname"],@"loginname",
                         dic[@"result"][@"memberid"],@"memberid",
                         dic[@"result"][@"typecname"],@"typecname",
-                        dic[@"result"][@"typeename"],@"typeename",nil];
+                        dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
                 
             } else {
                 
                 dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         dic[@"result"][@"memberid"],@"memberid",
                         dic[@"result"][@"typecname"],@"typecname",
-                        dic[@"result"][@"typeename"],@"typeename",nil];
+                        dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
             }
             
             [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:dic1];
