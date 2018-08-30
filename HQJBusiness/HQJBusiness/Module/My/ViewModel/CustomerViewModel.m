@@ -31,7 +31,7 @@
 + (void)customerrequstNumer:(NSString *)numer andSender:(void(^)(id sender))customerBlock {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByMobileInterface];
     NSDictionary *dict = @{@"mobile":numer,
-                           @"membertype":@1};
+                           @"membertype":@1,@"mid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         CustomerModel *model = [CustomerModel mj_objectWithKeyValues:dic[@"result"]];
         customerBlock(model);

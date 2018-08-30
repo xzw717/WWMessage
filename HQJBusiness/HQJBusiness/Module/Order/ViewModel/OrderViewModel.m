@@ -50,9 +50,9 @@
                               complete:(void(^)(NSString *mobile,NSString *realname))complete {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByIdInterface];
     NSDictionary *dict = @{@"memberid":customerID,
-                           @"membertype":@1};
+                           @"membertype":@1,@"mid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if ([dic[@"error"]integerValue] == 0) {
+        if ([dic[@"code"]integerValue] == 49000) {
             if (complete) {
                 complete(dic[@"result"][@"mobile"],dic[@"result"][@"realname"]);
             }
