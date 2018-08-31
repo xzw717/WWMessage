@@ -768,4 +768,19 @@ static const CGFloat  sAlertTimer = 3.0;
     return result;
     
 }
+
+
+#pragma mark --- 是否需要添加hash校验
++(BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id)parameters{
+    if ([urlString isEqualToString:HQJBLoginCheckInterface]) {
+        return NO;
+    }else if([urlString isEqualToString:HQJBGetPwdSMSInterface]||[urlString isEqualToString:HQJBInputNewpwdActionInterface]){
+        NSDictionary *dict = parameters;
+        if ([dict[@"pwdtype"] isEqual:@1]) {
+            return NO;
+        }
+    }
+    return YES;
+    
+}
 @end
