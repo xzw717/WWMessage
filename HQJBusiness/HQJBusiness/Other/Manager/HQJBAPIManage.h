@@ -26,6 +26,8 @@ extern NSString *const HQJBUpdataAPPDomainName;
 extern NSString *const HQJBItunesDomainName;
 /// 物物地图商家版 图片域名
 extern NSString *const HQJBImageDomainName;
+/// 台卡域名
+extern NSString *const HQJBBonusDomainDeccaName;
 /************************************域名（结束）**********************************************/
 
 
