@@ -67,7 +67,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
     [image drawInRect:CGRectMake(0, 0, kPhotoAssetWidth, kPhotoAssetHeight)];//注意绘图的位置是相对于画布顶点而言，不是屏幕
     
     /// 绘制二维码 2480 3508
-    UIImage *CodeImage = [ManagerEngine createNonInterpolatedUIImageFormCIImage:[ManagerEngine outputImageStr:[NSString stringWithFormat:@"%@CMobile/reg/fid/%@/sid/%@",AppSel_URL,fid,mobile]] withSize:203];
+    UIImage *CodeImage = [ManagerEngine createNonInterpolatedUIImageFormCIImage:[ManagerEngine outputImageStr:[NSString stringWithFormat:@"%@static/?fid/%@/sid/%@",HQJBBonusDomainDeccaName,fid,mobile]] withSize:203];
     [CodeImage drawInRect:CGRectMake(209, 395, 203, 203)];//注意绘图的位置是相对于画布顶点而言，不是屏幕
     
     /// 绘制店名
