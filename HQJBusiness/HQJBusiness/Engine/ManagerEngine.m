@@ -12,7 +12,8 @@
 #import "CommodityViewController.h"
 #import "OrderViewController.h"
 #import "UINavigationBar+Awesome.h"
-
+#import "LoginViewController.h"
+#import "AppDelegate.h"
 static UILabel *alertLabel ;
 
 
@@ -771,7 +772,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 
 #pragma mark --- 是否需要添加hash校验
-+(BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id)parameters{
++ (BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id _Nonnull)parameters{
     if ([urlString isEqualToString:HQJBLoginCheckInterface]) {
         return NO;
     }else if([urlString isEqualToString:HQJBGetPwdSMSInterface]||[urlString isEqualToString:HQJBInputNewpwdActionInterface]){
@@ -782,5 +783,20 @@ static const CGFloat  sAlertTimer = 3.0;
     }
     return YES;
     
+}
+#pragma mark --- 获取hash
++ (NSString *_Nonnull)hashCodeStr {
+    if (HashCode) {
+        return HashCode;
+    } else {
+        [self login];
+        return @"";
+    }
+}
++ (void)login {
+    LoginViewController *loginVC =[[LoginViewController alloc]init];
+    ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    delegate.window.rootViewController = Nav;
 }
 @end

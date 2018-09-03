@@ -292,6 +292,11 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  是否需要添加hash校验
  @param urlString 传入的url
  */
-+(BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id)parameters;
++ (BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id _Nonnull)parameters;
+
+/**
+ 获取hash
+ */
++ (NSString *_Nonnull)hashCodeStr;
 
 @end

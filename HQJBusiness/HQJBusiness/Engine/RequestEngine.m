@@ -32,8 +32,8 @@ static AFHTTPSessionManager *httpManager = nil;
 //    NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:parameters];
     HQJLog(@"hashCode\n%@",HashCode);
-    if(parameters) if([ManagerEngine isHash:urlStr parameters:parameters]) if(HashCode)[parameter setValue:HashCode forKey:@"hash"];
-    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",HashCode,parameter,parameters);
+    if(parameters) if([ManagerEngine isHash:urlStr parameters:parameters]) [parameter setValue:[ManagerEngine hashCodeStr] forKey:@"hash"];
+    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",[ManagerEngine hashCodeStr],parameter,parameters);
     [manager POST:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (complete) {
@@ -90,8 +90,8 @@ static AFHTTPSessionManager *httpManager = nil;
     //    NSString *url = [NSURL URLWithString:urlStr] ? urlStr : [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:parameters];
     HQJLog(@"hashCode\n%@",HashCode);
-    if(parameters) if([ManagerEngine isHash:urlStr parameters:parameters]) if(HashCode)[parameter setValue:HashCode forKey:@"hash"];
-//    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",HashCode,parameter,parameters);
+    if(parameters) if([ManagerEngine isHash:urlStr parameters:parameters]) [parameter setValue:[ManagerEngine hashCodeStr] forKey:@"hash"];
+//    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",[ManagerEngine hashCodeStr],parameter,parameters);
     [manager GET:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (complete)  {
             if (show == YES) {
