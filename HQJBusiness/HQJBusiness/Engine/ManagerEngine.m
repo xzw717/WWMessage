@@ -748,7 +748,7 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark --- 截取指定小数点几位的字符串
 +(NSString *_Nonnull)retainScale:(NSString *_Nonnull)number afterPoint:(int)position{
     
-    NSString *result = number;
+    NSString *result = [NSString stringWithFormat:@"%@",number];
     if ([result containsString:@"."]) {
         NSRange range = [result rangeOfString:@"."];
         NSString *sub = [result substringFromIndex:range.location + 1];
