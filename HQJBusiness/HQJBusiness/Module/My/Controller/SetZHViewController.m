@@ -132,8 +132,7 @@
         }];
     
     }
-  
-
+    NSLog(@"role = %@",[NameSingle shareInstance].role);
     [[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
     
         if ([_model.zhSet integerValue] > 0) {
