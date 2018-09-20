@@ -10,6 +10,7 @@
 #import "DeccaView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
+#import "SavePhotosTool.h"
 @interface DeccaDownloadViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) DeccaView *dview;
 @property (nonatomic, strong) UIImageView *textImageView;
@@ -107,113 +108,19 @@ static CGFloat const kPhotoAssetHeight = 874.f;
     } ShowHUD:YES];
 }
 
-#pragma mark - 创建相册 
-- (void)createAlbum {
 
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
 
-    NSMutableArray *groups=[[NSMutableArray alloc]init];
-
-    ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
-    if (group) { [groups addObject:group];
-    } else {
-        BOOL haveHDRGroup = NO;
-        for (ALAssetsGroup *gp in groups) {
-            NSString *name =[gp valueForProperty:ALAssetsGroupPropertyName];
-            if ([name isEqualToString:@"商家版"]) {
-                haveHDRGroup = YES;
-                
-            }
-        } if (!haveHDRGroup) {
-            //do add a group named "XXXX"
-            [assetsLibrary addAssetsGroupAlbumWithName:@"商家版" resultBlock:^(ALAssetsGroup *group) {
-                [groups addObject:group];
-            } failureBlock:nil];
-            haveHDRGroup = YES;
-        }
-    }
-    };
-
-    //创建相簿
-    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:listGroupBlock failureBlock:nil];
-
-    [self saveToAlbumWithMetadata:nil imageData:UIImagePNGRepresentation(self.savedImage) customAlbumName:@"商家版" completionBlock:^ {
-    //这里可以创建添加成功的方法
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:NSLocalizedString(@"确定", nil) otherButtonTitles: nil];
-        [alert show];
-    } failureBlock:^(NSError *error) {
-    //处理添加失败的方法显示alert让它回到主线程执行，不然那个框框死活不肯弹出来
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //添加失败一般是由用户不允许应用访问相册造成的，这边可以取出这种情况加以判断一下
-        if([error.localizedDescription rangeOfString:@"User denied access"].location != NSNotFound ||
-           [error.localizedDescription rangeOfString:@"用户拒绝访问"].location!=NSNotFound){
-           
-        }
-    });
-}];
-}
-- (void)saveToAlbumWithMetadata:(NSDictionary *)metadata imageData:(NSData *)imageData customAlbumName:(NSString *)customAlbumName completionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(NSError *error))failureBlock {
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    __weak ALAssetsLibrary *weakSelf = assetsLibrary;
-    void (^AddAsset)(ALAssetsLibrary *, NSURL *) = ^(ALAssetsLibrary *assetsLibrary, NSURL *assetURL) {
-        [assetsLibrary assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        if ([[group valueForProperty:ALAssetsGroupPropertyName] isEqualToString:customAlbumName]) {
-            [group addAsset:asset];
-            if (completionBlock) {
-                completionBlock();
-            }
-        }
-    } failureBlock:^(NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
-        }
-    }];
-    } failureBlock:^(NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
-        }
-    }];
-    };
-    
-    [assetsLibrary writeImageDataToSavedPhotosAlbum:imageData metadata:metadata completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (customAlbumName) {
-        [assetsLibrary addAssetsGroupAlbumWithName:customAlbumName resultBlock:^(ALAssetsGroup *group) { if (group) {
-            [weakSelf assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-                [group addAsset:asset];
-                if (completionBlock) {
-                    completionBlock();
-            }
-            } failureBlock:^(NSError *error) {
-                if (failureBlock) {
-                failureBlock(error);
-            }
-            }];
-            } else { AddAsset(weakSelf, assetURL);
-            }
-            } failureBlock:^(NSError *error) {
-                AddAsset(weakSelf, assetURL);
-            }];
-            } else {
-                if (completionBlock) { completionBlock();
-            }
-            }
-            }];
+- (void)snapAction:(UIButton *)btn {
+//        UIImageWriteToSavedPhotosAlbum([self drawImageAtImageContext], self , @selector(image:didFinishSavingWithError:contextInfo:), nil);//保存图片到照片库
+//    [self setPermissions];
+    [SavePhotosTool judgePHAuthorizationStatus:self.savedImage];
 }
 
-- (void)setPermissions {
+- (void)goAlbum {
     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    if (author == ALAuthorizationStatusAuthorized){
-        /// 已经取得权限
-        [self createAlbum];
-    } else if (author == ALAuthorizationStatusNotDetermined){
-        /// 第一次获取授权框
-        ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-        [assetsLibrary enumerateGroupsWithTypes:1 usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        } failureBlock:^(NSError *error) {
-        }];
-    } else {
-        /// 没有获得权限
+    
+    if(author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied){
+        //无权限
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存失败,请开启相册访问权限后重试" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"去开启" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -227,25 +134,6 @@ static CGFloat const kPhotoAssetHeight = 874.f;
             }
         }]];
         [self presentViewController:alert animated:YES completion:nil];
-
-    }
-
-
-
-}
-
-- (void)snapAction:(UIButton *)btn {
-//        UIImageWriteToSavedPhotosAlbum([self drawImageAtImageContext], self , @selector(image:didFinishSavingWithError:contextInfo:), nil);//保存图片到照片库
-    [self setPermissions];
-}
-
-- (void)goAlbum {
-    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    
-    if(author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied){
-        //无权限
-        [self photoAlbumPermissions:@"请打开相册权限"];
-        
     } else {
         NSString *url = @"photos-redirect://app/";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -255,48 +143,6 @@ static CGFloat const kPhotoAssetHeight = 874.f;
   
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    HQJLog(@"---%@",error.userInfo);
-    if (error == nil) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已存入手机相册" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-        
-    }else{
-        [self photoAlbumPermissions:@"保存失败,请开启相册访问权限后重试"];
-  
-    }
-    
-}
-
-/// 相册权限
-- (void)photoAlbumPermissions:(NSString *)title {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:title preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"去开启" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-        
-        if (author ==kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
-            
-            //无权限 引导去开启
-            
-            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                
-                [[UIApplication sharedApplication] openURL:url];
-                
-            }
-            
-        }
-    }]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 
 - (UIButton *)saveButton {

@@ -56,8 +56,8 @@
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             zw_self.viewControllerName = @"DealViewController";
-            [SVProgressHUD showSuccessWithStatus:@"申请成功"];
-            [ManagerEngine SVPAfter:@"申请成功" complete:^{
+            [SVProgressHUD showSuccessWithStatus:@"购买成功"];
+            [ManagerEngine SVPAfter:@"购买成功" complete:^{
                 [zw_self popViews];
             }];
             

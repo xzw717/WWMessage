@@ -213,7 +213,7 @@
         self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(120).widthIs(WIDTH);
         
     }
-    if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]) {
+    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
         self.submitButton.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.bonusView,30).heightIs(44).widthIs(WIDTH - kEDGE * 2);
         
     } else {
@@ -288,7 +288,7 @@
         _model = sender;
         self.cashView.proportionTextField.text = [NSString stringWithFormat:@"%.2f",[_model.cashZH floatValue] *100];
         
-        if([[NameSingle shareInstance].role isEqualToString:@"战略股份商家"]){
+        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
             
             self.bonusView.proportionTextField.text = [NSString stringWithFormat:@"%.2f",[_model.bonusZH floatValue] *100];
             
