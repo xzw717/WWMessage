@@ -31,8 +31,8 @@
                            @"cashzh":cash};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
-            [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-            [ManagerEngine SVPAfter:@"操作成功" complete:^{
+            [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
+            [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
                 [zw_self.navigationController popViewControllerAnimated:YES];
             }];
         } else {

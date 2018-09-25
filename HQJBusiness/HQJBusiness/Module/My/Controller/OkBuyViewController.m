@@ -193,7 +193,7 @@
 
     [ManagerEngine dimssLoadView:self.nextButton andtitle:@"确认支付"];
     if([self.payModeLabel.text isEqualToString:@"积分支付，"]){
-        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
+        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
             if ([_numerStr doubleValue] * 4 > self.model.score.score) {
                 [SVProgressHUD showErrorWithStatus:@"你的积分好像不够了"];
             } else {

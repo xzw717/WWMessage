@@ -212,7 +212,7 @@
 
 - (NSArray *)setindexAry:(NSInteger)index {
     if (index == 0) {
-        if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"] || [[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
+        if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"] || [[NameSingle shareInstance].role isEqualToString:@"合作商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
             return @[@"个人信息",
                      @"登录密码修改",
                      @"交易密码修改",

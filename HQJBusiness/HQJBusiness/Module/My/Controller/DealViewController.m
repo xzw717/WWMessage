@@ -45,7 +45,7 @@
 
 -(NSArray *)titleArray {
     if ( _titleArray == nil ) {
-        if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
+        if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
             _titleArray = @[@[@"现金销售",
                               @"积分兑现",
                               @"现金提现"],
@@ -113,7 +113,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     HQJLog(@"[NameSingle shareInstance].role = %@",[NameSingle shareInstance].role);
-    if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]) {
+    if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];

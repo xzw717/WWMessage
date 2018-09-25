@@ -68,22 +68,34 @@
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
     if (page == 1 || page == 3 || page == 5 ) {
         //old amount
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",[ManagerEngine retainScale:model.cash afterPoint:2]];
+//
+        self.amountLabel.text = [NSString stringWithFormat:@"-%@元",[ManagerEngine retainScale:model.cash afterPoint:2]];
 //        if(page == 5){
 //            self.amountLabel.text = [NSString stringWithFormat:@"%ld元",model.score.integerValue * 2];
 //        }
     } else {
-        self.amountLabel.text = [NSString stringWithFormat:@"%@个",[ManagerEngine retainScale:model.score afterPoint:5]];
+        NSString *symbol;
+        if (page == 0) {
+            symbol = @"+";
+        }else{
+            symbol = @"-";
+        }
+        self.amountLabel.text = [NSString stringWithFormat:@"%@%@",symbol,[ManagerEngine retainScale:model.score afterPoint:5]];
 
     }
     if (page != 3) {
         if (page == 2) {
             //old camount
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@元)",[ManagerEngine retainScale:model.cash afterPoint:2]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(+%@元)",[ManagerEngine retainScale:model.cash afterPoint:2]];
 
         } else {
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@)",[ManagerEngine retainScale:model.zh afterPoint:5]];
-
+            NSString *symbol;
+            if (page == 0) {
+                symbol = @"-";
+            }else{
+                symbol = @"+";
+            }
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%@%@)",symbol,[ManagerEngine retainScale:model.zh afterPoint:5]];
         }
     }
     
