@@ -223,6 +223,7 @@
 		1FFA99C51E231B4900E9FB1D /* NSString+RegexCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA99C41E231B4900E9FB1D /* NSString+RegexCategory.m */; };
 		1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA99C71E233F3000E9FB1D /* UIButton+touch.m */; };
 		1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFB5B1C1E109D9800B7E917 /* NSDictionary+Preoperty.m */; };
+		1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */; };
 		5F1E997420C61F3B001799F9 /* HQJBAPIManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */; };
 		D211B3242F5A0A3462C828A0 /* Pods_HQJBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */; };
 /* End PBXBuildFile section */
@@ -748,6 +749,8 @@
 		1FFA99C71E233F3000E9FB1D /* UIButton+touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+touch.m"; sourceTree = "<group>"; };
 		1FFB5B1B1E109D9800B7E917 /* NSDictionary+Preoperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Preoperty.h"; path = "BaseClass/NSDictionary+Preoperty.h"; sourceTree = "<group>"; };
 		1FFB5B1C1E109D9800B7E917 /* NSDictionary+Preoperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Preoperty.m"; path = "BaseClass/NSDictionary+Preoperty.m"; sourceTree = "<group>"; };
+		1FFC1A51214B5A72006F5BDB /* SavePhotosTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePhotosTool.h; sourceTree = "<group>"; };
+		1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePhotosTool.m; sourceTree = "<group>"; };
 		5F1E997220C61F3B001799F9 /* HQJBAPIManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJBAPIManage.h; sourceTree = "<group>"; };
 		5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJBAPIManage.m; sourceTree = "<group>"; };
 		94D71F0990BAC2915EBC54DD /* Pods-HQJBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HQJBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1467,6 +1470,8 @@
 		1F960CA11DFE3E51003E3D17 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				1FFC1A51214B5A72006F5BDB /* SavePhotosTool.h */,
+				1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */,
 				1F2E0B4D1EC9A7AD0072FDDD /* AppVersionManager.h */,
 				1F2E0B4C1EC9A7AD0072FDDD /* AppVersionManager.m */,
 				1F12F6E51E1635980056DF9A /* PayEngine.h */,
@@ -2086,6 +2091,7 @@
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
 				1F960D2C1DFE3E51003E3D17 /* NSSet+BlocksKit.m in Sources */,
+				1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */,
 				1F960D431DFE3E51003E3D17 /* UIWebView+BlocksKit.m in Sources */,
 				1F960C9D1DFE3D06003E3D17 /* MyViewController.m in Sources */,
 				1F960D261DFE3E51003E3D17 /* NSMutableSet+BlocksKit.m in Sources */,

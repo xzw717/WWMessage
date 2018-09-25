@@ -49,7 +49,7 @@
 
 -(ZW_TextField *)proportionTextField {
     if (!_proportionTextField) {
-        _proportionTextField = [[ZW_TextField alloc]initWithPlaceholder:@"" isType:isMobileType addSubView:self];
+        _proportionTextField = [[ZW_TextField alloc]initWithPlaceholder:@"" isType:isMoneyType addSubView:self];
         _proportionTextField.delegate = self;
     }
     
