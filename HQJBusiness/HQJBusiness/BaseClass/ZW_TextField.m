@@ -71,7 +71,7 @@
     
 }
 
--(void)isMaskBtn:(void(^)())senders {
+-(void)isMaskBtn:(void(^)(void))senders {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn bk_addEventHandler:^(id  _Nonnull sender) {
         senders();

@@ -50,7 +50,7 @@
 -(ZW_TextField *)proportionTextField {
     if (!_proportionTextField) {
         _proportionTextField = [[ZW_TextField alloc]initWithPlaceholder:@"" isType:isMoneyType addSubView:self];
-        _proportionTextField.delegate = self;
+//        _proportionTextField.delegate = self;
     }
     
     return _proportionTextField;

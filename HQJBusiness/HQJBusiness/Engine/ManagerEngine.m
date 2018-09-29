@@ -15,18 +15,23 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 static UILabel *alertLabel ;
-
-
 @class HomeViewController;
 @class NearViewController;
 @class BusinessDeterminedViewController;
 @class MyViewController;
+@interface ManagerEngine ()
+{
+    BOOL isHaveDian;
+    
+}
+@end
+
 
 static UIActivityIndicatorView *activ;
 
 static const CGFloat  sAlertTimer = 3.0;
 @implementation ManagerEngine
--(instancetype)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         
@@ -34,8 +39,19 @@ static const CGFloat  sAlertTimer = 3.0;
    
     return self;
 }
-+(void)GoMainView
-{
+
++ (ManagerEngine *)sharedManager {
+    
+    static dispatch_once_t predicate;
+    static ManagerEngine *sharedManager;
+    dispatch_once(&predicate, ^{
+        sharedManager = [[ManagerEngine alloc]init];
+    });
+    return sharedManager;
+    
+}
+
++ (void)GoMainView {
     
     
 #pragma mark -----我的
@@ -798,4 +814,86 @@ static const CGFloat  sAlertTimer = 3.0;
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.window.rootViewController = Nav;
 }
+
+#pragma mark --
+#pragma mark ---UITextFiled Delegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSLog(@"textField.text:%@",textField.text);
+    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+        isHaveDian = NO;
+    }
+    if ([textField.text containsString:@"."]) {
+        isHaveDian = YES;
+
+    }
+    if ([string length]>0) {
+        if ([textField.text length]>7) {
+            [self showMessage:@"亲，输入超出限制了哟"];
+
+//            [ManagerEngine homeSvpStr:@"亲，输入超出限制了哟" andcenterView:[ManagerEngine currentViewControll].view andStyle:promptViewDefault];
+            
+            return NO;
+        }
+        
+        
+        unichar single=[string characterAtIndex:0];//当前输入的字符
+        if ((single >='0' && single<='9') || single=='.')//数据格式正确
+        {
+            
+            
+            if (single=='.') {
+                if(! isHaveDian  ) { //text中还没有小数点
+                    isHaveDian=YES;
+                    return YES;
+                } else {
+                    [self showMessage:@"亲，您已经输入过小数点了"];
+
+                    
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+                
+            } else {
+                if (isHaveDian) { //存在小数点
+                    //判断小数点的位数
+                    NSRange ran=[textField.text rangeOfString:@"."];
+                    
+                    NSInteger tt = range.location-ran.location;
+                    
+                    if (tt <= 2){
+                        return YES;
+                    } else {
+                        [self showMessage:@"亲，您最多输入两位小数"];
+                        return NO;
+                    }
+                } else {
+                    return YES;
+                    
+                }
+                
+                
+            }
+        } else { //输入的数据格式不正确
+            [self showMessage:@"亲，您输入的格式不正确"];
+            [textField.text stringByReplacingCharactersInRange:range withString:@""];
+            return NO;
+            
+        }
+        
+    }
+    
+    else
+    {
+        return YES;
+        
+    }
+    
+}
+
+- (void)showMessage:(NSString *)message {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert] ;
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
+}
+
 @end

@@ -43,6 +43,6 @@ typedef NS_ENUM(NSInteger,TextType) {
 
 -(void)setLeftViewWithimageName:(NSString *)imageName ;
 
--(void)isMaskBtn:(void(^)())senders ;
+-(void)isMaskBtn:(void(^)(void))senders ;
 
 @end

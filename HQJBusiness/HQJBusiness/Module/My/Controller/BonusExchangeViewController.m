@@ -115,7 +115,7 @@
 -(ZW_TextField *)BonusNumerTextField {
     if ( _BonusNumerTextField == nil ) {
         _BonusNumerTextField = [[ZW_TextField alloc]initWithPlaceholder:[NSString stringWithFormat:@"请输入%@数额",_ViewControllerTitle] isType:isMoneyType addSubView:self.view];
-        _BonusNumerTextField.delegate = self;
+        _BonusNumerTextField.delegate = [ManagerEngine sharedManager];
     }
     return _BonusNumerTextField;
 }
@@ -415,85 +415,7 @@
 }
 
 
-#pragma mark --
-#pragma mark ---UITextFiled Delegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    
-    if ([self.BonusNumerTextField.text rangeOfString:@"."].location == NSNotFound) {
-        isHaveDian=NO;
-    }
-    if ([string length]>0)
-        
-    {
-        if ([self.BonusNumerTextField.text length]>7)
-        {
-            [ManagerEngine homeSvpStr:@"亲，输入超出限制了哟" andcenterView:self.view andStyle:promptViewDefault];
-            
-            return NO;
-        }
-        
-        
-        unichar single=[string characterAtIndex:0];//当前输入的字符
-        if ((single >='0' && single<='9') || single=='.')//数据格式正确
-        {
-            
-            
-            if (single=='.')
-            {
-                if(!isHaveDian)//text中还没有小数点
-                {
-                    isHaveDian=YES;
-                    return YES;
-                }else
-                {
-                    [ManagerEngine homeSvpStr:@"亲，您已经输入过小数点了" andcenterView:self.view andStyle:promptViewDefault];
-                    
-                    [self.BonusNumerTextField.text stringByReplacingCharactersInRange:range withString:@""];
-                    return NO;
-                }
-                
-            }
-            else
-            {
-                if (isHaveDian)//存在小数点
-                {
-                    //判断小数点的位数
-                    NSRange ran=[self.BonusNumerTextField.text rangeOfString:@"."];
-                    
-                    NSInteger tt = range.location-ran.location;
-                    
-                    if (tt <= 2){
-                        return YES;
-                    }else{
-                        [ManagerEngine homeSvpStr:@"亲，您最多输入两位小数" andcenterView:self.view andStyle:promptViewDefault];
-                        return NO;
-                    }
-                }
-                else
-                {
-                    return YES;
-                    
-                }
-                
-                
-            }
-        }else{//输入的数据格式不正确
-            [ManagerEngine homeSvpStr:@"亲，您输入的格式不正确" andcenterView:self.view andStyle:promptViewDefault];
-            [self.BonusNumerTextField.text stringByReplacingCharactersInRange:range withString:@""];
-            return NO;
-            
-        }
-        
-    }
-    
-    else
-    {
-        return YES;
-        
-    }
-    
-}
+
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.passwordTextField resignFirstResponder];

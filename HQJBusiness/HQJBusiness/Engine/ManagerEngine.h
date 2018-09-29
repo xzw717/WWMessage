@@ -37,7 +37,9 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
 //};
 //
 //typedef void(^AlertButtonBlock)(id _Nonnull sender);
-@interface ManagerEngine : NSObject
+@interface ManagerEngine : NSObject <UITextFieldDelegate>
+
++ (ManagerEngine *_Nullable)sharedManager ;
 +(void)GoMainView;
 //+(UIFont *)font_s:(CGFloat)x ;    //字体适配
 + (UIColor *_Nonnull)getColor:(NSString *_Nonnull)hexColor;//-----颜色值转换

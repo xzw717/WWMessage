@@ -46,7 +46,7 @@
 -(SetZHView *)cashView {
     if(!_cashView ){
         _cashView =[[SetZHView alloc]init];
-        _cashView.proportionTextField.delegate = self;
+//        _cashView.proportionTextField.delegate = [ManagerEngine sharedManager];
         [self.view addSubview:_cashView];
     }
     
@@ -57,7 +57,7 @@
     
     if(!_bonusView ){
         _bonusView =[[SetZHView alloc]init];
-        _bonusView.proportionTextField.delegate = self;
+//        _bonusView.proportionTextField.delegate = [ManagerEngine sharedManager];
         [self.view addSubview:_bonusView];
         
     }
@@ -90,13 +90,13 @@
     
     self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT+kEDGE).heightIs(S_RatioH(120)).widthIs(WIDTH);
     [self.cashView setTitleStr:@"现金消费时：" andplaceholderStr:@"例如：20"];
-    self.cashView.proportionTextField.delegate = self;
+    self.cashView.proportionTextField.delegate = [ManagerEngine sharedManager];
     
     
     if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]){
         self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(S_RatioH(120)).widthIs(WIDTH);
         [self.bonusView setTitleStr:@"积分消费时：" andplaceholderStr:@"例如：15"];
-        self.bonusView.proportionTextField.delegate = self;
+        self.bonusView.proportionTextField.delegate = [ManagerEngine sharedManager];
     }
 
     [self setSignal];
