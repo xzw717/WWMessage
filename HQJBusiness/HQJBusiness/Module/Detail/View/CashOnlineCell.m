@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setModel];
-        [self updateConstraintsIfNeeded];
+        [self updateConstraintsIfNeeded];//wenshen shi ge haodongxi keni buzhidao de shi ta yijing yeshuyejiubuliao ni woshuode awei yijing sile awei yijing sile weiyi baokuo fuwushang ceshiyi liuzhaoling 
     }
     return self;
 }
@@ -39,8 +39,9 @@
         } else {
             self.tradetypeLabel.hidden = NO;
         }
-        self.amountLabel.text = [NSString stringWithFormat:@"%.2f元",model.cash.floatValue];
-        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:%.5f)",model.zh.floatValue];
+//        fabs(model.cash.floatValue)//fabs(model.zh.floatValue)
+        self.amountLabel.text = [NSString stringWithFormat:@"+%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
+        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:-%@)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];

@@ -299,12 +299,12 @@
                     
                     if ([dic[@"code"]integerValue] == 49000) {
                         
-                        [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                        [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
                         
                         //                    [SVProgressHUD dismissWithCompletion:^{
                         //
                         //                    }];
-                        [ManagerEngine SVPAfter:@"提交成功" complete:^{
+                        [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
                             [self.navigationController popViewControllerAnimated:YES];
                             
                             
