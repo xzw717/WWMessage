@@ -479,9 +479,7 @@
                            @"paybankid":_bankIdStr,
                            @"payaccount":self.cardTextField.text,
                            @"payname":self.nameTextField.text,
-                           @"bankbranch":self.branchTextField.text
-                           @"hash":HashCode
-                           };
+                           @"bankbranch":self.branchTextField.text};
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddBankCardInterface];
 
 //    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
