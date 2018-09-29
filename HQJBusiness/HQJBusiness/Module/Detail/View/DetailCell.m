@@ -55,14 +55,13 @@
 
 
 -(void)setModel:(DetailModel *)model andPaging:(NSInteger)page {
-    
     if (page <= 1) {
         NSString *mobile = [model.tmobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         self.nameLabel.needChangeStr =[NSString stringWithFormat:@"(%@)",mobile];
         self.nameLabel.zw_color = [ManagerEngine getColor:@"999999"];
         self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",model.trealname,mobile];
     } else {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@",model.trealname];
+        self.nameLabel.text = [NameSingle shareInstance].subCompanyName?[NameSingle shareInstance].subCompanyName:model.trealname;
 
     }
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];

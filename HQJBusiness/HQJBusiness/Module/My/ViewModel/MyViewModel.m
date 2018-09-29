@@ -24,6 +24,7 @@
     if (MmberidStr) {
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
+            [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
             }
