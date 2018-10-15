@@ -442,7 +442,8 @@
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         @strongify(self);
         if([dic[@"code"]integerValue] != 49000) {
-            
+            self.getCodeButton.enabled = YES;
+
             [SVProgressHUD showErrorWithStatus:@"发送失败"];
         } else {
             [SVProgressHUD showSuccessWithStatus:@"发送成功"];
@@ -472,7 +473,6 @@
 #pragma mark ---
 -(void)addBankCardRequst {
 
-//    NSString *urlString = [NSString stringWithFormat:@"%@index.php?m=HQJ&c=AppSel2&a=bankAccountAction&sellerid=%@&id=customer&validatecode=%@&mobile=%@&payBankId=%@&payAccount=%@&payName=%@&bankBranch=%@",AppSel_URL,MmberidStr,self.verificationCodeTextField.text,[NameSingle shareInstance].mobile,_bankIdStr,self.cardTextField.text,self.nameTextField.text,self.branchTextField.text];
     NSDictionary *dict = @{@"sellerid":MmberidStr,
                            @"validatecode":self.verificationCodeTextField.text,
                            @"mobile":[NameSingle shareInstance].mobile,

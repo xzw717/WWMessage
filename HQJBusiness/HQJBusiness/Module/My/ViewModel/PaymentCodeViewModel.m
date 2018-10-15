@@ -11,7 +11,6 @@
 @implementation PaymentCodeViewModel
 - (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)())isNull {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"type":@0}.mutableCopy;
-//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/payCode/%@/type/0",AppSel_URL,MmberidStr];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
@@ -28,7 +27,6 @@
 
 - (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)())complete {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"id":codeid}.mutableCopy;
-//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode/memberid/%@/type/2/id/%@",AppSel_URL,MmberidStr,codeid];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
@@ -44,7 +42,6 @@
     /// UTF-8 编码
     NSString * encodeString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)codeurl, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString,@"codetype":type}.mutableCopy;
-//    NSString *urlStr = [NSString stringWithFormat:@"%@AppSel2/payCode?memberid=%@&type=1&codetype=%@&codeurl=%@",AppSel_URL,MmberidStr,type,encodeString];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             !complete ? : complete(dic[@"msg"]);

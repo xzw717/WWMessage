@@ -90,7 +90,7 @@
 
 
 - (void)useConsumerCode:(NSString *)code {
-    NSString *url = [NSString stringWithFormat:@"%@salecode/employcode.action?memberid=%@&sale_code=%@",OrderTest_URL,MmberidStr,code];
+    NSString *url = [NSString stringWithFormat:@"%@salecode/employcode.action?memberid=%@&sale_code=%@",HQJBBounsOrder,MmberidStr,code];
     @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url complete:^(NSDictionary *dic) {
         @strongify(self);

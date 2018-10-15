@@ -28,6 +28,8 @@ extern NSString *const HQJBItunesDomainName;
 extern NSString *const HQJBImageDomainName;
 /// 台卡域名
 extern NSString *const HQJBBonusDomainDeccaName;
+///商品订单相关
+extern NSString *const HQJBBounsOrder;
 /************************************域名（结束）**********************************************/
 
 

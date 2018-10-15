@@ -12,7 +12,7 @@
 @implementation ConsumerCodeViewModel
 +(void)QrCodeRequst:(NSString *)code  andBlock:(void(^)(void))sender{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@salecode/shopcheckcode.action?memberid=%@&sale_code=%@",OrderTest_URL,MmberidStr,code];
+    NSString *urlStr = [NSString stringWithFormat:@"%@salecode/shopcheckcode.action?memberid=%@&sale_code=%@",HQJBBounsOrder,MmberidStr,code];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         HQJLog(@"%@",dic[@"resultMsg"][@"state"]);
             NSDictionary *infoDict = @{@"state":dic[@"resultMsg"][@"state"],
@@ -30,7 +30,7 @@
 }
 
 - (void)useConsumerCode:(NSString *)code success:(void(^)(void))success {
-    NSString *url = [NSString stringWithFormat:@"%@salecode/employcode.action?memberid=%@&sale_code=%@",OrderTest_URL,MmberidStr,code];
+    NSString *url = [NSString stringWithFormat:@"%@salecode/employcode.action?memberid=%@&sale_code=%@",HQJBBounsOrder,MmberidStr,code];
     @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url complete:^(NSDictionary *dic) {
         @strongify(self);
@@ -48,7 +48,7 @@
 }
 
 - (void)inquireGoods:(NSString *)orederid complete:(void (^)(OrderVerificationModel *model))complete {
-    NSString *url = [NSString stringWithFormat:@"%@order/queryOrder.action?orderid=%@",OrderTest_URL,orederid];
+    NSString *url = [NSString stringWithFormat:@"%@order/queryOrder.action?orderid=%@",HQJBBounsOrder,orederid];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"]integerValue] == 2000) {
             OrderVerificationModel *model = [OrderVerificationModel mj_objectWithKeyValues:dic[@"resultMsg"]];

@@ -219,7 +219,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 #pragma mark --- 更改密码请求
 -(void)requstPswChange {
     
-//    NSString *urlStr = [NSString stringWithFormat:@"%@passwordSaveAction/memberid/%@/membertype/originator/pwdtype/%@/oldpwd/%@/newpwd/%@",Api_URL,MmberidStr,_typePswStr,_oldPsWTextField.text,_oneNewPsWTextField.text];
 //    [RequestEngine HQJFacilitatorRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
 //
 //        HQJLog(@"更改的密码:%@",dic);

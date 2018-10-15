@@ -14,7 +14,7 @@
 @implementation TabBarBannerViewModel
 +(void)pictureRequst:(void(^)(id sender))pictureBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@system/banner.action?type=2",OrderTest_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"%@system/banner.action?type=2",HQJBBounsOrder];
     HQJLog(@"图片：%@",urlStr);
 
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
@@ -36,7 +36,7 @@
 +(void)tabbarPictureRequst:(void(^)(id sender))tabbarBlock {
     
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@system/icon.action?type=2",OrderTest_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"%@system/icon.action?type=2",HQJBBounsOrder];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         NSArray *resultMsgArray = dic[@"resultMsg"];
         

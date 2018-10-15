@@ -54,7 +54,7 @@
 }
 -(void)QrCodeRequst:(NSString *)code {
     
-    NSString *urlStr = [NSString stringWithFormat:@"http://shoptest.heqijia.net/salecode/shopcheckcode.action?memberid=%@&sale_code=%@",MmberidStr,code];
+    NSString *urlStr = [NSString stringWithFormat:@"%@salecode/shopcheckcode.action?memberid=%@&sale_code=%@",HQJBBounsOrder,MmberidStr,code];
     HQJLog(@"%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
         

@@ -14,9 +14,9 @@
     
     NSString *urlStr ;
     if (type != 10086) {
-        urlStr = [NSString stringWithFormat:@"%@order/shopfindorderlist.action?memberid=%@&start=%ld&pageSize=15&type=%ld",OrderTest_URL,MmberidStr,(long)page,(long)type] ;
+        urlStr = [NSString stringWithFormat:@"%@order/shopfindorderlist.action?memberid=%@&start=%ld&pageSize=15&type=%ld",HQJBBounsOrder,MmberidStr,(long)page,(long)type] ;
     } else {
-      urlStr  = [NSString stringWithFormat:@"%@order/shopfindConsumableOrderList.action?memberid=%@&start=%ld&pageSize=15",OrderTest_URL,MmberidStr,(long)page] ;
+      urlStr  = [NSString stringWithFormat:@"%@order/shopfindConsumableOrderList.action?memberid=%@&start=%ld&pageSize=15",HQJBBounsOrder,MmberidStr,(long)page] ;
     }
     
     

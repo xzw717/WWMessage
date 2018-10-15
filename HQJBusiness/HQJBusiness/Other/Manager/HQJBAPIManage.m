@@ -9,6 +9,8 @@
 #import "HQJBAPIManage.h"
 
 #ifdef DEBUG  //测试阶段
+
+
 NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
@@ -16,8 +18,9 @@ NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 NSString *const HQJBBonusDomainName = @"http://47.99.146.205:8080/wuwuInterface/merchant/";
 //NSString *const HQJBBonusDomainName = @"http://192.168.1.33:8080/wuwuInterface/merchant/";
-
-//47.98.45.218 http://192.168.16.200:8080/wuwuInterface/
+NSString *const HQJBBounsOrder  = @"http://shopdevelop.heqijia.net/";
+//http://shoptest.heqijia.net/   shopdevelop.heqijia.net/
+//47.98.45.218 http://192.168.16.200:8080/wuwuInterface/   47.99.146.205
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://192.168.16.110:8080/";
 
@@ -29,6 +32,7 @@ NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://114.55.74.24/";
+NSString *const HQJBBounsOrder  = @"http://shopdevelop.heqijia.net/";
 
 NSString *const HQJBBonusDomainDeccaName = @"http://192.168.16.110:8080/";
 

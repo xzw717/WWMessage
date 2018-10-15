@@ -55,7 +55,7 @@
 #define Api_URL @"http://test.chenjianping.com/Api4/" // 测试接口
 
 /******   商品列表接口---测试   ***********/
-#define OrderTest_URL @"http://shoptest.heqijia.net/"
+#define OrderTest_URL @"http://shopdevelop.heqijia.net/"
 
 #define UpdataApp_URL @"http://apptest.heqijia.net/"
 
