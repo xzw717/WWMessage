@@ -788,9 +788,10 @@ static const CGFloat  sAlertTimer = 3.0;
 
 #pragma mark --- 是否需要添加hash校验
 + (BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id _Nonnull)parameters{
-    if ([urlString isEqualToString:HQJBLoginCheckInterface]) {
+    
+    if ([urlString containsString:HQJBLoginCheckInterface]) {
         return NO;
-    }else if([urlString isEqualToString:HQJBGetPwdSMSInterface]||[urlString isEqualToString:HQJBInputNewpwdActionInterface]){
+    }else if([urlString containsString:HQJBGetPwdSMSInterface]||[urlString containsString:HQJBInputNewpwdActionInterface]){
         NSDictionary *dict = parameters;
         if ([dict[@"pwdtype"] isEqual:@1]) {
             return NO;
