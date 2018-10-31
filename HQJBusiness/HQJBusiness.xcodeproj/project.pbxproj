@@ -160,7 +160,6 @@
 		1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CE01DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m */; };
 		1F960D321DFE3E51003E3D17 /* NSObject+A2BlockDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CE21DFE3E51003E3D17 /* NSObject+A2BlockDelegate.m */; };
 		1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CE41DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m */; };
-		1F960D341DFE3E51003E3D17 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F960CE51DFE3E51003E3D17 /* Info.plist */; };
 		1F960D351DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CE81DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m */; };
 		1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CEA1DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m */; };
 		1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960CEF1DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m */; };
@@ -1960,7 +1959,6 @@
 				1F20CB341E07876000FC91B3 /* CALScanQRCode.bundle in Resources */,
 				1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */,
 				1FB3DF3E1E03C11700F670EC /* README.txt in Resources */,
-				1F960D341DFE3E51003E3D17 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
