@@ -78,7 +78,7 @@ DZNEmptyDataSetDelegate
 }
 
 
--(void)requstPage:(NSString *)page title:(NSString *)title complete:(void(^)())completeBlcok {
+-(void)requstPage:(NSString *)page title:(NSString *)title complete:(void(^)(void))completeBlcok {
     [DetailViewModel detailRequsttype:HQJBCashTradeListInterface types:title page:page listBlock:^(NSArray<DetailModel *> *sender)  {
         if (1 == _page) {
             [_listArray  removeAllObjects];
