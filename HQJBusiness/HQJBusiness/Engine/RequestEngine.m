@@ -33,7 +33,7 @@ static AFHTTPSessionManager *httpManager = nil;
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:parameters];
     HQJLog(@"hashCode\n%@",HashCode);
     if(parameters) if([ManagerEngine isHash:urlStr parameters:parameters]) [parameter setValue:[ManagerEngine hashCodeStr] forKey:@"hash"];
-    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",[ManagerEngine hashCodeStr],parameter,parameters);
+//    NSLog(@"HashCode = %@ parameter = %@ parameters = %@",HashCode,parameter,parameters);
     [manager POST:urlStr parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (complete) {
