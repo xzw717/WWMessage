@@ -31,7 +31,10 @@ NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.com/";
 NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
-NSString *const HQJBBonusDomainName = @"http://114.55.74.24/";
+NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
+
+
+
 NSString *const HQJBBounsOrder  = @"http://shopdevelop.heqijia.net/";
 
 NSString *const HQJBBonusDomainDeccaName = @"http://192.168.16.110:8080/";
