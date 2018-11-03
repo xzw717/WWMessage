@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setModel];
-        [self updateConstraintsIfNeeded];//wenshen shi ge haodongxi keni buzhidao de shi ta yijing yeshuyejiubuliao ni woshuode awei yijing sile awei yijing sile weiyi baokuo fuwushang ceshiyi liuzhaoling 
+        [self updateConstraintsIfNeeded];
     }
     return self;
 }
