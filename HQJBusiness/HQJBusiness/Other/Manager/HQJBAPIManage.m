@@ -16,10 +16,10 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218:8080/wuwuInterface/merchant/";
+NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/merchant/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
-NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:8080/";
+NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 
 #else         //发布阶段
 
