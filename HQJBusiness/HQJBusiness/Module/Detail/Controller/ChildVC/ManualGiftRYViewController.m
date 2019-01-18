@@ -1,19 +1,16 @@
 //
-//  CashDealVC.m
+//  ManualGiftRYViewController.m
 //  HQJBusiness
 //
-//  Created by mymac on 2016/12/23.
-//  Copyright © 2016年 Fujian first time iot technology investment co., LTD. All rights reserved.
+//  Created by mymac on 2019/1/18.
+//  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-
-
-#import "CashDealVC.h"
-#import "SelectButtonView.h"
+#import "ManualGiftRYViewController.h"
 #import "CashOnlineCell.h"
 #import "DetailViewModel.h"
 #import "DetailModel.h"
-@interface CashDealVC ()
+@interface ManualGiftRYViewController ()
 <
 UITableViewDelegate,
 UITableViewDataSource,
@@ -24,45 +21,44 @@ DZNEmptyDataSetDelegate
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSMutableArray <DetailModel *>*listArray;
 @property (nonatomic, strong) NSMutableArray <DetailModel *>*selectArray;
-@property (nonatomic, assign) CGFloat  cellHeight;
-@property (nonatomic, strong) NSString *selecttypeStr;
 @end
 
-@implementation CashDealVC
+@implementation ManualGiftRYViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _page = 1;
-    _cellHeight = 90.f;
-    [self requstPage:[NSString stringWithFormat:@"%ld",(long)self.page] title:@"线上支付" complete:^{
+    [self requstPage:[NSString stringWithFormat:@"%ld",(long)self.page] title:@"线下支付" complete:^{
         [self setDataSource];
     }];
-//    SelectButtonView *view1 = [[SelectButtonView alloc]initWithFrame:CGRectMake(0, kNAVHEIGHT + 44 , WIDTH, 40)];
-//    view1.titleStr = ^(NSString *buttonTitle) {
-//        [self.listArray  removeAllObjects];
-//          _page = 1;
-//          [self requstPage:@"1" title:buttonTitle complete:^{
-//            [self setDataSource];
-//        }];
-//        _cellHeight = [buttonTitle isEqualToString:@"线上支付"] ? 90.f : 70.f;
-//        _selecttypeStr = buttonTitle;
-//
-//    };
-//    view1.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:view1];
+
     [self.view addSubview:self.tableView];
     _listArray = [NSMutableArray array];
-  
+   
 }
 
 
 
 - (void)setDataSource{
-
+    //    [_listArray enumerateObjectsUsingBlock:^(DetailModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //        if ([title isEqualToString:@"线下支付"]) {
+    //            if ([obj.tradetype isEqualToString:@"现金消费"]) {
+    //                [_selectArray addObject:obj];
+    //            }
+    //        } else {
+    //            if (![obj.tradetype isEqualToString:@"现金消费"]) {
+    //                [_selectArray addObject:obj];
+    //
+    //            }
+    //        }
+    //    }];
+    //    self.tableView.emptyDataSetSource = self;
+    //    self.tableView.emptyDataSetDelegate = self;
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     [self.tableView reloadData];
-  
+    
 }
 
 
@@ -81,7 +77,7 @@ DZNEmptyDataSetDelegate
                 
             }
         }
-   
+        
         !completeBlcok ? : completeBlcok();
         
     }];
@@ -91,25 +87,25 @@ DZNEmptyDataSetDelegate
 }
 //空白页点击事件
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
-    [self requstPage:@"1" title:_selecttypeStr complete:nil];
+    [self requstPage:@"1" title:@"线下支付" complete:nil];
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return _cellHeight;
+    return 70.f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return _listArray.count;
+    return _listArray.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CashOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid" forIndexPath:indexPath];
-    cell.isManualGift = NO;
+    cell.isManualGift = YES;
     cell.cashModel = _listArray[indexPath.row];
     return cell;
-
+    
 }
 
 
@@ -127,14 +123,14 @@ DZNEmptyDataSetDelegate
     _tableView.contentInset = UIEdgeInsetsZero;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
-        [self requstPage:[NSString stringWithFormat:@"%ld",(long)_page] title: @"线上支付"  complete:^{
+        [self requstPage:[NSString stringWithFormat:@"%ld",(long)_page] title: @"线下支付"  complete:^{
             [self setDataSource];
         }];
     }];
     
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         _page ++;
-        [self requstPage:[NSString stringWithFormat:@"%ld",(long)_page] title:@"线上支付" complete:^{
+        [self requstPage:[NSString stringWithFormat:@"%ld",(long)_page] title:@"线下支付" complete:^{
             [self setDataSource];
         }];
         
@@ -145,3 +141,4 @@ DZNEmptyDataSetDelegate
 }
 
 @end
+

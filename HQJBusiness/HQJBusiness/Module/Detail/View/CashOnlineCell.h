@@ -10,4 +10,6 @@
 #import "DetailModel.h"
 @interface CashOnlineCell : UITableViewCell
 @property (nonatomic, strong) DetailModel *cashModel;
+@property (nonatomic, assign) BOOL isManualGift;
+
 @end

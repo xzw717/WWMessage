@@ -40,8 +40,14 @@
             self.tradetypeLabel.hidden = NO;
         }
 //        fabs(model.cash.floatValue)//fabs(model.zh.floatValue)
-        self.amountLabel.text = [NSString stringWithFormat:@"+%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
-        self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:-%@)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+        self.amountDetailsLabel.hidden = self.isManualGift;
+        if(self.isManualGift) {
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@RY",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+        } else {
+            self.amountLabel.text = [NSString stringWithFormat:@"+%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:-%@)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+        }
+ 
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];

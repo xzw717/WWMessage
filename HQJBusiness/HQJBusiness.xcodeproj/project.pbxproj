@@ -182,6 +182,7 @@
 		1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B1E1E0133DF00F1DD7C /* BonusExchangeViewController.m */; };
 		1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */; };
 		1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */; };
+		1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */; };
 		1FA6A9EC1F7F971600F2C945 /* AddPaymentCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6A9EB1F7F971600F2C945 /* AddPaymentCodeViewController.m */; };
 		1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */; };
 		1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */; };
@@ -665,6 +666,8 @@
 		1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeViewModel.m; sourceTree = "<group>"; };
 		1F967B231E0147B900F1DD7C /* BonusExchangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusExchangeModel.h; sourceTree = "<group>"; };
 		1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeModel.m; sourceTree = "<group>"; };
+		1F9710A721F1C02F00F788A6 /* ManualGiftRYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ManualGiftRYViewController.h; path = ChildVC/ManualGiftRYViewController.h; sourceTree = "<group>"; };
+		1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ManualGiftRYViewController.m; path = ChildVC/ManualGiftRYViewController.m; sourceTree = "<group>"; };
 		1FA6A9EA1F7F971600F2C945 /* AddPaymentCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPaymentCodeViewController.h; sourceTree = "<group>"; };
 		1FA6A9EB1F7F971600F2C945 /* AddPaymentCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPaymentCodeViewController.m; sourceTree = "<group>"; };
 		1FA6D5A21F99949E0083E0A6 /* PaymentCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCodeModel.h; sourceTree = "<group>"; };
@@ -1133,6 +1136,8 @@
 				1F3949FA1E0D1D2A00A3662D /* BonusBuyZHVC.m */,
 				1F3949FC1E0D1D4000A3662D /* CashBuyZHVC.h */,
 				1F3949FD1E0D1D4000A3662D /* CashBuyZHVC.m */,
+				1F9710A721F1C02F00F788A6 /* ManualGiftRYViewController.h */,
+				1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */,
 			);
 			name = ChildVC;
 			sourceTree = "<group>";
@@ -2158,6 +2163,7 @@
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
+				1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */,
 				1F960D3C1DFE3E51003E3D17 /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				1F960C9B1DFE3D06003E3D17 /* CommodityViewController.m in Sources */,
 				1FC9322D1F467D47008775A9 /* OrderTableViewCell.m in Sources */,

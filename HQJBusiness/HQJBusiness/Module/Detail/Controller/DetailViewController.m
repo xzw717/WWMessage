@@ -13,6 +13,7 @@
 #import "CashChangeVC.h"
 #import "BonusBuyZHVC.h"
 #import "CashBuyZHVC.h"
+#import "ManualGiftRYViewController.h"
 
 
 
@@ -55,9 +56,11 @@
     CashBuyZHVC *CBVC = [[CashBuyZHVC alloc]init];
     [self addChildViewController:CBVC];
     
-    NSArray *childVC = @[BDVC,CDVC,BCVC,CCVC,BBVC,CBVC];
+    ManualGiftRYViewController *MGVC = [[ManualGiftRYViewController alloc]init];
+    [self addChildViewController:MGVC];
+    NSArray *childVC = @[BDVC,CDVC,BCVC,CCVC,BBVC,CBVC,MGVC];
     
-    NSArray *title_arr = @[@"积分交易",@"现金交易",@"积分兑现",@"现金提现",@"积分购买RY值",@"现金购买RY值"];
+    NSArray *title_arr = @[@"积分交易",@"现金交易",@"积分兑现",@"现金提现",@"积分购买RY值",@"现金购买RY值",@"手动赠送RY值"];
     
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
