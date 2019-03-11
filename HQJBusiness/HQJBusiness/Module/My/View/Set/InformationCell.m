@@ -21,7 +21,7 @@
                         @"地址：",
                         @"积分：",
                         @"现金：",
-                        @"RY值：",
+                        [NSString stringWithFormat:@"%@值：",HQJValue],
                         @"营业执照："];
         
         

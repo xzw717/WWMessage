@@ -60,9 +60,8 @@
     [self addChildViewController:MGVC];
     NSArray *childVC = @[BDVC,CDVC,BCVC,CCVC,BBVC,CBVC,MGVC];
     
-    NSArray *title_arr = @[@"积分交易",@"现金交易",@"积分兑现",@"现金提现",@"积分购买RY值",@"现金购买RY值",@"手动赠送RY值"];
-    
-    
+    NSArray *title_arr = @[@"积分交易",@"现金交易",@"积分兑现",@"现金提现",[NSString stringWithFormat:@"积分购买%@值",HQJValue],[NSString stringWithFormat:@"现金购买%@值",HQJValue],[NSString stringWithFormat:@"手动赠送%@值",HQJValue]];
+
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];

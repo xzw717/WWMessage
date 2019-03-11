@@ -39,7 +39,7 @@
 
 -(ZW_Label *)contentTwoLabel {
     if (!_contentTwoLabel) {
-        _contentTwoLabel = [[ZW_Label alloc]initWithStr:@"%等额的RY值" addSubView:self];
+        _contentTwoLabel = [[ZW_Label alloc]initWithStr:[NSString stringWithFormat:@"%%等额的%@值",HQJValue] addSubView:self];
         _contentTwoLabel.font = [UIFont systemFontOfSize:S_RatioW(15.f)];
         
     }

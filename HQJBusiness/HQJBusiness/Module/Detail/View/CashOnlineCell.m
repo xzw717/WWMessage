@@ -42,10 +42,10 @@
 //        fabs(model.cash.floatValue)//fabs(model.zh.floatValue)
         self.amountDetailsLabel.hidden = self.isManualGift;
         if(self.isManualGift) {
-            self.amountLabel.text = [NSString stringWithFormat:@"-%@RY",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5],HQJValue];
         } else {
             self.amountLabel.text = [NSString stringWithFormat:@"+%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(RY:-%@)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@:-%@)",HQJValue,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
         }
  
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];

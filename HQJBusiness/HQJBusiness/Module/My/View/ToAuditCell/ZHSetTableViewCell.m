@@ -24,7 +24,7 @@
 @implementation ZHSetTableViewCell
 -(ZW_Label *)oneTitleLable {
     if (!_oneTitleLable) {
-        _oneTitleLable = [[ZW_Label alloc]initWithStr:@"积分消费时，赠送RY值比例：" addSubView:self];
+        _oneTitleLable = [[ZW_Label alloc]initWithStr:[NSString stringWithFormat:@"积分消费时，赠送%@值比例：",HQJValue] addSubView:self];
         _oneTitleLable.font = [UIFont systemFontOfSize:16.0];
         _oneTitleLable.hidden = YES;
         
@@ -70,7 +70,7 @@
 
 -(ZW_Label *)twoTitleLable {
     if (!_twoTitleLable) {
-        _twoTitleLable = [[ZW_Label alloc]initWithStr:@"现金消费时，赠送RY值比例：" addSubView:self];
+        _twoTitleLable = [[ZW_Label alloc]initWithStr:[NSString stringWithFormat:@"现金消费时，赠送%@值比例：",HQJValue] addSubView:self];
         _twoTitleLable.font = [UIFont systemFontOfSize:16.0];
         _twoTitleLable.hidden = YES;
     }
