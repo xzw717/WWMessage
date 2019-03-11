@@ -254,7 +254,7 @@
             if (_ZHRatio) {
                 self.ZHlabel.text = [NSString stringWithFormat:@"赠送%.5f%@值",[value doubleValue] / 2 * [_ZHRatio doubleValue],HQJValue];
             } else{
-                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@比例获取失败",HQJValue]];
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@值比例获取失败",HQJValue]];
             }
         }
         [self updateZH];

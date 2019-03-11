@@ -95,7 +95,7 @@
             }
 //            NSLog(@"%@===%@===%@",[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)],model.zh,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]);
             
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@:%@%@)",HQJValue,symbol,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@值:%@%@)",HQJValue,symbol,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
         }
     }
     
