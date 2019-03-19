@@ -114,7 +114,7 @@
 
 #define  LOGINSUCCESS  @"loginSuccess"
 
-#define  HQJValue  @"荣誉"
+#define  HQJValue  @"RY"
 
 
 
