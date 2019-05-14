@@ -353,7 +353,7 @@
     
     RACSignal *signalCardValue = [self.cardTextField.rac_textSignal map:^id(id value) {
 
-        return self.cardTextField.text.length >=16 && self.cardTextField.text.length <= 19 ? @(1) : @(0);
+        return self.cardTextField.text.length >=12 && self.cardTextField.text.length <= 30 ? @(1) : @(0);
     }];
     
     RACSignal *verificationCodeValue = [self.verificationCodeTextField.rac_textSignal map:^id(id value) {
