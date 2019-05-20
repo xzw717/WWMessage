@@ -12,6 +12,8 @@
 #import "DataSigner.h"
 #import "UPPaymentControl.h"
 #import <AliPaySDK/AlipaySDK.h>
+#import "WXApi.h"
+
 @implementation PayEngine
 
 #pragma mark   ==============配置支付宝支付==============
@@ -104,12 +106,9 @@
 #pragma mark   ==============配置微信支付==============
 
 
- /*
-+ (NSString *)jumpToBizPayOrderidStr:(NSString *)orderid andUseridStr:(NSString *)userid
-{
-    
 
-    
++ (NSString *)jumpToBizPayOrderidStr:(NSString *)orderid andUseridStr:(NSString *)userid {
+   
     HQJLog(@"安装了微信,且支持微信支付");
     
     
@@ -162,7 +161,7 @@
   
   
 }
-*/
+
 
 #pragma mark   ==============配置银联支付==============
 //+(void)yinLianPayWithTn:(NSString *)tn andShopName:(NSString *)name andController:(UIViewController *)controller {

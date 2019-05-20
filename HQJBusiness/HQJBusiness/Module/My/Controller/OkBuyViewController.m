@@ -214,8 +214,8 @@
         }
        
     } else if([self.payModeLabel.text isEqualToString:@"微信支付，"]) {
-        
-        [SVProgressHUD showInfoWithStatus:@"暂未开放"];
+        [PayEngine jumpToBizPayOrderidStr:self.orderID andUseridStr:MmberidStr];
+//        [SVProgressHUD showInfoWithStatus:@"暂未开放"];
         
     } else if([self.payModeLabel.text isEqualToString:@"支付宝支付，"]) {
 //
