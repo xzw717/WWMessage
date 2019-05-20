@@ -105,17 +105,17 @@
         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
     } else if (model.tradetype.integerValue == 11){
         oneUnitStr = @"积分";
-        twoUnitStr = @"RY";
+        twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
     }else if (model.tradetype.integerValue == 2){
-        oneUnitStr = @"RY";
+        oneUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
         twoUnitStr = @"元";
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
     }else if (model.tradetype.integerValue == 13){
         oneUnitStr = @"元";
-        twoUnitStr = @"RY";
+        twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
     }else{

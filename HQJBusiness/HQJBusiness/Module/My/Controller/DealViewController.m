@@ -49,14 +49,14 @@
             _titleArray = @[@[@"现金销售",
                               @"积分兑现",
                               @"现金提现"],
-                            @[@"购买RY值",
-                              @"RY值设定"]];
+                            @[[NSString stringWithFormat:@"购买%@值",HQJValue],
+                              [NSString stringWithFormat:@"%@值设定",HQJValue]]];
 
         } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
             _titleArray = @[@[@"现金销售",
                               @"现金提现"],
-                            @[@"购买RY值",
-                              @"RY值设定"]];
+                            @[[NSString stringWithFormat:@"购买%@值",HQJValue],
+                              [NSString stringWithFormat:@"%@值设定",HQJValue]]];
         } else {
             _titleArray = @[@[@"现金提现"]];
         }

@@ -48,7 +48,7 @@
 
 -(ZW_TextField *)BonusNumerTextField {
     if (!_BonusNumerTextField) {
-        _BonusNumerTextField = [[ZW_TextField alloc]initWithPlaceholder:@"请输入需要购买RY值数额" isType:isMoneyType addSubView:self.view];
+        _BonusNumerTextField = [[ZW_TextField alloc]initWithPlaceholder:[NSString stringWithFormat:@"请输入需要购买%@值数额",HQJValue] isType:isMoneyType addSubView:self.view];
         _BonusNumerTextField.delegate = self;
     }
     return _BonusNumerTextField;
@@ -82,7 +82,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.zw_title = @"购买RY值";
+    self.zw_title = [NSString stringWithFormat:@"购买%@值",HQJValue];
     
     [BuyZHViewModel buyZH:^(id sender) {
         _model = sender;

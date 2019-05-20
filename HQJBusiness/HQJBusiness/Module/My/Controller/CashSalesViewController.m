@@ -100,7 +100,7 @@
 -(UILabel *)ZHlabel {
     if ( _ZHlabel == nil ) {
         _ZHlabel = [[UILabel alloc]init];
-        _ZHlabel.text = @"赠送0.00RY值";
+        _ZHlabel.text = [NSString stringWithFormat:@"赠送0.00%@值",HQJValue];
         _ZHlabel.font  = [UIFont systemFontOfSize:12.0];
         _ZHlabel.textColor = [ManagerEngine getColor:@"999999"];
         [self.view addSubview:_ZHlabel];
@@ -249,13 +249,12 @@
     RACSignal *validBounsSignal = [self.payFigureTextField.rac_textSignal map:^id(NSString *value) {
         
         if ([value isEqualToString:@""]) {
-            self.ZHlabel.text = [NSString stringWithFormat:@"赠送0.00000RY值"];
+            self.ZHlabel.text = [NSString stringWithFormat:@"赠送0.00000%@值",HQJValue];
         } else {
             if (_ZHRatio) {
-                self.ZHlabel.text = [NSString stringWithFormat:@"赠送%.5fRY值",[value doubleValue] / 2 * [_ZHRatio doubleValue]];
-
+                self.ZHlabel.text = [NSString stringWithFormat:@"赠送%.5f%@值",[value doubleValue] / 2 * [_ZHRatio doubleValue],HQJValue];
             } else{
-                [SVProgressHUD showErrorWithStatus:@"RY比例获取失败"];
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@值比例获取失败",HQJValue]];
             }
         }
         [self updateZH];

@@ -114,6 +114,8 @@
 
 #define  LOGINSUCCESS  @"loginSuccess"
 
+#define  HQJValue  @"RY"
+
 
 
 /******************* 页面手势返回控制 **************************/
