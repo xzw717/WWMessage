@@ -130,4 +130,15 @@
 
 
 #define DefaultAPPColor  [ManagerEngine getColor:@"18abf5"]
+
+
+
+
+///收钱到账语音提醒是否已经开启
+#define CollectMoney [[NSUserDefaults standardUserDefaults] objectForKey:@"CollectMoney"]
+/// 新订单语音提醒是否已经开启
+#define NewOrder  [[NSUserDefaults standardUserDefaults] objectForKey:@"newOrder"]
+/// 自动打印订单
+#define AutomaticallyPrintOrders  [[NSUserDefaults standardUserDefaults] objectForKey:@"AutomaticallyPrintOrders"]
+
 #endif /* HQJBusinessHeader_pch */

@@ -121,6 +121,7 @@
 		1F5DEFB91E11F22800AC1DF6 /* OrderTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DEFB81E11F22800AC1DF6 /* OrderTwoCell.m */; };
 		1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DEFBB1E120FED00AC1DF6 /* HelpMeViewController.m */; };
 		1F5DEFC01E121DA900AC1DF6 /* SelectBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DEFBF1E121DA900AC1DF6 /* SelectBankViewController.m */; };
+		1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CC4E2293AA7D0061CF09 /* SetCell.m */; };
 		1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6798921DFE863000455561 /* MyTableViewCell.m */; };
 		1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DA1F6BB2C700BF8476 /* DeccaDownloadViewController.m */; };
 		1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */; };
@@ -226,7 +227,6 @@
 		1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */; };
 		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
 		208D338622923C0000E439AC /* ZGAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D337022923BFF00E439AC /* ZGAudioManager.m */; };
-		208D338722923C0100E439AC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 208D337122923BFF00E439AC /* Info.plist */; };
 		208D338822923C0100E439AC /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D337322923BFF00E439AC /* NotificationService.m */; };
 		209AF00922927CB000BC9585 /* wwm_8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF522927CAE00BC9585 /* wwm_8.mp3 */; };
 		209AF00A22927CB000BC9585 /* wwm_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF622927CAE00BC9585 /* wwm_7.mp3 */; };
@@ -559,6 +559,8 @@
 		1F5DEFBB1E120FED00AC1DF6 /* HelpMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpMeViewController.m; path = Set/HelpMeViewController.m; sourceTree = "<group>"; };
 		1F5DEFBE1E121DA900AC1DF6 /* SelectBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBankViewController.h; sourceTree = "<group>"; };
 		1F5DEFBF1E121DA900AC1DF6 /* SelectBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBankViewController.m; sourceTree = "<group>"; };
+		1F63CC4D2293AA7C0061CF09 /* SetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCell.h; sourceTree = "<group>"; };
+		1F63CC4E2293AA7D0061CF09 /* SetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCell.m; sourceTree = "<group>"; };
 		1F6798911DFE863000455561 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		1F6798921DFE863000455561 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		1F6DA2D91F6BB2C700BF8476 /* DeccaDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeccaDownloadViewController.h; sourceTree = "<group>"; };
@@ -1388,6 +1390,8 @@
 		1F960C8E1DFE3D06003E3D17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F63CC4D2293AA7C0061CF09 /* SetCell.h */,
+				1F63CC4E2293AA7D0061CF09 /* SetCell.m */,
 				1F40133B1E1359DB004E30B1 /* pickerView.h */,
 				1F40133C1E1359DB004E30B1 /* pickerView.m */,
 				1F3949DA1E0C1A9A00A3662D /* UINavigationBar+Awesome.h */,
@@ -2030,6 +2034,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -2059,7 +2064,6 @@
 				1F12F6DC1E16327D0056DF9A /* AlipaySDK.bundle in Resources */,
 				209AF01022927CB000BC9585 /* wwm_ten_thousand.mp3 in Resources */,
 				1FB3DEBD1E03902800F670EC /* close_icon@2x.png in Resources */,
-				208D338722923C0100E439AC /* Info.plist in Resources */,
 				209AF01822927CB000BC9585 /* wwm_default.mp3 in Resources */,
 				209AF01B22927CB000BC9585 /* wwm_score_pre.mp3 in Resources */,
 				209AF01322927CB000BC9585 /* wwm_yuan.mp3 in Resources */,
@@ -2214,6 +2218,7 @@
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
+				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
 				1F046D201E090DAA006D6EB2 /* SGImageButton_Horizontal.m in Sources */,
 				1F5A78551EA457A00060E9EE /* MessageNotificationViewController.m in Sources */,
