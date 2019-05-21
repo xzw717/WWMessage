@@ -224,6 +224,29 @@
 		1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA99C71E233F3000E9FB1D /* UIButton+touch.m */; };
 		1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFB5B1C1E109D9800B7E917 /* NSDictionary+Preoperty.m */; };
 		1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */; };
+		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
+		208D338622923C0000E439AC /* ZGAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D337022923BFF00E439AC /* ZGAudioManager.m */; };
+		208D338722923C0100E439AC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 208D337122923BFF00E439AC /* Info.plist */; };
+		208D338822923C0100E439AC /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D337322923BFF00E439AC /* NotificationService.m */; };
+		209AF00922927CB000BC9585 /* wwm_8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF522927CAE00BC9585 /* wwm_8.mp3 */; };
+		209AF00A22927CB000BC9585 /* wwm_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF622927CAE00BC9585 /* wwm_7.mp3 */; };
+		209AF00B22927CB000BC9585 /* wwm_9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF722927CAE00BC9585 /* wwm_9.mp3 */; };
+		209AF00C22927CB000BC9585 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF822927CAE00BC9585 /* wwm_hundred.mp3 */; };
+		209AF00D22927CB000BC9585 /* wwm_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFF922927CAF00BC9585 /* wwm_1.mp3 */; };
+		209AF00E22927CB000BC9585 /* wwm_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFFA22927CAF00BC9585 /* wwm_5.mp3 */; };
+		209AF00F22927CB000BC9585 /* wwm_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFFB22927CAF00BC9585 /* wwm_2.mp3 */; };
+		209AF01022927CB000BC9585 /* wwm_ten_thousand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFFC22927CAF00BC9585 /* wwm_ten_thousand.mp3 */; };
+		209AF01122927CB000BC9585 /* wwm_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFFD22927CAF00BC9585 /* wwm_4.mp3 */; };
+		209AF01322927CB000BC9585 /* wwm_yuan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AEFFF22927CAF00BC9585 /* wwm_yuan.mp3 */; };
+		209AF01422927CB000BC9585 /* wwm_ten.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00022927CAF00BC9585 /* wwm_ten.mp3 */; };
+		209AF01522927CB000BC9585 /* wwm_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00122927CAF00BC9585 /* wwm_3.mp3 */; };
+		209AF01622927CB000BC9585 /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00222927CAF00BC9585 /* wwm_cash_pre.mp3 */; };
+		209AF01722927CB000BC9585 /* wwm_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00322927CAF00BC9585 /* wwm_0.mp3 */; };
+		209AF01822927CB000BC9585 /* wwm_default.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00422927CB000BC9585 /* wwm_default.mp3 */; };
+		209AF01922927CB000BC9585 /* wwm_dot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00522927CB000BC9585 /* wwm_dot.mp3 */; };
+		209AF01A22927CB000BC9585 /* wwm_thousand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00622927CB000BC9585 /* wwm_thousand.mp3 */; };
+		209AF01B22927CB000BC9585 /* wwm_score_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00722927CB000BC9585 /* wwm_score_pre.mp3 */; };
+		209AF01C22927CB000BC9585 /* wwm_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 209AF00822927CB000BC9585 /* wwm_6.mp3 */; };
 		5F1E997420C61F3B001799F9 /* HQJBAPIManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */; };
 		D211B3242F5A0A3462C828A0 /* Pods_HQJBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */; };
 /* End PBXBuildFile section */
@@ -753,6 +776,32 @@
 		1FFB5B1C1E109D9800B7E917 /* NSDictionary+Preoperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Preoperty.m"; path = "BaseClass/NSDictionary+Preoperty.m"; sourceTree = "<group>"; };
 		1FFC1A51214B5A72006F5BDB /* SavePhotosTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePhotosTool.h; sourceTree = "<group>"; };
 		1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePhotosTool.m; sourceTree = "<group>"; };
+		208D336B22812FB100E439AC /* HQJBusiness.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HQJBusiness.entitlements; sourceTree = "<group>"; };
+		208D336C228166FB00E439AC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		208D336F22923BFF00E439AC /* ZGAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGAudioManager.h; sourceTree = "<group>"; };
+		208D337022923BFF00E439AC /* ZGAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGAudioManager.m; sourceTree = "<group>"; };
+		208D337122923BFF00E439AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		208D337222923BFF00E439AC /* NotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		208D337322923BFF00E439AC /* NotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		209AEFF522927CAE00BC9585 /* wwm_8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_8.mp3; sourceTree = "<group>"; };
+		209AEFF622927CAE00BC9585 /* wwm_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_7.mp3; sourceTree = "<group>"; };
+		209AEFF722927CAE00BC9585 /* wwm_9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_9.mp3; sourceTree = "<group>"; };
+		209AEFF822927CAE00BC9585 /* wwm_hundred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_hundred.mp3; sourceTree = "<group>"; };
+		209AEFF922927CAF00BC9585 /* wwm_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_1.mp3; sourceTree = "<group>"; };
+		209AEFFA22927CAF00BC9585 /* wwm_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_5.mp3; sourceTree = "<group>"; };
+		209AEFFB22927CAF00BC9585 /* wwm_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_2.mp3; sourceTree = "<group>"; };
+		209AEFFC22927CAF00BC9585 /* wwm_ten_thousand.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_ten_thousand.mp3; sourceTree = "<group>"; };
+		209AEFFD22927CAF00BC9585 /* wwm_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_4.mp3; sourceTree = "<group>"; };
+		209AEFFF22927CAF00BC9585 /* wwm_yuan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_yuan.mp3; sourceTree = "<group>"; };
+		209AF00022927CAF00BC9585 /* wwm_ten.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_ten.mp3; sourceTree = "<group>"; };
+		209AF00122927CAF00BC9585 /* wwm_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_3.mp3; sourceTree = "<group>"; };
+		209AF00222927CAF00BC9585 /* wwm_cash_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_cash_pre.mp3; sourceTree = "<group>"; };
+		209AF00322927CAF00BC9585 /* wwm_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_0.mp3; sourceTree = "<group>"; };
+		209AF00422927CB000BC9585 /* wwm_default.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_default.mp3; sourceTree = "<group>"; };
+		209AF00522927CB000BC9585 /* wwm_dot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_dot.mp3; sourceTree = "<group>"; };
+		209AF00622927CB000BC9585 /* wwm_thousand.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_thousand.mp3; sourceTree = "<group>"; };
+		209AF00722927CB000BC9585 /* wwm_score_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_score_pre.mp3; sourceTree = "<group>"; };
+		209AF00822927CB000BC9585 /* wwm_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_6.mp3; sourceTree = "<group>"; };
 		5F1E997220C61F3B001799F9 /* HQJBAPIManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJBAPIManage.h; sourceTree = "<group>"; };
 		5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJBAPIManage.m; sourceTree = "<group>"; };
 		94D71F0990BAC2915EBC54DD /* Pods-HQJBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HQJBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness.debug.xcconfig"; sourceTree = "<group>"; };
@@ -764,6 +813,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */,
 				1F12F6C61E1631890056DF9A /* libz.tbd in Frameworks */,
 				1F12F6DD1E16327D0056DF9A /* AlipaySDK.framework in Frameworks */,
 				1F12F6D81E1631F60056DF9A /* CoreMotion.framework in Frameworks */,
@@ -1760,6 +1810,8 @@
 		1FBE91D21DEC1E59001977A6 /* HQJBusiness */ = {
 			isa = PBXGroup;
 			children = (
+				208D336E22923BFF00E439AC /* NotificationServiceExtension */,
+				208D336B22812FB100E439AC /* HQJBusiness.entitlements */,
 				1F1B21DC1E00CB1E00021AB2 /* BaseClass */,
 				1F960D4D1DFE7314003E3D17 /* Login */,
 				1F960CA11DFE3E51003E3D17 /* Engine */,
@@ -1820,6 +1872,37 @@
 			name = Set;
 			sourceTree = "<group>";
 		};
+		208D336E22923BFF00E439AC /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				208D336F22923BFF00E439AC /* ZGAudioManager.h */,
+				208D337022923BFF00E439AC /* ZGAudioManager.m */,
+				208D337122923BFF00E439AC /* Info.plist */,
+				208D337222923BFF00E439AC /* NotificationService.h */,
+				208D337322923BFF00E439AC /* NotificationService.m */,
+				209AF00722927CB000BC9585 /* wwm_score_pre.mp3 */,
+				209AF00422927CB000BC9585 /* wwm_default.mp3 */,
+				209AF00322927CAF00BC9585 /* wwm_0.mp3 */,
+				209AEFF922927CAF00BC9585 /* wwm_1.mp3 */,
+				209AEFFB22927CAF00BC9585 /* wwm_2.mp3 */,
+				209AF00122927CAF00BC9585 /* wwm_3.mp3 */,
+				209AEFFD22927CAF00BC9585 /* wwm_4.mp3 */,
+				209AEFFA22927CAF00BC9585 /* wwm_5.mp3 */,
+				209AF00822927CB000BC9585 /* wwm_6.mp3 */,
+				209AEFF622927CAE00BC9585 /* wwm_7.mp3 */,
+				209AEFF522927CAE00BC9585 /* wwm_8.mp3 */,
+				209AEFF722927CAE00BC9585 /* wwm_9.mp3 */,
+				209AF00222927CAF00BC9585 /* wwm_cash_pre.mp3 */,
+				209AF00522927CB000BC9585 /* wwm_dot.mp3 */,
+				209AEFF822927CAE00BC9585 /* wwm_hundred.mp3 */,
+				209AEFFC22927CAF00BC9585 /* wwm_ten_thousand.mp3 */,
+				209AF00022927CAF00BC9585 /* wwm_ten.mp3 */,
+				209AF00622927CB000BC9585 /* wwm_thousand.mp3 */,
+				209AEFFF22927CAF00BC9585 /* wwm_yuan.mp3 */,
+			);
+			path = NotificationServiceExtension;
+			sourceTree = SOURCE_ROOT;
+		};
 		5F1E997120C61F3B001799F9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1832,6 +1915,7 @@
 		917148EDC51052C71EE920C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				208D336C228166FB00E439AC /* libsqlite3.tbd */,
 				1F12F6D71E1631F60056DF9A /* CoreMotion.framework */,
 				1F12F6D51E1631EB0056DF9A /* CFNetwork.framework */,
 				1F12F6D31E1631E40056DF9A /* Foundation.framework */,
@@ -1861,7 +1945,6 @@
 				1FBE91CD1DEC1E59001977A6 /* Frameworks */,
 				1FBE91CE1DEC1E59001977A6 /* Resources */,
 				98E6F3C7708CAF6437F9B6E3 /* [CP] Embed Pods Frameworks */,
-				C0F6B8BC3CB7D4E34A7E0087 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1921,6 +2004,14 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = Y28K2L3GRG;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
+							};
+						};
 					};
 					1FBE91E81DEC1E59001977A6 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1959,10 +2050,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209AF00A22927CB000BC9585 /* wwm_7.mp3 in Resources */,
+				209AF01722927CB000BC9585 /* wwm_0.mp3 in Resources */,
+				209AF00C22927CB000BC9585 /* wwm_hundred.mp3 in Resources */,
+				209AF01422927CB000BC9585 /* wwm_ten.mp3 in Resources */,
+				209AF00D22927CB000BC9585 /* wwm_1.mp3 in Resources */,
+				209AF01C22927CB000BC9585 /* wwm_6.mp3 in Resources */,
 				1F12F6DC1E16327D0056DF9A /* AlipaySDK.bundle in Resources */,
+				209AF01022927CB000BC9585 /* wwm_ten_thousand.mp3 in Resources */,
 				1FB3DEBD1E03902800F670EC /* close_icon@2x.png in Resources */,
+				208D338722923C0100E439AC /* Info.plist in Resources */,
+				209AF01822927CB000BC9585 /* wwm_default.mp3 in Resources */,
+				209AF01B22927CB000BC9585 /* wwm_score_pre.mp3 in Resources */,
+				209AF01322927CB000BC9585 /* wwm_yuan.mp3 in Resources */,
+				209AF01122927CB000BC9585 /* wwm_4.mp3 in Resources */,
+				209AF00B22927CB000BC9585 /* wwm_9.mp3 in Resources */,
+				209AF01A22927CB000BC9585 /* wwm_thousand.mp3 in Resources */,
+				209AF01622927CB000BC9585 /* wwm_cash_pre.mp3 in Resources */,
 				1F20CB341E07876000FC91B3 /* CALScanQRCode.bundle in Resources */,
 				1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */,
+				209AF01922927CB000BC9585 /* wwm_dot.mp3 in Resources */,
+				209AF00922927CB000BC9585 /* wwm_8.mp3 in Resources */,
+				209AF01522927CB000BC9585 /* wwm_3.mp3 in Resources */,
+				209AF00E22927CB000BC9585 /* wwm_5.mp3 in Resources */,
+				209AF00F22927CB000BC9585 /* wwm_2.mp3 in Resources */,
 				1FB3DF3E1E03C11700F670EC /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2048,21 +2159,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0F6B8BC3CB7D4E34A7E0087 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2106,6 +2202,7 @@
 				1F960D281DFE3E51003E3D17 /* NSObject+BKAssociatedObjects.m in Sources */,
 				1F960D441DFE3E51003E3D17 /* ZWNavigationController.m in Sources */,
 				1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */,
+				208D338622923C0000E439AC /* ZGAudioManager.m in Sources */,
 				1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */,
 				1F25DC0C1E11034C004DC19F /* OrderOneCell.m in Sources */,
 				1F046D231E090DAA006D6EB2 /* SGSegmentedControlBottomView.m in Sources */,
@@ -2249,6 +2346,7 @@
 				1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */,
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
+				208D338822923C0100E439AC /* NotificationService.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F12C9ED1E0B7C4D00CF6CB7 /* AddressDetailsViewController.m in Sources */,
 				1F960C9F1DFE3D06003E3D17 /* AppDelegate.m in Sources */,
@@ -2409,7 +2507,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
@@ -2450,7 +2550,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
