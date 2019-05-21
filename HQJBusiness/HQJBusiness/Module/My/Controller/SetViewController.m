@@ -14,6 +14,8 @@
 #import "HelpMeViewController.h"
 #import "PaymentCodeViewController.h"
 #import "AppDelegate.h"
+#import "SetCell.h"
+
 @interface SetViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *setTableView;
 @property (nonatomic,strong)NSArray *titleAry;
@@ -27,14 +29,14 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     
-    return 3;
+    return 4;
     
     
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section > 1) return 1;
+    if (section > 2) return 1;
     return [self setindexAry:section].count;
     
     
@@ -53,7 +55,7 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section !=2) {
+    if (section !=3) {
         return 10;
     } else {
         
@@ -81,7 +83,41 @@
         }
         return cell;
 
-    } else if (indexPath.section ==1){
+    } else if (indexPath.section == 1) {
+        SetCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetCell class]) forIndexPath:indexPath];
+        cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
+        if (indexPath.row == 0) {
+            cell.setSwitch.on = NO;
+            if (AutomaticallyPrintOrders == nil) {
+                [self setUserDefaults:NO userKey:@"AutomaticallyPrintOrders"];
+            }
+            [cell setClickSwitchBlock:^(BOOL switchBlock) {
+                [self setUserDefaults:switchBlock userKey:@"AutomaticallyPrintOrders"];
+                HQJLog(@"自动打印订单：%@",switchBlock ? @"开启" : @"关闭");
+            }];
+        } else if (indexPath.row == 1) {
+            if (NewOrder == nil) {
+        
+                [self setUserDefaults:YES userKey:@"newOrder"];
+            }
+            cell.setSwitch.on = YES;
+            [cell setClickSwitchBlock:^(BOOL switchBlock) {
+                [self setUserDefaults:switchBlock userKey:@"newOrder"];
+                HQJLog(@"新订单语音提醒：%@",switchBlock ? @"开启" : @"关闭");
+
+            }];
+        } else if (indexPath.row == 2) {
+            if (CollectMoney == nil) {
+                [self setUserDefaults:YES userKey:@"CollectMoney"];
+            }
+            cell.setSwitch.on = YES;
+            [cell setClickSwitchBlock:^(BOOL switchBlock) {
+                [self setUserDefaults:switchBlock userKey:@"CollectMoney"];
+                HQJLog(@"收钱到账语音提醒：%@",switchBlock ? @"开启" : @"关闭");
+            }];
+        }
+        return cell;
+    }  else if (indexPath.section ==2){
         static NSString *cellID = @"cellID";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
@@ -111,6 +147,11 @@
     
 }
 
+- (void)setUserDefaults:(BOOL)obj userKey:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:obj forKey:key];
+    [defaults synchronize];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         
@@ -134,7 +175,7 @@
 
         }
         
-    } else if (indexPath.section==1) {
+    } else if (indexPath.section== 2) {
         
         if (indexPath.row != 2) {
             HelpMeViewController *Hvc = [[HelpMeViewController alloc]init];
@@ -157,7 +198,7 @@
             [self.navigationController pushViewController:Hvc animated:YES];
         }
         
-    } else {
+    } else if (indexPath.section== 3){
         [self removeData];
         [self.navigationController popViewControllerAnimated:YES];
         
@@ -224,6 +265,10 @@
         }
      
     } else if (index == 1) {
+        return @[@"自动打印订单",
+                 @"新订单语音提醒",
+                 @"收钱到账语音提醒"];
+    } else if (index == 2) {
         return @[@"系统通知",
                  @"帮助与反馈",
                  @"版本"];
@@ -254,6 +299,8 @@
         _setTableView.sectionFooterHeight = 2;
         _setTableView.sectionHeaderHeight = 2;
         [_setTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_setTableView registerClass:[SetCell class] forCellReuseIdentifier:NSStringFromClass([SetCell class])];
+
         _setTableView.tableFooterView = [UIView new];
         
     }
