@@ -36,6 +36,6 @@
  *
  *  @return 支付结果
  */
-//+ (NSString *)jumpToBizPayOrderidStr:(NSString *)orderid andUseridStr:(NSString *)userid;   //微信支付
++ (NSString *)jumpToBizPayOrderidStr:(NSString *)orderid andUseridStr:(NSString *)userid ;   //微信支付
 
 @end
