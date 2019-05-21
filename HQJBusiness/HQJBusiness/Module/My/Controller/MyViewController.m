@@ -19,6 +19,7 @@
 #import "MessageNotificationViewModel.h"
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
+#import "ZGAudioManager.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (nonatomic,strong)UITableView *myTableView;
@@ -162,7 +163,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [_viewModel jumpVc:self andIndexPath:indexPath];
+    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"201.3"}};
+    [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil] ;
+//    [_viewModel jumpVc:self andIndexPath:indexPath];
     
 }
 
