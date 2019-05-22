@@ -25,7 +25,7 @@
     return _ary;
 }
 
-+ (void)toAuditRequstwithType:(NSString *)type page:(NSInteger)page andBlock:(void(^)(NSMutableArray *listBlock))sender andCompletion:(void(^)())completion  {
++ (void)toAuditRequstwithType:(NSString *)type page:(NSInteger)page andBlock:(void(^)(NSMutableArray *listBlock))sender andCompletion:(void(^)(void))completion  {
     
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"page":[NSString stringWithFormat:@"%ld",page]}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];

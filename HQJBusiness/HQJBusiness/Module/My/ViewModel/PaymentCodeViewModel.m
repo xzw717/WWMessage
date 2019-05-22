@@ -9,7 +9,7 @@
 #import "PaymentCodeViewModel.h"
 #import "PaymentCodeModel.h"
 @implementation PaymentCodeViewModel
-- (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)())isNull {
+- (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)(void))isNull {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"type":@0}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
@@ -25,7 +25,7 @@
     } ShowHUD:YES];
 }
 
-- (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)())complete {
+- (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)(void))complete {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"id":codeid}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {

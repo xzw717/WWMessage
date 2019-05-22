@@ -133,13 +133,13 @@
 //    [self.todayBonusLabel sd_resetLayout];
 //    [self.todayBonusLabelS sd_resetLayout];
     
-    CGFloat todayBonusSWidth = [ManagerEngine setTextWidthStr:self.todayBonusLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
-
-    CGFloat todayCashSWidth = [ManagerEngine setTextWidthStr:self.todayCashLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
-    
-    CGFloat ZHSWidth = [ManagerEngine setTextWidthStr:self.allZHLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
-    
-    CGFloat SpacerWidth  = (WIDTH - 15 * 2 - ZHSWidth - todayBonusSWidth - todayCashSWidth) / 2;
+//    CGFloat todayBonusSWidth = [ManagerEngine setTextWidthStr:self.todayBonusLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
+//
+//    CGFloat todayCashSWidth = [ManagerEngine setTextWidthStr:self.todayCashLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
+//    
+//    CGFloat ZHSWidth = [ManagerEngine setTextWidthStr:self.allZHLabelS.text andFont:[UIFont systemFontOfSize:S_RatioH(15.f)]];
+//    
+//    CGFloat SpacerWidth  = (WIDTH - 15 * 2 - ZHSWidth - todayBonusSWidth - todayCashSWidth) / 2;
 
    
     

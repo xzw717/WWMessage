@@ -212,28 +212,37 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 -(void)signalDeal {
+    @weakify(self);
     RACSignal *userNameSignal = [self.userNameText.rac_textSignal map:^id(NSString *value) {
+       @strongify(self);
         return @([self userString:value]);
     }];
     RACSignal *pswSignal = [self.PswText.rac_textSignal map:^id(NSString *value) {
+        @strongify(self);
+
         return @([self pswString:value]);
     }];
     RACSignal *CombinedSignal = [RACSignal combineLatest:@[userNameSignal,pswSignal] reduce:^id (NSNumber *user,NSNumber *psw){
+
         return @([user boolValue]&&[psw boolValue]);
     }];
     [CombinedSignal subscribeNext:^(NSNumber *combined) {
+        @strongify(self);
+
         self.loginBtn.enabled = [combined boolValue];
         if ([combined boolValue]) {
-            _loginBtn.backgroundColor = [ManagerEngine getColor:@"18abf5"];
+            self.loginBtn.backgroundColor = [ManagerEngine getColor:@"18abf5"];
 
         } else {
-            _loginBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+            self.loginBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
 
             
         }
      
     }];
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        @strongify(self);
+
         [self.testActivityIndicator startAnimating];
         [self.loginBtn setTitle:@"" forState:UIControlStateNormal];
         

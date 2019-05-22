@@ -220,7 +220,7 @@
     [RACObserve(self, model)subscribeNext:^(MyModel *x) {
         @strongify(self);
         NSString *nameStr = !x.realname ? @"" : x.realname;
-        NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+//        NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         if (x.mobile) {
             [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
         }

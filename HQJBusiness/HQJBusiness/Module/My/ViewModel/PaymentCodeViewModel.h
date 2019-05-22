@@ -15,7 +15,7 @@
 
  @param codelist 码的模型数组 
  */
-- (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)())isNull;
+- (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)(void))isNull;
 
 
 /**
@@ -24,7 +24,7 @@
  @param codeid 删除 码的id
  @param complete 删除完成
  */
-- (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)())complete;
+- (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)(void))complete;
 
 /**
  添加 码

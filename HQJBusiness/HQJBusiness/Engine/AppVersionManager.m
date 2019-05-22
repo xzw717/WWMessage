@@ -109,7 +109,7 @@ static  NSInteger const kAPPType = 3;
 
 #pragma mark --
 #pragma mark ---
-- (void)alertTitle:(NSString  *__nullable)title content:(NSString * __nonnull)content theFirstButtonTitle:(NSString * __nonnull)buttonTitle  theFirstButton:(void(^__nullable)())confirm  theSecondButtonTitle:(NSString * __nullable)buttonTitles theSecondButton:(void(^__nullable)())cancel {
+- (void)alertTitle:(NSString  *__nullable)title content:(NSString * __nonnull)content theFirstButtonTitle:(NSString * __nonnull)buttonTitle  theFirstButton:(void(^__nullable)(void))confirm  theSecondButtonTitle:(NSString * __nullable)buttonTitles theSecondButton:(void(^__nullable)())cancel {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

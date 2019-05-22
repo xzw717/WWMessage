@@ -105,15 +105,15 @@
 
 }
 
-- (void)viewanimationModeWithHidden:(BOOL)isHidden {
-    CATransition *animation = [CATransition animation];
-    animation.duration = 0.28f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.fillMode = kCAFillModeForwards;
-    animation.type = kCATransitionPush;
-    animation.subtype =  kCATransitionFromBottom ;
-    [self.bgView.layer addAnimation:animation forKey:@"animation"];
-}
+//- (void)viewanimationModeWithHidden:(BOOL)isHidden {
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 0.28f;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.fillMode = kCAFillModeForwards;
+//    animation.type = kCATransitionPush;
+//    animation.subtype =  kCATransitionFromBottom ;
+//    [self.bgView.layer addAnimation:animation forKey:@"animation"];
+//}
 
  - (void)animationAlert:(UIView *)view {
     

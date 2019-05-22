@@ -11,7 +11,7 @@
 @interface MyViewModel : NSObject
 
 @property (nonatomic,copy)void(^myrequstBlock)(id sender);
-@property (nonatomic,copy)void(^myrequstErrorBlock)();
+@property (nonatomic,copy)void(^myrequstErrorBlock)(void);
 
 -(void)myRequst;
 

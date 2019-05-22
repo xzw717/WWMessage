@@ -89,7 +89,6 @@ UITableViewDataSource
     bottomSpaceToView(self.confirmButton, 10);
 //    self.orderDetailsTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
     self.orderDetailsTableView.didFinishAutoLayoutBlock = ^(CGRect frame) {
-            HQJLog(@"self.orderDetailsTableView.frame:%@\nself.confirmButton.frame:%@\nself.cancelButton.frame:%@",NSStringFromCGRect(frame),NSStringFromCGRect(self.confirmButton.frame),NSStringFromCGRect(self.cancelButton.frame));
     };
 
     
@@ -141,7 +140,7 @@ UITableViewDataSource
     [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:nil]];
     [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         @weakify(self);
-        [self.viewModel useConsumerCode:_codeString success:^{
+        [self.viewModel useConsumerCode:self->_codeString success:^{
             @strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.listArray.count <= 1) {

@@ -12,7 +12,7 @@
 
 
 
-+ (void)toAuditRequstwithType:(NSString *)type page:(NSInteger)page andBlock:(void(^)(NSMutableArray *listBlock))sender andCompletion:(void(^)())completion ;
++ (void)toAuditRequstwithType:(NSString *)type page:(NSInteger)page andBlock:(void(^)(NSMutableArray *listBlock))sender andCompletion:(void(^)(void))completion ;
 
 
 //-(NSInteger)zw_ToAuditNumberOfSectionsInTableView:(UITableView *)tableView ;
