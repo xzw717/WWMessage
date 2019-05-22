@@ -194,6 +194,7 @@
     //Optional
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
+
 #pragma mark- JPUSHRegisterDelegate
 
 // iOS 12 Support
