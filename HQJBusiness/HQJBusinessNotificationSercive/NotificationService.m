@@ -8,14 +8,22 @@
 
 #import "NotificationService.h"
 
+#import "ZGAudioManager.h"
+
+
 @import AVFoundation ;
 @import MediaPlayer ;
-@interface NotificationService ()<AVAudioPlayerDelegate>{
-    CGFloat userVolume ;
-    int audioIndex ;
-    NSMutableArray *audioFiles ;
-}
-@property(nonatomic, strong) AVAudioPlayer *audioPlayer ;
+
+typedef void(^PlayVoiceBlock)(void);
+
+@interface NotificationService ()<AVAudioPlayerDelegate>
+//声音文件的播放器
+@property (nonatomic, strong)AVAudioPlayer *myPlayer;
+//声音文件的路径
+@property (nonatomic, strong) NSString *filePath;
+// 语音合成完毕之后，使用 AVAudioPlayer 播放
+@property (nonatomic, copy)PlayVoiceBlock aVAudioPlayerFinshBlock;
+
 @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
 @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
 
@@ -26,15 +34,23 @@
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
-    NSLog(@"userInfo----->%@",self.bestAttemptContent.userInfo[@"aps"]);
-
+    
     // Modify the notification content here...
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
-    //    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"5000000"}};
-//    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"201.3"}};
-//    [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil] ;
-    [self playPushInfo] ;
-    self.contentHandler(self.bestAttemptContent);
+    __weak __typeof(self)weakSelf = self;
+    /*******************************推荐用法*******************************************/
+    
+    // 语音合成，使用AVAudioPlayer播放,成功
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"CollectMoney"]) {
+//
+//    }
+    [self hechengVoiceAVAudioPlayerWithFinshBlock:^{
+        weakSelf.contentHandler(weakSelf.bestAttemptContent);
+    }];
 }
 
 - (void)serviceExtensionTimeWillExpire {
@@ -42,43 +58,113 @@
     // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
     self.contentHandler(self.bestAttemptContent);
 }
-
-- (void) playPushInfo {
+#pragma mark- 合成音频使用 AVAudioPlayer 播放
+- (void)hechengVoiceAVAudioPlayerWithFinshBlock:(PlayVoiceBlock )block
+{
+    if (block) {
+        self.aVAudioPlayerFinshBlock = block;
+    }
     
-    //step1:
-    //    NSDictionary *extras =  [userInfo objectForKey:@"aps"] ;
-    
-    //step2:处理并播放语音
-    //    BOOL playaudio =  [[extras objectForKey:@"playaudio"] boolValue] ;
-    //    if(playaudio) {
-    //        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //            NSString *amount = [extras objectForKey:@"amount"] ;
-    //            amount = [NSString stringWithFormat:@"%.2f", (amount.doubleValue)] ;
-    //            [self playMoneyReceived:amount] ;
-    //        });
-    //    }
-    NSString *amount = @"200.34";
+    NSString *amount = @"2000000.34";
     amount = [NSString stringWithFormat:@"%.2f", (amount.doubleValue)] ;
-    [self playMoneyReceived:amount] ;
+    NSArray *fileNameArray =  [self playMoneyReceived:amount];
+    /************************合成音频并播放*****************************/
+    
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    
+    CMTime allTime = kCMTimeZero;
+    
+    for (NSInteger i = 0; i < fileNameArray.count; i++) {
+        NSString *auidoPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",fileNameArray[i]] ofType:@"m4a"];
+        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
+        // 音频轨道
+        AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+        // 音频素材轨道
+        AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+        // 音频合并 - 插入音轨文件
+        [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
+        // 更新当前的位置
+        allTime = CMTimeAdd(allTime, audioAsset.duration);
+        
+    }
+    
+    // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
+    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
+    NSString *outPutFilePath = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"xindong.m4a"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:outPutFilePath error:nil];
+    }
+    
+    // 查看当前session支持的fileType类型
+    NSLog(@"---%@",[session supportedFileTypes]);
+    session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
+    session.outputFileType = AVFileTypeAppleM4A; //与上述的`present`相对应
+    session.shouldOptimizeForNetworkUse = YES;   //优化网络
+    
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        NSLog(@"----%ld", session.status);
+        if (session.status == AVAssetExportSessionStatusCompleted) {
+            NSLog(@"合并成功----%@", outPutFilePath);
+            
+            NSURL *url = [NSURL fileURLWithPath:outPutFilePath];
+            
+            self.myPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+            
+            self.myPlayer.delegate = self;
+            [self.myPlayer play];
+            
+            
+        } else {
+            
+            // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
+            // 播放失败
+            self.aVAudioPlayerFinshBlock();
+        }
+    }];
+    
+    /************************合成音频并播放*****************************/
+}
+#pragma mark- AVAudioPlayerDelegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if (self.aVAudioPlayerFinshBlock) {
+        self.aVAudioPlayerFinshBlock();
+    }
+}
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer*)player error:(NSError *)error{
+    //解码错误执行的动作
+}
+- (void)audioPlayerBeginInteruption:(AVAudioPlayer*)player{
+    //处理中断的代码
+}
+- (void)audioPlayerEndInteruption:(AVAudioPlayer*)player{
+    //处理中断结束的代码
 }
 
 
-- (void) playMoneyReceived:(NSString *)moneyAmount{
+- (NSString *)filePath {
+    if (!_filePath) {
+        _filePath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+        NSString *folderName = [_filePath stringByAppendingPathComponent:@"MergeAudio"];
+        BOOL isCreateSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:folderName withIntermediateDirectories:YES attributes:nil error:nil];
+        if (isCreateSuccess) _filePath = [folderName stringByAppendingPathComponent:@"xindong.m4a"];
+    }
+    return _filePath;
+}
+- (NSArray *) playMoneyReceived:(NSString *)moneyAmount{
     // 将金额转换为对应的文字
     NSString* string = [self digitUppercase:moneyAmount] ;
-    
-    // 分解成mp3数组
-    audioFiles = [[NSMutableArray alloc]init] ;
-    
-    //积分还是现金
-    //    if(){
-    //
-    //    }
-    [audioFiles addObject:@"wwm_cash_pre.mp3"] ;
-    
+
+    // 语音文件数组
+    NSMutableArray *audioFiles = [[NSMutableArray alloc]init] ;
+
+    [audioFiles addObject:@"wwm_cash_pre"] ;
+
     for (int i = 0; i < string.length; i++) {
         NSString * str = [string substringWithRange:NSMakeRange(i, 1)] ;
-        
+
         if([str isEqualToString:@"零"]) {
             str = @"0" ;
         }
@@ -100,117 +186,26 @@
         else if([str isEqualToString:@"元"]) {
             str = @"yuan" ;
         }
-        [audioFiles addObject:[NSString stringWithFormat:@"wwm_%@.mp3", str]] ;
+        [audioFiles addObject:[NSString stringWithFormat:@"wwm_%@", str]] ;
     }
-    
-    audioIndex = 0 ;
-    [self activePlayback] ;
-    [self setHighVolume] ;
-    [self playAudioFiles] ;
+    return audioFiles;
 }
-
-
-
-// 设置高音量
-- (void) setHighVolume {
-    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-    UISlider *volumeViewSlider = nil;
-    for (UIView *view in [volumeView subviews]){
-        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
-            break;
-        }
-    }
-    
-    // 获取系统原来的音量，用于还原
-    userVolume = volumeViewSlider.value;
-    
-    static float volume = 0.2f ;
-    
-    // 留点余地，设置0.9吧， 值在0.0～1.0之间
-    if(userVolume < volume) {
-        // 改变系统音量
-        [volumeViewSlider setValue:volume animated:NO];
-        // 发一个事件使之生效
-        [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
-// 设置回正常音量
-- (void) setNormalVolume {
-    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-    UISlider* volumeViewSlider = nil;
-    for (UIView *view in [volumeView subviews]){
-        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
-            volumeViewSlider = (UISlider*)view;
-            break;
-        }
-    }
-    if(volumeViewSlider.value !=userVolume) {
-        [volumeViewSlider setValue:userVolume animated:NO];
-        [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
-
-
-
-// 播放声音文件
-- (void) playAudioFiles {
-    // 1.获取要播放音频文件的URL
-    NSString *fileName = [audioFiles objectAtIndex:audioIndex] ;
-    NSString *path = [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] resourcePath], fileName] ;
-    NSURL *fileURL = [NSURL fileURLWithPath:path];
-    
-    // 2.创建 AVAudioPlayer 对象
-    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
-    // 4.设置循环播放
-    self.audioPlayer.numberOfLoops = 0 ;
-    self.audioPlayer.delegate = self;
-    // 5.开始播放
-    [self.audioPlayer prepareToPlay] ;
-    [self.audioPlayer play];
-}
-
-// 播放完成回调
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    audioIndex += 1 ;
-    if(audioIndex < audioFiles.count) {
-        [self performSelectorOnMainThread:@selector(playAudioFiles) withObject:nil waitUntilDone:NO] ;
-    }
-    else {
-        [self setNormalVolume] ;
-        [self disactivePlayback] ;
-    }
-}
-
-- (void) activePlayback {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:NULL];
-    [[AVAudioSession sharedInstance] setActive:YES error:NULL];
-}
-
-- (void)disactivePlayback {
-    [[AVAudioSession sharedInstance] setActive:NO error:NULL];
-}
-
-
-
 
 -(NSString *)digitUppercase:(NSString *)numstr {
     NSArray *numberchar = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"];
     NSArray *inunitchar = @[@"",@"十",@"百",@"千"];
     NSArray *unitname   = @[@"",@"万",@"亿"];
-    
+
     NSString *valstr =[NSString stringWithFormat:@"%.2f",numstr.doubleValue] ;
     NSString *prefix = @"" ;
-    
+
     // 将金额分为整数部分和小数部分
     NSString *head = [valstr substringToIndex:valstr.length - 2 - 1] ;
     NSString *foot = [valstr substringFromIndex:valstr.length - 2] ;
     if (head.length>8) {
         return nil ;//只支持到千万
     }
-    
+
     // 处理整数部分
     if([head isEqualToString:@"0"]) {
         prefix = @"0" ;
@@ -221,12 +216,12 @@
             NSString * str = [NSString stringWithFormat:@"%x",[head characterAtIndex:i]-'0'] ;
             [ch addObject:str] ;
         }
-        
+
         int zeronum = 0 ;
         for (int i = 0; i < ch.count; i++) {
             NSInteger index = (ch.count-1 - i)%4 ;       //取段内位置
             NSInteger indexloc = (ch.count-1 - i)/4 ;    //取段位置
-            
+
             if ([[ch objectAtIndex:i]isEqualToString:@"0"]) {
                 zeronum ++ ;
             }
@@ -245,8 +240,8 @@
             }
         }
     }
-    
-    
+
+
     //处理小数部分
     if([foot isEqualToString:@"00"]) {
         prefix = [prefix stringByAppendingString:@"元"] ;
@@ -254,12 +249,12 @@
     else {
         prefix = [prefix stringByAppendingString:[NSString stringWithFormat:@"点%@元", foot]] ;
     }
-    
+
     //
     if([prefix hasPrefix:@"1十"]) {
         prefix = [prefix stringByReplacingOccurrencesOfString:@"1十" withString:@"十"] ;
     }
-    
+
     return prefix ;
 }
 

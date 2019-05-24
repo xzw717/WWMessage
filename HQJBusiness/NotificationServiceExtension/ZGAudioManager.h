@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 // 播放完成的callback
-typedef void (^ZGAudioPlayCompleted)(void) ;
+typedef void(^PlayVoiceBlock)(void);
 
 // 播放管理类
 @interface ZGAudioManager : NSObject
 
 + (instancetype)sharedPlayer ;
-- (void) playPushInfo:(NSDictionary *)userInfo completed:(ZGAudioPlayCompleted)completed ;
+- (void)playPushInfo:(NSDictionary *)userInfo completed:(PlayVoiceBlock )completed ;
 
 @end
