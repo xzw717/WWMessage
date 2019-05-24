@@ -17,11 +17,9 @@
 typedef void(^PlayVoiceBlock)(void);
 
 @interface NotificationService ()<AVAudioPlayerDelegate>{
-<<<<<<< HEAD
+    
     NSInteger itype;
-=======
     JWBluetoothManage * manage;
->>>>>>> 0eaff95c4064b5c5a92aab058f78fda9027b479c
 }
 //声音文件的播放器
 @property (nonatomic, strong)AVAudioPlayer *myPlayer;
@@ -40,7 +38,6 @@ typedef void(^PlayVoiceBlock)(void);
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
-<<<<<<< HEAD
     NSDictionary * userInfo = self.bestAttemptContent.userInfo;
     NSLog(@"userInfo: %@", userInfo);
     itype = [[userInfo objectForKey:@"itype"] integerValue];
@@ -56,10 +53,6 @@ typedef void(^PlayVoiceBlock)(void);
             weakSelf.contentHandler(weakSelf.bestAttemptContent);
         }];
     }
-=======
-
-    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
-
     NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
 
   
@@ -81,7 +74,6 @@ typedef void(^PlayVoiceBlock)(void);
     }];
     
     [self dayin];
->>>>>>> 0eaff95c4064b5c5a92aab058f78fda9027b479c
 }
 
 - (void)serviceExtensionTimeWillExpire {
