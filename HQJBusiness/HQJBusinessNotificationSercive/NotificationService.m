@@ -26,10 +26,13 @@
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
-    
+    NSLog(@"userInfo----->%@",self.bestAttemptContent.userInfo[@"aps"]);
+
     // Modify the notification content here...
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
     //    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"5000000"}};
+//    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"201.3"}};
+//    [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil] ;
     [self playPushInfo] ;
     self.contentHandler(self.bestAttemptContent);
 }
