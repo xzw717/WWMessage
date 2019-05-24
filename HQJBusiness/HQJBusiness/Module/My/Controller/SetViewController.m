@@ -86,31 +86,44 @@
     } else if (indexPath.section == 1) {
         SetCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetCell class]) forIndexPath:indexPath];
         cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
         if (indexPath.row == 0) {
-            cell.setSwitch.on = NO;
-            if (AutomaticallyPrintOrders == nil) {
+
+            if ([userDefaults objectForKey:@"AutomaticallyPrintOrders"] == nil) {
+                cell.setSwitch.on = NO;
                 [self setUserDefaults:NO userKey:@"AutomaticallyPrintOrders"];
+            } else {
+                BOOL a = [[userDefaults objectForKey:@"AutomaticallyPrintOrders"] isEqualToString:@"开"] ? YES : NO;
+                cell.setSwitch.on =a;
+
             }
             [cell setClickSwitchBlock:^(BOOL switchBlock) {
                 [self setUserDefaults:switchBlock userKey:@"AutomaticallyPrintOrders"];
                 HQJLog(@"自动打印订单：%@",switchBlock ? @"开启" : @"关闭");
             }];
         } else if (indexPath.row == 1) {
-            if (NewOrder == nil) {
-        
+            if ([userDefaults objectForKey:@"newOrder"] == nil) {
+                cell.setSwitch.on = YES;
+
                 [self setUserDefaults:YES userKey:@"newOrder"];
+            } else {
+                BOOL a = [[userDefaults objectForKey:@"newOrder"] isEqualToString:@"开"] ?YES : NO;
+                cell.setSwitch.on = a;
             }
-            cell.setSwitch.on = YES;
             [cell setClickSwitchBlock:^(BOOL switchBlock) {
                 [self setUserDefaults:switchBlock userKey:@"newOrder"];
                 HQJLog(@"新订单语音提醒：%@",switchBlock ? @"开启" : @"关闭");
 
             }];
         } else if (indexPath.row == 2) {
-            if (CollectMoney == nil) {
+            if ([userDefaults objectForKey:@"CollectMoney"] == nil) {
+                cell.setSwitch.on = YES;
+
                 [self setUserDefaults:YES userKey:@"CollectMoney"];
+            } else {
+                BOOL a = [[userDefaults objectForKey:@"CollectMoney"] isEqualToString:@"开"] ? YES : NO;
+                cell.setSwitch.on = a;
             }
-            cell.setSwitch.on = YES;
             [cell setClickSwitchBlock:^(BOOL switchBlock) {
                 [self setUserDefaults:switchBlock userKey:@"CollectMoney"];
                 HQJLog(@"收钱到账语音提醒：%@",switchBlock ? @"开启" : @"关闭");
@@ -148,9 +161,9 @@
 }
 
 - (void)setUserDefaults:(BOOL)obj userKey:(NSString *)key {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:obj forKey:key];
-    [defaults synchronize];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+    [userDefaults setObject:obj == YES ? @"开" : @"关" forKey:key];
+    [userDefaults synchronize];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

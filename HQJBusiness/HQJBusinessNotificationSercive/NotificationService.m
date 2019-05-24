@@ -9,14 +9,16 @@
 #import "NotificationService.h"
 
 #import "ZGAudioManager.h"
-
+#import "JWBluetoothManage.h"
 
 @import AVFoundation ;
 @import MediaPlayer ;
 
 typedef void(^PlayVoiceBlock)(void);
 
-@interface NotificationService ()<AVAudioPlayerDelegate>
+@interface NotificationService ()<AVAudioPlayerDelegate>{
+    JWBluetoothManage * manage;
+}
 //声音文件的播放器
 @property (nonatomic, strong)AVAudioPlayer *myPlayer;
 //声音文件的路径
@@ -34,7 +36,12 @@ typedef void(^PlayVoiceBlock)(void);
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
-    
+
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+
+    NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
+
+  
     // Modify the notification content here...
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
     __weak __typeof(self)weakSelf = self;
@@ -51,6 +58,8 @@ typedef void(^PlayVoiceBlock)(void);
     [self hechengVoiceAVAudioPlayerWithFinshBlock:^{
         weakSelf.contentHandler(weakSelf.bestAttemptContent);
     }];
+    
+    [self dayin];
 }
 
 - (void)serviceExtensionTimeWillExpire {
@@ -256,6 +265,103 @@ typedef void(^PlayVoiceBlock)(void);
     }
 
     return prefix ;
+}
+
+- (void)dayin {
+    manage = [JWBluetoothManage sharedInstance];
+    //    WeakSelf
+    [manage beginScanPerpheralSuccess:^(NSArray<CBPeripheral *> *peripherals, NSArray<NSNumber *> *rssis) {
+        //        weakSelf.dataSource = [NSMutableArray arrayWithArray:peripherals];
+        //        weakSelf.rssisArray = [NSMutableArray arrayWithArray:rssis];
+        //        [weakSelf.tableView reloadData];
+    } failure:^(CBManagerState status) {
+//        [ProgressShow alertView:self.view Message:[ProgressShow getBluetoothErrorInfo:status] cb:nil];
+    }];
+    manage.disConnectBlock = ^(CBPeripheral *perpheral, NSError *error) {
+        NSLog(@"设备已经断开连接！");
+        //        weakSelf.title = @"蓝牙列表";
+    };
+    NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Printer"];
+    NSMutableDictionary *dataDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:filePatch];
+    CBPeripheral *perpherals;
+    if (dataDictionary)
+    {
+       perpherals = [dataDictionary objectForKey:@"peripheral"];
+    }
+    [manage connectPeripheral:perpherals completion:^(CBPeripheral *perpheral, NSError *error) {
+        if (!error) {
+         
+        }else{
+        }
+    }];
+    
+    
+    [manage autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
+//        @strongify(self);
+        if (!error) {
+//            [ProgressShow alertView:self.view Message:@"打印机连接成功！" cb:nil];
+            //            weakSelf.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self printe];
+            });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //                [weakSelf.tableView reloadData];
+            });
+        }else{
+//            [ProgressShow alertView:self.view Message:error.domain cb:nil];
+        }
+    }];
+}
+- (void)printe{
+    if (manage.stage != JWScanStageCharacteristics) {
+//        [SVProgressHUD showWithStatus:@"打印机正在准备中..."];
+        return;
+    }
+    JWPrinter *printer = [[JWPrinter alloc] init];
+    NSString *str1 = @"物物地图";
+    NSString *str2 = @"Wuwu Map";
+    NSString *str3 = @"订单详情";
+    [printer appendText:str1 alignment:HLTextAlignmentCenter];
+    [printer appendText:str2 alignment:HLTextAlignmentCenter];
+    [printer appendText:str3 alignment:HLTextAlignmentCenter];
+    [printer appendSeperatorLine];
+    
+    [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+    [printer appendText:@"130******890" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+    [printer appendSeperatorLine];
+    
+    [printer appendText:@"订单详情" alignment:HLTextAlignmentLeft];
+    [printer appendLeftText:@"假装我是一个方便面" middleText:@"x109" rightText:@"99999.99" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"飞流直下三千尺，疑似银河落九天999999999999999999999999999999999999" middleText:@"x109" rightText:@"889.99" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"上海许氏专用订单一条" middleText:@"x109" rightText:@"9.09" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"许某人爱喝的可口可乐" middleText:@"x109" rightText:@"9999.99" isTitle:NO];
+    
+    [printer appendSeperatorLine];
+    
+    [printer appendTitle:@"总计商品数" value:@"2"];
+    [printer appendTitle:@"金    额" value:@"￥1000"];
+    
+    [printer appendSeperatorLine];
+    [printer appendTitle:@"订单编号" value:@"MS1234567890"];
+    [printer appendTitle:@"下单时间" value:@"2017-06-14"];
+    [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
+    [printer appendNewLine];
+    [printer appendNewLine];
+    [printer appendNewLine];
+    NSData *mainData = [printer getFinalData];
+    [[JWBluetoothManage sharedInstance] sendPrintData:mainData completion:^(BOOL completion, CBPeripheral *connectPerpheral,NSString *error) {
+        if (completion) {
+            NSLog(@"打印成功");
+        }else{
+            NSLog(@"写入错误---:%@",error);
+        }
+    }];
 }
 
 
