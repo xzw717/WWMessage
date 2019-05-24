@@ -162,11 +162,7 @@
   
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSDictionary *userInfo = @{@"aps":@{@"playaudio":@"1",@"amount":@"201.3"}};
-    [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil] ;
-//    [_viewModel jumpVc:self andIndexPath:indexPath];
-    
+    [_viewModel jumpVc:self andIndexPath:indexPath];
 }
 
 
