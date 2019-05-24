@@ -11,7 +11,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "TabbarManager.h"
 #import "ZWTabBarViewController.h"
-
+#import "JWBluetoothManage.h"
 #import "VerificationOrderDetailsViewController.h"
 
 #import "ZGAudioManager.h"
@@ -81,8 +81,27 @@
 //    VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]init];
 //    [[UIApplication sharedApplication].delegate.window setRootViewController:vc];
 
+    
+    
+    
+    
+    
+//    [manage connectPeripheral:peripheral completion:^(CBPeripheral *perpheral, NSError *error) {
+//        if (!error) {
+//            [SVProgressHUD showSuccessWithStatus:@"连接成功！"];
+////            self.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+////            dispatch_async(dispatch_get_main_queue(), ^{
+////                [tableView reloadData];
+////            });
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:error.domain];
+//        }
+//    }];
+    
         return YES;
 }
+
+
 #pragma mark --- 极光推送
 - (void)jpushService:(NSDictionary *)launchOptions {
     /// 初始化APNs
