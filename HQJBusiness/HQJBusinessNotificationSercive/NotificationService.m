@@ -43,36 +43,19 @@ typedef void(^PlayVoiceBlock)(void);
     itype = [[userInfo objectForKey:@"itype"] integerValue];
     
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
-    BOOL collectMoney =  [[userDefaults objectForKey:@"CollectMoney"] boolValue];
-    BOOL newOrder =  [[userDefaults objectForKey:@"newOrder"]boolValue];
-    NSLog(@"collectMoney = %d newOrder = %d",collectMoney,newOrder);
-    if ((collectMoney&&(itype == 1||itype == 2))||(newOrder && itype == 0)) {
+    NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
+    NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
+    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+    if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 0)) {
         __weak __typeof(self)weakSelf = self;
-        
         [self hechengVoiceAVAudioPlayerWithFinshBlock:^{
             weakSelf.contentHandler(weakSelf.bestAttemptContent);
         }];
     }
     NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
-
-  
     // Modify the notification content here...
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
-    __weak __typeof(self)weakSelf = self;
+    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
     /*******************************推荐用法*******************************************/
-    
-    // 语音合成，使用AVAudioPlayer播放,成功
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setActive:YES error:nil];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"CollectMoney"]) {
-//
-//    }
-    [self hechengVoiceAVAudioPlayerWithFinshBlock:^{
-        weakSelf.contentHandler(weakSelf.bestAttemptContent);
-    }];
-    
     [self dayin];
 }
 

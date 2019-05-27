@@ -42,16 +42,15 @@
     }
     
     itype = [[userInfo objectForKey:@"itype"] integerValue];
-    BOOL collectMoney =  [CollectMoney boolValue];
-    BOOL newOrder =  [NewOrder boolValue];
+
     NSLog(@"userInfo: %@", userInfo);
-    NSLog(@"collectMoney = %d newOrder = %d",collectMoney,newOrder);
+    NSLog(@"collectMoney = %@ newOrder = %@",CollectMoney,NewOrder);
     NSArray *fileNameArray;
-    if (collectMoney&&(itype == 1||itype == 2)) {
+    if ([CollectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
         NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
         fileNameArray =  [self playMoneyReceived:amount];
     }
-    if (newOrder && itype == 0) {
+    if ([NewOrder isEqualToString:@"开"] && itype == 0) {
         fileNameArray = @[@"wwm_default"];
     }
     if (fileNameArray.count>0) {
