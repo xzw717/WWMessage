@@ -59,8 +59,7 @@
         delegate.window.rootViewController = [ZWTabBarViewController  new];
 
     }
-    
-    
+    [self initializeAutoValue];
     /* 极光 */
     [self jpushService:launchOptions];
     
@@ -100,7 +99,14 @@
     
         return YES;
 }
-
+//初始化播报开关常量
+- (void)initializeAutoValue{
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+    if (![userDefaults objectForKey:@"CollectMoney"]) {
+        [userDefaults setObject:@"开" forKey:@"CollectMoney"];
+        [userDefaults setObject:@"开" forKey:@"newOrder"];
+    }
+}
 
 #pragma mark --- 极光推送
 - (void)jpushService:(NSDictionary *)launchOptions {
@@ -230,7 +236,7 @@
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil] ;
+//        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
 }
@@ -252,6 +258,8 @@
     
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
+    [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
+    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

@@ -263,6 +263,25 @@
 		1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */; };
 		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
 		208D338622923C0000E439AC /* ZGAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D337022923BFF00E439AC /* ZGAudioManager.m */; };
+		20DF4D34229CE30000317D3B /* wwm_0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D21229CE2FE00317D3B /* wwm_0.m4a */; };
+		20DF4D35229CE30000317D3B /* wwm_2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D22229CE2FE00317D3B /* wwm_2.m4a */; };
+		20DF4D36229CE30000317D3B /* wwm_dot.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D23229CE2FE00317D3B /* wwm_dot.m4a */; };
+		20DF4D37229CE30000317D3B /* wwm_5.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D24229CE2FE00317D3B /* wwm_5.m4a */; };
+		20DF4D38229CE30000317D3B /* wwm_3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D25229CE2FE00317D3B /* wwm_3.m4a */; };
+		20DF4D39229CE30000317D3B /* wwm_thousand.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D26229CE2FE00317D3B /* wwm_thousand.m4a */; };
+		20DF4D3A229CE30000317D3B /* wwm_ten_thousand.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D27229CE2FE00317D3B /* wwm_ten_thousand.m4a */; };
+		20DF4D3B229CE30000317D3B /* wwm_score_pre.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D28229CE2FE00317D3B /* wwm_score_pre.m4a */; };
+		20DF4D3C229CE30000317D3B /* wwm_cash_pre.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D29229CE2FF00317D3B /* wwm_cash_pre.m4a */; };
+		20DF4D3D229CE30000317D3B /* wwm_9.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2A229CE2FF00317D3B /* wwm_9.m4a */; };
+		20DF4D3E229CE30000317D3B /* wwm_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2B229CE2FF00317D3B /* wwm_4.m4a */; };
+		20DF4D3F229CE30000317D3B /* wwm_default.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2C229CE2FF00317D3B /* wwm_default.m4a */; };
+		20DF4D40229CE30000317D3B /* wwm_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2D229CE2FF00317D3B /* wwm_1.m4a */; };
+		20DF4D41229CE30000317D3B /* wwm_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2E229CE2FF00317D3B /* wwm_8.m4a */; };
+		20DF4D42229CE30000317D3B /* wwm_ten.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D2F229CE2FF00317D3B /* wwm_ten.m4a */; };
+		20DF4D43229CE30000317D3B /* wwm_hundred.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D30229CE2FF00317D3B /* wwm_hundred.m4a */; };
+		20DF4D44229CE30000317D3B /* wwm_yuan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D31229CE2FF00317D3B /* wwm_yuan.m4a */; };
+		20DF4D45229CE30000317D3B /* wwm_7.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D32229CE2FF00317D3B /* wwm_7.m4a */; };
+		20DF4D46229CE30000317D3B /* wwm_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4D33229CE30000317D3B /* wwm_6.m4a */; };
 		5F1E997420C61F3B001799F9 /* HQJBAPIManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */; };
 		D211B3242F5A0A3462C828A0 /* Pods_HQJBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */; };
 /* End PBXBuildFile section */
@@ -876,6 +895,25 @@
 		208D336F22923BFF00E439AC /* ZGAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGAudioManager.h; sourceTree = "<group>"; };
 		208D337022923BFF00E439AC /* ZGAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGAudioManager.m; sourceTree = "<group>"; };
 		208D337122923BFF00E439AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20DF4D21229CE2FE00317D3B /* wwm_0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_0.m4a; sourceTree = "<group>"; };
+		20DF4D22229CE2FE00317D3B /* wwm_2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_2.m4a; sourceTree = "<group>"; };
+		20DF4D23229CE2FE00317D3B /* wwm_dot.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_dot.m4a; sourceTree = "<group>"; };
+		20DF4D24229CE2FE00317D3B /* wwm_5.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_5.m4a; sourceTree = "<group>"; };
+		20DF4D25229CE2FE00317D3B /* wwm_3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_3.m4a; sourceTree = "<group>"; };
+		20DF4D26229CE2FE00317D3B /* wwm_thousand.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_thousand.m4a; sourceTree = "<group>"; };
+		20DF4D27229CE2FE00317D3B /* wwm_ten_thousand.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_ten_thousand.m4a; sourceTree = "<group>"; };
+		20DF4D28229CE2FE00317D3B /* wwm_score_pre.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_score_pre.m4a; sourceTree = "<group>"; };
+		20DF4D29229CE2FF00317D3B /* wwm_cash_pre.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_cash_pre.m4a; sourceTree = "<group>"; };
+		20DF4D2A229CE2FF00317D3B /* wwm_9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_9.m4a; sourceTree = "<group>"; };
+		20DF4D2B229CE2FF00317D3B /* wwm_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_4.m4a; sourceTree = "<group>"; };
+		20DF4D2C229CE2FF00317D3B /* wwm_default.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_default.m4a; sourceTree = "<group>"; };
+		20DF4D2D229CE2FF00317D3B /* wwm_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_1.m4a; sourceTree = "<group>"; };
+		20DF4D2E229CE2FF00317D3B /* wwm_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_8.m4a; sourceTree = "<group>"; };
+		20DF4D2F229CE2FF00317D3B /* wwm_ten.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_ten.m4a; sourceTree = "<group>"; };
+		20DF4D30229CE2FF00317D3B /* wwm_hundred.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_hundred.m4a; sourceTree = "<group>"; };
+		20DF4D31229CE2FF00317D3B /* wwm_yuan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_yuan.m4a; sourceTree = "<group>"; };
+		20DF4D32229CE2FF00317D3B /* wwm_7.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_7.m4a; sourceTree = "<group>"; };
+		20DF4D33229CE30000317D3B /* wwm_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwm_6.m4a; sourceTree = "<group>"; };
 		5F1E997220C61F3B001799F9 /* HQJBAPIManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJBAPIManage.h; sourceTree = "<group>"; };
 		5F1E997320C61F3B001799F9 /* HQJBAPIManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJBAPIManage.m; sourceTree = "<group>"; };
 		94D71F0990BAC2915EBC54DD /* Pods-HQJBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HQJBusiness.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1298,6 +1336,7 @@
 			isa = PBXGroup;
 			children = (
 				1F63CD0B2297BA910061CF09 /* JWBluetoothPrinte */,
+				1F63CCC2229537630061CF09 /* HQJBusinessNotificationSercive.entitlements */,
 				1F63CCE42297959B0061CF09 /* wwm_0.m4a */,
 				1F63CCEC2297959B0061CF09 /* wwm_1.m4a */,
 				1F63CCDF2297959A0061CF09 /* wwm_2.m4a */,
@@ -1317,7 +1356,6 @@
 				1F63CCED2297959B0061CF09 /* wwm_ten.m4a */,
 				1F63CCEB2297959B0061CF09 /* wwm_thousand.m4a */,
 				1F63CCEE2297959B0061CF09 /* wwm_yuan.m4a */,
-				1F63CCC2229537630061CF09 /* HQJBusinessNotificationSercive.entitlements */,
 				1F63CCB7229536870061CF09 /* NotificationService.h */,
 				1F63CCB8229536870061CF09 /* NotificationService.m */,
 				1F63CCBA229536870061CF09 /* Info.plist */,
@@ -2054,6 +2092,25 @@
 		208D336E22923BFF00E439AC /* NotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
+				20DF4D21229CE2FE00317D3B /* wwm_0.m4a */,
+				20DF4D2D229CE2FF00317D3B /* wwm_1.m4a */,
+				20DF4D22229CE2FE00317D3B /* wwm_2.m4a */,
+				20DF4D25229CE2FE00317D3B /* wwm_3.m4a */,
+				20DF4D2B229CE2FF00317D3B /* wwm_4.m4a */,
+				20DF4D24229CE2FE00317D3B /* wwm_5.m4a */,
+				20DF4D33229CE30000317D3B /* wwm_6.m4a */,
+				20DF4D32229CE2FF00317D3B /* wwm_7.m4a */,
+				20DF4D2E229CE2FF00317D3B /* wwm_8.m4a */,
+				20DF4D2A229CE2FF00317D3B /* wwm_9.m4a */,
+				20DF4D29229CE2FF00317D3B /* wwm_cash_pre.m4a */,
+				20DF4D2C229CE2FF00317D3B /* wwm_default.m4a */,
+				20DF4D23229CE2FE00317D3B /* wwm_dot.m4a */,
+				20DF4D30229CE2FF00317D3B /* wwm_hundred.m4a */,
+				20DF4D28229CE2FE00317D3B /* wwm_score_pre.m4a */,
+				20DF4D27229CE2FE00317D3B /* wwm_ten_thousand.m4a */,
+				20DF4D2F229CE2FF00317D3B /* wwm_ten.m4a */,
+				20DF4D26229CE2FE00317D3B /* wwm_thousand.m4a */,
+				20DF4D31229CE2FF00317D3B /* wwm_yuan.m4a */,
 				208D336F22923BFF00E439AC /* ZGAudioManager.h */,
 				208D337022923BFF00E439AC /* ZGAudioManager.m */,
 				208D337122923BFF00E439AC /* Info.plist */,
@@ -2274,10 +2331,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F12F6DC1E16327D0056DF9A /* AlipaySDK.bundle in Resources */,
+				20DF4D46229CE30000317D3B /* wwm_6.m4a in Resources */,
+				20DF4D3B229CE30000317D3B /* wwm_score_pre.m4a in Resources */,
+				20DF4D34229CE30000317D3B /* wwm_0.m4a in Resources */,
+				20DF4D3F229CE30000317D3B /* wwm_default.m4a in Resources */,
+				20DF4D42229CE30000317D3B /* wwm_ten.m4a in Resources */,
+				20DF4D40229CE30000317D3B /* wwm_1.m4a in Resources */,
+				20DF4D3A229CE30000317D3B /* wwm_ten_thousand.m4a in Resources */,
+				20DF4D38229CE30000317D3B /* wwm_3.m4a in Resources */,
 				1FB3DEBD1E03902800F670EC /* close_icon@2x.png in Resources */,
 				1F20CB341E07876000FC91B3 /* CALScanQRCode.bundle in Resources */,
+				20DF4D3E229CE30000317D3B /* wwm_4.m4a in Resources */,
+				20DF4D37229CE30000317D3B /* wwm_5.m4a in Resources */,
+				20DF4D36229CE30000317D3B /* wwm_dot.m4a in Resources */,
 				1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */,
+				20DF4D3D229CE30000317D3B /* wwm_9.m4a in Resources */,
+				20DF4D35229CE30000317D3B /* wwm_2.m4a in Resources */,
+				20DF4D43229CE30000317D3B /* wwm_hundred.m4a in Resources */,
+				20DF4D45229CE30000317D3B /* wwm_7.m4a in Resources */,
+				20DF4D44229CE30000317D3B /* wwm_yuan.m4a in Resources */,
+				20DF4D41229CE30000317D3B /* wwm_8.m4a in Resources */,
+				20DF4D39229CE30000317D3B /* wwm_thousand.m4a in Resources */,
 				1FB3DF3E1E03C11700F670EC /* README.txt in Resources */,
+				20DF4D3C229CE30000317D3B /* wwm_cash_pre.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

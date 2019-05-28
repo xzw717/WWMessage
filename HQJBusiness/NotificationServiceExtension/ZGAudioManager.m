@@ -44,13 +44,17 @@
     itype = [[userInfo objectForKey:@"itype"] integerValue];
 
     NSLog(@"userInfo: %@", userInfo);
-    NSLog(@"collectMoney = %@ newOrder = %@",CollectMoney,NewOrder);
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+    NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
+    NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
+    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+    
     NSArray *fileNameArray;
-    if ([CollectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
+    if ([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
         NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
         fileNameArray =  [self playMoneyReceived:amount];
     }
-    if ([NewOrder isEqualToString:@"开"] && itype == 0) {
+    if ([newOrder isEqualToString:@"开"] && itype == 3) {
         fileNameArray = @[@"wwm_default"];
     }
     if (fileNameArray.count>0) {
@@ -59,19 +63,19 @@
         AVMutableComposition *composition = [AVMutableComposition composition];
         
         CMTime allTime = kCMTimeZero;
-        
         for (NSInteger i = 0; i < fileNameArray.count; i++) {
             NSString *auidoPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",fileNameArray[i]] ofType:@"m4a"];
-            AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
-            // 音频轨道
-            AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
-            // 音频素材轨道
-            AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
-            // 音频合并 - 插入音轨文件
-            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
-            // 更新当前的位置
-            allTime = CMTimeAdd(allTime, audioAsset.duration);
-            
+            if (auidoPath) {
+                AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
+                // 音频轨道
+                AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+                // 音频素材轨道
+                AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+                // 音频合并 - 插入音轨文件
+                [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
+                // 更新当前的位置
+                allTime = CMTimeAdd(allTime, audioAsset.duration);
+            }
         }
         
         // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
@@ -102,10 +106,9 @@
                 
                 
             } else {
-                
+                NSLog(@"----%ld", session.status);
                 // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
                 // 播放失败
-                self.aVAudioPlayerFinshBlock();
             }
         }];
         
@@ -152,9 +155,9 @@
 - (NSArray *) playMoneyReceived:(NSString *)moneyAmount{
     // 语音文件数组
     NSMutableArray *audioFiles = [[NSMutableArray alloc]init] ;
-    if (itype == 1) {
+    if (itype == 2) {
         [audioFiles addObject:@"wwm_cash_pre"];
-    }else if (itype == 2){
+    }else if (itype == 1){
         [audioFiles addObject:@"wwm_score_pre"];
     }
     // 将金额转换为对应的文字
