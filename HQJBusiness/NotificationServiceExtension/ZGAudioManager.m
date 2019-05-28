@@ -40,68 +40,77 @@
     if (completed) {
         self.aVAudioPlayerFinshBlock = completed;
     }
-    NSLog(@"userInfo: %@", userInfo);
+    
     itype = [[userInfo objectForKey:@"itype"] integerValue];
-    NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
-    NSArray *fileNameArray =  [self playMoneyReceived:amount];
-    /************************合成音频并播放*****************************/
-    
-    AVMutableComposition *composition = [AVMutableComposition composition];
-    
-    CMTime allTime = kCMTimeZero;
-    
-    for (NSInteger i = 0; i < fileNameArray.count; i++) {
-        NSString *auidoPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",fileNameArray[i]] ofType:@"m4a"];
-        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
-        // 音频轨道
-        AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
-        // 音频素材轨道
-        AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
-        // 音频合并 - 插入音轨文件
-        [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
-        // 更新当前的位置
-        allTime = CMTimeAdd(allTime, audioAsset.duration);
+
+    NSLog(@"userInfo: %@", userInfo);
+    NSLog(@"collectMoney = %@ newOrder = %@",CollectMoney,NewOrder);
+    NSArray *fileNameArray;
+    if ([CollectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
+        NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
+        fileNameArray =  [self playMoneyReceived:amount];
+    }
+    if ([NewOrder isEqualToString:@"开"] && itype == 0) {
+        fileNameArray = @[@"wwm_default"];
+    }
+    if (fileNameArray.count>0) {
+        /************************合成音频并播放*****************************/
         
-    }
-    
-    // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
-    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
-    NSString *outPutFilePath = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"xindong.m4a"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath]) {
-        [[NSFileManager defaultManager] removeItemAtPath:outPutFilePath error:nil];
-    }
-    
-    // 查看当前session支持的fileType类型
-    NSLog(@"---%@",[session supportedFileTypes]);
-    session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
-    session.outputFileType = AVFileTypeAppleM4A; //与上述的`present`相对应
-    session.shouldOptimizeForNetworkUse = YES;   //优化网络
-    
-    [self activePlayback] ;
-    
-    [session exportAsynchronouslyWithCompletionHandler:^{
-        NSLog(@"----%ld", session.status);
-        if (session.status == AVAssetExportSessionStatusCompleted) {
-            NSLog(@"合并成功----%@", outPutFilePath);
+        AVMutableComposition *composition = [AVMutableComposition composition];
+        
+        CMTime allTime = kCMTimeZero;
+        
+        for (NSInteger i = 0; i < fileNameArray.count; i++) {
+            NSString *auidoPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",fileNameArray[i]] ofType:@"m4a"];
+            AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
+            // 音频轨道
+            AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+            // 音频素材轨道
+            AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+            // 音频合并 - 插入音轨文件
+            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
+            // 更新当前的位置
+            allTime = CMTimeAdd(allTime, audioAsset.duration);
             
-            NSURL *url = [NSURL fileURLWithPath:outPutFilePath];
-            
-            self.myPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-            
-            self.myPlayer.delegate = self;
-            [self.myPlayer play];
-            
-            
-        } else {
-            
-            // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
-            // 播放失败
-            self.aVAudioPlayerFinshBlock();
         }
-    }];
-    
-    /************************合成音频并播放*****************************/
+        
+        // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
+        AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
+        NSString *outPutFilePath = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"xindong.m4a"];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:outPutFilePath error:nil];
+        }
+        
+        // 查看当前session支持的fileType类型
+        NSLog(@"---%@",[session supportedFileTypes]);
+        session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
+        session.outputFileType = AVFileTypeAppleM4A; //与上述的`present`相对应
+        session.shouldOptimizeForNetworkUse = YES;   //优化网络
+        
+        [session exportAsynchronouslyWithCompletionHandler:^{
+            NSLog(@"----%ld", session.status);
+            if (session.status == AVAssetExportSessionStatusCompleted) {
+                NSLog(@"合并成功----%@", outPutFilePath);
+                
+                NSURL *url = [NSURL fileURLWithPath:outPutFilePath];
+                
+                self.myPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+                
+                self.myPlayer.delegate = self;
+                [self.myPlayer play];
+                
+                
+            } else {
+                
+                // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
+                // 播放失败
+                self.aVAudioPlayerFinshBlock();
+            }
+        }];
+        
+        /************************合成音频并播放*****************************/
+    }
 }
 #pragma mark- AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
@@ -144,16 +153,12 @@
     // 语音文件数组
     NSMutableArray *audioFiles = [[NSMutableArray alloc]init] ;
     if (itype == 1) {
-        [audioFiles addObject:@"wwm_cash_pre"] ;
+        [audioFiles addObject:@"wwm_cash_pre"];
     }else if (itype == 2){
-        [audioFiles addObject:@"wwm_score_pre"] ;
-    }else{
-        [audioFiles addObject:@"wwm_default"];
-        return audioFiles;
+        [audioFiles addObject:@"wwm_score_pre"];
     }
     // 将金额转换为对应的文字
     NSString* string = [self digitUppercase:moneyAmount] ;
-    
     for (int i = 0; i < string.length; i++) {
         NSString * str = [string substringWithRange:NSMakeRange(i, 1)] ;
         
@@ -182,7 +187,6 @@
     }
     return audioFiles;
 }
-
 -(NSString *)digitUppercase:(NSString *)numstr {
     NSArray *numberchar = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"];
     NSArray *inunitchar = @[@"",@"十",@"百",@"千"];
