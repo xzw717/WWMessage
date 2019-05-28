@@ -242,6 +242,8 @@ static JWBluetoothManage * manage = nil;
         }
         return;
     }
+    NSLog(@"数组里：%@",self.printeChatactersArray);
+
     if (self.printeChatactersArray.count == 0) {
         if (result) {
             result(NO,_connectedPerpheral,@"该蓝牙设备不支持写入数据");

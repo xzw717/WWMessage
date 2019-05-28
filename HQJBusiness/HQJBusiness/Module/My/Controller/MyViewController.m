@@ -217,9 +217,9 @@
   
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_viewModel jumpVc:self andIndexPath:indexPath];
-//    BlueToothVC *vc = [[BlueToothVC alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+//    [_viewModel jumpVc:self andIndexPath:indexPath];
+    BlueToothVC *vc = [[BlueToothVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
