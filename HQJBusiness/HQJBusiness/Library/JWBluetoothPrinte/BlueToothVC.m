@@ -30,6 +30,7 @@
     manage = [JWBluetoothManage sharedInstance];
     WeakSelf
     [manage beginScanPerpheralSuccess:^(NSArray<CBPeripheral *> *peripherals, NSArray<NSNumber *> *rssis) {
+        
         weakSelf.dataSource = [NSMutableArray arrayWithArray:peripherals];
         weakSelf.rssisArray = [NSMutableArray arrayWithArray:rssis];
         [weakSelf.tableView reloadData];
@@ -123,6 +124,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     CBPeripheral *peripherral = [self.dataSource objectAtIndex:indexPath.row];
+    NSLog(@"设备已经开始打印：%@",peripherral.services);
+
     if (peripherral.state == CBPeripheralStateConnected) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -137,8 +140,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CBPeripheral *peripheral = [self.dataSource objectAtIndex:indexPath.row];
     
-    [self filePathNameReadName:@{@"peripheral":peripheral}];
-    
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+    [userDefaults setObject:peripheral.identifier.UUIDString forKey:@"HQJPrinteruuid"];
     [manage connectPeripheral:peripheral completion:^(CBPeripheral *perpheral, NSError *error) {
         if (!error) {
             [ProgressShow alertView:self.view Message:@"连接成功！" cb:nil];
