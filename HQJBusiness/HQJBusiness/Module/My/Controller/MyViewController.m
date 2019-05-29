@@ -19,9 +19,10 @@
 #import "MessageNotificationViewModel.h"
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
-#import "ZGAudioManager.h"
 #import "BlueToothVC.h"
 #import "JWBluetoothManage.h"
+
+
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
 }

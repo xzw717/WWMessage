@@ -32,6 +32,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
     [SVProgressHUD setMinimumDismissTimeInterval:2.f];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 
@@ -236,7 +238,7 @@
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-//        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
+        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
 }

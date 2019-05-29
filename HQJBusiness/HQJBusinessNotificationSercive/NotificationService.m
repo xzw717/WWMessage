@@ -10,24 +10,22 @@
 
 #import "ZGAudioManager.h"
 #import "JWBluetoothManage.h"
+#import <AVFoundation/AVFoundation.h>
+
+
 
 @import AVFoundation ;
 @import MediaPlayer ;
 
 typedef void(^PlayVoiceBlock)(void);
 
-@interface NotificationService ()<AVAudioPlayerDelegate>{
+@interface NotificationService (){
     
     NSInteger itype;
     JWBluetoothManage * manage;
+    
 }
-//声音文件的播放器
-@property (nonatomic, strong)AVAudioPlayer *myPlayer;
-//声音文件的路径
-@property (nonatomic, strong) NSString *filePath;
-// 语音合成完毕之后，使用 AVAudioPlayer 播放
-@property (nonatomic, copy)PlayVoiceBlock aVAudioPlayerFinshBlock;
-
+@property (nonatomic,assign)NSInteger time;
 @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
 @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
 
@@ -41,37 +39,26 @@ typedef void(^PlayVoiceBlock)(void);
     NSDictionary * userInfo = self.bestAttemptContent.userInfo;
     NSLog(@"userInfo: %@", userInfo);
     itype = [[userInfo objectForKey:@"itype"] integerValue];
-    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];;
+
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
     NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
     NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
     NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
     if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 3)) {
-        __weak __typeof(self)weakSelf = self;
-        [self hechengVoiceAVAudioPlayerWithFinshBlock:^{
-            weakSelf.contentHandler(weakSelf.bestAttemptContent);
-        }];
+        [self pushNotification];
     }
     NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
     // Modify the notification content here...
+    
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
-    /*******************************推荐用法*******************************************/
-    [self dayin];
-}
-
-- (void)serviceExtensionTimeWillExpire {
-    // Called just before the extension will be terminated by the system.
-    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
     self.contentHandler(self.bestAttemptContent);
+    /*******************************推荐用法*******************************************/
+//    [self dayin];
 }
-#pragma mark- 合成音频使用 AVAudioPlayer 播放
-- (void)hechengVoiceAVAudioPlayerWithFinshBlock:(PlayVoiceBlock )block
-{
-    if (block) {
-        self.aVAudioPlayerFinshBlock = block;
-    }
+- (void)pushNotification{
     NSDictionary * userInfo = self.bestAttemptContent.userInfo;
-    itype = [[userInfo objectForKey:@"itype"] integerValue];
     NSArray *fileNameArray;
     if (itype == 1||itype == 2) {
         NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
@@ -80,102 +67,89 @@ typedef void(^PlayVoiceBlock)(void);
     if (itype == 3) {
         fileNameArray = @[@"wwm_default"];
     }
-    if (fileNameArray.count>0) {
-        /************************合成音频并播放*****************************/
-        
-        AVMutableComposition *composition = [AVMutableComposition composition];
-        
-        CMTime allTime = kCMTimeZero;
-        
-        for (NSInteger i = 0; i < fileNameArray.count; i++) {
-            NSString *auidoPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",fileNameArray[i]] ofType:@"m4a"];
-            if (auidoPath) {
-                AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:auidoPath]];
-                // 音频轨道
-                AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
-                // 音频素材轨道
-                AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
-                // 音频合并 - 插入音轨文件
-                [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:audioAssetTrack atTime:allTime error:nil];
-                // 更新当前的位置
-                allTime = CMTimeAdd(allTime, audioAsset.duration);
-            }
-        }
-        
-        // 合并后的文件导出 - `presetName`要和之后的`session.outputFileType`相对应。
-        AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
-        NSString *outPutFilePath = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"xindong.m4a"];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath]) {
-            [[NSFileManager defaultManager] removeItemAtPath:outPutFilePath error:nil];
-        }
-        
-        // 查看当前session支持的fileType类型
-        NSLog(@"---%@",[session supportedFileTypes]);
-        session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
-        session.outputFileType = AVFileTypeAppleM4A; //与上述的`present`相对应
-        session.shouldOptimizeForNetworkUse = YES;   //优化网络
-        
-        [session exportAsynchronouslyWithCompletionHandler:^{
-            NSLog(@"----status%ld", session.status);
-            if (session.status == AVAssetExportSessionStatusCompleted) {
-                NSLog(@"合并成功----%@", outPutFilePath);
-                
-                NSURL *url = [NSURL fileURLWithPath:outPutFilePath];
-                
-                self.myPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-                
-                self.myPlayer.delegate = self;
-                [self.myPlayer play];
+    
 
-            } else {
-                // 其他情况, 具体请看这里`AVAssetExportSessionStatus`.
-                // 播放失败
-                NSLog(@"----%ld", session.status);
+    for (int i = 0; i <fileNameArray.count; i ++) {
+        NSString *string = fileNameArray[i];
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        __weak __typeof(self)weakSelf = self;
+        [self registerNotificationWithString:string completeHandler:^{
+            if (i == 0) {
+                weakSelf.time = 2.1;
+            }else{
+                weakSelf.time = 1.0;
             }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(weakSelf.time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_semaphore_signal(semaphore);
+            });
         }];
-        
-        /************************合成音频并播放*****************************/
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    }
+
+    self.contentHandler(self.bestAttemptContent);
+}
+
+- (NSArray *)stringToArray:(NSString *)string {
+    
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:50];
+    
+    for (NSInteger i = 0; i < string.length; i++) {
+        NSRange range;
+        range.location = i;
+        range.length = 1;
+        NSString *currentString = [string substringWithRange:range];
+        [mutableArray addObject:currentString];
     }
     
-}
-#pragma mark- AVAudioPlayerDelegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    if (self.aVAudioPlayerFinshBlock) {
-        self.aVAudioPlayerFinshBlock();
-    }
+    return mutableArray;
 }
 
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer*)player error:(NSError *)error{
-    //解码错误执行的动作
+- (void)registerNotificationWithString:(NSString *)string completeHandler:(dispatch_block_t)complete {
+    
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        
+        if (granted) {
+            
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+            
+            content.title = @"";
+            content.subtitle = @"";
+            content.body = @"";
+            content.sound = [UNNotificationSound soundNamed:[NSString stringWithFormat:@"%@.mp3",string]];
+            
+            content.categoryIdentifier = [NSString stringWithFormat:@"categoryIndentifier%@",string];
+            
+            UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.01 repeats:NO];
+            
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"categoryIndentifier%@",string] content:content trigger:trigger];
+            
+            [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                
+                if (error == nil) {
+                    
+                    if (complete) {
+                        complete();
+                    }
+                }
+            }];
+        }
+    }];
 }
-- (void)audioPlayerBeginInteruption:(AVAudioPlayer*)player{
-    //处理中断的代码
-}
-- (void)audioPlayerEndInteruption:(AVAudioPlayer*)player{
-    //处理中断结束的代码
+- (void)serviceExtensionTimeWillExpire {
+    // Called just before the extension will be terminated by the system.
+    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
+    self.contentHandler(self.bestAttemptContent);
 }
 
-
-- (NSString *)filePath {
-    if (!_filePath) {
-        _filePath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
-        NSString *folderName = [_filePath stringByAppendingPathComponent:@"MergeAudio"];
-        BOOL isCreateSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:folderName withIntermediateDirectories:YES attributes:nil error:nil];
-        if (isCreateSuccess) _filePath = [folderName stringByAppendingPathComponent:@"xindong.m4a"];
-    }
-    return _filePath;
-}
 - (NSArray *) playMoneyReceived:(NSString *)moneyAmount{
     // 语音文件数组
     NSMutableArray *audioFiles = [[NSMutableArray alloc]init] ;
+    // 将金额转换为对应的文字
     if (itype == 2) {
         [audioFiles addObject:@"wwm_cash_pre"];
     }else if (itype == 1){
         [audioFiles addObject:@"wwm_score_pre"];
     }
-    // 将金额转换为对应的文字
     NSString* string = [self digitUppercase:moneyAmount] ;
     for (int i = 0; i < string.length; i++) {
         NSString * str = [string substringWithRange:NSMakeRange(i, 1)] ;
