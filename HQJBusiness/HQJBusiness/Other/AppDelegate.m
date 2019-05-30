@@ -33,6 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
     [SVProgressHUD setMinimumDismissTimeInterval:2.f];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 
