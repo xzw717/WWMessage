@@ -8,9 +8,8 @@
 
 #import "ZGAudioManager.h"
 
-@import AVFoundation ;
-@import MediaPlayer ;
-
+@import AVFoundation;
+@import MediaPlayer;
 
 @interface ZGAudioManager() <AVAudioPlayerDelegate>{
     NSInteger itype;
@@ -75,6 +74,7 @@
     // 2.创建 AVAudioPlayer 对象
     self.myPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     // 4.设置循环播放
+    self.myPlayer.rate = 2.0;
     self.myPlayer.numberOfLoops = 0 ;
     self.myPlayer.delegate = self;
     // 5.开始播放
@@ -87,8 +87,7 @@
     audioIndex += 1 ;
     if(audioIndex < audioFiles.count) {
         [self performSelectorOnMainThread:@selector(playAudioFiles) withObject:nil waitUntilDone:NO] ;
-    }
-    else {
+    }else {
         [self disactivePlayback] ;
         [self performSelectorOnMainThread:@selector(playCompleted) withObject:nil waitUntilDone:NO] ;
     }

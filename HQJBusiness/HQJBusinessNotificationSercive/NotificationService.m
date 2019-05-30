@@ -11,8 +11,7 @@
 #import "ZGAudioManager.h"
 #import "JWBluetoothManage.h"
 #import <AVFoundation/AVFoundation.h>
-
-
+#import <AudioToolbox/AudioToolbox.h>
 
 @import AVFoundation ;
 @import MediaPlayer ;
@@ -39,20 +38,26 @@ typedef void(^PlayVoiceBlock)(void);
     NSLog(@"userInfo: %@", userInfo);
     itype = [[userInfo objectForKey:@"itype"] integerValue];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];;
-
-    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
-    NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
-    NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
-    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
-    if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 3)) {
-        [self pushNotification];
-    }
-    NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
-    // Modify the notification content here...
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
-    self.contentHandler(self.bestAttemptContent);
+//    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
+    if ([[[UIDevice currentDevice]systemVersion] floatValue] >= 12.1) {
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+        NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
+        NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
+        NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+        if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 3)) {
+            [self pushNotification];
+        }
+        self.contentHandler(self.bestAttemptContent);
+    }else{
+        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:^{
+            self.contentHandler(self.bestAttemptContent);
+        }];
+    }
+    
+//    NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
+    // Modify the notification content here...
     /*******************************推荐用法*******************************************/
 //    [self dayin];
 }
@@ -74,7 +79,7 @@ typedef void(^PlayVoiceBlock)(void);
         __weak __typeof(self)weakSelf = self;
         [self registerNotificationWithString:string completeHandler:^{
             if (i == 0) {
-                weakSelf.time = 2.1;
+                weakSelf.time = 2.2;
             }else{
                 weakSelf.time = 1.0;
             }
@@ -88,21 +93,6 @@ typedef void(^PlayVoiceBlock)(void);
     self.contentHandler(self.bestAttemptContent);
 }
 
-- (NSArray *)stringToArray:(NSString *)string {
-    
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:50];
-    
-    for (NSInteger i = 0; i < string.length; i++) {
-        NSRange range;
-        range.location = i;
-        range.length = 1;
-        NSString *currentString = [string substringWithRange:range];
-        [mutableArray addObject:currentString];
-    }
-    
-    return mutableArray;
-}
-
 - (void)registerNotificationWithString:(NSString *)string completeHandler:(dispatch_block_t)complete {
     
     [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -110,14 +100,13 @@ typedef void(^PlayVoiceBlock)(void);
         if (granted) {
             
             UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-            
             content.title = @"";
             content.subtitle = @"";
             content.body = @"";
             content.sound = [UNNotificationSound soundNamed:[NSString stringWithFormat:@"%@.mp3",string]];
             
             content.categoryIdentifier = [NSString stringWithFormat:@"categoryIndentifier%@",string];
-            
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.01 repeats:NO];
             
             UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"categoryIndentifier%@",string] content:content trigger:trigger];
