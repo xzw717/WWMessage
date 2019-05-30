@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "JWBluetoothBlocks.h"
-#import "ProgressShow.h"
+#import "JWProgressHUD/ProgressShow.h"
 #import "JWPrinter.h"
 
 
 @interface JWBluetoothManage : NSObject
 //单例方法
 + (instancetype)sharedInstance;
-
+- (void)jwstart;
 @property (nonatomic, strong,readonly)CBPeripheral                *connectedPerpheral;    //  当前连接的外设蓝牙
 
 /**

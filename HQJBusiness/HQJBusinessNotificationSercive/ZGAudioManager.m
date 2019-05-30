@@ -48,7 +48,7 @@
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
     NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
     NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
-    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+//    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
     
     if ([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
         NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;

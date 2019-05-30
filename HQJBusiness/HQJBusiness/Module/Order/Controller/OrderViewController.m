@@ -27,10 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.zwNavView.backgroundColor = DefaultAPPColor;
+    self.zwBackButton.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.view.backgroundColor = DefaultBackgroundColor;
-    self.title = @"订单";
+    self.zwTitLabel.textColor = [UIColor whiteColor];
+    self.zw_title = @"订单";
     HQJLog(@"id\n%@",MmberidStr);
     AllOrdeVC *allorderVC = [[AllOrdeVC alloc]init];
     [self addChildViewController:allorderVC];

@@ -19,7 +19,6 @@
 #import "MessageNotificationViewModel.h"
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
-#import "BlueToothVC.h"
 #import "JWBluetoothManage.h"
 
 
