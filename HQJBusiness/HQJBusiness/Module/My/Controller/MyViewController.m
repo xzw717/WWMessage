@@ -219,7 +219,6 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_viewModel jumpVc:self andIndexPath:indexPath];
-
 }
 
 

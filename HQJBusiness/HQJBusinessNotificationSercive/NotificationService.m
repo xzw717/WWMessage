@@ -10,11 +10,8 @@
 
 #import "ZGAudioManager.h"
 #import "JWBluetoothManage.h"
-#import "RemotePushOrderModel.h"
-#import "MJExtension.h"
 #import <AVFoundation/AVFoundation.h>
-
-
+#import <AudioToolbox/AudioToolbox.h>
 
 @import AVFoundation ;
 @import MediaPlayer ;
@@ -26,13 +23,6 @@ typedef void(^PlayVoiceBlock)(void);
     NSInteger itype;
     JWBluetoothManage * manage;
 }
-//声音文件的播放器
-@property (nonatomic, strong)AVAudioPlayer *myPlayer;
-//声音文件的路径
-@property (nonatomic, strong) NSString *filePath;
-// 语音合成完毕之后，使用 AVAudioPlayer 播放
-@property (nonatomic, copy)PlayVoiceBlock aVAudioPlayerFinshBlock;
-@property (nonatomic, strong)  RemotePushOrderModel *pushModel;
 @property (nonatomic,assign)NSInteger time;
 @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
 @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
@@ -45,52 +35,32 @@ typedef void(^PlayVoiceBlock)(void);
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
     NSDictionary * userInfo = self.bestAttemptContent.userInfo;
-    self.pushModel = [RemotePushOrderModel mj_objectWithKeyValues:userInfo];
+    NSLog(@"userInfo: %@", userInfo);
     itype = [[userInfo objectForKey:@"itype"] integerValue];
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
-    [self configuration];
-}
-
-
-#pragma mark --- 逻辑判断  （语音 -- 打印）
-- (void)configuration {
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];;
-
-    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
-    NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
-    NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
-    NSString *AutomaticallyPrintOrders = [userDefaults objectForKey:@"AutomaticallyPrintOrders"];
-    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
-    if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 3)) {
-        [self pushNotification];
-    }
-    NSLog(@" 外： %@",AutomaticallyPrintOrders);
-
-    if (self.pushModel.itype == 3  && [AutomaticallyPrintOrders isEqualToString:@"开"]) {
-        [self autoPrint];
-
-    }
-}
-
-- (void)serviceExtensionTimeWillExpire {
-    // Called just before the extension will be terminated by the system.
-    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-    NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
-    // Modify the notification content here...
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
-    self.contentHandler(self.bestAttemptContent);
+//    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@", self.bestAttemptContent.title];
+    if ([[[UIDevice currentDevice]systemVersion] floatValue] >= 12.1) {
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+        NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
+        NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
+        NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+        if (([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2))||([newOrder isEqualToString:@"开"] && itype == 3)) {
+            [self pushNotification];
+        }
+        self.contentHandler(self.bestAttemptContent);
+    }else{
+        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:^{
+            self.contentHandler(self.bestAttemptContent);
+        }];
+    }
+    
+//    NSLog(@"打印的用户id是 %@", [userDefaults objectForKey:@"AutomaticallyPrintOrders"]);
+    // Modify the notification content here...
     /*******************************推荐用法*******************************************/
 //    [self dayin];
 }
-
-#pragma mark- 合成音频使用 AVAudioPlayer 播放
-- (void)hechengVoiceAVAudioPlayerWithFinshBlock:(PlayVoiceBlock )block
-{
-    if (block) {
-        self.aVAudioPlayerFinshBlock = block;
-    }
 - (void)pushNotification{
     NSDictionary * userInfo = self.bestAttemptContent.userInfo;
     NSArray *fileNameArray;
@@ -109,7 +79,7 @@ typedef void(^PlayVoiceBlock)(void);
         __weak __typeof(self)weakSelf = self;
         [self registerNotificationWithString:string completeHandler:^{
             if (i == 0) {
-                weakSelf.time = 2.1;
+                weakSelf.time = 2.2;
             }else{
                 weakSelf.time = 1.0;
             }
@@ -123,21 +93,6 @@ typedef void(^PlayVoiceBlock)(void);
     self.contentHandler(self.bestAttemptContent);
 }
 
-- (NSArray *)stringToArray:(NSString *)string {
-    
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:50];
-    
-    for (NSInteger i = 0; i < string.length; i++) {
-        NSRange range;
-        range.location = i;
-        range.length = 1;
-        NSString *currentString = [string substringWithRange:range];
-        [mutableArray addObject:currentString];
-    }
-    
-    return mutableArray;
-}
-
 - (void)registerNotificationWithString:(NSString *)string completeHandler:(dispatch_block_t)complete {
     
     [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -145,14 +100,13 @@ typedef void(^PlayVoiceBlock)(void);
         if (granted) {
             
             UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-            
             content.title = @"";
             content.subtitle = @"";
             content.body = @"";
             content.sound = [UNNotificationSound soundNamed:[NSString stringWithFormat:@"%@.mp3",string]];
             
             content.categoryIdentifier = [NSString stringWithFormat:@"categoryIndentifier%@",string];
-            
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.01 repeats:NO];
             
             UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"categoryIndentifier%@",string] content:content trigger:trigger];
@@ -278,22 +232,112 @@ typedef void(^PlayVoiceBlock)(void);
     return prefix ;
 }
 
-- (void)autoPrint {
+- (void)dayin {
      JWBluetoothManage * manage = [JWBluetoothManage sharedInstance];
-    [manage autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
-        if (!error) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self printe];
-            });
-        
-        }else{
+    //    WeakSelf
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
+    NSString *str = [userDefaults objectForKey:@"HQJPrinteruuid"];
+    [manage beginScanPerpheralSuccess:^(NSArray<CBPeripheral *> *peripherals, NSArray<NSNumber *> *rssis) {
+        for (CBPeripheral *pln in peripherals) {
+            
+            NSLog(@"%@",pln.identifier.UUIDString);
+            
+            
+            
+            if ([pln.identifier.UUIDString isEqualToString:str]) {
+                [manage connectPeripheral:pln completion:^(CBPeripheral *perpheral, NSError *error) {
+                    if (!error) {
+//                        manage.stage = JWScanStageCharacteristics;
+//                        [self printe];
+                        if (manage.stage != JWScanStageCharacteristics) {
+                            //        [SVProgressHUD showWithStatus:@"打印机正在准备中..."];
+                            return;
+                        }
+                        JWPrinter *printer = [[JWPrinter alloc] init];
+                        NSString *str1 = @"物物地图";
+                        NSString *str2 = @"Wuwu Map";
+                        NSString *str3 = @"订单详情";
+                        [printer appendText:str1 alignment:HLTextAlignmentCenter];
+                        [printer appendText:str2 alignment:HLTextAlignmentCenter];
+                        [printer appendText:str3 alignment:HLTextAlignmentCenter];
+                        [printer appendSeperatorLine];
+                        
+                        [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+                        [printer appendText:@"130******890" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+                        [printer appendSeperatorLine];
+                        
+                        [printer appendText:@"订单详情" alignment:HLTextAlignmentLeft];
+                        [printer appendLeftText:@"假装我是一个方便面" middleText:@"x109" rightText:@"99999.99" isTitle:NO];
+                        //    [printer appendNewLine];
+                        
+                        [printer appendLeftText:@"飞流直下三千尺，疑似银河落九天999999999999999999999999999999999999" middleText:@"x109" rightText:@"889.99" isTitle:NO];
+                        //    [printer appendNewLine];
+                        
+                        [printer appendLeftText:@"上海许氏专用订单一条" middleText:@"x109" rightText:@"9.09" isTitle:NO];
+                        //    [printer appendNewLine];
+                        
+                        [printer appendLeftText:@"许某人爱喝的可口可乐" middleText:@"x109" rightText:@"9999.99" isTitle:NO];
+                        
+                        [printer appendSeperatorLine];
+                        
+                        [printer appendTitle:@"总计商品数" value:@"2"];
+                        [printer appendTitle:@"金    额" value:@"￥1000"];
+                        
+                        [printer appendSeperatorLine];
+                        [printer appendTitle:@"订单编号" value:@"MS1234567890"];
+                        [printer appendTitle:@"下单时间" value:@"2017-06-14"];
+                        [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
+                        [printer appendNewLine];
+                        [printer appendNewLine];
+                        [printer appendNewLine];
+                        NSData *mainData = [printer getFinalData];
+                        [manage sendPrintData:mainData completion:^(BOOL completion, CBPeripheral *connectPerpheral,NSString *error) {
+                            if (completion) {
+                                NSLog(@"打印成功");
+                            }else{
+                                NSLog(@"写入错误---:%@",error);
+                            }
+                        }];
+                    }else{
+                    }
+                }];
+            }
+            
+            
         }
+        //        weakSelf.dataSource = [NSMutableArray arrayWithArray:peripherals];
+        //        weakSelf.rssisArray = [NSMutableArray arrayWithArray:rssis];
+        //        [weakSelf.tableView reloadData];
+    } failure:^(CBManagerState status) {
+//        [ProgressShow alertView:self.view Message:[ProgressShow getBluetoothErrorInfo:status] cb:nil];
     }];
+    manage.disConnectBlock = ^(CBPeripheral *perpheral, NSError *error) {
+        NSLog(@"设备已经断开连接！");
+        //        weakSelf.title = @"蓝牙列表";
+    };
+ 
+//    CBPeripheral *perpherals = [userDefaults objectForKey:@"printer"];
 
-
+    
+    
+//    [manage autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
+////        @strongify(self);
+//        if (!error) {
+////            [ProgressShow alertView:self.view Message:@"打印机连接成功！" cb:nil];
+//            //            weakSelf.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            });
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                //                [weakSelf.tableView reloadData];
+//            });
+//        }else{
+////            [ProgressShow alertView:self.view Message:error.domain cb:nil];
+//        }
+//    }];
 }
 - (void)printe{
     if ([JWBluetoothManage sharedInstance].stage != JWScanStageCharacteristics) {
+//        [SVProgressHUD showWithStatus:@"打印机正在准备中..."];
         return;
     }
     JWPrinter *printer = [[JWPrinter alloc] init];
@@ -302,27 +346,33 @@ typedef void(^PlayVoiceBlock)(void);
     NSString *str3 = @"订单详情";
     [printer appendText:str1 alignment:HLTextAlignmentCenter];
     [printer appendText:str2 alignment:HLTextAlignmentCenter];
-    [printer appendText:str3 alignment:HLTextAlignmentCenter fontSize:HLFontSizeTitleMiddle];
+    [printer appendText:str3 alignment:HLTextAlignmentCenter];
     [printer appendSeperatorLine];
     
     [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
-    [printer appendText:[self.pushModel.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+    [printer appendText:@"130******890" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendSeperatorLine];
     
     [printer appendText:@"订单详情" alignment:HLTextAlignmentLeft];
-    for (RemotePushGoodsModel *goodsmdoel in self.pushModel.list.list) {
-        [printer appendLeftText:goodsmdoel.name middleText:[NSString stringWithFormat:@"x%@",goodsmdoel.num] rightText:[NSString stringWithFormat:@"%.2f",[goodsmdoel.money floatValue]] isTitle:NO];
-        
-    }
+    [printer appendLeftText:@"假装我是一个方便面" middleText:@"x109" rightText:@"99999.99" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"飞流直下三千尺，疑似银河落九天999999999999999999999999999999999999" middleText:@"x109" rightText:@"889.99" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"上海许氏专用订单一条" middleText:@"x109" rightText:@"9.09" isTitle:NO];
+    //    [printer appendNewLine];
+    
+    [printer appendLeftText:@"许某人爱喝的可口可乐" middleText:@"x109" rightText:@"9999.99" isTitle:NO];
     
     [printer appendSeperatorLine];
     
-    [printer appendTitle:@"总计商品数" value:[NSString stringWithFormat:@"%@",self.pushModel.totalquantity]];
-    [printer appendTitle:@"金    额" value:[NSString stringWithFormat:@"￥%.2f",[self.pushModel.totalmoney floatValue]]];
+    [printer appendTitle:@"总计商品数" value:@"2"];
+    [printer appendTitle:@"金    额" value:@"￥1000"];
     
     [printer appendSeperatorLine];
-    [printer appendTitle:@"订单编号" value:[NSString stringWithFormat:@"%@",self.pushModel.orderid]];
-    [printer appendTitle:@"下单时间" value:self.pushModel.ordertime];
+    [printer appendTitle:@"订单编号" value:@"MS1234567890"];
+    [printer appendTitle:@"下单时间" value:@"2017-06-14"];
     [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
     [printer appendNewLine];
     [printer appendNewLine];
