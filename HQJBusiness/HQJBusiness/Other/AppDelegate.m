@@ -238,7 +238,10 @@
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-//        [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
+        
+        if ([[[UIDevice currentDevice]systemVersion] floatValue] >= 12.1) {
+            [[ZGAudioManager sharedPlayer] playPushInfo:userInfo completed:nil];
+        }
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
 }
