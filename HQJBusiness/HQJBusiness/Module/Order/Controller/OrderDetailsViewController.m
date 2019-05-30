@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"订单详情";
-    [OrderViewModel requestCustomerInformationWith:self.dataModel.memberid complete:^(NSString *mobile, NSString *realname) {
+    [OrderViewModel requestCustomerInformationWith:self.dataModel.userid complete:^(NSString *mobile, NSString *realname) {
         self.mobileStr = mobile;
         self.nameStr = realname;
         [self.orderDetailsTableView reloadData];

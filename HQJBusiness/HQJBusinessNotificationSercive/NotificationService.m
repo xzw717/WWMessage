@@ -9,7 +9,7 @@
 #import "NotificationService.h"
 
 #import "ZGAudioManager.h"
-#import "JWBluetoothManage.h"
+#import "JWBluetoothPrinte/JWBluetoothManage.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 

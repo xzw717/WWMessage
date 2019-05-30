@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JWBluetoothBlocks.h"
-#import "ProgressShow.h"
+#import "JWProgressHUD/ProgressShow.h"
 #import "JWPrinter.h"
 
 

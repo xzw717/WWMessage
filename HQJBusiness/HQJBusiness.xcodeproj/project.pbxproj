@@ -113,6 +113,27 @@
 		1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4013361E1257F0004E30B1 /* SelectBankCell.m */; };
 		1F40133A1E135767004E30B1 /* AddBankcCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4013391E135767004E30B1 /* AddBankcCardViewController.m */; };
 		1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40133C1E1359DB004E30B1 /* pickerView.m */; };
+		1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0E2297BA910061CF09 /* JWBluetoothManage.m */; };
+		1F402911229FBA230014769B /* UIWebView+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0F2297BA910061CF09 /* UIWebView+UIImage.m */; };
+		1F402912229FBA260014769B /* BlueToothVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0C2297BA910061CF09 /* BlueToothVC.m */; };
+		1F402913229FBA2C0014769B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD132297BA910061CF09 /* MBProgressHUD.m */; };
+		1F402914229FBA2E0014769B /* ProgressShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD142297BA910061CF09 /* ProgressShow.m */; };
+		1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD192297BA910061CF09 /* UIImage+Bitmap.m */; };
+		1F402918229FBBA40014769B /* SetBindingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402916229FBBA40014769B /* SetBindingCell.m */; };
+		1F40291B229FBC520014769B /* OrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402919229FBC520014769B /* OrderDetailsViewController.m */; };
+		1F40292C229FBCFF0014769B /* OrderDetailsFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40291D229FBCFE0014769B /* OrderDetailsFourCell.m */; };
+		1F40292D229FBCFF0014769B /* OrderDetailsTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40291F229FBCFE0014769B /* OrderDetailsTwoCell.m */; };
+		1F40292E229FBCFF0014769B /* OrderDetailsFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402921229FBCFE0014769B /* OrderDetailsFiveCell.m */; };
+		1F40292F229FBCFF0014769B /* OrderDetailsThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402922229FBCFE0014769B /* OrderDetailsThreeCell.m */; };
+		1F402930229FBCFF0014769B /* OrderDetailsPrintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402923229FBCFE0014769B /* OrderDetailsPrintHeaderView.m */; };
+		1F402931229FBCFF0014769B /* OrderDetailsBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402924229FBCFE0014769B /* OrderDetailsBaseCell.m */; };
+		1F402932229FBCFF0014769B /* OrderDetailsSixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402925229FBCFF0014769B /* OrderDetailsSixCell.m */; };
+		1F402933229FBCFF0014769B /* OrderDetailsOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402928229FBCFF0014769B /* OrderDetailsOneCell.m */; };
+		1F40293D229FBDAF0014769B /* RemotePushGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402935229FBDAF0014769B /* RemotePushGoodsModel.m */; };
+		1F40293E229FBDAF0014769B /* RemotePushOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F402937229FBDAF0014769B /* RemotePushOrderModel.m */; };
+		1F40293F229FBDAF0014769B /* RemotePushApsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40293A229FBDAF0014769B /* RemotePushApsModel.m */; };
+		1F402940229FBDAF0014769B /* RemotePushListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40293B229FBDAF0014769B /* RemotePushListModel.m */; };
+		1F402941229FBDCA0014769B /* JWPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD112297BA910061CF09 /* JWPrinter.m */; };
 		1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4FFBDF1F6634AD00FF3C39 /* CashOnlineCell.m */; };
 		1F5A78551EA457A00060E9EE /* MessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A78541EA457A00060E9EE /* MessageNotificationViewController.m */; };
 		1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A78571EA45D040060E9EE /* MessageNotificationCell.m */; };
@@ -124,13 +145,6 @@
 		1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CC4E2293AA7D0061CF09 /* SetCell.m */; };
 		1F63CCB9229536870061CF09 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCB8229536870061CF09 /* NotificationService.m */; };
 		1F63CCBD229536870061CF09 /* HQJBusinessNotificationSercive.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1F63CCB5229536870061CF09 /* HQJBusinessNotificationSercive.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1F63CCD2229792E80061CF09 /* JWBluetoothManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCC5229792E00061CF09 /* JWBluetoothManage.m */; };
-		1F63CCD3229792E80061CF09 /* UIWebView+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCC6229792E00061CF09 /* UIWebView+UIImage.m */; };
-		1F63CCD4229792E80061CF09 /* JWPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCC8229792E00061CF09 /* JWPrinter.m */; };
-		1F63CCD5229792E80061CF09 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCCA229792E00061CF09 /* MBProgressHUD.m */; };
-		1F63CCD6229792E80061CF09 /* ProgressShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCCB229792E00061CF09 /* ProgressShow.m */; };
-		1F63CCD7229792E80061CF09 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCCF229792E00061CF09 /* UIImage+Bitmap.m */; };
-		1F63CCDB229793A70061CF09 /* BlueToothVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CCDA229793A70061CF09 /* BlueToothVC.m */; };
 		1F63CD1C2297BA910061CF09 /* BlueToothVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0C2297BA910061CF09 /* BlueToothVC.m */; };
 		1F63CD1D2297BA910061CF09 /* JWBluetoothManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0E2297BA910061CF09 /* JWBluetoothManage.m */; };
 		1F63CD1E2297BA910061CF09 /* UIWebView+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD0F2297BA910061CF09 /* UIWebView+UIImage.m */; };
@@ -599,6 +613,34 @@
 		1F4013391E135767004E30B1 /* AddBankcCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBankcCardViewController.m; sourceTree = "<group>"; };
 		1F40133B1E1359DB004E30B1 /* pickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerView.h; sourceTree = "<group>"; };
 		1F40133C1E1359DB004E30B1 /* pickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerView.m; sourceTree = "<group>"; };
+		1F402916229FBBA40014769B /* SetBindingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBindingCell.m; sourceTree = "<group>"; };
+		1F402917229FBBA40014769B /* SetBindingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBindingCell.h; sourceTree = "<group>"; };
+		1F402919229FBC520014769B /* OrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsViewController.m; sourceTree = "<group>"; };
+		1F40291A229FBC520014769B /* OrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsViewController.h; sourceTree = "<group>"; };
+		1F40291C229FBCFE0014769B /* OrderDetailsFourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsFourCell.h; sourceTree = "<group>"; };
+		1F40291D229FBCFE0014769B /* OrderDetailsFourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsFourCell.m; sourceTree = "<group>"; };
+		1F40291E229FBCFE0014769B /* OrderDetailsPrintHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsPrintHeaderView.h; sourceTree = "<group>"; };
+		1F40291F229FBCFE0014769B /* OrderDetailsTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsTwoCell.m; sourceTree = "<group>"; };
+		1F402920229FBCFE0014769B /* OrderDetailsOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsOneCell.h; sourceTree = "<group>"; };
+		1F402921229FBCFE0014769B /* OrderDetailsFiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsFiveCell.m; sourceTree = "<group>"; };
+		1F402922229FBCFE0014769B /* OrderDetailsThreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsThreeCell.m; sourceTree = "<group>"; };
+		1F402923229FBCFE0014769B /* OrderDetailsPrintHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsPrintHeaderView.m; sourceTree = "<group>"; };
+		1F402924229FBCFE0014769B /* OrderDetailsBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsBaseCell.m; sourceTree = "<group>"; };
+		1F402925229FBCFF0014769B /* OrderDetailsSixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsSixCell.m; sourceTree = "<group>"; };
+		1F402926229FBCFF0014769B /* OrderDetailsThreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsThreeCell.h; sourceTree = "<group>"; };
+		1F402927229FBCFF0014769B /* OrderDetailsTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsTwoCell.h; sourceTree = "<group>"; };
+		1F402928229FBCFF0014769B /* OrderDetailsOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsOneCell.m; sourceTree = "<group>"; };
+		1F402929229FBCFF0014769B /* OrderDetailsBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsBaseCell.h; sourceTree = "<group>"; };
+		1F40292A229FBCFF0014769B /* OrderDetailsFiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsFiveCell.h; sourceTree = "<group>"; };
+		1F40292B229FBCFF0014769B /* OrderDetailsSixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsSixCell.h; sourceTree = "<group>"; };
+		1F402935229FBDAF0014769B /* RemotePushGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushGoodsModel.m; sourceTree = "<group>"; };
+		1F402936229FBDAF0014769B /* RemotePushApsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushApsModel.h; sourceTree = "<group>"; };
+		1F402937229FBDAF0014769B /* RemotePushOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushOrderModel.m; sourceTree = "<group>"; };
+		1F402938229FBDAF0014769B /* RemotePushListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushListModel.h; sourceTree = "<group>"; };
+		1F402939229FBDAF0014769B /* RemotePushGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushGoodsModel.h; sourceTree = "<group>"; };
+		1F40293A229FBDAF0014769B /* RemotePushApsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushApsModel.m; sourceTree = "<group>"; };
+		1F40293B229FBDAF0014769B /* RemotePushListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushListModel.m; sourceTree = "<group>"; };
+		1F40293C229FBDAF0014769B /* RemotePushOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushOrderModel.h; sourceTree = "<group>"; };
 		1F4FFBDE1F6634AD00FF3C39 /* CashOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashOnlineCell.h; sourceTree = "<group>"; };
 		1F4FFBDF1F6634AD00FF3C39 /* CashOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashOnlineCell.m; sourceTree = "<group>"; };
 		1F5A78531EA457A00060E9EE /* MessageNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNotificationViewController.h; sourceTree = "<group>"; };
@@ -622,21 +664,6 @@
 		1F63CCB8229536870061CF09 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		1F63CCBA229536870061CF09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F63CCC2229537630061CF09 /* HQJBusinessNotificationSercive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HQJBusinessNotificationSercive.entitlements; sourceTree = "<group>"; };
-		1F63CCC4229792E00061CF09 /* JWBluetoothBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWBluetoothBlocks.h; sourceTree = "<group>"; };
-		1F63CCC5229792E00061CF09 /* JWBluetoothManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWBluetoothManage.m; sourceTree = "<group>"; };
-		1F63CCC6229792E00061CF09 /* UIWebView+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+UIImage.m"; sourceTree = "<group>"; };
-		1F63CCC7229792E00061CF09 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
-		1F63CCC8229792E00061CF09 /* JWPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWPrinter.m; sourceTree = "<group>"; };
-		1F63CCCA229792E00061CF09 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		1F63CCCB229792E00061CF09 /* ProgressShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressShow.m; sourceTree = "<group>"; };
-		1F63CCCC229792E00061CF09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		1F63CCCD229792E00061CF09 /* ProgressShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressShow.h; sourceTree = "<group>"; };
-		1F63CCCE229792E00061CF09 /* UIWebView+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+UIImage.h"; sourceTree = "<group>"; };
-		1F63CCCF229792E00061CF09 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
-		1F63CCD0229792E00061CF09 /* JWBluetoothManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWBluetoothManage.h; sourceTree = "<group>"; };
-		1F63CCD1229792E00061CF09 /* JWPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWPrinter.h; sourceTree = "<group>"; };
-		1F63CCD9229793A70061CF09 /* BlueToothVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueToothVC.h; sourceTree = "<group>"; };
-		1F63CCDA229793A70061CF09 /* BlueToothVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueToothVC.m; sourceTree = "<group>"; };
 		1F63CD0C2297BA910061CF09 /* BlueToothVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueToothVC.m; sourceTree = "<group>"; };
 		1F63CD0D2297BA910061CF09 /* JWBluetoothBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWBluetoothBlocks.h; sourceTree = "<group>"; };
 		1F63CD0E2297BA910061CF09 /* JWBluetoothManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWBluetoothManage.m; sourceTree = "<group>"; };
@@ -1289,6 +1316,21 @@
 			name = ChildVC;
 			sourceTree = "<group>";
 		};
+		1F402934229FBDAF0014769B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F402935229FBDAF0014769B /* RemotePushGoodsModel.m */,
+				1F402936229FBDAF0014769B /* RemotePushApsModel.h */,
+				1F402937229FBDAF0014769B /* RemotePushOrderModel.m */,
+				1F402938229FBDAF0014769B /* RemotePushListModel.h */,
+				1F402939229FBDAF0014769B /* RemotePushGoodsModel.h */,
+				1F40293A229FBDAF0014769B /* RemotePushApsModel.m */,
+				1F40293B229FBDAF0014769B /* RemotePushListModel.m */,
+				1F40293C229FBDAF0014769B /* RemotePushOrderModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1F5DEFBD1E121D4A00AC1DF6 /* Trading */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1355,7 @@
 		1F63CCB6229536870061CF09 /* HQJBusinessNotificationSercive */ = {
 			isa = PBXGroup;
 			children = (
+				1F402934229FBDAF0014769B /* Model */,
 				1F63CD0B2297BA910061CF09 /* JWBluetoothPrinte */,
 				1F63CCC2229537630061CF09 /* HQJBusinessNotificationSercive.entitlements */,
 				201BE3EF229F73E100326500 /* ZGAudioManager.h */,
@@ -1343,51 +1386,21 @@
 			path = HQJBusinessNotificationSercive;
 			sourceTree = "<group>";
 		};
-		1F63CCC3229792E00061CF09 /* JWBluetoothPrinte */ = {
-			isa = PBXGroup;
-			children = (
-				1F63CCC4229792E00061CF09 /* JWBluetoothBlocks.h */,
-				1F63CCC5229792E00061CF09 /* JWBluetoothManage.m */,
-				1F63CCC6229792E00061CF09 /* UIWebView+UIImage.m */,
-				1F63CCC7229792E00061CF09 /* UIImage+Bitmap.h */,
-				1F63CCD1229792E00061CF09 /* JWPrinter.h */,
-				1F63CCC8229792E00061CF09 /* JWPrinter.m */,
-				1F63CCC9229792E00061CF09 /* JWProgressHUD */,
-				1F63CCCE229792E00061CF09 /* UIWebView+UIImage.h */,
-				1F63CCCF229792E00061CF09 /* UIImage+Bitmap.m */,
-				1F63CCD0229792E00061CF09 /* JWBluetoothManage.h */,
-				1F63CCD9229793A70061CF09 /* BlueToothVC.h */,
-				1F63CCDA229793A70061CF09 /* BlueToothVC.m */,
-			);
-			path = JWBluetoothPrinte;
-			sourceTree = "<group>";
-		};
-		1F63CCC9229792E00061CF09 /* JWProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				1F63CCCA229792E00061CF09 /* MBProgressHUD.m */,
-				1F63CCCB229792E00061CF09 /* ProgressShow.m */,
-				1F63CCCC229792E00061CF09 /* MBProgressHUD.h */,
-				1F63CCCD229792E00061CF09 /* ProgressShow.h */,
-			);
-			path = JWProgressHUD;
-			sourceTree = "<group>";
-		};
 		1F63CD0B2297BA910061CF09 /* JWBluetoothPrinte */ = {
 			isa = PBXGroup;
 			children = (
+				1F63CD172297BA910061CF09 /* BlueToothVC.h */,
 				1F63CD0C2297BA910061CF09 /* BlueToothVC.m */,
 				1F63CD0D2297BA910061CF09 /* JWBluetoothBlocks.h */,
+				1F63CD1A2297BA910061CF09 /* JWBluetoothManage.h */,
 				1F63CD0E2297BA910061CF09 /* JWBluetoothManage.m */,
+				1F63CD182297BA910061CF09 /* UIWebView+UIImage.h */,
 				1F63CD0F2297BA910061CF09 /* UIWebView+UIImage.m */,
 				1F63CD102297BA910061CF09 /* UIImage+Bitmap.h */,
+				1F63CD192297BA910061CF09 /* UIImage+Bitmap.m */,
+				1F63CD1B2297BA910061CF09 /* JWPrinter.h */,
 				1F63CD112297BA910061CF09 /* JWPrinter.m */,
 				1F63CD122297BA910061CF09 /* JWProgressHUD */,
-				1F63CD172297BA910061CF09 /* BlueToothVC.h */,
-				1F63CD182297BA910061CF09 /* UIWebView+UIImage.h */,
-				1F63CD192297BA910061CF09 /* UIImage+Bitmap.m */,
-				1F63CD1A2297BA910061CF09 /* JWBluetoothManage.h */,
-				1F63CD1B2297BA910061CF09 /* JWPrinter.h */,
 			);
 			path = JWBluetoothPrinte;
 			sourceTree = "<group>";
@@ -1578,6 +1591,8 @@
 		1F960C8E1DFE3D06003E3D17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F402917229FBBA40014769B /* SetBindingCell.h */,
+				1F402916229FBBA40014769B /* SetBindingCell.m */,
 				1F63CC4D2293AA7C0061CF09 /* SetCell.h */,
 				1F63CC4E2293AA7D0061CF09 /* SetCell.m */,
 				1F40133B1E1359DB004E30B1 /* pickerView.h */,
@@ -1654,6 +1669,8 @@
 		1F960C911DFE3D06003E3D17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F40291A229FBC520014769B /* OrderDetailsViewController.h */,
+				1F402919229FBC520014769B /* OrderDetailsViewController.m */,
 				1F960C921DFE3D06003E3D17 /* OrderViewController.h */,
 				1F960C931DFE3D06003E3D17 /* OrderViewController.m */,
 				1F25DBEB1E10E6F6004DC19F /* ChildVC */,
@@ -1675,6 +1692,22 @@
 		1F960C951DFE3D06003E3D17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F402929229FBCFF0014769B /* OrderDetailsBaseCell.h */,
+				1F402924229FBCFE0014769B /* OrderDetailsBaseCell.m */,
+				1F40292A229FBCFF0014769B /* OrderDetailsFiveCell.h */,
+				1F402921229FBCFE0014769B /* OrderDetailsFiveCell.m */,
+				1F40291C229FBCFE0014769B /* OrderDetailsFourCell.h */,
+				1F40291D229FBCFE0014769B /* OrderDetailsFourCell.m */,
+				1F402920229FBCFE0014769B /* OrderDetailsOneCell.h */,
+				1F402928229FBCFF0014769B /* OrderDetailsOneCell.m */,
+				1F40291E229FBCFE0014769B /* OrderDetailsPrintHeaderView.h */,
+				1F402923229FBCFE0014769B /* OrderDetailsPrintHeaderView.m */,
+				1F40292B229FBCFF0014769B /* OrderDetailsSixCell.h */,
+				1F402925229FBCFF0014769B /* OrderDetailsSixCell.m */,
+				1F402926229FBCFF0014769B /* OrderDetailsThreeCell.h */,
+				1F402922229FBCFE0014769B /* OrderDetailsThreeCell.m */,
+				1F402927229FBCFF0014769B /* OrderDetailsTwoCell.h */,
+				1F40291F229FBCFE0014769B /* OrderDetailsTwoCell.m */,
 				1FE09F341FDFBB0300919590 /* HQJBusinessAlertView.h */,
 				1FE09F331FDFBB0300919590 /* HQJBusinessAlertView.m */,
 				1F25DC0A1E11034C004DC19F /* OrderOneCell.h */,
@@ -1746,7 +1779,6 @@
 		1F960CAC1DFE3E51003E3D17 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				1F63CCC3229792E00061CF09 /* JWBluetoothPrinte */,
 				1F12F6D91E16323B0056DF9A /* AliPay */,
 				1F046D0F1E090DAA006D6EB2 /* SGSegmentedControl */,
 				1F20CB281E07875F00FC91B3 /* CALScanQRCode */,
@@ -2346,7 +2378,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
@@ -2383,7 +2415,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2397,6 +2429,10 @@
 				1F63CD212297BA910061CF09 /* ProgressShow.m in Sources */,
 				1F63CD222297BA910061CF09 /* UIImage+Bitmap.m in Sources */,
 				1F63CD1D2297BA910061CF09 /* JWBluetoothManage.m in Sources */,
+				1F402940229FBDAF0014769B /* RemotePushListModel.m in Sources */,
+				1F40293F229FBDAF0014769B /* RemotePushApsModel.m in Sources */,
+				1F40293E229FBDAF0014769B /* RemotePushOrderModel.m in Sources */,
+				1F40293D229FBDAF0014769B /* RemotePushGoodsModel.m in Sources */,
 				1F63CD202297BA910061CF09 /* MBProgressHUD.m in Sources */,
 				201BE3F3229F73EB00326500 /* ZGAudioManager.m in Sources */,
 				1F63CCB9229536870061CF09 /* NotificationService.m in Sources */,
@@ -2409,7 +2445,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F63CCDB229793A70061CF09 /* BlueToothVC.m in Sources */,
 				1F12F7511E1635FE0056DF9A /* openssl_wrapper.m in Sources */,
 				1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */,
 				1F960D2B1DFE3E51003E3D17 /* NSOrderedSet+BlocksKit.m in Sources */,
@@ -2445,8 +2480,8 @@
 				1F1B21F11E00F34100021AB2 /* CustomerViewModel.m in Sources */,
 				1F960D281DFE3E51003E3D17 /* NSObject+BKAssociatedObjects.m in Sources */,
 				1F960D441DFE3E51003E3D17 /* ZWNavigationController.m in Sources */,
-				1F63CCD4229792E80061CF09 /* JWPrinter.m in Sources */,
 				1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */,
+				1F402911229FBA230014769B /* UIWebView+UIImage.m in Sources */,
 				1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */,
 				1F25DC0C1E11034C004DC19F /* OrderOneCell.m in Sources */,
 				1F046D231E090DAA006D6EB2 /* SGSegmentedControlBottomView.m in Sources */,
@@ -2454,10 +2489,10 @@
 				1F960D321DFE3E51003E3D17 /* NSObject+A2BlockDelegate.m in Sources */,
 				1F960D391DFE3E51003E3D17 /* UIAlertView+BlocksKit.m in Sources */,
 				1F3949F81E0D1D1100A3662D /* CashChangeVC.m in Sources */,
+				1F40292F229FBCFF0014769B /* OrderDetailsThreeCell.m in Sources */,
 				1F960D221DFE3E51003E3D17 /* NSMutableArray+BlocksKit.m in Sources */,
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
-				1F63CCD7229792E80061CF09 /* UIImage+Bitmap.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
@@ -2466,15 +2501,18 @@
 				1F046D421E092E07006D6EB2 /* MyListTableViewCell.m in Sources */,
 				1F1B21DF1E00CB7000021AB2 /* ZW_ViewController.m in Sources */,
 				1F046CDB1E090769006D6EB2 /* BonusViewController.m in Sources */,
+				1F402933229FBCFF0014769B /* OrderDetailsOneCell.m in Sources */,
 				1F960D301DFE3E51003E3D17 /* NSCache+BlocksKit.m in Sources */,
 				1FA6A9EC1F7F971600F2C945 /* AddPaymentCodeViewController.m in Sources */,
 				1F046CD81E090747006D6EB2 /* CashWithdrawViewController.m in Sources */,
 				1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */,
 				1F1B21D21DFFE30F00021AB2 /* CashSalesViewController.m in Sources */,
+				1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */,
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,
 				1FEAF03C1F7B7CF9004E2F77 /* PaymentCodeViewController.m in Sources */,
 				1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */,
 				1F960D2A1DFE3E51003E3D17 /* NSObject+BKBlockObservation.m in Sources */,
+				1F40292E229FBCFF0014769B /* OrderDetailsFiveCell.m in Sources */,
 				1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */,
 				1F12C9F61E0BB60F00CF6CB7 /* ChangeTradePswViewController.m in Sources */,
 				1F1B21F71E0117C900021AB2 /* ZW_TextField.m in Sources */,
@@ -2482,6 +2520,7 @@
 				1F5A785E1EA4B5580060E9EE /* MessageNotificationModel.m in Sources */,
 				1F046D2C1E091659006D6EB2 /* ToAuditViewModel.m in Sources */,
 				1F3949FB1E0D1D2A00A3662D /* BonusBuyZHVC.m in Sources */,
+				1F40292D229FBCFF0014769B /* OrderDetailsTwoCell.m in Sources */,
 				1F12F7501E1635FE0056DF9A /* NSDataEx.m in Sources */,
 				1F960D451DFE3E51003E3D17 /* NullSafe.m in Sources */,
 				1F960D3F1DFE3E51003E3D17 /* UIPopoverController+BlocksKit.m in Sources */,
@@ -2489,7 +2528,6 @@
 				1F40133A1E135767004E30B1 /* AddBankcCardViewController.m in Sources */,
 				1F2E0B4B1EC99EED0072FDDD /* LoginSingleton.m in Sources */,
 				1F20CB211E0772F100FC91B3 /* SetZHModel.m in Sources */,
-				1F63CCD5229792E80061CF09 /* MBProgressHUD.m in Sources */,
 				1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */,
 				1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
@@ -2501,7 +2539,10 @@
 				1F12F74C1E1635FE0056DF9A /* Order.m in Sources */,
 				1F960D4A1DFE3E51003E3D17 /* ToolView.m in Sources */,
 				1F36C9351F4599B000A47738 /* OrderTableViewHeader.m in Sources */,
+				1F402913229FBA2C0014769B /* MBProgressHUD.m in Sources */,
+				1F402914229FBA2E0014769B /* ProgressShow.m in Sources */,
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
+				1F402931229FBCFF0014769B /* OrderDetailsBaseCell.m in Sources */,
 				1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */,
 				1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */,
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
@@ -2523,6 +2564,7 @@
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
+				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
@@ -2539,6 +2581,7 @@
 				1F20CB271E07837800FC91B3 /* ConsumerCodeVerificationViewController.m in Sources */,
 				1F960D2E1DFE3E51003E3D17 /* A2BlockInvocation.m in Sources */,
 				1F046D3C1E091AD3006D6EB2 /* MyListModel.m in Sources */,
+				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
 				1F3949EC1E0D16C200A3662D /* DetailViewModel.m in Sources */,
@@ -2546,20 +2589,22 @@
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
 				1F394A011E0D224500A3662D /* DetailCell.m in Sources */,
 				1F960D181DFE3E51003E3D17 /* FileEngine.m in Sources */,
-				1F63CCD2229792E80061CF09 /* JWBluetoothManage.m in Sources */,
 				1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */,
 				1F046D251E090DAA006D6EB2 /* SGSegmentedControlStatic.m in Sources */,
-				1F63CCD3229792E80061CF09 /* UIWebView+UIImage.m in Sources */,
+				1F402918229FBBA40014769B /* SetBindingCell.m in Sources */,
 				1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */,
 				1F3949EF1E0D1C9000A3662D /* BonusDealVC.m in Sources */,
 				1F960D231DFE3E51003E3D17 /* NSMutableDictionary+BlocksKit.m in Sources */,
+				1F402930229FBCFF0014769B /* OrderDetailsPrintHeaderView.m in Sources */,
 				1FB3DEBF1E03902800F670EC /* WTReParser.m in Sources */,
 				1F960D211DFE3E51003E3D17 /* NSMapTable+BlocksKit.m in Sources */,
 				1F960D1E1DFE3E51003E3D17 /* NSDictionary+BlocksKit.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
+				1F40292C229FBCFF0014769B /* OrderDetailsFourCell.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
+				1F402932229FBCFF0014769B /* OrderDetailsSixCell.m in Sources */,
 				1F046CDE1E090795006D6EB2 /* ZHProportionViewController.m in Sources */,
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
@@ -2573,13 +2618,14 @@
 				1F960D381DFE3E51003E3D17 /* UIActionSheet+BlocksKit.m in Sources */,
 				1FFA99C21E1F752100E9FB1D /* GlobeConst.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
-				1F63CCD6229792E80061CF09 /* ProgressShow.m in Sources */,
 				1F046CD21E0906F2006D6EB2 /* allViewController.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,
 				1F12F74F1E1635FE0056DF9A /* MD5DataSigner.m in Sources */,
 				1F12C9F31E0BA8E500CF6CB7 /* ChangePswViewModel.m in Sources */,
+				1F40291B229FBC520014769B /* OrderDetailsViewController.m in Sources */,
 				1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */,
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
+				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
