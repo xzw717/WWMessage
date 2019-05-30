@@ -18,12 +18,14 @@
 @interface OrderBaseVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) OrderViewModel *viewModel;
+@property (nonatomic, strong) NSString *typeStr;
 @end
 
 @implementation OrderBaseVC
 
 
 - (void)requstType:(NSString *)type andPage:(NSString *)page {
+    self.typeStr = type;
     [self.viewModel orderRequstWithPage:[page integerValue] andType: [type integerValue] andReturnBlock:^(NSArray *sender) {
         if (0 == [page integerValue]) {
             [self.listArray  removeAllObjects];
@@ -215,6 +217,10 @@ DZNEmptyDataSetDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.typeStr isEqualToString:@"1"]) {
+        OrderModel *model = self.listArray[indexPath.section];
+        !self.selectRowBlock ? : self.selectRowBlock(model);
+    }
  
 }
 

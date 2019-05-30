@@ -93,6 +93,8 @@ static JWBluetoothManage * manage = nil;
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI{
     NSLog(@"扫描中....");
+    if ([peripheral.name containsString:@"inter"]) {
+
     if (peripheral.name.length <= 0) {
         return ;
     }
@@ -115,6 +117,7 @@ static JWBluetoothManage * manage = nil;
             [_peripherals addObject:peripheral];
             [_rssis addObject:RSSI];
         }
+    
     }
     if (_scanPerpheralSuccess) {
         _scanPerpheralSuccess(_peripherals,_rssis);
@@ -126,6 +129,7 @@ static JWBluetoothManage * manage = nil;
             peripheral.delegate = self;
             [_centralManager connectPeripheral:peripheral options:nil];
         }
+    }
     }
 }
 #pragma mark - 连接外设 Medthod
@@ -231,6 +235,16 @@ static JWBluetoothManage * manage = nil;
         _stage = JWScanStageCharacteristics;
     }
 }
+
+- (void)jwstart
+{
+    for (CBPeripheral *peripheral in self.peripherals) {
+        /**
+         *  连接外设
+         */
+        [self.centralManager connectPeripheral:peripheral options:nil];
+    }
+}
 #pragma mark 写入数据  跟block
 // 发送数据时，需要分段的长度，部分打印机一次发送数据过长就会乱码，需要分段发送。这个长度值不同的打印机可能不一样，你需要调试设置一个合适的值（最好是偶数）
 #define kLimitLength    146
@@ -320,13 +334,13 @@ static JWBluetoothManage * manage = nil;
 }
 
 NSString * GetLastConnectionPeripheral_UUID(){
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
     NSString *uuid = [userDefaults objectForKey:@"BluetoothPeripheral_uuid"];
     return uuid;
 }
 
 void SetLastConnectionPeripheral_UUID(NSString * uuid){
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
     [userDefaults setObject:uuid forKey:@"BluetoothPeripheral_uuid"];
     [userDefaults synchronize];
 }

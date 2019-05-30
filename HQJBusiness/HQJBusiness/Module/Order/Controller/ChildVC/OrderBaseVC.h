@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class  OrderModel;
 @interface OrderBaseVC : UIViewController
 @property (nonatomic,assign) NSInteger  page;
 
@@ -20,5 +20,9 @@
 
 @property (nonatomic,strong)UITableView * tableView;
 
+
+@property (nonatomic, copy ) void(^selectRowBlock)(OrderModel *model);
 -(void)requstType:(NSString *)type andPage:(NSString *)page;
+
+
 @end

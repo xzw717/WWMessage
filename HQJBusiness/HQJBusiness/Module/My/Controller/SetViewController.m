@@ -15,6 +15,8 @@
 #import "PaymentCodeViewController.h"
 #import "AppDelegate.h"
 #import "SetCell.h"
+#import "BlueToothVC.h"
+#import "SetBindingCell.h"
 
 @interface SetViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *setTableView;
@@ -84,10 +86,20 @@
         return cell;
 
     } else if (indexPath.section == 1) {
+      
         SetCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetCell class]) forIndexPath:indexPath];
         cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
         if (indexPath.row == 0) {
+            SetBindingCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetBindingCell class]) forIndexPath:indexPath];
+            cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.isHiddenLabel = ![BindingEquipment isEqualToString:@"连接成功"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            return cell;
+        }
+        if (indexPath.row == 1) {
 
             if ([userDefaults objectForKey:@"AutomaticallyPrintOrders"] == nil) {
                 cell.setSwitch.on = NO;
@@ -188,6 +200,12 @@
 
         }
         
+    } else if (indexPath.section == 1 && indexPath.row == 0) {
+//        if (![BindingEquipment isEqualToString:@"连接成功"]) {
+        
+            BlueToothVC * vc =[[BlueToothVC alloc]init];
+            [self presentViewController:vc animated:YES completion:nil];
+//        }
     } else if (indexPath.section== 2) {
         
         if (indexPath.row != 2) {
@@ -278,7 +296,8 @@
         }
      
     } else if (index == 1) {
-        return @[@"自动打印订单",
+        return @[@"绑定打印设备",
+                 @"自动打印订单",
                  @"新订单语音提醒",
                  @"收钱到账语音提醒"];
     } else if (index == 2) {
@@ -313,6 +332,8 @@
         _setTableView.sectionHeaderHeight = 2;
         [_setTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
         [_setTableView registerClass:[SetCell class] forCellReuseIdentifier:NSStringFromClass([SetCell class])];
+        [_setTableView registerClass:[SetBindingCell class] forCellReuseIdentifier:NSStringFromClass([SetBindingCell class])];
+
 
         _setTableView.tableFooterView = [UIView new];
         

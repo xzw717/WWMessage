@@ -7,7 +7,7 @@
 //
 
 #import "GoodsOrderVC.h"
-
+#import "OrderDetailsViewController.h"
 @interface GoodsOrderVC ()
 
 @end
@@ -18,7 +18,12 @@
     [super viewDidLoad];
     self.type = @"1";
     [self requstType:@"1" andPage:@"0"];
-
+    @weakify(self);
+    [self setSelectRowBlock:^(OrderModel *model) {
+        @strongify(self);
+        OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 

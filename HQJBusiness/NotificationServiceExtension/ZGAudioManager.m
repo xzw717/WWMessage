@@ -47,7 +47,7 @@
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
     NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
     NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
-    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
+//    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
     
     NSArray *fileNameArray;
     if ([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {

@@ -67,9 +67,10 @@
 
     self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,64 - 44).heightIs(44).widthIs(44);
     self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, kNAVHEIGHT - 0.5);
+    @weakify(self);
     [self.zwBackButton bk_addEventHandler:^(id  _Nonnull sender) {
         
-        if (_viewControllerName) {
+        if (self.viewControllerName) {
             
             
             for (UIViewController* v in self.navigationController.viewControllers) {
@@ -83,8 +84,12 @@
             
         
         } else {
-            
-            [self.navigationController popViewControllerAnimated:YES];
+            if (self.navigationController.viewControllers && self.navigationController.viewControllers.count > 0) {
+                [self.navigationController popViewControllerAnimated:YES];
+
+            } else {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         
         }
         

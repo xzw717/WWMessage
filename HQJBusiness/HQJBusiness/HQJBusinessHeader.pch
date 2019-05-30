@@ -135,10 +135,12 @@
 
 
 ///收钱到账语音提醒是否已经开启
-#define CollectMoney [[NSUserDefaults standardUserDefaults] objectForKey:@"CollectMoney"]
+#define CollectMoney [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"CollectMoney"]
 /// 新订单语音提醒是否已经开启
-#define NewOrder  [[NSUserDefaults standardUserDefaults] objectForKey:@"newOrder"]
+#define NewOrder  [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"newOrder"]
 /// 自动打印订单
-#define AutomaticallyPrintOrders  [[NSUserDefaults standardUserDefaults] objectForKey:@"AutomaticallyPrintOrders"]
+#define AutomaticallyPrintOrders  [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"AutomaticallyPrintOrders"]
+/// 自动打印订单
+#define BindingEquipment  [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"BluetoothState"]
 
 #endif /* HQJBusinessHeader_pch */
