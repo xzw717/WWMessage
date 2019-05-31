@@ -10,9 +10,38 @@
 #import "MBProgressHUD.h"
 
 @implementation ProgressShow
-
++(void)alertView:(UIView *)view Message:(NSString*)msg asy:(AfterCompletion)completion {
+    MBProgressHUD *HUD = (MBProgressHUD *)[view viewWithTag:8013];
+    if(!HUD){
+        HUD =  [[MBProgressHUD alloc] initWithView:view];
+        
+        HUD.tag = 8013;
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        [view addSubview:HUD];
+        HUD.removeFromSuperViewOnHide = YES;
+        HUD.contentColor = [UIColor whiteColor];
+        HUD.bezelView.color = [UIColor blackColor];
+    }
+    HUD.label.text = msg;
+    [HUD showAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [HUD hideAnimated:YES afterDelay:3.f];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if(completion){
+                completion();
+            }
+        });
+       
+    });
+}
 
 +(void)alertView:(UIView *)view Message:(NSString*)msg cb:(ALertCompletion) completion{
+    
+     MBProgressHUD *HUDs = (MBProgressHUD *)[view viewWithTag:8013];
+    if (HUDs) {
+        [HUDs hideAnimated:YES];
+        
+    }
     MBProgressHUD *HUD = (MBProgressHUD *)[view viewWithTag:8012];
     if(!HUD){
         HUD =  [[MBProgressHUD alloc] initWithView:view];
@@ -54,6 +83,7 @@
             break;
         case CBManagerStatePoweredOff:
             tempStr = @"蓝牙关闭";
+            
             break;
         default:
             break;

@@ -217,11 +217,11 @@ DZNEmptyDataSetDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.typeStr isEqualToString:@"1"]) {
-        OrderModel *model = self.listArray[indexPath.section];
+   
+    OrderModel *model = self.listArray[indexPath.section];
+    if (model.type == 1) {
         !self.selectRowBlock ? : self.selectRowBlock(model);
     }
- 
 }
 
 

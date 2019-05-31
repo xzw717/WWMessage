@@ -94,7 +94,8 @@
             SetBindingCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetBindingCell class]) forIndexPath:indexPath];
             cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.isHiddenLabel = ![BindingEquipment isEqualToString:@"连接成功"];
+            HQJLog(@"绑定状态 ：%@",BindingEquipment);
+            cell.isHiddenLabel = ![BindingEquipment isEqualToString:@"绑定成功"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
             return cell;
@@ -113,7 +114,7 @@
                 [self setUserDefaults:switchBlock userKey:@"AutomaticallyPrintOrders"];
                 HQJLog(@"自动打印订单：%@",switchBlock ? @"开启" : @"关闭");
             }];
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == 2) {
             if ([userDefaults objectForKey:@"newOrder"] == nil) {
                 cell.setSwitch.on = YES;
 
@@ -127,7 +128,7 @@
                 HQJLog(@"新订单语音提醒：%@",switchBlock ? @"开启" : @"关闭");
 
             }];
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 3) {
             if ([userDefaults objectForKey:@"CollectMoney"] == nil) {
                 cell.setSwitch.on = YES;
 
@@ -324,7 +325,7 @@
     if (!_setTableView) {
     
         _setTableView = [[UITableView alloc]init];
-        _setTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT);
+        _setTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT);
         _setTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _setTableView.delegate = self;
         

@@ -449,7 +449,7 @@
     
     if (right) {
 //        [self hqj_setOffset:250 + offset];
-        CGFloat a;
+        CGFloat a = 0.f;
         if (right.length == 4) {
             a = 310;
         }

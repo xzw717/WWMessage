@@ -146,15 +146,22 @@ static JWBluetoothManage * manage = nil;
     [_centralManager connectPeripheral:peripheral options:nil];
     peripheral.delegate = self;
 }
-- (void)autoConnectLastPeripheralCompletion:(JWConnectPeripheralCompletion)completion{
+- (void)autoConnectLastPeripheralCompletion:(JWConnectPeripheralCompletion)completion {
+    [self autoConnectLastPeripheralCompletion:completion stateCompletion:nil];
+}
+
+
+- (void)autoConnectLastPeripheralCompletion:(JWConnectPeripheralCompletion)completion stateCompletion:(JWScanPeripheralFailure)failure {
     _connectCompletion = completion;
+    _scanPerpheralFailure = failure;
     _autoConnect = YES;
-    
     if (_centralManager.state == CBManagerStatePoweredOn) {
         //开启搜索
         NSLog(@"开启扫描");
         [_centralManager scanForPeripheralsWithServices:nil options:nil];
     }
+    
+ 
     
 }
 - (void)cancelPeripheralConnection:(CBPeripheral *)peripheral{

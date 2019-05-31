@@ -37,6 +37,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.centerY.mas_equalTo(self.contentView);
+        make.width.mas_equalTo(43);
     }];
     [self.copysButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
@@ -53,6 +54,7 @@
     [self.orderNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.verticalLineView.mas_left).mas_offset(-15);
         make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(15);
     }];
    
     [super updateConstraints];

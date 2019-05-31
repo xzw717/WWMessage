@@ -8,7 +8,7 @@
 
 #import "BlueToothVC.h"
 #import "JWBluetoothManage.h"
-
+#import "MBProgressHUD.h"
 @interface BlueToothVC () <UITableViewDataSource,UITableViewDelegate>{
     JWBluetoothManage * manage;
 }
@@ -48,6 +48,7 @@
 
 }
 - (void)backItemClick {
+    [manage stopScanPeripheral];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)printe{
@@ -108,6 +109,7 @@
         if (!error) {
             [ProgressShow alertView:self.view Message:@"连接成功！" cb:nil];
             weakSelf.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定成功" forKey:@"BluetoothState"];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });
@@ -143,10 +145,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CBPeripheral *peripheral = [self.dataSource objectAtIndex:indexPath.row];
+    [ProgressShow alertView:self.view Message:@"连接中..." asy:^{
+        NSString *bistate = [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"BluetoothState"];
+        if (![bistate isEqualToString:@"绑定成功"]) {
+            [ProgressShow alertView:self.view Message:@"此打印机已有别的设备连接" cb:nil];
+        }
+    }];
     [manage connectPeripheral:peripheral completion:^(CBPeripheral *perpheral, NSError *error) {
         if (!error) {
             [ProgressShow alertView:self.view Message:@"连接成功！" cb:nil];
             self.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定成功" forKey:@"BluetoothState"];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [tableView reloadData];
             });

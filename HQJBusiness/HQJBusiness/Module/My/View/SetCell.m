@@ -33,7 +33,7 @@
     }
     return _setSwitch;
 }
-- (void) swChange:(UISwitch*) sw{
+- (void)swChange:(UISwitch*) sw{
     !self.clickSwitchBlock ? : self.clickSwitchBlock(sw.on);
 }
 

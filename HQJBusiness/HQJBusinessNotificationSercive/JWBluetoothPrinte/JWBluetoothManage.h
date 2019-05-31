@@ -15,8 +15,12 @@
 @interface JWBluetoothManage : NSObject
 //单例方法
 + (instancetype)sharedInstance;
-- (void)jwstart;
+
 @property (nonatomic, strong,readonly)CBPeripheral                *connectedPerpheral;    //  当前连接的外设蓝牙
+
+@property (nonatomic, strong) void(^CBCentralStateBlock)(NSString *centralState);
+
+
 
 /**
  开始扫描蓝牙外设，block方式返回结果
@@ -41,6 +45,9 @@
  @param completion 连接成功回调(有成功 跟失败判断error是否为空就可以了)
  */
 - (void)autoConnectLastPeripheralCompletion:(JWConnectPeripheralCompletion)completion;
+
+///自动连接 ，可知蓝牙状态的
+- (void)autoConnectLastPeripheralCompletion:(JWConnectPeripheralCompletion)completion stateCompletion:(JWScanPeripheralFailure)failure;
 
 /**
   需要判断JWScanStage来进行打印，如果只是连接 不需要关心，

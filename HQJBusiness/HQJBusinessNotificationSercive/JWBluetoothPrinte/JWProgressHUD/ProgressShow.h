@@ -11,6 +11,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 typedef void (^ALertCompletion)(BOOL compliont);
+typedef void (^AfterCompletion)(void);
 
 @interface ProgressShow : NSObject
 
@@ -18,6 +19,6 @@ typedef void (^ALertCompletion)(BOOL compliont);
 +(void)alertView:(UIView *)view Message:(NSString*)msg cb:(ALertCompletion) completion;
 
 + (NSString *)getBluetoothErrorInfo:(CBManagerState)status;
-
++(void)alertView:(UIView *)view Message:(NSString*)msg asy:(AfterCompletion)completion;
 
 @end
