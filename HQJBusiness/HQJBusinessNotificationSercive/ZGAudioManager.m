@@ -55,7 +55,7 @@
         audioFiles =  [self playMoneyReceived:amount];
     }
     if ([newOrder isEqualToString:@"开"] && itype == 3) {
-        audioFiles = @[@"wwm_default"];
+        audioFiles = @[@"wwm_default.mp3"];
     }
     if (audioFiles.count>0) {
         audioIndex = 0 ;
