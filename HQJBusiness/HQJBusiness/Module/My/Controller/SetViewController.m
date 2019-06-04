@@ -18,6 +18,8 @@
 #import "BlueToothVC.h"
 #import "SetBindingCell.h"
 
+#import "JPUSHService.h"
+
 @interface SetViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *setTableView;
 @property (nonatomic,strong)NSArray *titleAry;
@@ -260,6 +262,11 @@
     [FileEngine fileRemove:fileDefaultStyle];  // ---手机号等信息
     [FileEngine fileRemove:fileHomeDataStyle];  // -- 积分信息
     [FileEngine fileRemove:filePathlocationStyle]; // --- 用户类型
+    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        
+    } seq:1];
+    
+    
     
 }
 - (void)viewDidLoad {

@@ -12,6 +12,9 @@
 #import "ChangeTradePswViewController.h"
 #import "TabbarManager.h"
 #import "AppDelegate.h"
+// 引入 JPush 功能所需头文件
+#import "JPUSHService.h"
+
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -387,7 +390,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                     
                     [self.loginBtn setTitle:@"登录成功" forState:UIControlStateNormal];
                     
-                    
+                    [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                        
+                    } seq:1];
                 } completion:^(BOOL finished) {
                     for (UIView *view in self.view.subviews) {
                         view.alpha = 0;
