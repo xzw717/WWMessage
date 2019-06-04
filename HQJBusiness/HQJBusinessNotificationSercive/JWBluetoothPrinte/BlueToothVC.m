@@ -51,57 +51,7 @@
     [manage stopScanPeripheral];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)printe{
-    if (manage.stage != JWScanStageCharacteristics) {
-        [ProgressShow alertView:self.view Message:@"打印机正在准备中..." cb:nil];
-        return;
-    }
-    JWPrinter *printer = [[JWPrinter alloc] init];
-    NSString *str1 = @"物物地图";
-    NSString *str2 = @"Wuwu Map";
-    NSString *str3 = @"订单详情";
-    [printer appendText:str1 alignment:HLTextAlignmentCenter];
-    [printer appendText:str2 alignment:HLTextAlignmentCenter];
-    [printer appendText:str3 alignment:HLTextAlignmentCenter];
-    [printer appendSeperatorLine];
-    
-    [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
-    [printer appendText:@"130******890" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
-    [printer appendSeperatorLine];
-    
-    [printer appendText:@"订单详情" alignment:HLTextAlignmentLeft];
-    [printer appendLeftText:@"假装我是一个方便面" middleText:@"x109" rightText:@"99999.99" isTitle:NO];
-    //    [printer appendNewLine];
-    
-    [printer appendLeftText:@"飞流直下三千尺，疑似银河落九天999999999999999999999999999999999999" middleText:@"x109" rightText:@"889.99" isTitle:NO];
-    //    [printer appendNewLine];
-    
-    [printer appendLeftText:@"上海许氏专用订单一条" middleText:@"x109" rightText:@"9.09" isTitle:NO];
-    //    [printer appendNewLine];
-    
-    [printer appendLeftText:@"许某人爱喝的可口可乐" middleText:@"x109" rightText:@"9999.99" isTitle:NO];
-    
-    [printer appendSeperatorLine];
-    
-    [printer appendTitle:@"总计商品数" value:@"2"];
-    [printer appendTitle:@"金    额" value:@"￥1000"];
-    
-    [printer appendSeperatorLine];
-    [printer appendTitle:@"订单编号" value:@"MS1234567890"];
-    [printer appendTitle:@"下单时间" value:@"2017-06-14"];
-    [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
-    [printer appendNewLine];
-    [printer appendNewLine];
-    [printer appendNewLine];
-    NSData *mainData = [printer getFinalData];
-    [[JWBluetoothManage sharedInstance] sendPrintData:mainData completion:^(BOOL completion, CBPeripheral *connectPerpheral,NSString *error) {
-        if (completion) {
-            NSLog(@"打印成功");
-        }else{
-            NSLog(@"写入错误---:%@",error);
-        }
-    }];
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     WeakSelf
     [super viewWillAppear:animated];
