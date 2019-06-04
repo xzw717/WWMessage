@@ -40,19 +40,7 @@
     
     if (section > 2) return 1;
     return [self setindexAry:section].count;
-    
-    
-    
-//    if (section == 0) {
-//        return 3;
-//    } else if (section == 1) {
-//
-//        return 3;
-//    } else {
-//
-//        return 1;
-//
-//    }
+
     
 }
 
@@ -160,7 +148,11 @@
         }
         return cell;
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+        static NSString *cellID = @"logout";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+            }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         CellLine(cell);
         
