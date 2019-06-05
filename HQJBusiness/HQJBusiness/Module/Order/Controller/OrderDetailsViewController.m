@@ -122,7 +122,7 @@
             OrderDetailsThreeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsThreeCell class])];
             GoodsModel *d_mdoel = self.dataModel.goodslist [indexPath.row - 1];
 
-            [cell goodsImage:d_mdoel.mainpicture goodsName:d_mdoel.goodsname goodsCount:d_mdoel.goodscount goodsPrice:d_mdoel.goodsprice];
+            [cell goodsImage:d_mdoel.mainpicture goodsName:d_mdoel.goodsname goodsCount:d_mdoel.goodscount goodsPrice:d_mdoel.goodsprice * d_mdoel.goodscount];
             if (indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 2) {
                 [cell hiddenLiane:YES];
             } else {
@@ -236,24 +236,15 @@
     [printer appendText:@"订单详情" alignment:HLTextAlignmentLeft];
     NSInteger icount = 0 ;
     for (GoodsModel *goodsmdoel in self.dataModel.goodslist) {
-        [printer appendLeftText:goodsmdoel.goodsname middleText:[NSString stringWithFormat:@"x%ld",goodsmdoel.goodscount] rightText:[NSString stringWithFormat:@"%.2f",goodsmdoel.goodsprice] isTitle:NO];
+        [printer appendLeftText:goodsmdoel.goodsname middleText:[NSString stringWithFormat:@"x%ld",(long)goodsmdoel.goodscount] rightText:[NSString stringWithFormat:@"%.2f",goodsmdoel.goodsprice * goodsmdoel.goodscount] isTitle:NO];
         icount = icount + goodsmdoel.goodscount;
         
     }
-    //    [printer appendNewLine];
-    
-    //    [printer appendLeftText:@"飞流直下三千尺，疑似银河落九天999999999999999999999999999999999999" middleText:@"x109" rightText:@"889.99" isTitle:NO];
-    //    [printer appendNewLine];
-    
-    //    [printer appendLeftText:@"上海许氏专用订单一条" middleText:@"x109" rightText:@"9.09" isTitle:NO];
-    //    [printer appendNewLine];
-    
-    //    [printer appendLeftText:@"许某人爱喝的可口可乐" middleText:@"x109" rightText:@"9999.99" isTitle:NO];
     
     [printer appendSeperatorLine];
     
     [printer appendTitle:@"总计商品数" value:[NSString stringWithFormat:@"%ld",icount]];
-    [printer appendTitle:@"金    额" value:[NSString stringWithFormat:@"￥%.2f",self.dataModel.price]];
+    [printer appendTitle:@"金    额" value:[NSString stringWithFormat:@"%.2f",self.dataModel.price]];
     
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:[NSString stringWithFormat:@"%@",self.dataModel.nid]];

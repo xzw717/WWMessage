@@ -106,11 +106,11 @@ static JWBluetoothManage * manage = nil;
         __block BOOL isExist = NO;
         //去除相同设备  UUIDString  是每个外设的唯一标识
         [_peripherals enumerateObjectsUsingBlock:^(CBPeripheral *   _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            CBPeripheral *per = [_peripherals objectAtIndex:idx];
+            CBPeripheral *per = [self->_peripherals objectAtIndex:idx];
             if ([per.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString]) {
                 isExist = YES;
-                [_peripherals replaceObjectAtIndex:idx withObject:peripheral];
-                [_rssis replaceObjectAtIndex:idx withObject:RSSI];
+                [self->_peripherals replaceObjectAtIndex:idx withObject:peripheral];
+                [self->_rssis replaceObjectAtIndex:idx withObject:RSSI];
             }
         }];
         if (!isExist) {
