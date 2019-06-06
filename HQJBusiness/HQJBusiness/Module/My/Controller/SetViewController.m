@@ -324,7 +324,7 @@
     if (!_setTableView) {
     
         _setTableView = [[UITableView alloc]init];
-        _setTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT);
+        _setTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
         _setTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _setTableView.delegate = self;
         

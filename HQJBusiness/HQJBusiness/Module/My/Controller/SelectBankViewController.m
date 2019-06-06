@@ -25,7 +25,7 @@ NSString *const kActionBank = @"actionBank";
 @implementation SelectBankViewController
 - (UITableView *)bankTableView {
     if (!_bankTableView) {
-        _bankTableView = [[UITableView alloc]initWithFrame: CGRectMake(0, kNAVHEIGHT + 10 , WIDTH, HEIGHT - kNAVHEIGHT - 10) style:UITableViewStylePlain];
+        _bankTableView = [[UITableView alloc]initWithFrame: CGRectMake(0, NavigationControllerHeight + 10 , WIDTH, HEIGHT - NavigationControllerHeight - 10) style:UITableViewStylePlain];
 //        _bankTableView.frame = CGRectMake(0, kNAVHEIGHT + 10 , WIDTH, HEIGHT - kNAVHEIGHT - 10);
         _bankTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _bankTableView.rowHeight = 75;

@@ -21,7 +21,7 @@
 -(UITableView *)dealTableView {
     if ( _dealTableView == nil ) {
         _dealTableView = [[UITableView alloc]init];
-        _dealTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT);
+        _dealTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
         _dealTableView.backgroundColor = DefaultBackgroundColor;
         _dealTableView.delegate = self;
         _dealTableView.dataSource = self;

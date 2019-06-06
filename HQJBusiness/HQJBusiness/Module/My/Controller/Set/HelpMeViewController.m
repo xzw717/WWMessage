@@ -42,7 +42,7 @@
     
     self.zw_title =_titleNameStr;
 //
-    UIWebView *setWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT)];
+    UIWebView *setWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight)];
     setWebView.backgroundColor = DefaultBackgroundColor;
     setWebView.scalesPageToFit = YES;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_SetWEBStr]];

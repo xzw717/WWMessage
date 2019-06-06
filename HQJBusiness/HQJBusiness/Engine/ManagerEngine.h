@@ -301,4 +301,11 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (NSString *_Nonnull)hashCodeStr;
 
+/**
+ 判断是否是iPhoneX系列的机型，根据安全区判断
+
+ @return YES or NO
+ */
++ (BOOL)isIPhoneXSeries;
+
 @end

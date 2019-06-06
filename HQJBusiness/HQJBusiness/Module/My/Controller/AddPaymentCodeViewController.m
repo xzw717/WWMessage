@@ -25,7 +25,7 @@
     [self.view addSubview:self.addPaymentCodeTableView];
     [self.view addSubview:self.hintLabel];
     [self.hintLabel setSingleLineAutoResizeWithMaxWidth:WIDTH / 2];
-    self.hintLabel.sd_layout.leftSpaceToView(self.view, kEDGE).topSpaceToView(self.view, kNAVHEIGHT+5).heightIs(20);
+    self.hintLabel.sd_layout.leftSpaceToView(self.view, kEDGE).topSpaceToView(self.view, NavigationControllerHeight  +5).heightIs(20);
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addSuccess:) name:@"addCodeSuccess" object:nil];
 
 }
@@ -39,7 +39,7 @@
 - (UITableView *)addPaymentCodeTableView {
     if (!_addPaymentCodeTableView) {
         _addPaymentCodeTableView = [[UITableView alloc]init];
-        _addPaymentCodeTableView.frame = CGRectMake(0, kNAVHEIGHT+5 + 20, WIDTH -kEDGE, HEIGHT - kNAVHEIGHT - 5);
+        _addPaymentCodeTableView.frame = CGRectMake(0, NavigationControllerHeight+5 + 20, WIDTH -kEDGE, HEIGHT - NavigationControllerHeight - 5);
         _addPaymentCodeTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _addPaymentCodeTableView.backgroundColor = [UIColor whiteColor];
         _addPaymentCodeTableView.delegate = self;

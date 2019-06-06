@@ -28,7 +28,7 @@
     if ( _informationTableView == nil ) {
         
         _informationTableView = [[UITableView alloc]init];
-        _informationTableView.frame = CGRectMake(0, kNAVHEIGHT, WIDTH, HEIGHT - kNAVHEIGHT);
+        _informationTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
         _informationTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _informationTableView.delegate = self;
         _informationTableView.dataSource = self;

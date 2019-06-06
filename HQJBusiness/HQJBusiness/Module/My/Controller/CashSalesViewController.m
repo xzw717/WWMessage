@@ -179,9 +179,9 @@
 #pragma mark ---  内容布局
 -(void)setViewFrame {
     CGFloat labelWidth = [ManagerEngine setTextWidthStr:self.payFigurelabel.text andFont:[UIFont systemFontOfSize:17]];
-    self.paymentLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,30 + kNAVHEIGHT + (44 - 17 )/2).heightIs(17).widthIs(labelWidth);
+    self.paymentLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,30 + NavigationControllerHeight + (44 - 17 )/2).heightIs(17).widthIs(labelWidth);
     
-    self.paymentTextField.sd_layout.leftSpaceToView(self.paymentLabel,0).topSpaceToView(self.view,30 + kNAVHEIGHT).heightIs(44).widthIs(WIDTH - kEDGE * 2 - labelWidth);
+    self.paymentTextField.sd_layout.leftSpaceToView(self.paymentLabel,0).topSpaceToView(self.view,30 + NavigationControllerHeight).heightIs(44).widthIs(WIDTH - kEDGE * 2 - labelWidth);
     
     [self updateName];
     

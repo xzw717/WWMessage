@@ -27,7 +27,7 @@
 }
 -(UIView *)backgroundView {
     if (!_backgroundView ) {
-        _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, kEDGE + kNAVHEIGHT, WIDTH, 45)];
+        _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, kEDGE + NavigationControllerHeight, WIDTH, 45)];
         _backgroundView.backgroundColor = [UIColor whiteColor];
     }
     return _backgroundView;

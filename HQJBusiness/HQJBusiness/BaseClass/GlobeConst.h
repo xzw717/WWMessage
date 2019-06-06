@@ -15,7 +15,7 @@ FOUNDATION_EXTERN NSString *const kNoticationPayResults;
 FOUNDATION_EXTERN CGFloat  const kEDGE ;
 
 /************** 导航控制器高度 ***************/
-FOUNDATION_EXTERN CGFloat const kNAVHEIGHT ;
+FOUNDATION_EXTERN CGFloat const NavigationControllerHeight ;
 
 
 /******************* 网络 **************************/

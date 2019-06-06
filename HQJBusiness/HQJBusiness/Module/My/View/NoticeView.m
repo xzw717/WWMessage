@@ -81,7 +81,8 @@
         font = [UIFont systemFontOfSize:18.0];
         
         self.NewTitleLabel.font = [UIFont systemFontOfSize:18.0];
-        labelY = (kNAVHEIGHT - 20.0) / 2.0 + 10.0 ;
+//        labelY = (NavigationControllerHeight - 20.0) / 2.0 + 10.0 ;
+        labelY = NavigationControllerHeight - 15.f - 18.f;
         self.titleLabel.text = titleStr;
 
         if ([titleStr isEqualToString:@""] || titleStr == nil) {
@@ -133,13 +134,15 @@
     
     //  --  两端的遮罩 View
     for (NSInteger i=0; i<2; i++) {
-        
-        UIView *view = [[UIView alloc]init];
-        
-        view.frame = CGRectMake(i%2*(15+WIDTH-30), 0, kEDGE, self.frame.size.height);
-        
-        view.backgroundColor = color;
-        [self.backGroundView addSubview:view];
+        UIView *view = [self.backGroundView viewWithTag:i + 10023];
+        if (!view) {
+            view = [[UIView alloc]init];
+            view.frame = CGRectMake(i%2*(15+WIDTH-30), 0, kEDGE, self.frame.size.height);
+            view.backgroundColor = color;
+            view.tag = 10023 + i;
+            [self.backGroundView addSubview:view];
+        }
+     
     }
     
 

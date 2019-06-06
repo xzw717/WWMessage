@@ -95,9 +95,16 @@
 #define Rrealname    [FileEngine filePathNameReadName:@"realname" andstye:fileDefaultStyle]
 #define Mmobile      [FileEngine filePathNameReadName:@"mobile" andstye:fileDefaultStyle]
 #define HashCode     [FileEngine filePathNameReadName:@"hashCode" andstye:fileLoginStyle]
+//#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 
+//#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
-
+/// ---  导航控制器高度
+#define  NavigationControllerHeight  ([ManagerEngine isIPhoneXSeries] ?  88.f : 64.f)
+/// ---  TabBar 高度
+#define  ToolBarHeight ([ManagerEngine isIPhoneXSeries] ?  83.f : 49.f)
+/// --- 状态栏
+#define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
 
 
 /******************* 屏幕宽高 **************************/

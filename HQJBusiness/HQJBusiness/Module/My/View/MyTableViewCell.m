@@ -54,7 +54,7 @@
 - (UILabel *)todayBonusLabel {
     if ( _todayBonusLabel == nil ) {
         _todayBonusLabel = [[UILabel alloc]init];
-        _todayBonusLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
+        _todayBonusLabel.font = [UIFont systemFontOfSize:17.f];
         _todayBonusLabel.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabel.textColor = [ManagerEngine getColor:@"12b312"];
         [self addSubview:_todayBonusLabel];
@@ -65,7 +65,7 @@
 - (UILabel *)todayCashLabel {
     if ( _todayCashLabel == nil ) {
         _todayCashLabel = [[UILabel alloc]init];
-        _todayCashLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
+        _todayCashLabel.font = [UIFont systemFontOfSize:17.f];
         _todayCashLabel.textAlignment = NSTextAlignmentCenter;
         _todayCashLabel.textColor = [ManagerEngine getColor:@"12b312"];
         [self addSubview:_todayCashLabel];
@@ -76,7 +76,7 @@
 - (UILabel *)allZHLabel {
     if ( _allZHLabel == nil ) {
         _allZHLabel = [[UILabel alloc]init];
-        _allZHLabel.font = [UIFont systemFontOfSize:S_RatioH(17.f)];
+        _allZHLabel.font = [UIFont systemFontOfSize:17.f];
         _allZHLabel.textAlignment = NSTextAlignmentCenter;
         _allZHLabel.textColor = [ManagerEngine getColor:@"18abf5"];
         [self addSubview:_allZHLabel];
@@ -87,7 +87,7 @@
 - (UILabel *)todayBonusLabelS {
     if ( _todayBonusLabelS == nil ) {
         _todayBonusLabelS = [[UILabel alloc]init];
-        _todayBonusLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
+        _todayBonusLabelS.font = [UIFont systemFontOfSize:15.f];
         _todayBonusLabelS.text = @"当日积分收入";
         _todayBonusLabelS.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabelS.textColor = [ManagerEngine getColor:@"323232"];
@@ -99,7 +99,7 @@
 - (UILabel *)todayCashLabelS {
     if ( _todayCashLabelS == nil ) {
         _todayCashLabelS = [[UILabel alloc]init];
-        _todayCashLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
+        _todayCashLabelS.font = [UIFont systemFontOfSize:15.f];
         _todayCashLabelS.textAlignment = NSTextAlignmentCenter;
         _todayCashLabelS.text = @"当日现金收入";
         _todayCashLabelS.textColor = [ManagerEngine getColor:@"323232"];
@@ -111,7 +111,7 @@
 - (UILabel *)allZHLabelS {
     if ( _allZHLabelS == nil ) {
         _allZHLabelS = [[UILabel alloc]init];
-        _allZHLabelS.font = [UIFont systemFontOfSize:S_RatioH(15.f)];
+        _allZHLabelS.font = [UIFont systemFontOfSize:15.f];
         _allZHLabelS.textAlignment = NSTextAlignmentCenter;
         _allZHLabelS.text = [NSString stringWithFormat:@"%@值余额",HQJValue];
         _allZHLabelS.textColor = [ManagerEngine getColor:@"323232"];

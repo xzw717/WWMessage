@@ -16,7 +16,7 @@ NSString *const kNoticationPayResults = @"AliSuccess";
 CGFloat  const kEDGE = 15.0;
 
 /************** 导航控制器高度 ***************/
-CGFloat const kNAVHEIGHT = 64.0;
+//CGFloat const kNAVHEIGHT = 64.0;
 
 
 /******************* 网络 **************************/

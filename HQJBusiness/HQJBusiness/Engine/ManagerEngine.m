@@ -233,20 +233,20 @@ static const CGFloat  sAlertTimer = 3.0;
         
         alertLabel.alpha = 1;
 
-        alertLabel.frame = CGRectMake(0, - kNAVHEIGHT, WIDTH,  kNAVHEIGHT);
+        alertLabel.frame = CGRectMake(0, - NavigationControllerHeight, WIDTH,  NavigationControllerHeight);
         
         alertLabel.backgroundColor = [UIColor whiteColor];
         
         
         [UIView animateWithDuration:1 animations:^{
             
-            alertLabel.frame = CGRectMake(0, 0, WIDTH,  kNAVHEIGHT );
+            alertLabel.frame = CGRectMake(0, 0, WIDTH,  NavigationControllerHeight );
             
         } completion:^(BOOL finished) {
  
             [UIView animateWithDuration:1 delay:timers options:UIViewAnimationOptionLayoutSubviews animations:^{
                         
-                        alertLabel.frame = CGRectMake(0, -  kNAVHEIGHT, WIDTH,  kNAVHEIGHT);
+                        alertLabel.frame = CGRectMake(0, -  NavigationControllerHeight, WIDTH,  NavigationControllerHeight);
                         
                     } completion:^(BOOL finished) {
                         
@@ -897,4 +897,19 @@ static const CGFloat  sAlertTimer = 3.0;
     [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
 }
 
++ (BOOL)isIPhoneXSeries {
+    BOOL iPhoneXSeries = NO;
+    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) {
+        return iPhoneXSeries;
+    }
+    
+    if (@available(iOS 11.0, *)) {
+        UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+        if (mainWindow.safeAreaInsets.bottom > 0.0) {
+            iPhoneXSeries = YES;
+        }
+    }
+    
+    return iPhoneXSeries;
+}
 @end
