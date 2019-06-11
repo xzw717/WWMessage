@@ -85,7 +85,7 @@ UITableViewDataSource
     self.orderDetailsTableView.sd_layout.
     leftSpaceToView(self.view, 0).
     rightSpaceToView(self.view, 0).
-    topSpaceToView(self.view, kNAVHEIGHT + 10 ).
+    topSpaceToView(self.view, NavigationControllerHeight + 10 ).
     bottomSpaceToView(self.confirmButton, 10);
 //    self.orderDetailsTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
     self.orderDetailsTableView.didFinishAutoLayoutBlock = ^(CGRect frame) {
@@ -144,9 +144,9 @@ UITableViewDataSource
             @strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.listArray.count <= 1) {
-                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 + kNAVHEIGHT -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
+                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 + NavigationControllerHeight -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 } else {
-                    self.watermarkImageView.sd_layout.topSpaceToView(self.view, 94 + kNAVHEIGHT + 10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
+                    self.watermarkImageView.sd_layout.topSpaceToView(self.view, 94 + NavigationControllerHeight + 10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 }
             });
             

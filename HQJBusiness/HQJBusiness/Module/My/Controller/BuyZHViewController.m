@@ -21,7 +21,7 @@
 @implementation BuyZHViewController
 -(NoticeView *)titleView {
     if (!_titleView) {
-        _titleView = [[NoticeView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 45) withNav:NO];
+        _titleView = [[NoticeView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, 45) withNav:NO];
         [self.view addSubview:_titleView];
     }
     
@@ -104,7 +104,7 @@
 
 -(void)setViewframe {
     CGFloat payLabelWith = [ManagerEngine setTextWidthStr:self.payerLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    self.payerLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,75 + kNAVHEIGHT).heightIs(17).widthIs(payLabelWith);
+    self.payerLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,75 + NavigationControllerHeight).heightIs(17).widthIs(payLabelWith);
     
     CGFloat bonusWidth = [ManagerEngine setTextWidthStr:self.BonusNumerLabel.text andFont:[UIFont systemFontOfSize:17.0]];
     self.BonusNumerLabel.sd_layout.leftEqualToView(self.payerLabel).topSpaceToView(self.payerLabel,30 + (44 - 17) / 2).heightIs(17).widthIs(bonusWidth);

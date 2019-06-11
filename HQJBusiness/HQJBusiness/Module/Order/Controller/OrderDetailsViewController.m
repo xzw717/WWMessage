@@ -175,7 +175,7 @@
 
 - (UITableView *)orderDetailsTableView {
     if (!_orderDetailsTableView) {
-        _orderDetailsTableView = [[UITableView alloc]initWithFrame:CGRectMake(10, 64, WIDTH - 20, HEIGHT - 64) style:UITableViewStyleGrouped];
+        _orderDetailsTableView = [[UITableView alloc]initWithFrame:CGRectMake(10, NavigationControllerHeight, WIDTH - 20, HEIGHT - NavigationControllerHeight) style:UITableViewStyleGrouped];
         _orderDetailsTableView.delegate = self;
         _orderDetailsTableView.dataSource = self;
 //        _orderDetailsTableView.rowHeight = 44;

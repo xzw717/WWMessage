@@ -24,7 +24,10 @@
     
     
 }
-
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zwNavView.backgroundColor = DefaultAPPColor;
@@ -58,7 +61,7 @@
     _bottomSView.delegate = self;
     [self.view addSubview:_bottomSView];
     
-    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, kNAVHEIGHT , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
+    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
     
     // 必须实现的方法
     [self.topSView SG_setUpSegmentedControlType:nil];

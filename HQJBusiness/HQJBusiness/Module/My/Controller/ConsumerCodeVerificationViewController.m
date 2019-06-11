@@ -33,7 +33,7 @@
         btn.tag = i;
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 45/2;
-        btn.frame = CGRectMake((WIDTH - 180)/2, i%2*(45+30)+120+kNAVHEIGHT, 180, 45);
+        btn.frame = CGRectMake((WIDTH - 180)/2, i%2*(45+30)+120+NavigationControllerHeight, 180, 45);
         [btn bk_addEventHandler:^(UIButton *sender) {
             if (sender.tag == 0) {
                 

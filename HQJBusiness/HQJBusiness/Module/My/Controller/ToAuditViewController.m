@@ -51,14 +51,14 @@
     NSArray *title_arr = @[@"全部",[NSString stringWithFormat:@"购买%@值",HQJValue],@"现金提现", @"积分兑现", [NSString stringWithFormat:@"%@值比例",HQJValue]];
     
     
-    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, kNAVHEIGHT , WIDTH, HEIGHT - kNAVHEIGHT)];
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight , WIDTH, HEIGHT - NavigationControllerHeight)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];
     _bottomSView.delegate = self;
 
     [self.view addSubview:_bottomSView];
     
-    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, kNAVHEIGHT , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr isScaleText:NO];
+    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr isScaleText:NO];
     _topSView.showsBottomScrollIndicator = NO;
     _topSView.titleColorStateSelected = DefaultAPPColor;
     _topSView.backgroundColor = DefaultBackgroundColor;

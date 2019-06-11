@@ -32,7 +32,7 @@ DZNEmptyDataSetDelegate>
         _tableView.rowHeight = 70.0;
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        _tableView.frame = CGRectMake(0, 44 , WIDTH, HEIGHT  - 44 - 64);
+        _tableView.frame = CGRectMake(0, 44 , WIDTH, HEIGHT  - 44 - NavigationControllerHeight);
         _tableView.tableFooterView = [UIView new];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellid"];
         [_tableView registerClass:[MyListTableViewCell class] forCellReuseIdentifier:@"listCell"];

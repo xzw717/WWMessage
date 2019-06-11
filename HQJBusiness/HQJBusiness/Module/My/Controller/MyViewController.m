@@ -44,7 +44,7 @@
 -(UITableView *)myTableView {
     if ( _myTableView == nil ) {
         _myTableView = [[UITableView alloc]init];
-        _myTableView.frame = CGRectMake(0, 64, WIDTH, HEIGHT-64-45);
+        _myTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT- NavigationControllerHeight - ToolBarHeight);
         _myTableView.backgroundColor = DefaultBackgroundColor;
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
@@ -204,7 +204,7 @@
     self.zwBackButton.hidden = YES;
     [self.view addSubview:self.myTableView];
 
-    HQJLog(@"第几次");
+    HQJLog(@"NavigationControllerHeight: %f",NavigationControllerHeight);
   
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
 
@@ -328,7 +328,7 @@
 
 - (NoticeView *)titleView {
     if (!_titleView) {
-        _titleView =  [[NoticeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64) withNav:YES];
+        _titleView =  [[NoticeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, NavigationControllerHeight) withNav:YES];
         [self.view addSubview:self.titleView];
 
     }

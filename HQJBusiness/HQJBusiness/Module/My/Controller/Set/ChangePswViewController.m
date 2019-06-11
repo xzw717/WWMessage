@@ -60,7 +60,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         
         UILabel *titleLabel = [[UILabel alloc]init];
         titleLabel.font = [UIFont systemFontOfSize:17];
-        titleLabel.frame = CGRectMake(15, i%3*(20+60)+30+64, LabelSize, 20);
+        titleLabel.frame = CGRectMake(15, i%3*(20+60)+30+NavigationControllerHeight, LabelSize, 20);
         titleLabel.text  =labelAry[i];
         [self.view addSubview:titleLabel];
         
@@ -72,7 +72,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         PswTextField.tag  = i;
         PswTextField.clearButtonMode = UITextFieldViewModeAlways;
         PswTextField.secureTextEntry = YES;
-        PswTextField.frame = CGRectMake(15+5+ LabelSize, i%3*(44+35)+20+64,WIDTH-15*2-5-LabelSize, 44);
+        PswTextField.frame = CGRectMake(15+5+ LabelSize, i%3*(44+35)+20+NavigationControllerHeight,WIDTH- 15 * 2 - 5-LabelSize, 44);
         PswTextField.placeholder = pswAry[i];
         PswTextField.borderStyle = UITextBorderStyleRoundedRect;
         [self.view addSubview:PswTextField];

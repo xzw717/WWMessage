@@ -34,7 +34,7 @@
     
     [self.view addSubview:backgroundView];
     
-    backgroundView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kNAVHEIGHT + kEDGE).heightIs(90).widthIs(WIDTH);
+    backgroundView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,NavigationControllerHeight + kEDGE).heightIs(90).widthIs(WIDTH);
     
     
     self.addsLabel.text = _addressStr;

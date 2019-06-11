@@ -19,7 +19,7 @@
 -(UIView *)zwNavView {
     if (!_zwNavView) {
         _zwNavView = [[UIView alloc]init];
-        _zwNavView.frame = CGRectMake(0, 0, WIDTH, kNAVHEIGHT);
+        _zwNavView.frame = CGRectMake(0, 0, WIDTH, NavigationControllerHeight);
         _zwNavView.backgroundColor = [UIColor whiteColor];
     }
     
@@ -65,11 +65,11 @@
     [self.zwNavView addSubview:self.bottomLineView];
     self.fd_prefersNavigationBarHidden = YES;
 
-    self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,64 - 44).heightIs(44).widthIs(44);
-    self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, kNAVHEIGHT - 0.5);
+    self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,NavigationControllerHeight - 44).heightIs(44).widthIs(44);
+    self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, NavigationControllerHeight - 0.5);
     @weakify(self);
     [self.zwBackButton bk_addEventHandler:^(id  _Nonnull sender) {
-        
+        @strongify(self);
         if (self.viewControllerName) {
             
             
@@ -209,7 +209,7 @@
     
     CGFloat titleWidth = [ManagerEngine setTextWidthStr:zw_title andFont:[UIFont systemFontOfSize:18.f]];
     
-    self.zwTitLabel.sd_layout.leftSpaceToView(self.zwNavView,(WIDTH - titleWidth) / 2).topSpaceToView(self.zwNavView,33).heightIs(18).widthIs(titleWidth);
+    self.zwTitLabel.sd_layout.leftSpaceToView(self.zwNavView,(WIDTH - titleWidth) / 2).bottomSpaceToView(self.zwNavView,15).heightIs(18).widthIs(titleWidth);
     
     
     

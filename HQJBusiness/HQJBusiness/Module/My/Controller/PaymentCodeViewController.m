@@ -125,7 +125,7 @@
 - (UITableView *)paymentCodeTableView {
     if (!_paymentCodeTableView) {
         _paymentCodeTableView = [[UITableView alloc]init];
-        _paymentCodeTableView.frame = CGRectMake(0, kNAVHEIGHT + 5, WIDTH, HEIGHT - kNAVHEIGHT);
+        _paymentCodeTableView.frame = CGRectMake(0, NavigationControllerHeight + 5, WIDTH, HEIGHT - NavigationControllerHeight);
         _paymentCodeTableView.rowHeight = 60;
         _paymentCodeTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _paymentCodeTableView.delegate = self;

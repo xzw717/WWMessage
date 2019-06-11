@@ -61,7 +61,7 @@
 
 - (UIView *)topBackgroundView {
     if (_topBackgroundView == nil) {
-        _topBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, kNAVHEIGHT + kEDGE , WIDTH, 44)];
+        _topBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight + kEDGE , WIDTH, 44)];
         _topBackgroundView.backgroundColor = [UIColor whiteColor];
         
     }
@@ -70,7 +70,7 @@
 }
 - (UIView *)bottomBackgroundView {
     if (_bottomBackgroundView == nil ) {
-        _bottomBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, kNAVHEIGHT + kEDGE * 2 + 44 , WIDTH, 44 * 3)];
+        _bottomBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight + kEDGE * 2 + 44 , WIDTH, 44 * 3)];
         _bottomBackgroundView.backgroundColor = [UIColor whiteColor];
     }
     return _bottomBackgroundView;
@@ -264,7 +264,7 @@
         
         [self lostTheFirstResponse];
         
-        _pickView = [[pickerView alloc]initWithFrame:CGRectMake(self.selectBankTextField.mj_x, self.selectBankTextField.mj_y+self.selectBankTextField.mj_h + kNAVHEIGHT + kEDGE, self.selectBankTextField.mj_w - kEDGE * 2 , _bankNameListArray.count * 45 > HEIGHT/2 ?HEIGHT/2 : _bankNameListArray.count * 45) andTitleAry:_bankNameListArray];
+        _pickView = [[pickerView alloc]initWithFrame:CGRectMake(self.selectBankTextField.mj_x, self.selectBankTextField.mj_y+self.selectBankTextField.mj_h + NavigationControllerHeight + kEDGE, self.selectBankTextField.mj_w - kEDGE * 2 , _bankNameListArray.count * 45 > HEIGHT/2 ?HEIGHT/2 : _bankNameListArray.count * 45) andTitleAry:_bankNameListArray];
         
         [_pickView showView];
         
