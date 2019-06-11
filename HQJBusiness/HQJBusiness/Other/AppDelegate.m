@@ -154,6 +154,10 @@
     NSLog(@"MmberidStr = %@",MmberidStr);
     
     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"%ld %@ %ld",iResCode,iAlias,seq);
+        if (iResCode) {
+            
+        }
 
     } seq:1];
 }

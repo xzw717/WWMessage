@@ -49,7 +49,7 @@
     NSString *collectMoney =  [userDefaults objectForKey:@"CollectMoney"];
     NSString *newOrder =  [userDefaults objectForKey:@"newOrder"];
 //    NSLog(@"collectMoney = %@ newOrder = %@",collectMoney,newOrder);
-    
+    audioFiles = [[NSArray alloc]init];
     if ([collectMoney isEqualToString:@"开"]&&(itype == 1||itype == 2)) {
         NSString *amount = [NSString stringWithFormat:@"%.2f", [[userInfo objectForKey:@"amount"] doubleValue]] ;
         audioFiles =  [self playMoneyReceived:amount];

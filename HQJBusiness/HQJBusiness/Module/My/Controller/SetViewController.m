@@ -255,6 +255,10 @@
     [FileEngine fileRemove:fileHomeDataStyle];  // -- 积分信息
     [FileEngine fileRemove:filePathlocationStyle]; // --- 用户类型
     [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"%ld %@ %ld",iResCode,iAlias,seq);
+        if (iResCode) {
+            
+        }
         
     } seq:1];
     
