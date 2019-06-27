@@ -269,7 +269,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.setTableView];
-    self.zw_title = @"设置";
+    self.title = @"设置";
 
 }
 

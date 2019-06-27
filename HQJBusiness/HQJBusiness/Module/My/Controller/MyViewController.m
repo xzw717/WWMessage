@@ -19,12 +19,9 @@
 #import "MessageNotificationViewModel.h"
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
-#import "JWBluetoothManage.h"
 
 
-@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
-    JWBluetoothManage * manage;
-}
+@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (nonatomic,strong)UITableView *myTableView;
 
@@ -200,8 +197,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _viewModel = [[MyViewModel alloc]init];
     _model = [[MyModel alloc]init];
-    self.zwNavView.backgroundColor = DefaultAPPColor;
-    self.zwBackButton.hidden = YES;
+//    self.zwNavView.backgroundColor = DefaultAPPColor;
+//    self.zwBackButton.hidden = YES;
     [self.view addSubview:self.myTableView];
 
     HQJLog(@"NavigationControllerHeight: %f",NavigationControllerHeight);
@@ -269,7 +266,7 @@
 //        [selfWeak.titleView removeFromSuperview];
 //        [selfWeak.view addSubview:selfWeak.titleView];
      
-        [self.zwNavView removeFromSuperview];
+//        [self.zwNavView removeFromSuperview];
         
         [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
         [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型

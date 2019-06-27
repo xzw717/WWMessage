@@ -63,7 +63,6 @@
     [self.view addSubview:self.zwNavView];
     [self.view bringSubviewToFront:self.zwNavView];
     [self.zwNavView addSubview:self.bottomLineView];
-    self.fd_prefersNavigationBarHidden = YES;
 
     self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,NavigationControllerHeight - 44).heightIs(44).widthIs(44);
     self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, NavigationControllerHeight - 0.5);
@@ -72,9 +71,7 @@
         @strongify(self);
         if (self.viewControllerName) {
             
-            
             for (UIViewController* v in self.navigationController.viewControllers) {
-                
                 if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:self.viewControllerName]) {
                     [self.navigationController popToViewController:v animated:YES];
             
@@ -98,6 +95,25 @@
     } forControlEvents:UIControlEventTouchUpInside];
     
 
+}
+
+//设置导航栏主题
+- (void)setupNavigationBar
+{
+    
+    //    self.lh_barTintColor = [ManagerEngine getColor:@"00ccb8"];
+    
+    
+    UINavigationBar *appearance = [UINavigationBar appearance];
+    //统一设置导航栏颜色，如果单个界面需要设置，可以在viewWillAppear里面设置，在viewWillDisappear设置回统一格式。
+    [appearance setBarTintColor:[ManagerEngine getColor:@"18abf5"]];
+    
+    //导航栏title格式
+    NSMutableDictionary *textAttribute = [NSMutableDictionary dictionary];
+    textAttribute[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    textAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:18.f];
+    [appearance setTitleTextAttributes:textAttribute];
+    
 }
 
 
@@ -126,6 +142,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    self.fd_prefersNavigationBarHidden = YES;
+
 //    [ManagerEngine navColorStyle:self andColor:[UIColor whiteColor]];
     [ManagerEngine navViewWillAppearColor:self andConmp:^(id  _Nonnull sender) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -136,6 +154,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 //    [ManagerEngine navViewWillDisappearColor:self];
+    self.fd_prefersNavigationBarHidden = NO;
 
     [ManagerEngine dismissHomeSvP];
     

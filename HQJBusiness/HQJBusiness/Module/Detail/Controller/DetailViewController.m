@@ -27,7 +27,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 
@@ -106,7 +106,11 @@
     }
     
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x < -30) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HQJBaseSubVC.h"
 
-@interface SetViewController : ZW_ViewController
+@interface SetViewController : HQJBaseSubVC
 @end

@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
+  - FTPopOverMenu (2.0.3)
   - IQKeyboardManager (6.3.0)
   - JCore (2.0.1)
   - JKCountDownButton (1.3.0)
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - DZNEmptyDataSet
   - FDFullscreenPopGesture (= 1.1)
+  - FTPopOverMenu
   - IQKeyboardManager
   - JKCountDownButton
   - JPush
@@ -64,6 +66,7 @@ SPEC REPOS:
     - AFNetworking
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
+    - FTPopOverMenu
     - IQKeyboardManager
     - JCore
     - JKCountDownButton
@@ -92,6 +95,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FTPopOverMenu: 8aa89de66e72b53db3e7eeab42243d393237768f
   IQKeyboardManager: 2ca9d64893247556f53523dcd8d78641f0ba7c23
   JCore: 8425fb3f85f1400f9bc8ccf8121cd5694a790f3b
   JKCountDownButton: 3b557e75d23e7243bb63c8130e6d12d8510468dd
@@ -107,6 +111,6 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: 8ec969d323a8170c21dc2411086652efc87164f5
+PODFILE CHECKSUM: cf325415a1ae1fefe22d1ba851a1c8f2e87ec5e6
 
 COCOAPODS: 1.6.1
