@@ -15,7 +15,9 @@
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
 #import "HintView.h"
-
+#import "RegisterViewController.h"
+#import "ForgetPswViewController.h"
+#import "JKCountDownButton.h"
 
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -41,7 +43,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UIView *unBottomView;
 @property (nonatomic,strong)UITextField *PswText;
 @property (nonatomic,strong)UIView *pswBottomView;
-@property (nonatomic,strong)UIButton *getAuthCodeBtn;
+@property (nonatomic,strong)JKCountDownButton *getAuthCodeBtn;
 
 
 @property (nonatomic,strong)UIButton *loginBtn;
@@ -84,9 +86,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [_registerBtn setTitleColor:[ManagerEngine getColor:@"ff494b"] forState:UIControlStateNormal];
         _registerBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_registerBtn bk_addEventHandler:^(id  _Nonnull sender) {
-//            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
-//            CTVC.pswType = 1;
-//            [self.navigationController pushViewController:CTVC animated:YES];
+            RegisterViewController *registerVC = [[RegisterViewController alloc]init];
+            [self.navigationController pushViewController:registerVC animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         
         [self.view addSubview:_registerBtn];
@@ -146,9 +147,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     }
     return _authCodeBtn;
 }
-- (UIButton *)getAuthCodeBtn{
+- (JKCountDownButton *)getAuthCodeBtn{
     if ( _getAuthCodeBtn == nil ) {
-        _getAuthCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _getAuthCodeBtn = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
         [_getAuthCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
         [_getAuthCodeBtn setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
         _getAuthCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:40/3];
@@ -156,6 +157,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _getAuthCodeBtn.layer.cornerRadius = S_XRatioH(15);
         _getAuthCodeBtn.layer.borderColor = [ManagerEngine getColor:@"ff4949"].CGColor;
         _getAuthCodeBtn.layer.borderWidth = 0.5f;
+        [_getAuthCodeBtn countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
+            self.getAuthCodeBtn.enabled = NO;
+            [self getCodeRequst];
+        }];
+        
         [self.view addSubview:_getAuthCodeBtn];
     }
     return _getAuthCodeBtn;
@@ -248,9 +254,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [_forgetPswBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
         _forgetPswBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_forgetPswBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
-            CTVC.pswType = 1;
-            [self.navigationController pushViewController:CTVC animated:YES];
+//            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
+//            CTVC.pswType = 1;
+//            [self.navigationController pushViewController:CTVC animated:YES];
+            ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
+            [self.navigationController pushViewController:fpVC animated:YES];
             
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_forgetPswBtn];
@@ -331,7 +339,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [super viewDidLoad];
    
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self ViewTheContent];
+    [self viewTheContent];
     
     [self signalDeal];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dianji:) name:kNetworkStatus object:nil];
@@ -398,7 +406,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     
 }
 
--(void)ViewTheContent {
+-(void)viewTheContent {
     
     self.titleLabel.sd_layout.topSpaceToView(self.view,StatusBarHeight).centerXEqualToView(self.view).heightIs(44).widthIs(100.0f);
     self.registerBtn.sd_layout.topSpaceToView(self.view,StatusBarHeight).rightSpaceToView(self.view, 20).heightIs(44).widthIs(50);
@@ -540,6 +548,40 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return NO;
 }
 
+-(void)getCodeRequst{
+    NSString *urlStr;
+    NSMutableDictionary *dict = @{@"pwdtype":@1,@"mobile":self.userNameText.text}.mutableCopy;
+    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
+    HQJLog(@"---%@",urlStr);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if([dic[@"code"]integerValue] != 49000) {
+            self.getAuthCodeBtn.enabled = YES;
+            
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+        } else {
+            [self.getAuthCodeBtn startCountDownWithSecond:60];
+            
+            [self.getAuthCodeBtn countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
+                self.getAuthCodeBtn.enabled = NO;
+                //                self.getAuthCodeBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+                
+                NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
+                return title;
+            }];
+            [self.getAuthCodeBtn countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                countDownButton.enabled = YES;
+                //                self.getAuthCodeBtn.backgroundColor = DefaultAPPColor;
+                return @"重新获取";
+            }];
+        }
+        
+    } andError:^(NSError *error) {
+        
+        [ManagerEngine dimssLoadView:self.loginBtn andtitle:@"确认"];
+        
+    } ShowHUD:YES];
+    
+}
 #pragma mark --
 #pragma mark ---请求
 -(void)LoginRequst {
