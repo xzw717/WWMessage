@@ -11,7 +11,7 @@
 #define CALScreenWidth          (CGRectGetWidth([[UIScreen mainScreen] bounds]))
 #define CALScreenHeight         (CGRectGetHeight([[UIScreen mainScreen] bounds]))
 
-#define CALStatusBarHeight      (20.0f)
+#define CALStatusBarHeight      ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
 #define CALNavigationBarHeight  (44.0f)
 #define CALGetMethodReturnObjc(objc) if (objc) return objc
 

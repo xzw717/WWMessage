@@ -25,6 +25,9 @@
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 
+
+
+#define AutoState [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"AutomaticallyPrintOrders"]
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
 @end
@@ -100,25 +103,30 @@
 //        }
 //    }];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"]  setObject:@"连接中" forKey:@"BluetoothState"];
-    [[JWBluetoothManage sharedInstance] autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
-        if (!error) {
-            //            [ProgressShow alertView:self.view Message:@"连接成功！" cb:nil];
-            //            weakSelf.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定成功" forKey:@"BluetoothState"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //                [self.tableView reloadData];
-            });
-        }else{
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
+    
+    
+    if ([AutoState isEqualToString:@"开"]) {
+        [[JWBluetoothManage sharedInstance] autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
+            if (!error) {
+                //            [ProgressShow alertView:self.view Message:@"连接成功！" cb:nil];
+                //            weakSelf.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
+                [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定成功" forKey:@"BluetoothState"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //                [self.tableView reloadData];
+                });
+            }else{
+                [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
+                
+            }
             
-        }
-        
-    } stateCompletion:^(CBManagerState status) {
-        if (status == CBManagerStatePoweredOff) {
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
-            
-        }
-    }];
+        } stateCompletion:^(CBManagerState status) {
+            if (status == CBManagerStatePoweredOff) {
+                [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
+                
+            }
+        }];
+    }
+   
 
         return YES;
 }
@@ -230,15 +238,18 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[JWBluetoothManage sharedInstance] beginScanPerpheralSuccess:^(NSArray<CBPeripheral *> *peripherals, NSArray<NSNumber *> *rssis) {
-        [[JWBluetoothManage sharedInstance]stopScanPeripheral];
-    } failure:^(CBManagerState status) {
-        if (status == CBManagerStatePoweredOff) {
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
-            
-        }
-        //        [ProgressShow alertView:self.view Message:[ProgressShow getBluetoothErrorInfo:status] cb:nil];
-    }];
+    if ([AutoState isEqualToString:@"开"]) {
+        [[JWBluetoothManage sharedInstance] beginScanPerpheralSuccess:^(NSArray<CBPeripheral *> *peripherals, NSArray<NSNumber *> *rssis) {
+            [[JWBluetoothManage sharedInstance]stopScanPeripheral];
+        } failure:^(CBManagerState status) {
+            if (status == CBManagerStatePoweredOff) {
+                [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] setObject:@"绑定失败" forKey:@"BluetoothState"];
+                
+            }
+            //        [ProgressShow alertView:self.view Message:[ProgressShow getBluetoothErrorInfo:status] cb:nil];
+        }];
+
+    }
 }
 
 

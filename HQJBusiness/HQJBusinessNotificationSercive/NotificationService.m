@@ -39,7 +39,7 @@ typedef void(^PlayVoiceBlock)(void);
 @property (nonatomic,assign)NSInteger time;
 @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
 @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
-
+@property (nonatomic, strong) NSString *orderidStr;
 @end
 
 @implementation NotificationService
@@ -75,10 +75,23 @@ typedef void(^PlayVoiceBlock)(void);
     // Modify the notification content here...
     /*******************************推荐用法*******************************************/
     [self pushJson:userInfo];
-    if ([automaticallyPrintOrders isEqualToString:@"开"] && itype == 3) {
-        [self dayin];
-
-    }
+//    if ([automaticallyPrintOrders isEqualToString:@"开"] && itype == 3) {
+//
+//        [[JWBluetoothManage sharedInstance] autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
+//            if (!error) {
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    if (!self.orderidStr || [self.orderidStr isEqualToString:@""]) {
+//                        self.orderidStr = userInfo[@"orderid"];
+//                        for (NSInteger i = 0; i < 2; i ++) {
+//                            [self wwm_printe];
+//
+//                        }
+//                    }
+//                });
+//            }else{
+//            }
+//        }];
+//    }
 }
 
 - (void)pushJson:(NSDictionary *)dict {
@@ -264,26 +277,8 @@ typedef void(^PlayVoiceBlock)(void);
     return prefix ;
 }
 
-- (void)dayin {
-    
- 
-//    CBPeripheral *perpherals = [userDefaults objectForKey:@"printer"];
 
-    
-    
-    [[JWBluetoothManage sharedInstance] autoConnectLastPeripheralCompletion:^(CBPeripheral *perpheral, NSError *error) {
-//        @strongify(self);
-        if (!error) {
-//            [ProgressShow alertView:self.view Message:@"打印机连接成功！" cb:nil];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self printe];
-            });
-        }else{
-//            [ProgressShow alertView:self.view Message:error.domain cb:nil];
-        }
-    }];
-}
-- (void)printe{
+- (void)wwm_printe{
     if ([JWBluetoothManage sharedInstance].stage != JWScanStageCharacteristics) {
 //        [SVProgressHUD showWithStatus:@"打印机正在准备中..."];
         return;
@@ -321,6 +316,10 @@ typedef void(^PlayVoiceBlock)(void);
     [printer appendNewLine];
     [printer appendNewLine];
     [printer appendNewLine];
+    
+    NSLog(@"写入次数哦---:%@",NSStringFromSelector(_cmd));
+
+    
     NSData *mainData = [printer getFinalData];
     [[JWBluetoothManage sharedInstance] sendPrintData:mainData completion:^(BOOL completion, CBPeripheral *connectPerpheral,NSString *error) {
         if (completion) {

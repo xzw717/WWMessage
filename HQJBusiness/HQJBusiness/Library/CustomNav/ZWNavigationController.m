@@ -19,8 +19,9 @@
     //设置手势代理
     self.interactivePopGestureRecognizer.delegate = self;
     //设置NavigationBar
-    [self setupNavigationBar];
-    
+//    [self setupNavigationBar];
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
 }
 
 //设置导航栏主题
