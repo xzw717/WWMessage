@@ -160,7 +160,7 @@
                  apsForProduction:0
             advertisingIdentifier:nil];
     NSLog(@"MmberidStr = %@",MmberidStr);
-    
+
     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
         NSLog(@"%ld %@ %ld",iResCode,iAlias,seq);
         if (iResCode) {
@@ -168,6 +168,8 @@
         }
 
     } seq:1];
+    [JPUSHService findNotification:nil];
+
 }
 - (void)goLogin {
     

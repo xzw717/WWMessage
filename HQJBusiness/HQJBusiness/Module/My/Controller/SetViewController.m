@@ -261,6 +261,7 @@
         }
         
     } seq:1];
+    [JPUSHService removeNotification:nil];
     
     
     
