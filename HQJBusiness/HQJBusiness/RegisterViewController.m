@@ -9,9 +9,14 @@
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 #import "CreateShopViewController.h"
+#import "ProtocolViewController.h"
+
 #import "JKCountDownButton.h"
 #import "HintView.h"
 @interface RegisterViewController ()<UITextFieldDelegate>
+
+
+@property (nonatomic,strong)UIButton *backBtn;
 
 @property (nonatomic,strong)UILabel *titleLabel;
 @property (nonatomic,strong)UIButton *loginBtn;
@@ -46,6 +51,20 @@
 @implementation RegisterViewController
 
 #pragma lazy-load
+
+- (UIButton *)backBtn{
+    if ( _backBtn == nil ) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [_backBtn bk_addEventHandler:^(id  _Nonnull sender) {
+            NSLog(@"pop success");
+            [self.navigationController popViewControllerAnimated:YES];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view addSubview:_backBtn];
+    }
+    return _backBtn;
+}
 
 - (UILabel *)titleLabel{
     if ( _titleLabel  == nil ) {
@@ -290,6 +309,12 @@
         [_protocolBtn setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
         _protocolBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
+        [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {
+            ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
+            pvc.webUrlStr = @"https://www.baidu.com";
+            pvc.titleStr = @"协议";
+            [self.navigationController pushViewController:pvc animated:YES];
+        } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_protocolBtn];
     }
     return _protocolBtn;
@@ -353,6 +378,9 @@
 #pragma private method
 - (void)layoutTheSubViews{
     self.titleLabel.sd_layout.topSpaceToView(self.view,StatusBarHeight).centerXEqualToView(self.view).heightIs(44).widthIs(100.0f);
+    
+    self.backBtn.sd_layout.centerYEqualToView(self.titleLabel).leftSpaceToView(self.view, 50.0f/3).heightIs(30.0f).widthIs(30.0f);
+    
     self.loginBtn.sd_layout.topSpaceToView(self.view,StatusBarHeight).rightSpaceToView(self.view, 20).heightIs(44).widthIs(50);
     
     self.logoImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.titleLabel,S_XRatioH(170.0f/3)).heightIs(S_XRatioH(154.0f/3)).widthIs(S_XRatioW(76.0f));

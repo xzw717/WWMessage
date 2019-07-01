@@ -55,8 +55,7 @@
         [_commonShopBtn setTitle:@"创建普通店铺" forState:UIControlStateNormal];
         [_commonShopBtn setImage:[UIImage imageNamed:@"shop"] forState:UIControlStateNormal];
         [_commonShopBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            [MBProgressHUD show:@"验证码已发送" icon:@"check-circle" view:self.view];
-            
+            [ZGProgressHUD show:@"验证码已发送" icon:@"check-circle" view:self.view];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_commonShopBtn];
         
