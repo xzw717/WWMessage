@@ -16,6 +16,14 @@
 #import "ZWTabBarViewController.h"
 #import "TabBarBannerViewModel.h"
 #import "TabBarBannerModel.h"
+#import "HeadlineVC.h"
+#import "MessageVC.h"
+#import "StoreVC.h"
+#import "ToolVC.h"
+
+
+
+
 @interface ZWTabBarViewController ()
 /*********** <#注释#>  ************/
 @property (nonatomic,weak)  UIView *tabberOldViews ;
@@ -25,15 +33,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MyViewController *MyVc = [[MyViewController alloc]init];
-    ZWNavigationController *MyNav = [[ZWNavigationController alloc]initWithRootViewController:MyVc];
-    DetailViewController *DetailVc = [[DetailViewController alloc]init];
-    ZWNavigationController *DetailNav = [[ZWNavigationController alloc]initWithRootViewController:DetailVc];
-    CommodityViewController *CommodityVc = [[CommodityViewController alloc]init];
-//    ZWNavigationController *CommodityNav = [[ZWNavigationController alloc]initWithRootViewController:CommodityVc];
-    OrderViewController *OrderVc = [[OrderViewController alloc]init];//--个人信息
-    ZWNavigationController *OrderNvc =[[ZWNavigationController alloc]initWithRootViewController:OrderVc];
+ 
+    StoreVC *storeVC = [[StoreVC alloc]init];//--个人信息
+    ZWNavigationController *storeNvc =[[ZWNavigationController alloc]initWithRootViewController:storeVC];
+    
+    MessageVC *messageVC = [[MessageVC alloc]init];
+    ZWNavigationController *messageNav = [[ZWNavigationController alloc]initWithRootViewController:messageVC];
 
+    ToolVC *toolVC = [[ToolVC alloc]init];//--个人信息
+    ZWNavigationController *toolNvc =[[ZWNavigationController alloc]initWithRootViewController:toolVC];
+    
+    HeadlineVC *headlineVC = [[HeadlineVC alloc]init];
+    ZWNavigationController *headlineNav = [[ZWNavigationController alloc]initWithRootViewController:headlineVC];
+    
+    MyViewController *myVc = [[MyViewController alloc]init];
+    ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
     
@@ -41,24 +55,28 @@
         item.imageInsets = UIEdgeInsetsMake(2, 2, 2,2);
     }
     
-    UIImage *mainImage      = [UIImage imageNamed:@"icon_mine_normal"];
-    UIImage *mainImageS     = [[UIImage imageNamed:@"icon_mine_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *storeImage      = [UIImage imageNamed:@"tab_store_normal"];
+    UIImage *storeImageHig     = [[UIImage imageNamed:@"tab_store_highlight"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-   UIImage *NearImage      = [UIImage imageNamed:@"icon_details_normal"];
-    UIImage *NearImageS     = [[UIImage imageNamed:@"icon_details_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   UIImage *messageImage      = [UIImage imageNamed:@"tab_message_normal"];
+    UIImage *messageImageHig     = [[UIImage imageNamed:@"tab_message_highlight"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UIImage *BusinessImage  = [UIImage imageNamed:@"icon_order_normal"];
-    UIImage *BusinessImageS = [[UIImage imageNamed:@"icon_order_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *toolImage  = [UIImage imageNamed:@"tab_tool_normal"];
+    UIImage *toolImageHig  = [[UIImage imageNamed:@"tab_tool_highlight"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+    UIImage *headlineImage  = [UIImage imageNamed:@"tab_headline_normal"];
+    UIImage *headlineImageHig  = [[UIImage imageNamed:@"tab_headline_highlight"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-//    UIImage *MyImage        = [UIImage imageNamed:@"icon_commodity_normal"];
-//    UIImage *MyImageS       = [[UIImage imageNamed:@"icon_commodity_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *myImage  = [UIImage imageNamed:@"tab_my_normal"];
+    UIImage *myImageHig  = [[UIImage imageNamed:@"tab_my_highlight"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    MyVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
-    DetailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
-    CommodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
-    OrderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
+    storeVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"店铺" image:storeImage selectedImage:storeImageHig];
+    messageVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"消息" image:messageImage selectedImage:messageImageHig];
+    toolVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"工具" image:toolImage selectedImage:toolImageHig];
+    headlineVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"头条" image:headlineImage selectedImage:headlineImageHig];
+    myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:myImage selectedImage:myImageHig];
     
-    self.viewControllers = @[MyNav,DetailNav,OrderNvc];
+    self.viewControllers = @[storeNvc,messageNav,toolNvc,headlineNav,myNav];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];

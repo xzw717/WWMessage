@@ -13,7 +13,18 @@
 @end
 
 @implementation ZW_BaseViewController
-
++ (void)load {
+    [super load];
+    UINavigationBar *navigationBar = [UINavigationBar appearanceWhenContainedIn:self, nil];
+    //统一设置导航栏颜色，如果单个界面需要设置，可以在viewWillAppear里面设置，在viewWillDisappear设置回统一格式。
+    [navigationBar setBarTintColor:[UIColor blackColor]];
+    
+    //导航栏title格式
+    NSMutableDictionary *textAttribute = [NSMutableDictionary dictionary];
+    textAttribute[NSForegroundColorAttributeName] = [UIColor blackColor];
+    textAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:18.f];
+    [navigationBar setTitleTextAttributes:textAttribute];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -26,16 +37,17 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
+//设置导航栏主题
+- (void)setupNavigationBar
+{
     
-    [super viewWillAppear:animated];
+    //    self.lh_barTintColor = [ManagerEngine getColor:@"00ccb8"];
     
-}
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+    
 
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
