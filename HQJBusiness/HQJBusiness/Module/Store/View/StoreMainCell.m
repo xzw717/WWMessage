@@ -60,6 +60,14 @@
             self.addImageView.bounds = CGRectMake(0, 0, ItemAddImageSize, ItemAddImageSize);
         }
             break;
+        case ItemViewStyleTopImage: {
+            self.numberLabel.hidden = YES;
+            self.namelabel.hidden = NO;
+            self.addImageView.hidden = NO;
+            self.addImageView.center = CGPointMake(ItemWidth / 2, ItemHeight / 2);
+            self.addImageView.bounds = CGRectMake(0, 0, ItemAddImageSize, ItemAddImageSize);
+        }
+            break;
         default:
             self.numberLabel.hidden = NO;
             self.namelabel.hidden = NO;
@@ -94,7 +102,6 @@
 - (UIImageView *)addImageView {
     if (!_addImageView) {
         _addImageView = [[UIImageView alloc]init];
-        _addImageView.image = [UIImage imageNamed:@"store_add"];
     }
     return _addImageView;
 }
@@ -147,6 +154,7 @@
 
 #pragma mark --- 设置每一区的名称和图片
 - (void)setTitleArray:(NSMutableArray *)titleArray {
+    _titleArray = titleArray;
     self.stotrTitleImageView.image = [UIImage imageNamed:titleArray.firstObject];
     self.stotrTitleLabel.text = titleArray.lastObject;
 }
@@ -159,30 +167,38 @@
             [obj removeFromSuperview];
         }
     }];
-    int SPNum = 3;//水平一行放几个
+    int SPNum =  3 ;//水平一行放几个 [self.titleArray.lastObject isEqualToString:@"开店宝典"] ? 4 :
     CGFloat JGGMinX = 0;//起始x值
     CGFloat JGGMinY = self.separationView.mj_y + self.separationView.mj_h;//起始y值
     CGFloat SPspace = 0;//水平距离
     CGFloat CXspace = 0;//垂直距离
     
     for (NSInteger i = 0; i < itemAry.count; i ++) {
+        NSString *ary = itemAry[i];
         ItemView * view = [[ItemView alloc]init];
         view.userInteractionEnabled = YES;
-        if ([itemAry[i] isEqualToString:@"+"]) {
+        if ([ary isEqualToString:@"+"]) {
             view.style = ItemViewStyleOnlyImage;
+            view.addImageView.image = [UIImage imageNamed:@"store_add"];
 
-        } else if ([itemAry[i] isEqualToString:@"添加商品"]) {
+        } else if ([ary  isEqualToString:@"添加商品"]) {
             view.style = ItemViewStyleAddImage;
+            view.addImageView.image = [UIImage imageNamed:@"store_add"];
 
         } else {
             view.style = ItemViewStyleDefault;
 
         }
+//        else if (![ary  isEqualToString:@""]) {
+//            view.style = ItemViewStyleTopImage;
+//            view.addImageView.image = [UIImage imageNamed:[ary firstObject]];
+//
+//        }
         CGFloat x =  JGGMinX + i % SPNum * (ItemWidth + SPspace);
         CGFloat y =  JGGMinY + i / SPNum * (ItemHeight + CXspace);
         view.frame = CGRectMake(x, y, ItemWidth, ItemHeight);
         view.numberLabel.text = [NSString stringWithFormat:@"1024.33633"];
-        view.namelabel.text = itemAry[i];
+        view.namelabel.text = ary ;
         view.tag = i + 10000;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickItem:)];
         [view addGestureRecognizer:tap];

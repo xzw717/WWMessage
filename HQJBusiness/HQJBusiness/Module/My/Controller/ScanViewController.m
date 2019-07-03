@@ -9,6 +9,8 @@
 #import "ScanViewController.h"
 #import "ConsumerCodeViewModel.h"
 #import "PaymentCodeViewModel.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ManuallyAddViewController.h"
 @interface ScanViewController ()
 @property (nonatomic, strong) PaymentCodeViewModel *viewModel;
 @end
@@ -17,6 +19,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ShutDown:) name:@"ShutDownCamera" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(openFlashlighe:) name:FlashLight object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(manualValidation) name:Validation object:nil];
 
 }
 
@@ -83,6 +87,20 @@
 - (void)ShutDown:(NSNotification *)messager {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)openFlashlighe:(NSNotification *)notifi {
+    NSString *isOpen = notifi.userInfo[@"selected"];
+    if ([isOpen isEqualToString:@"开"]) {
+        [self openFlash];
+    } else {
+        [self closeFlash];
+    }
+}
+- (void)manualValidation {
+    [self dismissViewControllerAnimated:YES completion:^{
+        !self.dismissBlock ? :self.dismissBlock();
+
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

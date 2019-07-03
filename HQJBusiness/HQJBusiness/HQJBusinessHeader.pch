@@ -151,8 +151,12 @@
 #define GreenColor  [ManagerEngine getColor:@"13ce66"]
 #define GrayColor  [ManagerEngine getColor:@"b9b9b9"]
 
-
-
+#define CreateStoreTreasure @"CreateStoreTreasure"
+#define CreateStoreTreasureKey @"CreateStoreTreasureKey"
+/// 扫一扫手电筒
+#define FlashLight @"FlashLight"
+/// 手动核销
+#define Validation @"Validation"
 ///收钱到账语音提醒是否已经开启
 #define CollectMoney [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"CollectMoney"]
 /// 新订单语音提醒是否已经开启

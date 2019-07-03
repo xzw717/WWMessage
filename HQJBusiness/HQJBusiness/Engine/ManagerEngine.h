@@ -308,4 +308,11 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (BOOL)isIPhoneXSeries;
 
+/**
+ 字符串和image 通用 返回 UIImage 对象
+ 
+ @param image 所需转换的对象
+ @return image 对象
+ */
++ (UIImage *)conversionsImage:(id)image ;
 @end

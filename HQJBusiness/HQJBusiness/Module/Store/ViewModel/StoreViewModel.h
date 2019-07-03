@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StoreViewModel : NSObject
-@property (nonatomic, strong) NSArray *modelAry;
-@property (nonatomic, strong) NSArray *titleAry;
+@property (nonatomic, strong) NSMutableArray *modelAry;
+@property (nonatomic, strong) NSMutableArray *titleAry;
+@property (nonatomic, strong) UITableView *vm_storetableView;
 /// 初始化方法
 - (instancetype)initWithTargetObjct:(id)object;
 /// 导航点击更多菜单

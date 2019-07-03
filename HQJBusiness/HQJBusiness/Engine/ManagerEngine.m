@@ -14,6 +14,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+
 static UILabel *alertLabel ;
 @class HomeViewController;
 @class NearViewController;
@@ -912,4 +913,15 @@ static const CGFloat  sAlertTimer = 3.0;
     
     return iPhoneXSeries;
 }
+
+#pragma mark --- image 或 名称 转换
++ (UIImage *)conversionsImage:(id)image  {
+    if ([[image class]isEqual:[UIImage class]]) {
+        return image;
+    } else {
+        return [UIImage imageNamed:image];
+    }
+}
+
+
 @end
