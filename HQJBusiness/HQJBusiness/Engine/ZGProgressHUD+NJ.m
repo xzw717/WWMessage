@@ -1,14 +1,14 @@
 //
-//  MBProgressHUD+NJ.m
+//  ZGProgressHUD+NJ.m
 //  NJWisdomCard
 //
 //  Created by apple on 15/8/25.
 //  Copyright (c) 2015年 Weconex. All rights reserved.
 //
 
-#import "MBProgressHUD+NJ.h"
+#import "ZGProgressHUD+NJ.h"
 
-@implementation MBProgressHUD (NJ)
+@implementation ZGProgressHUD (NJ)
 
 /**
  *  显示信息
@@ -28,7 +28,7 @@
     }
   
     // 快速显示一个提示信息
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    ZGProgressHUD *hud = [ZGProgressHUD showHUDAddedTo:view animated:YES];
     //设置成方形
     hud.square = YES;
     
@@ -36,7 +36,7 @@
     // 快速显示一个提示信息
     hud.label.text = text;
 
-    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.style = ZGProgressHUDBackgroundStyleSolidColor;
     
     //设置等待框背景色为黑色
     
@@ -46,18 +46,18 @@
     
     //设置菊花框为白色
     
-    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [UIColor whiteColor];
+    [UIActivityIndicatorView appearanceWhenContainedIn:[ZGProgressHUD class], nil].color = [UIColor whiteColor];
    
     // 设置图片
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icon]];
 
     // 再设置模式
-    hud.mode = MBProgressHUDModeCustomView;
+    hud.mode = ZGProgressHUDModeCustomView;
     
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
     
-    hud.animationType = MBProgressHUDAnimationZoomIn;
+    hud.animationType = ZGProgressHUDAnimationZoomIn;
      hud.label.textColor = [UIColor whiteColor];
     // 1秒之后再消失
     [hud hideAnimated:YES afterDelay:1.0];
@@ -109,9 +109,9 @@
  *
  *  @param message 信息内容
  *
- *  @return 直接返回一个MBProgressHUD，需要手动关闭
+ *  @return 直接返回一个ZGProgressHUD，需要手动关闭
  */
-+ (MBProgressHUD *)showMessage:(NSString *)message
++ (ZGProgressHUD *)showMessage:(NSString *)message
 {
     return [self showMessage:message toView:nil];
 }
@@ -122,12 +122,12 @@
  *  @param message 信息内容
  *  @param view    需要显示信息的视图
  *
- *  @return 直接返回一个MBProgressHUD，需要手动关闭
+ *  @return 直接返回一个ZGProgressHUD，需要手动关闭
  */
-+ (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view {
++ (ZGProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view {
     if (view == nil)  view = [ManagerEngine currentViewControll].view;
     // 快速显示一个提示信息
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    ZGProgressHUD *hud = [ZGProgressHUD showHUDAddedTo:view animated:YES];
     hud.label.text = message;
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
@@ -139,7 +139,7 @@
 
 
 /**
- *  手动关闭MBProgressHUD
+ *  手动关闭ZGProgressHUD
  */
 + (void)hideHUD
 {
@@ -147,9 +147,9 @@
 }
 
 /**
- *  手动关闭MBProgressHUD
+ *  手动关闭ZGProgressHUD
  *
- *  @param view    显示MBProgressHUD的视图
+ *  @param view    显示ZGProgressHUD的视图
  */
 + (void)hideHUDForView:(UIView *)view
 {

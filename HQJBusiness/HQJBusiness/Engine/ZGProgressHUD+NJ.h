@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Weconex. All rights reserved.
 //
 
-#import "MBProgressHUD.h"
+#import "ZGProgressHUD.h"
 
-@interface MBProgressHUD (NJ)
+@interface ZGProgressHUD (NJ)
 
 + (void)showSuccess:(NSString *)success;
 + (void)showSuccess:(NSString *)success toView:(UIView *)view;
@@ -16,8 +16,8 @@
 + (void)showError:(NSString *)error;
 + (void)showError:(NSString *)error toView:(UIView *)view;
 
-+ (MBProgressHUD *)showMessage:(NSString *)message;
-+ (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view;
++ (ZGProgressHUD *)showMessage:(NSString *)message;
++ (ZGProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view;
 
 
 + (void)hideHUD;

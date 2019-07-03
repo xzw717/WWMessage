@@ -26,6 +26,7 @@
 #import "RequestEngine.h"
 #import "FileEngine.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "ChildBaseViewController.h"
 #import "ZW_ViewController.h"
 #import "ZW_Label.h"
 #import "ZW_TextField.h"
@@ -44,7 +45,7 @@
 #import "LoginSingleton.h"
 #import "AppVersionManager.h"
 #import "HQJBAPIManage.h"
-#import "MBProgressHUD+NJ.h"
+#import "ZGProgressHUD+NJ.h"
 
 
 //#import "Manager.h"
@@ -144,7 +145,7 @@
 
 
 
-#define DefaultAPPColor  [ManagerEngine getColor:@"18abf5"]
+#define DefaultAPPColor  [ManagerEngine getColor:@"20a0ff"]
 
 #define RedColor  [ManagerEngine getColor:@"ff4949"]
 #define YellowColor  [ManagerEngine getColor:@"ffc82c"]
