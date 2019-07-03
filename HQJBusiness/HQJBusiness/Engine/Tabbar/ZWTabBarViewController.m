@@ -21,7 +21,7 @@
 #import "StoreVC.h"
 #import "ToolVC.h"
 
-
+#import "MineViewController.h"
 
 
 @interface ZWTabBarViewController ()
@@ -46,7 +46,7 @@
     HeadlineVC *headlineVC = [[HeadlineVC alloc]init];
     ZWNavigationController *headlineNav = [[ZWNavigationController alloc]initWithRootViewController:headlineVC];
     
-    MyViewController *myVc = [[MyViewController alloc]init];
+    MineViewController *myVc = [[MineViewController alloc]init];
     ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
