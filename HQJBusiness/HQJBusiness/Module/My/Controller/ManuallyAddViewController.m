@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.zw_title = @"手动添加";
+    self.title = @"手动添加";
     
     
     [self.view addSubview:self.backgroundView];

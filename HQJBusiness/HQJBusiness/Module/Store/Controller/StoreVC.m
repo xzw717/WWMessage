@@ -42,6 +42,12 @@
 - (void)storeVC_addViews {
     [self setNavigation];
     [self.view addSubview:self.storeTabelView];
+    [self.storeTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(StoreTableViewSpacing);
+        make.right.mas_equalTo(-StoreTableViewSpacing);
+
+    }];
 }
 
 #pragma mark --- 导航控制器设置
@@ -55,7 +61,6 @@
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barLeftItem = [[UIBarButtonItem alloc] initWithCustomView:messageButton];
     self.navigationItem.leftBarButtonItem = barLeftItem;
-  
     /*消息按钮*/
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [menuButton setImage:[UIImage imageNamed:@"nav_more"] forState:UIControlStateNormal];
@@ -63,11 +68,12 @@
     @weakify(self);
     [menuButton bk_addEventHandler:^(id  _Nonnull sender) {
         @strongify(self);
-        [self.viewModel navMenu:sender];
+                [self.viewModel navMenu:sender];
         
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barRightItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     self.navigationItem.rightBarButtonItem = barRightItem;
+   
 }
 
 
@@ -91,7 +97,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.viewModel.modelAry.count;
+    return self.viewModel.titleAry.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -185,7 +191,7 @@
 - (UITableView *)storeTabelView {
     if (!_storeTabelView) {
         _storeTabelView = [[UITableView alloc]init];
-        _storeTabelView.frame = CGRectMake(StoreTableViewSpacing, NavigationControllerHeight , StoreTableViewWidth, HEIGHT - NavigationControllerHeight);
+//        _storeTabelView.frame = CGRectMake(StoreTableViewSpacing, 0 , StoreTableViewWidth, HEIGHT - NavigationControllerHeight);
         _storeTabelView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _storeTabelView.separatorStyle =  UITableViewCellSeparatorStyleNone;
 //        _storeTabelView.estimatedRowHeight = 100.f;
@@ -211,6 +217,7 @@
 - (StoreViewModel *)viewModel {
     if (!_viewModel) {
         _viewModel = [[StoreViewModel alloc]initWithTargetObjct:self];
+        _viewModel.vm_storetableView = self.storeTabelView;
     }
     return _viewModel;
 }

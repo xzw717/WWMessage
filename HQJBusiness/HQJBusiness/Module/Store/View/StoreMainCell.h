@@ -12,9 +12,14 @@
 #import "ZW_TableViewCell.h"
 
 typedef NS_ENUM(NSInteger , ItemViewStyle) {
-    ItemViewStyleDefault = 0,   /// 默认 上面数字，下面文字
-    ItemViewStyleAddImage,      /// 上面加号按钮，下面文字
-    ItemViewStyleOnlyImage     ///  只有加号按钮
+    /// 默认 上面数字，下面文字
+    ItemViewStyleDefault = 0,
+    /// 上面图片 下面文字
+    ItemViewStyleTopImage,
+    /// 上面加号按钮，下面文字
+    ItemViewStyleAddImage,
+     /// 只有加号按钮
+    ItemViewStyleOnlyImage
 };
 
 @interface ItemView : UIView

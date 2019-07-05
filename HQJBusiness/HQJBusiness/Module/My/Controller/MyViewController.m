@@ -41,7 +41,7 @@
 -(UITableView *)myTableView {
     if ( _myTableView == nil ) {
         _myTableView = [[UITableView alloc]init];
-        _myTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT- NavigationControllerHeight - ToolBarHeight);
+        _myTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT  - ToolBarHeight);
         _myTableView.backgroundColor = DefaultBackgroundColor;
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
@@ -215,13 +215,13 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     @weakify(self);
-    [self.titleView setTitleStr:@"" andisNav:YES andColor:DefaultAPPColor];
+//    [self.titleView setTitleStr:@"" andisNav:YES andColor:DefaultAPPColor];
     [RACObserve(self, model)subscribeNext:^(MyModel *x) {
         @strongify(self);
         NSString *nameStr = !x.realname ? @"" : x.realname;
 //        NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         if (x.mobile) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
+//            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
         }
         
         
@@ -258,7 +258,7 @@
     }];
     
     
-    [self.titleView.activityIndicator stopAnimating];
+//    [self.titleView.activityIndicator stopAnimating];
     
     [_viewModel  setMyrequstBlock:^(MyModel * xzw_model) {
         @strongify(self);
@@ -278,7 +278,7 @@
     [_viewModel setMyrequstErrorBlock:^{
         @strongify(self);
         [self.myTableView.mj_header endRefreshing];
-        [self.titleView.activityIndicator stopAnimating];
+//        [self.titleView.activityIndicator stopAnimating];
     }];
     [_viewModel myRequst];
 
@@ -311,7 +311,7 @@
 }
 
 - (void)loginSuccess  {
-    [self.titleView setTitleStr:@"" andisNav:YES andColor:DefaultAPPColor];
+//    [self.titleView setTitleStr:@"" andisNav:YES andColor:DefaultAPPColor];
     [self requst];
 }
 
@@ -326,7 +326,7 @@
 - (NoticeView *)titleView {
     if (!_titleView) {
         _titleView =  [[NoticeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, NavigationControllerHeight) withNav:YES];
-        [self.view addSubview:self.titleView];
+//        [self.view addSubview:self.titleView];
 
     }
 

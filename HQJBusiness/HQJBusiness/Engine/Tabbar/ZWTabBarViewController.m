@@ -80,6 +80,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];
+    backView.backgroundColor = [UIColor whiteColor];
     [self.tabBar insertSubview:backView atIndex:0];
     self.tabBar.opaque = YES;
     

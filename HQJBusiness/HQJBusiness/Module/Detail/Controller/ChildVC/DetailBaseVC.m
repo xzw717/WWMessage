@@ -27,7 +27,7 @@ DZNEmptyDataSetDelegate>
         _tableView.rowHeight = 70.0;
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        _tableView.frame = CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44);
+        _tableView.frame = CGRectMake(0, DetailToolBarHeight, WIDTH, HEIGHT - DetailToolBarHeight);
         _tableView.tableFooterView = [UIView new];
         [_tableView registerClass:[DetailCell class] forCellReuseIdentifier:@"cellid"];
     }

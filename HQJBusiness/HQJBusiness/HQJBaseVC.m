@@ -9,7 +9,7 @@
 #import "HQJBaseVC.h"
 
 @interface HQJBaseVC ()
-
+//@property (nonatomic, strong) id *name;
 @end
 
 @implementation HQJBaseVC
@@ -17,14 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.tabBarItem.title;
-
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.fd_prefersNavigationBarHidden = YES;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    self.navigationController.navigationBar.barTintColor = [ManagerEngine getColor:@"18abf5"];
+    self.navigationController.navigationBar.barTintColor = DefaultAPPColor;
+    [self.navigationController.navigationBar setBackgroundImage:[ManagerEngine createImageWithColor:DefaultAPPColor] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
 
 }
@@ -32,20 +32,16 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.fd_prefersNavigationBarHidden = NO;
+    [self.navigationController.navigationBar setBackgroundImage:[ManagerEngine createImageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+
 }
 
-//-(UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
-/*
-#pragma mark - Navigation
+- (void)setIsHiddenshadowImage:(BOOL)isHiddenshadowImage {
+    _isHiddenshadowImage = isHiddenshadowImage;
+    if (isHiddenshadowImage == YES) {
+        self.navigationController.navigationBar.shadowImage = [UIImage new];
+    }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
 @end

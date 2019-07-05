@@ -11,5 +11,5 @@
 @interface ScanViewController : CALScanQRCodeViewController
 @property (nonatomic, assign) BOOL isAddCode;
 @property (nonatomic, strong) NSString *addcodeType;
-
+@property (nonatomic, copy) void(^dismissBlock)(void);
 @end

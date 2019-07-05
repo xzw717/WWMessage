@@ -15,6 +15,8 @@
 
 @property (nonatomic, copy) NSString *tipsLabelText;
 
+@property (nonatomic, strong) void(^flashlightBlock)(void);
+@property (nonatomic, strong) void(^validationBlock)(void);
 - (void)stopAnimation;
 
 @end

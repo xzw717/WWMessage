@@ -7,6 +7,7 @@
 //
 
 #import "CALScanQRCodeCameraView.h"
+#import "ScanQRCodeToolView.h"
 
 #define CALScreenWidth          (CGRectGetWidth([[UIScreen mainScreen] bounds]))
 #define CALScreenHeight         (CGRectGetHeight([[UIScreen mainScreen] bounds]))
@@ -27,6 +28,7 @@ static const CGFloat KAlppha = 0.5;
 @property (nonatomic,strong)UIView *downView;
 @property (nonatomic,strong)UIView *leftView;
 @property (nonatomic,strong)UIView *rightView;
+@property (nonatomic, strong) ScanQRCodeToolView *toolView;
 @end
 
 @implementation CALScanQRCodeCameraView
@@ -35,12 +37,16 @@ static const CGFloat KAlppha = 0.5;
     
     if (self = [super init]) {
         
-        self.frame = CGRectMake(0, CALNavigationBarHeight + CALStatusBarHeight, CALScreenWidth, HEIGHT );
+        self.frame = CGRectMake(0,CALStatusBarHeight + CALNavigationBarHeight, CALScreenWidth, HEIGHT - CALStatusBarHeight - CALNavigationBarHeight);
         [self addSubview:self.scanQRCodePickBackgroundImageView];
-        [self setFillView];
+        [self addSubview:self.topView];
+        [self addSubview:self.downView];
+        [self addSubview:self.leftView];
+        [self addSubview:self.rightView];
+        [self addSubview:self.toolView];
         [self addSubview:self.tipsLabel];
         [self addSubview:self.lineImageView];
-        
+        [self setFillView];
         [self startAnimation];
     }
     
@@ -51,7 +57,6 @@ static const CGFloat KAlppha = 0.5;
     if ( _topView == nil ) {
         _topView = [[UIView alloc]init];
         _topView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:KAlppha];
-        [self addSubview:_topView];
     }
     
     
@@ -62,7 +67,6 @@ static const CGFloat KAlppha = 0.5;
     if ( _downView == nil ) {
         _downView = [[UIView alloc]init];
         _downView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:KAlppha];
-        [self addSubview:_downView];
 
     }
     return _downView;
@@ -71,7 +75,6 @@ static const CGFloat KAlppha = 0.5;
     if ( _leftView == nil ) {
         _leftView = [[UIView alloc]init];
         _leftView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:KAlppha];
-        [self addSubview:_leftView];
 
     }
     return _leftView;
@@ -81,18 +84,61 @@ static const CGFloat KAlppha = 0.5;
     if ( _rightView == nil ) {
         _rightView =[[UIView alloc]init];
         _rightView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:KAlppha];
-        [self addSubview:_rightView];
     }
     
     return _rightView;
 }
-
+- (ScanQRCodeToolView *)toolView {
+    if (!_toolView) {
+        _toolView = [[ScanQRCodeToolView alloc]init];
+        _toolView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:KAlppha];
+    }
+    return _toolView;
+}
 -(void)setFillView {
-    self.topView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self,0).heightIs(self.center.y / 3.5).widthIs(CALScreenWidth);
-    self.leftView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self.topView,0).heightIs(CALScreenWidth - 80).widthIs(80/2);
-     self.rightView.sd_layout.leftSpaceToView(self.scanQRCodePickBackgroundImageView,0).topSpaceToView(self.topView,0).heightIs(CALScreenWidth - 80).widthIs(80/2);
-    self.downView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self.scanQRCodePickBackgroundImageView,0).heightIs(CALScreenHeight - (self.center.y / 3.5 + CALScreenWidth - 80)).widthIs(CALScreenWidth);
-//    HQJLog(@"%f---",CALScreenHeight - (self.center.y / 3.5 + CALScreenWidth - 80));
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.width.mas_equalTo(CALScreenWidth);
+        make.height.mas_equalTo(self.center.y / 3.5);
+        
+    }];
+    [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(self.topView.mas_bottom);
+        make.width.mas_equalTo(80/2);
+        make.height.mas_equalTo(CALScreenWidth - 80);
+        
+    }];
+    [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.topView.mas_bottom);
+        make.width.mas_equalTo(80/2);
+        make.height.mas_equalTo(CALScreenWidth - 80);
+        
+    }];
+    [self.downView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(self.self.scanQRCodePickBackgroundImageView.mas_bottom);
+        make.width.mas_equalTo(CALScreenWidth);
+        make.height.mas_equalTo(CALScreenHeight - (self.center.y / 3.5 + CALScreenWidth - 80));
+        
+    }];
+    [self.toolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(CALScreenWidth);
+        make.height.mas_equalTo(self.center.y / 3.5);
+        
+    }];
+//    self.topView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self,0).heightIs(self.center.y / 3.5).widthIs(CALScreenWidth);
+//    self.leftView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self.topView,0).heightIs(CALScreenWidth - 80).widthIs(80/2);
+//    self.rightView.sd_layout.leftSpaceToView(self.scanQRCodePickBackgroundImageView,0).topSpaceToView(self.topView,0).heightIs(CALScreenWidth - 80).widthIs(80/2);
+    
+    
+//    self.downView.sd_layout.leftSpaceToView(self,0).topSpaceToView(self.scanQRCodePickBackgroundImageView,0).heightIs(CALScreenHeight - (self.center.y / 3.5 + CALScreenWidth - 80)).widthIs(CALScreenWidth);
+    
+//    self.toolView.sd_layout.leftSpaceToView(self,0).bottomEqualToView(self.downView).heightIs(246 / 3.f).widthIs(CALScreenWidth);
 }
 
 
@@ -101,7 +147,7 @@ static const CGFloat KAlppha = 0.5;
     
     CALGetMethodReturnObjc(_scanQRCodePickBackgroundImageView);
     
-    _scanQRCodePickBackgroundImageView       = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CALScanQRCode.bundle/scan_pick_bg"]];
+    _scanQRCodePickBackgroundImageView       = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CALScanQRCode.bundle/scan_frame"]];
     _scanQRCodePickBackgroundImageView.frame = CGRectMake(80 / 2, self.center.y / 3.5, CALScreenWidth - 80, CALScreenWidth - 80);
     
     return _scanQRCodePickBackgroundImageView;

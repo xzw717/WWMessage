@@ -69,7 +69,7 @@
     
     [self.view addSubview:_bottomSView];
     
-    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr isScaleText:NO];
+    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, 0 , WIDTH, DetailToolBarHeight) delegate:self childVcTitle:title_arr isScaleText:NO];
     _topSView.showsBottomScrollIndicator = NO;
     _topSView.titleColorStateSelected = DefaultAPPColor;
     _topSView.backgroundColor = DefaultBackgroundColor;

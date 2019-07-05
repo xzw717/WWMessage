@@ -19,5 +19,8 @@
 @property (nonatomic, copy) void(^CALScanQRCodeGetMetadataObjectsBlock)(NSArray *metadataObjects);
 
 @property (nonatomic, copy) void(^CALScanQRCodeGetMetadataStringValue)(NSString *metadataObject);
-
+/// 开闪光灯
+- (void)openFlash;
+/// 关闪光灯
+- (void)closeFlash ;
 @end

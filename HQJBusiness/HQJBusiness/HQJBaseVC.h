@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HQJBaseVC : UIViewController
-
+@property (nonatomic, assign) BOOL isHiddenshadowImage;
 @end
 
 NS_ASSUME_NONNULL_END
