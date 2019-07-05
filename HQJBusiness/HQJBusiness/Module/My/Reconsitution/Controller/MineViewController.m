@@ -7,16 +7,24 @@
 //
 
 #import "MineViewController.h"
+#import "PersonInfoViewController.h"
 
 #import "MineHeadView.h"
 
 #import "MineViewModel.h"
 
+#import "MyViewModel.h"
+
 #import "MineCell.h"
 
 #import "MineLogoutCell.h"
-#define HeadViewHeight 130.f
 
+#import "MyModel.h"
+
+
+
+
+#define HeadViewHeight 260/3.f
 #define TableViewCellHeight 50.f
 #define TableViewSectionHeight 40/3.f
 
@@ -29,8 +37,9 @@
 
 @property (nonatomic,strong)MineViewModel *viewModel;
 
+@property (nonatomic,strong)MyViewModel *myViewModel;
 
-
+@property (nonatomic,strong)MyModel *model;
 @end
 
 @implementation MineViewController
@@ -38,14 +47,20 @@
 -(UITableView *)tableView {
     if ( _tableView == nil ) {
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, NavigationControllerHeight + HeadViewHeight, WIDTH, HEIGHT- NavigationControllerHeight - ToolBarHeight - HeadViewHeight);
+        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT- NavigationControllerHeight - ToolBarHeight);
         _tableView.backgroundColor = DefaultBackgroundColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+        _tableView.tableHeaderView = self.headView;
+        
         [_tableView registerClass:[MineCell class] forCellReuseIdentifier:NSStringFromClass([MineCell class])];
         [_tableView registerClass:[MineLogoutCell class] forCellReuseIdentifier:NSStringFromClass([MineLogoutCell class])];
-        
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requst];
+        }];
+        _tableView.mj_header = header;
+        header.lastUpdatedTimeLabel.hidden = YES;
     }
     
     return _tableView;
@@ -54,8 +69,15 @@
 - (MineHeadView *)headView{
     if (_headView == nil) {
         _headView = [[MineHeadView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, HeadViewHeight)];
+        UITapGestureRecognizer *headTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headTapClick)];
+        [_headView addGestureRecognizer:headTap];
     }
     return _headView;
+}
+
+- (void)headTapClick{
+    PersonInfoViewController *pivc = [[PersonInfoViewController alloc]init];
+    [self.navigationController pushViewController:pivc animated:YES];
 }
 
 - (MineViewModel *)viewModel{
@@ -70,16 +92,46 @@
 #pragma mark ---
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self initDatas];
     [self addSubViews];
 }
 
+- (void)initDatas{
+    _myViewModel = [[MyViewModel alloc]init];
+    _model = [[MyModel alloc]init];
+}
+
+#pragma mark --- 请求
+- (void)requst {
+    @weakify(self);
+    
+    [_myViewModel  setMyrequstBlock:^(MyModel * xzw_model) {
+        @strongify(self);
+        self.model = xzw_model;
+        
+        [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
+        [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
+        [NameSingle shareInstance].mobile = xzw_model.mobile;
+        [NameSingle shareInstance].memberid = xzw_model.memberid;
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+    }];
+    [_myViewModel setMyrequstErrorBlock:^{
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+    }];
+    [_myViewModel myRequst];
+}
 
 - (void)addSubViews{
-    [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (MmberidStr) {
+        [self requst];
+    }
     
 }
 -(void)viewWillDisappear:(BOOL)animated {

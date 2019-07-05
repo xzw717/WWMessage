@@ -53,4 +53,11 @@ typedef NS_ENUM(NSInteger,filenameStlye)
  *  @param style 文件类型
  */
 +(void)fileRemove:(filenameStlye)style;
+
+/**
+ *  存储首页需要的item
+ *
+ *  @param array item集合
+ */
++ (void)storeToolArray:(NSMutableArray *)array;
 @end

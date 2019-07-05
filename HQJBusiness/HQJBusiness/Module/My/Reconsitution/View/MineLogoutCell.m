@@ -20,6 +20,7 @@
 - (UIButton *)logoutButton{
     if (!_logoutButton) {
         _logoutButton = [UIButton buttonWithType:0];
+        _logoutButton.userInteractionEnabled = NO;
         [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
         _logoutButton.backgroundColor = DefaultAPPColor;
         _logoutButton.layer.masksToBounds = YES;

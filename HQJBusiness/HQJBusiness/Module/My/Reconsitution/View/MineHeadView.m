@@ -10,12 +10,12 @@
 
 #define  HeadTopSpacing  38/3.f
 #define  HeadLeftSpacing  54/3.f
-#define  HeadImageSize 80.f
+#define  HeadImageSize 178/3.f
 
 #define  NameLabelTopSpacing  68/3.f
 #define  StateLabelTopSpacing  25/3.f
 
-#define  StateImageSize 76/3.f
+#define  StateImageSize 53/3.f
 
 #define  MinSpacing  5.f
 
@@ -46,8 +46,8 @@
         _headImageView = [[UIImageView alloc]init];
         _headImageView.layer.masksToBounds = YES;
         _headImageView.layer.cornerRadius = 10;
-        _headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        _headImageView.layer.borderWidth = 1.f;
+        _headImageView.layer.borderColor = [ManagerEngine getColor:@"66ffff"].CGColor;
+        _headImageView.layer.borderWidth = 2.f;
         [self addSubview:_headImageView];
     }
     return _headImageView;
@@ -86,7 +86,7 @@
 - (UIButton *)qrCodeButton{
     if ( _qrCodeButton == nil ) {
         _qrCodeButton = [UIButton buttonWithType:0];
-        [_qrCodeButton setImage:[UIImage imageNamed:@"my_icon_ewm"] forState:UIControlStateNormal];
+        [_qrCodeButton setImage:[UIImage imageNamed:@"my_icon_ewm_white"] forState:UIControlStateNormal];
         [self addSubview:_qrCodeButton];
     }
     return _qrCodeButton;
@@ -107,20 +107,20 @@
     self = [super initWithFrame:frame ];
     if (self) {
         self.backgroundColor = DefaultAPPColor;
-        
+        self.userInteractionEnabled = YES;
         [self layoutTheSubViews];
     }
     return self;
 }
 
 - (void)layoutTheSubViews{
-    self.headImageView.sd_layout.topSpaceToView(self,HeadTopSpacing).leftSpaceToView(self,HeadLeftSpacing).heightIs(HeadImageSize).widthIs(HeadImageSize);
+    self.headImageView.sd_layout.centerYEqualToView(self).leftSpaceToView(self,HeadLeftSpacing).heightIs(HeadImageSize).widthIs(HeadImageSize);
     self.nameLabel.sd_layout.topSpaceToView(self,NameLabelTopSpacing).leftSpaceToView(self.headImageView,HeadLeftSpacing).widthIs(200.f);
     self.stateImageView.sd_layout.topSpaceToView(self.nameLabel,StateLabelTopSpacing).leftSpaceToView(self.headImageView,HeadLeftSpacing).heightIs(StateImageSize).widthIs(StateImageSize);
     self.stateLabel.sd_layout.centerYEqualToView(self.stateImageView).leftSpaceToView(self.stateImageView,MinSpacing).heightIs(20.f).widthIs(200.f);
     
-    self.rightButton.sd_layout.centerYEqualToView(self.headImageView).rightSpaceToView(self,HeadLeftSpacing).heightIs(20.f).widthIs(20.f);
-    self.qrCodeButton.sd_layout.centerYEqualToView(self.headImageView).rightSpaceToView(self.rightButton,MinSpacing).heightIs(30.f).widthIs(30.f);
+    self.rightButton.sd_layout.centerYEqualToView(self.headImageView).rightSpaceToView(self,HeadLeftSpacing).heightIs(57/3.f).widthIs(41/3.f);
+    self.qrCodeButton.sd_layout.centerYEqualToView(self.headImageView).rightSpaceToView(self.rightButton,MinSpacing).heightIs(63/3.f).widthIs(65/3.f);
     
 }
 @end

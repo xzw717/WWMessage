@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ToolCell : ZW_TableViewCell
 @property (nonatomic, strong) NSMutableArray *itemAry;
 @property (nonatomic, strong) void(^clickItemblock)(NSString *title);
-
+@property (nonatomic, strong) void(^longClickItemblock)(NSArray *array);
 @end
 
 NS_ASSUME_NONNULL_END

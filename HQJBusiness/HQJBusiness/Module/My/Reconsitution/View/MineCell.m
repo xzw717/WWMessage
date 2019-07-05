@@ -8,7 +8,7 @@
 
 #import "MineCell.h"
 
-#define IconImageSize 30.f
+#define IconImageSize 76/3.f
 #define IconLeftSpace 17.f
 
 @interface MineCell ()
@@ -31,8 +31,8 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = [UIFont systemFontOfSize:17.f];
-        _titleLabel.textColor = [ManagerEngine getColor:@"606266"];
+        _titleLabel.font = [UIFont systemFontOfSize:16.f];
+        _titleLabel.textColor = [ManagerEngine getColor:@"333333"];
         [self addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -56,9 +56,9 @@
 }
 - (void)layoutTheSubviews{
     
-    self.iconImageView.sd_layout.leftSpaceToView(self,IconLeftSpace).topSpaceToView(self, 10).heightIs(IconImageSize).widthIs(IconImageSize);
+    self.iconImageView.sd_layout.leftSpaceToView(self,IconLeftSpace).centerYEqualToView(self).heightIs(IconImageSize).widthIs(IconImageSize);
     self.titleLabel.sd_layout.leftSpaceToView(self.iconImageView,IconLeftSpace).centerYEqualToView(self.iconImageView).heightIs(30.f).widthIs(200.f);
-    self.rightImageView.sd_layout.rightSpaceToView(self, IconLeftSpace).centerYEqualToView(self.iconImageView).heightIs(20.f).widthIs(20.f);
+    self.rightImageView.sd_layout.rightSpaceToView(self, IconLeftSpace).centerYEqualToView(self.iconImageView).heightIs(57/3.f).widthIs(41/3.f);
     
 }
 
