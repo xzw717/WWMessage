@@ -285,7 +285,6 @@
 		201BE3FD229FB3F500326500 /* wwm_dot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FA229FB3F500326500 /* wwm_dot.mp3 */; };
 		201BE3FE229FB3F500326500 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */; };
 		201BE3FF229FB3F500326500 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */; };
-		204E914C22C99DBB006BD23C /* ButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E914A22C99DBB006BD23C /* ButtonItem.m */; };
 		204E914F22C9F6A2006BD23C /* ToolViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E914E22C9F6A2006BD23C /* ToolViewModel.m */; };
 		204E915222C9FE1E006BD23C /* ToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E915122C9FE1E006BD23C /* ToolCell.m */; };
 		204E917E22CC8EAA006BD23C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917022CC8EA9006BD23C /* MineViewController.m */; };
@@ -308,9 +307,6 @@
 		20C6E6C422C493B100AEBC4D /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6C222C493B100AEBC4D /* ForgetPswViewController.m */; };
 		20C6E6C722C4BC9000AEBC4D /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6C622C4BC9000AEBC4D /* ZGProgressHUD.m */; };
 		20C6E6CA22C5B8A200AEBC4D /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6C922C5B8A200AEBC4D /* ProtocolViewController.m */; };
-		20C6E6D222C6100B00AEBC4D /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6CD22C6100B00AEBC4D /* BaseTableViewCell.m */; };
-		20C6E6D322C6100B00AEBC4D /* ChildBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6CF22C6100B00AEBC4D /* ChildBaseViewController.m */; };
-		20C6E6D822C610CE00AEBC4D /* ChildNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6D622C610CE00AEBC4D /* ChildNav.m */; };
 		20DF4E7D229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
 		20DF4E7E229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
 		20DF4E7F229E840B00317D3B /* wwm_score_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7C229E840B00317D3B /* wwm_score_pre.mp3 */; };
@@ -997,8 +993,6 @@
 		201BE3F0229F73EB00326500 /* ZGAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGAudioManager.m; sourceTree = "<group>"; };
 		201BE3FA229FB3F500326500 /* wwm_dot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_dot.mp3; sourceTree = "<group>"; };
 		201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_hundred.mp3; sourceTree = "<group>"; };
-		204E914A22C99DBB006BD23C /* ButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonItem.m; sourceTree = "<group>"; };
-		204E914B22C99DBB006BD23C /* ButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonItem.h; sourceTree = "<group>"; };
 		204E914D22C9F6A2006BD23C /* ToolViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolViewModel.h; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.h; sourceTree = SOURCE_ROOT; };
 		204E914E22C9F6A2006BD23C /* ToolViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToolViewModel.m; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.m; sourceTree = SOURCE_ROOT; };
 		204E915022C9FE1E006BD23C /* ToolCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolCell.h; path = HQJBusiness/Module/Tool/View/ToolCell.h; sourceTree = SOURCE_ROOT; };
@@ -1043,12 +1037,6 @@
 		20C6E6C622C4BC9000AEBC4D /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		20C6E6C822C5B8A100AEBC4D /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
 		20C6E6C922C5B8A200AEBC4D /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
-		20C6E6CC22C6100B00AEBC4D /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
-		20C6E6CD22C6100B00AEBC4D /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
-		20C6E6CE22C6100B00AEBC4D /* ChildBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBaseViewController.h; sourceTree = "<group>"; };
-		20C6E6CF22C6100B00AEBC4D /* ChildBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBaseViewController.m; sourceTree = "<group>"; };
-		20C6E6D622C610CE00AEBC4D /* ChildNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildNav.m; sourceTree = "<group>"; };
-		20C6E6D722C610CE00AEBC4D /* ChildNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildNav.h; sourceTree = "<group>"; };
 		20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_cash_pre.mp3; sourceTree = "<group>"; };
 		20DF4E7C229E840B00317D3B /* wwm_score_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_score_pre.mp3; sourceTree = "<group>"; };
 		20DF4E87229E864400317D3B /* wwm_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_4.mp3; sourceTree = "<group>"; };
@@ -1894,7 +1882,6 @@
 		1F960C971DFE3D06003E3D17 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				20C6E6CB22C6100B00AEBC4D /* BaseClass */,
 				5F1E997120C61F3B001799F9 /* Manager */,
 				1F960C981DFE3D06003E3D17 /* AppDelegate.h */,
 				1F960C991DFE3D06003E3D17 /* AppDelegate.m */,
@@ -2544,29 +2531,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		20C6E6CB22C6100B00AEBC4D /* BaseClass */ = {
-			isa = PBXGroup;
-			children = (
-				20C6E6D522C610A100AEBC4D /* View */,
-				20C6E6CC22C6100B00AEBC4D /* BaseTableViewCell.h */,
-				20C6E6CD22C6100B00AEBC4D /* BaseTableViewCell.m */,
-				20C6E6CE22C6100B00AEBC4D /* ChildBaseViewController.h */,
-				20C6E6CF22C6100B00AEBC4D /* ChildBaseViewController.m */,
-			);
-			path = BaseClass;
-			sourceTree = "<group>";
-		};
-		20C6E6D522C610A100AEBC4D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				20C6E6D722C610CE00AEBC4D /* ChildNav.h */,
-				20C6E6D622C610CE00AEBC4D /* ChildNav.m */,
-				204E914B22C99DBB006BD23C /* ButtonItem.h */,
-				204E914A22C99DBB006BD23C /* ButtonItem.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5F1E997120C61F3B001799F9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3009,7 +2973,6 @@
 				1F40292D229FBCFF0014769B /* OrderDetailsTwoCell.m in Sources */,
 				1F12F7501E1635FE0056DF9A /* NSDataEx.m in Sources */,
 				20C6E6C422C493B100AEBC4D /* ForgetPswViewController.m in Sources */,
-				20C6E6D322C6100B00AEBC4D /* ChildBaseViewController.m in Sources */,
 				1F960D451DFE3E51003E3D17 /* NullSafe.m in Sources */,
 				1F960D3F1DFE3E51003E3D17 /* UIPopoverController+BlocksKit.m in Sources */,
 				1F25DC031E10E9A4004DC19F /* TransferOrderVC.m in Sources */,
@@ -3033,7 +2996,6 @@
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
 				1F47854B22CB3E560085FF8C /* ScanQRCodeToolView.m in Sources */,
 				1F402931229FBCFF0014769B /* OrderDetailsBaseCell.m in Sources */,
-				20C6E6D222C6100B00AEBC4D /* BaseTableViewCell.m in Sources */,
 				1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */,
 				1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */,
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
@@ -3060,7 +3022,6 @@
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
-				20C6E6D822C610CE00AEBC4D /* ChildNav.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
@@ -3085,7 +3046,6 @@
 				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
 				204E917F22CC8EAA006BD23C /* SetUpViewController.m in Sources */,
 				204E918C22CDE9EE006BD23C /* PersonInfoCell.m in Sources */,
-				204E914C22C99DBB006BD23C /* ButtonItem.m in Sources */,
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
 				1F47854822C9FEFC0085FF8C /* MessageGeneralCell.m in Sources */,
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
