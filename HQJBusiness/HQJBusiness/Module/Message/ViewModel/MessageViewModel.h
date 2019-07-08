@@ -12,8 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageViewModel : NSObject
 @property (nonatomic, copy) void (^topViewSelectViewModle)(NSInteger tag);
+@property (nonatomic, copy) void (^simulationRequst)(void);
 @property (nonatomic, strong) NSMutableArray  *dataAry;
-@property (nonatomic, strong) UITableView *vm_messageTableView;
+@property (nonatomic, strong) NSMutableArray  *dataOtherAry;
+@property (nonatomic, strong) NSArray <UITableView *>*vm_messageTableViews;
 @property (nonatomic, strong) MessageTopTAB *tabViwe;
 - (void)messageMenu:(UIView *)view ;
 @end

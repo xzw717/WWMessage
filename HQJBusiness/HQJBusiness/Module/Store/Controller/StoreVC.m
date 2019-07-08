@@ -12,6 +12,9 @@
 #import "StoreADCell.h"
 #import "ScanViewController.h"
 #import "StoreViewModel.h"
+#import "NewMessageImageView.h"
+#import "AppDelegate.h"
+#import "ZW_TabBar.h"
 
 #define StoreNavButtonSize 22.f
 
@@ -36,7 +39,6 @@
     [super viewDidLoad];
     [self storeVC_addViews];
     
-    
 }
 
 - (void)storeVC_addViews {
@@ -53,12 +55,16 @@
 #pragma mark --- 导航控制器设置
 - (void)setNavigation {
     /*消息按钮*/
-    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [messageButton setImage:[UIImage imageNamed:@"nav_message"] forState:UIControlStateNormal];
+    NewMessageImageView *messageButton = [[NewMessageImageView alloc]initWithHintStyle:redViewStyleSmallNumber];
+    messageButton.image = [UIImage imageNamed:@"nav_message"];
+    [messageButton setNumbaer:9];
     messageButton.frame = CGRectMake(0, 0, StoreNavButtonSize, StoreNavButtonSize);
-    [messageButton bk_addEventHandler:^(id  _Nonnull sender) {
-        
-    } forControlEvents:UIControlEventTouchUpInside];
+    [messageButton setTapImage:^{
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        ZW_TabBar *tab = (ZW_TabBar*)delegate.window.rootViewController;
+        [tab didSelectItem:1];
+    }];
+
     UIBarButtonItem *barLeftItem = [[UIBarButtonItem alloc] initWithCustomView:messageButton];
     self.navigationItem.leftBarButtonItem = barLeftItem;
     /*消息按钮*/

@@ -41,15 +41,14 @@
     }
     return self;
 }
--(void)viewWillAppear:(BOOL)animated{
-    @weakify(self);
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-   
+    [self setNavType:HQJNavigationBarWhite];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"订单详情";
+    self.title = @"订单详情";
     [OrderViewModel requestCustomerInformationWith:self.dataModel.userid complete:^(NSString *mobile, NSString *realname) {
         self.mobileStr = mobile;
         self.nameStr = realname;
@@ -175,7 +174,7 @@
 
 - (UITableView *)orderDetailsTableView {
     if (!_orderDetailsTableView) {
-        _orderDetailsTableView = [[UITableView alloc]initWithFrame:CGRectMake(10, NavigationControllerHeight, WIDTH - 20, HEIGHT - NavigationControllerHeight) style:UITableViewStyleGrouped];
+        _orderDetailsTableView = [[UITableView alloc]initWithFrame:CGRectMake(10, 0, WIDTH - 20, HEIGHT) style:UITableViewStyleGrouped];
         _orderDetailsTableView.delegate = self;
         _orderDetailsTableView.dataSource = self;
 //        _orderDetailsTableView.rowHeight = 44;

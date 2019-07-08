@@ -20,7 +20,10 @@
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>{
     NSInteger _topBtnTag;
 }
-@property (nonatomic, strong) UITableView *messageTabelView;
+@property (nonatomic, strong) UITableView *messageOrderTabelView;
+@property (nonatomic, strong) UITableView *messageImportantTabelView;
+@property (nonatomic, strong) UITableView *messageOtherTabelView;
+
 @property (nonatomic, strong) MessageViewModel *viewModel;
 @property (nonatomic, strong) MessageTopTAB *tabView;
 @property (nonatomic, strong) NSMutableArray  *dataAry;
@@ -84,8 +87,20 @@
 }
 
 - (void)setBottomView {
-    [self.view addSubview:self.messageTabelView];
-    [self.messageTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.messageOrderTabelView];
+    [self.messageOrderTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tabView.mas_bottom);
+        make.bottom.mas_equalTo(self.view.mas_bottom);
+        make.left.right.mas_equalTo(0);
+    }];
+    [self.view addSubview:self.messageImportantTabelView];
+    [self.messageImportantTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tabView.mas_bottom);
+        make.bottom.mas_equalTo(self.view.mas_bottom);
+        make.left.right.mas_equalTo(0);
+    }];
+    [self.view addSubview:self.messageOtherTabelView];
+    [self.messageOtherTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.tabView.mas_bottom);
         make.bottom.mas_equalTo(self.view.mas_bottom);
         make.left.right.mas_equalTo(0);
@@ -107,7 +122,15 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"%ld",tableView.tag);
+
+    if (self.messageOrderTabelView == tableView) {
         return self.viewModel.dataAry.count;
+
+    } else {
+        return self.viewModel.dataOtherAry.count;
+
+    }
  
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,24 +151,60 @@
 - (MessageViewModel *)viewModel {
     if (!_viewModel) {
         _viewModel = [[MessageViewModel alloc]init];
-        _viewModel.vm_messageTableView = self.messageTabelView;
+        _viewModel.vm_messageTableViews= @[self.messageOrderTabelView,self.messageImportantTabelView,self.messageOtherTabelView];
     }
     return _viewModel;
 }
 
-- (UITableView *)messageTabelView {
-    if (!_messageTabelView) {
-        _messageTabelView = [[UITableView alloc]init];
-        _messageTabelView.delegate = self;
-        _messageTabelView.dataSource = self;
-        _messageTabelView.rowHeight = 230/3.f;
-        _messageTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_messageTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
-        _messageTabelView.tableFooterView = [UIView new];
-        _messageTabelView.backgroundColor = DefaultBackgroundColor;
-        _messageTabelView.emptyDataSetSource = self;
-        _messageTabelView.emptyDataSetDelegate = self;
+- (UITableView *)messageOrderTabelView {
+    if (!_messageOrderTabelView) {
+        _messageOrderTabelView = [[UITableView alloc]init];
+        _messageOrderTabelView.delegate = self;
+        _messageOrderTabelView.dataSource = self;
+        _messageOrderTabelView.rowHeight = 230/3.f;
+        _messageOrderTabelView.hidden = NO;
+        _messageOrderTabelView.tag = 10000;
+        _messageOrderTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_messageOrderTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
+        _messageOrderTabelView.tableFooterView = [UIView new];
+        _messageOrderTabelView.backgroundColor = DefaultBackgroundColor;
+        _messageOrderTabelView.emptyDataSetSource = self;
+        _messageOrderTabelView.emptyDataSetDelegate = self;
     }
-    return _messageTabelView;
+    return _messageOrderTabelView;
+}
+- (UITableView *)messageImportantTabelView {
+    if (!_messageImportantTabelView) {
+        _messageImportantTabelView = [[UITableView alloc]init];
+        _messageImportantTabelView.delegate = self;
+        _messageImportantTabelView.dataSource = self;
+        _messageImportantTabelView.rowHeight = 230/3.f;
+        _messageImportantTabelView.hidden = YES;
+        _messageImportantTabelView.tag = 10001;
+        _messageImportantTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_messageImportantTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
+        _messageImportantTabelView.tableFooterView = [UIView new];
+        _messageImportantTabelView.backgroundColor = DefaultBackgroundColor;
+        _messageImportantTabelView.emptyDataSetSource = self;
+        _messageImportantTabelView.emptyDataSetDelegate = self;
+    }
+    return _messageImportantTabelView;
+}
+- (UITableView *)messageOtherTabelView {
+    if (!_messageOtherTabelView) {
+        _messageOtherTabelView = [[UITableView alloc]init];
+        _messageOtherTabelView.delegate = self;
+        _messageOtherTabelView.dataSource = self;
+        _messageOtherTabelView.rowHeight = 230/3.f;
+        _messageOrderTabelView.hidden = YES;
+        _messageOrderTabelView.tag = 10002;
+        _messageOtherTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_messageOtherTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
+        _messageOtherTabelView.tableFooterView = [UIView new];
+        _messageOtherTabelView.backgroundColor = DefaultBackgroundColor;
+        _messageOtherTabelView.emptyDataSetSource = self;
+        _messageOtherTabelView.emptyDataSetDelegate = self;
+    }
+    return _messageOtherTabelView;
 }
 @end

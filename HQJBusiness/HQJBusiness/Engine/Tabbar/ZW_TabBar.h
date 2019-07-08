@@ -11,4 +11,5 @@ FOUNDATION_EXTERN NSString *const NotificationMessage;
 
 @interface ZW_TabBar : UITabBarController
 + (ZW_TabBar *)sharedInstance;
+- (void)didSelectItem:(NSInteger)item;
 @end

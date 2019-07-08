@@ -20,18 +20,32 @@
     self = [super init];
     if (self) {
         @weakify(self);
-        self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
+//        self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
         [self setTopViewSelectViewModle:^(NSInteger tag) {
             @strongify(self);
             self.topBtnTag = tag;
-            if (tag == 0) {
-                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
-            } else {
-                self.dataAry = [NSMutableArray array];
-            }
-            [self.vm_messageTableView reloadData];
+//            if (tag == 0) {
+//                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
+//            } else {
+//                self.dataAry = [NSMutableArray array];
+//            }
+//            for (UITableView *list in self.vm_messageTableViews) {
+//
+//            }
+            [self.vm_messageTableViews enumerateObjectsUsingBlock:^(UITableView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (tag == idx) {
+                    obj.hidden = NO;
+                } else {
+                    obj.hidden = YES;
+
+                }
+            }];
+            [self.vm_messageTableViews[tag] reloadData];
         }];
-        
+//        [self setSimulationRequst:^{
+//            @strongify(self);
+//            [self.vm_messageTableViews[0] reloadData];
+//        }];
     }
     return self;
 }
@@ -43,12 +57,23 @@
     }];
   
 }
-
-- (NSMutableArray *)dataArray {
-    NSMutableArray *ary = [NSMutableArray array];
-    for (NSInteger i = 0; i < 1000; i++) {
-        [ary addObject:[NSString stringWithFormat:@"%ld",i]];
+- (NSMutableArray *)dataAry {
+    if (!_dataAry) {
+       _dataAry = [NSMutableArray array];
+        for (NSInteger i = 0; i < 1000; i++) {
+            [_dataAry addObject:[NSString stringWithFormat:@"%ld",i]];
+            if (i == 999) {
+                !self.simulationRequst?:self.simulationRequst();
+            }
+        }
     }
-    return ary;
+    return _dataAry;
+}
+
+- (NSMutableArray *)dataOtherAry {
+    if (!_dataOtherAry) {
+        _dataOtherAry = [NSMutableArray array];
+    }
+    return nil;
 }
 @end

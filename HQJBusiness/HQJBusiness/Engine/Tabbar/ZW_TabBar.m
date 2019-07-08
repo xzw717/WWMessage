@@ -252,7 +252,11 @@ NSString *const NotificationMessage           = @"NotificationMessageName";
     [self tagbar];
 }
 
-
+- (void)didSelectItem:(NSInteger)item {
+    self.selectedIndex = item;
+    self.tabbatTag = item + 10086;
+    [self tagbar];
+}
 #pragma mark ---代替显示图片
 - (void)tagbar {
         NSMutableArray *iconArray    = [TabBarSingle shareManager].dataDict[ZWTabBarItemiconArrayKey];
