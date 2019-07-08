@@ -21,7 +21,7 @@
 -(UITableView *)dealTableView {
     if ( _dealTableView == nil ) {
         _dealTableView = [[UITableView alloc]init];
-        _dealTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
+        _dealTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         _dealTableView.backgroundColor = DefaultBackgroundColor;
         _dealTableView.delegate = self;
         _dealTableView.dataSource = self;
@@ -190,7 +190,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"交易";
+    self.viewControllerName = @"交易";
     self.view.backgroundColor = DefaultBackgroundColor;
     [self.dealTableView reloadData];
 

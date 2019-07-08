@@ -29,7 +29,7 @@
     if (!_tableView) {
         
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
+        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT);
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.titleString = @"个人信息";
+    self.viewControllerName = @"个人信息";
     
     [self addSubViews];
 }

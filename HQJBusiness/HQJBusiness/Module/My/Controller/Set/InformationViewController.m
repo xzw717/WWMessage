@@ -28,7 +28,7 @@
     if ( _informationTableView == nil ) {
         
         _informationTableView = [[UITableView alloc]init];
-        _informationTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
+        _informationTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         _informationTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _informationTableView.delegate = self;
         _informationTableView.dataSource = self;
@@ -90,7 +90,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.zw_title =@"个人信息";
+    self.viewControllerName =@"个人信息";
     
     _model = [[informationModel alloc]init];
     
