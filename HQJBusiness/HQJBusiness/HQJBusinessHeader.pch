@@ -46,6 +46,7 @@
 #import "AppVersionManager.h"
 #import "HQJBAPIManage.h"
 #import "ZGProgressHUD+NJ.h"
+#import "UIView+CornerRadiusView.h"
 
 
 //#import "Manager.h"
@@ -125,6 +126,10 @@
 
 #define S_XRatioW(o)  (o / 375.0f * [UIScreen mainScreen].bounds.size.width)
 #define S_XRatioH(o)  (o / 812.0f * [UIScreen mainScreen].bounds.size.height)
+
+/// 表格圆角
+#define TableViewCellCornerRadius (20/3.f)
+
 
 #define CustomWindow    [UIApplication sharedApplication].keyWindow
 

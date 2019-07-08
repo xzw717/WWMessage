@@ -56,16 +56,18 @@ DZNEmptyDataSetDelegate>
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(10, 44, WIDTH - 20, HEIGHT - 44 - ToolBarHeight) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        _tableView.rowHeight = S_RatioW(99.61);
+        _tableView.rowHeight = 394/3.f;
         _tableView.tableFooterView = [UIView new];
+        _tableView.showsVerticalScrollIndicator = NO;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
         [_tableView registerClass:[OrderTableViewCell class] forCellReuseIdentifier:NSStringFromClass([OrderTableViewCell class ])];
         [_tableView registerClass:[OrderTwoCell class] forCellReuseIdentifier:NSStringFromClass([OrderTwoCell class ])];
-
+        [_tableView registerClass:[OrderTableViewHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewHeader class])];
+        [_tableView registerClass:[OrderTableViewFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
     }
     _tableView.contentInset = UIEdgeInsetsZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -120,13 +122,8 @@ DZNEmptyDataSetDelegate>
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellid = @"cellid";
-    OrderTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellid];
-    if (!cell) {
-       cell = [[OrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-    }
+    OrderTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderTableViewCell class]) forIndexPath:indexPath];
     OrderModel *model = self.listArray[indexPath.section];
-    HQJLog(@"所有id:%@",model.userid);
     cell.orderDate = [NSString stringWithFormat:@"%ld",(long)model.date];
     if (model.type == 1) {
         cell.orderGoodsModel = model.goodslist[indexPath.row];
@@ -156,32 +153,25 @@ DZNEmptyDataSetDelegate>
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
-    if (model.usedate) return 65.f;
-    return 44.f;
+    if (model.usedate) return 65.f + 44.f;
+    return 44.f + 44.f;
     
     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *headerID = @"OrderTableViewHeader%ld";
     OrderModel *model = self.listArray[section];
 
-    OrderTableViewHeader *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
-    if (!headerView) {
-        headerView = [[OrderTableViewHeader alloc]initWithReuseIdentifier:headerID];
-    }
+    OrderTableViewHeader *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewHeader class])];
+
     [headerView setState:model.state orderNumber:model.nid];
     return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    static NSString *footerViewID = @"OrderTableViewFooterView%ld";
     OrderModel *model = self.listArray[section];
     
-    OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerViewID];
-    if (!footerView) {
-        footerView = [[OrderTableViewFooterView alloc]initWithReuseIdentifier:footerViewID];
-    }
+    OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
    __block NSInteger allCount = 0;
     [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         allCount = allCount + obj.goodscount;
@@ -196,9 +186,12 @@ DZNEmptyDataSetDelegate>
        
     };
     [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
+
 //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
     return footerView;
 }
+
+
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"brokenNetwork"];

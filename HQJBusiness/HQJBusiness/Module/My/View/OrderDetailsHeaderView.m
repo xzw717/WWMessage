@@ -18,10 +18,10 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.orderNumberLabel];
-        [self addSubview:self.bottomLineView];
+//        [self addSubview:self.bottomLineView];
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.orderNumberLabel.sd_layout.leftSpaceToView(self, kEDGE).centerYEqualToView(self).heightIs(10).widthIs(WIDTH - kEDGE * 2);
-        self.bottomLineView.sd_layout.leftSpaceToView(self, kEDGE).rightSpaceToView(self, 0).heightIs(0.5).topSpaceToView(self, 40);
+//        self.bottomLineView.sd_layout.leftSpaceToView(self, kEDGE).rightSpaceToView(self, 0).heightIs(0.5).topSpaceToView(self, 40);
     }
     return self;
 }
@@ -34,7 +34,7 @@
 - (UILabel *)orderNumberLabel {
     if(!_orderNumberLabel) {
         _orderNumberLabel = [[UILabel alloc]init];
-        _orderNumberLabel.font = [UIFont systemFontOfSize:10.f];
+        _orderNumberLabel.font = [UIFont systemFontOfSize:38/3.f];
     }
     return _orderNumberLabel;
 }

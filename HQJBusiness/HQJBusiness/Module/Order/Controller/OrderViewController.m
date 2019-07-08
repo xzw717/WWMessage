@@ -20,22 +20,23 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
+    [self setNavType:HQJNavigationBarWhite];
+
     
 }
+
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zwNavView.backgroundColor = DefaultAPPColor;
-    self.zwBackButton.hidden = YES;
+    self.view.backgroundColor = DefaultBackgroundColor;
+//    self.zwBackButton.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.zwTitLabel.textColor = [UIColor whiteColor];
-    self.zw_title = @"订单";
+//    self.zwTitLabel.textColor = [UIColor whiteColor];
+    self.title = @"订单管理";
     HQJLog(@"id\n%@",MmberidStr);
     AllOrdeVC *allorderVC = [[AllOrdeVC alloc]init];
     [self addChildViewController:allorderVC];
@@ -51,17 +52,17 @@
     
     NSArray *childVC = @[allorderVC,goodsOrderVC,TransferVC,alreadyVC];
     
-    NSArray *title_arr = @[@"全部",@"商品订单",@"收款订单",@"已核销订单"];
+    NSArray *title_arr = @[@"全部订单",@"待付款",@"待使用",@"交易完成"];
     
 
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
     _bottomSView.childViewController = childVC;
-    _bottomSView.backgroundColor = [UIColor clearColor];
+    _bottomSView.backgroundColor = DefaultBackgroundColor;
     _bottomSView.delegate = self;
     [self.view addSubview:_bottomSView];
     
-    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
+    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, 0 , WIDTH, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
     
     // 必须实现的方法
     [self.topSView SG_setUpSegmentedControlType:nil];

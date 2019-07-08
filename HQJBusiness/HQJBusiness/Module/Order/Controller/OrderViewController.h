@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ZW_ViewController.h"
+#import "HQJBaseSubVC.h"
 
-@interface OrderViewController : ZW_ViewController
+@interface OrderViewController : HQJBaseSubVC
 
 @end

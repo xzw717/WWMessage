@@ -923,5 +923,9 @@ static const CGFloat  sAlertTimer = 3.0;
     }
 }
 
-
++ (void)alertMessage:(NSString *)mesg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:mesg preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
+}
 @end

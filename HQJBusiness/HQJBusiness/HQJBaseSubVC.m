@@ -9,7 +9,7 @@
 #import "HQJBaseSubVC.h"
 
 @interface HQJBaseSubVC ()
-
+@property (nonatomic, strong)  UIButton *backButton;
 @end
 
 @implementation HQJBaseSubVC
@@ -19,17 +19,31 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
 }
+
+- (void)setNavType:(HQJNavigationBarColor)navType {
+    _navType = navType;
+    switch (navType) {
+        case HQJNavigationBarWhite: {
+            [self whiteType];
+            }
+            break;
+        case HQJNavigationBarBlue: {
+            [self blueType];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.fd_prefersNavigationBarHidden = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor] ;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(0, 0, 22, 22);
-    [backButton bk_addEventHandler:^(id  _Nonnull sender) {
+   
+
+    _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backButton.frame = CGRectMake(0, 0, 22, 22);
+    [_backButton bk_addEventHandler:^(id  _Nonnull sender) {
         if (self.viewControllerName) {
             
             for (UIViewController* v in self.navigationController.viewControllers) {
@@ -51,10 +65,27 @@
             
         }
     } forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     self.navigationItem.leftBarButtonItem = barItem;
 }
 
+
+-(void)whiteType {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor] ;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+    [_backButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
+}
+
+- (void)blueType {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    self.navigationController.navigationBar.barTintColor = DefaultAPPColor;
+    [self.navigationController.navigationBar setBackgroundImage:[ManagerEngine createImageWithColor:DefaultAPPColor] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+    [_backButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
+
+}
 /*
 #pragma mark - Navigation
 

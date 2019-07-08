@@ -13,10 +13,13 @@ typedef NS_ENUM (NSInteger , redViewStyle){
    /// 默认小红点
     redViewStyleDefault ,
     /// 有数字的小红点
-    redViewStyleNumber
+    redViewStyleNumber,
+    /// 有数字的更小的小红点
+    redViewStyleSmallNumber
 };
+typedef void(^ClickCustomImage)(void);
 @interface NewMessageImageView : UIImageView
-
+@property (nonatomic, copy) ClickCustomImage tapImage;
 - (instancetype)initWithHintStyle:(redViewStyle)style;
 - (void)setNumbaer:(NSInteger)count;
 - (void)hiddeRedView;

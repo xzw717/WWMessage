@@ -38,6 +38,7 @@
     
     
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section > 2) return 1;
@@ -275,7 +276,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self setNavType:HQJNavigationBarWhite];
+
     [self.setTableView reloadData];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginAfter) name:@"changeBonus" object:nil];

@@ -18,7 +18,8 @@
 #import "MenuModel.h"
 #import "MenuManager.h"
 #import "ManuallyAddViewController.h"
-
+#import "VerificationOrderDetailsViewController.h"
+#import "OrderViewController.h"
 #define StoreMenuWidth  130.f;
 #define StoreMenuRowHeight  57.f;
 #define StoreMenuIconMargin  16.4f;
@@ -37,12 +38,48 @@
     self = [super init];
     if (self) {
         self.storeViewModel_self = object;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(operationItem:) name:CreateStoreTreasure object:nil];
-
+        [self storeViewModel_notifi];
     }
     return self;
 }
+- (void)storeViewModel_notifi {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(operationItem:) name:CreateStoreTreasure object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alertView:) name:@"Qrcode" object:nil];
+    
+}
 
+
+-(void)alertView:(NSNotification *)infos {
+    NSInteger  stateCode = [infos.userInfo[@"state"] integerValue];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (stateCode == -1) {
+            [ManagerEngine alertMessage:@"消费码不存在"];
+            
+        } else if (stateCode == 1) {
+            
+            VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]initWithOrderId:infos.userInfo[@"orderid"] consumerCode:infos.userInfo[@"salecode"]];
+            [self.storeViewModel_self.navigationController pushViewController:vc animated:YES];
+            
+            
+            
+        } else if (stateCode == 2) {
+            
+            [ManagerEngine alertMessage:@"已使用"];
+            
+        } else if (stateCode == 3) {
+            
+            [ManagerEngine alertMessage:@"已退款"];
+            
+        } else if (stateCode == 4) {
+            
+            [ManagerEngine alertMessage:@"已过期"];
+        }
+        
+    });
+    
+    
+}
 - (void)operationItem:(NSNotification *)notifi {
     NSString *isHide = notifi.userInfo[@"isHide"];
     if ([isHide isEqualToString:@"开"]) {
@@ -105,7 +142,7 @@
     if ([ary.lastObject isEqualToString:@"交易数据"]) {
        viewController = [[DetailViewController alloc]init];
     } else if ([ary.lastObject isEqualToString:@"订单管理"]) {
-        viewController = [[OrderManageVC alloc]init];
+        viewController = [[OrderViewController alloc]init];
     } else if ([ary.lastObject isEqualToString:@"商品管理"]) {
       viewController = [[GoodsManageVC alloc]init];
     }
