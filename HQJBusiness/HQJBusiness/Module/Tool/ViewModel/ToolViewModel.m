@@ -8,7 +8,7 @@
 
 #import "ToolViewModel.h"
 #import "ToolCell.h"
-
+#import "MyViewController.h"
 #define tableViewSectionHeight 40.f
 
 #define tableViewSectionSpace 53/3.f
@@ -25,6 +25,8 @@
         self.superVC = object;
     }
     return self;
+    
+    
 }
 
 - (UIView *)sectionViewForCell:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -40,13 +42,29 @@
     ToolCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ToolCell class]) forIndexPath:indexPath];
     cell.itemAry = [self cellDataArray][indexPath.section];
     [cell setClickItemblock:^(NSString * _Nonnull title) {
+        MyViewController *myVc = [[MyViewController alloc]init];
+        [self.superVC.navigationController pushViewController:myVc animated:YES];
         NSLog(@"你点击了：%@",title);
+    }];
+    [cell setLongClickItemblock:^(NSArray * _Nonnull array) {
+        NSMutableArray *itemArray = [NSMutableArray arrayWithArray:ToolItem];
+        NSLog(@"你长按了：%@ itemArray = %@",array,itemArray);
+        if ([itemArray containsObject:array]) {
+            [itemArray removeObject:array];
+        }else{
+            [itemArray addObject:array];
+        }
+        [FileEngine storeToolArray:itemArray];
+        
     }];
     return cell;
     
 }
 
 - (void)selectCellForIndex:(NSIndexPath *)index {
+    MyViewController *myVc = [[MyViewController alloc]init];
+    [self.superVC.navigationController pushViewController:myVc animated:YES];
+    
 //    NSArray *ary = self.sectionArray[index.section];
 //    UIViewController *viewController;
 //    if ([ary.lastObject isEqualToString:@"交易数据"]) {

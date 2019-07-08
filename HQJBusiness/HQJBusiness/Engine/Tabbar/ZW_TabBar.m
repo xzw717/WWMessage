@@ -17,6 +17,8 @@
 #import "TabBarSingle.h"
 #import "NewMessageImageView.h"
 
+#import "MineViewController.h"
+
 NSString *const NotificationMessage           = @"NotificationMessageName";
 
 @interface ZW_TabBar ()<UITabBarDelegate>
@@ -149,7 +151,7 @@ NSString *const NotificationMessage           = @"NotificationMessageName";
     ZWNavigationController *toolNvc =[[ZWNavigationController alloc]initWithRootViewController:toolVC];
     [self setTabBarItem:toolVC.tabBarItem Title:@"工具" selectedImage:@"tabbar_ placeholder_icon" tag:10089];
 
-    MyViewController *myVc = [[MyViewController alloc]init];
+    MineViewController *myVc = [[MineViewController alloc]init];
     ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
     [self setTabBarItem:myVc.tabBarItem Title:@"我的" selectedImage:@"tabbar_ placeholder_icon" tag:10080];
     

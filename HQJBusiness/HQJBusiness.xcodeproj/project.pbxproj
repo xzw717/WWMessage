@@ -296,6 +296,19 @@
 		201BE3FE229FB3F500326500 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */; };
 		201BE3FF229FB3F500326500 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */; };
 		204E914C22C99DBB006BD23C /* ButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E914A22C99DBB006BD23C /* ButtonItem.m */; };
+		204E914F22C9F6A2006BD23C /* ToolViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E914E22C9F6A2006BD23C /* ToolViewModel.m */; };
+		204E915222C9FE1E006BD23C /* ToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E915122C9FE1E006BD23C /* ToolCell.m */; };
+		204E917E22CC8EAA006BD23C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917022CC8EA9006BD23C /* MineViewController.m */; };
+		204E917F22CC8EAA006BD23C /* SetUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917222CC8EA9006BD23C /* SetUpViewController.m */; };
+		204E918022CC8EAA006BD23C /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917622CC8EA9006BD23C /* MineCell.m */; };
+		204E918122CC8EAA006BD23C /* MineHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917822CC8EA9006BD23C /* MineHeadView.m */; };
+		204E918222CC8EAA006BD23C /* MineLogoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917A22CC8EA9006BD23C /* MineLogoutCell.m */; };
+		204E918322CC8EAA006BD23C /* MineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917D22CC8EA9006BD23C /* MineViewModel.m */; };
+		204E918622CDDE63006BD23C /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E918522CDDE63006BD23C /* PersonInfoViewController.m */; };
+		204E918922CDE000006BD23C /* PersonInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E918822CDE000006BD23C /* PersonInfoViewModel.m */; };
+		204E918C22CDE9EE006BD23C /* PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E918B22CDE9EE006BD23C /* PersonInfoCell.m */; };
+		204E918F22CEFDCF006BD23C /* PersonInfoImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E918E22CEFDCF006BD23C /* PersonInfoImageCell.m */; };
+		204E919222CF2EA3006BD23C /* ZWActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E919122CF2EA3006BD23C /* ZWActionSheetView.m */; };
 		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
 		20C6E6B122C1B7FD00AEBC4D /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6B022C1B7FC00AEBC4D /* HintView.m */; };
 		20C6E6B422C308DF00AEBC4D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6B322C308DE00AEBC4D /* RegisterViewController.m */; };
@@ -1016,6 +1029,32 @@
 		201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_hundred.mp3; sourceTree = "<group>"; };
 		204E914A22C99DBB006BD23C /* ButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonItem.m; sourceTree = "<group>"; };
 		204E914B22C99DBB006BD23C /* ButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonItem.h; sourceTree = "<group>"; };
+		204E914D22C9F6A2006BD23C /* ToolViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolViewModel.h; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.h; sourceTree = SOURCE_ROOT; };
+		204E914E22C9F6A2006BD23C /* ToolViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToolViewModel.m; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.m; sourceTree = SOURCE_ROOT; };
+		204E915022C9FE1E006BD23C /* ToolCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolCell.h; path = HQJBusiness/Module/Tool/View/ToolCell.h; sourceTree = SOURCE_ROOT; };
+		204E915122C9FE1E006BD23C /* ToolCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToolCell.m; path = HQJBusiness/Module/Tool/View/ToolCell.m; sourceTree = SOURCE_ROOT; };
+		204E916F22CC8EA9006BD23C /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		204E917022CC8EA9006BD23C /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		204E917122CC8EA9006BD23C /* SetUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpViewController.h; sourceTree = "<group>"; };
+		204E917222CC8EA9006BD23C /* SetUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpViewController.m; sourceTree = "<group>"; };
+		204E917522CC8EA9006BD23C /* MineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCell.h; sourceTree = "<group>"; };
+		204E917622CC8EA9006BD23C /* MineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
+		204E917722CC8EA9006BD23C /* MineHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadView.h; sourceTree = "<group>"; };
+		204E917822CC8EA9006BD23C /* MineHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadView.m; sourceTree = "<group>"; };
+		204E917922CC8EA9006BD23C /* MineLogoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineLogoutCell.h; sourceTree = "<group>"; };
+		204E917A22CC8EA9006BD23C /* MineLogoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineLogoutCell.m; sourceTree = "<group>"; };
+		204E917C22CC8EA9006BD23C /* MineViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewModel.h; sourceTree = "<group>"; };
+		204E917D22CC8EA9006BD23C /* MineViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewModel.m; sourceTree = "<group>"; };
+		204E918422CDDE63006BD23C /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		204E918522CDDE63006BD23C /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
+		204E918722CDE000006BD23C /* PersonInfoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewModel.h; sourceTree = "<group>"; };
+		204E918822CDE000006BD23C /* PersonInfoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewModel.m; sourceTree = "<group>"; };
+		204E918A22CDE9EE006BD23C /* PersonInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoCell.h; sourceTree = "<group>"; };
+		204E918B22CDE9EE006BD23C /* PersonInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoCell.m; sourceTree = "<group>"; };
+		204E918D22CEFDCF006BD23C /* PersonInfoImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoImageCell.h; sourceTree = "<group>"; };
+		204E918E22CEFDCF006BD23C /* PersonInfoImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoImageCell.m; sourceTree = "<group>"; };
+		204E919022CF2EA3006BD23C /* ZWActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWActionSheetView.h; sourceTree = "<group>"; };
+		204E919122CF2EA3006BD23C /* ZWActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWActionSheetView.m; sourceTree = "<group>"; };
 		208D336B22812FB100E439AC /* HQJBusiness.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HQJBusiness.entitlements; sourceTree = "<group>"; };
 		208D336C228166FB00E439AC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		20C6E6AF22C1B7FC00AEBC4D /* HintView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
@@ -1669,6 +1708,7 @@
 		1F960C891DFE3D06003E3D17 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				204E916D22CC8EA9006BD23C /* Reconsitution */,
 				1F960C8A1DFE3D06003E3D17 /* Controller */,
 				1F960C8D1DFE3D06003E3D17 /* Model */,
 				1F960C8E1DFE3D06003E3D17 /* View */,
@@ -2122,10 +2162,9 @@
 		1FB3D27F22C5A3FB0008CB2A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				1FB3D28022C5A3FB0008CB2A /* ViewModel */,
+				204E915522C9FEA1006BD23C /* View */,
+				204E915422C9FE8B006BD23C /* ViewModel */,
 				1FB3D28122C5A3FB0008CB2A /* Controller */,
-				1FB3D28422C5A3FB0008CB2A /* Model */,
-				1FB3D28522C5A3FB0008CB2A /* View */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2142,8 +2181,8 @@
 		1FB3D28122C5A3FB0008CB2A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1FB3D28222C5A3FB0008CB2A /* ToolVC.m */,
 				1FB3D28322C5A3FB0008CB2A /* ToolVC.h */,
+				1FB3D28222C5A3FB0008CB2A /* ToolVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2467,6 +2506,85 @@
 				1FA6A9EB1F7F971600F2C945 /* AddPaymentCodeViewController.m */,
 			);
 			name = Set;
+			sourceTree = "<group>";
+		};
+		204E915422C9FE8B006BD23C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				204E914D22C9F6A2006BD23C /* ToolViewModel.h */,
+				204E914E22C9F6A2006BD23C /* ToolViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		204E915522C9FEA1006BD23C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				204E915022C9FE1E006BD23C /* ToolCell.h */,
+				204E915122C9FE1E006BD23C /* ToolCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		204E916D22CC8EA9006BD23C /* Reconsitution */ = {
+			isa = PBXGroup;
+			children = (
+				204E916E22CC8EA9006BD23C /* Controller */,
+				204E917322CC8EA9006BD23C /* Model */,
+				204E917422CC8EA9006BD23C /* View */,
+				204E917B22CC8EA9006BD23C /* ViewModel */,
+			);
+			path = Reconsitution;
+			sourceTree = "<group>";
+		};
+		204E916E22CC8EA9006BD23C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				204E916F22CC8EA9006BD23C /* MineViewController.h */,
+				204E917022CC8EA9006BD23C /* MineViewController.m */,
+				204E917122CC8EA9006BD23C /* SetUpViewController.h */,
+				204E917222CC8EA9006BD23C /* SetUpViewController.m */,
+				204E918422CDDE63006BD23C /* PersonInfoViewController.h */,
+				204E918522CDDE63006BD23C /* PersonInfoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		204E917322CC8EA9006BD23C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		204E917422CC8EA9006BD23C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				204E919022CF2EA3006BD23C /* ZWActionSheetView.h */,
+				204E919122CF2EA3006BD23C /* ZWActionSheetView.m */,
+				204E917522CC8EA9006BD23C /* MineCell.h */,
+				204E917622CC8EA9006BD23C /* MineCell.m */,
+				204E917722CC8EA9006BD23C /* MineHeadView.h */,
+				204E917822CC8EA9006BD23C /* MineHeadView.m */,
+				204E917922CC8EA9006BD23C /* MineLogoutCell.h */,
+				204E917A22CC8EA9006BD23C /* MineLogoutCell.m */,
+				204E918A22CDE9EE006BD23C /* PersonInfoCell.h */,
+				204E918B22CDE9EE006BD23C /* PersonInfoCell.m */,
+				204E918D22CEFDCF006BD23C /* PersonInfoImageCell.h */,
+				204E918E22CEFDCF006BD23C /* PersonInfoImageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		204E917B22CC8EA9006BD23C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				204E917C22CC8EA9006BD23C /* MineViewModel.h */,
+				204E917D22CC8EA9006BD23C /* MineViewModel.m */,
+				204E918722CDE000006BD23C /* PersonInfoViewModel.h */,
+				204E918822CDE000006BD23C /* PersonInfoViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		20C6E6AE22C1B7B400AEBC4D /* View */ = {
@@ -2800,10 +2918,11 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/FTPopOverMenu/FTPopOverMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/JKCountDownButton/JKCountDownButton.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -2822,6 +2941,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FTPopOverMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKCountDownButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
@@ -2837,7 +2957,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2882,6 +3002,7 @@
 				1F046D491E0A111B006D6EB2 /* ZHSetTableViewCell.m in Sources */,
 				1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */,
 				1F20CB361E07876000FC91B3 /* CALScanQRCodeCameraView.m in Sources */,
+				204E915222C9FE1E006BD23C /* ToolCell.m in Sources */,
 				1FB3D2C522C74B140008CB2A /* NewMessageImageView.m in Sources */,
 				1F12C9E21E0B672D00CF6CB7 /* InformationCell.m in Sources */,
 				1F12C9F01E0B808A00CF6CB7 /* ChangePswViewController.m in Sources */,
@@ -2892,6 +3013,7 @@
 				1F36C9321F456F1800A47738 /* SetPaymentCodeViewController.m in Sources */,
 				1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */,
 				1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */,
+				204E918622CDDE63006BD23C /* PersonInfoViewController.m in Sources */,
 				1F25DC0F1E110442004DC19F /* ZW_StateLabel.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
@@ -2938,6 +3060,7 @@
 				1F402933229FBCFF0014769B /* OrderDetailsOneCell.m in Sources */,
 				1FB3D2B122C5A3FB0008CB2A /* OrderManageVC.m in Sources */,
 				1F960D301DFE3E51003E3D17 /* NSCache+BlocksKit.m in Sources */,
+				204E917E22CC8EAA006BD23C /* MineViewController.m in Sources */,
 				1FA6A9EC1F7F971600F2C945 /* AddPaymentCodeViewController.m in Sources */,
 				1F046CD81E090747006D6EB2 /* CashWithdrawViewController.m in Sources */,
 				1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */,
@@ -3003,6 +3126,7 @@
 				1F12F74D1E1635FE0056DF9A /* DataSigner.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
 				1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */,
+				204E918322CC8EAA006BD23C /* MineViewModel.m in Sources */,
 				1FFA99C51E231B4900E9FB1D /* NSString+RegexCategory.m in Sources */,
 				1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */,
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
@@ -3023,6 +3147,7 @@
 				20C6E6CA22C5B8A200AEBC4D /* ProtocolViewController.m in Sources */,
 				1F960D1D1DFE3E51003E3D17 /* NSArray+BlocksKit.m in Sources */,
 				1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */,
+				204E918922CDE000006BD23C /* PersonInfoViewModel.m in Sources */,
 				1F5DEFC01E121DA900AC1DF6 /* SelectBankViewController.m in Sources */,
 				1F47853C22C864130085FF8C /* MenuManager.m in Sources */,
 				1F20CB241E07739A00FC91B3 /* SetZHViewModel.m in Sources */,
@@ -3036,6 +3161,8 @@
 				1F47855622CC8D580085FF8C /* MineHeadView.m in Sources */,
 				1F47855722CC8D580085FF8C /* MineCell.m in Sources */,
 				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
+				204E917F22CC8EAA006BD23C /* SetUpViewController.m in Sources */,
+				204E918C22CDE9EE006BD23C /* PersonInfoCell.m in Sources */,
 				204E914C22C99DBB006BD23C /* ButtonItem.m in Sources */,
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
 				1F47854822C9FEFC0085FF8C /* MessageGeneralCell.m in Sources */,
@@ -3044,6 +3171,7 @@
 				1F960D201DFE3E51003E3D17 /* NSInvocation+BlocksKit.m in Sources */,
 				1F47855922CC8D580085FF8C /* MineViewController.m in Sources */,
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
+				204E918022CC8EAA006BD23C /* MineCell.m in Sources */,
 				1F394A011E0D224500A3662D /* DetailCell.m in Sources */,
 				1F960D181DFE3E51003E3D17 /* FileEngine.m in Sources */,
 				20C6E6B822C35F9300AEBC4D /* CreateShopViewController.m in Sources */,
@@ -3061,6 +3189,8 @@
 				1F960D1E1DFE3E51003E3D17 /* NSDictionary+BlocksKit.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
+				204E918122CC8EAA006BD23C /* MineHeadView.m in Sources */,
+				204E918F22CEFDCF006BD23C /* PersonInfoImageCell.m in Sources */,
 				1F40292C229FBCFF0014769B /* OrderDetailsFourCell.m in Sources */,
 				1FB3D2B822C5A3FB0008CB2A /* MessageVC.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
@@ -3074,6 +3204,7 @@
 				1F046CD51E090722006D6EB2 /* ZHViewController.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
+				204E914F22C9F6A2006BD23C /* ToolViewModel.m in Sources */,
 				1F5DEFB91E11F22800AC1DF6 /* OrderTwoCell.m in Sources */,
 				1F960C9E1DFE3D06003E3D17 /* OrderViewController.m in Sources */,
 				1F25DBFD1E10E975004DC19F /* AllOrdeVC.m in Sources */,
@@ -3083,6 +3214,7 @@
 				1FFA99C21E1F752100E9FB1D /* GlobeConst.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
 				1F046CD21E0906F2006D6EB2 /* allViewController.m in Sources */,
+				204E918222CC8EAA006BD23C /* MineLogoutCell.m in Sources */,
 				1FB3D2AF22C5A3FB0008CB2A /* GoodsManageVC.m in Sources */,
 				1FB3D2B622C5A3FB0008CB2A /* HQJMenu.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,
@@ -3097,6 +3229,7 @@
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
+				204E919222CF2EA3006BD23C /* ZWActionSheetView.m in Sources */,
 				1F12C9DA1E0B5AA100CF6CB7 /* ZW_imageView.m in Sources */,
 				1FBBD8191E343A300077B124 /* TabBarBannerModel.m in Sources */,
 				1F20CB3A1E0788E400FC91B3 /* ScanViewController.m in Sources */,

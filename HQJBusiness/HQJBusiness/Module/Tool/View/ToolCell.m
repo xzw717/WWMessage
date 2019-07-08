@@ -109,6 +109,9 @@
         view.tag = i + 1000;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickItem:)];
         [view addGestureRecognizer:tap];
+        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longClickItem:)];
+        [view addGestureRecognizer:longTap];
+        
         [self.contentView addSubview:view];
     }
 
@@ -118,7 +121,16 @@
         self.clickItemblock(self.itemAry[tapgs.view.tag - 1000][0]);
     }
 }
-
+- (void)longClickItem:(UILongPressGestureRecognizer *)longTap{
+    //解决响应两次的问题
+    if (longTap.state == UIGestureRecognizerStateEnded){
+            return;
+    } else if (longTap.state == UIGestureRecognizerStateBegan){
+        if (self.longClickItemblock) {
+            self.longClickItemblock(self.itemAry[longTap.view.tag - 1000]);
+        }
+    }
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

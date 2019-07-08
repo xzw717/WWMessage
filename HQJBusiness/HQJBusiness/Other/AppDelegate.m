@@ -139,6 +139,10 @@
         [userDefaults setObject:@"开" forKey:@"CollectMoney"];
         [userDefaults setObject:@"开" forKey:@"newOrder"];
     }
+    NSMutableArray *toolArray =[NSMutableArray arrayWithArray:@[@[@"经营有道",@"tool_icon_manage"],@[@"流量手册",@"tool_icon_flow"]]];
+    
+    [FileEngine storeToolArray:toolArray];
+    
 }
 
 #pragma mark --- 极光推送
