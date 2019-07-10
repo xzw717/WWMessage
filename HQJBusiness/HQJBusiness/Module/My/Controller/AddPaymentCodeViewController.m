@@ -20,16 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"添加收款码";
+    self.title = @"添加收款码";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.addPaymentCodeTableView];
     [self.view addSubview:self.hintLabel];
     [self.hintLabel setSingleLineAutoResizeWithMaxWidth:WIDTH / 2];
-    self.hintLabel.sd_layout.leftSpaceToView(self.view, kEDGE).topSpaceToView(self.view, NavigationControllerHeight  +5).heightIs(20);
+    self.hintLabel.sd_layout.leftSpaceToView(self.view, kEDGE).topSpaceToView(self.view,5).heightIs(20);
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addSuccess:) name:@"addCodeSuccess" object:nil];
 
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navType = NavigationTypeWhite;
+}
 - (void)addSuccess:(NSNotification *)infos {
     [self.codeTypelistArray removeObject:infos.userInfo[@"codeType"]];
     [self.addPaymentCodeTableView reloadData];
@@ -39,7 +42,7 @@
 - (UITableView *)addPaymentCodeTableView {
     if (!_addPaymentCodeTableView) {
         _addPaymentCodeTableView = [[UITableView alloc]init];
-        _addPaymentCodeTableView.frame = CGRectMake(0, NavigationControllerHeight+5 + 20, WIDTH -kEDGE, HEIGHT - NavigationControllerHeight - 5);
+        _addPaymentCodeTableView.frame = CGRectMake(0, 5 + 20, WIDTH -kEDGE, HEIGHT - 5);
         _addPaymentCodeTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _addPaymentCodeTableView.backgroundColor = [UIColor whiteColor];
         _addPaymentCodeTableView.delegate = self;

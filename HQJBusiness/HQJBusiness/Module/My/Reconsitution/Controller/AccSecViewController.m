@@ -1,50 +1,46 @@
 //
-//  PersonInfoViewController.m
+//  AccSecViewController.m
 //  HQJBusiness
 //
-//  Created by 姚 on 2019/7/4.
+//  Created by 姚 on 2019/7/8.
 //  Copyright © 2019年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "PersonInfoViewController.h"
-#import "PersonInfoViewModel.h"
-
-#import "PersonInfoCell.h"
-#import "PersonInfoImageCell.h"
-
-
+#import "AccSecViewController.h"
+#import "AccSecInfoCell.h"
+#import "AccSecViewModel.h"
 #define TableViewCellHeight 140/3.f
-#define TableViewFirstCellHeight 60.f
-@interface PersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#define TableViewTopSpace 40/3.f
+@interface AccSecViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property (nonatomic,strong)UITableView *tableView;
 
-@property (nonatomic,strong)PersonInfoViewModel *viewModel;
+@property (nonatomic,strong)AccSecViewModel *viewModel;
 @end
 
-@implementation PersonInfoViewController
+@implementation AccSecViewController
 
 
 
 -(UITableView *)tableView {
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, TableViewTopSpace, WIDTH, HEIGHT - TableViewTopSpace)];
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
-        [_tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:NSStringFromClass([PersonInfoCell class])];
-        [_tableView registerClass:[PersonInfoImageCell class] forCellReuseIdentifier:NSStringFromClass([PersonInfoImageCell class])];
+        [_tableView registerClass:[AccSecInfoCell class] forCellReuseIdentifier:NSStringFromClass([AccSecInfoCell class])];
         
     }
     
     return _tableView;
 }
 
-- (PersonInfoViewModel *)viewModel{
+- (AccSecViewModel *)viewModel{
     if (_viewModel == nil) {
-        _viewModel = [[PersonInfoViewModel alloc]initWithViewContoller:self];
+        _viewModel = [[AccSecViewModel alloc]initWithViewContoller:self];
     }
     return _viewModel;
 }
@@ -52,23 +48,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个人信息";
+    self.title = @"账号安全";
     
     [self addSubViews];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navType = HQJNavigationBarBlue;
+    self.navType = HQJNavigationBarWhite;
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
 }
 
 #pragma mark --- UITableViewDataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return TableViewTopSpace;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = DefaultBackgroundColor;
+    return view;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
-    if (indexPath.row == 0) {
-        return TableViewFirstCellHeight;
-    }
     return TableViewCellHeight;
 }
 

@@ -180,9 +180,9 @@
     
     
 }
--(void)viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    self.navType = HQJNavigationBarBlue;
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -190,7 +190,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.viewControllerName = @"交易";
+    self.title = @"交易";
     self.view.backgroundColor = DefaultBackgroundColor;
     [self.dealTableView reloadData];
 

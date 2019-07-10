@@ -84,13 +84,16 @@
     }
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.viewControllerName =@"个人信息";
+    self.title =@"个人信息";
     
     _model = [[informationModel alloc]init];
     

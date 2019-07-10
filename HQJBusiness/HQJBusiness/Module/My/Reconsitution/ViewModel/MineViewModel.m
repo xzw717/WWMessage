@@ -16,6 +16,9 @@
 #import "SetUpViewController.h"
 #import "DeccaDownloadViewController.h"
 #import "InformationViewController.h"
+#import "AccSecViewController.h"
+#import "ShopManagerViewController.h"
+
 #import "AppDelegate.h"
 
 #import "MyModel.h"
@@ -51,15 +54,21 @@
 - (void)selectCellForIndex:(NSIndexPath *)index {
     
     if (index.section == 0) {
+
+        ShopManagerViewController *smvc =[[ShopManagerViewController alloc]init];
+        [self.superVC.navigationController pushViewController:smvc animated:YES];
         
     }else if (index.section == 1) {
         switch (index.row) {
-            case 0:
+            case 0:{
+                AccSecViewController *asvc =[[AccSecViewController alloc]init];
+                [self.superVC.navigationController pushViewController:asvc animated:YES];
+            }
                 
                 break;
             case 1:{
-                InformationViewController *IFVC =[[InformationViewController alloc]init];
-                [self.superVC.navigationController pushViewController:IFVC animated:YES];
+                InformationViewController *ifvc =[[InformationViewController alloc]init];
+                [self.superVC.navigationController pushViewController:ifvc animated:YES];
                 break;
             }
             case 2:{

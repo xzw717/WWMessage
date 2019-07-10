@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"收款码";
+    self.title = @"收款码";
     self.fd_interactivePopDisabled = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.paymentCodeTableView];
@@ -29,12 +29,13 @@
     [rightBtn setTitle:@"添加" forState:UIControlStateNormal];
     [rightBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
     rightBtn.bounds = CGRectMake(0, 0, 60, 44);
-    self.ZWrightOneButton = rightBtn;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
     [rightBtn addTarget:self action:@selector(addCode) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navType = NavigationTypeWhite;
     [self setDataSource];
 }
 

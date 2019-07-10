@@ -30,7 +30,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.viewControllerName = @"台卡下载";
+    self.title = @"台卡下载";
     [self addView];
     [self setLayout];
     
@@ -40,7 +40,10 @@ static CGFloat const kPhotoAssetHeight = 874.f;
     }];
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
 - (void)addView {
     [self.view addSubview:self.deccaImageView];
     [self.view addSubview:self.saveButton];

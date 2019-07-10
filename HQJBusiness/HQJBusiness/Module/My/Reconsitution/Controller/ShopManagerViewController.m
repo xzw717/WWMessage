@@ -6,22 +6,20 @@
 //  Copyright © 2019年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "PersonInfoViewController.h"
-#import "PersonInfoViewModel.h"
+#import "ShopManagerViewController.h"
 
-#import "PersonInfoCell.h"
-#import "PersonInfoImageCell.h"
+#import "ShopManagerCell.h"
 
+#import "ShopManagerViewModel.h"
 
 #define TableViewCellHeight 140/3.f
-#define TableViewFirstCellHeight 60.f
-@interface PersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ShopManagerViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableView;
 
-@property (nonatomic,strong)PersonInfoViewModel *viewModel;
+@property (nonatomic,strong)ShopManagerViewModel *viewModel;
 @end
 
-@implementation PersonInfoViewController
+@implementation ShopManagerViewController
 
 
 
@@ -34,17 +32,16 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
-        [_tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:NSStringFromClass([PersonInfoCell class])];
-        [_tableView registerClass:[PersonInfoImageCell class] forCellReuseIdentifier:NSStringFromClass([PersonInfoImageCell class])];
+        [_tableView registerClass:[ShopManagerCell class] forCellReuseIdentifier:NSStringFromClass([ShopManagerCell class])];
         
     }
     
     return _tableView;
 }
 
-- (PersonInfoViewModel *)viewModel{
+- (ShopManagerViewModel *)viewModel{
     if (_viewModel == nil) {
-        _viewModel = [[PersonInfoViewModel alloc]initWithViewContoller:self];
+        _viewModel = [[ShopManagerViewModel alloc]initWithViewContoller:self];
     }
     return _viewModel;
 }
@@ -52,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个人信息";
+    self.title = @"店铺管理";
     
     [self addSubViews];
 }
@@ -66,9 +63,6 @@
 
 #pragma mark --- UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
-    if (indexPath.row == 0) {
-        return TableViewFirstCellHeight;
-    }
     return TableViewCellHeight;
 }
 
