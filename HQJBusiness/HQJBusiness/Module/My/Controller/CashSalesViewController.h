@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CashSalesViewController : ZW_ViewController
+@interface CashSalesViewController : HQJBaseSubVC
 
 @end

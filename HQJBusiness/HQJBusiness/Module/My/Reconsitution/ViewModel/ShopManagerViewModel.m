@@ -9,9 +9,7 @@
 #import "ShopManagerViewModel.h"
 #import "ShopManagerCell.h"
 #import "ShopInfoViewController.h"
-#import "ChangeLoginPswViewController.h"
-#import "PaymentCodeViewController.h"
-#import "ChangeMobileViewController.h"
+#import "ContactManagerViewController.h"
 @interface ShopManagerViewModel ()
 @property (nonatomic,strong)UIViewController *superVC;
 @end
@@ -51,8 +49,8 @@
             }
                 
             case 1:{
-                ChangeLoginPswViewController *clvc =[[ChangeLoginPswViewController alloc]init];
-                [self.superVC.navigationController pushViewController:clvc animated:YES];
+                ContactManagerViewController *cmvc =[[ContactManagerViewController alloc]init];
+                [self.superVC.navigationController pushViewController:cmvc animated:YES];
                 break;
             }
                 

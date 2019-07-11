@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// cell 的分离
 - (UITableViewCell *)cellManageWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 /// cell 点击方法
-- (void)selectCellForIndex:(NSIndexPath *)index;
+- (void)selectCellForIndex:(NSIndexPath *)indexPath;
 @end
 
 NS_ASSUME_NONNULL_END

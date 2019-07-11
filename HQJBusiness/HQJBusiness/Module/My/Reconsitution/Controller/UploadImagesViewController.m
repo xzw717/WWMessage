@@ -36,6 +36,7 @@
     if (_maskView == nil) {
         _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 120)];
     }
+    [self.view addSubview:_maskView];
     return _maskView;
 }
 
@@ -52,36 +53,40 @@
 }
 - (void)addSubViews{
     if (_isLogo) {
-        UIButton *seeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ItemImageSize, ItemImageSize)];
-        [seeButton setTitle:@"查看示例" forState:UIControlStateNormal];
-        [seeButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
-        seeButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [self.view addSubview:seeButton];
-        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *imageButton = [[UIButton alloc]initWithFrame:CGRectMake(0, S_RatioH(16.f), S_RatioW(ItemImageSize), S_RatioW(ItemImageSize))];
         [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
+        imageButton.centerX = self.maskView.centerX;
         [imageButton bk_addEventHandler:^(id  _Nonnull sender) {
         } forControlEvents:UIControlEventTouchUpInside];
-        [self.view  addSubview:imageButton];
+        [self.maskView addSubview:imageButton];
+        UIButton *seeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, S_RatioH(16.f) + S_RatioH(10.f) + S_RatioW(ItemImageSize), S_RatioW(ItemImageSize), S_RatioH(20.f))];
+        [seeButton setTitle:@"查看示例" forState:UIControlStateNormal];
+        [seeButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
+        seeButton.centerX = self.maskView.centerX;
+        seeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [self.maskView addSubview:seeButton];
+
     }else{
-        int SPNum =  3 ;//水平一行放几个 [self.titleArray.lastObject isEqualToString:@"开店宝典"] ? 4 :
-        CGFloat JGGMinX = 170.f/3;//起始x值
-        CGFloat JGGMinY = 16.f;//起始y值
-        CGFloat SPspace = 0;//水平距离
-        CGFloat CXspace = 0;//垂直距离
+        int SPNum =  3 ;//水平一行放几个
+        CGFloat JGGMinX = S_RatioW(170.f/3);//起始x值
+        CGFloat JGGMinY = S_RatioH(16.f);//起始y值
+        CGFloat SPspace = S_RatioW(70.f/3);//水平距离
+        CGFloat CXspace = S_RatioH(10.f);//垂直距离
         
         for (NSInteger i = 0; i < SPNum; i ++) {
             CGFloat x =  JGGMinX + i % SPNum * (ItemWidth + SPspace);
             CGFloat y =  JGGMinY + i / SPNum * (ItemHeight + CXspace);
-            UIButton *seeButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, ItemImageSize, ItemImageSize)];
-            [seeButton setTitle:@"查看示例" forState:UIControlStateNormal];
-            [seeButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
-            seeButton.titleLabel.font = [UIFont systemFontOfSize:12];
-            [self.view addSubview:seeButton];
-            UIButton *imageButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, ItemImageSize, ItemImageSize)];
+            UIButton *imageButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, S_RatioW(ItemImageSize), S_RatioW(ItemImageSize))];
             [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
             [imageButton bk_addEventHandler:^(id  _Nonnull sender) {
             } forControlEvents:UIControlEventTouchUpInside];
-            [self.view  addSubview:imageButton];
+            [self.maskView  addSubview:imageButton];
+            UIButton *seeButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y + S_RatioW(ItemImageSize), S_RatioW(ItemImageSize), S_RatioW(ItemImageSize))];
+            [seeButton setTitle:@"查看示例" forState:UIControlStateNormal];
+            [seeButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
+            seeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+            [self.maskView addSubview:seeButton];
+            
         }
     }
     

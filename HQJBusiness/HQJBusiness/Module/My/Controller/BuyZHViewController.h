@@ -11,7 +11,7 @@
 #import "BuyZHViewModel.h"
 #import "BonusExchangeModel.h"
 
-@interface BuyZHViewController : ZW_ViewController
+@interface BuyZHViewController : HQJBaseSubVC
 @property (nonatomic,strong) NoticeView *titleView ;  // ---- 黄色广告条
 
 @property (nonatomic,strong) BonusExchangeModel *model;  // ---- 商家信息模型

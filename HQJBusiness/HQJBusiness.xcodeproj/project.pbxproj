@@ -290,6 +290,8 @@
 		201BE3FF229FB3F500326500 /* wwm_hundred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 201BE3FB229FB3F500326500 /* wwm_hundred.mp3 */; };
 		203B4CD822D584FC0037E9F7 /* UITextView+YLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203B4CD722D584FC0037E9F7 /* UITextView+YLTextView.m */; };
 		203B4CDB22D5D1B60037E9F7 /* UploadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203B4CDA22D5D1B60037E9F7 /* UploadImagesViewController.m */; };
+		203B4CDE22D6D1DA0037E9F7 /* ContactManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203B4CDC22D6D1DA0037E9F7 /* ContactManagerViewController.m */; };
+		203B4CE422D6E26F0037E9F7 /* ContactManagerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203B4CE322D6E26F0037E9F7 /* ContactManagerHeadView.m */; };
 		204E914F22C9F6A2006BD23C /* ToolViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E914E22C9F6A2006BD23C /* ToolViewModel.m */; };
 		204E915222C9FE1E006BD23C /* ToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E915122C9FE1E006BD23C /* ToolCell.m */; };
 		204E917E22CC8EAA006BD23C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E917022CC8EA9006BD23C /* MineViewController.m */; };
@@ -1026,6 +1028,10 @@
 		203B4CD722D584FC0037E9F7 /* UITextView+YLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+YLTextView.m"; sourceTree = "<group>"; };
 		203B4CD922D5D1B60037E9F7 /* UploadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImagesViewController.h; sourceTree = "<group>"; };
 		203B4CDA22D5D1B60037E9F7 /* UploadImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImagesViewController.m; sourceTree = "<group>"; };
+		203B4CDC22D6D1DA0037E9F7 /* ContactManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManagerViewController.m; sourceTree = "<group>"; };
+		203B4CDD22D6D1DA0037E9F7 /* ContactManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManagerViewController.h; sourceTree = "<group>"; };
+		203B4CE222D6E26F0037E9F7 /* ContactManagerHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManagerHeadView.h; sourceTree = "<group>"; };
+		203B4CE322D6E26F0037E9F7 /* ContactManagerHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManagerHeadView.m; sourceTree = "<group>"; };
 		204E914D22C9F6A2006BD23C /* ToolViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolViewModel.h; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.h; sourceTree = SOURCE_ROOT; };
 		204E914E22C9F6A2006BD23C /* ToolViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ToolViewModel.m; path = HQJBusiness/Module/Tool/ViewModel/ToolViewModel.m; sourceTree = SOURCE_ROOT; };
 		204E915022C9FE1E006BD23C /* ToolCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ToolCell.h; path = HQJBusiness/Module/Tool/View/ToolCell.h; sourceTree = SOURCE_ROOT; };
@@ -2534,6 +2540,8 @@
 				2082634A22D43A370058FD58 /* ShopManagerViewController.m */,
 				2082635322D4418F0058FD58 /* ShopInfoViewController.h */,
 				2082635422D4418F0058FD58 /* ShopInfoViewController.m */,
+				203B4CDD22D6D1DA0037E9F7 /* ContactManagerViewController.h */,
+				203B4CDC22D6D1DA0037E9F7 /* ContactManagerViewController.m */,
 				203B4CD922D5D1B60037E9F7 /* UploadImagesViewController.h */,
 				203B4CDA22D5D1B60037E9F7 /* UploadImagesViewController.m */,
 				204E917122CC8EA9006BD23C /* SetUpViewController.h */,
@@ -2574,6 +2582,8 @@
 				204E917822CC8EA9006BD23C /* MineHeadView.m */,
 				204E917922CC8EA9006BD23C /* MineLogoutCell.h */,
 				204E917A22CC8EA9006BD23C /* MineLogoutCell.m */,
+				203B4CE222D6E26F0037E9F7 /* ContactManagerHeadView.h */,
+				203B4CE322D6E26F0037E9F7 /* ContactManagerHeadView.m */,
 				204E918A22CDE9EE006BD23C /* PersonInfoCell.h */,
 				204E918B22CDE9EE006BD23C /* PersonInfoCell.m */,
 				204E918D22CEFDCF006BD23C /* PersonInfoImageCell.h */,
@@ -3060,6 +3070,7 @@
 				2082634922D4324D0058FD58 /* ChangeMobEndViewController.m in Sources */,
 				1F40292F229FBCFF0014769B /* OrderDetailsThreeCell.m in Sources */,
 				1FB3D2B422C5A3FB0008CB2A /* StoreModel.m in Sources */,
+				203B4CDE22D6D1DA0037E9F7 /* ContactManagerViewController.m in Sources */,
 				1F960D221DFE3E51003E3D17 /* NSMutableArray+BlocksKit.m in Sources */,
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
@@ -3128,6 +3139,7 @@
 				1F402931229FBCFF0014769B /* OrderDetailsBaseCell.m in Sources */,
 				1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */,
 				1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */,
+				203B4CE422D6E26F0037E9F7 /* ContactManagerHeadView.m in Sources */,
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
 				1FB3D2B022C5A3FB0008CB2A /* StoreVC.m in Sources */,
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,

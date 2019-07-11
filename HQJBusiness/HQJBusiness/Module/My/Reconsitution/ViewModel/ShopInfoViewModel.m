@@ -11,6 +11,9 @@
 #import "ShopInfoImageCell.h"
 #import "ShopInfoTextCell.h"
 #import "ShopInfoSetCell.h"
+
+#import "UploadImagesViewController.h"
+
 @interface ShopInfoViewModel ()
 @property (nonatomic,strong)UIViewController *superVC;
 @end
@@ -73,8 +76,20 @@
     }
 }
 
-- (void)selectCellForIndex:(NSIndexPath *)index {
-
+- (void)selectCellForIndex:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0 || indexPath.row == 1) {
+            UploadImagesViewController *uivc = [[UploadImagesViewController alloc]init];
+            if (indexPath.row == 0 ) {
+                uivc.isLogo = YES;
+            }else{
+                uivc.isLogo = NO;
+            }
+            [self.superVC.navigationController pushViewController:uivc animated:YES];
+        
+        }
+    }
 }
 
 - (NSArray *)cellDataArray {

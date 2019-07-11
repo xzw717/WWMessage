@@ -27,6 +27,13 @@ typedef NS_ENUM(NSInteger,HQJNavigationBarColor) {
 
 /// 导航控制器颜色风格    在 viewWillAppear 中调用
 @property (nonatomic, assign) HQJNavigationBarColor navType;
+
+
+/**
+ 直接 pop 到某个控制器
+ */
+-(void)popViews;
+
 @end
 
 NS_ASSUME_NONNULL_END
