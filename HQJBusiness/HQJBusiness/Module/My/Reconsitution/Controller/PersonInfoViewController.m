@@ -29,7 +29,7 @@
     if (!_tableView) {
         
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
+        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -52,11 +52,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.titleString = @"个人信息";
+    self.title = @"个人信息";
     
     [self addSubViews];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
 }

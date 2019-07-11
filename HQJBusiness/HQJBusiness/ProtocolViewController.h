@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
-@interface ProtocolViewController : ChildBaseViewController
+@interface ProtocolViewController : HQJBaseSubVC
 
 /// 标题
 @property (nonatomic, copy) NSString * titleStr;

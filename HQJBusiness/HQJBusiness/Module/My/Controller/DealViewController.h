@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DealViewController : ZW_ViewController
+@interface DealViewController : HQJBaseSubVC
 
 @end
+
+

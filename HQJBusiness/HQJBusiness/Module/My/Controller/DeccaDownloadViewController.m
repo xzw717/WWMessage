@@ -30,7 +30,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"台卡下载";
+    self.title = @"台卡下载";
     [self addView];
     [self setLayout];
     
@@ -40,7 +40,10 @@ static CGFloat const kPhotoAssetHeight = 874.f;
     }];
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
 - (void)addView {
     [self.view addSubview:self.deccaImageView];
     [self.view addSubview:self.saveButton];
@@ -49,7 +52,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 }
 
 - (void)setLayout {
-    self.deccaImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.view, NavigationControllerHeight + 50).heightIs(564.f / 1136.f * HEIGHT).widthIs(400.f / 640.f * WIDTH);
+    self.deccaImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.view,50).heightIs(564.f / 1136.f * HEIGHT).widthIs(400.f / 640.f * WIDTH);
     [self.suggestLabel setSingleLineAutoResizeWithMaxWidth:WIDTH / 2];
     self.suggestLabel.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.deccaImageView, 13).heightIs(12);
     self.saveButton.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.deccaImageView, 40).heightIs(45).widthIs(WIDTH/2.f);
@@ -162,7 +165,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 
 - (UIImageView *)textImageView {
     if (!_textImageView) {
-        _textImageView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH -200) / 2, 50 + NavigationControllerHeight, 200, 282)];
+        _textImageView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH -200) / 2, 50, 200, 282)];
     }
     return _textImageView;
 }
@@ -180,7 +183,7 @@ static CGFloat const kPhotoAssetHeight = 874.f;
 - (DeccaView *)dview {
     if (!_dview) {
         _dview = [[DeccaView alloc]init];
-        _dview.frame = CGRectMake((WIDTH -200) / 2, 50 + NavigationControllerHeight, 200, 282);
+        _dview.frame = CGRectMake((WIDTH -200) / 2, 50, 200, 282);
     }
     return _dview;
 }

@@ -81,14 +81,17 @@
     
     return _submitButton;
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = [NSString stringWithFormat:@"%@值设定",HQJValue];
+    self.title = [NSString stringWithFormat:@"%@值设定",HQJValue];
     _model = [[SetZHModel alloc]init];
     
     
-    self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,NavigationControllerHeight+kEDGE).heightIs(S_RatioH(120)).widthIs(WIDTH);
+    self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kEDGE).heightIs(S_RatioH(120)).widthIs(WIDTH);
     [self.cashView setTitleStr:@"现金消费时：" andplaceholderStr:@"例如：20"];
     self.cashView.proportionTextField.delegate = [ManagerEngine sharedManager];
     
@@ -201,7 +204,7 @@
         NSString *str;
         [str floatValue];
         self.cashView.detaileLabelStr  = [NSString stringWithFormat:@"消费100元，赠送%.5f个%@值。",[value floatValue] *0.01 * 100 * 0.5,HQJValue];
-        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,NavigationControllerHeight+kEDGE).heightIs(165).widthIs(WIDTH);
+        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kEDGE).heightIs(165).widthIs(WIDTH);
         
         
         
@@ -209,7 +212,7 @@
         
         self.cashView.detaileLabelStr= @"";
         
-        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,NavigationControllerHeight+kEDGE).heightIs(120).widthIs(WIDTH);
+        self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,kEDGE).heightIs(120).widthIs(WIDTH);
         
     }
     if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {

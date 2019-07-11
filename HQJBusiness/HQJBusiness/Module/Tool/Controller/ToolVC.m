@@ -62,7 +62,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, 0 , WIDTH, HEIGHT);
+        _tableView.frame = CGRectMake(0, 0 , WIDTH, HEIGHT - ToolBarHeight);
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;

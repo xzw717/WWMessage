@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddPaymentCodeViewController : ZW_ViewController
+@interface AddPaymentCodeViewController : HQJBaseSubVC
 @property (nonatomic, strong) NSMutableArray *codeTypelistArray;
 @end

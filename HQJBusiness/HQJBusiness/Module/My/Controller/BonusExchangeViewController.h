@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BonusExchangeViewController : ZW_ViewController
+@interface BonusExchangeViewController : HQJBaseSubVC
 @property (nonatomic,strong) NSString *ViewControllerTitle;
 @end

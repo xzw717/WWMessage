@@ -26,7 +26,6 @@
 #import "RequestEngine.h"
 #import "FileEngine.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "ChildBaseViewController.h"
 #import "ZW_ViewController.h"
 #import "ZW_Label.h"
 #import "ZW_TextField.h"

@@ -30,6 +30,11 @@ typedef NS_ENUM(NSInteger,HQJNavigationBarColor) {
 
 - (void)hideShadowLine;
 
+/**
+ 直接 pop 到某个控制器
+ */
+-(void)popViews;
+
 @end
 
 NS_ASSUME_NONNULL_END

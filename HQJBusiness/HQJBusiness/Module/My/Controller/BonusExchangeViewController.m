@@ -59,7 +59,7 @@
 
 -(NoticeView *)titleView {
     if ( _titleView == nil ) {
-        _titleView = [[NoticeView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, 45) withNav:NO];
+        _titleView = [[NoticeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 45) withNav:NO];
         [self.view addSubview:_titleView];
     }
     
@@ -202,7 +202,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.navType = HQJNavigationBarBlue;
     if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
         
         _withdrawDepositStr = @"支付方";
@@ -229,7 +229,7 @@
     
     [super viewDidLoad];
     
-    self.zw_title = _ViewControllerTitle;
+    self.title = _ViewControllerTitle;
     
     _model = [[BonusExchangeModel alloc]init];
     
@@ -363,7 +363,7 @@
     
      CGFloat passwordWidth = [ManagerEngine setTextWidthStr:self.passwordLabel.text andFont:[UIFont systemFontOfSize:17.0]];
     
-    self.payerLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,75 + NavigationControllerHeight).heightIs(17).widthIs(payLabelWith);
+    self.payerLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,75 ).heightIs(17).widthIs(payLabelWith);
     
 
     self.BonusNumerLabel.sd_layout.leftEqualToView(self.payerLabel).topSpaceToView(self.payerLabel,30 + (44 - 17) / 2).heightIs(17).widthIs(bonusWidth);

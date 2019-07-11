@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaymentCodeViewController : ZW_ViewController
+@interface PaymentCodeViewController : HQJBaseSubVC
 
 @end

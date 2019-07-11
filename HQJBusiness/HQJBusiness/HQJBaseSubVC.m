@@ -94,6 +94,20 @@
     [_backButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
 
 }
+
+-(void)popViews {
+    
+    for (UIViewController* v in self.navigationController.viewControllers) {
+        
+        if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:self.viewControllerName]) {
+            [self.navigationController popToViewController:v animated:YES];
+            
+        }
+        
+    }
+    
+    
+}
 /*
 #pragma mark - Navigation
 

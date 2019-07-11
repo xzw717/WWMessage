@@ -16,9 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.backgroundColor = DefaultAPPColor;
-    self.titleString = self.titleStr;
-    self.isBack = YES;
     [self layoutTheSubViews];
     // Do any additional setup after loading the view.
 }

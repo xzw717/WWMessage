@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SetUpViewController : ChildBaseViewController
+@interface SetUpViewController : HQJBaseSubVC
 
 @end
 

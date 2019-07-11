@@ -47,7 +47,7 @@
 -(UITableView *)tableView {
     if ( _tableView == nil ) {
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT- NavigationControllerHeight - ToolBarHeight);
+        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT - ToolBarHeight);
         _tableView.backgroundColor = DefaultBackgroundColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -92,7 +92,8 @@
 #pragma mark ---
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.isHiddenshadowImage = YES;
+    
     [self initDatas];
     [self addSubViews];
 }

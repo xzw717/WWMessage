@@ -138,12 +138,13 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     self.title = @"设置";
+    self.navType = HQJNavigationBarBlue;
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.navType = HQJNavigationBarBlue;
     [self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginAfter) name:@"changeBonus" object:nil];
@@ -172,7 +173,7 @@
     if (!_tableView) {
         
         _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
+        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         

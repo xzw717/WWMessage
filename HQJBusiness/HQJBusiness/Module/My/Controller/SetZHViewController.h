@@ -8,6 +8,6 @@
 
 #import "ZW_ViewController.h"
 
-@interface SetZHViewController : ZW_ViewController
+@interface SetZHViewController : HQJBaseSubVC
 
 @end
