@@ -27,6 +27,9 @@ typedef NS_ENUM(NSInteger,HQJNavigationBarColor) {
 
 /// 导航控制器颜色风格    在 viewWillAppear 中调用
 @property (nonatomic, assign) HQJNavigationBarColor navType;
+
+- (void)hideShadowLine;
+
 @end
 
 NS_ASSUME_NONNULL_END

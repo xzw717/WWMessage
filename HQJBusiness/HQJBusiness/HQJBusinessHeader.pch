@@ -174,4 +174,13 @@
 /// 首页工具集合
 #define ToolItem [[NSUserDefaults standardUserDefaults] objectForKey:@"ToolItem"]
 
+
+
+///// 商品管理界面
+//#define GoodsStateCount @"GoodsStateCount"
+//#define SelectName @"SelectNanem"
+//#define OperationName @"OperationName"
+
+
+
 #endif /* HQJBusinessHeader_pch */

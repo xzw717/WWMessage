@@ -49,7 +49,7 @@
 + (void)requestCustomerInformationWith:(NSString *)customerID
                               complete:(void(^)(NSString *mobile,NSString *realname))complete {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByIdInterface];
-    NSDictionary *dict = @{@"memberid":customerID,
+    NSDictionary *dict = @{@"memberid":customerID ? customerID : @"" ,
                            @"membertype":@1,@"mid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {

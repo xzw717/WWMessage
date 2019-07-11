@@ -58,7 +58,7 @@
     } else {
         self.userDateLabel.hidden = YES;
     }
-    NSMutableAttributedString *contentStr = [[NSMutableAttributedString alloc]initWithString:count  ? [NSString stringWithFormat:@"共计%ld 件商品 合计：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"合计：¥%.2f",model.price]];
+    NSMutableAttributedString *contentStr = [[NSMutableAttributedString alloc]initWithString:count  ? [NSString stringWithFormat:@"共计%ld件商品  合计：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"合计：¥%.2f",model.price]];
     NSRange bigRange = NSMakeRange([[contentStr string] rangeOfString:[NSString stringWithFormat:@"¥%.2f",model.price]].location, [[contentStr string] rangeOfString:[NSString stringWithFormat:@"¥%.2f",model.price]].length);
     [contentStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:54/3.f] range:bigRange];
     self.countPriceLabel.attributedText = contentStr;
@@ -77,21 +77,21 @@
 //    }];
   
 
-//    [self.timerLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
+    [self.timerLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
 //    self.rectCornerBackgroundView.sd_layout.rightSpaceToView(self.contentView, 0).leftSpaceToView(self.contentView, 0).topSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0);
     self.rectCornerBackgroundView.frame = CGRectMake(0, 0, WIDTH - 20, 88);
-    [self.countPriceLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
+//    [self.countPriceLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
     
     if (self.isUseDate) {
 //        [self.userDateLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
    
         self.userDateLabel.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contactBuyerButton, kEDGE).topSpaceToView(self.timerLabel, 5).heightIs(15);
         
-        self.countPriceLabel.sd_layout.leftSpaceToView(self.rectCornerBackgroundView, kEDGE).topSpaceToView(self.userDateLabel, 5).heightIs(15);
+        self.countPriceLabel.sd_layout.leftSpaceToView(self.rectCornerBackgroundView, kEDGE).leftSpaceToView(self.rectCornerBackgroundView, kEDGE).topSpaceToView(self.userDateLabel, 5).heightIs(15);
     } else {
-         self.countPriceLabel.sd_layout.rightSpaceToView(self.rectCornerBackgroundView, kEDGE).topSpaceToView(self.rectCornerBackgroundView, 46/3.f).heightIs(15);
+         self.countPriceLabel.sd_layout.rightSpaceToView(self.rectCornerBackgroundView, kEDGE).leftSpaceToView(self.rectCornerBackgroundView, kEDGE).topSpaceToView(self.rectCornerBackgroundView, 46/3.f).heightIs(15);
     }
-    self.timerLabel.sd_layout.leftSpaceToView(self.rectCornerBackgroundView, kEDGE).rightSpaceToView(self.contactBuyerButton, kEDGE).topSpaceToView(self.countPriceLabel, 69/3.f).heightIs(15);
+    self.timerLabel.sd_layout.leftEqualToView(self.countPriceLabel).topSpaceToView(self.countPriceLabel, 69/3.f).heightIs(15);
 
     self.contactBuyerButton.sd_layout.rightSpaceToView(self.rectCornerBackgroundView, kEDGE).centerYEqualToView(self.timerLabel).widthIs(224/3.f).heightIs(83/3.f);
 
@@ -121,7 +121,7 @@
         _countPriceLabel = [[UILabel alloc]init];
         _countPriceLabel.font = [UIFont systemFontOfSize:38/3.f];
         _countPriceLabel.textColor = [ManagerEngine getColor:@"333333"];
-
+        _countPriceLabel.textAlignment = NSTextAlignmentRight;
     }
     return _countPriceLabel;
 }

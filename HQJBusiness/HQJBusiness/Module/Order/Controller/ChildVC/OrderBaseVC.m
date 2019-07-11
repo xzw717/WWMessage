@@ -15,6 +15,8 @@
 #import "OrderTableViewCell.h"
 #import "OrderTableViewFooterView.h"
 #import "HQJBusinessAlertView.h"
+#import "OrderCompleteFootView.h"
+#import "OrderDetailsViewController.h"
 @interface OrderBaseVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) OrderViewModel *viewModel;
@@ -68,6 +70,9 @@ DZNEmptyDataSetDelegate>
         [_tableView registerClass:[OrderTwoCell class] forCellReuseIdentifier:NSStringFromClass([OrderTwoCell class ])];
         [_tableView registerClass:[OrderTableViewHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewHeader class])];
         [_tableView registerClass:[OrderTableViewFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
+        [_tableView registerClass:[OrderCompleteFootView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderCompleteFootView class])];
+
+        
     }
     _tableView.contentInset = UIEdgeInsetsZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -123,6 +128,7 @@ DZNEmptyDataSetDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderTableViewCell class]) forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     OrderModel *model = self.listArray[indexPath.section];
     cell.orderDate = [NSString stringWithFormat:@"%ld",(long)model.date];
     if (model.type == 1) {
@@ -153,7 +159,10 @@ DZNEmptyDataSetDelegate>
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
-    if (model.usedate) return 65.f + 44.f;
+    if ([model.state isEqualToString:@"待评价"] || [model.state isEqualToString:@"交易完成"]) {
+       
+        return CompleteFootHeight;
+    }
     return 44.f + 44.f;
     
     
@@ -170,25 +179,54 @@ DZNEmptyDataSetDelegate>
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
-    
-    OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
-   __block NSInteger allCount = 0;
-    [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        allCount = allCount + obj.goodscount;
-    }];
-    footerView.contactBuyerBlock = ^{
-        [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
-            HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
-            //    [alertView zw_showAlertWithContent];
-            [alertView zw_showAlertWithName:realname mobile:mobile];
+    if ([model.state isEqualToString:@"待评价"] || [model.state isEqualToString:@"交易完成"]) {
+        OrderCompleteFootView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderCompleteFootView class])];
+        __block NSInteger allCount = 0;
+        [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            allCount = allCount + obj.goodscount;
         }];
-      
-       
-    };
-    [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
-
-//    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
-    return footerView;
+        @weakify(self);
+        footerView.contactBuyerBlock = ^{
+            @strongify(self);
+            if ([model.state isEqualToString:@"交易完成"]) {
+                [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
+                    HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
+                    //    [alertView zw_showAlertWithContent];
+                    [alertView zw_showAlertWithName:realname mobile:mobile];
+                }];
+            } else {
+                OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+           
+            
+            
+        };
+        [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
+        
+        //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
+        return footerView;
+    } else {
+        OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
+        __block NSInteger allCount = 0;
+        [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            allCount = allCount + obj.goodscount;
+        }];
+        footerView.contactBuyerBlock = ^{
+            [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
+                HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
+                //    [alertView zw_showAlertWithContent];
+                [alertView zw_showAlertWithName:realname mobile:mobile];
+            }];
+            
+            
+        };
+        [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
+        
+        //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
+        return footerView;
+    }
+   
 }
 
 
