@@ -40,6 +40,9 @@
     _isHiddenshadowImage = isHiddenshadowImage;
     if (isHiddenshadowImage == YES) {
         self.navigationController.navigationBar.shadowImage = [UIImage new];
+    }else {
+        self.navigationController.navigationBar.shadowImage = nil;
+
     }
 
 }

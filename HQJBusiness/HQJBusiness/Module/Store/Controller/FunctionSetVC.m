@@ -23,7 +23,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavType:HQJNavigationBarWhite];
+//    [self setNavType:HQJNavigationBarWhite];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
         return 1;

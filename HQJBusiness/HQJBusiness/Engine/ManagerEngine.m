@@ -14,7 +14,8 @@
 #import "UINavigationBar+Awesome.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
-
+#import "ReleaseRulesVC.h"
+#import "GoodsReleaseVC.h"
 static UILabel *alertLabel ;
 @class HomeViewController;
 @class NearViewController;
@@ -927,5 +928,17 @@ static const CGFloat  sAlertTimer = 3.0;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:mesg preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
     [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
+}
+
++ (void)goodsRelease {
+    if (!GetHaveAgreed) {
+        ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
+        vc.webUrlStr = @"www.baidu.com";
+        vc.isInitiative = YES;
+        [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
+    } else {
+        GoodsReleaseVC *vc = [[GoodsReleaseVC alloc]initWithNavType:HQJNavigationBarWhite buttonStyle:ReleaseButtonStylePublishNow controllerTitle:@"商品发布"];
+        [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

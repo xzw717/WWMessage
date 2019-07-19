@@ -10,9 +10,20 @@
 
 @interface HQJBaseSubVC ()
 @property (nonatomic, strong)  UIButton *backButton;
+@property (nonatomic, assign) HQJNavigationBarColor shadowType;
 @end
 
 @implementation HQJBaseSubVC
+
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type
+{
+    self = [super init];
+    if (self) {
+        self.shadowType = type;
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,30 +62,36 @@
 
     _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame = CGRectMake(0, 0, 22, 22);
+    @weakify(self);
     [_backButton bk_addEventHandler:^(id  _Nonnull sender) {
-        if (self.viewControllerName) {
-            
-            for (UIViewController* v in self.navigationController.viewControllers) {
-                if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:self.viewControllerName]) {
-                    [self.navigationController popToViewController:v animated:YES];
+        @strongify(self);
+        if (self.backBlock) {
+            self.backBlock();
+        } else {
+            if (self.viewControllerName) {
+                for (UIViewController* v in self.navigationController.viewControllers) {
+                    if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:self.viewControllerName]) {
+                        [self.navigationController popToViewController:v animated:YES];
+                        
+                    }
                     
                 }
                 
-            }
-            
-            
-        } else {
-            if (self.navigationController.viewControllers && self.navigationController.viewControllers.count > 0) {
-                [self.navigationController popViewControllerAnimated:YES];
                 
             } else {
-                [self dismissViewControllerAnimated:YES completion:nil];
+                if (self.navigationController.viewControllers && self.navigationController.viewControllers.count > 0) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                } else {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+                
             }
-            
         }
     } forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     self.navigationItem.leftBarButtonItem = barItem;
+    self.navType = self.shadowType;
 }
 
 
@@ -83,7 +100,7 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor] ;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
-    [_backButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
+    [_backButton setImage:[UIImage imageNamed:@"goodsRelease_return"] forState:UIControlStateNormal];
 }
 
 - (void)blueType {

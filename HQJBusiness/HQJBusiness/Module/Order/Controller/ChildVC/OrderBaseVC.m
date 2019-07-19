@@ -195,7 +195,7 @@ DZNEmptyDataSetDelegate>
                     [alertView zw_showAlertWithName:realname mobile:mobile];
                 }];
             } else {
-                OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
+                OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithNavType:HQJNavigationBarWhite model:model];
                 [self.navigationController pushViewController:vc animated:YES];
             }
            

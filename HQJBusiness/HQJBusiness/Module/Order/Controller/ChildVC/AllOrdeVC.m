@@ -21,7 +21,7 @@
     @weakify(self);
     [self setSelectRowBlock:^(OrderModel *model) {
         @strongify(self);
-        OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
+        OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithNavType:HQJNavigationBarWhite model:model];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

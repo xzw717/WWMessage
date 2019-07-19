@@ -276,7 +276,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavType:HQJNavigationBarWhite];
+//    [self setNavType:HQJNavigationBarWhite];
 
     [self.setTableView reloadData];
     

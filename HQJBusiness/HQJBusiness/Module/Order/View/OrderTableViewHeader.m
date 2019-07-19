@@ -61,7 +61,7 @@
     if (!_stateLabel) {
         _stateLabel = [[ZW_Label alloc]init];
         _stateLabel.font = [UIFont systemFontOfSize:40/3.f];
-        _stateLabel.textColor = [ManagerEngine getColor:@"ff4949"];
+        _stateLabel.textColor = RedColor;
     }
     return _stateLabel;
 }

@@ -20,6 +20,9 @@
 #import "ManuallyAddViewController.h"
 #import "VerificationOrderDetailsViewController.h"
 #import "OrderViewController.h"
+#import "GoodsReleaseVC.h"
+#import "CatalogueVC.h"
+#import "ReleaseRulesVC.h"
 #define StoreMenuWidth  130.f;
 #define StoreMenuRowHeight  57.f;
 #define StoreMenuIconMargin  16.4f;
@@ -47,7 +50,9 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alertView:) name:@"Qrcode" object:nil];
     
 }
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 -(void)alertView:(NSNotification *)infos {
     NSInteger  stateCode = [infos.userInfo[@"state"] integerValue];
@@ -58,7 +63,7 @@
             
         } else if (stateCode == 1) {
             
-            VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]initWithOrderId:infos.userInfo[@"orderid"] consumerCode:infos.userInfo[@"salecode"]];
+            VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]initWithNavType:HQJNavigationBarWhite orderId:infos.userInfo[@"orderid"] consumerCode:infos.userInfo[@"salecode"]];
             [self.storeViewModel_self.navigationController pushViewController:vc animated:YES];
             
             
@@ -101,12 +106,12 @@
         if (selectedIndex == 0) {
             ScanViewController *sVC =[[ScanViewController alloc]init];
             [sVC setDismissBlock:^{
-                ManuallyAddViewController *mVC = [[ManuallyAddViewController alloc]init];
+                ManuallyAddViewController *mVC = [[ManuallyAddViewController alloc]initWithNavType:HQJNavigationBarWhite];
                 [self.storeViewModel_self.navigationController pushViewController:mVC animated:YES];
             }];
             [self.storeViewModel_self presentViewController:sVC animated:YES completion:nil];
         } else {
-            FunctionSetVC *fVC = [[FunctionSetVC alloc]init];
+            FunctionSetVC *fVC = [[FunctionSetVC alloc]initWithNavType:HQJNavigationBarWhite];
             [self.storeViewModel_self.navigationController pushViewController:fVC animated:YES];
         }
     }];
@@ -119,18 +124,23 @@
     if (indexPath.section != 2) {
         StoreMainCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([StoreMainCell class]) forIndexPath:indexPath];
         //        cell.itemAry = .mutableCopy;
-        cell.itemAry = [self modelAry][indexPath.section];
         [cell setClickItemblock:^(NSString * _Nonnull title) {
             NSLog(@"你点击了：%@",title);
+            if ([title isEqualToString:@"添加商品"]) {
+                
+                [ManagerEngine goodsRelease];
+       
+            }
         }];
         cell.titleArray = self.titleAry[indexPath.section];
+        cell.itemAry = [self modelAry][indexPath.section];
+
         return cell;
         
     } else  {
         StoreADCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([StoreADCell class])];
         [cell setClickADButtonBlock:^(NSString * _Nonnull btnTitle) {
             NSLog(@"你点击了：%@",btnTitle);
-            
         }];
         return cell;
     }
@@ -140,11 +150,11 @@
     NSArray *ary = self.titleAry[index.section];
     UIViewController *viewController;
     if ([ary.lastObject isEqualToString:@"交易数据"]) {
-       viewController = [[DetailViewController alloc]init];
+       viewController = [[DetailViewController alloc]initWithNavType:HQJNavigationBarWhite];
     } else if ([ary.lastObject isEqualToString:@"订单管理"]) {
-        viewController = [[OrderViewController alloc]init];
+        viewController = [[OrderViewController alloc]initWithNavType:HQJNavigationBarWhite];
     } else if ([ary.lastObject isEqualToString:@"商品管理"]) {
-      viewController = [[GoodsManageVC alloc]init];
+      viewController = [[GoodsManageVC alloc]initWithNavType:HQJNavigationBarWhite];
     }
     [self.storeViewModel_self.navigationController pushViewController:viewController animated:YES];
 
@@ -160,12 +170,13 @@
                          @[],
                          @[@"出售中",@"已下架",@"草稿中",@"添加商品"]].mutableCopy;
         } else {
+//            NSLog(@"%@",);
             _modelAry =@[
                          @[@"今日积分",@"今日现金",@"今日RY值支出"],
                          @[@"今日订单数",@"商品订单",@"收款订单",@"已核销订单",@"待付款",@"待评价",@"待核销订单",@"+"],
                          @[],
                          @[@"出售中",@"已下架",@"草稿中",@"添加商品"],
-                         @[]].mutableCopy;
+                         [[NSUserDefaults standardUserDefaults] objectForKey:@"ToolItem"]].mutableCopy;
         }
      
     }

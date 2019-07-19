@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderDetailsViewController : HQJBaseSubVC
-- (instancetype)initWithModel:(OrderModel *)model;
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type model:(OrderModel *)model ;
 @end
 
 NS_ASSUME_NONNULL_END

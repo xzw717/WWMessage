@@ -233,11 +233,11 @@
     if (!_deleteButton) {
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _deleteButton.layer.cornerRadius = 41 / 3.f;
-        _deleteButton.layer.borderColor = [ManagerEngine getColor:@"ff4949"].CGColor;
+        _deleteButton.layer.borderColor = RedColor.CGColor;
         _deleteButton.layer.borderWidth = .5f;
 //        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         _deleteButton.titleLabel.font = [UIFont systemFontOfSize:38 / 3.f];
-        [_deleteButton setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
+        [_deleteButton setTitleColor:RedColor forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(deleteBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _deleteButton;

@@ -9,31 +9,26 @@
 #import <UIKit/UIKit.h>
 typedef void(^GoodsManageAlertViewBlock)(void);
 
+
 NS_ASSUME_NONNULL_BEGIN
+
+#define AlertViewTitleColor @"AlertViewTitleColor"
+#define AlertViewTitleFont  @"AlertViewTitleFont"
+#define AlertViewTitle  @"AlertViewTitle"
 
 @interface GoodsManageAlertView : UIView
 
 
-/**
- 初始化配置方法
-
- @param title 标题内容
- @param complete 点击 是 按钮 回调
- */
+/** 初始化配置方法  默认第一个按钮 “否”，不做任何操作 ，第二个 “是” ，回调是点击“是”后的 */
 + (void)alertViewInitWithTitle:(NSString *)title Complete:(GoodsManageAlertViewBlock)complete ;
 
-/**
- 初始化配置方法 可自定义按钮title
 
- @param title 标题内容
- @param fristBtn 第一个按钮的title
- @param twoBtn 第一个按钮的title
- @param complete  点击 是 按钮 回调
- */
-+ (void)alertViewInitWithTitle:(NSString *)title
-                 fristBtnTitle:(NSString *)fristBtn
-                   twoBtnTitle:(NSString *)twoBtn
-                      Complete:(GoodsManageAlertViewBlock)complete;
+/** 初始化配置方法 可自定义按钮title  第一个默认按钮只可自已定义文字，第二个可以自行定制，可传字典类型 eg：@{AlertViewTitleColor：红色} 回调是两个按钮点击后的回调   */
++ (void)alertViewInitWithTitle:(nullable NSString *)title
+             cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+             otherButtonTitles:(nullable id)otherButtonTitles
+                      Complete:(nullable GoodsManageAlertViewBlock)complete
+                      negative:(nullable GoodsManageAlertViewBlock)negative;
 @end
 
 NS_ASSUME_NONNULL_END

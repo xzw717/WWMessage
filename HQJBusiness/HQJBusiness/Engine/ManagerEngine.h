@@ -322,4 +322,10 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  @param mesg 消息内容
  */
 + (void)alertMessage:(NSString *)mesg;
+
+
+/**
+ 商品发布判断
+ */
++ (void)goodsRelease;
 @end

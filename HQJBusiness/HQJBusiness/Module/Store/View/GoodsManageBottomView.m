@@ -96,11 +96,11 @@
         _operationButton  = [UIButton buttonWithType:UIButtonTypeCustom];
         _operationButton.layer.masksToBounds = YES;
         _operationButton.layer.cornerRadius = 41 / 3.f;
-        _operationButton.layer.borderColor = [ManagerEngine getColor:@"ff4949"].CGColor;
+        _operationButton.layer.borderColor = RedColor.CGColor;
         _operationButton.layer.borderWidth = .5f;
         [_operationButton setTitle:@"删除" forState:UIControlStateNormal];
         _operationButton.titleLabel.font = [UIFont systemFontOfSize:38 / 3.f];
-        [_operationButton setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
+        [_operationButton setTitleColor:RedColor forState:UIControlStateNormal];
         [_operationButton addTarget:self action:@selector(clickOperationButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _operationButton;

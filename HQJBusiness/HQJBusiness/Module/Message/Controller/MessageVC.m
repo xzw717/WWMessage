@@ -198,6 +198,7 @@
         _messageOtherTabelView.rowHeight = 230/3.f;
         _messageOrderTabelView.hidden = YES;
         _messageOrderTabelView.tag = 10002;
+        _messageOrderTabelView.showsVerticalScrollIndicator = NO;
         _messageOtherTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_messageOtherTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
         _messageOtherTabelView.tableFooterView = [UIView new];

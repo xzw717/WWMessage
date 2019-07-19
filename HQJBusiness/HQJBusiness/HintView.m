@@ -76,7 +76,7 @@
     if ( _sureButton == nil ) {
         _sureButton =  [UIButton buttonWithType:0];
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _sureButton.backgroundColor = [ManagerEngine getColor:@"ff4949"];
+        _sureButton.backgroundColor = RedColor;
         _sureButton.titleLabel.font = [UIFont boldSystemFontOfSize:40/3];
         _sureButton.layer.masksToBounds = YES;
         _sureButton.layer.cornerRadius = S_RatioH(100.0f/6);

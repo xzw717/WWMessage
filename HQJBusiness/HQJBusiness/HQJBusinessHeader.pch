@@ -109,6 +109,8 @@
 #define  NavigationControllerHeight  ([ManagerEngine isIPhoneXSeries] ?  88.f : 64.f)
 /// ---  TabBar 高度
 #define  ToolBarHeight ([ManagerEngine isIPhoneXSeries] ?  83.f : 49.f)
+/// ---  TabBar 安全区
+#define  ToolBarSafetyZoneHeight ([ManagerEngine isIPhoneXSeries] ?  83.f - 49.f : 0.f)
 /// --- 状态栏
 #define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
 
@@ -175,8 +177,11 @@
 
 
 
-///// 商品管理界面
-//#define GoodsStateCount @"GoodsStateCount"
+///// 是否已经阅读发布规则则
+#define SetHaveAgreed [[NSUserDefaults standardUserDefaults] setObject:@"已阅读" forKey:@"HaveAgreedTo"]
+#define GetHaveAgreed [[NSUserDefaults standardUserDefaults] objectForKey:@"HaveAgreedTo"]
+#define RemoveHaveAgreed [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"HaveAgreedTo"]
+
 //#define SelectName @"SelectNanem"
 //#define OperationName @"OperationName"
 

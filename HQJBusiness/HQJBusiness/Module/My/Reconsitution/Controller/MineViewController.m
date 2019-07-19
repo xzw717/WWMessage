@@ -133,11 +133,12 @@
     if (MmberidStr) {
         [self requst];
     }
-    
+    self.isHiddenshadowImage = YES;
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    self.isHiddenshadowImage = NO;
+
 }
 #pragma mark --- UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
