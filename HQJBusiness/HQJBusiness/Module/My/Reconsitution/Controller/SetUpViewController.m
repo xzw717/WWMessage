@@ -11,17 +11,43 @@
 #import "SetCell.h"
 #import "BlueToothVC.h"
 #import "SetBindingCell.h"
+#import "MineLogoutCell.h"
+#import "JPUSHService.h"
+#import "LoginViewController.h"
 
+#import "AppDelegate.h"
 @interface SetUpViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation SetUpViewController
 
+-(UITableView *)tableView {
+    if (!_tableView) {
+        
+        _tableView = [[UITableView alloc]init];
+        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
+        _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _tableView.delegate = self;
+        
+        _tableView.dataSource = self;
+        _tableView.sectionFooterHeight = 2;
+        _tableView.sectionHeaderHeight = 2;
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_tableView registerClass:[SetCell class] forCellReuseIdentifier:NSStringFromClass([SetCell class])];
+        [_tableView registerClass:[SetBindingCell class] forCellReuseIdentifier:NSStringFromClass([SetBindingCell class])];
+        [_tableView registerClass:[MineLogoutCell class] forCellReuseIdentifier:NSStringFromClass([MineLogoutCell class])];
+        
+        _tableView.tableFooterView = [UIView new];
+        
+    }
+    
+    return _tableView;
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 3;
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -100,22 +126,24 @@
             }];
         }
         return cell;
-    } else {
+    } else if (indexPath.section == 1) {
         static NSString *cellID = @"cellID";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
             cell.accessoryType = UITableViewCellAccessoryNone;
             CellLine(cell);
             
         }
         return cell;
+    }else{
+        MineLogoutCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MineLogoutCell class]) forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-
 }
 
 - (void)setUserDefaults:(BOOL)obj userKey:(NSString *)key {
@@ -131,8 +159,23 @@
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
         //        }
-    }  
-    
+    } else{
+         [self removeData];
+         [self.navigationController popViewControllerAnimated:YES];
+         
+         LoginViewController *loginVC =[[LoginViewController alloc]init];
+         ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+         
+         [UIView transitionWithView:delegate.window
+                           duration:0.5
+                            options: UIViewAnimationOptionTransitionFlipFromRight
+                         animations:^{
+                             delegate.window.rootViewController = Nav;
+                             
+                         }
+                         completion:nil];
+     }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -163,34 +206,31 @@
                  @"自动打印订单",
                  @"新订单语音提醒",
                  @"收钱到账语音提醒"];
-    } else {
+    } else if (index == 1){
         return @[@"版本"];
+    }else{
+        return @[@"退出登录"];
     }
     
+}
+#pragma mark --
+#pragma mark --- 删除用户信息
+-(void)removeData {
+    
+    [FileEngine fileRemove:fileLoginStyle];    //  ---用户登录信息
+    [FileEngine fileRemove:fileDefaultStyle];  // ---手机号等信息
+    [FileEngine fileRemove:fileHomeDataStyle];  // -- 积分信息
+    [FileEngine fileRemove:filePathlocationStyle]; // --- 用户类型
+    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"%ld %@ %ld",iResCode,iAlias,seq);
+        if (iResCode) {
+            
+        }
+        
+    } seq:1];
+    [JPUSHService removeNotification:nil];
 }
 
--(UITableView *)tableView {
-    if (!_tableView) {
-        
-        _tableView = [[UITableView alloc]init];
-        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
-        _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        _tableView.delegate = self;
-        
-        _tableView.dataSource = self;
-        _tableView.sectionFooterHeight = 2;
-        _tableView.sectionHeaderHeight = 2;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-        [_tableView registerClass:[SetCell class] forCellReuseIdentifier:NSStringFromClass([SetCell class])];
-        [_tableView registerClass:[SetBindingCell class] forCellReuseIdentifier:NSStringFromClass([SetBindingCell class])];
-        
-        
-        _tableView.tableFooterView = [UIView new];
-        
-    }
-    
-    return _tableView;
-}
 
 
 @end

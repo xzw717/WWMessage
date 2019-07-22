@@ -11,29 +11,40 @@
 #define LeftSpace 17.f
 
 @interface MineLogoutCell ()
-@property (nonatomic, strong) UIButton *logoutButton;
+@property (nonatomic, strong) UILabel *logoutLabel;
+//@property (nonatomic, strong) UIButton *logoutButton;
 
 @end
 @implementation MineLogoutCell
 
 #pragma lazy-load
-- (UIButton *)logoutButton{
-    if (!_logoutButton) {
-        _logoutButton = [UIButton buttonWithType:0];
-        _logoutButton.userInteractionEnabled = NO;
-        [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
-        _logoutButton.backgroundColor = DefaultAPPColor;
-        _logoutButton.layer.masksToBounds = YES;
-        _logoutButton.layer.cornerRadius = S_XRatioH(145/6);
-        _logoutButton.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
-        [self addSubview:_logoutButton];
+- (UILabel *)logoutLabel{
+    if (_logoutLabel == nil) {
+        _logoutLabel = [[UILabel alloc]init];
+        _logoutLabel.font = [UIFont systemFontOfSize:16.f];
+        _logoutLabel.textAlignment = NSTextAlignmentCenter;
+        _logoutLabel.text = @"退出登录";
+        [self addSubview:_logoutLabel];
     }
-    return _logoutButton;
+    return _logoutLabel;
 }
+
+//- (UIButton *)logoutButton{
+//    if (!_logoutButton) {
+//        _logoutButton = [UIButton buttonWithType:0];
+//        _logoutButton.userInteractionEnabled = NO;
+//        [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+//        _logoutButton.backgroundColor = DefaultAPPColor;
+//        _logoutButton.layer.masksToBounds = YES;
+//        _logoutButton.layer.cornerRadius = S_XRatioH(145/6);
+//        _logoutButton.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
+//        [self addSubview:_logoutButton];
+//    }
+//    return _logoutButton;
+//}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = DefaultBackgroundColor;
         
         [self layoutTheSubviews];
     }
@@ -46,7 +57,7 @@
 }
 
 - (void)layoutTheSubviews{
-    self.logoutButton.sd_layout.leftSpaceToView(self, LeftSpace).centerXEqualToView(self).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-34);
+    self.logoutLabel.sd_layout.centerXEqualToView(self).centerYEqualToView(self).heightIs(20.f).widthIs(200.f);
 }
 
 - (void)awakeFromNib {

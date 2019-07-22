@@ -9,6 +9,10 @@
 #import "ToolViewModel.h"
 #import "ToolCell.h"
 #import "MyViewController.h"
+#import "MyShopViewController.h"
+
+#import "SetUpShopViewController.h"
+#import "ShopEvaluateViewController.h"
 #define tableViewSectionHeight 40.f
 
 #define tableViewSectionSpace 53/3.f
@@ -42,8 +46,16 @@
     ToolCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ToolCell class]) forIndexPath:indexPath];
     cell.itemAry = [self cellDataArray][indexPath.section];
     [cell setClickItemblock:^(NSString * _Nonnull title) {
-        MyViewController *myVc = [[MyViewController alloc]init];
-        [self.superVC.navigationController pushViewController:myVc animated:YES];
+        if ([title isEqualToString:@"商品评价"]) {
+            ShopEvaluateViewController *seVc = [[ShopEvaluateViewController alloc]init];
+            [self.superVC.navigationController pushViewController:seVc animated:YES];
+        }else{
+            SetUpShopViewController *suVc = [[SetUpShopViewController alloc]init];
+            [self.superVC.navigationController pushViewController:suVc animated:YES];
+        }
+       
+//        MyShopViewController *msVc = [[MyShopViewController alloc]init];
+//        [self.superVC.navigationController pushViewController:msVc animated:YES];
         NSLog(@"你点击了：%@",title);
     }];
     [cell setLongClickItemblock:^(NSArray * _Nonnull array) {
@@ -62,8 +74,8 @@
 }
 
 - (void)selectCellForIndex:(NSIndexPath *)index {
-    MyViewController *myVc = [[MyViewController alloc]init];
-    [self.superVC.navigationController pushViewController:myVc animated:YES];
+    SetUpShopViewController *suVc = [[SetUpShopViewController alloc]init];
+    [self.superVC.navigationController pushViewController:suVc animated:YES];
     
 //    NSArray *ary = self.sectionArray[index.section];
 //    UIViewController *viewController;

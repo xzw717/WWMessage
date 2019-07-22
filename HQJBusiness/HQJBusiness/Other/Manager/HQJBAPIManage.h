@@ -111,6 +111,14 @@ extern NSString *const HQJBGetZhRateInterface;
 extern NSString *const HQJBSetZhRateInterface;
 /// 现金销售
 extern NSString *const HQJBCashSalesInterface;
+
+/************************************商家重构增加接口）**********************************************/
+///通过短信验证码登录(发送短信)
+extern NSString *const HQJBGetLoginCodeInterface;
+///通过短信验证码登录
+extern NSString *const HQJBMerchantSmsLoginInterface;
+///服务商注册时发送手机短信R
+extern NSString *const HQJBRegisterCodeInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

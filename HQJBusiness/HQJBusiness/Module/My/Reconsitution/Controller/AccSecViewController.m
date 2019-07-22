@@ -26,7 +26,7 @@
 -(UITableView *)tableView {
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, TableViewTopSpace, WIDTH, HEIGHT - TableViewTopSpace)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -55,6 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarWhite;
+    [self hideShadowLine];
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];

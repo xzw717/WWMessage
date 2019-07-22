@@ -13,6 +13,15 @@
 @end
 
 @implementation ProtocolViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+ [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+ self.navigationController.navigationBar.barTintColor = DefaultAPPColor;
+[self.navigationController.navigationBar setBackgroundImage:[ManagerEngine createImageWithColor:DefaultAPPColor] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +31,7 @@
 
 #pragma private method
 - (void)layoutTheSubViews{
-    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight)];
+    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
@@ -94,18 +103,6 @@
         [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
         }];
     }
-    //    //清除cookies
-    //    NSHTTPCookie *cookie;
-    //    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    //    for (cookie in [storage cookies]){
-    //        [storage deleteCookie:cookie];
-    //    }
-    //    //清除UIWebView的缓存
-    //    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    //    NSURLCache * cache = [NSURLCache sharedURLCache];
-    //    [cache removeAllCachedResponses];
-    //    [cache setDiskCapacity:0];
-    //    [cache setMemoryCapacity:0];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

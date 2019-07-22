@@ -311,8 +311,7 @@
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
         [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {
             ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
-            pvc.webUrlStr = @"https://www.baidu.com";
-            pvc.titleStr = @"协议";
+            pvc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/storemessage?shopid=0000";
             [self.navigationController pushViewController:pvc animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_protocolBtn];
@@ -326,10 +325,15 @@
     if ( _registerBtn == nil ) {
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_registerBtn setTitle:@"立即入驻" forState:UIControlStateNormal];
-        _registerBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+        _registerBtn.backgroundColor = DefaultAPPColor;
         _registerBtn.layer.masksToBounds = YES;
         _registerBtn.layer.cornerRadius = S_XRatioH(145/6);
         _registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
+        [_registerBtn bk_addEventHandler:^(id  _Nonnull sender) {
+            ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
+            pvc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/newstore?mobile=13855555555";
+            [self.navigationController pushViewController:pvc animated:YES];
+        } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_registerBtn];
     }
     

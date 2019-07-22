@@ -6,22 +6,21 @@
 //  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ContactManagerViewController.h"
-#import "PersonInfoCell.h"
-#import "ShopManagerCell.h"
+#import "ShopEvaluateViewController.h"
+#import "ShopEvaluateCell.h"
 #import "ContactManagerHeadView.h"
 
-#define TableViewCellHeight 140.f/3
+#define TableViewCellHeight 120.f
 #define HeadHeight  132/3.f
 #define TableViewTopSpace 40/3.f
-@interface ContactManagerViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@interface ShopEvaluateViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (nonatomic, assign) NSInteger topTag;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ContactManagerHeadView *headView;
 
 @end
 
-@implementation ContactManagerViewController
+@implementation ShopEvaluateViewController
 
 -(UITableView *)tableView {
     if (!_tableView) {
@@ -33,8 +32,7 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;
-        [_tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:NSStringFromClass([PersonInfoCell class])];
-        [_tableView registerClass:[ShopManagerCell class] forCellReuseIdentifier:NSStringFromClass([ShopManagerCell class])];
+        [_tableView registerClass:[ShopEvaluateCell class] forCellReuseIdentifier:NSStringFromClass([ShopEvaluateCell class])];
         
     }
     
@@ -43,7 +41,7 @@
 
 - (ContactManagerHeadView *)headView{
     if (_headView == nil) {
-        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"已签合同",@"待签合同",@"更新申请"]];
+        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"全部待评",@"买家已评",@"买家未评"]];
         _headView.selectIndex = 0;
         @weakify(self);
         [_headView setItemBlock:^(NSInteger selectedIndex) {
@@ -60,12 +58,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"合同管理";
+    self.title = @"商品评价";
     [self addSubViews];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navType = HQJNavigationBarBlue;
+    self.navType = HQJNavigationBarWhite;
+    [self hideShadowLine];
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
@@ -76,11 +75,11 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
+    return 3;
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 1;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -99,8 +98,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PersonInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PersonInfoCell class]) forIndexPath:indexPath];
-    cell.titleLabel.text = @"商家合同";
+    ShopEvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ShopEvaluateCell class]) forIndexPath:indexPath];
+    CellLine(cell);
     return cell;
     
 }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressDetailsViewController : ZW_ViewController
+@interface AddressDetailsViewController : HQJBaseSubVC
 @property (nonatomic,copy) NSString *addressStr;
 @end

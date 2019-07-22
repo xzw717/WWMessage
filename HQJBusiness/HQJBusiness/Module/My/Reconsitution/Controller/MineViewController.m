@@ -17,8 +17,6 @@
 
 #import "MineCell.h"
 
-#import "MineLogoutCell.h"
-
 #import "MyModel.h"
 
 
@@ -55,14 +53,13 @@
         _tableView.tableHeaderView = self.headView;
         
         [_tableView registerClass:[MineCell class] forCellReuseIdentifier:NSStringFromClass([MineCell class])];
-        [_tableView registerClass:[MineLogoutCell class] forCellReuseIdentifier:NSStringFromClass([MineLogoutCell class])];
         MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self requst];
         }];
         _tableView.mj_header = header;
         header.lastUpdatedTimeLabel.hidden = YES;
     }
-    
+
     return _tableView;
 }
 
@@ -92,8 +89,6 @@
 #pragma mark ---
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isHiddenshadowImage = YES;
-    
     [self initDatas];
     [self addSubViews];
 }
@@ -115,6 +110,7 @@
         [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
         [NameSingle shareInstance].mobile = xzw_model.mobile;
         [NameSingle shareInstance].memberid = xzw_model.memberid;
+        self.headView.model = xzw_model;
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
@@ -130,6 +126,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.isHiddenshadowImage = YES;
     if (MmberidStr) {
         [self requst];
     }
@@ -147,9 +144,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return 0.01;
-    }
-    if (section == self.viewModel.cellDataArray.count - 1 ) {
-        return 100.f;
     }
     return TableViewSectionHeight;
 }

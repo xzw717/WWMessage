@@ -185,6 +185,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarWhite;
+    [self hideShadowLine];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
