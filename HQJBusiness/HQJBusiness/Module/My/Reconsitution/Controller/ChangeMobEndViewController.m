@@ -146,7 +146,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarWhite;
-    [self hideShadowLine];
+    self.isHideShadowLine = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

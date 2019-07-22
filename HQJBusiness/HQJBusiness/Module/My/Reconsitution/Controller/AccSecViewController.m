@@ -55,7 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarWhite;
-    [self hideShadowLine];
+    self.isHideShadowLine = YES;
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];

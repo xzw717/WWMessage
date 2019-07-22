@@ -215,7 +215,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarBlue;
-    [self hideShadowLine];
+    self.isHideShadowLine = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
