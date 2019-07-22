@@ -87,6 +87,7 @@
         [fileMger removeItemAtPath:xiaoXiPath error:&err];
     }
 }
+
 + (void)storeToolArray:(NSMutableArray *)array{
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

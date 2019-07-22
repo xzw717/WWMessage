@@ -172,11 +172,11 @@
     if ( _getAuthCodeBtn == nil ) {
         _getAuthCodeBtn = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
         [_getAuthCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [_getAuthCodeBtn setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
+        [_getAuthCodeBtn setTitleColor:RedColor forState:UIControlStateNormal];
         _getAuthCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:40/3];
         _getAuthCodeBtn.layer.masksToBounds = YES;
         _getAuthCodeBtn.layer.cornerRadius = S_XRatioH(15);
-        _getAuthCodeBtn.layer.borderColor = [ManagerEngine getColor:@"ff4949"].CGColor;
+        _getAuthCodeBtn.layer.borderColor = RedColor.CGColor;
         _getAuthCodeBtn.layer.borderWidth = 0.5f;
 //        [_getAuthCodeBtn bk_addEventHandler:^(id  _Nonnull sender) {
 //            CreateShopViewController *csvc = [[CreateShopViewController alloc]init];
@@ -306,7 +306,7 @@
 - (UIButton *)protocolBtn{
     if ( _protocolBtn == nil ) {
         _protocolBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_protocolBtn setTitleColor:[ManagerEngine getColor:@"ff4949"] forState:UIControlStateNormal];
+        [_protocolBtn setTitleColor:RedColor forState:UIControlStateNormal];
         _protocolBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
         [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {

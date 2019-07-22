@@ -32,8 +32,8 @@
 @end
 
 @implementation OrderDetailsViewController
-- (instancetype)initWithModel:(OrderModel *)model {
-    self = [super init];
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type model:(OrderModel *)model {
+    self = [super initWithNavType:type];
     if (self) {
         self.dataModel = model;
         manage = [JWBluetoothManage sharedInstance];
@@ -43,7 +43,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavType:HQJNavigationBarWhite];
+//    [self setNavType:HQJNavigationBarWhite];
     
 }
 - (void)viewDidLoad {

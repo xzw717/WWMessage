@@ -12,7 +12,7 @@
 #define  ItemNumberTopSpacing  65/3.f
 #define  ItemNameTopSpacing  50/3.f
 #define  ItemNameBottomSpacing  65/3.f
-#define  ItemAddImageSize 20.f
+#define  ItemAddImageSize 51 / 2.f
 #define  ItemHeight           766 / 3 / 3.f
 #define  ItemWidth            (WIDTH - 10 *2 )/ 3.f
 @interface ItemView ()
@@ -35,6 +35,7 @@
 
 
 - (void)itemView_LayoutView {
+    
     self.numberLabel.frame = CGRectMake(0, ItemNumberTopSpacing, ItemWidth, ItemNumberFont);
     self.namelabel.frame = CGRectMake(0, ItemHeight - ItemNameBottomSpacing  - ItemNameFont, ItemWidth, ItemNameFont);
     
@@ -64,8 +65,10 @@
             self.numberLabel.hidden = YES;
             self.namelabel.hidden = NO;
             self.addImageView.hidden = NO;
-            self.addImageView.center = CGPointMake(ItemWidth / 2, ItemHeight / 2);
+            self.addImageView.center = CGPointMake(ItemWidth / 2 -  ItemAddImageSize / 2, ItemHeight / 2 - 45 / 3.f);
             self.addImageView.bounds = CGRectMake(0, 0, ItemAddImageSize, ItemAddImageSize);
+            self.namelabel.mj_w = (WIDTH - 10 *2 ) / 4.f;
+
         }
             break;
         default:
@@ -167,14 +170,15 @@
             [obj removeFromSuperview];
         }
     }];
-    int SPNum =  3 ;//水平一行放几个 [self.titleArray.lastObject isEqualToString:@"开店宝典"] ? 4 :
+    int SPNum =  [self.titleArray containsObject:@"开店宝典"] ? 4 :  3 ;//水平一行放几个
+    CGFloat ItemWidths = [self.titleArray containsObject:@"开店宝典"] ?  (WIDTH - 10 *2 ) / 4.f :  (WIDTH - 10 *2 ) /3.f;
     CGFloat JGGMinX = 0;//起始x值
     CGFloat JGGMinY = self.separationView.mj_y + self.separationView.mj_h;//起始y值
     CGFloat SPspace = 0;//水平距离
     CGFloat CXspace = 0;//垂直距离
     
     for (NSInteger i = 0; i < itemAry.count; i ++) {
-        NSString *ary = itemAry[i];
+        NSString *ary = [self itemTitleWithArray:self.itemAry index:i];
         ItemView * view = [[ItemView alloc]init];
         view.userInteractionEnabled = YES;
         if ([ary isEqualToString:@"+"]) {
@@ -185,18 +189,18 @@
             view.style = ItemViewStyleAddImage;
             view.addImageView.image = [UIImage imageNamed:@"store_add"];
 
+        }  else if ([itemAry[i] isKindOfClass:[NSArray class]]) {
+            view.style = ItemViewStyleTopImage;
+            view.addImageView.image = [UIImage imageNamed:[itemAry[i] lastObject]];
+            
         } else {
             view.style = ItemViewStyleDefault;
 
         }
-//        else if (![ary  isEqualToString:@""]) {
-//            view.style = ItemViewStyleTopImage;
-//            view.addImageView.image = [UIImage imageNamed:[ary firstObject]];
-//
-//        }
-        CGFloat x =  JGGMinX + i % SPNum * (ItemWidth + SPspace);
+       
+        CGFloat x =  JGGMinX + i % SPNum * (ItemWidths + SPspace);
         CGFloat y =  JGGMinY + i / SPNum * (ItemHeight + CXspace);
-        view.frame = CGRectMake(x, y, ItemWidth, ItemHeight);
+        view.frame = CGRectMake(x, y, ItemWidths, ItemHeight);
         view.numberLabel.text = [NSString stringWithFormat:@"1024.33633"];
         view.namelabel.text = ary ;
         view.tag = i + 10000;
@@ -210,12 +214,23 @@
 
 - (void)clickItem:(UITapGestureRecognizer *)tapgs {
     if (self.clickItemblock) {
-        self.clickItemblock(self.itemAry[tapgs.view.tag - 10000]);
+        self.clickItemblock([self itemTitleWithArray:self.itemAry index:tapgs.view.tag - 10000]);
         
     }
     
 }
 
+
+#pragma mark --- 返回item 的标题
+- (NSString *)itemTitleWithArray:(NSArray *)ary index:(NSInteger)index {
+    if ([ary[index] isKindOfClass:[NSArray class]]) {
+        return [ary[index] firstObject];
+    } else {
+        return ary[index];
+    }
+}
+
+#
 
 #pragma mark --- 行高计算
 - (CGFloat)cellHeight:(NSArray *)ary {

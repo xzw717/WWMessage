@@ -7,10 +7,11 @@
 //
 
 #import "HQJBaseSubVC.h"
-
+#import "GoodsReleaseViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GoodsReleaseVC : HQJBaseSubVC
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type buttonStyle:(ReleaseButtonStyle)style controllerTitle:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

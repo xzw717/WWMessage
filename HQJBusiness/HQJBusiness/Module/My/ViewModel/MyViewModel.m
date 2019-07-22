@@ -68,7 +68,7 @@
             [xzw_self.navigationController pushViewController:deccaVC animated:YES];
         }
         if (xzw_indexPath.row == 1) {
-            SetViewController *setVC = [[SetViewController alloc]init];
+            SetViewController *setVC = [[SetViewController alloc]initWithNavType:HQJNavigationBarWhite];
             [xzw_self.navigationController pushViewController:setVC animated:YES];
         }
         

@@ -10,6 +10,9 @@
 #import "GoodsManageCell.h"
 #import "GoodsManageBottomView.h"
 #import "GoodsManageAlertView.h"
+#import "GoodsReleaseVC.h"
+#import "ReleaseRulesVC.h"
+
 @interface GoodsManageViewModel ()<CustomEmptyViewDelegate>
 @property (nonatomic, strong) UITableView *vm_tableView;
 //@property (nonatomic, assign) BOOL isContains;
@@ -48,6 +51,7 @@
         @strongify(self);
     
         if ([self isContains] == YES) {
+            
             [GoodsManageAlertView alertViewInitWithTitle:@"是否删除选中的商品" Complete:^{
                 NSMutableArray *ary = [NSMutableArray arrayWithArray:self.dataArray];
                 for (GoodsManageModel *model in ary) {
@@ -55,6 +59,7 @@
                         [[self mutableArrayValueForKey:@"dataArray"] removeObject:model];
                     }
                 }
+                RemoveHaveAgreed;
                 [self.vm_tableView reloadData];
             }];
         }
@@ -131,10 +136,32 @@
     }];
     [cell setModel:model];
     [cell setCellEdit:^{
-     
+        GoodsReleaseVC * vc;
+        if (self.type == 1) {
+            vc = [[GoodsReleaseVC alloc]initWithNavType:HQJNavigationBarWhite buttonStyle:ReleaseButtonStyleSaveAndPublishNow controllerTitle:@"商品编辑"];
+        }
+        if (self.type == 2 || self.type == 3) {
+            vc = [[GoodsReleaseVC alloc]initWithNavType:HQJNavigationBarWhite buttonStyle:ReleaseButtonStyleSaveSubmit controllerTitle:@"商品编辑"];
+
+        }
+
+        [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
     }];
     [cell setCellDelete:^(NSString * _Nonnull title) {
-        
+        [GoodsManageAlertView alertViewInitWithContent:[NSString stringWithFormat:@"是否%@选中的商品",title] Complete:^{
+            if ([title isEqualToString:@"下架"]) {
+                
+            } else {
+                NSMutableArray *ary = [NSMutableArray arrayWithArray:self.dataArray];
+                for (GoodsManageModel *model in ary) {
+                    if (model.isSelect == YES) {
+                        [[self mutableArrayValueForKey:@"dataArray"] removeObject:model];
+                    }
+                }
+            }
+           
+            [self.vm_tableView reloadData];
+        }];
     }];
     [cell setCellShelve:^{
         
@@ -145,6 +172,7 @@
     return cell;
 }
 - (void)clickEmptyViewbutton {
-    NSLog(@"添加商品");
+    [ManagerEngine goodsRelease];
+
 }
 @end

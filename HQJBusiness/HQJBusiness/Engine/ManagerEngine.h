@@ -317,9 +317,15 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
 + (UIImage *)conversionsImage:(id)image ;
 
 /**
- 只显示提示消息和确定按钮
+ 系统提示框只显示提示消息和确定按钮
 
  @param mesg 消息内容
  */
 + (void)alertMessage:(NSString *)mesg;
+
+
+/**
+ 商品发布判断
+ */
++ (void)goodsRelease;
 @end

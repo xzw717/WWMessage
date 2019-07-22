@@ -32,6 +32,7 @@
 #pragma private method
 - (void)layoutTheSubViews{
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;

@@ -182,11 +182,11 @@
 - (UIView  *)setCycleScrollView {
     if (!_setCycleScrollView) {
         _setCycleScrollView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, WIDTH / 3)];
-      SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, StoreTableViewHeadViewHeight, WIDTH, WIDTH / 3) delegate:self placeholderImage:[UIImage imageNamed:@""]];
-        cycleScrollView.backgroundColor = [UIColor greenColor];
+      SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, StoreTableViewHeadViewHeight, WIDTH, WIDTH / 3) delegate:self placeholderImage:[UIImage imageNamed:@"banner02"]];
+//        cycleScrollView.backgroundColor = [UIColor greenColor];
         cycleScrollView.layer.masksToBounds = YES;
         cycleScrollView.layer.cornerRadius = StoreTableViewCellCornerRadius;
-        cycleScrollView.imageURLStringsGroup = @[];
+//        cycleScrollView.imageURLStringsGroup = @[@"banner02"];
         cycleScrollView.currentPageDotColor = [UIColor whiteColor];
         [_setCycleScrollView addSubview:cycleScrollView];
     }

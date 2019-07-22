@@ -40,19 +40,19 @@ UITableViewDataSource
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavType:HQJNavigationBarWhite];
+//    [self setNavType:HQJNavigationBarWhite];
 
 }
-
-- (instancetype)initWithOrderId:(NSString *)str consumerCode:(NSString *)code {
-    self = [super init];
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type orderId:(NSString *)str consumerCode:(NSString *)code {
+    self = [super initWithNavType:type];
     if (self) {
         _orderString = str;
         _codeString  = code;
-
+        
     }
     return self;
 }
+
 
 - (void)loadRequst {
     @weakify(self);

@@ -10,5 +10,5 @@
 
 @interface VerificationOrderDetailsViewController : HQJBaseSubVC
 
-- (instancetype)initWithOrderId:(NSString *)str consumerCode:(NSString *)code;
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type orderId:(NSString *)str consumerCode:(NSString *)code;
 @end
