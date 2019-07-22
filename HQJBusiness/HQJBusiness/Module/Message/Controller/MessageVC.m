@@ -10,6 +10,7 @@
 #import "MessageTopTAB.h"
 #import "MessageViewModel.h"
 #import "MessageGeneralCell.h"
+#import "MessageDetailsVC.h"
 
 #define MessageNavButtonSize (22.f)
 #define MessageBlueBackgroundViewHeight (280 / 3.f)
@@ -34,12 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self messageVC_addSubView];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMessage:) name:ChangeMessageNotification object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    [self setIsHiddenshadowImage:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -142,6 +142,11 @@
         [cell readMessage];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MessageDetailsVC *vc = [[MessageDetailsVC alloc]initWithNavType:HQJNavigationBarWhite];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

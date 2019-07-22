@@ -11,7 +11,9 @@
 
 #import "GoodsManageAlertView.h"
 
-#define AlertTitleFont (40 /3.f)
+#define AlertTitleFont (46 /3.f)
+#define AlertContentFont (38 /3.f)
+
 @protocol AlertCustomButtonDelegate <NSObject>
 
 @optional
@@ -73,7 +75,10 @@
 
 @interface GoodsManageAlertView () <AlertCustomButtonDelegate>
 @property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *textBackgroundView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
+
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) AlertCustomButton *noButton;
 @property (nonatomic, strong) AlertCustomButton *yesButton;
@@ -93,33 +98,38 @@
         [[UIApplication sharedApplication].delegate.window addSubview:self];
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
         [CustomWindow addSubview:self];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.maskView.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        [self setShowAnimate];
+    }
+    return self;
+}
+
+#pragma mark --- 显示动画
+- (void)setShowAnimate {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.maskView.transform = CGAffineTransformMakeScale(1.2, 1.2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.maskView.transform = CGAffineTransformMakeScale(0.8, 0.8);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.15 animations:^{
-                self.maskView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+            [UIView animateWithDuration:0.14 animations:^{
+                self.maskView.transform = CGAffineTransformMakeScale(1.1, 1.1);
             } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.14 animations:^{
-                    self.maskView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                [UIView animateWithDuration:0.13 animations:^{
+                    self.maskView.transform = CGAffineTransformMakeScale(0.95, 0.95);
                 } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.13 animations:^{
-                        self.maskView.transform = CGAffineTransformMakeScale(0.95, 0.95);
+                    [UIView animateWithDuration:0.12 animations:^{
+                        self.maskView.transform = CGAffineTransformMakeScale(1.05, 1.05);
                     } completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.12 animations:^{
-                            self.maskView.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                        [UIView animateWithDuration:0.11 animations:^{
+                            self.maskView.transform = CGAffineTransformMakeScale(0.98, 0.98);
                         } completion:^(BOOL finished) {
-                            [UIView animateWithDuration:0.11 animations:^{
-                                self.maskView.transform = CGAffineTransformMakeScale(0.98, 0.98);
+                            [UIView animateWithDuration:0.1 animations:^{
+                                self.maskView.transform = CGAffineTransformMakeScale(1.02, 1.02);
                             } completion:^(BOOL finished) {
-                                [UIView animateWithDuration:0.1 animations:^{
-                                    self.maskView.transform = CGAffineTransformMakeScale(1.02, 1.02);
-                                } completion:^(BOOL finished) {
-                                    self.maskView.transform = CGAffineTransformIdentity;
-                                    
-                                }];
+                                self.maskView.transform = CGAffineTransformIdentity;
+                                
                             }];
                         }];
-                        
                     }];
                     
                 }];
@@ -127,15 +137,36 @@
             }];
             
         }];
-    }
-    return self;
+        
+    }];
 }
-
 + (void)alertViewInitWithTitle:(NSString *)title Complete:(GoodsManageAlertViewBlock)complete {
     [GoodsManageAlertView alertViewInitWithTitle:title cancelButtonTitle:nil otherButtonTitles:nil Complete:complete negative:nil];
     
 }
+
++ (void)alertViewInitWithContent:(NSString *)content Complete:(GoodsManageAlertViewBlock)complete {
+    [GoodsManageAlertView alertViewInitWithContent:content cancelButtonTitle:nil otherButtonTitles:nil Complete:complete negative:nil];
+}
+
 + (void)alertViewInitWithTitle:(nullable NSString *)title
+             cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+             otherButtonTitles:(nullable id)otherButtonTitles
+                      Complete:(nullable GoodsManageAlertViewBlock)complete
+                      negative:(nullable GoodsManageAlertViewBlock)negative {
+    [GoodsManageAlertView alertViewInitWithTitle:title content:nil cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles Complete:complete negative:negative];
+}
+
++ (void)alertViewInitWithContent:(nullable NSString *)content
+             cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+             otherButtonTitles:(nullable id)otherButtonTitles
+                      Complete:(nullable GoodsManageAlertViewBlock)complete
+                      negative:(nullable GoodsManageAlertViewBlock)negative {
+    [GoodsManageAlertView alertViewInitWithTitle:nil content:content cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles Complete:complete negative:negative];
+}
+
++ (void)alertViewInitWithTitle:(nullable NSString *)title
+                  content:(nullable NSString *)content
              cancelButtonTitle:(nullable NSString *)cancelButtonTitle
              otherButtonTitles:(nullable id)otherButtonTitles
                       Complete:(nullable GoodsManageAlertViewBlock)complete
@@ -144,6 +175,8 @@
     view.affirm = complete;
     view.deny = negative;
     view.titleLabel.text = title;
+    view.contentLabel.text = content;
+    [view goodsManageAlertView_updateLayout];
     if (cancelButtonTitle) {
         [view.noButton.hqjTitleLabel setText:cancelButtonTitle];
     }
@@ -167,8 +200,10 @@
         }
         
     }
+    
+    
+    
 }
-
 
 
 
@@ -196,9 +231,30 @@
     }];
 
 }
+- (void)goodsManageAlertView_updateLayout {
+    HQJLog(@"%@",self.titleLabel.text);
+    if (!self.titleLabel.text || [self.titleLabel.text isEqualToString:@""]) {
+        [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.textBackgroundView);
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+
+        }];
+    }
+    if (!self.contentLabel.text || [self.contentLabel.text isEqualToString:@""]) {
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.textBackgroundView);
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+        }];
+    }
+}
+
 - (void)goodsManageAlertView_addSubView {
     [self addSubview:self.maskView];
-    [self.maskView addSubview:self.titleLabel];
+    [self.maskView addSubview:self.textBackgroundView];
+    [self.textBackgroundView addSubview:self.titleLabel];
+    [self.textBackgroundView addSubview:self.contentLabel];
     [self.maskView addSubview:self.lineView];
     [self.maskView addSubview:self.noButton];
     [self.maskView addSubview:self.yesButton];
@@ -211,10 +267,20 @@
         make.height.mas_equalTo(self.maskView.mas_width).multipliedBy(470 / 720.f);
         make.center.mas_equalTo(self);
     }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(137 / 3.f);
-        make.centerX.mas_equalTo(self.maskView);
+    [self.textBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.lineView.mas_top);
     }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(30.f);
+        make.left.right.mas_equalTo(0);
+    }];
+    
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(30);
+        make.left.right.mas_equalTo(0);
+    }];
+    
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20 / 3.f);
         make.right.mas_equalTo(-20 / 3.f);
@@ -243,15 +309,36 @@
     }
     return _maskView;
 }
+- (UIView *)textBackgroundView {
+    if (!_textBackgroundView) {
+        _textBackgroundView = [[UIView alloc]init];
+        _textBackgroundView.backgroundColor = [UIColor whiteColor];
+    }
+    return _textBackgroundView;
+}
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"占位标题";
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = [ManagerEngine getColor:@"010101"];
         _titleLabel.font = [UIFont systemFontOfSize:AlertTitleFont];
     }
     return _titleLabel;
 }
+
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc]init];
+        _contentLabel.text = @"占位内容哦";
+        _contentLabel.textAlignment = NSTextAlignmentCenter;
+        _contentLabel.numberOfLines = 2;
+        _contentLabel.textColor = [ManagerEngine getColor:@"010101"];
+        _contentLabel.font = [UIFont systemFontOfSize:AlertContentFont];
+    }
+    return _contentLabel;
+}
+
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc]init];

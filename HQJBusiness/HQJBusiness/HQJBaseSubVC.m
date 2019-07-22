@@ -30,11 +30,20 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
 }
+- (void)setIsHideShadowLine:(BOOL)isHideShadowLine {
+    _isHideShadowLine = isHideShadowLine;
+    if (isHideShadowLine) {
+        [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
-- (void)hideShadowLine {
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    } else {
+        [self.navigationController.navigationBar setShadowImage:nil];
+
+    }
 }
+//- (void)hideShadowLine {
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//}
 - (void)setNavType:(HQJNavigationBarColor)navType {
     _navType = navType;
     switch (navType) {

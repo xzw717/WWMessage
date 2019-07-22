@@ -73,6 +73,8 @@
 		1F1B21F11E00F34100021AB2 /* CustomerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B21F01E00F34100021AB2 /* CustomerViewModel.m */; };
 		1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B21F31E00F37300021AB2 /* CustomerModel.m */; };
 		1F1B21F71E0117C900021AB2 /* ZW_TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B21F61E0117C900021AB2 /* ZW_TextField.m */; };
+		1F1B548A22E5918A00D0FEB6 /* MessageDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B548922E5918A00D0FEB6 /* MessageDetailsVC.m */; };
+		1F1B548D22E5920200D0FEB6 /* MessageDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B548C22E5920200D0FEB6 /* MessageDetailsView.m */; };
 		1F20CB211E0772F100FC91B3 /* SetZHModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20CB201E0772F100FC91B3 /* SetZHModel.m */; };
 		1F20CB241E07739A00FC91B3 /* SetZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20CB231E07739A00FC91B3 /* SetZHViewModel.m */; };
 		1F20CB271E07837800FC91B3 /* ConsumerCodeVerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20CB261E07837800FC91B3 /* ConsumerCodeVerificationViewController.m */; };
@@ -632,6 +634,10 @@
 		1F1B21F31E00F37300021AB2 /* CustomerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
 		1F1B21F51E0117C900021AB2 /* ZW_TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZW_TextField.h; path = BaseClass/ZW_TextField.h; sourceTree = "<group>"; };
 		1F1B21F61E0117C900021AB2 /* ZW_TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZW_TextField.m; path = BaseClass/ZW_TextField.m; sourceTree = "<group>"; };
+		1F1B548822E5918A00D0FEB6 /* MessageDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailsVC.h; sourceTree = "<group>"; };
+		1F1B548922E5918A00D0FEB6 /* MessageDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsVC.m; sourceTree = "<group>"; };
+		1F1B548B22E5920200D0FEB6 /* MessageDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailsView.h; sourceTree = "<group>"; };
+		1F1B548C22E5920200D0FEB6 /* MessageDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsView.m; sourceTree = "<group>"; };
 		1F20CB1F1E0772F100FC91B3 /* SetZHModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetZHModel.h; sourceTree = "<group>"; };
 		1F20CB201E0772F100FC91B3 /* SetZHModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetZHModel.m; sourceTree = "<group>"; };
 		1F20CB221E07739A00FC91B3 /* SetZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetZHViewModel.h; sourceTree = "<group>"; };
@@ -2437,6 +2443,8 @@
 			children = (
 				1FB3D2A222C5A3FB0008CB2A /* MessageVC.h */,
 				1FB3D2A322C5A3FB0008CB2A /* MessageVC.m */,
+				1F1B548822E5918A00D0FEB6 /* MessageDetailsVC.h */,
+				1F1B548922E5918A00D0FEB6 /* MessageDetailsVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2457,6 +2465,8 @@
 				1FB3D2C422C74B140008CB2A /* NewMessageImageView.m */,
 				1F47854622C9FEFC0085FF8C /* MessageGeneralCell.h */,
 				1F47854722C9FEFC0085FF8C /* MessageGeneralCell.m */,
+				1F1B548B22E5920200D0FEB6 /* MessageDetailsView.h */,
+				1F1B548C22E5920200D0FEB6 /* MessageDetailsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3293,6 +3303,7 @@
 				1F36C9351F4599B000A47738 /* OrderTableViewHeader.m in Sources */,
 				1F402913229FBA2C0014769B /* MBProgressHUD.m in Sources */,
 				1F402914229FBA2E0014769B /* ProgressShow.m in Sources */,
+				1F1B548A22E5918A00D0FEB6 /* MessageDetailsVC.m in Sources */,
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
 				1F47854B22CB3E560085FF8C /* ScanQRCodeToolView.m in Sources */,
 				1F402931229FBCFF0014769B /* OrderDetailsBaseCell.m in Sources */,
@@ -3396,6 +3407,7 @@
 				1FD4968722DEB6FB007F70DB /* GoodsCatalogueModel.m in Sources */,
 				1F7DD98622D4698F00A906F9 /* DraftVC.m in Sources */,
 				1F046CD51E090722006D6EB2 /* ZHViewController.m in Sources */,
+				1F1B548D22E5920200D0FEB6 /* MessageDetailsView.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
 				1F5DEFB91E11F22800AC1DF6 /* OrderTwoCell.m in Sources */,

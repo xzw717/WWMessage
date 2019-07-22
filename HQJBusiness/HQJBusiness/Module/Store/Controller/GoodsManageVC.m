@@ -30,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    [self setNavType:HQJNavigationBarWhite];
-    [self hideShadowLine];
+    [self setIsHideShadowLine:YES];
 }
 
 - (void)setTopMenu {
