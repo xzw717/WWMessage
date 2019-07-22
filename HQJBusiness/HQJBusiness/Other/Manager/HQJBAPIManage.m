@@ -125,6 +125,13 @@ NSString *const HQJBCashSalesInterface = @"cashSells";
 /// 删除银行卡
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
 
+/************************************商家重构增加接口）**********************************************/
+///通过短信验证码登录(发送短信)
+NSString *const HQJBGetLoginCodeInterface = @"getLoginCode";
+///通过短信验证码登录
+NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
+///服务商注册时发送手机短信R
+NSString *const HQJBRegisterCodeInterface = @"registerCode";
 @implementation HQJBAPIManage
 
 @end

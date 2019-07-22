@@ -41,7 +41,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 @property (nonatomic,strong)UITextField *userNameText;
 @property (nonatomic,strong)UIView *unBottomView;
-@property (nonatomic,strong)UITextField *PswText;
+@property (nonatomic,strong)UITextField *pswText;
 @property (nonatomic,strong)UIView *pswBottomView;
 @property (nonatomic,strong)JKCountDownButton *getAuthCodeBtn;
 
@@ -177,8 +177,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _userNameText.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _userNameText.delegate = self;
         _userNameText.clearsOnBeginEditing = YES;
-        _userNameText.clearButtonMode = UITextFieldViewModeAlways;
-        _userNameText.keyboardType = UIKeyboardTypeASCIICapable;
+//        _userNameText.clearButtonMode = UITextFieldViewModeAlways;
+        _userNameText.keyboardType = UIKeyboardTypeNumberPad;
         _userNameText.placeholder = @"请输入手机号码/用户名";
 
         [self.view addSubview:_userNameText];
@@ -197,28 +197,27 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     
     return _unBottomView;
 }
--(UITextField *)PswText {
-    if ( _PswText == nil ) {
-        _PswText = [[UITextField alloc]init];
-        _PswText.clearsOnBeginEditing = YES;
-        _PswText.placeholder = @"请输入登录密码";
-        _PswText.delegate = self;
-        _PswText.font = [UIFont systemFontOfSize:16];
-        _PswText.clearButtonMode = UITextFieldViewModeAlways;
-        _PswText.keyboardType = UIKeyboardTypeASCIICapable;
+-(UITextField *)pswText {
+    if ( _pswText == nil ) {
+        _pswText = [[UITextField alloc]init];
+        _pswText.clearsOnBeginEditing = YES;
+        _pswText.placeholder = @"请输入登录密码";
+        _pswText.delegate = self;
+        _pswText.font = [UIFont systemFontOfSize:16];
+        _pswText.keyboardType = UIKeyboardTypeASCIICapable;
         secureBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         [secureBtn setImage:[UIImage imageNamed:@"Invisible"] forState:UIControlStateNormal];
         [secureBtn setImage:[UIImage imageNamed:@"visual"] forState:UIControlStateSelected];
         [secureBtn addTarget:self action:@selector(secureBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        _PswText.rightView = secureBtn;
-        _PswText.secureTextEntry = secureBtn.selected ? NO : YES;
-        _PswText.rightViewMode = UITextFieldViewModeAlways;
-        [self.view addSubview:_PswText];
+        _pswText.rightView = secureBtn;
+        _pswText.secureTextEntry = secureBtn.selected ? NO : YES;
+        _pswText.rightViewMode = UITextFieldViewModeAlways;
+        [self.view addSubview:_pswText];
     }
     
     
     
-    return _PswText;
+    return _pswText;
 }
 - (UIView *)pswBottomView{
     if ( _pswBottomView  == nil ) {
@@ -339,6 +338,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [super viewDidLoad];
    
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    _isAuthCode = NO;
     [self viewTheContent];
     
     [self signalDeal];
@@ -357,14 +357,15 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 -(void)shutDownTheFirstResponse {
     [self.userNameText resignFirstResponder];
-    [self.PswText resignFirstResponder];
+    [self.pswText resignFirstResponder];
 }
 - (void)secureBtnClicked:(UIButton *)sender{
     [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
 //    sender.selected = !sender.selected;
-//    _PswText.secureTextEntry = sender.selected ? NO : YES;
+//    _pswText.secureTextEntry = sender.selected ? NO : YES;
 }
 - (void)changeLoginType:(BOOL)isAuthCode{
+    _isAuthCode = isAuthCode;
     if (isAuthCode) {
         secureBtn.hidden = YES;
         self.getAuthCodeBtn.hidden = NO;
@@ -372,9 +373,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [_pswBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
         _authCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         _pswBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        _PswText.sd_layout.leftEqualToView(self.userNameText).topEqualToView(self.unBottomView).rightSpaceToView(self.view,S_XRatioW(55.0f/3 + 100)).widthIs(WIDTH-S_XRatioW(110.0f/3 + 100)).heightIs(S_XRatioH(130.0f/3));
+        _pswText.sd_layout.leftEqualToView(self.userNameText).topEqualToView(self.unBottomView).rightSpaceToView(self.view,S_XRatioW(55.0f/3 + 100)).widthIs(WIDTH-S_XRatioW(110.0f/3 + 100)).heightIs(S_XRatioH(130.0f/3));
+        _pswText.keyboardType = UIKeyboardTypeNumberPad;
+        _pswText.secureTextEntry = NO;
         self.getAuthCodeBtn.sd_layout.rightSpaceToView(self.view,S_XRatioW(55.0f/3)).topSpaceToView(self.unBottomView, S_XRatioH(20.0f/3)).heightIs(S_XRatioH(30)).widthIs(S_XRatioW(100));
-         _PswText.placeholder = @"请输入验证码";
+         _pswText.placeholder = @"请输入验证码";
     }else{
         self.getAuthCodeBtn.hidden = YES;
         [_authCodeBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
@@ -382,9 +385,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _pswBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         _authCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         self.getAuthCodeBtn.sd_layout.heightIs(0).widthIs(0);
-        _PswText.sd_layout.leftSpaceToView(self.view, S_XRatioW(55.0f/3)).topEqualToView(self.unBottomView).rightSpaceToView(self.view,S_XRatioW(55.0f/3)).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+        _pswText.sd_layout.leftSpaceToView(self.view, S_XRatioW(55.0f/3)).topEqualToView(self.unBottomView).rightSpaceToView(self.view,S_XRatioW(55.0f/3)).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+        _pswText.keyboardType = UIKeyboardTypeASCIICapable;
+        _pswText.secureTextEntry = YES;
         secureBtn.hidden = NO;
-        _PswText.placeholder = @"请输入登录密码";
+        _pswText.placeholder = @"请输入登录密码";
     }
     
 
@@ -421,11 +426,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     
     self.userNameText.sd_layout.leftSpaceToView(self.view,S_XRatioW(55.0f/3)).topSpaceToView(self.authCodeBtn,S_XRatioH(56.0f)).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     self.unBottomView.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.userNameText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
-    self.PswText.sd_layout.leftEqualToView(self.userNameText).topEqualToView(self.unBottomView).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    self.pswText.sd_layout.leftEqualToView(self.userNameText).topEqualToView(self.unBottomView).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
-    self.pswBottomView.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.PswText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    self.pswBottomView.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.pswText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
-    self.loginBtn.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.PswText,S_XRatioH(125.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    self.loginBtn.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.pswText,S_XRatioH(125.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
     self.forgetPswBtn.sd_layout.leftEqualToView(self.userNameText).topSpaceToView(self.loginBtn,S_XRatioH(20.0f)).heightIs(S_XRatioH(20.0f)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
@@ -450,7 +455,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
        @strongify(self);
         return @([self userString:value]);
     }];
-    RACSignal *pswSignal = [self.PswText.rac_textSignal map:^id(NSString *value) {
+    RACSignal *pswSignal = [self.pswText.rac_textSignal map:^id(NSString *value) {
         @strongify(self);
 
         return @([self pswString:value]);
@@ -541,17 +546,23 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return YES;
 }
 -(BOOL)pswString:(NSString *)text {
-    if (text.length>=6&&text.length<=15) {
-        return YES;
+    if (_isAuthCode) {
+        if (text.length == 6) {
+            return YES;
+        }
+    }else{
+        if (text.length>=6&&text.length<=15) {
+            return YES;
+        }
     }
-    
+
     return NO;
 }
 
 -(void)getCodeRequst{
     NSString *urlStr;
-    NSMutableDictionary *dict = @{@"pwdtype":@1,@"mobile":self.userNameText.text}.mutableCopy;
-    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
+    NSMutableDictionary *dict = @{@"mobile":self.userNameText.text}.mutableCopy;
+    urlStr = [NSString stringWithFormat:@"%@%@",@"http://192.168.16.200:8080/wuwuInterface/merchant/",HQJBGetLoginCodeInterface];
     HQJLog(@"---%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if([dic[@"code"]integerValue] != 49000) {
@@ -592,13 +603,22 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //        NSString *urlText;
 //        if ([ManagerEngine valiMobile:self.userNameText.text]) {
 //            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckByMobileInterface];
-//            dict = @{@"mobile":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
+//            dict = @{@"mobile":self.userNameText.text,@"password":self.pswText.text,@"membertype":@2}.mutableCopy;
 //        }else{
 //            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
-//            dict = @{@"username":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
+//            dict = @{@"username":self.userNameText.text,@"password":self.pswText.text,@"membertype":@2}.mutableCopy;
 //        }
-        NSMutableDictionary *dict = @{@"username":self.userNameText.text,@"password":self.PswText.text,@"membertype":@2}.mutableCopy;
-        NSString *urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
+        NSMutableDictionary *dict;
+        NSString *urlText;
+        if (_isAuthCode) {
+            urlText = [NSString stringWithFormat:@"http://192.168.16.200:8080/wuwuInterface/merchant/%@",HQJBMerchantSmsLoginInterface];
+            dict = @{@"mobile":self.userNameText.text,@"code":self.pswText.text,@"membertype":@2}.mutableCopy;
+        }else{
+            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
+            dict = @{@"username":self.userNameText.text,@"password":self.pswText.text,@"membertype":@2}.mutableCopy;
+        }
+        
+
         NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 

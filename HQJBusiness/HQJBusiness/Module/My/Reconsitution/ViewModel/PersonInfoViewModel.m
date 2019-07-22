@@ -65,20 +65,23 @@
 - (void)selectCellForIndex:(NSIndexPath *)index {
         switch (index.row) {
             case 0:{
-                ZWActionSheetView *action = [[ZWActionSheetView alloc]initWithActionTitle:@"设置头像" action:@[@"大图预览",@"拍照",@"从相册中选择"]];
-                [action ActionStyleDestructive:@"取消"];
-                [action showActionSheet];
-                action.optionBlock = ^(NSString *optionsTitle,NSInteger index) {
-                    if ([optionsTitle isEqualToString:@"大图预览"]) {
-                        [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
-                        
-                    }else if ([optionsTitle isEqualToString:@"拍照"]) {
-                        [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
-                        
-                    } else {
-                        [self showImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
-                    }
-                };
+                BOOL canCamera = [self canUserCamear];
+                if (canCamera) {
+                    ZWActionSheetView *action = [[ZWActionSheetView alloc]initWithActionTitle:@"设置头像" action:@[@"大图预览",@"拍照",@"从相册中选择"]];
+                    [action ActionStyleDestructive:@"取消"];
+                    [action showActionSheet];
+                    action.optionBlock = ^(NSString *optionsTitle,NSInteger index) {
+                        if ([optionsTitle isEqualToString:@"大图预览"]) {
+                            [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
+                            
+                        }else if ([optionsTitle isEqualToString:@"拍照"]) {
+                            [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
+                            
+                        } else {
+                            [self showImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
+                        }
+                    };
+                }
                 break;
             }
                 
@@ -121,5 +124,18 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark - 检查相机权限
+- (BOOL)canUserCamear{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusDenied) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"请打开相机权限" message:@"设置-隐私-相机" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        alertView.tag = 100;
+        [alertView show];
+        return NO;
+    }
+    else{
+        return YES;
+    }
+    return YES;
+}
 @end

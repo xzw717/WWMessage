@@ -66,7 +66,7 @@
         _nameLabel =  [[UILabel alloc]init];
         _nameLabel.font = [UIFont systemFontOfSize:17.f];
         _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.text = @"哈哈";
+        _nameLabel.text = @"商家名称";
         [self addSubview:_nameLabel];
     }
     
@@ -78,7 +78,7 @@
         _stateLabel = [[UILabel alloc]init];
         _stateLabel.font = [UIFont systemFontOfSize:12.f];
         _stateLabel.textColor = [ManagerEngine getColor:@"ccffff"];
-        _stateLabel.text = @"已溯源";
+        _stateLabel.text = @"已溯源  |  联盟商家";
         [self addSubview:_stateLabel];
     }
     return _stateLabel;
@@ -123,4 +123,15 @@
     self.qrCodeButton.sd_layout.centerYEqualToView(self.headImageView).rightSpaceToView(self.rightButton,MinSpacing).heightIs(63/3.f).widthIs(65/3.f);
     
 }
+
+- (void)setModel:(MyModel *)model{
+    self.nameLabel.text = model.realname;
+    self.stateLabel.text =[NSString stringWithFormat:@"已溯源  |  %@",model.role];
+    
+//    [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
+//    [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
+//    [NameSingle shareInstance].mobile = xzw_model.mobile;
+//    [NameSingle shareInstance].memberid = xzw_model.memberid;
+}
+
 @end

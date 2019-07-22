@@ -8,7 +8,6 @@
 
 #import "ContactManagerHeadView.h"
 #define  HeadHeight  132/3.f
-#define  ItemCount  3
 #define  ButtonSpace 70.f/3.f
 #define  LineSpace 39.f/3.f
 
@@ -70,6 +69,8 @@
 
 @interface ContactManagerHeadView ()
 
+@property (nonatomic,strong)NSArray *titleArray;
+
 @property (nonatomic,strong)ContactItemView *itemView;
 
 @end
@@ -80,10 +81,11 @@
 
 #pragma lazy-load
 
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray{
     self = [super initWithFrame:frame ];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        _titleArray = titleArray;
         [self addTheSubViews];
     }
     return self;
@@ -93,12 +95,13 @@
     CGFloat JGGMinX = 0;//起始x值
     CGFloat JGGMinY = 0;//起始y值
     CGFloat SPspace = 0;//水平距离
-    CGFloat ItemWidth = WIDTH / ItemCount;
+    CGFloat ItemWidth = WIDTH / _titleArray.count;
     
-    for (NSInteger i = 0; i < ItemCount; i ++) {
-        CGFloat x =  JGGMinX + i % ItemCount * (ItemWidth + SPspace);
-        CGFloat y =  JGGMinY + i / ItemCount * HeadHeight;
+    for (NSInteger i = 0; i < _titleArray.count; i ++) {
+        CGFloat x =  JGGMinX + i % _titleArray.count * (ItemWidth + SPspace);
+        CGFloat y =  JGGMinY + i / _titleArray.count * HeadHeight;
         ContactItemView *itemView = [[ContactItemView alloc]initWithFrame:CGRectMake(x, y, ItemWidth, HeadHeight)];
+        itemView.nameLabel.text = _titleArray[i];
         if (i == self.selectIndex) {
             itemView.nameLabel.textColor = DefaultAPPColor;
             itemView.nameLabel.font = [UIFont boldSystemFontOfSize:16.f];
