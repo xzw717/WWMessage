@@ -148,7 +148,7 @@
         [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
     }];
     [cell setCellDelete:^(NSString * _Nonnull title) {
-        [GoodsManageAlertView alertViewInitWithContent:[NSString stringWithFormat:@"是否%@选中的商品",title] Complete:^{
+        [GoodsManageAlertView alertViewInitWithTitle:[NSString stringWithFormat:@"是否%@选中的商品",title] Complete:^{
             if ([title isEqualToString:@"下架"]) {
                 
             } else {

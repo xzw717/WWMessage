@@ -105,7 +105,14 @@
 
 #pragma mark --- 显示动画
 - (void)setShowAnimate {
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.maskView.alpha = 1.f;
+    } completion:^(BOOL finished) {
+
+    }];
+
+    
+  /*  [UIView animateWithDuration:0.2 animations:^{
         self.maskView.transform = CGAffineTransformMakeScale(1.2, 1.2);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.15 animations:^{
@@ -138,7 +145,7 @@
             
         }];
         
-    }];
+    }]; */
 }
 + (void)alertViewInitWithTitle:(NSString *)title Complete:(GoodsManageAlertViewBlock)complete {
     [GoodsManageAlertView alertViewInitWithTitle:title cancelButtonTitle:nil otherButtonTitles:nil Complete:complete negative:nil];
@@ -236,16 +243,16 @@
     if (!self.titleLabel.text || [self.titleLabel.text isEqualToString:@""]) {
         [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.textBackgroundView);
-            make.left.mas_equalTo(10);
-            make.right.mas_equalTo(-10);
+            make.left.mas_equalTo(69 / 3.f);
+            make.right.mas_equalTo(-69 / 3.f);
 
         }];
     }
     if (!self.contentLabel.text || [self.contentLabel.text isEqualToString:@""]) {
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.textBackgroundView);
-            make.left.mas_equalTo(10);
-            make.right.mas_equalTo(-10);
+            make.left.mas_equalTo(69 / 3.f);
+            make.right.mas_equalTo(-69 / 3.f);
         }];
     }
 }
@@ -273,13 +280,15 @@
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(30.f);
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(69 / 3.f);
+        make.right.mas_equalTo(-69 / 3.f);
+
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(30);
-        make.left.right.mas_equalTo(0);
-    }];
+        make.left.mas_equalTo(69 / 3.f);
+        make.right.mas_equalTo(-69 / 3.f);    }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20 / 3.f);
@@ -305,6 +314,7 @@
         _maskView = [[UIView alloc]init];
         _maskView.layer.masksToBounds = YES;
         _maskView.layer.cornerRadius = 5.f;
+        _maskView.alpha = 0;
         _maskView.backgroundColor = [UIColor whiteColor];
     }
     return _maskView;
@@ -331,7 +341,7 @@
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc]init];
         _contentLabel.text = @"占位内容哦";
-        _contentLabel.textAlignment = NSTextAlignmentCenter;
+//        _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.numberOfLines = 2;
         _contentLabel.textColor = [ManagerEngine getColor:@"010101"];
         _contentLabel.font = [UIFont systemFontOfSize:AlertContentFont];
