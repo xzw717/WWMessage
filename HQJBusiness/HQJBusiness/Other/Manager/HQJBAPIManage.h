@@ -10,7 +10,7 @@
 /**
  * HQJB 前缀 意为 HQJBusiness
  */
-/************************************域名（开始）**********************************************/
+#pragma mark ------------------------ 域名（开始） ------------------------
 
 /// 物物地图商家版商家版新积分相关域名
 extern NSString *const HQJBBonusDomainName;
@@ -30,10 +30,11 @@ extern NSString *const HQJBImageDomainName;
 extern NSString *const HQJBBonusDomainDeccaName;
 ///商品订单相关
 extern NSString *const HQJBBounsOrder;
-/************************************域名（结束）**********************************************/
+/// H5 
+extern NSString *const HQJBH5DeccaName;
+#pragma mark ------------------------ 域名（结束） ------------------------
 
-
-/************************************接口（开始）**********************************************/
+#pragma mark ------------------------ 接口（开始） ------------------------
 ///获取商家信息
 extern NSString *const HQJBGetMerchantInfoInterface;
 /// 修改登录密码
@@ -112,14 +113,37 @@ extern NSString *const HQJBSetZhRateInterface;
 /// 现金销售
 extern NSString *const HQJBCashSalesInterface;
 
-/************************************商家重构增加接口）**********************************************/
+#pragma mark ------------------------ 商家重构增加接口 ------------------------
 ///通过短信验证码登录(发送短信)
 extern NSString *const HQJBGetLoginCodeInterface;
 ///通过短信验证码登录
 extern NSString *const HQJBMerchantSmsLoginInterface;
 ///服务商注册时发送手机短信R
 extern NSString *const HQJBRegisterCodeInterface;
-/************************************接口（结束）**********************************************/
+
+
+#pragma mark ------------------------ H5 ------------------------
+/// 创建店铺
+extern NSString *const HQJBCreateStoreInterface;
+/// 注册店铺审核失败
+extern NSString *const HQJBRegisteredStoreReviewFailedInterface;
+/// 注册信息填写完成
+extern NSString *const HQJBRegistrationInformationCompletedInterface;
+/// 升级/升级失败修改信息
+extern NSString *const HQJBUpgradeUnsuccessfulInterface;
+/// 升级规则
+extern NSString *const HQJBUpgradeRuleInterface;
+/// 发布规范
+extern NSString *const HQJBReleaseSpecificationInterface;
+/// 商家入驻协议
+extern NSString *const HQJBMerchantSettlementSgreementInterface;
+
+#pragma mark ------------------------ 接口（结束） ------------------------
+
+
+
+
+
 
 @interface HQJBAPIManage : NSObject
 

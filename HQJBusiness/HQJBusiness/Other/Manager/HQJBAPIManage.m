@@ -20,6 +20,8 @@ NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/mer
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+/// H5 域名
+NSString *const HQJBH5DeccaName = @"http://47.98.45.218/shopH5/register/#/";
 
 #else         //发布阶段
 
@@ -29,13 +31,9 @@ NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
-
-
-
 NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
-
-
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
+NSString *const HQJBH5DeccaName = @"http://47.98.45.218/shopH5/register/#/";
 
 #endif
 
@@ -125,13 +123,30 @@ NSString *const HQJBCashSalesInterface = @"cashSells";
 /// 删除银行卡
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
 
-/************************************商家重构增加接口）**********************************************/
+#pragma mark ------------------------ 商家重构增加接口 ------------------------
 ///通过短信验证码登录(发送短信)
 NSString *const HQJBGetLoginCodeInterface = @"getLoginCode";
 ///通过短信验证码登录
 NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
 ///服务商注册时发送手机短信R
 NSString *const HQJBRegisterCodeInterface = @"registerCode";
+
+#pragma mark ------------------------ H5 ------------------------
+/// 创建店铺
+NSString *const HQJBCreateStoreInterface = @"newstore";
+/// 注册店铺审核失败
+NSString *const HQJBRegisteredStoreReviewFailedInterface = @"storemessage";
+/// 注册信息填写完成
+NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
+/// 升级/升级失败修改信息
+NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
+/// 升级规则
+NSString *const HQJBUpgradeRuleInterface = @"upgradeAgreement";
+/// 发布规范
+NSString *const HQJBReleaseSpecificationInterface = @"publishAgreement";
+/// 商家入驻协议
+NSString *const HQJBMerchantSettlementSgreementInterface = @"registerAgreement";
+
 @implementation HQJBAPIManage
 
 @end

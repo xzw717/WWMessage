@@ -51,7 +51,7 @@
 
 - (void)clickRulesbutton {
     ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
-    vc.webUrlStr = @"www.baidu.com";
+    vc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5DeccaName,HQJBReleaseSpecificationInterface];
     vc.isInitiative = YES;
     [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
 }

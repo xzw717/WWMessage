@@ -46,7 +46,7 @@
         itemLabel.tag = i + 1001;
         itemLabel.layer.cornerRadius = 45 / 3.f;
         itemLabel.backgroundColor = [ManagerEngine getColor:@"ececee"];        
-        CGFloat btnWidth = [self textWithObject:ary[i]] +LabelOutsideTopBottomSpacing * 2 ;
+        CGFloat btnWidth =   [ManagerEngine setTextWidthStr:ary[i] andFont:[UIFont systemFontOfSize:LabelFont]] +LabelOutsideTopBottomSpacing * 2 ;
         if (btnWidth > WIDTH - LeftRightSpacing* 2) {
             btnWidth = WIDTH - LeftRightSpacing * 2;
         }

@@ -27,7 +27,7 @@
         make.height.mas_equalTo(44.f);
         
     }];
-    if (!self.isInitiative) {
+    if (self.isInitiative) {
         [self.agreedButton setHidden:YES];
     } else {
         [self.agreedButton setHidden:NO];

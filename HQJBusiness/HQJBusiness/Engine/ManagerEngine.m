@@ -442,8 +442,7 @@ static const CGFloat  sAlertTimer = 3.0;
     label.attributedText = str;
 }
 
-+(CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
-    
++ (CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
      CGRect frame = [str boundingRectWithSize:CGSizeMake(1000, 1000)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
     
     
@@ -933,8 +932,8 @@ static const CGFloat  sAlertTimer = 3.0;
 + (void)goodsRelease {
     if (!GetHaveAgreed) {
         ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
-        vc.webUrlStr = @"www.baidu.com";
-        vc.isInitiative = YES;
+        vc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5DeccaName,HQJBReleaseSpecificationInterface];
+        vc.isInitiative = NO;
         [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
     } else {
         GoodsReleaseVC *vc = [[GoodsReleaseVC alloc]initWithNavType:HQJNavigationBarWhite buttonStyle:ReleaseButtonStylePublishNow controllerTitle:@"商品发布"];
