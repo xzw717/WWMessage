@@ -9,7 +9,7 @@
 #import "ShopEvaluateViewController.h"
 #import "ShopEvaluateCell.h"
 #import "ContactManagerHeadView.h"
-
+#import "EvaluateDetailViewController.h"
 #define TableViewCellHeight 120.f
 #define HeadHeight  132/3.f
 #define TableViewTopSpace 40/3.f
@@ -69,6 +69,10 @@
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
 }
+#pragma mark --- DZNEmptyDataSetDelegate
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"tool_emptypages"];
+}
 
 #pragma mark --- UITableViewDataSource
 
@@ -105,7 +109,8 @@
 }
 #pragma mark ---UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    EvaluateDetailViewController *edVc = [[EvaluateDetailViewController alloc]init];
+    [self.navigationController pushViewController:edVc animated:YES];
 }
 
 

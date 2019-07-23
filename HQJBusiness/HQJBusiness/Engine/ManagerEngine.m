@@ -941,4 +941,13 @@ static const CGFloat  sAlertTimer = 3.0;
         [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
     }
 }
+
++ (CGFloat) heightForString:(NSString *)value fontSize:(CGFloat)fontSize andWidth:(CGFloat)width {
+    CGRect rect = [value boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil];
+    return ceil(rect.size.height);
+}
+
+
+
+
 @end
