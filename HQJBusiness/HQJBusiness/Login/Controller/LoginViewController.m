@@ -14,10 +14,11 @@
 #import "AppDelegate.h"
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
-#import "HintView.h"
 #import "RegisterViewController.h"
 #import "ForgetPswViewController.h"
 #import "JKCountDownButton.h"
+
+#import "GoodsManageAlertView.h"
 
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -54,8 +55,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UIButton *weixinBtn;
 @property (nonatomic,strong)UIButton *qqBtn;
 @property (nonatomic,strong)UIButton *weiboBtn;
-
-@property (nonatomic,strong)HintView *hintView;
 
 @property (nonatomic,strong)MyViewController *MVC;
 @property (nonatomic,strong)UIActivityIndicatorView *testActivityIndicator;
@@ -323,16 +322,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return _testActivityIndicator;
 }
 
-- (HintView *)hintView{
-    if (_hintView == nil) {
-        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"账号或密码多次错误，试试验证码登录吧。" andSureTitle:@"验证码登录" cancelTitle:@"下次再说"];
-        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            [_hintView dismssView];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _hintView;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -360,9 +350,16 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.pswText resignFirstResponder];
 }
 - (void)secureBtnClicked:(UIButton *)sender{
-    [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
-//    sender.selected = !sender.selected;
-//    _pswText.secureTextEntry = sender.selected ? NO : YES;
+    sender.selected = !sender.selected;
+    _pswText.secureTextEntry = sender.selected ? NO : YES;
+//    [GoodsManageAlertView alertViewInitWithContent:@"账号或密码多次错误，试试验证码登录吧。" cancelButtonTitle:@"下次再说" otherButtonTitles:@{AlertViewTitle:@"验证码登录",AlertViewTitleColor:RedColor} Complete:^{
+//
+//        [self.navigationController popViewControllerAnimated:YES];
+//
+//    } negative:^{
+//        HQJLog(@"保存并退出");
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
 }
 - (void)changeLoginType:(BOOL)isAuthCode{
     _isAuthCode = isAuthCode;

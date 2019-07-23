@@ -137,6 +137,8 @@ extern NSString *const HQJBUpgradeRuleInterface;
 extern NSString *const HQJBReleaseSpecificationInterface;
 /// 商家入驻协议
 extern NSString *const HQJBMerchantSettlementSgreementInterface;
+/// 创建店铺
+extern NSString *const HQJBCreateShopInterface;
 
 #pragma mark ------------------------ 接口（结束） ------------------------
 

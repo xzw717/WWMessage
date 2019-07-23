@@ -8,7 +8,6 @@
 
 #import "ForgetPswViewController.h"
 #import "JKCountDownButton.h"
-#import "HintView.h"
 
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

@@ -351,7 +351,6 @@
 		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
 		20C6E6BB22C36C6E00AEBC4D /* ZGRelayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6BA22C36C6E00AEBC4D /* ZGRelayoutButton.m */; };
 		20C6E6C122C461EB00AEBC4D /* ZGProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6C022C461EB00AEBC4D /* ZGProgressHUD+NJ.m */; };
-		20D5BA3722E000430045E5A7 /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2622E000430045E5A7 /* HintView.m */; };
 		20D5BA3822E000430045E5A7 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */; };
 		20D5BA3922E000430045E5A7 /* CreateShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2B22E000430045E5A7 /* CreateShopViewController.m */; };
 		20D5BA3A22E000430045E5A7 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2D22E000430045E5A7 /* ForgetPswViewController.m */; };
@@ -365,7 +364,6 @@
 		20D5BA4A22E5B2940045E5A7 /* CatalogueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4822E5B2940045E5A7 /* CatalogueVC.m */; };
 		20D5BA4D22E5B3DE0045E5A7 /* GoodsReleaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4B22E5B3DE0045E5A7 /* GoodsReleaseModel.m */; };
 		20D5BA5022E6A0F60045E5A7 /* EvaluateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4E22E6A0F60045E5A7 /* EvaluateDetailViewController.m */; };
-		20D5BA5322E6D9E60045E5A7 /* EvaluateDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA5222E6D9E60045E5A7 /* EvaluateDetailView.m */; };
 		20D888C522D491E1007B8914 /* ShopInfoSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D888C422D491E1007B8914 /* ShopInfoSetCell.m */; };
 		20DF4E7D229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
 		20DF4E7E229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
@@ -1186,8 +1184,6 @@
 		20C6E6BA22C36C6E00AEBC4D /* ZGRelayoutButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGRelayoutButton.m; sourceTree = "<group>"; };
 		20C6E6BF22C461EB00AEBC4D /* ZGProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZGProgressHUD+NJ.h"; sourceTree = "<group>"; };
 		20C6E6C022C461EB00AEBC4D /* ZGProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZGProgressHUD+NJ.m"; sourceTree = "<group>"; };
-		20D5BA2522E000430045E5A7 /* HintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
-		20D5BA2622E000430045E5A7 /* HintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
 		20D5BA2722E000430045E5A7 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
 		20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		20D5BA2A22E000430045E5A7 /* CreateShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShopViewController.h; sourceTree = "<group>"; };
@@ -1214,8 +1210,6 @@
 		20D5BA4C22E5B3DE0045E5A7 /* GoodsReleaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsReleaseModel.h; sourceTree = "<group>"; };
 		20D5BA4E22E6A0F60045E5A7 /* EvaluateDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateDetailViewController.m; sourceTree = "<group>"; };
 		20D5BA4F22E6A0F60045E5A7 /* EvaluateDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateDetailViewController.h; sourceTree = "<group>"; };
-		20D5BA5122E6D9E60045E5A7 /* EvaluateDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateDetailView.h; sourceTree = "<group>"; };
-		20D5BA5222E6D9E60045E5A7 /* EvaluateDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateDetailView.m; sourceTree = "<group>"; };
 		20D888C322D491E1007B8914 /* ShopInfoSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfoSetCell.h; sourceTree = "<group>"; };
 		20D888C422D491E1007B8914 /* ShopInfoSetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfoSetCell.m; sourceTree = "<group>"; };
 		20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_cash_pre.mp3; sourceTree = "<group>"; };
@@ -2700,8 +2694,6 @@
 				1F88546322D2EB1300B5DE7B /* ToolCell.m */,
 				20D5BA4622E59BA80045E5A7 /* ShopEvaluateCell.h */,
 				20D5BA4522E59BA80045E5A7 /* ShopEvaluateCell.m */,
-				20D5BA5122E6D9E60045E5A7 /* EvaluateDetailView.h */,
-				20D5BA5222E6D9E60045E5A7 /* EvaluateDetailView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2820,8 +2812,6 @@
 		20D5BA2422E000430045E5A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20D5BA2522E000430045E5A7 /* HintView.h */,
-				20D5BA2622E000430045E5A7 /* HintView.m */,
 				20D5BA2722E000430045E5A7 /* ZGProgressHUD.h */,
 				20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */,
 			);
@@ -3266,7 +3256,6 @@
 				1FD4968A22DEC2BB007F70DB /* GoodsCatalogueBottomView.m in Sources */,
 				1F402911229FBA230014769B /* UIWebView+UIImage.m in Sources */,
 				2082633D22D319B50058FD58 /* AccSecInfoCell.m in Sources */,
-				20D5BA5322E6D9E60045E5A7 /* EvaluateDetailView.m in Sources */,
 				1F25DC0C1E11034C004DC19F /* OrderOneCell.m in Sources */,
 				1F046D231E090DAA006D6EB2 /* SGSegmentedControlBottomView.m in Sources */,
 				1FF741331E0533630004AC95 /* SetZHView.m in Sources */,
@@ -3299,7 +3288,6 @@
 				1FC5F50B22DD5DA60029F53C /* ReleaseButtonView.m in Sources */,
 				1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */,
 				1FB3D2B722C5A3FB0008CB2A /* StoreADCell.m in Sources */,
-				20D5BA3722E000430045E5A7 /* HintView.m in Sources */,
 				1F1B21D21DFFE30F00021AB2 /* CashSalesViewController.m in Sources */,
 				1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */,
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,

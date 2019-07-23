@@ -146,6 +146,9 @@ NSString *const HQJBUpgradeRuleInterface = @"upgradeAgreement";
 NSString *const HQJBReleaseSpecificationInterface = @"publishAgreement";
 /// 商家入驻协议
 NSString *const HQJBMerchantSettlementSgreementInterface = @"registerAgreement";
+/// 创建店铺
+NSString *const HQJBCreateShopInterface = @"newstore?mobile=13855555555";
+
 
 @implementation HQJBAPIManage
 
