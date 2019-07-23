@@ -15,11 +15,7 @@
 @implementation ProtocolViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
- [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
- self.navigationController.navigationBar.barTintColor = DefaultAPPColor;
-[self.navigationController.navigationBar setBackgroundImage:[ManagerEngine createImageWithColor:DefaultAPPColor] forBarMetrics:UIBarMetricsDefault];
-//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName :[UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
+
 }
 
 

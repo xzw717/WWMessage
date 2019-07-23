@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger , uploadImageStatus){
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
 //    [self setNavType:HQJNavigationBarWhite];
     if ([self.vcTitle containsString:@"编辑"]) {
         self.fd_interactivePopDisabled = YES;

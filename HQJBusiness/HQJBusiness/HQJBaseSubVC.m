@@ -11,6 +11,7 @@
 @interface HQJBaseSubVC ()
 @property (nonatomic, strong)  UIButton *backButton;
 @property (nonatomic, assign) HQJNavigationBarColor shadowType;
+@property (nonatomic, strong) UIView *stateBackgroundView;
 @end
 
 @implementation HQJBaseSubVC
@@ -59,10 +60,28 @@
             break;
     }
 }
+- (void)setStateBarType:(HQJNavigationBarColor)stateBarType {
+    _stateBarType = stateBarType;
+    self.stateBackgroundView.hidden = NO;
+    switch (stateBarType) {
+        case HQJNavigationBarWhite: {
+            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+            self.stateBackgroundView.backgroundColor = [UIColor whiteColor];
+        }
+            break;
+        case HQJNavigationBarBlue: {
+            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+            self.stateBackgroundView.backgroundColor = DefaultAPPColor;
+        }
+            break;
+        default:
+            break;
+    }
+}
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
+    self.stateBackgroundView.hidden = YES;
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -101,6 +120,13 @@
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     self.navigationItem.leftBarButtonItem = barItem;
     self.navType = self.shadowType;
+    [self.view addSubview:self.stateBackgroundView];
+    [self.stateBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(StatusBarHeight);
+    }];
+    
+    
 }
 
 
@@ -134,14 +160,12 @@
     
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIView *)stateBackgroundView {
+    if (!_stateBackgroundView) {
+        _stateBackgroundView = [[UIView alloc]init];
+        _stateBackgroundView.hidden = YES;
+    }
+    return _stateBackgroundView;
 }
-*/
 
 @end

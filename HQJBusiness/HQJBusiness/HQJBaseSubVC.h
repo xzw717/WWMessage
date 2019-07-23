@@ -28,6 +28,9 @@ typedef void(^BackButtonClickblock)(void);
 
 /// 导航控制器颜色风格    在 viewWillAppear 中调用
 @property (nonatomic, assign) HQJNavigationBarColor navType;
+
+@property (nonatomic, assign) HQJNavigationBarColor stateBarType;
+
 @property (nonatomic, copy  ) BackButtonClickblock backBlock;
 @property (nonatomic, assign) BOOL isHideShadowLine;
 - (instancetype)initWithNavType:(HQJNavigationBarColor)type;

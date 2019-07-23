@@ -141,6 +141,9 @@
         StoreADCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([StoreADCell class])];
         [cell setClickADButtonBlock:^(NSString * _Nonnull btnTitle) {
             NSLog(@"你点击了：%@",btnTitle);
+            ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
+            vc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/newstore?mobile=13855555555";
+            [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
         }];
         return cell;
     }

@@ -34,7 +34,16 @@
 
     }
 }
-
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//     [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    self.stateBarType = HQJNavigationBarBlue;
+//}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//
+//}
 - (UIButton *)agreedButton {
     if (!_agreedButton) {
         _agreedButton = [UIButton buttonWithType:UIButtonTypeCustom];

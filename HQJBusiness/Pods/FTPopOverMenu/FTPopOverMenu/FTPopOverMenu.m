@@ -25,8 +25,8 @@
 #define FTDefaultSeparatorColor             [UIColor grayColor]
 #define FTDefaultMenuFont                   [UIFont systemFontOfSize:14.f]
 #define FTDefaultMenuWidth                  120.f
-#define FTDefaultMenuIconSize               12.7f
-#define FTDefaultMenuRowHeight              14.f
+#define FTDefaultMenuIconSize               24.f
+#define FTDefaultMenuRowHeight              40.f
 #define FTDefaultMenuBorderWidth            0.8
 #define FTDefaultMenuArrowWidth             8.f
 #define FTDefaultMenuArrowHeight            10.f
