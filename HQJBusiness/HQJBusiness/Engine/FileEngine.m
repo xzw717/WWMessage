@@ -100,7 +100,8 @@
         [defaults setObject:array forKey:@"ToolItem"];
     }
     [defaults synchronize];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:StoreAddTool object:nil userInfo:nil];
+
 }
 
     

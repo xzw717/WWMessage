@@ -81,7 +81,7 @@
         make.height.mas_equalTo(MessageTopTABHeight);
     }];
     self.viewModel.tabViwe = _tabView;
-    _tabView.topViewSelectBlock = self.viewModel.topViewSelectViewModle;
+//    _tabView.topViewSelectBlock = self.viewModel.topViewSelectViewModle;
 
 
 }

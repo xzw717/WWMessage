@@ -5,7 +5,34 @@
 //  Created by mymac on 2019/6/24.
 //  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
+@interface HQJCollectionViewFlowLayout : UICollectionViewFlowLayout
+@end
 
+@implementation HQJCollectionViewFlowLayout
+
+#pragma mark - cell的左右间距
+
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
+    
+    NSMutableArray * answer = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
+    
+    /* 处理左右间距 */
+    for(int i = 1; i < [answer count]; ++i) {
+        UICollectionViewLayoutAttributes *currentLayoutAttributes = answer[i];
+        UICollectionViewLayoutAttributes *prevLayoutAttributes = answer[i - 1];
+        NSInteger maximumSpacing = 0;
+        NSInteger origin = CGRectGetMaxX(prevLayoutAttributes.frame);
+        if(origin + maximumSpacing + currentLayoutAttributes.frame.size.width < self.collectionViewContentSize.width) {
+            CGRect frame = currentLayoutAttributes.frame;
+            frame.origin.x = origin + maximumSpacing;
+            currentLayoutAttributes.frame = frame;
+        }
+    }
+    
+    return answer;
+    
+}
+@end
 #import "StoreVC.h"
 #import "HQJMenu.h"
 #import "StoreMainCell.h"
@@ -15,6 +42,10 @@
 #import "NewMessageImageView.h"
 #import "AppDelegate.h"
 #import "ZW_TabBar.h"
+#import "StoreMainCollectionViewCell.h"
+#import "StoreCollectionReusableView.h"
+#import "StoreADCollectionViewCell.h"
+#import "StoreToolCollectionViewCell.h"
 
 #define StoreNavButtonSize 22.f
 
@@ -31,6 +62,9 @@
 @property (nonatomic, strong) UIView *setCycleScrollView;
 @property (nonatomic, strong) NSMutableDictionary *cellHeightDict;
 @property (nonatomic, strong) StoreViewModel *viewModel;
+@property (nonatomic, strong) UICollectionView * collectionView;
+@property (nonatomic, strong) HQJCollectionViewFlowLayout *flowLayout;
+
 @end
 
 @implementation StoreVC
@@ -38,18 +72,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self storeVC_addViews];
-    
+    @weakify(self);
+    [self.viewModel stroeRequst:^{
+        @strongify(self);
+        self.title =  [NameSingle shareInstance].name;
+        [self.collectionView.mj_header endRefreshing];
+    }];
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
 - (void)storeVC_addViews {
     [self setNavigation];
-    [self.view addSubview:self.storeTabelView];
-    [self.storeTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(0);
-        make.left.mas_equalTo(StoreTableViewSpacing);
-        make.right.mas_equalTo(-StoreTableViewSpacing);
-
-    }];
+    [self.view addSubview:self.collectionView];
+//    [self.storeTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.bottom.mas_equalTo(0);
+//        make.left.mas_equalTo(StoreTableViewSpacing);
+//        make.right.mas_equalTo(-StoreTableViewSpacing);
+//
+//    }];
+    
 }
 
 #pragma mark --- 导航控制器设置
@@ -181,12 +223,13 @@
 }
 - (UIView  *)setCycleScrollView {
     if (!_setCycleScrollView) {
-        _setCycleScrollView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, WIDTH / 3)];
-      SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, StoreTableViewHeadViewHeight, WIDTH, WIDTH / 3) delegate:self placeholderImage:[UIImage imageNamed:@"banner02"]];
+        _setCycleScrollView = [[UIView alloc]initWithFrame:CGRectMake(0, -NewProportion(340), WIDTH , NewProportion(300))];
+      SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(NewProportion(30), -NewProportion(340) + NewProportion(40), WIDTH - NewProportion(30) * 2, NewProportion(300)) delegate:self placeholderImage:[UIImage imageNamed:@"banner03"]];
+//        cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 //        cycleScrollView.backgroundColor = [UIColor greenColor];
         cycleScrollView.layer.masksToBounds = YES;
         cycleScrollView.layer.cornerRadius = StoreTableViewCellCornerRadius;
-//        cycleScrollView.imageURLStringsGroup = @[@"banner02"];
+        cycleScrollView.localizationImageNamesGroup = @[@"banner03"];
         cycleScrollView.currentPageDotColor = [UIColor whiteColor];
         [_setCycleScrollView addSubview:cycleScrollView];
     }
@@ -222,9 +265,54 @@
 }
 - (StoreViewModel *)viewModel {
     if (!_viewModel) {
-        _viewModel = [[StoreViewModel alloc]initWithTargetObjct:self];
+        _viewModel = [[StoreViewModel alloc]initWithTargetObjct:self collectionView:self.collectionView];
         _viewModel.vm_storetableView = self.storeTabelView;
     }
     return _viewModel;
+}
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT - ToolBarHeight - NavigationControllerHeight) collectionViewLayout:self.flowLayout];
+        _collectionView.delegate = self.viewModel;
+        _collectionView.dataSource = self.viewModel;
+        _collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _collectionView.contentInset = UIEdgeInsetsMake(NewProportion(340), 0.0f, 0.0f, 0.0f);
+        _collectionView.showsVerticalScrollIndicator = NO;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
+
+        // 注册 cell
+        [_collectionView registerClass:[StoreMainCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([StoreMainCollectionViewCell class])];
+        [_collectionView registerClass:[StoreADCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([StoreADCollectionViewCell class])];
+        [_collectionView registerClass:[StoreToolCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([StoreToolCollectionViewCell class])];
+
+
+        
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
+
+        [_collectionView registerClass:[StoreCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([StoreCollectionReusableView class])];
+        @weakify(self);
+
+        _collectionView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+            @strongify(self);
+            [self.viewModel stroeRequst:^{
+                @strongify(self);
+                self.title =  [NameSingle shareInstance].name;
+                [self.collectionView.mj_header endRefreshing];
+            }];
+        }];
+        [_collectionView addSubview:self.setCycleScrollView];
+    }
+    return _collectionView;
+}
+- (HQJCollectionViewFlowLayout *)flowLayout {
+    if (!_flowLayout) {
+        _flowLayout = [[HQJCollectionViewFlowLayout alloc] init];
+        _flowLayout.minimumInteritemSpacing = 0;
+        _flowLayout.minimumLineSpacing = 0;
+        _flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+//        _flowLayout.itemSize = CGSizeMake((WIDTH - 10 * 2) /  4.0 , NewProportion(235) +  + NewProportion(67));
+        
+    }
+    return _flowLayout;
 }
 @end

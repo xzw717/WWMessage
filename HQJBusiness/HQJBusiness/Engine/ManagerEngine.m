@@ -932,7 +932,7 @@ static const CGFloat  sAlertTimer = 3.0;
 + (void)goodsRelease {
     if (!GetHaveAgreed) {
         ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
-        vc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5DeccaName,HQJBReleaseSpecificationInterface];
+        vc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainDeccaName,HQJBHeadlinesInterface];
         vc.isInitiative = NO;
         [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
     } else {

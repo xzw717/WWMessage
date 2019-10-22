@@ -306,6 +306,10 @@
 		1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FA91E0A78E9005D43F2 /* SetViewController.m */; };
 		1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FAD1E0A7F4D005D43F2 /* InformationViewController.m */; };
 		1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FB01E0A8006005D43F2 /* ZW_TableViewCell.m */; };
+		1FDC34B423176370005F5E63 /* StoreMainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC34B323176370005F5E63 /* StoreMainCollectionViewCell.m */; };
+		1FDC34B7231781BC005F5E63 /* StoreCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC34B6231781BC005F5E63 /* StoreCollectionReusableView.m */; };
+		1FDC34BA2317BE6B005F5E63 /* StoreADCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC34B92317BE6B005F5E63 /* StoreADCollectionViewCell.m */; };
+		1FDC34BD2318CB46005F5E63 /* StoreToolCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC34BC2318CB46005F5E63 /* StoreToolCollectionViewCell.m */; };
 		1FE09F351FDFBB0400919590 /* HQJBusinessAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE09F331FDFBB0300919590 /* HQJBusinessAlertView.m */; };
 		1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */; };
 		1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */; };
@@ -1096,6 +1100,14 @@
 		1FD64FAD1E0A7F4D005D43F2 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationViewController.m; path = Set/InformationViewController.m; sourceTree = "<group>"; };
 		1FD64FAF1E0A8006005D43F2 /* ZW_TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZW_TableViewCell.h; path = BaseClass/ZW_TableViewCell.h; sourceTree = "<group>"; };
 		1FD64FB01E0A8006005D43F2 /* ZW_TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZW_TableViewCell.m; path = BaseClass/ZW_TableViewCell.m; sourceTree = "<group>"; };
+		1FDC34B223176370005F5E63 /* StoreMainCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMainCollectionViewCell.h; sourceTree = "<group>"; };
+		1FDC34B323176370005F5E63 /* StoreMainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMainCollectionViewCell.m; sourceTree = "<group>"; };
+		1FDC34B5231781BC005F5E63 /* StoreCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreCollectionReusableView.h; sourceTree = "<group>"; };
+		1FDC34B6231781BC005F5E63 /* StoreCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreCollectionReusableView.m; sourceTree = "<group>"; };
+		1FDC34B82317BE6B005F5E63 /* StoreADCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreADCollectionViewCell.h; sourceTree = "<group>"; };
+		1FDC34B92317BE6B005F5E63 /* StoreADCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreADCollectionViewCell.m; sourceTree = "<group>"; };
+		1FDC34BB2318CB46005F5E63 /* StoreToolCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreToolCollectionViewCell.h; sourceTree = "<group>"; };
+		1FDC34BC2318CB46005F5E63 /* StoreToolCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreToolCollectionViewCell.m; sourceTree = "<group>"; };
 		1FE09F331FDFBB0300919590 /* HQJBusinessAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJBusinessAlertView.m; sourceTree = "<group>"; };
 		1FE09F341FDFBB0300919590 /* HQJBusinessAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJBusinessAlertView.h; sourceTree = "<group>"; };
 		1FE83D7D1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationOrderDetailsCell.h; sourceTree = "<group>"; };
@@ -2428,6 +2440,14 @@
 				1FD4968322DDC220007F70DB /* GoodsCatalogueTopCell.m */,
 				1FD4968822DEC2BB007F70DB /* GoodsCatalogueBottomView.h */,
 				1FD4968922DEC2BB007F70DB /* GoodsCatalogueBottomView.m */,
+				1FDC34B223176370005F5E63 /* StoreMainCollectionViewCell.h */,
+				1FDC34B323176370005F5E63 /* StoreMainCollectionViewCell.m */,
+				1FDC34BB2318CB46005F5E63 /* StoreToolCollectionViewCell.h */,
+				1FDC34BC2318CB46005F5E63 /* StoreToolCollectionViewCell.m */,
+				1FDC34B5231781BC005F5E63 /* StoreCollectionReusableView.h */,
+				1FDC34B6231781BC005F5E63 /* StoreCollectionReusableView.m */,
+				1FDC34B82317BE6B005F5E63 /* StoreADCollectionViewCell.h */,
+				1FDC34B92317BE6B005F5E63 /* StoreADCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3212,6 +3232,7 @@
 				2082635822D4679D0058FD58 /* ShopInfoCell.m in Sources */,
 				1F1B21C61DFFA37800021AB2 /* DealTableViewCell.m in Sources */,
 				2082633722D312B60058FD58 /* AccSecViewController.m in Sources */,
+				1FDC34B423176370005F5E63 /* StoreMainCollectionViewCell.m in Sources */,
 				20C6E6BB22C36C6E00AEBC4D /* ZGRelayoutButton.m in Sources */,
 				1F88546E22D2EDE200B5DE7B /* MineLogoutCell.m in Sources */,
 				1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */,
@@ -3406,6 +3427,7 @@
 				1F960D181DFE3E51003E3D17 /* FileEngine.m in Sources */,
 				1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */,
+				1FDC34B7231781BC005F5E63 /* StoreCollectionReusableView.m in Sources */,
 				1FC5F4FC22D880200029F53C /* GoodsReleaseMainCell.m in Sources */,
 				1F046D251E090DAA006D6EB2 /* SGSegmentedControlStatic.m in Sources */,
 				1F402918229FBBA40014769B /* SetBindingCell.m in Sources */,
@@ -3464,6 +3486,7 @@
 				1F40291B229FBC520014769B /* OrderDetailsViewController.m in Sources */,
 				1FC5F4D622D6C8530029F53C /* GoodsManageCustomEmptyView.m in Sources */,
 				1FD4968422DDC220007F70DB /* GoodsCatalogueTopCell.m in Sources */,
+				1FDC34BD2318CB46005F5E63 /* StoreToolCollectionViewCell.m in Sources */,
 				1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */,
 				2082634622D42C2C0058FD58 /* ChangeMobileViewController.m in Sources */,
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
@@ -3484,6 +3507,7 @@
 				20D5BA3C22E000430045E5A7 /* MyShopViewController.m in Sources */,
 				1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */,
 				1F88546A22D2ED8100B5DE7B /* MineCell.m in Sources */,
+				1FDC34BA2317BE6B005F5E63 /* StoreADCollectionViewCell.m in Sources */,
 				1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */,
 				1FC5F4DB22D70D260029F53C /* GoodsManageAlertView.m in Sources */,
 				1FC5F4DE22D735A20029F53C /* GoodsReleaseVC.m in Sources */,

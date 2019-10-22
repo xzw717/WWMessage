@@ -49,6 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单详情";
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [OrderViewModel requestCustomerInformationWith:self.dataModel.userid complete:^(NSString *mobile, NSString *realname) {
         self.mobileStr = mobile;
         self.nameStr = realname;
@@ -69,8 +70,10 @@
     return 44;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 || section == 2) {
+    if (section == 0 ) {
         return 2;
+    } else if (section == 2) {
+        return 3;
     } else {
         return self.dataModel.goodslist.count + 2;
 
@@ -135,11 +138,16 @@
             OrderDetailsFiveCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
             cell.orderNumberStr = self.dataModel.nid;
             return cell;
-        } else {
+        } else if (indexPath.row == 1) {
             OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
             cell.timerStr = self.dataModel.date;
             return cell;
             
+        } else {
+            UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+            cell.textLabel.text = @"备注：爱上电视都老卡商家的拉克丝VC，女，暂存vqpoc";
+            cell.textLabel.numberOfLines = 2;
+            return cell;
         }
         
     }
@@ -191,7 +199,7 @@
         [_orderDetailsTableView registerClass:[OrderDetailsFourCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
         [_orderDetailsTableView registerClass:[OrderDetailsFiveCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
         [_orderDetailsTableView registerClass:[OrderDetailsSixCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
-
+        [_orderDetailsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 
 
     }

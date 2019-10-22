@@ -33,6 +33,7 @@ typedef void(^BackButtonClickblock)(void);
 
 @property (nonatomic, copy  ) BackButtonClickblock backBlock;
 @property (nonatomic, assign) BOOL isHideShadowLine;
+@property (nonatomic, strong)  UIButton *backButton;
 - (instancetype)initWithNavType:(HQJNavigationBarColor)type;
 /**
  直接 pop 到某个控制器

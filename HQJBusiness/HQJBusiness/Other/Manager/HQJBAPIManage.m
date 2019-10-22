@@ -21,7 +21,7 @@ NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// H5 域名
-NSString *const HQJBH5DeccaName = @"http://47.98.45.218/shopH5/register/#/";
+//NSString *const HQJBH5DeccaName = @"http://47.98.45.218/";
 
 #else         //发布阶段
 
@@ -130,6 +130,11 @@ NSString *const HQJBGetLoginCodeInterface = @"getLoginCode";
 NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
 ///服务商注册时发送手机短信R
 NSString *const HQJBRegisterCodeInterface = @"registerCode";
+/// 店铺界面订单数据
+NSString *const HQJBShopfindorderstatecodeInterface = @"order/shopfindorderstatecode.action";
+
+
+
 
 #pragma mark ------------------------ H5 ------------------------
 /// 创建店铺
@@ -141,12 +146,13 @@ NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
 /// 升级/升级失败修改信息
 NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
 /// 升级规则
-NSString *const HQJBUpgradeRuleInterface = @"upgradeAgreement";
+NSString *const HQJBUpgradeRuleInterface = @"shopH5/register/#/upgradeAgreement";
 /// 发布规范
-NSString *const HQJBReleaseSpecificationInterface = @"publishAgreement";
+NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishAgreement";
 /// 商家入驻协议
-NSString *const HQJBMerchantSettlementSgreementInterface = @"registerAgreement";
-
+NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
+/// 头条
+NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
 @implementation HQJBAPIManage
 
 @end

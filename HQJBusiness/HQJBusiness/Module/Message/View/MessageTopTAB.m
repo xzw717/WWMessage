@@ -169,7 +169,7 @@
         [self messageTopBtn_addSubgView];
         [self messageTopBtn_SetViewLayout];
        
-        [self.top_img setNumbaer:99];
+        [self.top_img setNumbaer:0];
     }
     return self;
 }

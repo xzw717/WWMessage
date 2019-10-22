@@ -9,7 +9,6 @@
 #import "HQJBaseSubVC.h"
 
 @interface HQJBaseSubVC ()
-@property (nonatomic, strong)  UIButton *backButton;
 @property (nonatomic, assign) HQJNavigationBarColor shadowType;
 @property (nonatomic, strong) UIView *stateBackgroundView;
 @end
@@ -21,6 +20,7 @@
     self = [super init];
     if (self) {
         self.shadowType = type;
+
     }
     return self;
 }
@@ -83,6 +83,10 @@
     [self.navigationController.navigationBar setShadowImage:nil];
     self.stateBackgroundView.hidden = YES;
 }
+//- (void)setIsHideBackButton:(BOOL)isHideBackButton {
+//    _isHideBackButton = isHideBackButton;
+//    _backButton.hidden = isHideBackButton;
+//}
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.fd_prefersNavigationBarHidden = YES;

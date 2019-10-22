@@ -143,7 +143,8 @@ NSString *const NotificationMessage           = @"NotificationMessageName";
     ZWNavigationController *messageNav = [[ZWNavigationController alloc]initWithRootViewController:messageVC];
     [self setTabBarItem:messageVC.tabBarItem Title:@"消息" selectedImage:@"tabbar_ placeholder_icon" tag:10087];
     
-    HeadlineVC *headlineVC = [[HeadlineVC alloc]init];
+    HeadlineVC *headlineVC = [[HeadlineVC alloc]initWithNavType:HQJNavigationBarBlue];
+    headlineVC.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainDeccaName,HQJBHeadlinesInterface];
     ZWNavigationController *headlineNav = [[ZWNavigationController alloc]initWithRootViewController:headlineVC];
     [self setTabBarItem:headlineVC.tabBarItem Title:@"头条" selectedImage:@"tabbar_ placeholder_icon" tag:10088];
     
@@ -222,7 +223,7 @@ NSString *const NotificationMessage           = @"NotificationMessageName";
             case 1:
                 _messageButton = btn;
                 _messageButton.image = [ManagerEngine conversionsImage:[TabBarSingle shareManager].dataDict[ZWTabBarItemiconArrayKey][i]];
-                [_messageButton setNumbaer:0];
+//                [_messageButton setNumbaer:0];
                 break;
             case 2:
                 _headlineButton = btn;
