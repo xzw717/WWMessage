@@ -21,7 +21,7 @@ NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// H5 域名
-//NSString *const HQJBH5DeccaName = @"http://47.98.45.218/";
+NSString *const HQJBH5DeccaName = @"http://47.98.45.218/";
 
 #else         //发布阶段
 
@@ -153,6 +153,10 @@ NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishA
 NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
 /// 头条
 NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
+/// 创建店铺
+NSString *const HQJBCreateShopInterface = @"newstore?mobile=13855555555";
+
+
 @implementation HQJBAPIManage
 
 @end

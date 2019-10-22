@@ -12,7 +12,7 @@
 #import "ProtocolViewController.h"
 
 #import "JKCountDownButton.h"
-#import "HintView.h"
+#import "GoodsManageAlertView.h"
 @interface RegisterViewController ()<UITextFieldDelegate>
 
 
@@ -45,7 +45,6 @@
 
 @property (nonatomic,strong)UIButton *registerBtn;
 
-@property (nonatomic,strong)HintView *hintView;
 @end
 
 @implementation RegisterViewController
@@ -311,7 +310,7 @@
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
         [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {
             ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
-            pvc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/storemessage?shopid=0000";
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5DeccaName,HQJBMerchantSettlementSgreementInterface];
             [self.navigationController pushViewController:pvc animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_protocolBtn];
@@ -331,26 +330,13 @@
         _registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
         [_registerBtn bk_addEventHandler:^(id  _Nonnull sender) {
             ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
-            pvc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/newstore?mobile=13855555555";
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5DeccaName,HQJBCreateShopInterface];
             [self.navigationController pushViewController:pvc animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_registerBtn];
     }
     
     return _registerBtn;
-}
-
-- (HintView *)hintView{
-    if (_hintView == nil) {
-        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"请联系客服：400-0591-081" andSureTitle:@"呼叫" cancelTitle:@"取消"];
-        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            //调用系统方法拨号
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://400-0591-081"]]];
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _hintView;
 }
 
 #pragma click method
@@ -363,9 +349,16 @@
     _accessoryBtn.selected = !_accessoryBtn.isSelected;
 }
 - (void)secureBtnClicked:(UIButton *)sender{
-    [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
-    //    sender.selected = !sender.selected;
-    //    _pswText.secureTextEntry = sender.selected ? NO : YES;
+    sender.selected = !sender.selected;
+    _pswText.secureTextEntry = sender.selected ? NO : YES;
+//    [GoodsManageAlertView alertViewInitWithContent:@"请联系客服：400-0591-081" cancelButtonTitle:@"取消" otherButtonTitles:@{AlertViewTitle:@"呼叫",AlertViewTitleColor:RedColor} Complete:^{
+//        //        调用系统方法拨号
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://400-0591-081"]]];
+//
+//    } negative:^{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
+    
 }
 
 - (void)viewDidLoad {

@@ -31,7 +31,7 @@ extern NSString *const HQJBBonusDomainDeccaName;
 ///商品订单相关
 extern NSString *const HQJBBounsOrder;
 /// H5 
-//extern NSString *const HQJBH5DeccaName;
+extern NSString *const HQJBH5DeccaName;
 #pragma mark ------------------------ 域名（结束） ------------------------
 
 #pragma mark ------------------------ 接口（开始） ------------------------
@@ -141,6 +141,9 @@ extern NSString *const HQJBReleaseSpecificationInterface;
 extern NSString *const HQJBMerchantSettlementSgreementInterface;
 /// 头条
 extern NSString *const HQJBHeadlinesInterface;
+/// 创建店铺
+extern NSString *const HQJBCreateShopInterface;
+
 #pragma mark ------------------------ 接口（结束） ------------------------
 
 

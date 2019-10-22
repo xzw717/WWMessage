@@ -328,4 +328,9 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  商品发布判断
  */
 + (void)goodsRelease;
+/*
+ 根据文字大小，宽度 返回 文字高度
+ */
++ (CGFloat) heightForString:(NSString *)value fontSize:(CGFloat)fontSize andWidth:(CGFloat)width;
+
 @end

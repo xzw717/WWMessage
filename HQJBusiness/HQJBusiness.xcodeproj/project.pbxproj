@@ -292,8 +292,6 @@
 		1FC5F4F922D872F60029F53C /* GoodsReleaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F4F822D872F60029F53C /* GoodsReleaseViewModel.m */; };
 		1FC5F4FC22D880200029F53C /* GoodsReleaseMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F4FB22D880200029F53C /* GoodsReleaseMainCell.m */; };
 		1FC5F4FF22D883910029F53C /* EvaluationTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F4FD22D883900029F53C /* EvaluationTextView.m */; };
-		1FC5F50222DC4C730029F53C /* GoodsReleaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F50122DC4C730029F53C /* GoodsReleaseModel.m */; };
-		1FC5F50522DC764C0029F53C /* CatalogueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F50422DC764C0029F53C /* CatalogueVC.m */; };
 		1FC5F50B22DD5DA60029F53C /* ReleaseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F50A22DD5DA60029F53C /* ReleaseButtonView.m */; };
 		1FC5F50E22DD78E30029F53C /* GoodsCatalogueTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5F50D22DD78E30029F53C /* GoodsCatalogueTopView.m */; };
 		1FC9322D1F467D47008775A9 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC9322C1F467D47008775A9 /* OrderTableViewCell.m */; };
@@ -357,7 +355,6 @@
 		208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 208D336C228166FB00E439AC /* libsqlite3.tbd */; };
 		20C6E6BB22C36C6E00AEBC4D /* ZGRelayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6BA22C36C6E00AEBC4D /* ZGRelayoutButton.m */; };
 		20C6E6C122C461EB00AEBC4D /* ZGProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C6E6C022C461EB00AEBC4D /* ZGProgressHUD+NJ.m */; };
-		20D5BA3722E000430045E5A7 /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2622E000430045E5A7 /* HintView.m */; };
 		20D5BA3822E000430045E5A7 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */; };
 		20D5BA3922E000430045E5A7 /* CreateShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2B22E000430045E5A7 /* CreateShopViewController.m */; };
 		20D5BA3A22E000430045E5A7 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA2D22E000430045E5A7 /* ForgetPswViewController.m */; };
@@ -368,6 +365,9 @@
 		20D5BA4122E01A980045E5A7 /* SetUpShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4022E01A980045E5A7 /* SetUpShopViewController.m */; };
 		20D5BA4422E59A860045E5A7 /* ShopEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4222E59A850045E5A7 /* ShopEvaluateViewController.m */; };
 		20D5BA4722E59BA80045E5A7 /* ShopEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4522E59BA80045E5A7 /* ShopEvaluateCell.m */; };
+		20D5BA4A22E5B2940045E5A7 /* CatalogueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4822E5B2940045E5A7 /* CatalogueVC.m */; };
+		20D5BA4D22E5B3DE0045E5A7 /* GoodsReleaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4B22E5B3DE0045E5A7 /* GoodsReleaseModel.m */; };
+		20D5BA5022E6A0F60045E5A7 /* EvaluateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D5BA4E22E6A0F60045E5A7 /* EvaluateDetailViewController.m */; };
 		20D888C522D491E1007B8914 /* ShopInfoSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D888C422D491E1007B8914 /* ShopInfoSetCell.m */; };
 		20DF4E7D229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
 		20DF4E7E229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */; };
@@ -1072,10 +1072,6 @@
 		1FC5F4FB22D880200029F53C /* GoodsReleaseMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsReleaseMainCell.m; sourceTree = "<group>"; };
 		1FC5F4FD22D883900029F53C /* EvaluationTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationTextView.m; sourceTree = "<group>"; };
 		1FC5F4FE22D883910029F53C /* EvaluationTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluationTextView.h; sourceTree = "<group>"; };
-		1FC5F50022DC4C730029F53C /* GoodsReleaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsReleaseModel.h; sourceTree = "<group>"; };
-		1FC5F50122DC4C730029F53C /* GoodsReleaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsReleaseModel.m; sourceTree = "<group>"; };
-		1FC5F50322DC764C0029F53C /* CatalogueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalogueVC.h; sourceTree = "<group>"; };
-		1FC5F50422DC764C0029F53C /* CatalogueVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatalogueVC.m; sourceTree = "<group>"; };
 		1FC5F50922DD5DA60029F53C /* ReleaseButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseButtonView.h; sourceTree = "<group>"; };
 		1FC5F50A22DD5DA60029F53C /* ReleaseButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseButtonView.m; sourceTree = "<group>"; };
 		1FC5F50C22DD78E30029F53C /* GoodsCatalogueTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsCatalogueTopView.h; sourceTree = "<group>"; };
@@ -1200,8 +1196,6 @@
 		20C6E6BA22C36C6E00AEBC4D /* ZGRelayoutButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGRelayoutButton.m; sourceTree = "<group>"; };
 		20C6E6BF22C461EB00AEBC4D /* ZGProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZGProgressHUD+NJ.h"; sourceTree = "<group>"; };
 		20C6E6C022C461EB00AEBC4D /* ZGProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZGProgressHUD+NJ.m"; sourceTree = "<group>"; };
-		20D5BA2522E000430045E5A7 /* HintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
-		20D5BA2622E000430045E5A7 /* HintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
 		20D5BA2722E000430045E5A7 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
 		20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		20D5BA2A22E000430045E5A7 /* CreateShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShopViewController.h; sourceTree = "<group>"; };
@@ -1222,6 +1216,12 @@
 		20D5BA4322E59A850045E5A7 /* ShopEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopEvaluateViewController.h; sourceTree = "<group>"; };
 		20D5BA4522E59BA80045E5A7 /* ShopEvaluateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopEvaluateCell.m; sourceTree = "<group>"; };
 		20D5BA4622E59BA80045E5A7 /* ShopEvaluateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopEvaluateCell.h; sourceTree = "<group>"; };
+		20D5BA4822E5B2940045E5A7 /* CatalogueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogueVC.m; sourceTree = "<group>"; };
+		20D5BA4922E5B2940045E5A7 /* CatalogueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogueVC.h; sourceTree = "<group>"; };
+		20D5BA4B22E5B3DE0045E5A7 /* GoodsReleaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsReleaseModel.m; sourceTree = "<group>"; };
+		20D5BA4C22E5B3DE0045E5A7 /* GoodsReleaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsReleaseModel.h; sourceTree = "<group>"; };
+		20D5BA4E22E6A0F60045E5A7 /* EvaluateDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateDetailViewController.m; sourceTree = "<group>"; };
+		20D5BA4F22E6A0F60045E5A7 /* EvaluateDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateDetailViewController.h; sourceTree = "<group>"; };
 		20D888C322D491E1007B8914 /* ShopInfoSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfoSetCell.h; sourceTree = "<group>"; };
 		20D888C422D491E1007B8914 /* ShopInfoSetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfoSetCell.m; sourceTree = "<group>"; };
 		20DF4E7B229E840B00317D3B /* wwm_cash_pre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wwm_cash_pre.mp3; sourceTree = "<group>"; };
@@ -2319,6 +2319,8 @@
 				1FB3D28222C5A3FB0008CB2A /* ToolVC.m */,
 				20D5BA4322E59A850045E5A7 /* ShopEvaluateViewController.h */,
 				20D5BA4222E59A850045E5A7 /* ShopEvaluateViewController.m */,
+				20D5BA4F22E6A0F60045E5A7 /* EvaluateDetailViewController.h */,
+				20D5BA4E22E6A0F60045E5A7 /* EvaluateDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2358,6 +2360,8 @@
 				1FB3D28D22C5A3FB0008CB2A /* StoreVC.m */,
 				1FB3D28C22C5A3FB0008CB2A /* FunctionSetVC.h */,
 				1FB3D28F22C5A3FB0008CB2A /* FunctionSetVC.m */,
+				20D5BA4922E5B2940045E5A7 /* CatalogueVC.h */,
+				20D5BA4822E5B2940045E5A7 /* CatalogueVC.m */,
 				1FB3D29222C5A3FB0008CB2A /* OrderManageVC.h */,
 				1FB3D28E22C5A3FB0008CB2A /* OrderManageVC.m */,
 				1FB3D29022C5A3FB0008CB2A /* GoodsManageVC.h */,
@@ -2372,8 +2376,6 @@
 				1F7DD98522D4698F00A906F9 /* DraftVC.m */,
 				1FC5F4DC22D735A20029F53C /* GoodsReleaseVC.h */,
 				1FC5F4DD22D735A20029F53C /* GoodsReleaseVC.m */,
-				1FC5F50322DC764C0029F53C /* CatalogueVC.h */,
-				1FC5F50422DC764C0029F53C /* CatalogueVC.m */,
 				1FD4968E22E1A8DC007F70DB /* ReleaseRulesVC.h */,
 				1FD4968F22E1A8DC007F70DB /* ReleaseRulesVC.m */,
 			);
@@ -2385,14 +2387,14 @@
 			children = (
 				1FB3D29522C5A3FB0008CB2A /* StoreModel.h */,
 				1FB3D29722C5A3FB0008CB2A /* StoreModel.m */,
+				20D5BA4C22E5B3DE0045E5A7 /* GoodsReleaseModel.h */,
+				20D5BA4B22E5B3DE0045E5A7 /* GoodsReleaseModel.m */,
 				1FB3D29422C5A3FB0008CB2A /* StoreSubItemModel.h */,
 				1FB3D29622C5A3FB0008CB2A /* StoreSubItemModel.m */,
 				1FB3D2C622C852140008CB2A /* MenuModel.h */,
 				1FB3D2C722C852140008CB2A /* MenuModel.m */,
 				1F7DD98A22D594A100A906F9 /* GoodsManageModel.h */,
 				1F7DD98B22D594A100A906F9 /* GoodsManageModel.m */,
-				1FC5F50022DC4C730029F53C /* GoodsReleaseModel.h */,
-				1FC5F50122DC4C730029F53C /* GoodsReleaseModel.m */,
 				1FD4968522DEB6FB007F70DB /* GoodsCatalogueModel.h */,
 				1FD4968622DEB6FB007F70DB /* GoodsCatalogueModel.m */,
 			);
@@ -2830,8 +2832,6 @@
 		20D5BA2422E000430045E5A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20D5BA2522E000430045E5A7 /* HintView.h */,
-				20D5BA2622E000430045E5A7 /* HintView.m */,
 				20D5BA2722E000430045E5A7 /* ZGProgressHUD.h */,
 				20D5BA2822E000430045E5A7 /* ZGProgressHUD.m */,
 			);
@@ -3149,7 +3149,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
@@ -3190,7 +3190,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3292,7 +3292,6 @@
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
-				1FC5F50522DC764C0029F53C /* CatalogueVC.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
 				1F046D201E090DAA006D6EB2 /* SGImageButton_Horizontal.m in Sources */,
@@ -3310,7 +3309,6 @@
 				1FC5F50B22DD5DA60029F53C /* ReleaseButtonView.m in Sources */,
 				1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */,
 				1FB3D2B722C5A3FB0008CB2A /* StoreADCell.m in Sources */,
-				20D5BA3722E000430045E5A7 /* HintView.m in Sources */,
 				1F1B21D21DFFE30F00021AB2 /* CashSalesViewController.m in Sources */,
 				1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */,
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,
@@ -3336,6 +3334,7 @@
 				1F960D451DFE3E51003E3D17 /* NullSafe.m in Sources */,
 				1F960D3F1DFE3E51003E3D17 /* UIPopoverController+BlocksKit.m in Sources */,
 				1F25DC031E10E9A4004DC19F /* TransferOrderVC.m in Sources */,
+				20D5BA5022E6A0F60045E5A7 /* EvaluateDetailViewController.m in Sources */,
 				1FB3D2C222C5A9CE0008CB2A /* MessageTopTAB.m in Sources */,
 				1F40133A1E135767004E30B1 /* AddBankcCardViewController.m in Sources */,
 				1F2E0B4B1EC99EED0072FDDD /* LoginSingleton.m in Sources */,
@@ -3379,7 +3378,6 @@
 				1F12F74D1E1635FE0056DF9A /* DataSigner.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
 				1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */,
-				1FC5F50222DC4C730029F53C /* GoodsReleaseModel.m in Sources */,
 				1FFA99C51E231B4900E9FB1D /* NSString+RegexCategory.m in Sources */,
 				1FD4968D22DECC03007F70DB /* CatalogueViewModel.m in Sources */,
 				1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */,
@@ -3421,6 +3419,7 @@
 				2082634F22D43BAC0058FD58 /* ShopManagerViewModel.m in Sources */,
 				1F3949EC1E0D16C200A3662D /* DetailViewModel.m in Sources */,
 				1F88546922D2ED5C00B5DE7B /* MineViewModel.m in Sources */,
+				20D5BA4A22E5B2940045E5A7 /* CatalogueVC.m in Sources */,
 				1F960D201DFE3E51003E3D17 /* NSInvocation+BlocksKit.m in Sources */,
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
 				1F394A011E0D224500A3662D /* DetailCell.m in Sources */,
@@ -3447,6 +3446,7 @@
 				20D5BA3922E000430045E5A7 /* CreateShopViewController.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
+				20D5BA4D22E5B3DE0045E5A7 /* GoodsReleaseModel.m in Sources */,
 				204E918F22CEFDCF006BD23C /* PersonInfoImageCell.m in Sources */,
 				1F40292C229FBCFF0014769B /* OrderDetailsFourCell.m in Sources */,
 				1FB3D2B822C5A3FB0008CB2A /* MessageVC.m in Sources */,
