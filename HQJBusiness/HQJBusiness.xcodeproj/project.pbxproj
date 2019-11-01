@@ -214,6 +214,7 @@
 		1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */; };
 		1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */; };
 		1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */; };
+		1F9DB24F235EEAD100FBEC2D /* OrderNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9DB24E235EEAD100FBEC2D /* OrderNoteCell.m */; };
 		1FA6A9EC1F7F971600F2C945 /* AddPaymentCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6A9EB1F7F971600F2C945 /* AddPaymentCodeViewController.m */; };
 		1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */; };
 		1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */; };
@@ -811,6 +812,8 @@
 		1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeModel.m; sourceTree = "<group>"; };
 		1F9710A721F1C02F00F788A6 /* ManualGiftRYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ManualGiftRYViewController.h; path = ChildVC/ManualGiftRYViewController.h; sourceTree = "<group>"; };
 		1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ManualGiftRYViewController.m; path = ChildVC/ManualGiftRYViewController.m; sourceTree = "<group>"; };
+		1F9DB24D235EEAD100FBEC2D /* OrderNoteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderNoteCell.h; sourceTree = "<group>"; };
+		1F9DB24E235EEAD100FBEC2D /* OrderNoteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderNoteCell.m; sourceTree = "<group>"; };
 		1FA6A9EA1F7F971600F2C945 /* AddPaymentCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPaymentCodeViewController.h; sourceTree = "<group>"; };
 		1FA6A9EB1F7F971600F2C945 /* AddPaymentCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPaymentCodeViewController.m; sourceTree = "<group>"; };
 		1FA6D5A21F99949E0083E0A6 /* PaymentCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCodeModel.h; sourceTree = "<group>"; };
@@ -1722,6 +1725,8 @@
 				1FC9322C1F467D47008775A9 /* OrderTableViewCell.m */,
 				1F0B4E051F79EE8500C46B85 /* OrderTableViewFooterView.h */,
 				1F0B4E061F79EE8500C46B85 /* OrderTableViewFooterView.m */,
+				1F9DB24D235EEAD100FBEC2D /* OrderNoteCell.h */,
+				1F9DB24E235EEAD100FBEC2D /* OrderNoteCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2643,6 +2648,7 @@
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
+				1F9DB24F235EEAD100FBEC2D /* OrderNoteCell.m in Sources */,
 				1F12C9ED1E0B7C4D00CF6CB7 /* AddressDetailsViewController.m in Sources */,
 				1F960C9F1DFE3D06003E3D17 /* AppDelegate.m in Sources */,
 				1F046D381E091913006D6EB2 /* ZHSetModel.m in Sources */,
@@ -2709,17 +2715,19 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.84;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2734,16 +2742,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.84;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.1.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -2867,6 +2877,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.84;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -2893,6 +2904,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2910,6 +2922,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.84;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -2936,6 +2949,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -79,45 +79,44 @@
 //}
 
 
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    NSInteger index = [self.tabBar.items indexOfObject:item];
-    
-    if (_isAnimation) {
-        [self animationWithIndex:index];
-
-    }
-    
-    
-    
-    if([item.title isEqualToString:@"发现"])
-    {
-        // 也可以判断标题,然后做自己想做的事<img alt="得意" src="http://static.blog.csdn.net/xheditor/xheditor_emot/default/proud.gif" />
-    }
-    
-}
-- (void)animationWithIndex:(NSInteger) index {
-    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
-    for (UIView *tabBarButton in self.tabBar.subviews) {
-        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-            [tabbarbuttonArray addObject:tabBarButton];
-        }
-    }
-//    UIView *tabberViews  = tabbarbuttonArray[index] ;
-//    _tabberOldViews.transform = CGAffineTransformMakeScale(1, 1);
-//    tabberViews.transform = CGAffineTransformMakeScale(2, 2);
-//    _tabberOldViews = tabberViews;
-//    HQJLog(@"按钮的高度是：%f--%f",tabberViews.frame.size.height,tabberViews.frame.origin.y);
-    CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    pulse.duration = 0.08;
-    pulse.repeatCount= 1;
-    pulse.autoreverses= YES;
-    pulse.fromValue= [NSNumber numberWithFloat:0.7];
-    pulse.toValue= [NSNumber numberWithFloat:1.3];
-    [[tabbarbuttonArray[index] layer]
-     addAnimation:pulse forKey:nil];
-}
+//-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+//{
+//    NSInteger index = [self.tabBar.items indexOfObject:item];
+//    
+//    if (_isAnimation) {
+//        [self animationWithIndex:index];
+//
+//    }
+//    
+//    
+//    
+//    if([item.title isEqualToString:@"发现"])
+//    {
+//        // 也可以判断标题,然后做自己想做的事<img alt="得意" src="http://static.blog.csdn.net/xheditor/xheditor_emot/default/proud.gif" />
+//    }
+//    
+//}
+//- (void)animationWithIndex:(NSInteger) index {
+//    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
+//    for (UIView *tabBarButton in self.tabBar.subviews) {
+//        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+//            [tabbarbuttonArray addObject:tabBarButton];
+//        }
+//    }
+////    UIView *tabberViews  = tabbarbuttonArray[index] ;
+////    _tabberOldViews.transform = CGAffineTransformMakeScale(1, 1);
+////    tabberViews.transform = CGAffineTransformMakeScale(2, 2);
+////    _tabberOldViews = tabberViews;
+////    HQJLog(@"按钮的高度是：%f--%f",tabberViews.frame.size.height,tabberViews.frame.origin.y);
+//    CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    pulse.duration = 0.08;
+//    pulse.repeatCount= 1;
+//    pulse.autoreverses= YES;
+//    pulse.fromValue= [NSNumber numberWithFloat:0.7];
+//    pulse.toValue= [NSNumber numberWithFloat:1.3];
+//    [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:nil];
+//}
 
 /*
 #pragma mark - Navigation

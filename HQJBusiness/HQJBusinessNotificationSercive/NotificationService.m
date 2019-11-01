@@ -30,6 +30,7 @@ typedef void(^PlayVoiceBlock)(void);
     NSString *totalmoney;
     NSString *ordertime;
     NSString *totalquantity;
+    NSString *remark;
     /**************** 打印内容*************/
 
     
@@ -84,13 +85,13 @@ typedef void(^PlayVoiceBlock)(void);
 - (void)pushJson:(NSDictionary *)dict {
     if (dict [@"list"]) {
         goodsArray = dict [@"list"][@"list"];
- 
     }
-    orderid = dict[@"orderid"];;
+    orderid = dict[@"orderid"];
     mobile = dict[@"mobile"];
     totalmoney = dict[@"totalmoney"];
     ordertime = dict[@"ordertime"];
     totalquantity = dict[@"totalquantity"];
+    remark = dict[@"remark"];
 }
 
 - (void)pushNotification{
@@ -276,7 +277,10 @@ typedef void(^PlayVoiceBlock)(void);
         if (!error) {
 //            [ProgressShow alertView:self.view Message:@"打印机连接成功！" cb:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self printe];
+                for (NSInteger i = 0; i < 2; i ++) {
+                    [self printe];
+
+                }
             });
         }else{
 //            [ProgressShow alertView:self.view Message:error.domain cb:nil];
@@ -317,6 +321,9 @@ typedef void(^PlayVoiceBlock)(void);
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:orderid];
     [printer appendTitle:@"下单时间" value:ordertime];
+    if (remark && ![remark isEqualToString:@"(null)"] && ![remark isEqualToString:@""] ) {
+            [printer appendText:[NSString stringWithFormat:@"备注：%@",remark]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+       }
     [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
     [printer appendNewLine];
     [printer appendNewLine];

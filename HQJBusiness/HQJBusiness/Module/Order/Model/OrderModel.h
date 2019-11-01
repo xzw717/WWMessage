@@ -48,4 +48,5 @@
 
 @property (nonatomic, strong) NSMutableArray <GoodsModel *>*goodslist;
 
+@property (nonatomic, strong) NSString *remark;
 @end

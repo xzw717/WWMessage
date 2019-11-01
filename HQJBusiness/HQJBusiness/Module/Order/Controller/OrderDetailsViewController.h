@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderDetailsViewController : ZW_ViewController
 - (instancetype)initWithModel:(OrderModel *)model;
+/// 备注
+@property (nonatomic, strong) NSString *note;
 @end
 
 NS_ASSUME_NONNULL_END
