@@ -29,7 +29,7 @@ DZNEmptyDataSetDelegate>
         _tableView.dataSource =self;
         _tableView.frame = CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49);
         _tableView.tableFooterView = [UIView new];
-        [_tableView registerClass:[DetailCell class] forCellReuseIdentifier:@"cellid"];
+        [_tableView registerClass:[DetailCell class] forCellReuseIdentifier:NSStringFromClass([DetailCell class])];
     }
     _tableView.contentInset = UIEdgeInsetsZero;
   
@@ -94,7 +94,7 @@ DZNEmptyDataSetDelegate>
     
     
   
-        DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid" forIndexPath:indexPath];
+        DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DetailCell class]) forIndexPath:indexPath];
       [cell setModel:self.listArray[indexPath.row] andPaging:_typePage];
         return cell;
     

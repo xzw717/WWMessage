@@ -30,7 +30,7 @@
     HQJLog(@"-%@ dict = %@",urlStr,dict);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         
-        if ([dic[@"code"]integerValue] == 49000 || [dic[@"code"]integerValue] == 49010 ) {
+        if ([dic[@"code"]integerValue] == 49000 ) {
             
             NSArray *resultArray = dic[@"result"];
             NSMutableArray *modelArray = [NSMutableArray array];
@@ -44,6 +44,12 @@
             }
             
             
+        } else if ( [dic[@"code"]integerValue] == 49010) {
+            NSMutableArray *modelArray = [NSMutableArray array];
+            if (detailBlock) {
+                detailBlock(modelArray);
+            }
+                       
         } else {
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
