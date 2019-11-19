@@ -283,6 +283,8 @@
     } else if (indexPath.section == 2) {
         return  CGSizeMake(StoreMainViewWidth , NewProportion(160));
         
+    }  else if (indexPath.section == 3) {
+        return  CGSizeMake(StoreMainViewWidth /3.f , NewProportion(810)/3 );
     } else {
         HQJLog(@"每一个的宽度：%f",StoreMainViewWidth /4.f)
         return  CGSizeMake(88.75 + CGFLOAT_MIN, NewProportion(300));
@@ -303,6 +305,8 @@
 
     } else if(section == 2) {
         return 1;
+    } else if(section == 3) {
+        return [self.modelAry[section] count];
     } else {
         return 4;
     }
@@ -330,7 +334,7 @@
         }];
         return cell;
 
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         StoreToolCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([StoreToolCollectionViewCell class]) forIndexPath:indexPath];
         cell.itemDictionary = [self modelAry][indexPath.section][indexPath.item];
         if (indexPath.item == 0 ) {
@@ -382,7 +386,7 @@
     
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         if ([[self.toolAry[indexPath.item] firstObject] isEqualToString:@"经营有道"]) {
             [self jumpWebView:@"shopH5/Headlines/#/WillManaged" title:@"经营有道"];
         }
@@ -447,14 +451,15 @@
                          @[@"今日积分",@"今日现金",@"今日RY值支出"],
                          @[@"今日订单数",@"商品订单",@"收款订单",@"已核销订单",@"待付款",@"待评价",@"待核销订单",@"",@""],
                          @[],
-//                         @[@"出售中",@"已下架",@"草稿中",@"添加商品"]
+                         @[@"出售中",@"已下架",@"草稿中"]
                          ].mutableCopy;
         } else {
             _modelAry =@[
                          @[@"今日积分",@"今日现金",@"今日RY值支出"],
                          @[@"今日订单数",@"商品订单",@"收款订单",@"已核销订单",@"待付款",@"待评价",@"待核销订单",@"",@""],
                          @[],
-//                         @[@"出售中",@"已下架",@"草稿中",@"添加商品"],  @[@[@"经营有道",@"tool_icon_manage"],@[@"流量手册",@"tool_icon_flow"],@[],@[]]
+                        @[@"出售中",@"已下架",@"草稿中"],
+//                         @[@[@"经营有道",@"tool_icon_manage"],@[@"流量手册",@"tool_icon_flow"],@[],@[]]
                         self.toolAry].mutableCopy;
         }
      
@@ -473,14 +478,14 @@
                           @[@"store_transactionData",@"交易数据"],
                           @[@"store_orderManagement",@"订单管理"],
                           @[],
-//                          @[@"store_commodityManagement",@"商品管理"]
+                          @[@"store_commodityManagement",@"商品管理"]
                           ].mutableCopy;
         } else {
             _titleAry = @[
                           @[@"store_transactionData",@"交易数据"],
                           @[@"store_orderManagement",@"订单管理"],
                           @[],
-//                          @[@"store_commodityManagement",@"商品管理"],
+                          @[@"store_commodityManagement",@"商品管理"],
                           [self openingStoreAry]].mutableCopy;
         }
     return _titleAry;

@@ -72,10 +72,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self storeVC_addViews];
+    
+//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,WIDTH - 100 , 44)];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.textColor = [UIColor whiteColor];
+//    self.navigationItem.titleView =label;
     @weakify(self);
     [self.viewModel stroeRequst:^{
         @strongify(self);
-        self.title =  [NameSingle shareInstance].name;
+//        label.text = [NameSingle shareInstance].name;
+        self.navigationItem.title = [NameSingle shareInstance].name;
         [self.collectionView.mj_header endRefreshing];
     }];
 }
