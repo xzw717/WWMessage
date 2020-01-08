@@ -14,6 +14,7 @@
 #import "SetViewController.h"
 #import "MessageNotificationViewController.h"
 #import "DeccaDownloadViewController.h"
+#import "HQJWebViewController.h"
 @implementation MyViewModel
 
 - (void)myRequst {
@@ -62,6 +63,10 @@
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
         } else {
             // 优惠券
+            HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+            webvc.webTitleString = @"优惠券";
+            webvc.webUrlStr = [NSString stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",Conpon_URL,MmberidStr,HashCode];
+            [xzw_self.navigationController pushViewController:webvc animated:YES];
         }
     }
     if (xzw_indexPath.section  == 2 ) {
