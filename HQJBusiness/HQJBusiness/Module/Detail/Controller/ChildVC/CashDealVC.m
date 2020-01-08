@@ -45,7 +45,7 @@ DZNEmptyDataSetDelegate
 //            [self setDataSource];
 //        }];
 //        _cellHeight = [buttonTitle isEqualToString:@"线上支付"] ? 90.f : 70.f;
-//        _selecttypeStr = buttonTitle;
+        _selecttypeStr = @"线上支付";
 //
 //    };
 //    view1.backgroundColor = [UIColor whiteColor];

@@ -34,7 +34,9 @@
                              @[@"交易",
                                @"消费码核销",
                                @"待审核申请",
-                               @"消息通知"],
+                               @"消息通知",
+                               @"优惠券"],/*,
+                               */
                              @[@"台卡下载",
                                @"设置"]];
     }
@@ -47,7 +49,9 @@
                                  @[@"icon_transaction",
                                    @"icon_xfm",
                                    @"icon_unverify",
-                                   @"icon_notice"],
+                                   @"icon_notice",
+                                   @"icon_my_coupon"],/*,
+                                   */
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];
     }
@@ -72,7 +76,7 @@
     
    
     
-    CGFloat labelWidth = [ManagerEngine setTextWidthStr:self.titleLabel.text andFont:[UIFont systemFontOfSize:17.0]];
+        CGFloat labelWidth = [ManagerEngine setTextWidthStr:self.titleLabel.text andFont:[UIFont systemFontOfSize:17.0]];
     self.titleImageView.sd_layout.leftSpaceToView(self,15).topSpaceToView(self,(self.frame.size.height - 18)/2).heightIs(18).widthIs(18);
     self.titleLabel.sd_layout.leftSpaceToView(self.titleImageView,10).topSpaceToView(self,(self.frame.size.height - 17)/2).heightIs(17).widthIs(labelWidth);
     
