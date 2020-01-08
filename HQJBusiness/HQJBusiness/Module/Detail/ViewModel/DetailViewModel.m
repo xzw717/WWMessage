@@ -18,12 +18,12 @@
     NSMutableDictionary *dict;
     if (types) {
         if ([types isEqualToString:@"线上支付"]) {
-            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@2}.mutableCopy;
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@2,@"hash":HashCode}.mutableCopy;
         }else{
-            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@1}.mutableCopy;
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@1,@"hash":HashCode}.mutableCopy;
         }
     }else{
-        dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
+        dict = @{@"memberid":MmberidStr,@"page":page,@"hash":HashCode}.mutableCopy;
         
     }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];

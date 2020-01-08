@@ -56,9 +56,12 @@
            //待审核申请
             ToAuditViewController *toAuditVC = [[ToAuditViewController alloc]init];
             [xzw_self.navigationController pushViewController:toAuditVC animated:YES];
-        } else {
+        } else if (xzw_indexPath.row == 3) {
+            // 消息通知
             MessageNotificationViewController *mnVC =[[MessageNotificationViewController alloc]init];
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
+        } else {
+            // 优惠券
         }
     }
     if (xzw_indexPath.section  == 2 ) {

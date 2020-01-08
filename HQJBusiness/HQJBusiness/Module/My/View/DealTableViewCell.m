@@ -34,7 +34,8 @@
                              @[@"交易",
                                @"消费码核销",
                                @"待审核申请",
-                               @"消息通知"],
+                               @"消息通知"],/*,
+                               @"优惠券"*/ 
                              @[@"台卡下载",
                                @"设置"]];
     }
@@ -47,7 +48,8 @@
                                  @[@"icon_transaction",
                                    @"icon_xfm",
                                    @"icon_unverify",
-                                   @"icon_notice"],
+                                   @"icon_notice"],/*,
+                                   @"icon_my_coupon"*/
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];
     }

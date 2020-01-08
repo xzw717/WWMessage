@@ -1,9 +1,9 @@
 //
 //  APAuthInfo.h
-//  AliSDKDemo
+//  APAuth
 //
-//  Created by 方彬 on 14-7-18.
-//  Copyright (c) 2014年 Alipay.com. All rights reserved.
+//  Created by antfin on 17-10-24.
+//  Copyright (c) 2017年 AntFin. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -23,14 +23,11 @@
  *
  *  @return authinfo实例
  */
-
-
-//*  @param productIDStr 产品码 该商户在aboss签约的产品,用户获取pid获取的参数
-
 - (id)initWithAppID:(NSString *)appIDStr
                 pid:(NSString *)pidStr
         redirectUri:(NSString *)uriStr;
 
 - (NSString *)description;
 - (NSString *)wapDescription;
+
 @end
