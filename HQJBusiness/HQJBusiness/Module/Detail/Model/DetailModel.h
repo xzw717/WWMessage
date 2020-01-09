@@ -56,6 +56,11 @@
 @property (nonatomic,copy)NSString *score;
 @property (nonatomic,copy)NSString *cash;
 
+/// 优惠券类型
+@property (nonatomic,copy)NSString *couponType;
+/// 优惠券的金额
+@property (nonatomic,copy)NSString *reduction;
+
 
 
 @end
