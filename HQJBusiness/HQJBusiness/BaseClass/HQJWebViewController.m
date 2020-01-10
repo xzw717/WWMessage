@@ -35,8 +35,7 @@
     [userCC addScriptMessageHandler:self name:@"out"];
     [userCC addScriptMessageHandler:self name:@"exitWeb"];
     
-    
-    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT)];
+    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
@@ -46,6 +45,8 @@
     
     NSString *url=[NSURL URLWithString:self.webUrlStr] ? self.webUrlStr : [self.webUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    
     
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -95,12 +96,12 @@
     
 //    if([strRequest isEqualToString:@"about:blank"]) {//主页面加载内容
 //        decisionHandler(WKNavigationActionPolicyAllow);//允许跳转
-//        
+//
 //    } else {
 //        //截获页面里面的链接点击
 //        //do something you want
 //        decisionHandler(WKNavigationActionPolicyCancel);//不允许跳转
-//        
+//
 //    }
     
 }
@@ -127,6 +128,20 @@
         }];
     }
  
+    
+    
+//    //清除cookies
+//    NSHTTPCookie *cookie;
+//    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    for (cookie in [storage cookies]){
+//        [storage deleteCookie:cookie];
+//    }
+//    //清除UIWebView的缓存
+//    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+//    NSURLCache * cache = [NSURLCache sharedURLCache];
+//    [cache removeAllCachedResponses];
+//    [cache setDiskCapacity:0];
+//    [cache setMemoryCapacity:0];
 }
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString:@"out"]||[message.name isEqualToString:@"exitWeb"]) {
@@ -146,6 +161,7 @@
                                                       }]];
     [self presentViewController:alertController animated:YES completion:^{}];
 }
+
 - (void)dealloc {
     WKUserContentController *controller = self.webView.configuration.userContentController;
     [controller removeScriptMessageHandlerForName:@"out"];
