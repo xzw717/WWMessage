@@ -13,6 +13,7 @@
 @property (nonatomic, strong) ZW_Label *timeLabel;
 @property (nonatomic, strong) ZW_Label *amountLabel;
 @property (nonatomic, strong) ZW_Label *amountDetailsLabel;
+@property (nonatomic,strong)ZW_Label *couponLabel;
 
 @end
 @implementation CashOnlineCell
@@ -48,12 +49,25 @@
             self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@值:-%@)",HQJValue,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
         }
  
+        self.couponLabel.text = [NSString stringWithFormat:@"%@:-¥%@",model.couponType,model.reduction];
         self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
         self.tradetypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",model.tradeDesc];
         [self setlayoutOnline:[model.tradeDesc isEqualToString:@"现金消费"] ? NO : YES];
-        
+      
+           self.couponLabel.hidden = ![self isCoupon:model];
     }];
 }
+/// 判断是否是优惠券订单
+- (BOOL)isCoupon:(DetailModel *)model {
+    if (model.couponType && ![model.couponType isEqualToString:@""]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+//- (CGFloat)cellHeightWithModel:(DetailModel *)model {
+//    return [self isCoupon:model] ? 90 + 11 + 12.f : 90.f;
+//}
 
 
 - (void)setlayoutOnline:(BOOL)isOnline {
@@ -85,7 +99,11 @@
     //
     CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
     self.amountDetailsLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountDetailsWidth).topSpaceToView(self.amountLabel,11).heightIs(12).widthIs(amountDetailsWidth);
-    
+    self.couponLabel.sd_layout.
+             rightEqualToView(self.amountDetailsLabel).
+             topSpaceToView(self.amountDetailsLabel,11).
+             heightIs(12).
+             widthIs(WIDTH - 30);
     
 }
 
@@ -134,6 +152,15 @@
         _tradetypeLabel.textColor = [ManagerEngine getColor:@"999999"];
     }
     return _tradetypeLabel;
+}
+-(ZW_Label *)couponLabel {
+    if ( _couponLabel == nil ) {
+        _couponLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
+        _couponLabel.font = [UIFont systemFontOfSize:12.0];
+        _couponLabel.textColor = [ManagerEngine getColor:@"ff4949"];
+        _couponLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _couponLabel;
 }
 
 @end

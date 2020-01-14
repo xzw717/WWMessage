@@ -124,7 +124,8 @@ NSString *const HQJBSetZhRateInterface = @"setZhRate";
 NSString *const HQJBCashSalesInterface = @"cashSells";
 /// 删除银行卡
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
-
+/// 根据id查询优惠劵信息接口
+NSString *const HQJBGetCouponByIdInterface =  @"coupon/app/getCouponById";
 @implementation HQJBAPIManage
 
 @end

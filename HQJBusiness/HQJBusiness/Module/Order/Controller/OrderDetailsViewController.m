@@ -29,7 +29,7 @@
 @property (nonatomic, strong) OrderModel *dataModel;
 @property (nonatomic, strong) NSString *mobileStr;
 @property (nonatomic, strong) NSString *nameStr;
-
+@property (nonatomic, strong)  NSString *couponTypeNam;
 @end
 
 @implementation OrderDetailsViewController
@@ -51,11 +51,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"订单详情";
+    @weakify(self);
     [OrderViewModel requestCustomerInformationWith:self.dataModel.userid complete:^(NSString *mobile, NSString *realname) {
+        @strongify(self)
         self.mobileStr = mobile;
         self.nameStr = realname;
         [self.orderDetailsTableView reloadData];
     }];
+    if (self.dataModel.couponsid) {
+        [OrderViewModel requestCouponTypeWithid:self.dataModel.couponsid complete:^(NSString *couponType) {
+              @strongify(self)
+            self.couponTypeNam = couponType;
+            [self.orderDetailsTableView reloadData];
+
+        }];
+    }
+  
+    
     [self.view addSubview:self.orderDetailsTableView];
 }
 - (CGFloat)orderNoteHeight {
@@ -133,7 +145,10 @@
             return cell;
         } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
             OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = self.dataModel.price;
+            cell.priceStr = [self.dataModel.actualpayment floatValue];
+            if (self.couponTypeNam) {
+                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+            }
             return cell;
         } else {
             

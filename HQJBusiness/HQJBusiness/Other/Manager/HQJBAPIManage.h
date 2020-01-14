@@ -111,6 +111,8 @@ extern NSString *const HQJBGetZhRateInterface;
 extern NSString *const HQJBSetZhRateInterface;
 /// 现金销售
 extern NSString *const HQJBCashSalesInterface;
+/// 根据id查询优惠劵信息接口
+extern NSString *const HQJBGetCouponByIdInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

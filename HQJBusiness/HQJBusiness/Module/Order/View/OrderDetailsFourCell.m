@@ -11,6 +11,7 @@
 @interface OrderDetailsFourCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
+@property (nonatomic,strong) UILabel *couponLabel;
 
 @end
 @implementation OrderDetailsFourCell
@@ -20,6 +21,8 @@
     if (self) {
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.priceLabel];
+        [self.contentView addSubview:self.couponLabel];
+
         [self updateConstraintsIfNeeded];
     }
     return self;
@@ -28,17 +31,35 @@
 - (void)setPriceStr:(CGFloat)priceStr {
     self.priceLabel.text =  [NSString stringWithFormat:@"¥%.2f",priceStr];
 }
+- (void)setCouponString:(NSString *)couponString {
+    self.couponLabel.text = couponString;
+//    [self.priceLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(-10);
+//    }];
+    
+//    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(self.priceLabel);
+//    }];
 
+ 
+}
 - (void)updateConstraints {
+    
+    [self.couponLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(10);
+    }];
+    
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);
-        make.centerY.mas_equalTo(self.contentView);
+        make.top.mas_equalTo(self.couponLabel.mas_bottom).mas_offset(10);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.priceLabel.mas_left).mas_offset(-22);
-        make.centerY.mas_equalTo(self.contentView);
+        make.centerY.mas_equalTo(self.priceLabel);
     }];
+
     [super updateConstraints];
 }
 - (UILabel *)titleLabel {
@@ -58,5 +79,14 @@
         _priceLabel.textColor = [ManagerEngine getColor:@"323232"];
     }
     return _priceLabel;
+}
+-(UILabel *)couponLabel {
+    if ( _couponLabel == nil ) {
+        _couponLabel = [[UILabel alloc]init];
+        _couponLabel.font = [UIFont systemFontOfSize:12.0];
+        _couponLabel.textColor = [ManagerEngine getColor:@"ff4949"];
+        _couponLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _couponLabel;
 }
 @end

@@ -49,4 +49,11 @@
 @property (nonatomic, strong) NSMutableArray <GoodsModel *>*goodslist;
 
 @property (nonatomic, strong) NSString *remark;
+/// 订单实付金额
+@property (nonatomic, strong) NSString *actualpayment;
+/// 优惠金额
+@property (nonatomic, strong) NSString *couponsprice;
+/// 优惠券id
+@property (nonatomic, strong) NSString *couponsid;
+
 @end
