@@ -16,5 +16,8 @@
 
 + (void)requestCustomerInformationWith:(NSString *)customerID
                               complete:(void(^)(NSString *mobile,NSString *realname))complete;
+/// 请求优惠券信息
++ (void)requestCouponTypeWithid:(NSString *)customerID
+                       complete:(void(^)(NSString *couponType))complete ;
 @property (nonatomic, strong) void (^ErrorBlock)(NSString *error);
 @end

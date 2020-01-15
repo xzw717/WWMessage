@@ -12,5 +12,5 @@
 @interface DetailCell : ZW_TableViewCell
 
 -(void)setModel:(DetailModel *)model andPaging:(NSInteger)page;
-
+- (CGFloat)cellHeightWithModel:(DetailModel *)model;
 @end

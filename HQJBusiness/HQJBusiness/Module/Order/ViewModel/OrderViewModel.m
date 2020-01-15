@@ -49,7 +49,7 @@
 + (void)requestCustomerInformationWith:(NSString *)customerID
                               complete:(void(^)(NSString *mobile,NSString *realname))complete {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByIdInterface];
-    NSDictionary *dict = @{@"memberid":customerID ? customerID : @"" ,
+    NSDictionary *dict = @{@"memberid":customerID,
                            @"membertype":@1,@"mid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
@@ -64,5 +64,22 @@
     } ShowHUD:YES];
   
 }
-
++ (void)requestCouponTypeWithid:(NSString *)customerID
+                              complete:(void(^)(NSString *couponType))complete {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainDeccaName,HQJBGetCouponByIdInterface];
+    NSDictionary *dict = @{@"couponId":customerID,
+                           @"hash":HashCode};
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"]integerValue] == 49000) {
+            if (complete) {
+                complete(dic[@"result"][@"typeName"]);
+            }
+        } else {
+            
+        }
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+  
+}
 @end

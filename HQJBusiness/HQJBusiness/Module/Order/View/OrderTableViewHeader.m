@@ -12,56 +12,67 @@
 @property (nonatomic, strong) ZW_Label *stateLabel;
 @property (nonatomic, strong) UIView *topLineView;
 @property (nonatomic, strong) UIView *bottomLineView;
-@property (nonatomic, strong) UIView *rectCornerBackgroundView;
 @end
 @implementation OrderTableViewHeader
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-//        self.contentView.backgroundColor = DefaultBackgroundColor;
-        [self.contentView addSubview:self.rectCornerBackgroundView];
-        [self.rectCornerBackgroundView addSubview:self.nameLabel];
-        [self.rectCornerBackgroundView addSubview:self.stateLabel];
-        
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:self.nameLabel];
+        [self.contentView addSubview:self.stateLabel];
         [self setNeedsUpdateConstraints];
-
     }
     return self;
 }
 
 - (void)setState:(NSString *)state orderNumber:(NSString *)orderNumber {
     self.stateLabel.text = [NSString stringWithFormat:@" %@ ",state];
+    if ([state isEqualToString:@"待使用"]) {
+        self.stateLabel.textColor = [ManagerEngine getColor:@"f58700"];
+    } else if([state isEqualToString:@"待评价"]) {
+        
+        self.stateLabel.textColor = [ManagerEngine getColor:@"1ab2ff"];
+        
+    } else if([state isEqualToString:@"退款中"]) {
+        
+        self.stateLabel.textColor = [ManagerEngine getColor:@"ff5500"];
+        
+    } else if([state isEqualToString:@"订单取消"]) {
+        
+        self.stateLabel.textColor = [ManagerEngine getColor:@"ff0000"];
+        
+    } else {
+        
+        self.stateLabel.textColor = [ManagerEngine getColor:@"29cc29"];
+        
+    }
     self.nameLabel.text = [NSString stringWithFormat:@"订单编号:%@",orderNumber];
 
 }
 
 
 -(void)updateConstraints {
-    self.rectCornerBackgroundView.frame = CGRectMake(0, 10, WIDTH - 20, 44);
     self.topLineView.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).topSpaceToView(self.contentView, 0).heightIs(10);
-//    self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, kEDGE).rightSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0).heightIs(0.5);
-    self.nameLabel.sd_layout.leftSpaceToView(self.rectCornerBackgroundView, kEDGE).rightSpaceToView(self.stateLabel, kEDGE).centerYIs(self.rectCornerBackgroundView.centerY_sd).heightIs(kEDGE);
-    self.stateLabel.sd_layout.rightSpaceToView(self.rectCornerBackgroundView, kEDGE).centerYIs(self.rectCornerBackgroundView.centerY_sd ).heightIs(13);
+    self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, kEDGE).rightSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0).heightIs(0.5);
+    self.nameLabel.sd_layout.leftSpaceToView(self.contentView, kEDGE).rightSpaceToView(self.stateLabel, kEDGE).centerYIs(self.contentView.centerY_sd + 5).heightIs(kEDGE);
+    self.stateLabel.sd_layout.rightSpaceToView(self.contentView, kEDGE).centerYIs(self.contentView.centerY_sd + 5).heightIs(13);
     [self.stateLabel setSingleLineAutoResizeWithMaxWidth:180];
-    [self.rectCornerBackgroundView cornerRadiusWithType:UIRectCornerTopLeft | UIRectCornerTopRight radiusCount:TableViewCellCornerRadius];
-
     [super updateConstraints];
 }
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc]init];
-        _nameLabel.font = [UIFont systemFontOfSize:38/3.f];
-        _nameLabel.textColor = [ManagerEngine getColor:@"333333"];
+        _nameLabel.font = [UIFont systemFontOfSize:11.f];
+        _nameLabel.textColor = [ManagerEngine getColor:@"999999"];
     }
     return _nameLabel;
 }
 - (ZW_Label *)stateLabel {
     if (!_stateLabel) {
         _stateLabel = [[ZW_Label alloc]init];
-        _stateLabel.font = [UIFont systemFontOfSize:40/3.f];
-        _stateLabel.textColor = RedColor;
+        _stateLabel.font = [UIFont systemFontOfSize:12.f];
     }
     return _stateLabel;
 }
@@ -79,16 +90,8 @@
     if (!_bottomLineView) {
         _bottomLineView = [[UIView alloc]init];
         _bottomLineView.backgroundColor = [ManagerEngine getColor:@"cccccc"];
-//        [self.contentView addSubview:_bottomLineView];
+        [self.contentView addSubview:_bottomLineView];
     }
     return _bottomLineView;
-}
-- (UIView *)rectCornerBackgroundView {
-    if (!_rectCornerBackgroundView) {
-        _rectCornerBackgroundView = [[UIView alloc]init];
-        _rectCornerBackgroundView.backgroundColor = [UIColor whiteColor];
-        
-    }
-    return _rectCornerBackgroundView;
 }
 @end

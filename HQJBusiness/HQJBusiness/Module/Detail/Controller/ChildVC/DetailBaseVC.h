@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#define DetailToolBarHeight (44.f)
+
 @interface DetailBaseVC : UIViewController
 
 @property (nonatomic,assign) NSInteger  page;

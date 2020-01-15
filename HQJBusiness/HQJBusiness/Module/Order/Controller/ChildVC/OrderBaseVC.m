@@ -15,8 +15,6 @@
 #import "OrderTableViewCell.h"
 #import "OrderTableViewFooterView.h"
 #import "HQJBusinessAlertView.h"
-#import "OrderCompleteFootView.h"
-#import "OrderDetailsViewController.h"
 @interface OrderBaseVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) OrderViewModel *viewModel;
@@ -58,21 +56,16 @@ DZNEmptyDataSetDelegate>
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(10, 44, WIDTH - 20, HEIGHT - 44 - ToolBarHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        _tableView.rowHeight = 394/3.f;
+        _tableView.rowHeight = S_RatioW(99.61);
         _tableView.tableFooterView = [UIView new];
-        _tableView.showsVerticalScrollIndicator = NO;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
         [_tableView registerClass:[OrderTableViewCell class] forCellReuseIdentifier:NSStringFromClass([OrderTableViewCell class ])];
         [_tableView registerClass:[OrderTwoCell class] forCellReuseIdentifier:NSStringFromClass([OrderTwoCell class ])];
-        [_tableView registerClass:[OrderTableViewHeader class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewHeader class])];
-        [_tableView registerClass:[OrderTableViewFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
-        [_tableView registerClass:[OrderCompleteFootView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([OrderCompleteFootView class])];
 
-        
     }
     _tableView.contentInset = UIEdgeInsetsZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -109,7 +102,34 @@ DZNEmptyDataSetDelegate>
 }
 
 
+- (CGFloat)orderNoteHeight:(NSString *)text {
+//    CGFloat w = WIDTH - 15 * 2;
+//    CGSize labelsize  = [text
+//                         boundingRectWithSize:CGSizeMake(w, CGFLOAT_MAX)
+//                         options:NSStringDrawingUsesLineFragmentOrigin
+//                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10.f weight:UIFontWeightMedium]}
+//                         context:nil].size;
+//    HQJLog(@"%f",labelsize.height + 11);
+    
 
+        CGFloat width = WIDTH - 15 * 2;
+     
+     
+     
+        NSMutableParagraphStyle * paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineSpacing = 6.0;
+        
+        NSDictionary * dict = @{NSFontAttributeName:[UIFont systemFontOfSize:10.5],
+                                NSParagraphStyleAttributeName:paragraph};
+        
+//        NSAttributedString * attribute = [[NSAttributedString alloc]
+//                                          initWithString:text attributes:dict];
+        //一定要先确定宽度，再根据宽度和字体计算size
+    CGSize size = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+  
+    
+    return ceil(size.height);
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -127,8 +147,11 @@ DZNEmptyDataSetDelegate>
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderTableViewCell class]) forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    static NSString *cellid = @"cellid";
+    OrderTableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellid];
+    if (!cell) {
+       cell = [[OrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
     OrderModel *model = self.listArray[indexPath.section];
     cell.orderDate = [NSString stringWithFormat:@"%ld",(long)model.date];
     if (model.type == 1) {
@@ -138,18 +161,7 @@ DZNEmptyDataSetDelegate>
         cell.orderModel = model;
     }
     return cell;
-//    OrderModel *model = self.listArray[indexPath.row];
-//
-//    if (model.type == 2) {
-//        OrderOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderOneCell class ]) forIndexPath:indexPath];
-//        cell.model = model;
-//        return cell;
-//
-//http://shoptest.heqijia.net/order/shopfindorderlist.action?memberid=579ef84e8eb9b658215652&start=1&pageSize=15&type=2} else {
-//        OrderTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderTwoCell class]) forIndexPath:indexPath];
-//        cell.model = model;
-//        return cell;
-//    }
+
     
 }
 
@@ -159,77 +171,57 @@ DZNEmptyDataSetDelegate>
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
-    if ([model.state isEqualToString:@"待评价"] || [model.state isEqualToString:@"交易完成"]) {
-       
-        return CompleteFootHeight;
+    if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
+        return 65 + [self orderNoteHeight:model.remark];
+    } else if (model.usedate) {
+        return 65.f;
+    } else {
+        return 44.f;
     }
-    return 44.f + 44.f;
-    
+//    if (model.usedate) return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
+//
+//    return 44.f;
+//    return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *headerID = @"OrderTableViewHeader%ld";
     OrderModel *model = self.listArray[section];
 
-    OrderTableViewHeader *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewHeader class])];
-
+    OrderTableViewHeader *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerID];
+    if (!headerView) {
+        headerView = [[OrderTableViewHeader alloc]initWithReuseIdentifier:headerID];
+    }
     [headerView setState:model.state orderNumber:model.nid];
     return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    static NSString *footerViewID = @"OrderTableViewFooterView%ld";
     OrderModel *model = self.listArray[section];
-    if ([model.state isEqualToString:@"待评价"] || [model.state isEqualToString:@"交易完成"]) {
-        OrderCompleteFootView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderCompleteFootView class])];
-        __block NSInteger allCount = 0;
-        [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            allCount = allCount + obj.goodscount;
-        }];
-        @weakify(self);
-        footerView.contactBuyerBlock = ^{
-            @strongify(self);
-            if ([model.state isEqualToString:@"交易完成"]) {
-                [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
-                    HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
-                    //    [alertView zw_showAlertWithContent];
-                    [alertView zw_showAlertWithName:realname mobile:mobile];
-                }];
-            } else {
-                OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithNavType:HQJNavigationBarWhite model:model];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-           
-            
-            
-        };
-        [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
-        
-        //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
-        return footerView;
-    } else {
-        OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([OrderTableViewFooterView class])];
-        __block NSInteger allCount = 0;
-        [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            allCount = allCount + obj.goodscount;
-        }];
-        footerView.contactBuyerBlock = ^{
-            [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
-                HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
-                //    [alertView zw_showAlertWithContent];
-                [alertView zw_showAlertWithName:realname mobile:mobile];
-            }];
-            
-            
-        };
-        [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
-        
-        //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
-        return footerView;
+    
+    OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerViewID];
+    if (!footerView) {
+        footerView = [[OrderTableViewFooterView alloc]initWithReuseIdentifier:footerViewID];
     }
-   
+   __block NSInteger allCount = 0;
+    [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        allCount = allCount + obj.goodscount;
+    }];
+    footerView.contactBuyerBlock = ^{
+        [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
+            HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
+            //    [alertView zw_showAlertWithContent];
+            [alertView zw_showAlertWithName:realname mobile:mobile];
+        }];
+      
+       
+    };
+    [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
+//    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
+    return footerView;
 }
-
-
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"brokenNetwork"];
