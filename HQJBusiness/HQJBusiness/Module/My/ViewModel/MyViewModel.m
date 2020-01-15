@@ -14,6 +14,7 @@
 #import "SetViewController.h"
 #import "MessageNotificationViewController.h"
 #import "DeccaDownloadViewController.h"
+#import "HQJWebViewController.h"
 @implementation MyViewModel
 
 - (void)myRequst {
@@ -56,9 +57,18 @@
            //待审核申请
             ToAuditViewController *toAuditVC = [[ToAuditViewController alloc]init];
             [xzw_self.navigationController pushViewController:toAuditVC animated:YES];
-        } else {
+        } else if (xzw_indexPath.row == 3) {
+            // 消息通知
             MessageNotificationViewController *mnVC =[[MessageNotificationViewController alloc]init];
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
+        } else {
+            // 优惠券
+            HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+//            webvc.webTitleString = @"优惠券";
+//            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
+            webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",Conpon_URL,MmberidStr,HashCode];
+            [xzw_self.navigationController pushViewController:webvc animated:YES];
+            
         }
     }
     if (xzw_indexPath.section  == 2 ) {

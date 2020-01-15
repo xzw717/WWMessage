@@ -28,7 +28,8 @@
 
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingAlipayInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
-                           @"amount":amount};
+                           @"amount":amount,
+                           @"hash":HashCode};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
