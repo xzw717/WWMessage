@@ -10,7 +10,7 @@
 /**
  * HQJB 前缀 意为 HQJBusiness
  */
-#pragma mark ------------------------ 域名（开始） ------------------------
+/************************************域名（开始）**********************************************/
 
 /// 物物地图商家版商家版新积分相关域名
 extern NSString *const HQJBBonusDomainName;
@@ -30,11 +30,12 @@ extern NSString *const HQJBImageDomainName;
 extern NSString *const HQJBBonusDomainDeccaName;
 ///商品订单相关
 extern NSString *const HQJBBounsOrder;
-/// H5 
+/// H5
 extern NSString *const HQJBH5DeccaName;
-#pragma mark ------------------------ 域名（结束） ------------------------
+/************************************域名（结束）**********************************************/
 
-#pragma mark ------------------------ 接口（开始） ------------------------
+
+/************************************接口（开始）**********************************************/
 ///获取商家信息
 extern NSString *const HQJBGetMerchantInfoInterface;
 /// 修改登录密码
@@ -112,6 +113,9 @@ extern NSString *const HQJBGetZhRateInterface;
 extern NSString *const HQJBSetZhRateInterface;
 /// 现金销售
 extern NSString *const HQJBCashSalesInterface;
+/// 根据id查询优惠劵信息接口
+extern NSString *const HQJBGetCouponByIdInterface;
+
 
 #pragma mark ------------------------ 商家重构增加接口 ------------------------
 ///通过短信验证码登录(发送短信)
@@ -144,12 +148,9 @@ extern NSString *const HQJBHeadlinesInterface;
 /// 创建店铺
 extern NSString *const HQJBCreateShopInterface;
 
-#pragma mark ------------------------ 接口（结束） ------------------------
 
 
-
-
-
+/************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject
 
