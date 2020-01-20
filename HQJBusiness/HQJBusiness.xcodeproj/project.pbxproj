@@ -1933,16 +1933,16 @@
 		1FBE91D21DEC1E59001977A6 /* HQJBusiness */ = {
 			isa = PBXGroup;
 			children = (
-				1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */,
-				1F1B21DC1E00CB1E00021AB2 /* BaseClass */,
-				1F960CA11DFE3E51003E3D17 /* Engine */,
 				208D336B22812FB100E439AC /* HQJBusiness.entitlements */,
-				1F960D4C1DFE3FD2003E3D17 /* HQJBusinessHeader.pch */,
-				1FBE91E41DEC1E59001977A6 /* Info.plist */,
-				1F960CAC1DFE3E51003E3D17 /* Library */,
+				1F1B21DC1E00CB1E00021AB2 /* BaseClass */,
 				1F960D4D1DFE7314003E3D17 /* Login */,
+				1F960CA11DFE3E51003E3D17 /* Engine */,
+				1F960CAC1DFE3E51003E3D17 /* Library */,
 				1F960C7A1DFE3D06003E3D17 /* Module */,
 				1F960C971DFE3D06003E3D17 /* Other */,
+				1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */,
+				1F960D4C1DFE3FD2003E3D17 /* HQJBusinessHeader.pch */,
+				1FBE91E41DEC1E59001977A6 /* Info.plist */,
 				1FBE91D31DEC1E59001977A6 /* Supporting Files */,
 			);
 			path = HQJBusiness;
