@@ -65,9 +65,8 @@
             // 优惠券
             HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
 //            webvc.webTitleString = @"优惠券";
-//            webvc.webUrlStr = @"http://192.168.1.178:8080/#/couponList?id=1&hash=1";
+//            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
             webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",Conpon_URL,MmberidStr,HashCode];
-            webvc.isHiddenNav = YES;
             [xzw_self.navigationController pushViewController:webvc animated:YES];
             
         }

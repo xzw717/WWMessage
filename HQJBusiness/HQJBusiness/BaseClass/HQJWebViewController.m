@@ -20,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.titleString = self.webTitleString;
+    self.zw_title = self.webTitleString;
+    self.zwNavView.backgroundColor = DefaultAPPColor;
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.preferences = [[WKPreferences alloc] init];
@@ -34,24 +35,8 @@
     [userCC addScriptMessageHandler:self name:@"out"];
     [userCC addScriptMessageHandler:self name:@"exitWeb"];
     
-    self.webView = [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
+    self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
     [self.view addSubview:self.webView];
-    if (self.isHiddenNav) {
-        [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.left.mas_equalTo(self.view);
-               make.right.mas_equalTo(self.view);
-               make.top.mas_equalTo(self.view.top).offset(StatusBarHeight <= 20 ? -20 :-StatusBarHeight);;
-               make.bottom.mas_equalTo(self.view);
-           }];
-    } else {
-        [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.left.mas_equalTo(self.view);
-               make.right.mas_equalTo(self.view);
-               make.top.mas_equalTo(self.view.top).offset(NavigationControllerHeight);;
-               make.bottom.mas_equalTo(self.view);
-           }];
-    }
-    
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
     if (![self.webUrlStr containsString:@"http"] && ![self.webUrlStr containsString:@"https"] && ![self.webUrlStr containsString:@"HTTP"] && ![self.webUrlStr containsString:@"HTTPS"]) {

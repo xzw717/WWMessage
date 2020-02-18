@@ -62,7 +62,7 @@
 #define UpdataApp_URL @"http://apptest.heqijia.net/"
 //优惠券h5测试域名
 #define Conpon_URL @"http://47.98.45.218/" //上海测试接口
-//#define Conpon_URL @"http://10.1.2.103:8080/" //福州测试接口
+
 //#define AppSel_URL @"http://www.chenjianping.com/AppSel2/" //开发接口
 //#define Api_URL @"http://www.chenjianping.com/Api4/"  // 开发接口
 //
