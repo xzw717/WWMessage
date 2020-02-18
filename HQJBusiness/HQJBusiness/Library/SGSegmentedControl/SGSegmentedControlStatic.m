@@ -27,8 +27,6 @@
 @property (nonatomic, strong) SGImageButton_Vertical *imageTitle_btnV;
 /** 存入所有标题按钮 */
 @property (nonatomic, strong) NSMutableArray *storageAlltitleBtn_mArr;
-/** 标题数组 */
-@property (nonatomic, strong) NSArray *title_Arr;
 /** 指示器 */
 @property (nonatomic, strong) UIView *indicatorView;
 /** 指示器是否宽度是否填充整个button宽度 */
@@ -147,7 +145,10 @@
     NSDictionary *attrs = @{NSFontAttributeName : font};
     return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 }
-
+- (void)setTitle_Arr:(NSArray *)title_Arr {
+    _title_Arr = title_Arr;
+    [self title_btn];
+}
 #pragma mark - - - 普通标题样式
 - (UIButton *)title_btn {
     if (!_title_btn) {
@@ -201,8 +202,15 @@
         }
         _indicatorView.SG_centerX = firstButton.SG_centerX;
         [self addSubview:_indicatorView];
+    } else {
+        [self.storageAlltitleBtn_mArr enumerateObjectsUsingBlock:^(UIButton  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj setTitle:_title_Arr[idx] forState:(UIControlStateNormal)];
+
+        }];
     }
+    
     return _title_btn;
+
 }
 #pragma mark - - - 带有图片的标题样式且图片位于标题左边
 - (SGImageButton_Horizontal *)imageTitle_btnH {

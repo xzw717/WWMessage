@@ -47,7 +47,7 @@
     [self.priceLabel setSingleLineAutoResizeWithMaxWidth:(WIDTH - kEDGE * 2 - 61.5)/2];
     [self.countLabel setSingleLineAutoResizeWithMaxWidth:(WIDTH - kEDGE * 2 - 61.5)/2];
 
-    self.titleImageView.sd_layout.leftSpaceToView(self, kEDGE).centerYEqualToView(self).heightIs(61.5).widthEqualToHeight();
+    self.titleImageView.sd_layout.leftSpaceToView(self, kEDGE).centerYEqualToView(self).heightIs(274/3.f).widthEqualToHeight();
     self.nameLabel.sd_layout.leftSpaceToView(self.titleImageView, kEDGE).topEqualToView(self.titleImageView).heightIs(15);
     self.priceLabel.sd_layout.leftEqualToView(self.nameLabel).bottomEqualToView(self.titleImageView).heightIs(11);
     self.countLabel.sd_layout.rightSpaceToView(self, kEDGE).bottomEqualToView(self.priceLabel).heightIs(11);
@@ -56,6 +56,8 @@
 - (UIImageView *)titleImageView {
     if (!_titleImageView) {
         _titleImageView = [[UIImageView alloc]init];
+        _titleImageView.layer.masksToBounds = YES;
+        _titleImageView.layer.cornerRadius = 5.f;
     }
     return _titleImageView;
 }
@@ -63,7 +65,7 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc]init];
-        _nameLabel.font = [UIFont systemFontOfSize:15.f];
+        _nameLabel.font = [UIFont systemFontOfSize:40/3.f];
         _nameLabel.text = @"鸭腿饭";
     }
     return _nameLabel;
@@ -72,7 +74,7 @@
 - (UILabel *)priceLabel {
     if (!_priceLabel) {
         _priceLabel = [[UILabel alloc]init];
-        _priceLabel.font = [UIFont systemFontOfSize:11.f];
+        _priceLabel.font = [UIFont systemFontOfSize:40/3.f];
         _priceLabel.text = @"¥898";
     }
     return _priceLabel;
@@ -82,7 +84,7 @@
     if (!_countLabel) {
         _countLabel = [[UILabel alloc]init];
         _countLabel.textColor = [ManagerEngine getColor:@"8E8E8E"];
-        _countLabel.font = [UIFont systemFontOfSize:11.f];
+        _countLabel.font = [UIFont systemFontOfSize:36/3.f];
         _countLabel.text = @"x100";
     }
     return _countLabel;

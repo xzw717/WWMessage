@@ -33,14 +33,14 @@
         
         self.frame = CGRectMake(0, 0, CALScreenWidth, CALStatusBarHeight + CALNavigationBarHeight);
         self.layer.zPosition = INT_MAX;
-        self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
+        self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.8];
         
         
         
         /**
          *  标题
          */
-//        [self addSubview:self.scanQRCodeTitleLabel];
+        [self addSubview:self.scanQRCodeTitleLabel];
         [self addSubview:self.backButton];
     }
     
@@ -55,6 +55,7 @@
     _scanQRCodeTitleLabel                 = [[UILabel alloc] initWithFrame:CGRectMake(self.backButton.frame.size.width, CALStatusBarHeight, CALScreenWidth - (self.backButton.frame.size.width * 2), CALNavigationBarHeight)];
     _scanQRCodeTitleLabel.text            = @"扫一扫";
     _scanQRCodeTitleLabel.textAlignment   = NSTextAlignmentCenter;
+    _scanQRCodeTitleLabel.textColor       = [UIColor whiteColor];
     _scanQRCodeTitleLabel.font            = [UIFont systemFontOfSize:18];
     
     return _scanQRCodeTitleLabel;
@@ -67,7 +68,7 @@
     
     _backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, CALStatusBarHeight, 40, CALNavigationBarHeight)];
     
-    [_backButton setImage:[UIImage imageNamed:@"black_Button_Image"] forState:UIControlStateNormal];
+    [_backButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
     [_backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     return _backButton;

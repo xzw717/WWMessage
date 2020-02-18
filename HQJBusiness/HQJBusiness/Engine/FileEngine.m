@@ -88,4 +88,24 @@
     }
 }
 
++ (void)storeToolArray:(NSMutableArray *)array{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(array==nil)
+    {
+        [defaults setObject:@"" forKey:@"ToolItem"];
+    }
+    else
+    {
+        [defaults setObject:array forKey:@"ToolItem"];
+    }
+    [defaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:StoreAddTool object:nil userInfo:nil];
+
+}
+
+    
+
+
+
 @end

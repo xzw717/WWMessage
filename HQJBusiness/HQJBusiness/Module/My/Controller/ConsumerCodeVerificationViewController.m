@@ -43,7 +43,7 @@
                 [self presentViewController:SVC animated:YES completion:nil];
                 
             } else {
-                ManuallyAddViewController *ManuallyAddVC = [[ManuallyAddViewController alloc]init];
+                ManuallyAddViewController *ManuallyAddVC = [[ManuallyAddViewController alloc]initWithNavType:HQJNavigationBarWhite];
                 [self.navigationController pushViewController:ManuallyAddVC animated:YES];
             }
         } forControlEvents:UIControlEventTouchUpInside];
@@ -65,7 +65,7 @@
             
         } else if (stateCode == 1) {
             
-            VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]initWithOrderId:infos.userInfo[@"orderid"] consumerCode:infos.userInfo[@"salecode"]];
+            VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]initWithNavType:HQJNavigationBarWhite orderId:infos.userInfo[@"orderid"] consumerCode:infos.userInfo[@"salecode"]];
             [self.navigationController pushViewController:vc animated:YES];
             
             

@@ -44,9 +44,10 @@
 #import "LoginSingleton.h"
 #import "AppVersionManager.h"
 #import "HQJBAPIManage.h"
-#import "MBProgressHUD+NJ.h"
+#import "ZGProgressHUD+NJ.h"
+#import "UIView+CornerRadiusView.h"
 
-
+#import "HQJBaseSubVC.h"
 //#import "Manager.h"
 //#import "JKCountDownButton.h"
 //#import <MBProgressHUD/MBProgressHUD.h>
@@ -59,12 +60,14 @@
 #define AppSel_URL @"http://test.chenjianping.com/" //测试接口
 #define Api_URL @"http://test.chenjianping.com/Api4/" // 测试接口
 
+
+
 /******   商品列表接口---测试   ***********/
 #define OrderTest_URL @"http://shopdevelop.heqijia.net/"
 
 #define UpdataApp_URL @"http://apptest.heqijia.net/"
-
-
+//优惠券h5测试域名
+#define Conpon_URL @"http://192.168.16.182:8080/" //测试接口
 //#define AppSel_URL @"http://www.chenjianping.com/AppSel2/" //开发接口
 //#define Api_URL @"http://www.chenjianping.com/Api4/"  // 开发接口
 //
@@ -81,6 +84,10 @@
 #define Api_URL @"http://www.ww1000.cn/Api4/"
 #define OrderTest_URL @"http://shop.wuwuditu.com/"/************************商品列表接口---正式*************************/
 #define UpdataApp_URL @"http://app.heqijia.net/"
+//优惠券h5正式域名
+#define Conpon_URL @"http://statics.wuwuditu.com/" //测试接口
+
+
 #endif
 
 #define ImageTest_URL @"http://wuwuditu.img-cn-hangzhou.aliyuncs.com/"
@@ -103,11 +110,14 @@
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 
 //#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-
+/// 新的比例
+#define  NewProportion(a) (a / 3.f)
 /// ---  导航控制器高度
 #define  NavigationControllerHeight  ([ManagerEngine isIPhoneXSeries] ?  88.f : 64.f)
 /// ---  TabBar 高度
 #define  ToolBarHeight ([ManagerEngine isIPhoneXSeries] ?  83.f : 49.f)
+/// ---  TabBar 安全区
+#define  ToolBarSafetyZoneHeight ([ManagerEngine isIPhoneXSeries] ?  83.f - 49.f : 0.f)
 /// --- 状态栏
 #define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
 
@@ -124,6 +134,10 @@
 
 #define S_XRatioW(o)  (o / 375.0f * [UIScreen mainScreen].bounds.size.width)
 #define S_XRatioH(o)  (o / 812.0f * [UIScreen mainScreen].bounds.size.height)
+
+/// 表格圆角
+#define TableViewCellCornerRadius (20/3.f)
+
 
 #define CustomWindow    [UIApplication sharedApplication].keyWindow
 
@@ -144,15 +158,21 @@
 
 
 
-#define DefaultAPPColor  [ManagerEngine getColor:@"18abf5"]
+#define DefaultAPPColor  [ManagerEngine getColor:@"20a0ff"]
 
 #define RedColor  [ManagerEngine getColor:@"ff4949"]
 #define YellowColor  [ManagerEngine getColor:@"ffc82c"]
 #define GreenColor  [ManagerEngine getColor:@"13ce66"]
 #define GrayColor  [ManagerEngine getColor:@"b9b9b9"]
 
+#define CreateStoreTreasure @"CreateStoreTreasure"
+#define CreateStoreTreasureKey @"CreateStoreTreasureKey"
+#define StoreAddTool @"StoreAddTool"
 
-
+/// 扫一扫手电筒
+#define FlashLight @"FlashLight"
+/// 手动核销
+#define Validation @"Validation"
 ///收钱到账语音提醒是否已经开启
 #define CollectMoney [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"CollectMoney"]
 /// 新订单语音提醒是否已经开启
@@ -161,5 +181,19 @@
 #define AutomaticallyPrintOrders  [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"AutomaticallyPrintOrders"]
 /// 自动打印订单
 #define BindingEquipment  [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"BluetoothState"]
+/// 首页工具集合
+#define ToolItem [[NSUserDefaults standardUserDefaults] objectForKey:@"ToolItem"]
+
+
+
+///// 是否已经阅读发布规则则
+#define SetHaveAgreed [[NSUserDefaults standardUserDefaults] setObject:@"已阅读" forKey:@"HaveAgreedTo"]
+#define GetHaveAgreed [[NSUserDefaults standardUserDefaults] objectForKey:@"HaveAgreedTo"]
+#define RemoveHaveAgreed [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"HaveAgreedTo"]
+
+//#define SelectName @"SelectNanem"
+//#define OperationName @"OperationName"
+
+
 
 #endif /* HQJBusinessHeader_pch */

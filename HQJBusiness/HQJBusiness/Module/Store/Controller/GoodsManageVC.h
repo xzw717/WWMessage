@@ -7,7 +7,6 @@
 //
 
 #import "HQJBaseSubVC.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GoodsManageVC : HQJBaseSubVC

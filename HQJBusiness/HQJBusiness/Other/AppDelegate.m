@@ -15,7 +15,7 @@
 #import "VerificationOrderDetailsViewController.h"
 #import "RemotePushOrderModel.h"
 #import "ZGAudioManager.h"
-
+#import "ZW_TabBar.h"
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
 // iOS10 注册 APNs 所需头文件
@@ -62,7 +62,9 @@
         [self goLogin];
         
     } else {
-        delegate.window.rootViewController = [ZWTabBarViewController  new];
+        delegate.window.rootViewController = [ZW_TabBar sharedInstance];
+
+//        delegate.window.rootViewController = [ZWTabBarViewController  new];
 
     }
     [self initializeAutoValue];
@@ -137,6 +139,10 @@
         [userDefaults setObject:@"开" forKey:@"CollectMoney"];
         [userDefaults setObject:@"开" forKey:@"newOrder"];
     }
+    NSMutableArray *toolArray =[NSMutableArray arrayWithArray:@[@[@"经营有道",@"tool_icon_manage"],@[@"流量手册",@"tool_icon_flow"]]];
+    
+    [FileEngine storeToolArray:toolArray];
+    
 }
 
 #pragma mark --- 极光推送

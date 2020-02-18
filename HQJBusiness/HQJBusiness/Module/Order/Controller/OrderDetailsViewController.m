@@ -20,6 +20,7 @@
 #import "GoodsModel.h"
 #import "BlueToothVC.h"
 #import "JWBluetoothManage.h"
+#import "OrderNoteCell.h"
 @interface OrderDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     JWBluetoothManage * manage;
 }
@@ -28,7 +29,7 @@
 @property (nonatomic, strong) OrderModel *dataModel;
 @property (nonatomic, strong) NSString *mobileStr;
 @property (nonatomic, strong) NSString *nameStr;
-
+@property (nonatomic, strong)  NSString *couponTypeNam;
 @end
 
 @implementation OrderDetailsViewController
@@ -50,33 +51,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"订单详情";
+    @weakify(self);
     [OrderViewModel requestCustomerInformationWith:self.dataModel.userid complete:^(NSString *mobile, NSString *realname) {
+        @strongify(self)
         self.mobileStr = mobile;
         self.nameStr = realname;
         [self.orderDetailsTableView reloadData];
     }];
+    if (self.dataModel.couponsid) {
+        [OrderViewModel requestCouponTypeWithid:self.dataModel.couponsid complete:^(NSString *couponType) {
+              @strongify(self)
+            self.couponTypeNam = couponType;
+            [self.orderDetailsTableView reloadData];
+
+        }];
+    }
+  
+    
     [self.view addSubview:self.orderDetailsTableView];
 }
-
+- (CGFloat)orderNoteHeight {
+    CGFloat w = WIDTH - (15  + 12) * 2;
+    CGSize labelsize  = [self.note
+                         boundingRectWithSize:CGSizeMake(w, CGFLOAT_MAX)
+                         options:NSStringDrawingUsesLineFragmentOrigin
+                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.f weight:UIFontWeightMedium]}
+                         context:nil].size;
+    return labelsize.height + 15 + 18 +1 ;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.note && ![self.note isEqualToString:@"(null)"] && ![self.note isEqualToString:@""] ) {
+        return 4;
+    } else {
+      return  3;
+    }
     
     
-    return 3;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row != 0) {
         return 65.f;
-    }
-    return 44;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 || section == 2) {
-        return 2;
+    } else if (indexPath.section == 3 && indexPath.row != 0) {
+        return [self orderNoteHeight];
     } else {
-        return self.dataModel.goodslist.count + 2;
+        return 44;
 
     }
-   
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0 || section == 2 ||section == 3) {
+        return 2;
+    } else {
+        
+        return self.dataModel.goodslist.count + 2;
+        
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01;
@@ -107,7 +137,7 @@
             }];
             return cell;
         }
-       
+        
     } else if (indexPath.section == 1 ) {
         if (indexPath.row == 0) {
             OrderDetailsOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsOneCell class])];
@@ -115,23 +145,26 @@
             return cell;
         } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
             OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = self.dataModel.price;
+            cell.priceStr = [self.dataModel.actualpayment floatValue];
+            if (self.couponTypeNam) {
+                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+            }
             return cell;
         } else {
             
             OrderDetailsThreeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsThreeCell class])];
             GoodsModel *d_mdoel = self.dataModel.goodslist [indexPath.row - 1];
-
+            
             [cell goodsImage:d_mdoel.mainpicture goodsName:d_mdoel.goodsname goodsCount:d_mdoel.goodscount goodsPrice:d_mdoel.goodsprice * d_mdoel.goodscount];
             if (indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 2) {
                 [cell hiddenLiane:YES];
             } else {
                 [cell hiddenLiane:NO];
-
+                
             }
             return cell;
         }
-    } else {
+    } else if (indexPath.section == 2 ) {
         if (indexPath.row == 0) {
             OrderDetailsFiveCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
             cell.orderNumberStr = self.dataModel.nid;
@@ -143,11 +176,22 @@
             
         }
         
+    } else {
+        if (indexPath.row == 0) {
+            OrderDetailsOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsOneCell class])];
+            cell.statess = @"订单备注";
+            return cell;
+        }else {
+            OrderNoteCell *cell =  [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderNoteCell class])];
+            cell.noteLabel.text = [NSString stringWithFormat:@"备注：%@",self.note];
+            return cell;
+        }
+        
     }
- 
     
-
-//    return nil;
+    
+    
+    //    return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -179,6 +223,7 @@
         _orderDetailsTableView.delegate = self;
         _orderDetailsTableView.dataSource = self;
 //        _orderDetailsTableView.rowHeight = 44;
+        _orderDetailsTableView.showsVerticalScrollIndicator = NO;
         _orderDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _orderDetailsTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _orderDetailsTableView.tableHeaderView = self.headerView;
@@ -193,6 +238,7 @@
         [_orderDetailsTableView registerClass:[OrderDetailsFiveCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
         [_orderDetailsTableView registerClass:[OrderDetailsSixCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
 
+        [_orderDetailsTableView registerClass:[OrderNoteCell class] forCellReuseIdentifier:NSStringFromClass([OrderNoteCell class])];
 
 
     }
@@ -249,6 +295,9 @@
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:[NSString stringWithFormat:@"%@",self.dataModel.nid]];
     [printer appendTitle:@"下单时间" value:[ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",self.dataModel.date]]];
+     if (self.note && ![self.note isEqualToString:@"(null)"] && ![self.note isEqualToString:@""] ) {
+         [printer appendText:[NSString stringWithFormat:@"备注：%@",self.note]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
+    }
     [printer appendFooter:@"感谢您选择【物物地图】，欢迎您再次光临!"];
     [printer appendNewLine];
     [printer appendNewLine];
@@ -262,5 +311,6 @@
         }
     }];
 }
+
 
 @end

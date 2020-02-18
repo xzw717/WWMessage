@@ -8,6 +8,8 @@
 
 #import "HQJBaseVC.h"
 
+#define ChangeMessageNotification @"ChangeMessageNotification"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageVC : HQJBaseVC

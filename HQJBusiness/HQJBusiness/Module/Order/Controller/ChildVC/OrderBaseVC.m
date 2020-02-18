@@ -102,7 +102,34 @@ DZNEmptyDataSetDelegate>
 }
 
 
+- (CGFloat)orderNoteHeight:(NSString *)text {
+//    CGFloat w = WIDTH - 15 * 2;
+//    CGSize labelsize  = [text
+//                         boundingRectWithSize:CGSizeMake(w, CGFLOAT_MAX)
+//                         options:NSStringDrawingUsesLineFragmentOrigin
+//                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10.f weight:UIFontWeightMedium]}
+//                         context:nil].size;
+//    HQJLog(@"%f",labelsize.height + 11);
+    
 
+        CGFloat width = WIDTH - 15 * 2;
+     
+     
+     
+        NSMutableParagraphStyle * paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineSpacing = 6.0;
+        
+        NSDictionary * dict = @{NSFontAttributeName:[UIFont systemFontOfSize:10.5],
+                                NSParagraphStyleAttributeName:paragraph};
+        
+//        NSAttributedString * attribute = [[NSAttributedString alloc]
+//                                          initWithString:text attributes:dict];
+        //一定要先确定宽度，再根据宽度和字体计算size
+    CGSize size = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+  
+    
+    return ceil(size.height);
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -126,7 +153,6 @@ DZNEmptyDataSetDelegate>
        cell = [[OrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     OrderModel *model = self.listArray[indexPath.section];
-    HQJLog(@"所有id:%@",model.userid);
     cell.orderDate = [NSString stringWithFormat:@"%ld",(long)model.date];
     if (model.type == 1) {
         cell.orderGoodsModel = model.goodslist[indexPath.row];
@@ -135,18 +161,7 @@ DZNEmptyDataSetDelegate>
         cell.orderModel = model;
     }
     return cell;
-//    OrderModel *model = self.listArray[indexPath.row];
-//
-//    if (model.type == 2) {
-//        OrderOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderOneCell class ]) forIndexPath:indexPath];
-//        cell.model = model;
-//        return cell;
-//
-//http://shoptest.heqijia.net/order/shopfindorderlist.action?memberid=579ef84e8eb9b658215652&start=1&pageSize=15&type=2} else {
-//        OrderTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderTwoCell class]) forIndexPath:indexPath];
-//        cell.model = model;
-//        return cell;
-//    }
+
     
 }
 
@@ -156,9 +171,17 @@ DZNEmptyDataSetDelegate>
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
-    if (model.usedate) return 65.f;
-    return 44.f;
-    
+    if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
+        return 65 + [self orderNoteHeight:model.remark];
+    } else if (model.usedate) {
+        return 65.f;
+    } else {
+        return 44.f;
+    }
+//    if (model.usedate) return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
+//
+//    return 44.f;
+//    return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
     
 }
 

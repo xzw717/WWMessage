@@ -14,6 +14,10 @@
 @property (nonatomic, strong) UIButton *contactBuyerButton;
 @property (nonatomic, strong) UILabel *userDateLabel;
 @property (nonatomic, assign) BOOL isUseDate;
+
+@property (nonatomic, strong) UIView *orderNotelineView;
+@property (nonatomic, strong) UILabel *orderNoteLabel;
+@property (nonatomic, assign) BOOL isRemake;
 @end
 @implementation OrderTableViewFooterView
 
@@ -25,6 +29,9 @@
     [self.contentView addSubview:self.countPriceLabel];
     [self.contentView addSubview:self.contactBuyerButton];
     [self.contentView addSubview:self.userDateLabel];
+    [self.contentView addSubview:self.orderNoteLabel];
+    [self.contentView addSubview:self.orderNotelineView];
+
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self setLayout];
     
@@ -35,12 +42,16 @@
                     count:(NSInteger)count
                 isUseDate:(BOOL)isUseDate {
     self.isUseDate = isUseDate;
+    self.isRemake = model.remark && ![model.remark isEqualToString:@"(null)"] ? YES : NO;
+    self.orderNotelineView.hidden = !self.isRemake;
+    self.orderNoteLabel.hidden = !self.isRemake;
     [self sd_clearViewFrameCache];
     [self setLayout];
     self.timerLabel.text = [NSString stringWithFormat:@"下单时间：%@",[ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",model.date]]];
     if (model.type == 1) {
         if ([model.state isEqualToString:@"待使用"]) {
             self.contactBuyerButton.hidden = NO;
+            
         } else {
             self.contactBuyerButton.hidden = YES;
         }
@@ -56,7 +67,8 @@
     } else {
         self.userDateLabel.hidden = YES;
     }
-
+    
+    self.orderNoteLabel.text = [NSString stringWithFormat:@"备注：%@",model.remark];
     self.countPriceLabel.text = count  ? [NSString stringWithFormat:@"数量：%ld  合计：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"合计：¥%.2f",model.price];
 }
 
@@ -79,9 +91,14 @@
     } else {
          self.countPriceLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.timerLabel, 5).heightIs(15);
     }
-    
+  
  
-    self.contactBuyerButton.sd_layout.rightSpaceToView(self.contentView, 15).centerYEqualToView(self.contentView).widthIs(60).heightIs(30);
+    self.contactBuyerButton.sd_layout.rightSpaceToView(self.contentView, 15).topEqualToView(self.timerLabel).widthIs(60).heightIs(30);
+    if (self.isRemake) {
+        self.orderNotelineView.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contentView,0).topSpaceToView(self.countPriceLabel, 10).heightIs(0.5);
+        self.orderNoteLabel.sd_layout.leftEqualToView(self.timerLabel).rightEqualToView(self.contactBuyerButton).topSpaceToView(self.orderNotelineView, 0).bottomSpaceToView(self.contentView, 0);
+        
+    }
 }
 
 - (UILabel *)timerLabel {
@@ -110,6 +127,24 @@
 
     }
     return _countPriceLabel;
+}
+- (UIView *)orderNotelineView {
+    if (!_orderNotelineView) {
+        _orderNotelineView = [[UIView alloc]init];
+        _orderNotelineView.backgroundColor = [ManagerEngine getColor:@"D0D0D0"];
+        
+    }
+    return _orderNotelineView;
+}
+- (UILabel *)orderNoteLabel {
+    if (!_orderNoteLabel) {
+        _orderNoteLabel = [[UILabel alloc]init];
+        _orderNoteLabel.font = [UIFont systemFontOfSize:10.f];
+        _orderNoteLabel.numberOfLines = 0;
+        _orderNoteLabel.textColor = [ManagerEngine getColor:@"313131"];
+        
+    }
+    return _orderNoteLabel;
 }
 
 - (UIButton *)contactBuyerButton {

@@ -7,6 +7,7 @@
 //
 
 #import "HQJBaseSubVC.h"
+
 @interface DetailViewController : HQJBaseSubVC
 
 @end

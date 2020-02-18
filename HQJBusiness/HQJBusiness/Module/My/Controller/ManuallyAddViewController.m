@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.zw_title = @"手动添加";
+    self.title = @"手动添加";
     
     
     [self.view addSubview:self.backgroundView];
@@ -63,7 +63,11 @@
     
     [self setSignal];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    [self setNavType:HQJNavigationBarWhite];
+    
+}
 #pragma mark --
 #pragma mark --- 信号创建
 -(void)setSignal {

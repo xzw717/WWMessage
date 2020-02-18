@@ -32,23 +32,27 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"订单详情";
+    self.title = @"订单详情";
     self.listArray = [NSArray array];
     [self setView];
     [self loadRequst];
+    self.view.backgroundColor = DefaultBackgroundColor;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    [self setNavType:HQJNavigationBarWhite];
 
 }
-
-
-- (instancetype)initWithOrderId:(NSString *)str consumerCode:(NSString *)code {
-    self = [super init];
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type orderId:(NSString *)str consumerCode:(NSString *)code {
+    self = [super initWithNavType:type];
     if (self) {
         _orderString = str;
         _codeString  = code;
-
+        
     }
     return self;
 }
+
 
 - (void)loadRequst {
     @weakify(self);
@@ -83,11 +87,10 @@ UITableViewDataSource
     bottomSpaceToView(self.cancelButton, 12);
     
     self.orderDetailsTableView.sd_layout.
-    leftSpaceToView(self.view, 0).
-    rightSpaceToView(self.view, 0).
-    topSpaceToView(self.view, NavigationControllerHeight + 10 ).
+    leftSpaceToView(self.view, 10).
+    rightSpaceToView(self.view, 10).
+    topSpaceToView(self.view,20 ).
     bottomSpaceToView(self.confirmButton, 10);
-//    self.orderDetailsTableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
     self.orderDetailsTableView.didFinishAutoLayoutBlock = ^(CGRect frame) {
     };
 
@@ -114,6 +117,7 @@ UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GoodsVerificationModel *goodsModel = self.model.goodslist[indexPath.row];
     VerificationOrderDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ordercell" forIndexPath:indexPath];
+    
     [cell settitleImage:goodsModel.mainpicture name:goodsModel.goodsname price:goodsModel.goodsprice count:goodsModel.goodscount];
     return cell;
     
@@ -124,12 +128,18 @@ UITableViewDataSource
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     OrderDetailsHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"orderHeaderView"];
     view.orderNumber = _orderString;
+//    [self cornerRadiusWithView:view];
+    [view cornerRadiusWithType:UIRectCornerTopLeft|UIRectCornerTopRight radiusCount:TableViewCellCornerRadius];
+
+
     return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     OrderDetailFootView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"orderFootView"];
     [view orderTime:[ManagerEngine reverseSwitchTimer:self.model.time] count:!self.model.count ?@"":self.model.count allPrice:[NSString stringWithFormat:@"%.2f",self.model.price]];
+//    [self cornerRadiusWithView:view];
+    [view cornerRadiusWithType:UIRectCornerBottomLeft|UIRectCornerBottomRight radiusCount:TableViewCellCornerRadius];
     return view;
 }
 
@@ -144,7 +154,7 @@ UITableViewDataSource
             @strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.listArray.count <= 1) {
-                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 + NavigationControllerHeight -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
+                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 +  -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 } else {
                     self.watermarkImageView.sd_layout.topSpaceToView(self.view, 94 + NavigationControllerHeight + 10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 }
@@ -174,10 +184,13 @@ UITableViewDataSource
         _orderDetailsTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _orderDetailsTableView.delegate = self;
         _orderDetailsTableView.dataSource = self;
-        _orderDetailsTableView.rowHeight = 84;
+        _orderDetailsTableView.rowHeight = 374/3.f;
+//        _orderDetailsTableView.layer.masksToBounds = YES;
+//        _orderDetailsTableView.layer.cornerRadius = VODTableViewCellCornerRadius;
         _orderDetailsTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         UIView *view = [UIView new];
         view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _orderDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _orderDetailsTableView.tableFooterView = view;
         [_orderDetailsTableView registerClass:[VerificationOrderDetailsCell class] forCellReuseIdentifier:@"ordercell"];
         [_orderDetailsTableView registerClass:[OrderDetailsHeaderView class] forHeaderFooterViewReuseIdentifier:@"orderHeaderView"];
@@ -193,7 +206,7 @@ UITableViewDataSource
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirmButton.backgroundColor = DefaultAPPColor;
         _confirmButton.layer.masksToBounds = YES;
-        _confirmButton.layer.cornerRadius  = 5.f;
+        _confirmButton.layer.cornerRadius  = 22.f;
         [_confirmButton setTitle:@"核销订单" forState:UIControlStateNormal];
         [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_confirmButton addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
@@ -206,7 +219,7 @@ UITableViewDataSource
         _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _cancelButton.layer.borderWidth  = 1.f;
         _cancelButton.layer.masksToBounds = YES;
-        _cancelButton.layer.cornerRadius  = 5.f;
+        _cancelButton.layer.cornerRadius  = 22.f;
         _cancelButton.layer.borderColor = DefaultAPPColor.CGColor;
         [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];

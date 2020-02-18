@@ -7,6 +7,7 @@
 //
 
 #import "GoodsOrderVC.h"
+#import "OrderModel.h"
 #import "OrderDetailsViewController.h"
 @interface GoodsOrderVC ()
 
@@ -22,6 +23,7 @@
     [self setSelectRowBlock:^(OrderModel *model) {
         @strongify(self);
         OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
+        vc.note = model.remark;
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }

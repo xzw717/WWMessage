@@ -6,9 +6,9 @@
 //  Copyright © 2017年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HQJBaseSubVC.h"
 
-@interface VerificationOrderDetailsViewController : ZW_ViewController
+@interface VerificationOrderDetailsViewController : HQJBaseSubVC
 
-- (instancetype)initWithOrderId:(NSString *)str consumerCode:(NSString *)code;
+- (instancetype)initWithNavType:(HQJNavigationBarColor)type orderId:(NSString *)str consumerCode:(NSString *)code;
 @end

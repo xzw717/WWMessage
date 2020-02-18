@@ -30,6 +30,8 @@ extern NSString *const HQJBImageDomainName;
 extern NSString *const HQJBBonusDomainDeccaName;
 ///商品订单相关
 extern NSString *const HQJBBounsOrder;
+/// H5
+extern NSString *const HQJBH5DeccaName;
 /************************************域名（结束）**********************************************/
 
 
@@ -111,6 +113,43 @@ extern NSString *const HQJBGetZhRateInterface;
 extern NSString *const HQJBSetZhRateInterface;
 /// 现金销售
 extern NSString *const HQJBCashSalesInterface;
+/// 根据id查询优惠劵信息接口
+extern NSString *const HQJBGetCouponByIdInterface;
+
+
+#pragma mark ------------------------ 商家重构增加接口 ------------------------
+///通过短信验证码登录(发送短信)
+extern NSString *const HQJBGetLoginCodeInterface;
+///通过短信验证码登录
+extern NSString *const HQJBMerchantSmsLoginInterface;
+///服务商注册时发送手机短信R
+extern NSString *const HQJBRegisterCodeInterface;
+/// 店铺界面订单数据
+extern NSString *const HQJBShopfindorderstatecodeInterface;
+
+
+#pragma mark ------------------------ H5 ------------------------
+/// 创建店铺
+extern NSString *const HQJBCreateStoreInterface;
+/// 注册店铺审核失败
+extern NSString *const HQJBRegisteredStoreReviewFailedInterface;
+/// 注册信息填写完成
+extern NSString *const HQJBRegistrationInformationCompletedInterface;
+/// 升级/升级失败修改信息
+extern NSString *const HQJBUpgradeUnsuccessfulInterface;
+/// 升级规则
+extern NSString *const HQJBUpgradeRuleInterface;
+/// 发布规范
+extern NSString *const HQJBReleaseSpecificationInterface;
+/// 商家入驻协议
+extern NSString *const HQJBMerchantSettlementSgreementInterface;
+/// 头条
+extern NSString *const HQJBHeadlinesInterface;
+/// 创建店铺
+extern NSString *const HQJBCreateShopInterface;
+
+
+
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

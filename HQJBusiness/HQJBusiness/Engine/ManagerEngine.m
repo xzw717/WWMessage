@@ -14,6 +14,8 @@
 #import "UINavigationBar+Awesome.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "ReleaseRulesVC.h"
+#import "GoodsReleaseVC.h"
 static UILabel *alertLabel ;
 @class HomeViewController;
 @class NearViewController;
@@ -440,8 +442,7 @@ static const CGFloat  sAlertTimer = 3.0;
     label.attributedText = str;
 }
 
-+(CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
-    
++ (CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
      CGRect frame = [str boundingRectWithSize:CGSizeMake(1000, 1000)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
     
     
@@ -789,7 +790,7 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark --- 是否需要添加hash校验
 + (BOOL)isHash:(NSString *_Nonnull)urlString parameters:(id _Nonnull)parameters{
     
-    if ([urlString containsString:HQJBLoginCheckInterface]) {
+    if ([urlString containsString:HQJBLoginCheckInterface]||[urlString containsString:HQJBGetLoginCodeInterface]||[urlString containsString:HQJBMerchantSmsLoginInterface]||[urlString containsString:HQJBRegisterCodeInterface]) {
         return NO;
     }else if([urlString containsString:HQJBGetPwdSMSInterface]||[urlString containsString:HQJBInputNewpwdActionInterface]){
         NSDictionary *dict = parameters;
@@ -912,4 +913,40 @@ static const CGFloat  sAlertTimer = 3.0;
     
     return iPhoneXSeries;
 }
+
+#pragma mark --- image 或 名称 转换
++ (UIImage *)conversionsImage:(id)image  {
+    if ([[image class]isEqual:[UIImage class]]) {
+        return image;
+    } else {
+        return [UIImage imageNamed:image];
+    }
+}
+
++ (void)alertMessage:(NSString *)mesg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:mesg preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
+}
+
++ (void)goodsRelease {
+    if (!GetHaveAgreed) {
+        ReleaseRulesVC *vc = [[ReleaseRulesVC alloc]initWithNavType:HQJNavigationBarWhite];
+        vc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainDeccaName,HQJBHeadlinesInterface];
+        vc.isInitiative = NO;
+        [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
+    } else {
+        GoodsReleaseVC *vc = [[GoodsReleaseVC alloc]initWithNavType:HQJNavigationBarWhite buttonStyle:ReleaseButtonStylePublishNow controllerTitle:@"商品发布"];
+        [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
+    }
+}
+
++ (CGFloat) heightForString:(NSString *)value fontSize:(CGFloat)fontSize andWidth:(CGFloat)width {
+    CGRect rect = [value boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil];
+    return ceil(rect.size.height);
+}
+
+
+
+
 @end

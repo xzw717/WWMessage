@@ -172,4 +172,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark --- 开闪光灯
+- (void)openFlash {
+    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError *error = nil;
+    
+    if ([captureDevice hasTorch]) {
+        BOOL locked = [captureDevice lockForConfiguration:&error];
+        if (locked) {
+            captureDevice.torchMode = AVCaptureTorchModeOn;
+            [captureDevice unlockForConfiguration];
+        }
+    }
+}
+
+#pragma mark --- 关闪光灯
+- (void)closeFlash {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch]) {
+        [device lockForConfiguration:nil];
+        [device setTorchMode: AVCaptureTorchModeOff];
+        [device unlockForConfiguration];
+    }
+
+}
 @end

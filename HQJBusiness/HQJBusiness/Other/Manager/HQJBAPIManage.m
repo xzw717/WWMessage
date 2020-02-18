@@ -20,6 +20,8 @@ NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/mer
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+/// H5 域名
+NSString *const HQJBH5DeccaName = @"http://47.98.45.218/";
 
 #else         //发布阶段
 
@@ -36,6 +38,7 @@ NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 
 
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
+NSString *const HQJBH5DeccaName = @"http://47.98.45.218/shopH5/register/#/";
 
 #endif
 
@@ -125,6 +128,41 @@ NSString *const HQJBCashSalesInterface = @"cashSells";
 /// 删除银行卡
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
 
+#pragma mark ------------------------ 商家重构增加接口 ------------------------
+///通过短信验证码登录(发送短信)
+NSString *const HQJBGetLoginCodeInterface = @"getLoginCode";
+///通过短信验证码登录
+NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
+///服务商注册时发送手机短信R
+NSString *const HQJBRegisterCodeInterface = @"registerCode";
+/// 店铺界面订单数据
+NSString *const HQJBShopfindorderstatecodeInterface = @"order/shopfindorderstatecode.action";
+
+
+
+
+#pragma mark ------------------------ H5 ------------------------
+/// 创建店铺
+NSString *const HQJBCreateStoreInterface = @"newstore";
+/// 注册店铺审核失败
+NSString *const HQJBRegisteredStoreReviewFailedInterface = @"storemessage";
+/// 注册信息填写完成
+NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
+/// 升级/升级失败修改信息
+NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
+/// 升级规则
+NSString *const HQJBUpgradeRuleInterface = @"shopH5/register/#/upgradeAgreement";
+/// 发布规范
+NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishAgreement";
+/// 商家入驻协议
+NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
+/// 头条
+NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
+/// 创建店铺
+NSString *const HQJBCreateShopInterface = @"newstore?mobile=13855555555";
+
+/// 根据id查询优惠劵信息接口
+NSString *const HQJBGetCouponByIdInterface =  @"coupon/app/getCouponById";
 @implementation HQJBAPIManage
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DeccaDownloadViewController : ZW_ViewController
+@interface DeccaDownloadViewController : HQJBaseSubVC
 
 @end

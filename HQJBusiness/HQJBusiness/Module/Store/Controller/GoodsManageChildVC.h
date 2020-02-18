@@ -1,0 +1,27 @@
+//
+//  GoodsManageChildVC.h
+//  HQJBusiness
+//
+//  Created by mymac on 2019/7/9.
+//  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "GoodsManageViewModel.h"
+NS_ASSUME_NONNULL_BEGIN
+
+@interface GoodsManageChildVC : UIViewController
+
+
+
+@property (nonatomic, strong) NSMutableArray *selectArray;
+@property (nonatomic, strong) UITableView *goodsTableView;
+
+@property (nonatomic, strong) GoodsManageViewModel *viewModel;
+
+//@property (nonatomic, strong)  *name;
+- (void)setGoodsType:(NSInteger)type;
+
+@end
+
+NS_ASSUME_NONNULL_END

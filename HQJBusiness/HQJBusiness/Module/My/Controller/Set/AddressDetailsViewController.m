@@ -23,10 +23,15 @@
     
     return _addsLabel;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navType = HQJNavigationBarBlue;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.zw_title = @"地址";
+    self.title = @"地址";
     
     UIView *backgroundView = [[UIView alloc]init];
     

@@ -308,4 +308,29 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (BOOL)isIPhoneXSeries;
 
+/**
+ 字符串和image 通用 返回 UIImage 对象
+ 
+ @param image 所需转换的对象
+ @return image 对象
+ */
++ (UIImage *)conversionsImage:(id)image ;
+
+/**
+ 系统提示框只显示提示消息和确定按钮
+
+ @param mesg 消息内容
+ */
++ (void)alertMessage:(NSString *)mesg;
+
+
+/**
+ 商品发布判断
+ */
++ (void)goodsRelease;
+/*
+ 根据文字大小，宽度 返回 文字高度
+ */
++ (CGFloat) heightForString:(NSString *)value fontSize:(CGFloat)fontSize andWidth:(CGFloat)width;
+
 @end

@@ -32,6 +32,10 @@ typedef enum : NSUInteger {
 /** 根据下标，选中对应的控制器 */
 @property (nonatomic, assign) NSInteger selectedIndex;
 
+/** 标题数组 */
+@property (nonatomic, strong) NSArray *title_Arr;
+
+
 @property (nonatomic, weak) id<SGSegmentedControlStaticDelegate> delegate_SG;
 
 /**

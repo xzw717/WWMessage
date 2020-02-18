@@ -6,11 +6,11 @@
 //  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "HQJBaseVC.h"
+#import "ProtocolViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HeadlineVC : HQJBaseVC
+@interface HeadlineVC : ProtocolViewController
 
 @end
 

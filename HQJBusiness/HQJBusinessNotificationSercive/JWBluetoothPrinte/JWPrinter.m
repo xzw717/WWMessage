@@ -225,17 +225,29 @@
  */
 - (void)setOffsetText:(NSString *)text
 {
+    [self setOffsetText:text title:nil];
+}
+- (void)setOffsetText:(NSString *)text title:(NSString *)title
+{
     // 1.计算偏移量,因字体和字号不同，所以计算出来的宽度与实际宽度有误差(小字体与22字体计算值接近)
     NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:22.0]};
-    NSAttributedString *valueAttr = [[NSAttributedString alloc] initWithString:text attributes:dict];
-    int valueWidth = valueAttr.size.width;
-    NSLog(@"内容文字宽度：%d",valueWidth);
-
-    // 2.设置偏移量
-    [self setOffset:368 - valueWidth];
-    
-    // 3.设置文字
+     NSAttributedString *valueAttr = [[NSAttributedString alloc] initWithString:text attributes:dict];
+     int valueWidth = valueAttr.size.width;
+     NSLog(@"内容文字宽度：%d",valueWidth);
+    if (!title) {
+         // 2.设置偏移量
+         [self setOffset:368 - valueWidth];
+         
+    } else {
+        if ([title isEqualToString:@"下单时间"]) {
+                 // 2.设置偏移量
+                 [self setOffset:368 - valueWidth - 12];
+                 // 3.设置文字
+        }
+    }
     [self setText:text];
+
+ 
 }
 
 /**
@@ -384,9 +396,14 @@
     [self setFontSize:fontSize];
     // 3.设置标题内容
     [self setSubText:title];
+    if (![title isEqualToString:@"下单时间"]) {
+        // 4.设置实际值
+        [self setOffsetText:value];
+    } else  {
+        // 4.设置实际值
+        [self setOffsetText:value title:title];
+    }
 
-    // 4.设置实际值
-    [self setOffsetText:value];
     // 5.换行
     [self appendNewLine];
     if (fontSize != HLFontSizeTitleSmalle) {
