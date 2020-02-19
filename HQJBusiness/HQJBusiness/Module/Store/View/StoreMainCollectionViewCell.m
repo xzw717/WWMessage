@@ -77,7 +77,6 @@
    
 }
 - (void)setModel:(StoreModel *)model {
-    
     if ([self.storeTitleStr isEqualToString:@"今日订单数"]) {
         self.contentLabel.text = model.todayCounts ? model.todayCounts : @"0";
     } else if ([self.storeTitleStr isEqualToString:@"商品订单"]) {
@@ -92,12 +91,6 @@
         self.contentLabel.text = model.evaluateCounts ? model.evaluateCounts : @"0";
     } else if ([self.storeTitleStr isEqualToString:@"待核销订单"]) {
         self.contentLabel.text = model.unwrittenCounts ? model.unwrittenCounts : @"0";
-    } else if ([self.storeTitleStr isEqualToString:@"出售中"]) {
-        self.contentLabel.text =  @"0";
-    } else if ([self.storeTitleStr isEqualToString:@"已下架"]) {
-        self.contentLabel.text =  @"0";
-    } else if ([self.storeTitleStr isEqualToString:@"草稿中"]) {
-        self.contentLabel.text =  @"0";
     } else {
         self.contentLabel.text = @"";
 

@@ -137,7 +137,7 @@ NSString *const NotificationMessage           = @"NotificationMessageName";
     StoreVC *storeVC = [[StoreVC alloc]init];//--个人信息
     ZWNavigationController *storeNvc =[[ZWNavigationController alloc]initWithRootViewController:storeVC];
     [self setTabBarItem:storeVC.tabBarItem Title:@"店铺" selectedImage:@"tabbar_ placeholder_icon" tag:10086];
-//    storeNvc.topViewController.title = @"111";
+
     
     MessageVC *messageVC = [[MessageVC alloc]init];
     ZWNavigationController *messageNav = [[ZWNavigationController alloc]initWithRootViewController:messageVC];

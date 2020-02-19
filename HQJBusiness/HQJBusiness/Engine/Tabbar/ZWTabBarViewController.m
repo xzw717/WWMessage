@@ -134,7 +134,8 @@
     pulse.autoreverses= YES;
     pulse.fromValue= [NSNumber numberWithFloat:0.7];
     pulse.toValue= [NSNumber numberWithFloat:1.3];
-//    [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:nil];
+    [[tabbarbuttonArray[index] layer]
+     addAnimation:pulse forKey:nil];
 }
 
 /*
