@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052616032411E5A900EF844E /* SignNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052616022411E5A800EF844E /* SignNameViewController.m */; };
+		052616062411EE9100EF844E /* UploadImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 052616052411EE9000EF844E /* UploadImageViewModel.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
 		1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CB21E08E04D006D6EB2 /* ToAuditViewController.m */; };
@@ -447,6 +449,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		052616012411E5A800EF844E /* SignNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignNameViewController.h; sourceTree = "<group>"; };
+		052616022411E5A800EF844E /* SignNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignNameViewController.m; sourceTree = "<group>"; };
+		052616042411EE9000EF844E /* UploadImageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageViewModel.h; sourceTree = "<group>"; };
+		052616052411EE9000EF844E /* UploadImageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageViewModel.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F016C7B1F6A7D4200716C82 /* GoodsVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVerificationModel.h; sourceTree = "<group>"; };
 		1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVerificationModel.m; sourceTree = "<group>"; };
@@ -2741,6 +2747,8 @@
 				1F88546722D2EC7C00B5DE7B /* MineViewController.m */,
 				2082634B22D43A370058FD58 /* ShopManagerViewController.h */,
 				2082634A22D43A370058FD58 /* ShopManagerViewController.m */,
+				052616012411E5A800EF844E /* SignNameViewController.h */,
+				052616022411E5A800EF844E /* SignNameViewController.m */,
 				2082635322D4418F0058FD58 /* ShopInfoViewController.h */,
 				2082635422D4418F0058FD58 /* ShopInfoViewController.m */,
 				203B4CDD22D6D1DA0037E9F7 /* ContactManagerViewController.h */,
@@ -2811,6 +2819,8 @@
 		204E917B22CC8EA9006BD23C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				052616042411EE9000EF844E /* UploadImageViewModel.h */,
+				052616052411EE9000EF844E /* UploadImageViewModel.m */,
 				204E917C22CC8EA9006BD23C /* MineViewModel.h */,
 				1F88546822D2EC9200B5DE7B /* MineViewModel.m */,
 				2082634E22D43BAC0058FD58 /* ShopManagerViewModel.h */,
@@ -3228,6 +3238,7 @@
 				204E918022CC8EAA006BD23C /* MineCell.m in Sources */,
 				1FC5F4E422D817990029F53C /* GoodsReleaseUploadPicturesCell.m in Sources */,
 				1F12F7511E1635FE0056DF9A /* openssl_wrapper.m in Sources */,
+				052616032411E5A900EF844E /* SignNameViewController.m in Sources */,
 				1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */,
 				1F88545D22CF23A700B5DE7B /* OrderManageCell.m in Sources */,
 				1F960D2B1DFE3E51003E3D17 /* NSOrderedSet+BlocksKit.m in Sources */,
@@ -3370,6 +3381,7 @@
 				1FC5F4FF22D883910029F53C /* EvaluationTextView.m in Sources */,
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
 				1FB3D2B022C5A3FB0008CB2A /* StoreVC.m in Sources */,
+				052616062411EE9100EF844E /* UploadImageViewModel.m in Sources */,
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
 				1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */,

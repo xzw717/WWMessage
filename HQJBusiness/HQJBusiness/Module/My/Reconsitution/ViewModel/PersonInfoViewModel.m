@@ -9,7 +9,7 @@
 #import "PersonInfoViewModel.h"
 #import "PersonInfoCell.h"
 #import "PersonInfoImageCell.h"
-
+#import "SignNameViewController.h"
 #import "ZWActionSheetView.h"
 
 @interface PersonInfoViewModel ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -90,6 +90,13 @@
             case 2:
                 
             case 3:
+                
+            case 4:{
+                SignNameViewController *sv = [[SignNameViewController alloc]init];
+                [self.superVC.navigationController pushViewController:sv animated:YES];
+            }
+                    
+            case 5:
                 
                 
             default:

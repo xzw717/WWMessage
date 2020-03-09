@@ -333,4 +333,8 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (CGFloat) heightForString:(NSString *)value fontSize:(CGFloat)fontSize andWidth:(CGFloat)width;
 
+
+#pragma mark --- 调整图片尺寸和大小
++ (NSData *)reSizeImageData:(UIImage *)sourceImage maxImageSize:(CGFloat)maxImageSize maxSizeWithKB:(CGFloat) maxSize;
+
 @end

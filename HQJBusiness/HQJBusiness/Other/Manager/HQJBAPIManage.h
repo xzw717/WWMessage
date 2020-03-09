@@ -126,6 +126,17 @@ extern NSString *const HQJBShopfindorderstatecodeInterface;
 extern NSString *const HQJBMessageDataInterface;
 /// 通知列表接口
 extern NSString *const HQJBNoticeDataInterface;
+/// 店铺上传Logo及主图接口及头像
+extern NSString *const HQJBUploadpicInterface;
+/// 保存个性签名
+extern NSString *const HQJBSaveSignNameInterface;
+///判断商家信息是否完善接口
+extern NSString *const HQJBIsPerfectInterface;
+///我的页面返回个人信息接口
+extern NSString *const HQJBShopDetailInterface;
+/////商家基本信息修改接口
+extern NSString *const HQJBUpdateInformationInterface;
+
 #pragma mark ------------------------ H5 ------------------------
 /// 创建店铺
 extern NSString *const HQJBCreateStoreInterface;

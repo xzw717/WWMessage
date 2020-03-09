@@ -136,6 +136,16 @@ NSString *const HQJBShopfindorderstatecodeInterface = @"order/shopfindorderstate
 NSString *const HQJBMessageDataInterface = @"newShopApi/messageData.action";
 /// 通知列表接口
 NSString *const HQJBNoticeDataInterface = @"newShopApi/noticeData.action";
+/// 店铺上传Logo及主图接口及头像
+NSString *const HQJBUploadpicInterface = @"newShopApi/uploadpic.action";
+/// 保存个性签名
+NSString *const HQJBSaveSignNameInterface = @"newShopApi/saveSignName.action";
+///判断商家信息是否完善接口
+NSString *const HQJBIsPerfectInterface = @"newShopApi/isPerfect.action";
+///我的页面返回个人信息接口
+NSString *const HQJBShopDetailInterface = @"newShopApi/shopDetail.action";
+///商家基本信息修改接口
+NSString *const HQJBUpdateInformationInterface = @"newShopApi/updateInformation.action";
 
 
 #pragma mark ------------------------ H5 ------------------------
