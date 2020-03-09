@@ -122,8 +122,10 @@ extern NSString *const HQJBMerchantSmsLoginInterface;
 extern NSString *const HQJBRegisterCodeInterface;
 /// 店铺界面订单数据
 extern NSString *const HQJBShopfindorderstatecodeInterface;
-
-
+/// 消息各类型未读数
+extern NSString *const HQJBMessageDataInterface;
+/// 通知列表接口
+extern NSString *const HQJBNoticeDataInterface;
 #pragma mark ------------------------ H5 ------------------------
 /// 创建店铺
 extern NSString *const HQJBCreateStoreInterface;

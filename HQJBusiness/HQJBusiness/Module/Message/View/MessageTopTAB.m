@@ -240,13 +240,13 @@
 {
     self = [super init];
     if (self) {
-        for (NSInteger i = 0; i < 3; i ++) {
+        for (NSInteger i = 0; i < [self titleName].count; i ++) {
             MessageTopBtn *messagRedView = [[MessageTopBtn alloc]init];
             messagRedView.userInteractionEnabled = YES;
             messagRedView.tag = i + 100;
             CGFloat tspacing = topImageHeight + 5 + 5 + topLabelFont + 5;
-            CGFloat twidth = (WIDTH - 20 - tspacing * 3 ) / 4;
-            CGFloat xg = i % 3;
+            CGFloat twidth = (WIDTH - 20 - tspacing * [self titleName].count ) / [self titleName].count +1;
+            CGFloat xg = i % [self titleName].count;
             CGFloat tx = twidth + (twidth + tspacing) * xg;
             messagRedView.frame = CGRectMake(tx , (100 - tspacing) / 2, tspacing,tspacing);
             messagRedView.top_img.image = [UIImage imageNamed:i == 0 ? [self selectImageName][i] :[self unselectImageName][i]];
@@ -264,24 +264,24 @@
 - (void)messageBtn:(UITapGestureRecognizer *)tap {
     MessageTopBtn *messagRedView =  [self viewWithTag:tap.view.tag];
     MessageTopBtn *firstMessagRedView ;
-    MessageTopBtn *lastMessagRedView ;
+//    MessageTopBtn *lastMessagRedView ;
     NSInteger tags = tap.view.tag - 100;
     !self.topViewSelectBlock ? : self.topViewSelectBlock(tags);
     if (tags == 0) {
         firstMessagRedView   =  [self viewWithTag:101];
-        lastMessagRedView   =  [self viewWithTag:102];
+//        lastMessagRedView   =  [self viewWithTag:102];
     }
     if (tags == 1) {
         firstMessagRedView   =  [self viewWithTag:100];
-        lastMessagRedView   =  [self viewWithTag:102];
+//        lastMessagRedView   =  [self viewWithTag:102];
     }
-    if (tags == 2) {
-        firstMessagRedView   =  [self viewWithTag:100];
-        lastMessagRedView   =  [self viewWithTag:101];
-    }
+//    if (tags == 2) {
+//        firstMessagRedView   =  [self viewWithTag:100];
+//        lastMessagRedView   =  [self viewWithTag:101];
+//    }
     [messagRedView _selectTopBtn:[self selectImageName][messagRedView.tag - 100]];
     [firstMessagRedView _UnSelectTopBtn:[self unselectImageName][firstMessagRedView.tag - 100]];
-    [lastMessagRedView _UnSelectTopBtn:[self unselectImageName][lastMessagRedView.tag - 100]];
+//    [lastMessagRedView _U nSelectTopBtn:[self unselectImageName][lastMessagRedView.tag - 100]];
    
 }
 
@@ -294,12 +294,12 @@
 }
 
 - (NSArray *)titleName {
-    return @[@"订单通知",@"重要通知",@"其他通知"];
+    return @[@"重要通知",@"其他通知"];
 }
 - (NSArray *)selectImageName {
-    return @[@"news-OrderNotification-on",@"news-Important-on",@"news-Other-on"];
+    return @[@"news-Important-on",@"news-Other-on"];
 }
 - (NSArray *)unselectImageName {
-    return @[@"news-OrderNotification",@"news-Important",@"news-Other"];
+    return @[@"news-Important",@"news-Other"];
 }
 @end

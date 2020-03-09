@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray <UITableView *>*vm_messageTableViews;
 @property (nonatomic, strong) MessageTopTAB *tabViwe;
 - (void)messageMenu:(UIView *)view ;
+- (void)requstMessageCount:(void(^)(NSInteger first,NSInteger last))complete;
 @end
 
 NS_ASSUME_NONNULL_END

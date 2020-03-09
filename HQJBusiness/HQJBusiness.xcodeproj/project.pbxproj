@@ -164,6 +164,7 @@
 		1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6798921DFE863000455561 /* MyTableViewCell.m */; };
 		1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DA1F6BB2C700BF8476 /* DeccaDownloadViewController.m */; };
 		1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */; };
+		1F7CB193240CD75600649D1B /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CB192240CD75600649D1B /* MessageModel.m */; };
 		1F7DD97D22D4691B00A906F9 /* GoodsManageChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DD97C22D4691B00A906F9 /* GoodsManageChildVC.m */; };
 		1F7DD98022D4694A00A906F9 /* SaleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DD97F22D4694A00A906F9 /* SaleVC.m */; };
 		1F7DD98322D4697800A906F9 /* SoldOutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DD98222D4697800A906F9 /* SoldOutVC.m */; };
@@ -812,6 +813,8 @@
 		1F6DA2DA1F6BB2C700BF8476 /* DeccaDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeccaDownloadViewController.m; sourceTree = "<group>"; };
 		1F6DA2DC1F6BB4E900BF8476 /* DeccaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeccaView.h; sourceTree = "<group>"; };
 		1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeccaView.m; sourceTree = "<group>"; };
+		1F7CB191240CD75600649D1B /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		1F7CB192240CD75600649D1B /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		1F7DD97B22D4691B00A906F9 /* GoodsManageChildVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsManageChildVC.h; sourceTree = "<group>"; };
 		1F7DD97C22D4691B00A906F9 /* GoodsManageChildVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsManageChildVC.m; sourceTree = "<group>"; };
 		1F7DD97E22D4694A00A906F9 /* SaleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleVC.h; sourceTree = "<group>"; };
@@ -1742,6 +1745,15 @@
 			path = JWProgressHUD;
 			sourceTree = "<group>";
 		};
+		1F7CB190240CD74400649D1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F7CB191240CD75600649D1B /* MessageModel.h */,
+				1F7CB192240CD75600649D1B /* MessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1F88546122D2EA0800B5DE7B /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -2457,9 +2469,9 @@
 		1FB3D29F22C5A3FB0008CB2A /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				1F7CB190240CD74400649D1B /* Model */,
 				1FB3D2A022C5A3FB0008CB2A /* ViewModel */,
 				1FB3D2A122C5A3FB0008CB2A /* Controller */,
-				1FB3D2A422C5A3FB0008CB2A /* Model */,
 				1FB3D2A522C5A3FB0008CB2A /* View */,
 			);
 			path = Message;
@@ -2483,13 +2495,6 @@
 				1F1B548922E5918A00D0FEB6 /* MessageDetailsVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1FB3D2A422C5A3FB0008CB2A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1FB3D2A522C5A3FB0008CB2A /* View */ = {
@@ -3312,6 +3317,7 @@
 				1F1B21D21DFFE30F00021AB2 /* CashSalesViewController.m in Sources */,
 				1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */,
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,
+				1F7CB193240CD75600649D1B /* MessageModel.m in Sources */,
 				1FEAF03C1F7B7CF9004E2F77 /* PaymentCodeViewController.m in Sources */,
 				1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */,
 				1F960D2A1DFE3E51003E3D17 /* NSObject+BKBlockObservation.m in Sources */,

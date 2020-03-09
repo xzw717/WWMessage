@@ -36,6 +36,11 @@
     [super viewDidLoad];
     [self messageVC_addSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMessage:) name:ChangeMessageNotification object:nil];
+    [self.viewModel requstMessageCount:^(NSInteger first, NSInteger last) {
+        [self.tabView addMessageNotice:0 messageCount: first];
+        [self.tabView addMessageNotice:1 messageCount: last];
+
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

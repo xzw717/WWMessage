@@ -9,6 +9,7 @@
 #import "MessageViewModel.h"
 #import "MenuManager.h"
 #import "MessageTopTAB.h"
+#import "MessageModel.h"
 @interface MessageViewModel ()
 @property (nonatomic, assign) NSInteger topBtnTag;
 @end
@@ -50,7 +51,35 @@
     return self;
 }
 
+- (void)requstMessageCount:(void(^)(NSInteger first,NSInteger last))complete {
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBMessageDataInterface];
+    NSDictionary *parameters = @{@"shopid":MmberidStr};
+    @weakify(self);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:parameters complete:^(NSDictionary *dic) {
+        @strongify(self);
+        !complete ? :complete([dic[@"resultMsg"][@"unreadImportantCounts"] integerValue],[dic[@"resultMsg"][@"unreadOtherCounts"]integerValue]);
+       
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
 
+
+- (void)requstMessagelist:(void(^)(NSArray *listModel))modelAry {
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBNoticeDataInterface];
+    NSDictionary *parameters = @{@"shopid":MmberidStr};
+    @weakify(self);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:parameters complete:^(NSDictionary *dic) {
+        @strongify(self);
+        if ([dic[@"resultCode"]integerValue] == 2400) {
+//            NSArray *ary = [MessageModel mj_keyValuesWithKeys:@[]]
+        }
+//        !complete ? :complete([dic[@"resultMsg"][@"unreadImportantCounts"] integerValue],[dic[@"resultMsg"][@"unreadOtherCounts"]integerValue]);
+       
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
 - (void)messageMenu:(UIView *)view {
     [MenuManager menushowForSender:view withMenuArray:@[@"标记全部已读"]  imageArray:nil textAlignment:NSTextAlignmentCenter doneBlock:^(NSInteger selectedIndex) {
         [self.tabViwe addMessageNotice:self.topBtnTag messageCount:0];
