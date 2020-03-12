@@ -20,6 +20,8 @@ NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/mer
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+/// 优惠券
+NSString *const WWMCouponDomain = @"http://47.98.45.218/";
 
 #else         //发布阶段
 
@@ -29,7 +31,8 @@ NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
-
+/// 优惠券
+NSString *const WWMCouponDomain = @"http://coupon.ww1000.cn:8080/";
 
 
 NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";

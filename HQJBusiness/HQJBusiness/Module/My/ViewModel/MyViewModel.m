@@ -66,7 +66,9 @@
             HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
 //            webvc.webTitleString = @"优惠券";
 //            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
-            webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",Conpon_URL,MmberidStr,HashCode];
+            webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",WWMCouponDomain
+                               ,MmberidStr,HashCode];
+            webvc.fd_interactivePopDisabled = YES;
             [xzw_self.navigationController pushViewController:webvc animated:YES];
             
         }

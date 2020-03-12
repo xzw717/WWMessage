@@ -34,7 +34,7 @@
 
     [userCC addScriptMessageHandler:self name:@"out"];
     [userCC addScriptMessageHandler:self name:@"exitWeb"];
-    
+    self.zwNavView.hidden = YES;
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
@@ -46,7 +46,9 @@
     NSString *url=[NSURL URLWithString:self.webUrlStr] ? self.webUrlStr : [self.webUrlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     
-    
+    if (@available(iOS 11.0, *)) {
+     self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
