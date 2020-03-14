@@ -22,27 +22,27 @@
     if (self) {
         @weakify(self);
 //        self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
-        [self setTopViewSelectViewModle:^(NSInteger tag) {
-            @strongify(self);
-            self.topBtnTag = tag;
-//            if (tag == 0) {
-//                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
-//            } else {
-//                self.dataAry = [NSMutableArray array];
-//            }
-//            for (UITableView *list in self.vm_messageTableViews) {
+//        [self setTopViewSelectViewModle:^(NSInteger tag) {
+//            @strongify(self);
+//            self.topBtnTag = tag;
+////            if (tag == 0) {
+////                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
+////            } else {
+////                self.dataAry = [NSMutableArray array];
+////            }
+////            for (UITableView *list in self.vm_messageTableViews) {
+////
+////            }
+//            [self.vm_messageTableViews enumerateObjectsUsingBlock:^(UITableView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (tag == idx) {
+//                    obj.hidden = NO;
+//                } else {
+//                    obj.hidden = YES;
 //
-//            }
-            [self.vm_messageTableViews enumerateObjectsUsingBlock:^(UITableView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (tag == idx) {
-                    obj.hidden = NO;
-                } else {
-                    obj.hidden = YES;
-
-                }
-            }];
-            [self.vm_messageTableViews[tag] reloadData];
-        }];
+//                }
+//            }];
+//            [self.vm_messageTableViews[tag] reloadData];
+//        }];
 //        [self setSimulationRequst:^{
 //            @strongify(self);
 //            [self.vm_messageTableViews[0] reloadData];
@@ -65,16 +65,18 @@
 }
 
 
-- (void)requstMessagelist:(void(^)(NSArray *listModel))modelAry {
+- (void)requstMessagelistWithType:(NSInteger)type
+                             list:(void(^)(NSArray *listModel))modelAry {
     NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBNoticeDataInterface];
-    NSDictionary *parameters = @{@"shopid":MmberidStr};
+    NSDictionary *parameters = @{@"shopid":MmberidStr,
+                                 @"type":@(type)};
     @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:parameters complete:^(NSDictionary *dic) {
         @strongify(self);
         if ([dic[@"resultCode"]integerValue] == 2400) {
-//            NSArray *ary = [MessageModel mj_keyValuesWithKeys:@[]]
+            NSMutableArray *ary = [MessageModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"]];
+            !modelAry ? :modelAry(ary);
         }
-//        !complete ? :complete([dic[@"resultMsg"][@"unreadImportantCounts"] integerValue],[dic[@"resultMsg"][@"unreadOtherCounts"]integerValue]);
        
     } andError:^(NSError *error) {
         

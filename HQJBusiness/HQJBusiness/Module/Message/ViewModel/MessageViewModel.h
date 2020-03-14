@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) MessageTopTAB *tabViwe;
 - (void)messageMenu:(UIView *)view ;
 - (void)requstMessageCount:(void(^)(NSInteger first,NSInteger last))complete;
+- (void)requstMessagelistWithType:(NSInteger)type list:(void(^)(NSArray *listModel))modelAry ;
 @end
 
 NS_ASSUME_NONNULL_END

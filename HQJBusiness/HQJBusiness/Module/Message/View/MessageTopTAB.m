@@ -244,11 +244,19 @@
             MessageTopBtn *messagRedView = [[MessageTopBtn alloc]init];
             messagRedView.userInteractionEnabled = YES;
             messagRedView.tag = i + 100;
+            NSString *titleStr = [self titleName][i];
+            CGFloat w =  titleStr.length * 14;
+            CGFloat h =  topImageHeight + topLabelFont + 13;
+            CGFloat s =  ((WIDTH - 20) / 2 - w ) / 2;
+            CGFloat x = i * (w + s * 2) + s;
+            CGFloat y = (100 - h) /2;
+          
             CGFloat tspacing = topImageHeight + 5 + 5 + topLabelFont + 5;
             CGFloat twidth = (WIDTH - 20 - tspacing * [self titleName].count ) / [self titleName].count +1;
-            CGFloat xg = i % [self titleName].count;
-            CGFloat tx = twidth + (twidth + tspacing) * xg;
-            messagRedView.frame = CGRectMake(tx , (100 - tspacing) / 2, tspacing,tspacing);
+//            CGFloat xg = i % [self titleName].count;
+//            CGFloat tx = i * (twidth + tspacing - 10) + tspacing;
+            messagRedView.frame = CGRectMake(x , y, w,h);
+//            messagRedView.frame = CGRectMake(tx , (100 - tspacing) / 2, tspacing,tspacing);
             messagRedView.top_img.image = [UIImage imageNamed:i == 0 ? [self selectImageName][i] :[self unselectImageName][i]];
             messagRedView.top_lable.textColor = i == 0 ? DefaultAPPColor : [ManagerEngine getColor:@"939191"];
             messagRedView.top_lable.text = [self titleName][i];

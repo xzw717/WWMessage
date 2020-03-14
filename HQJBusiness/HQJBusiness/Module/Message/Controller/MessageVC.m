@@ -21,13 +21,14 @@
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>{
     NSInteger _topBtnTag;
 }
-@property (nonatomic, strong) UITableView *messageOrderTabelView;
+//@property (nonatomic, strong) UITableView *messageOrderTabelView;
 @property (nonatomic, strong) UITableView *messageImportantTabelView;
-@property (nonatomic, strong) UITableView *messageOtherTabelView;
+//@property (nonatomic, strong) UITableView *messageOtherTabelView;
 
 @property (nonatomic, strong) MessageViewModel *viewModel;
 @property (nonatomic, strong) MessageTopTAB *tabView;
 @property (nonatomic, strong) NSMutableArray  *dataAry;
+
 @end
 
 @implementation MessageVC
@@ -35,12 +36,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self messageVC_addSubView];
+    self.dataAry = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMessage:) name:ChangeMessageNotification object:nil];
     [self.viewModel requstMessageCount:^(NSInteger first, NSInteger last) {
         [self.tabView addMessageNotice:0 messageCount: first];
         [self.tabView addMessageNotice:1 messageCount: last];
-
     }];
+    [self requst:2];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -55,7 +57,12 @@
 - (void)changeMessage:(NSNotificationCenter *)notifi {
     [_tabView addMessageNotice:1 messageCount:21];
 }
-
+- (void)requst:(NSInteger)message {
+    [self.viewModel requstMessagelistWithType:message list:^(NSArray * _Nonnull listModel) {
+           self.dataAry  = [NSMutableArray arrayWithArray:listModel];
+           [self.messageImportantTabelView reloadData];
+       }];
+}
 - (void)messageVC_addSubView {
     [self setNav];
     [self setTopView];
@@ -87,29 +94,33 @@
     }];
     self.viewModel.tabViwe = _tabView;
 //    _tabView.topViewSelectBlock = self.viewModel.topViewSelectViewModle;
-
+    @weakify(self);
+    [self.tabView setTopViewSelectBlock:^(NSInteger tag) {
+        @strongify(self);
+        [self requst:tag == 0 ? 2 : 3];
+    }];
 
 }
 
 - (void)setBottomView {
-    [self.view addSubview:self.messageOrderTabelView];
-    [self.messageOrderTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.tabView.mas_bottom);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
-        make.left.right.mas_equalTo(0);
-    }];
+//    [self.view addSubview:self.messageOrderTabelView];
+//    [self.messageOrderTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.tabView.mas_bottom);
+//        make.bottom.mas_equalTo(self.view.mas_bottom);
+//        make.left.right.mas_equalTo(0);
+//    }];
     [self.view addSubview:self.messageImportantTabelView];
     [self.messageImportantTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.tabView.mas_bottom);
         make.bottom.mas_equalTo(self.view.mas_bottom);
         make.left.right.mas_equalTo(0);
     }];
-    [self.view addSubview:self.messageOtherTabelView];
-    [self.messageOtherTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.tabView.mas_bottom);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
-        make.left.right.mas_equalTo(0);
-    }];
+//    [self.view addSubview:self.messageOtherTabelView];
+//    [self.messageOtherTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.tabView.mas_bottom);
+//        make.bottom.mas_equalTo(self.view.mas_bottom);
+//        make.left.right.mas_equalTo(0);
+//    }];
 }
 
 - (void)setNav {
@@ -128,14 +139,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"%ld",tableView.tag);
-
-    if (self.messageOrderTabelView == tableView) {
-        return self.viewModel.dataAry.count;
-
-    } else {
-        return self.viewModel.dataOtherAry.count;
-
-    }
+    return self.dataAry.count;
+//    if (self.messageOrderTabelView == tableView) {
+//        return self.viewModel.dataAry.count;
+//
+//    } else {
+//        return self.viewModel.dataOtherAry.count;
+//
+//    }
  
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -161,35 +172,35 @@
 - (MessageViewModel *)viewModel {
     if (!_viewModel) {
         _viewModel = [[MessageViewModel alloc]init];
-        _viewModel.vm_messageTableViews= @[self.messageOrderTabelView,self.messageImportantTabelView,self.messageOtherTabelView];
+//        _viewModel.vm_messageTableViews= @[self.messageOrderTabelView,self.messageImportantTabelView,self.messageOtherTabelView];
     }
     return _viewModel;
 }
 
-- (UITableView *)messageOrderTabelView {
-    if (!_messageOrderTabelView) {
-        _messageOrderTabelView = [[UITableView alloc]init];
-        _messageOrderTabelView.delegate = self;
-        _messageOrderTabelView.dataSource = self;
-        _messageOrderTabelView.rowHeight = 230/3.f;
-        _messageOrderTabelView.hidden = NO;
-        _messageOrderTabelView.tag = 10000;
-        _messageOrderTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_messageOrderTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
-        _messageOrderTabelView.tableFooterView = [UIView new];
-        _messageOrderTabelView.backgroundColor = DefaultBackgroundColor;
-        _messageOrderTabelView.emptyDataSetSource = self;
-        _messageOrderTabelView.emptyDataSetDelegate = self;
-    }
-    return _messageOrderTabelView;
-}
+//- (UITableView *)messageOrderTabelView {
+//    if (!_messageOrderTabelView) {
+//        _messageOrderTabelView = [[UITableView alloc]init];
+//        _messageOrderTabelView.delegate = self;
+//        _messageOrderTabelView.dataSource = self;
+//        _messageOrderTabelView.rowHeight = 230/3.f;
+//        _messageOrderTabelView.hidden = YES;
+//        _messageOrderTabelView.tag = 10000;
+//        _messageOrderTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        [_messageOrderTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
+//        _messageOrderTabelView.tableFooterView = [UIView new];
+//        _messageOrderTabelView.backgroundColor = DefaultBackgroundColor;
+//        _messageOrderTabelView.emptyDataSetSource = self;
+//        _messageOrderTabelView.emptyDataSetDelegate = self;
+//    }
+//    return _messageOrderTabelView;
+//}
 - (UITableView *)messageImportantTabelView {
     if (!_messageImportantTabelView) {
         _messageImportantTabelView = [[UITableView alloc]init];
         _messageImportantTabelView.delegate = self;
         _messageImportantTabelView.dataSource = self;
         _messageImportantTabelView.rowHeight = 230/3.f;
-        _messageImportantTabelView.hidden = YES;
+        _messageImportantTabelView.hidden = NO;
         _messageImportantTabelView.tag = 10001;
         _messageImportantTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_messageImportantTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
@@ -200,22 +211,22 @@
     }
     return _messageImportantTabelView;
 }
-- (UITableView *)messageOtherTabelView {
-    if (!_messageOtherTabelView) {
-        _messageOtherTabelView = [[UITableView alloc]init];
-        _messageOtherTabelView.delegate = self;
-        _messageOtherTabelView.dataSource = self;
-        _messageOtherTabelView.rowHeight = 230/3.f;
-        _messageOrderTabelView.hidden = YES;
-        _messageOrderTabelView.tag = 10002;
-        _messageOrderTabelView.showsVerticalScrollIndicator = NO;
-        _messageOtherTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_messageOtherTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
-        _messageOtherTabelView.tableFooterView = [UIView new];
-        _messageOtherTabelView.backgroundColor = DefaultBackgroundColor;
-        _messageOtherTabelView.emptyDataSetSource = self;
-        _messageOtherTabelView.emptyDataSetDelegate = self;
-    }
-    return _messageOtherTabelView;
-}
+//- (UITableView *)messageOtherTabelView {
+//    if (!_messageOtherTabelView) {
+//        _messageOtherTabelView = [[UITableView alloc]init];
+//        _messageOtherTabelView.delegate = self;
+//        _messageOtherTabelView.dataSource = self;
+//        _messageOtherTabelView.rowHeight = 230/3.f;
+//        _messageOrderTabelView.hidden = YES;
+//        _messageOrderTabelView.tag = 10002;
+//        _messageOrderTabelView.showsVerticalScrollIndicator = NO;
+//        _messageOtherTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        [_messageOtherTabelView registerClass:[MessageGeneralCell class] forCellReuseIdentifier:NSStringFromClass([MessageGeneralCell class])];
+//        _messageOtherTabelView.tableFooterView = [UIView new];
+//        _messageOtherTabelView.backgroundColor = DefaultBackgroundColor;
+//        _messageOtherTabelView.emptyDataSetSource = self;
+//        _messageOtherTabelView.emptyDataSetDelegate = self;
+//    }
+//    return _messageOtherTabelView;
+//}
 @end
