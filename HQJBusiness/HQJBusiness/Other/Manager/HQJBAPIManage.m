@@ -32,7 +32,7 @@ NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
 /// 优惠券
-NSString *const WWMCouponDomain = @"http://coupon.ww1000.cn:8080/";
+NSString *const WWMCouponDomain = @"http://statics.wuwuditu.com/";
 
 
 NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
