@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		052616032411E5A900EF844E /* SignNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052616022411E5A800EF844E /* SignNameViewController.m */; };
 		052616062411EE9100EF844E /* UploadImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 052616052411EE9000EF844E /* UploadImageViewModel.m */; };
+		0575326D24172C3000030EA3 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0575326B24172C3000030EA3 /* ShopModel.m */; };
+		0575327024230D5800030EA3 /* ShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0575326E24230D5700030EA3 /* ShopDetailModel.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
 		1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CB21E08E04D006D6EB2 /* ToAuditViewController.m */; };
@@ -452,6 +454,10 @@
 		052616022411E5A800EF844E /* SignNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignNameViewController.m; sourceTree = "<group>"; };
 		052616042411EE9000EF844E /* UploadImageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageViewModel.h; sourceTree = "<group>"; };
 		052616052411EE9000EF844E /* UploadImageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageViewModel.m; sourceTree = "<group>"; };
+		0575326B24172C3000030EA3 /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
+		0575326C24172C3000030EA3 /* ShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
+		0575326E24230D5700030EA3 /* ShopDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailModel.m; sourceTree = "<group>"; };
+		0575326F24230D5700030EA3 /* ShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailModel.h; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F016C7B1F6A7D4200716C82 /* GoodsVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVerificationModel.h; sourceTree = "<group>"; };
 		1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVerificationModel.m; sourceTree = "<group>"; };
@@ -2771,6 +2777,10 @@
 		204E917322CC8EA9006BD23C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0575326C24172C3000030EA3 /* ShopModel.h */,
+				0575326B24172C3000030EA3 /* ShopModel.m */,
+				0575326F24230D5700030EA3 /* ShopDetailModel.h */,
+				0575326E24230D5700030EA3 /* ShopDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3260,6 +3270,7 @@
 				2082635E22D46C2F0058FD58 /* ShopInfoImageCell.m in Sources */,
 				2082635B22D467E00058FD58 /* ShopInfoViewModel.m in Sources */,
 				1F47854222C9A07D0085FF8C /* ZW_TabBar.m in Sources */,
+				0575327024230D5800030EA3 /* ShopDetailModel.m in Sources */,
 				1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */,
 				1F36C9321F456F1800A47738 /* SetPaymentCodeViewController.m in Sources */,
 				1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */,
@@ -3503,6 +3514,7 @@
 				2082634622D42C2C0058FD58 /* ChangeMobileViewController.m in Sources */,
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
+				0575326D24172C3000030EA3 /* ShopModel.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F7DD98C22D594A100A906F9 /* GoodsManageModel.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,

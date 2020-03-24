@@ -13,11 +13,9 @@
 
 #import "MineViewModel.h"
 
-#import "MyViewModel.h"
-
 #import "MineCell.h"
 
-#import "MyModel.h"
+#import "ShopModel.h"
 
 
 
@@ -35,9 +33,7 @@
 
 @property (nonatomic,strong)MineViewModel *viewModel;
 
-@property (nonatomic,strong)MyViewModel *myViewModel;
-
-@property (nonatomic,strong)MyModel *model;
+@property (nonatomic,strong)ShopModel *model;
 @end
 
 @implementation MineViewController
@@ -94,31 +90,30 @@
 }
 
 - (void)initDatas{
-    _myViewModel = [[MyViewModel alloc]init];
-    _model = [[MyModel alloc]init];
+    _model = [[ShopModel alloc]init];
 }
 
 #pragma mark --- 请求
 - (void)requst {
     @weakify(self);
     
-    [_myViewModel  setMyrequstBlock:^(MyModel * xzw_model) {
+    [self.viewModel  setMyrequstBlock:^(ShopModel * model) {
         @strongify(self);
-        self.model = xzw_model;
+        self.model = model;
         
-        [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
-        [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
-        [NameSingle shareInstance].mobile = xzw_model.mobile;
-        [NameSingle shareInstance].memberid = xzw_model.memberid;
-        self.headView.model = xzw_model;
+        [NameSingle shareInstance].name = model.realname; // --- 单例存商家名字
+//        [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
+//        [NameSingle shareInstance].mobile = xzw_model.mobile;
+//        [NameSingle shareInstance].memberid = xzw_model.memberid;
+        self.headView.model = model;
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
-    [_myViewModel setMyrequstErrorBlock:^{
+    [self.viewModel setMyrequstErrorBlock:^{
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
     }];
-    [_myViewModel myRequst];
+    [self.viewModel myRequst];
 }
 
 - (void)addSubViews{

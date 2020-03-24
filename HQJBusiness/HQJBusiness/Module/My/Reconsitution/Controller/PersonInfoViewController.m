@@ -59,6 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navType = HQJNavigationBarBlue;
+    [self.viewModel requestShopDetail];
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];

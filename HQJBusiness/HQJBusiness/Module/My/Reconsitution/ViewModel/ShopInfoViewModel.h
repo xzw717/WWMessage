@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ShopModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShopInfoViewModel : NSObject
+
+@property (nonatomic, strong) ShopModel *shopModel;
+
 @property (nonatomic, strong) NSArray *cellDataArray;
 /// 初始化方法
 - (instancetype)initWithViewContoller:(id)object;
@@ -18,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (UITableViewCell *)cellManageWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 /// cell 点击方法
 - (void)selectCellForIndex:(NSIndexPath *)indexPath;
+///保存方法
+- (void)updateShopInformation;
+
 @end
 
 NS_ASSUME_NONNULL_END

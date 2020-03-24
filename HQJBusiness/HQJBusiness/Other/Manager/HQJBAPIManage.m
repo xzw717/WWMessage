@@ -17,11 +17,13 @@ NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/merchant/";
-NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
+NSString *const HQJBBounsOrder  = @"http://28ko268520.qicp.vip/Business/";
 /// 台卡域名
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// H5 域名
 NSString *const HQJBH5DeccaName = @"http://47.98.45.218/";
+///重构域名
+NSString *const HQJReconsitutionName = @"http://28ko268520.qicp.vip/Business";
 
 #else         //发布阶段
 
@@ -141,6 +143,8 @@ NSString *const HQJBSaveSignNameInterface = @"newShopApi/saveSignName.action";
 NSString *const HQJBIsPerfectInterface = @"newShopApi/isPerfect.action";
 ///我的页面返回个人信息接口
 NSString *const HQJBShopDetailInterface = @"newShopApi/shopDetail.action";
+///商家基本信息获取接口
+NSString *const HQJBShopInformationInterface = @"newShopApi/shopInformation.action";
 ///商家基本信息修改接口
 NSString *const HQJBUpdateInformationInterface = @"newShopApi/updateInformation.action";
 

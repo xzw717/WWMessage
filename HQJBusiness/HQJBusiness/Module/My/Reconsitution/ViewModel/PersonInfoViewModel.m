@@ -10,10 +10,12 @@
 #import "PersonInfoCell.h"
 #import "PersonInfoImageCell.h"
 #import "SignNameViewController.h"
-#import "ZWActionSheetView.h"
+#import "UploadImageViewModel.h"
 
 @interface PersonInfoViewModel ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic,strong)UIViewController *superVC;
+@property (nonatomic,strong)UploadImageViewModel *uploadViewModel;
+@property (nonatomic,strong)ShopDetailModel *model;
 @end
 @implementation PersonInfoViewModel
 - (instancetype)initWithViewContoller:(id)object
@@ -24,6 +26,12 @@
     }
     return self;
 }
+- (UploadImageViewModel *)uploadViewModel {
+    if (!_uploadViewModel) {
+        _uploadViewModel = [[UploadImageViewModel alloc]init];
+    }
+    return _uploadViewModel;
+}
 
 #pragma mark --- 剥离控制器中的cell
 - (UITableViewCell *)cellManageWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,7 +40,7 @@
         PersonInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PersonInfoCell class]) forIndexPath:indexPath];
         if (indexPath.row == 1||indexPath.row == 2) {
             if (indexPath.row == 1) {
-                cell.detailLabel.text = [NameSingle shareInstance].name;
+                cell.detailLabel.text = self.model.merchantsname;
             } else {
                 cell.detailLabel.text = [NameSingle shareInstance].mobile;
             }
@@ -64,26 +72,12 @@
 
 - (void)selectCellForIndex:(NSIndexPath *)index {
         switch (index.row) {
-            case 0:{
-                BOOL canCamera = [self canUserCamear];
-                if (canCamera) {
-                    ZWActionSheetView *action = [[ZWActionSheetView alloc]initWithActionTitle:@"设置头像" action:@[@"大图预览",@"拍照",@"从相册中选择"]];
-                    [action ActionStyleDestructive:@"取消"];
-                    [action showActionSheet];
-                    action.optionBlock = ^(NSString *optionsTitle,NSInteger index) {
-                        if ([optionsTitle isEqualToString:@"大图预览"]) {
-                            [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
-                            
-                        }else if ([optionsTitle isEqualToString:@"拍照"]) {
-                            [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
-                            
-                        } else {
-                            [self showImagePicker:UIImagePickerControllerSourceTypePhotoLibrary];
-                        }
-                    };
-                }
+            case 0:
+                [self.uploadViewModel uploadImageWithViewController:self.superVC andImageType:3 completion:^(NSString * result) {
+                    NSLog(@"result = %@",result);
+                    
+                }];
                 break;
-            }
                 
             case 1:
                 
@@ -112,37 +106,16 @@
     }
     return _cellDataArray;
 }
-
-- (void)showImagePicker:(UIImagePickerControllerSourceType)type{
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate      = self;
-    picker.sourceType    = type;
-    picker.allowsEditing = YES;
-    [self.superVC presentViewController:picker animated:YES completion:nil];
-}
-#pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:^{
-//        [self uploadImage:image];
-    }];
+-(void)requestShopDetail{
+    NSMutableDictionary *dict = @{@"mid":MmberidStr}.mutableCopy;
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJReconsitutionName,HQJBShopDetailInterface];
+    HQJLog(@"地址：%@",urlStr);
+    if (MmberidStr) {
+        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+            self.model = [ShopDetailModel mj_objectWithKeyValues:dic[@"result"]];
+        } andError:^(NSError *error) {
+        } ShowHUD:YES];
+    }
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-#pragma mark - 检查相机权限
-- (BOOL)canUserCamear{
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if (authStatus == AVAuthorizationStatusDenied) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"请打开相机权限" message:@"设置-隐私-相机" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-        alertView.tag = 100;
-        [alertView show];
-        return NO;
-    }
-    else{
-        return YES;
-    }
-    return YES;
-}
 @end

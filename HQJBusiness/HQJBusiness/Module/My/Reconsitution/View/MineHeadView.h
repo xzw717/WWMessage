@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyModel.h"
+#import "ShopModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MineHeadView : UIView
-@property(nonatomic,strong)MyModel *model;
+@property(nonatomic,strong)ShopModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

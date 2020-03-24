@@ -60,4 +60,12 @@ typedef NS_ENUM(NSInteger,filenameStlye)
  *  @param array item集合
  */
 + (void)storeToolArray:(NSMutableArray *)array;
+/**
+ *  存储商品model
+ */
++ (void)storeModel:(id)model;
+/**
+ *  得到对应的model
+ */
++(id)getModel;
 @end

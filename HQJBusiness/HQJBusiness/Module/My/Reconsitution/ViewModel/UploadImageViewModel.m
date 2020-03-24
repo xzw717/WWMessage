@@ -24,13 +24,13 @@
 @implementation UploadImageViewModel
 
 
-- (void)uploadImageWithImageType:(UIViewController *)vc andImageType:(NSInteger)type completion:(void (^)(NSString *))completion {
+- (void)uploadImageWithViewController:(UIViewController *)vc andImageType:(NSInteger)type completion:(void (^)(NSString *result))completion {
     viewController = vc;
     self.imageType = type;
     [self showSheetView];
     _completion = completion;
 }
-- (void)uploadImageWithImageType:(UIViewController *)vc completion:(void (^)(UIImage *))completion{
+- (void)uploadImageWithViewController:(UIViewController *)vc completion:(void (^)(UIImage *image))completion{
     _didPickImageBlock = completion;
     viewController = vc;
     [self showSheetView];
@@ -135,7 +135,7 @@
     
     NSString *dataStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBounsOrder,HQJBSaveSignNameInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBounsOrder,HQJBUploadpicInterface];
     NSDictionary * dic = @{@"shopid":MmberidStr,@"picurl":dataStr,@"type":[NSNumber numberWithInteger:type]};
     NSLog(@"dataDic = %@",dic);
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:dic];

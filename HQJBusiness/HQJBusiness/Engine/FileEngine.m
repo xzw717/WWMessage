@@ -104,6 +104,24 @@
 
 }
 
+/**
+ *  存储商品model
+ */
++ (void)storeModel:(id)model{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentFilePath = paths.firstObject;
+    NSString *filePath = [documentFilePath stringByAppendingPathComponent:@"shopModel"];
+    [NSKeyedArchiver archiveRootObject:model toFile:filePath];
+}
+/**
+ *  得到对应的model
+ */
++(id)getModel{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentFilePath = paths.firstObject  ;
+    NSString *filePath = [documentFilePath stringByAppendingPathComponent:@"shopModel"];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+}
     
 
 

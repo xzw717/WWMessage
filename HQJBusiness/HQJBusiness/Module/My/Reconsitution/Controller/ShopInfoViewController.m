@@ -129,6 +129,7 @@
 
 
 - (void)saveShopInfo{
+    [self.viewModel updateShopInformation];
 }
 
 /*

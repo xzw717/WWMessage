@@ -82,13 +82,12 @@
     if (_isLogo) {
         
         UIButton *imageButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 30, ItemImageSize,ItemImageSize)];
-        [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
-        imageButton.contentMode = UIViewContentModeScaleToFill;
+        [imageButton setBackgroundImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
         imageButton.centerX = self.maskView.centerX;
         @weakify(self);
         [imageButton bk_addEventHandler:^(id  _Nonnull sender) {
             @strongify(self);
-            [self.uploadViewModel uploadImageWithImageType:self completion:^(UIImage * image) {
+            [self.uploadViewModel uploadImageWithViewController:self completion:^(UIImage * image) {
                 [imageButton setImage:image forState:UIControlStateNormal];
                 [self.imageArray addObject:image];
             }];
@@ -98,8 +97,9 @@
         UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(imageButton.mj_x + ItemImageSize - DelBtnWidth/2,imageButton.mj_y - DelBtnWidth/2, DelBtnWidth, DelBtnWidth)];
         [deleteButton setImage:[UIImage imageNamed:@"icon_delete_img"] forState:UIControlStateNormal];
         [deleteButton bk_addEventHandler:^(id  _Nonnull sender) {
-            [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
             [self.imageArray removeAllObjects];
+            [imageButton setImage:nil forState:UIControlStateNormal];
+            
         } forControlEvents:UIControlEventTouchUpInside];
         [self.maskView addSubview:deleteButton];
         UIButton *seeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 30 + 10.f + ItemImageSize,ItemImageSize, 20.f)];
@@ -121,13 +121,11 @@
             CGFloat x =  JGGMinX + i % SPNum * (ItemImageSize + SPspace);
             CGFloat y =  JGGMinY + i / SPNum * (ItemImageSize + CXspace);
             UIButton *imageButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, ItemImageSize, ItemImageSize)];
-            [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
-            imageButton.backgroundColor = [UIColor greenColor];
-            imageButton.contentMode = UIViewContentModeScaleToFill;
+            [imageButton setBackgroundImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
             imageButton.tag = i + 100;
             [imageButton bk_addEventHandler:^(id  _Nonnull sender) {
                 @strongify(self);
-                [self.uploadViewModel uploadImageWithImageType:self completion:^(UIImage * image) {
+                [self.uploadViewModel uploadImageWithViewController:self completion:^(UIImage * _Nonnull image) {
                     [imageButton setImage:image forState:UIControlStateNormal];
                     [self.imageArray addObject:image];
                 }];
@@ -141,8 +139,8 @@
                 UIButton *imageBtn = [self.maskView viewWithTag:sender.tag-100];
                 if ([self.imageArray containsObject:imageBtn.currentImage]) {
                     [self.imageArray removeObject:imageBtn.currentImage];
-                    [imageButton setImage:[UIImage imageNamed:@"add_pictures"] forState:UIControlStateNormal];
                 }
+                [imageButton setImage:nil forState:UIControlStateNormal];
             } forControlEvents:UIControlEventTouchUpInside];
             [self.maskView addSubview:deleteButton];
         }
@@ -159,9 +157,9 @@
 
 - (void)saveImages{
     NSLog(@"imageArr = %@",self.imageArray);
-//    [self.uploadViewModel uploadImages:self.imageArray andImageType:self.isLogo?1:2 uploadResultBlock:^(NSInteger successNum, NSInteger failNum) {
-//
-//    }];
+    [self.uploadViewModel uploadImages:self.imageArray andImageType:self.isLogo?1:2 uploadResultBlock:^(NSInteger successNum, NSInteger failNum) {
+
+    }];
 }
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

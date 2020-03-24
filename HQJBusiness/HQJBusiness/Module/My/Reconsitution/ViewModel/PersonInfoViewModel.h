@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ShopDetailModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PersonInfoViewModel : NSObject
@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (UITableViewCell *)cellManageWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 /// cell 点击方法
 - (void)selectCellForIndex:(NSIndexPath *)index;
+
+-(void)requestShopDetail;
+
 @end
 
 NS_ASSUME_NONNULL_END

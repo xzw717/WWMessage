@@ -14,9 +14,9 @@ typedef void (^ UploadRequestMgrUploadResultBlock) (NSInteger successNum , NSInt
 
 @interface UploadImageViewModel : NSObject<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 /// 返回图片，未上传
-- (void)uploadImageWithImageType:(UIViewController *)vc completion:(void (^)(UIImage *))completion;
+- (void)uploadImageWithViewController:(UIViewController *)vc completion:(void (^)(UIImage *image))completion;
 /// 直接上传图片
-- (void)uploadImageWithImageType:(UIViewController *)vc andImageType:(NSInteger)type completion:(void (^)(NSString *))completion;
+- (void)uploadImageWithViewController:(UIViewController *)vc andImageType:(NSInteger)type completion:(void (^)(NSString *result))completion;
 
 
 @property (nonatomic , strong) UploadRequestMgrUploadResultBlock uploadResultBlock;

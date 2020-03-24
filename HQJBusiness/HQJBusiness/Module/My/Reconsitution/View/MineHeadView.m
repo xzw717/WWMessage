@@ -124,9 +124,9 @@
     
 }
 
-- (void)setModel:(MyModel *)model{
+- (void)setModel:(ShopModel *)model{
     self.nameLabel.text = model.realname;
-    self.stateLabel.text =[NSString stringWithFormat:@"已溯源  |  %@",model.role];
+    self.stateLabel.text =[NSString stringWithFormat:@"已溯源  |  %@",model.isSource];
     
 //    [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
 //    [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型

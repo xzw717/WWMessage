@@ -18,7 +18,7 @@
 #import "ShopManagerViewController.h"
 
 
-#import "MyModel.h"
+#import "ShopModel.h"
 
 @interface MineViewModel ()
 @property (nonatomic,strong)UIViewController *superVC;
@@ -92,11 +92,11 @@
 }
 - (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJReconsitutionName,HQJBShopInformationInterface];
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-            MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
+            ShopModel *model = [ShopModel mj_objectWithKeyValues:dic[@"result"]];
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
