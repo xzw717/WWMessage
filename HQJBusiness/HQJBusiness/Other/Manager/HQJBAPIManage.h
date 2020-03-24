@@ -125,6 +125,10 @@ extern NSString *const HQJBMerchantSmsLoginInterface;
 extern NSString *const HQJBRegisterCodeInterface;
 /// 店铺界面订单数据
 extern NSString *const HQJBShopfindorderstatecodeInterface;
+/// 消息各类型未读数
+extern NSString *const HQJBMessageDataInterface;
+/// 通知列表接口
+extern NSString *const HQJBNoticeDataInterface;
 /// 店铺上传Logo及主图接口及头像
 extern NSString *const HQJBUploadpicInterface;
 /// 保存个性签名

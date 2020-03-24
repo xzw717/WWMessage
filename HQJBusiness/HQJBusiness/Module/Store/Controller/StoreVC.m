@@ -302,7 +302,7 @@
             @strongify(self);
             [self.viewModel stroeRequst:^{
                 @strongify(self);
-                self.title =  [NameSingle shareInstance].name;
+                self.navigationItem.title =  [NameSingle shareInstance].name;
                 [self.collectionView.mj_header endRefreshing];
             }];
         }];

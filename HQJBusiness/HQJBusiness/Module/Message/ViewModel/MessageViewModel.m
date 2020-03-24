@@ -9,6 +9,7 @@
 #import "MessageViewModel.h"
 #import "MenuManager.h"
 #import "MessageTopTAB.h"
+#import "MessageModel.h"
 @interface MessageViewModel ()
 @property (nonatomic, assign) NSInteger topBtnTag;
 @end
@@ -21,27 +22,27 @@
     if (self) {
         @weakify(self);
 //        self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
-        [self setTopViewSelectViewModle:^(NSInteger tag) {
-            @strongify(self);
-            self.topBtnTag = tag;
-//            if (tag == 0) {
-//                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
-//            } else {
-//                self.dataAry = [NSMutableArray array];
-//            }
-//            for (UITableView *list in self.vm_messageTableViews) {
+//        [self setTopViewSelectViewModle:^(NSInteger tag) {
+//            @strongify(self);
+//            self.topBtnTag = tag;
+////            if (tag == 0) {
+////                self.dataAry = [NSMutableArray arrayWithArray:[self dataArray]];
+////            } else {
+////                self.dataAry = [NSMutableArray array];
+////            }
+////            for (UITableView *list in self.vm_messageTableViews) {
+////
+////            }
+//            [self.vm_messageTableViews enumerateObjectsUsingBlock:^(UITableView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (tag == idx) {
+//                    obj.hidden = NO;
+//                } else {
+//                    obj.hidden = YES;
 //
-//            }
-            [self.vm_messageTableViews enumerateObjectsUsingBlock:^(UITableView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (tag == idx) {
-                    obj.hidden = NO;
-                } else {
-                    obj.hidden = YES;
-
-                }
-            }];
-            [self.vm_messageTableViews[tag] reloadData];
-        }];
+//                }
+//            }];
+//            [self.vm_messageTableViews[tag] reloadData];
+//        }];
 //        [self setSimulationRequst:^{
 //            @strongify(self);
 //            [self.vm_messageTableViews[0] reloadData];
@@ -50,7 +51,37 @@
     return self;
 }
 
+- (void)requstMessageCount:(void(^)(NSInteger first,NSInteger last))complete {
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBMessageDataInterface];
+    NSDictionary *parameters = @{@"shopid":MmberidStr};
+    @weakify(self);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:parameters complete:^(NSDictionary *dic) {
+        @strongify(self);
+        !complete ? :complete([dic[@"resultMsg"][@"unreadImportantCounts"] integerValue],[dic[@"resultMsg"][@"unreadOtherCounts"]integerValue]);
+       
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
 
+
+- (void)requstMessagelistWithType:(NSInteger)type
+                             list:(void(^)(NSArray *listModel))modelAry {
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBNoticeDataInterface];
+    NSDictionary *parameters = @{@"shopid":MmberidStr,
+                                 @"type":@(type)};
+    @weakify(self);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:parameters complete:^(NSDictionary *dic) {
+        @strongify(self);
+        if ([dic[@"resultCode"]integerValue] == 2400) {
+            NSMutableArray *ary = [MessageModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"]];
+            !modelAry ? :modelAry(ary);
+        }
+       
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
 - (void)messageMenu:(UIView *)view {
     [MenuManager menushowForSender:view withMenuArray:@[@"标记全部已读"]  imageArray:nil textAlignment:NSTextAlignmentCenter doneBlock:^(NSInteger selectedIndex) {
         [self.tabViwe addMessageNotice:self.topBtnTag messageCount:0];

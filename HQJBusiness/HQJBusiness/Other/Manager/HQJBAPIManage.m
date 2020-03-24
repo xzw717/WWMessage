@@ -134,7 +134,10 @@ NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
 NSString *const HQJBRegisterCodeInterface = @"registerCode";
 /// 店铺界面订单数据
 NSString *const HQJBShopfindorderstatecodeInterface = @"order/shopfindorderstatecode.action";
-
+/// 消息各类型未读数
+NSString *const HQJBMessageDataInterface = @"newShopApi/messageData.action";
+/// 通知列表接口
+NSString *const HQJBNoticeDataInterface = @"newShopApi/noticeData.action";
 /// 店铺上传Logo及主图接口及头像
 NSString *const HQJBUploadpicInterface = @"newShopApi/uploadpic.action";
 /// 保存个性签名
