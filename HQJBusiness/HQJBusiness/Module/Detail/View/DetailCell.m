@@ -12,6 +12,7 @@
 @property (nonatomic,strong)ZW_Label *timerLabel;
 @property (nonatomic,strong)ZW_Label *amountLabel;
 @property (nonatomic,strong)ZW_Label *amountDetailsLabel;
+@property (nonatomic,strong)ZW_Label *couponLabel;
 @end
 @implementation DetailCell
 
@@ -51,6 +52,16 @@
     }
     
     return _amountDetailsLabel;
+}
+
+-(ZW_Label *)couponLabel {
+    if ( _couponLabel == nil ) {
+        _couponLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
+        _couponLabel.font = [UIFont systemFontOfSize:12.0];
+        _couponLabel.textColor = [ManagerEngine getColor:@"ff4949"];
+        _couponLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _couponLabel;
 }
 
 
@@ -99,7 +110,7 @@
         }
     }
     
-    
+    self.couponLabel.text = [NSString stringWithFormat:@"%@:-¥%@",model.couponType,model.reduction];
     CGFloat nameWidth = [ManagerEngine setTextWidthStr:self.nameLabel.text andFont:[UIFont systemFontOfSize:17.0]];
     
     if(nameWidth > WIDTH /2){
@@ -118,13 +129,31 @@
     self.amountLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountWidth).topEqualToView(self.nameLabel).heightIs(17).widthIs(amountWidth);
 //
     CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
+    
     self.amountDetailsLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountDetailsWidth).topSpaceToView(self.amountLabel,11).heightIs(12).widthIs(amountDetailsWidth);
     
     
     
+    self.couponLabel.sd_layout.
+    rightEqualToView(self.amountDetailsLabel).
+    topSpaceToView(self.amountDetailsLabel,11).
+    heightIs(12).
+    widthIs(WIDTH - 30);
+    self.couponLabel.hidden = ![self isCoupon:model];
+    
     
 }
-
+/// 判断是否是优惠券订单
+- (BOOL)isCoupon:(DetailModel *)model {
+    if (model.couponType && ![model.couponType isEqualToString:@""]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+- (CGFloat)cellHeightWithModel:(DetailModel *)model {
+    return [self isCoupon:model] ? 70 + 11 + 12.f : 70.f;
+}
 
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

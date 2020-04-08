@@ -23,6 +23,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setNeedsUpdateConstraints];
     }
     return self;
@@ -32,9 +33,7 @@
     _orderGoodsModel  = orderGoodsModel;
     self.countLabel.hidden = NO;
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,orderGoodsModel.mainpicture]] placeholderImage:[UIImage imageNamed:@"default_image"]];
-//    self.nameLabel.text = orderGoodsModel.goodsname;
-    self.nameLabel.text = @"奇偶奥顺达建设大道发了哈胜利大街块话费卡仕达开发环境萨拉京东方拉伸砥砺奋进";
-
+    self.nameLabel.text = orderGoodsModel.goodsname;
     self.countLabel.text =  [NSString stringWithFormat:@"x%ld",(long)orderGoodsModel.goodscount];
     self.priceLabel.text =  [NSString stringWithFormat:@"¥%.2f",orderGoodsModel.goodsprice];
 
@@ -55,40 +54,18 @@
 }
 
 - (void)updateConstraints {
-    
-    [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(40/3.f);
-        make.centerY.mas_equalTo(self.contentView);
-        make.width.height.mas_equalTo(274/3.f);
-    }];
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.headerImageView.mas_right).mas_offset(36/3.f);
-        make.top.equalTo(self.headerImageView);
-        make.right.mas_lessThanOrEqualTo(self.priceLabel.mas_left).with.offset(-80/3.f);
-    }];
-    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-40/3.f);
-        make.top.equalTo(self.headerImageView);
-    }];
-    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.priceLabel);
-        make.top.equalTo(self.priceLabel.mas_bottom).mas_offset(30/3.f);
-    }];
-//    self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, 15).rightSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0).heightIs(0.5);
-//    self.headerImageView.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.contentView, 15).widthIs(274/3.f).heightIs(274/3.f);
-//    self.nameLabel.sd_layout.leftSpaceToView(self.headerImageView, 10).topEqualToView(self.headerImageView).heightIs(15);
+    self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, 15).rightSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0).heightIs(0.5);
+    self.headerImageView.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.contentView, 15).widthIs(S_RatioW(70.3125)).heightIs(S_RatioW(70.3125));
+    self.nameLabel.sd_layout.leftSpaceToView(self.headerImageView, 10).topEqualToView(self.headerImageView).heightIs(15);
 //    self.amountLabel.sd_layout.leftEqualToView(self.nameLabel).topSpaceToView(self.countLabel, 20).heightIs(15);
-//    self.priceLabel.sd_layout.leftEqualToView(self.nameLabel).bottomEqualToView(self.headerImageView).heightIs(14);
-//    self.countLabel.sd_layout.rightSpaceToView(self.contentView, 15 ).bottomEqualToView( self.priceLabel).heightIs(14);
-    
-    [self.priceLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    
-    [self.nameLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
-//    CGFloat maxwidth = WIDTH - 15 - 10 - 15 - S_RatioW(150);
-//    [self.amountLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
-//    [self.nameLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
-//    [self.countLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
-//    [self.priceLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
+    self.priceLabel.sd_layout.leftEqualToView(self.nameLabel).bottomEqualToView(self.headerImageView).heightIs(14);
+    self.countLabel.sd_layout.rightSpaceToView(self.contentView, 15 ).bottomEqualToView( self.priceLabel).heightIs(14);
+
+    CGFloat maxwidth = WIDTH - 15 - 10 - 15 - S_RatioW(150);
+    [self.amountLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
+    [self.nameLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
+    [self.countLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
+    [self.priceLabel setSingleLineAutoResizeWithMaxWidth:maxwidth];
 
     
     
@@ -99,7 +76,6 @@
     if (!_nameLabel) {
         _nameLabel = [[ZW_Label alloc]initWithStr:@"dadasdasdasd" addSubView:self.contentView];
         _nameLabel.font =[UIFont systemFontOfSize:S_RatioW(15.f)];
-        _nameLabel.numberOfLines = 2;
     }
     
     return _nameLabel;

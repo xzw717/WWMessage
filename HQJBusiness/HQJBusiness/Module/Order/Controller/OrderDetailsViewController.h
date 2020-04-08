@@ -6,12 +6,14 @@
 //  Copyright © 2019 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "HQJBaseSubVC.h"
+#import "ZW_ViewController.h"
 @class OrderModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OrderDetailsViewController : HQJBaseSubVC
-- (instancetype)initWithNavType:(HQJNavigationBarColor)type model:(OrderModel *)model ;
+@interface OrderDetailsViewController : ZW_ViewController
+- (instancetype)initWithModel:(OrderModel *)model;
+/// 备注
+@property (nonatomic, strong) NSString *note;
 @end
 
 NS_ASSUME_NONNULL_END

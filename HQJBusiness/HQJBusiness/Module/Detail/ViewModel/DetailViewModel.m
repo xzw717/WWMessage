@@ -18,19 +18,19 @@
     NSMutableDictionary *dict;
     if (types) {
         if ([types isEqualToString:@"线上支付"]) {
-            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@2}.mutableCopy;
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@2,@"hash":HashCode}.mutableCopy;
         }else{
-            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@1}.mutableCopy;
+            dict = @{@"memberid":MmberidStr,@"page":page,@"type":@1,@"hash":HashCode}.mutableCopy;
         }
     }else{
-        dict = @{@"memberid":MmberidStr,@"page":page}.mutableCopy;
+        dict = @{@"memberid":MmberidStr,@"page":page,@"hash":HashCode}.mutableCopy;
         
     }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
     HQJLog(@"-%@ dict = %@",urlStr,dict);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         
-        if ([dic[@"code"]integerValue] == 49000 || [dic[@"code"]integerValue] == 49010 ) {
+        if ([dic[@"code"]integerValue] == 49000 ) {
             
             NSArray *resultArray = dic[@"result"];
             NSMutableArray *modelArray = [NSMutableArray array];
@@ -44,6 +44,12 @@
             }
             
             
+        } else if ( [dic[@"code"]integerValue] == 49010) {
+            NSMutableArray *modelArray = [NSMutableArray array];
+            if (detailBlock) {
+                detailBlock(modelArray);
+            }
+                       
         } else {
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }

@@ -20,11 +20,10 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self setNavType:HQJNavigationBarWhite];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self setIsHideShadowLine:YES];
     
 }
-
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -53,7 +52,6 @@
     NSArray *childVC = @[allorderVC,goodsOrderVC,TransferVC,alreadyVC];
     
     NSArray *title_arr = @[@"全部订单",@"待付款",@"待使用",@"交易完成"];
-    
 
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
@@ -63,7 +61,6 @@
     [self.view addSubview:_bottomSView];
     
     self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, 0 , WIDTH, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
-    
     // 必须实现的方法
     [self.topSView SG_setUpSegmentedControlType:nil];
 

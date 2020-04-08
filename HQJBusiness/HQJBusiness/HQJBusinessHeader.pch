@@ -60,12 +60,14 @@
 #define AppSel_URL @"http://test.chenjianping.com/" //测试接口
 #define Api_URL @"http://test.chenjianping.com/Api4/" // 测试接口
 
+
+
 /******   商品列表接口---测试   ***********/
 #define OrderTest_URL @"http://shopdevelop.heqijia.net/"
 
 #define UpdataApp_URL @"http://apptest.heqijia.net/"
-
-
+//优惠券h5测试域名
+#define Conpon_URL @"http://192.168.16.182:8080/" //测试接口
 //#define AppSel_URL @"http://www.chenjianping.com/AppSel2/" //开发接口
 //#define Api_URL @"http://www.chenjianping.com/Api4/"  // 开发接口
 //
@@ -82,6 +84,10 @@
 #define Api_URL @"http://www.ww1000.cn/Api4/"
 #define OrderTest_URL @"http://shop.wuwuditu.com/"/************************商品列表接口---正式*************************/
 #define UpdataApp_URL @"http://app.heqijia.net/"
+//优惠券h5正式域名
+#define Conpon_URL @"http://statics.wuwuditu.com/" //测试接口
+
+
 #endif
 
 #define ImageTest_URL @"http://wuwuditu.img-cn-hangzhou.aliyuncs.com/"

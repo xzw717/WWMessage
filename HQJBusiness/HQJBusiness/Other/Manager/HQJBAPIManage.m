@@ -31,7 +31,12 @@ NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
+
+
+
 NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
+
+
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 NSString *const HQJBH5DeccaName = @"http://47.98.45.218/shopH5/register/#/";
 
@@ -156,7 +161,8 @@ NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
 /// 创建店铺
 NSString *const HQJBCreateShopInterface = @"newstore?mobile=13855555555";
 
-
+/// 根据id查询优惠劵信息接口
+NSString *const HQJBGetCouponByIdInterface =  @"coupon/app/getCouponById";
 @implementation HQJBAPIManage
 
 @end
