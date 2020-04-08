@@ -61,8 +61,8 @@
         [self goLogin];
         
     } else {
-//        delegate.window.rootViewController = [ZWTabBarViewController  new];
-        delegate.window.rootViewController = [PushViewController  new];
+        delegate.window.rootViewController = [ZWTabBarViewController  new];
+//        delegate.window.rootViewController = [PushViewController  new];
 
     }
     [self initializeAutoValue];

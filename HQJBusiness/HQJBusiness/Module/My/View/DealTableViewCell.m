@@ -35,7 +35,8 @@
                                @"消费码核销",
                                @"待审核申请",
                                @"消息通知",
-                               @"优惠券"],/*,
+                               @"优惠券",
+                               @"认证"],/*,
                                */
                              @[@"台卡下载",
                                @"设置"]];
@@ -50,7 +51,8 @@
                                    @"icon_xfm",
                                    @"icon_unverify",
                                    @"icon_notice",
-                                   @"icon_my_coupon"],/*,
+                                   @"icon_my_coupon",
+                                   @""],/*,
                                    */
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];

@@ -15,6 +15,8 @@
 #import "MessageNotificationViewController.h"
 #import "DeccaDownloadViewController.h"
 #import "HQJWebViewController.h"
+#import "CertificationViewController.h"
+
 @implementation MyViewModel
 
 - (void)myRequst {
@@ -61,7 +63,7 @@
             // 消息通知
             MessageNotificationViewController *mnVC =[[MessageNotificationViewController alloc]init];
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
-        } else {
+        } else if (xzw_indexPath.row == 4){
             // 优惠券
             HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
 //            webvc.webTitleString = @"优惠券";
@@ -71,6 +73,9 @@
             webvc.fd_interactivePopDisabled = YES;
             [xzw_self.navigationController pushViewController:webvc animated:YES];
             
+        } else {
+            CertificationViewController *cvc =[[CertificationViewController alloc]init];
+            [xzw_self.navigationController pushViewController:cvc animated:YES];
         }
     }
     if (xzw_indexPath.section  == 2 ) {
