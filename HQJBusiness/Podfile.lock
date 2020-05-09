@@ -24,9 +24,6 @@ PODS:
   - Masonry (1.1.0)
   - MJExtension (3.0.17)
   - MJRefresh (3.1.17)
-  - PLMediaStreamingKit (2.3.4):
-    - PLMediaStreamingKit/iphoneos (= 2.3.4)
-  - PLMediaStreamingKit/iphoneos (2.3.4)
   - ReactiveCocoa (2.5.2):
     - ReactiveCocoa/UI (= 2.5.2)
   - ReactiveCocoa/Core (2.5.2):
@@ -54,7 +51,6 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - MJRefresh (~> 3.1.0)
-  - PLMediaStreamingKit
   - ReactiveCocoa (from `https://github.com/zhao0/ReactiveCocoa.git`, tag `2.5.2`)
   - SDAutoLayout (~> 2.1.1)
   - SDCycleScrollView (~> 1.64)
@@ -75,7 +71,6 @@ SPEC REPOS:
     - Masonry
     - MJExtension
     - MJRefresh
-    - PLMediaStreamingKit
     - SDAutoLayout
     - SDCycleScrollView
     - SDWebImage
@@ -104,7 +99,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
-  PLMediaStreamingKit: 48a16270731a0a3fec8712c7dffe1e5701e6bcec
   ReactiveCocoa: 3ff25b1bd992ac79c5c79b26b6c0c1713b715bb2
   SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
@@ -113,6 +107,6 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: c395d0bfbdbd4008629a4760e5ccd797d1c99eb2
+PODFILE CHECKSUM: 7a27b9770a689e7cbfc5bfa290c9c72f7c44aec6
 
 COCOAPODS: 1.8.4

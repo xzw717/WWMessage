@@ -16,7 +16,6 @@
 #import "ZWTabBarViewController.h"
 #import "TabBarBannerViewModel.h"
 #import "TabBarBannerModel.h"
-#import "PushViewController.h"
 @interface ZWTabBarViewController ()
 /*********** <#注释#>  ************/
 @property (nonatomic,weak)  UIView *tabberOldViews ;
@@ -35,8 +34,6 @@
     OrderViewController *orderVc = [[OrderViewController alloc]init];//--个人信息
     ZWNavigationController *orderNvc =[[ZWNavigationController alloc]initWithRootViewController:orderVc];
 
-    PushViewController *pushVc = [[PushViewController alloc]init];//--个人信息
-    ZWNavigationController *pushNvc =[[ZWNavigationController alloc]initWithRootViewController:pushVc];
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
     
@@ -60,9 +57,9 @@
     detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
     commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
     orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
-    pushVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"直播" image:BusinessImage selectedImage:BusinessImageS];
 
-    self.viewControllers = @[myNav,detailNav,orderNvc,pushNvc];
+
+    self.viewControllers = @[myNav,detailNav,orderNvc];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];
