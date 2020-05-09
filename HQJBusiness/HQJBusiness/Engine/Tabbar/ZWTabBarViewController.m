@@ -16,6 +16,7 @@
 #import "ZWTabBarViewController.h"
 #import "TabBarBannerViewModel.h"
 #import "TabBarBannerModel.h"
+#import "PushViewController.h"
 @interface ZWTabBarViewController ()
 /*********** <#注释#>  ************/
 @property (nonatomic,weak)  UIView *tabberOldViews ;
@@ -25,15 +26,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MyViewController *MyVc = [[MyViewController alloc]init];
-    ZWNavigationController *MyNav = [[ZWNavigationController alloc]initWithRootViewController:MyVc];
-    DetailViewController *DetailVc = [[DetailViewController alloc]init];
-    ZWNavigationController *DetailNav = [[ZWNavigationController alloc]initWithRootViewController:DetailVc];
-    CommodityViewController *CommodityVc = [[CommodityViewController alloc]init];
+    MyViewController *myVc = [[MyViewController alloc]init];
+    ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
+    DetailViewController *detailVc = [[DetailViewController alloc]init];
+    ZWNavigationController *detailNav = [[ZWNavigationController alloc]initWithRootViewController:detailVc];
+    CommodityViewController *commodityVc = [[CommodityViewController alloc]init];
 //    ZWNavigationController *CommodityNav = [[ZWNavigationController alloc]initWithRootViewController:CommodityVc];
-    OrderViewController *OrderVc = [[OrderViewController alloc]init];//--个人信息
-    ZWNavigationController *OrderNvc =[[ZWNavigationController alloc]initWithRootViewController:OrderVc];
+    OrderViewController *orderVc = [[OrderViewController alloc]init];//--个人信息
+    ZWNavigationController *orderNvc =[[ZWNavigationController alloc]initWithRootViewController:orderVc];
 
+    PushViewController *pushVc = [[PushViewController alloc]init];//--个人信息
+    ZWNavigationController *pushNvc =[[ZWNavigationController alloc]initWithRootViewController:pushVc];
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
     
@@ -53,12 +56,13 @@
 //    UIImage *MyImage        = [UIImage imageNamed:@"icon_commodity_normal"];
 //    UIImage *MyImageS       = [[UIImage imageNamed:@"icon_commodity_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    MyVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
-    DetailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
-    CommodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
-    OrderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
-    
-    self.viewControllers = @[MyNav,DetailNav,OrderNvc];
+    myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
+    detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
+    commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
+    orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
+    pushVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"直播" image:BusinessImage selectedImage:BusinessImageS];
+
+    self.viewControllers = @[myNav,detailNav,orderNvc,pushNvc];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];

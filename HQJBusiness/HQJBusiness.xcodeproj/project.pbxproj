@@ -231,6 +231,7 @@
 		1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC50B631F68D4EB0081B728 /* VerificationOrderDetailsViewController.m */; };
 		1FC50B671F6916240081B728 /* OrderDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC50B661F6916240081B728 /* OrderDetailsHeaderView.m */; };
 		1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC50B691F6926F10081B728 /* OrderDetailFootView.m */; };
+		1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD45B0224347C9400608675 /* CertificationViewController.m */; };
 		1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FA91E0A78E9005D43F2 /* SetViewController.m */; };
 		1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FAD1E0A7F4D005D43F2 /* InformationViewController.m */; };
 		1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FB01E0A8006005D43F2 /* ZW_TableViewCell.m */; };
@@ -776,6 +777,8 @@
 		1FC50B661F6916240081B728 /* OrderDetailsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsHeaderView.m; sourceTree = "<group>"; };
 		1FC50B681F6926F10081B728 /* OrderDetailFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailFootView.h; sourceTree = "<group>"; };
 		1FC50B691F6926F10081B728 /* OrderDetailFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailFootView.m; sourceTree = "<group>"; };
+		1FD45B0124347C9400608675 /* CertificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificationViewController.h; sourceTree = "<group>"; };
+		1FD45B0224347C9400608675 /* CertificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertificationViewController.m; sourceTree = "<group>"; };
 		1FD64FA81E0A78E9005D43F2 /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		1FD64FA91E0A78E9005D43F2 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		1FD64FAC1E0A7F4D005D43F2 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationViewController.h; path = Set/InformationViewController.h; sourceTree = "<group>"; };
@@ -1495,6 +1498,8 @@
 				1F5DEFBD1E121D4A00AC1DF6 /* Trading */,
 				1FD64FAB1E0A7F1B005D43F2 /* Set */,
 				1F046CCF1E0906A0006D6EB2 /* ToAudit */,
+				1FD45B0124347C9400608675 /* CertificationViewController.h */,
+				1FD45B0224347C9400608675 /* CertificationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2569,6 +2574,7 @@
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
+				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
@@ -2871,7 +2877,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.63;
+				CURRENT_PROJECT_VERSION = 2.64;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -2899,7 +2905,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2917,7 +2923,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.63;
+				CURRENT_PROJECT_VERSION = 2.64;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -2945,7 +2951,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
