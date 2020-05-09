@@ -55,5 +55,7 @@
 @property (nonatomic, strong) NSString *couponsprice;
 /// 优惠券id
 @property (nonatomic, strong) NSString *couponsid;
+///实收金额
+@property (nonatomic, assign) CGFloat shoppaidin;
 
 @end

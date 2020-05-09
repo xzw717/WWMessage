@@ -172,11 +172,11 @@ DZNEmptyDataSetDelegate>
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
     if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
-        return 65 + [self orderNoteHeight:model.remark];
+        return 65 + [self orderNoteHeight:model.remark] + 20;
     } else if (model.usedate) {
-        return 65.f;
+        return 65.f + 20;
     } else {
-        return 44.f;
+        return 44.f + 20;
     }
 //    if (model.usedate) return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
 //

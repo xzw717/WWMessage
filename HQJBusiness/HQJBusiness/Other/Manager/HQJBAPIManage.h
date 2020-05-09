@@ -32,6 +32,8 @@ extern NSString *const HQJBBonusDomainDeccaName;
 extern NSString *const HQJBBounsOrder;
 /// 优惠券域名
 extern NSString *const WWMCouponDomain;
+/// 直播域名
+extern NSString *const WWMLiveDomain;
 /************************************域名（结束）**********************************************/
 
 
@@ -115,6 +117,11 @@ extern NSString *const HQJBSetZhRateInterface;
 extern NSString *const HQJBCashSalesInterface;
 /// 根据id查询优惠劵信息接口
 extern NSString *const HQJBGetCouponByIdInterface;
+/// 发送消息
+extern NSString *const HQJBSendMessageInterface;
+///获取消息
+extern NSString *const HQJBGetMessageInterface;
+
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

@@ -22,7 +22,8 @@ NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// 优惠券
 NSString *const WWMCouponDomain = @"http://47.98.45.218/";
-
+/// 直播域名
+NSString *const WWMLiveDomain = @"106.13.213.51";
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
@@ -39,7 +40,8 @@ NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 
 
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
-
+/// 直播域名
+NSString *const WWMLiveDomain = @"http://47.98.45.218/";
 #endif
 
 
@@ -129,6 +131,14 @@ NSString *const HQJBCashSalesInterface = @"cashSells";
 NSString *const HQJBDeleteBankCardInterface = @"deleteBankCard";
 /// 根据id查询优惠劵信息接口
 NSString *const HQJBGetCouponByIdInterface =  @"coupon/app/getCouponById";
+
+/*_____________________________直播接口________________________________________*/
+/// 发送消息
+NSString *const HQJBSendMessageInterface =  @"usercenter/discussion/SendMessage";
+///获取消息
+NSString *const HQJBGetMessageInterface = @"usercenter/discussion/GetMessage";
+
+
 @implementation HQJBAPIManage
 
 @end

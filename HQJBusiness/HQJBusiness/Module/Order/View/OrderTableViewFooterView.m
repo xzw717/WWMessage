@@ -18,6 +18,9 @@
 @property (nonatomic, strong) UIView *orderNotelineView;
 @property (nonatomic, strong) UILabel *orderNoteLabel;
 @property (nonatomic, assign) BOOL isRemake;
+
+@property (nonatomic, strong) UILabel *realAmountLabel;
+
 @end
 @implementation OrderTableViewFooterView
 
@@ -31,6 +34,7 @@
     [self.contentView addSubview:self.userDateLabel];
     [self.contentView addSubview:self.orderNoteLabel];
     [self.contentView addSubview:self.orderNotelineView];
+    [self.contentView addSubview:self.realAmountLabel];
 
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self setLayout];
@@ -69,7 +73,8 @@
     }
     
     self.orderNoteLabel.text = [NSString stringWithFormat:@"备注：%@",model.remark];
-    self.countPriceLabel.text = count  ? [NSString stringWithFormat:@"数量：%ld  合计：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"合计：¥%.2f",model.price];
+    self.countPriceLabel.text = count  ? [NSString stringWithFormat:@"数量：%ld  订单金额：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"订单金额：¥%.2f",model.price];
+    self.realAmountLabel.text = [NSString stringWithFormat:@"商家实收：¥%.2f",model.shoppaidin];
 }
 
 
@@ -80,6 +85,7 @@
 - (void)setLayout {
 //    [self.timerLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
     [self.countPriceLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
+    [self.realAmountLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
     self.timerLabel.sd_layout.leftSpaceToView(self.contentView, 15).rightSpaceToView(self.contactBuyerButton, kEDGE).topSpaceToView(self.contentView, 5).heightIs(15);
     
     if (self.isUseDate) {
@@ -88,14 +94,16 @@
         self.userDateLabel.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contactBuyerButton, kEDGE).topSpaceToView(self.timerLabel, 5).heightIs(15);
         
         self.countPriceLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.userDateLabel, 5).heightIs(15);
+        self.realAmountLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.countPriceLabel, 5).heightIs(15);
     } else {
          self.countPriceLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.timerLabel, 5).heightIs(15);
+        self.realAmountLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.countPriceLabel, 5).heightIs(15);
     }
   
  
     self.contactBuyerButton.sd_layout.rightSpaceToView(self.contentView, 15).topEqualToView(self.timerLabel).widthIs(60).heightIs(30);
     if (self.isRemake) {
-        self.orderNotelineView.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contentView,0).topSpaceToView(self.countPriceLabel, 10).heightIs(0.5);
+        self.orderNotelineView.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contentView,0).topSpaceToView(self.realAmountLabel, 10).heightIs(0.5);
         self.orderNoteLabel.sd_layout.leftEqualToView(self.timerLabel).rightEqualToView(self.contactBuyerButton).topSpaceToView(self.orderNotelineView, 0).bottomSpaceToView(self.contentView, 0);
         
     }
@@ -160,5 +168,15 @@
         [_contactBuyerButton addTarget:self action:@selector(contactBuyer) forControlEvents:UIControlEventTouchUpInside];
     }
     return _contactBuyerButton;
+}
+
+- (UILabel *)realAmountLabel{
+    if (!_realAmountLabel) {
+        _realAmountLabel = [[UILabel alloc]init];
+        _realAmountLabel.font = [UIFont systemFontOfSize:11.f];
+        _realAmountLabel.textColor = [ManagerEngine getColor:@"999999"];
+        
+    }
+    return _realAmountLabel;
 }
 @end
