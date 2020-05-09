@@ -15,7 +15,6 @@
 #import "VerificationOrderDetailsViewController.h"
 #import "RemotePushOrderModel.h"
 #import "ZGAudioManager.h"
-#import "PushViewController.h"
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
 // iOS10 注册 APNs 所需头文件
@@ -24,8 +23,6 @@
 #endif
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
-//推流SDK
-#import <PLMediaStreamingKit/PLMediaStreamingKit.h>
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
 @end
@@ -53,16 +50,14 @@
     
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    //初始化推流
-    [PLStreamingEnv initEnv];
     if ( MmberidStr == nil) {
         //
         
         [self goLogin];
         
     } else {
-//        delegate.window.rootViewController = [ZWTabBarViewController  new];
-        delegate.window.rootViewController = [PushViewController  new];
+        delegate.window.rootViewController = [ZWTabBarViewController  new];
+//        delegate.window.rootViewController = [PushViewController  new];
 
     }
     [self initializeAutoValue];
