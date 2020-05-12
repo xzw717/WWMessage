@@ -73,10 +73,11 @@
             webvc.fd_interactivePopDisabled = YES;
             [xzw_self.navigationController pushViewController:webvc animated:YES];
             
-        } else {
-            CertificationViewController *cvc =[[CertificationViewController alloc]init];
-            [xzw_self.navigationController pushViewController:cvc animated:YES];
         }
+//        else {
+//            CertificationViewController *cvc =[[CertificationViewController alloc]init];
+//            [xzw_self.navigationController pushViewController:cvc animated:YES];
+//        }
     }
     if (xzw_indexPath.section  == 2 ) {
         if (xzw_indexPath.row == 0) {
