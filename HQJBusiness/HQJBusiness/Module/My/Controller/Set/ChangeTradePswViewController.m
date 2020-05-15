@@ -20,9 +20,19 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 @property (nonatomic,strong)ZW_TextField *modelTextField;
 
+@property (nonatomic,assign)PswType pswType;
+
 @end
 
 @implementation ChangeTradePswViewController
+
+- (instancetype)initWithPasswordType:(PswType)type {
+    self = [super init];
+    if (self) {
+        self.pswType = type;
+    }
+    return self;
+}
 
 -(ZW_ChangeFigureColorLabel *)mobileLabel {
     if ( _mobileLabel == nil ) {
@@ -129,12 +139,32 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (_pswType == 1) {
-        self.zw_title = @"找回登录密码";
-    }else{
-        self.zw_title = @"修改交易密码";
+    switch (self.pswType) {
+        case SetLoginPassWordType:
+            self.zw_title = @"设置登录密码";
+
+            break;
+            case SetDealPassWordType:
+            self.zw_title = @"设置交易密码";
+
+                     
+            break;
+            case ChangeLoginPassWordType:
+            self.zw_title = @"修改登录密码";
+
+            break;
+            case ChangeDealPassWordType:
+            self.zw_title = @"修改交易密码";
+
+                      
+            break;
+            case FindLoginPassWordType:
+            self.zw_title = @"找回登录密码";
+                   
+            break;
+        default:
+            break;
     }
-    
     [self initializeTheView];
     
     [self setSignal];
@@ -145,7 +175,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)initializeTheView {
     
     CGFloat mobileWidth = [ManagerEngine setTextWidthStr:self.mobileLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    if (_pswType == 1) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType ||  self.pswType == FindLoginPassWordType) {
         self.mobileLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,20 + NavigationControllerHeight).heightIs(44).widthIs(mobileWidth);
         
         self.modelTextField.sd_layout.leftSpaceToView(self.mobileLabel,0).topSpaceToView(self.view,NavigationControllerHeight + 20 ).heightIs(44).widthIs(WIDTH - mobileWidth - kEDGE * 2);
@@ -169,7 +199,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)getcodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict;
-    if (_pswType == 2) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         dict = @{@"pwdtype":@2,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
     } else {
         dict = @{@"pwdtype":@1,@"mobile":self.modelTextField.text}.mutableCopy;
@@ -217,16 +247,16 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 -(void)nextStep{
     NSMutableDictionary *dict;
-    if (_pswType == 1) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         dict = @{@"newpwd":self.newsPswTextField.text,
-                 @"pwdtype":[NSNumber numberWithInteger:self.pswType],
-                 @"mobile":self.modelTextField.text,
-                 @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
+                       @"pwdtype":[NSNumber numberWithInteger:self.pswType],
+                       @"mobile":[NameSingle shareInstance].mobile,
+                       @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
     }else{
         dict = @{@"newpwd":self.newsPswTextField.text,
-                 @"pwdtype":[NSNumber numberWithInteger:self.pswType],
-                 @"mobile":[NameSingle shareInstance].mobile,
-                 @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
+                  @"pwdtype":[NSNumber numberWithInteger:self.pswType],
+                  @"mobile":self.modelTextField.text,
+                  @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
     }
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
@@ -251,11 +281,13 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
 -(void)setSignal {
-    if (_pswType == 1) {
+    @weakify(self);
+    if (self.pswType == FindLoginPassWordType) {
         RACSignal *mobileFieldSignal =[self.modelTextField.rac_textSignal map:^id(id value) {
             return @([ManagerEngine valiMobile:value]);
         }];
         [mobileFieldSignal subscribeNext:^(NSNumber *nextNumer) {
+            @strongify(self);
             self.getCodeButton.enabled = [nextNumer boolValue];
             if ([nextNumer boolValue]) {
                 self.getCodeButton.backgroundColor = DefaultAPPColor;
@@ -266,15 +298,18 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         }];
     }
     RACSignal *codeTexeFieldSignal =[self.verificationCodeTextField.rac_textSignal map:^id(id value) {
+         @strongify(self);
         return @([self codeLength:value]);
     }];
     RACSignal *newsPswTexeFieldSignal =[self.newsPswTextField.rac_textSignal map:^id(id value) {
+         @strongify(self);
         return @([self pswlength:value]);
     }];
     RACSignal *allSignal = [RACSignal combineLatest:@[codeTexeFieldSignal,newsPswTexeFieldSignal] reduce:^id(NSNumber *codeValid,NSNumber *newsPswValid){
         return @([codeValid boolValue]&&[newsPswValid boolValue]);
     }];
     [allSignal subscribeNext:^(NSNumber *nextNumer) {
+         @strongify(self);
         self.okButtn.enabled = [nextNumer boolValue];
         if ([nextNumer boolValue]) {
             self.okButtn.backgroundColor = DefaultAPPColor;
@@ -284,8 +319,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         
     }];
     [[self.okButtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+         @strongify(self);
         [ManagerEngine loadDateView:self.okButtn andPoint:CGPointMake(self.okButtn.mj_w / 2, self.okButtn.mj_h / 2)];
-        if (_pswType == 2) {
+        if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
             if (self.newsPswTextField.text.length != 6) {
                 [ManagerEngine dimssLoadView:self.okButtn andtitle:@"提交"];
                 [SVProgressHUD showErrorWithStatus:@"交易密码要设置6位哦"];
@@ -315,7 +351,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 - (BOOL)pswlength:(NSString *)text {
-    if (_pswType == 2) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         if (text.length >0 && text.length <=6) {
             return YES;
         } else {
@@ -336,7 +372,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         return YES;
     }
     if (textField == self.newsPswTextField) {
-        if (_pswType == 2) {
+        if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
             if (self.newsPswTextField.text.length >=6) {
                 return NO;
             } else {

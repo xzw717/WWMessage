@@ -224,6 +224,9 @@
 		1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8161E343A300077B124 /* TabBarBannerViewModel.m */; };
 		1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8181E343A300077B124 /* TabbarManager.m */; };
 		1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */; };
+		1FBD3F3E246BC80A000650EB /* StoreManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3F3D246BC80A000650EB /* StoreManagementViewController.m */; };
+		1FBD3FCB246BD3E2000650EB /* StoreManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FCA246BD3E2000650EB /* StoreManagementTableViewCell.m */; };
+		1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FCD246BE4E5000650EB /* BasicInformationViewController.m */; };
 		1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */; };
 		1FBE91EE1DEC1E59001977A6 /* HQJBusinessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91ED1DEC1E59001977A6 /* HQJBusinessTests.m */; };
 		1FBE91F91DEC1E59001977A6 /* HQJBusinessUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91F81DEC1E59001977A6 /* HQJBusinessUITests.m */; };
@@ -759,6 +762,12 @@
 		1FBBD8181E343A300077B124 /* TabbarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarManager.m; sourceTree = "<group>"; };
 		1FBBD81C1E343FF80077B124 /* ZWTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTabBarViewController.h; sourceTree = "<group>"; };
 		1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWTabBarViewController.m; sourceTree = "<group>"; };
+		1FBD3F3C246BC80A000650EB /* StoreManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreManagementViewController.h; sourceTree = "<group>"; };
+		1FBD3F3D246BC80A000650EB /* StoreManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreManagementViewController.m; sourceTree = "<group>"; };
+		1FBD3FC9246BD3E2000650EB /* StoreManagementTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreManagementTableViewCell.h; sourceTree = "<group>"; };
+		1FBD3FCA246BD3E2000650EB /* StoreManagementTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreManagementTableViewCell.m; sourceTree = "<group>"; };
+		1FBD3FCC246BE4E5000650EB /* BasicInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInformationViewController.h; sourceTree = "<group>"; };
+		1FBD3FCD246BE4E5000650EB /* BasicInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInformationViewController.m; sourceTree = "<group>"; };
 		1FBE91D01DEC1E59001977A6 /* HQJBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HQJBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBE91E41DEC1E59001977A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1497,6 +1506,10 @@
 				1F046CCF1E0906A0006D6EB2 /* ToAudit */,
 				1FD45B0124347C9400608675 /* CertificationViewController.h */,
 				1FD45B0224347C9400608675 /* CertificationViewController.m */,
+				1FBD3F3C246BC80A000650EB /* StoreManagementViewController.h */,
+				1FBD3F3D246BC80A000650EB /* StoreManagementViewController.m */,
+				1FBD3FCC246BE4E5000650EB /* BasicInformationViewController.h */,
+				1FBD3FCD246BE4E5000650EB /* BasicInformationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1561,6 +1574,8 @@
 				1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */,
 				1F6DA2DC1F6BB4E900BF8476 /* DeccaView.h */,
 				1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */,
+				1FBD3FC9246BD3E2000650EB /* StoreManagementTableViewCell.h */,
+				1FBD3FCA246BD3E2000650EB /* StoreManagementTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2517,6 +2532,7 @@
 				1F046D2C1E091659006D6EB2 /* ToAuditViewModel.m in Sources */,
 				1F3949FB1E0D1D2A00A3662D /* BonusBuyZHVC.m in Sources */,
 				05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */,
+				1FBD3F3E246BC80A000650EB /* StoreManagementViewController.m in Sources */,
 				1F960D451DFE3E51003E3D17 /* NullSafe.m in Sources */,
 				1F960D3F1DFE3E51003E3D17 /* UIPopoverController+BlocksKit.m in Sources */,
 				1F25DC031E10E9A4004DC19F /* TransferOrderVC.m in Sources */,
@@ -2626,6 +2642,7 @@
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
+				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
 				1F12C9DA1E0B5AA100CF6CB7 /* ZW_imageView.m in Sources */,
@@ -2641,6 +2658,7 @@
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
+				1FBD3FCB246BD3E2000650EB /* StoreManagementTableViewCell.m in Sources */,
 				1F12C9ED1E0B7C4D00CF6CB7 /* AddressDetailsViewController.m in Sources */,
 				1F6C85DC23CEBE78005F3DB8 /* OrderTableViewCell.m in Sources */,
 				1F960C9F1DFE3D06003E3D17 /* AppDelegate.m in Sources */,

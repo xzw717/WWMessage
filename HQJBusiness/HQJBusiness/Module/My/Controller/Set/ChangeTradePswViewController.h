@@ -9,6 +9,8 @@
 #import "ZW_ViewController.h"
 #import "JKCountDownButton.h"
 
+
+
 @interface ChangeTradePswViewController : ZW_ViewController
 
 @property (nonatomic,strong)ZW_ChangeFigureColorLabel *mobileLabel;
@@ -17,6 +19,6 @@
 
 @property (nonatomic,strong)JKCountDownButton *getCodeButton;
 
-@property (nonatomic,assign)NSInteger pswType;
+- (instancetype)initWithPasswordType:(PswType)type;
 
 @end

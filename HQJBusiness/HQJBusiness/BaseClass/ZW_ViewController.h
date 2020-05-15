@@ -26,7 +26,22 @@ typedef NS_ENUM(NSInteger,NavBackStyle) {
   
     
 };
-
+typedef NS_ENUM(NSInteger, PswType) {
+    /// 设置登录密码
+    SetLoginPassWordType = 0,
+    
+    /// 找回 登录密码
+    FindLoginPassWordType,
+    
+    /// 设置（找回）交易密码
+    SetDealPassWordType,
+    
+    /// 修改 登录密码
+    ChangeLoginPassWordType,
+     
+    /// 修改（重置）交易密码
+    ChangeDealPassWordType
+};
 
 @interface ZW_ViewController : ZW_BaseViewController
 

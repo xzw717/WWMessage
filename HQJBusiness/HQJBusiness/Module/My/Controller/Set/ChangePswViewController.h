@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangePswViewController : ZW_ViewController
-
+- (instancetype)initWithLoginPassWordType:(PswType)type;
 @end

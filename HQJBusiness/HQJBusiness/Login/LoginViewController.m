@@ -103,8 +103,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [_forgetPswBtn setTitleColor:[ManagerEngine getColor:@"18abf5"] forState:UIControlStateNormal];
         _forgetPswBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_forgetPswBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]init];
-            CTVC.pswType = 1;
+            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:FindLoginPassWordType];
             [self.navigationController pushViewController:CTVC animated:YES];
            
 //            ZWNavigationController *Nav = [[ZWNavigationController alloc]initWithRootViewController:RVC];

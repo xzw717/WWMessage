@@ -22,10 +22,17 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UITextField *oneNewPsWTextField;
 @property (nonatomic,strong)UITextField *twoNewPsWTextField;
 @property (nonatomic,strong)UIButton *okBtn;
+@property (nonatomic, assign) PswType pswType;
 @end
 
 @implementation ChangePswViewController
-
+- (instancetype)initWithLoginPassWordType:(PswType)type {
+    self = [super init];
+    if (self) {
+        self.pswType = type;
+    }
+    return self;
+}
 -(UIButton *)okBtn {
     if ( _okBtn == nil ) {
         _okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -43,20 +50,36 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.zw_title = @"登录密码修改";
+    if (self.pswType == SetLoginPassWordType) {
+        self.zw_title = @"登录密码设置";
+
+    }
+    if (self.pswType == ChangeLoginPassWordType) {
+        self.zw_title = @"登录密码修改";
+
+    }
     [self createChangeUI];
     [self signalChangePsw];
     // Do any additional setup after loading the view.
 }
 
 -(void)createChangeUI {
-    NSArray *labelAry = @[@"原始密码:",@"新的密码:",@"确认密码:"];
-    NSArray *pswAry  = @[@"请输入原始登录密码",@"新密码(限6到12位)",@"请再次输入新密码"];
+    NSArray *labelAry = [NSArray array];
+    NSArray *pswAry = [NSArray array];
+    if (self.pswType == SetLoginPassWordType) {
+        labelAry = @[@"新的密码:",@"确认密码:"];
+        pswAry = @[@"新密码(限6到12位)",@"请再次输入新密码"];
+
+    }
+    if (self.pswType == ChangeLoginPassWordType) {
+        labelAry = @[@"原始密码:",@"新的密码:",@"确认密码:"];
+        pswAry = @[@"请输入原始登录密码",@"新密码(限6到12位)",@"请再次输入新密码"];
+
+    }
     _typePswStr = @"loginpwd";
 
     CGFloat LabelSize = [ManagerEngine setTextWidthStr:labelAry[0] andFont:[UIFont systemFontOfSize:17]];
-    for (NSInteger i=0; i<3; i++) {
+    for (NSInteger i=0; i<labelAry.count; i++) {
         
         UILabel *titleLabel = [[UILabel alloc]init];
         titleLabel.font = [UIFont systemFontOfSize:17];
@@ -76,24 +99,42 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         PswTextField.placeholder = pswAry[i];
         PswTextField.borderStyle = UITextBorderStyleRoundedRect;
         [self.view addSubview:PswTextField];
-        
-        switch (PswTextField.tag) {
-            case 0:
-                _oldPsWTextField = PswTextField;
-                break;
-            case 1:
-                _oneNewPsWTextField = PswTextField;
-                _oneNewPsWTextField.delegate = self;
+        if (self.pswType == SetLoginPassWordType) {
+            switch (PswTextField.tag) {
+                   case 0:
+                       _oneNewPsWTextField = PswTextField;
+                       _oneNewPsWTextField.delegate = self;
 
-                
-                break;
-            case 2:
-                _twoNewPsWTextField = PswTextField;
-                _twoNewPsWTextField.delegate = self;
-                break;
-            default:
-                break;
+                       
+                       break;
+                   case 1:
+                       _twoNewPsWTextField = PswTextField;
+                       _twoNewPsWTextField.delegate = self;
+                       break;
+                   default:
+                       break;
+               }
         }
+        if (self.pswType == ChangeLoginPassWordType) {
+        switch (PswTextField.tag) {
+               case 0:
+                   _oldPsWTextField = PswTextField;
+                   break;
+               case 1:
+                   _oneNewPsWTextField = PswTextField;
+                   _oneNewPsWTextField.delegate = self;
+
+                   
+                   break;
+               case 2:
+                   _twoNewPsWTextField = PswTextField;
+                   _twoNewPsWTextField.delegate = self;
+                   break;
+               default:
+                   break;
+           }
+        }
+   
         
     }
     
@@ -136,48 +177,80 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 #pragma mark --
 #pragma mark --- 信号
 -(void)signalChangePsw {
-    
-    RACSignal * oldPswSignal = [_oldPsWTextField.rac_textSignal map:^id(id value) {
-        return @([self isVaildString:value]);
-    }];
+    @weakify(self);
+    RACSignal * oldPswSignal;
+    if (self.pswType != SetLoginPassWordType) {
+    oldPswSignal = [_oldPsWTextField.rac_textSignal map:^id(id value) {
+          @strongify(self);
+          return @([self isVaildString:value]);
+      }];
+    }
+  
     RACSignal *oneNewPswSignal = [_oneNewPsWTextField.rac_textSignal map:^id(id value) {
+        @strongify(self);
         return @([self isVaildString:value]);
     }];
     RACSignal *twoNewPswSignal = [_twoNewPsWTextField.rac_textSignal map:^id(id value) {
+        @strongify(self);
         return @([self isVaildString:value]);
     }];
-    RACSignal *upSignal = [RACSignal combineLatest:@[oldPswSignal,oneNewPswSignal,twoNewPswSignal] reduce:^id (NSNumber *oldNumer,NSNumber *oneNumer,NSNumber *twoNumer){
-        return @([oldNumer boolValue]&&[oneNumer boolValue]&&[twoNumer boolValue]);
+    RACSignal *upSignal;
+    if (self.pswType != SetLoginPassWordType) {
+        upSignal = [RACSignal combineLatest:@[oldPswSignal,oneNewPswSignal,twoNewPswSignal] reduce:^id (NSNumber *oldNumer,NSNumber *oneNumer,NSNumber *twoNumer){
+            return @([oldNumer boolValue]&&[oneNumer boolValue]&&[twoNumer boolValue]);
+        }];
+    }
+    RACSignal *upSignalTwo = [RACSignal combineLatest:@[oneNewPswSignal,twoNewPswSignal] reduce:^id (NSNumber *oneNumer,NSNumber *twoNumer){
+           return @([oneNumer boolValue]&&[twoNumer boolValue]);
+       
     }];
-    [upSignal subscribeNext:^(NSNumber *x) {
-        self.okBtn.enabled = [x boolValue];
-        if ([x boolValue]) {
-            self.okBtn.backgroundColor = DefaultAPPColor;
-
-        } else {
-            self.okBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
-
-        }
-    }];
-    [[self.okBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+    if (self.pswType == SetLoginPassWordType) {
         
+        [upSignalTwo subscribeNext:^(NSNumber *x) {
+            @strongify(self);
+             self.okBtn.enabled = [x boolValue];
+             if ([x boolValue]) {
+                 self.okBtn.backgroundColor = DefaultAPPColor;
+
+             } else {
+                 self.okBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+
+             }
+         }];
+      }
+      if (self.pswType == ChangeLoginPassWordType) {
+          [upSignal subscribeNext:^(NSNumber *x) {
+              @strongify(self);
+               self.okBtn.enabled = [x boolValue];
+               if ([x boolValue]) {
+                   self.okBtn.backgroundColor = DefaultAPPColor;
+
+               } else {
+                   self.okBtn.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
+
+               }
+           }];
+      }
+ 
+    [[self.okBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
         [ManagerEngine loadDateView:self.okBtn andPoint:CGPointMake(self.okBtn.mj_w / 2, self.okBtn.mj_h / 2)];
         
         
-        if(![_oneNewPsWTextField.text isEqualToString:_twoNewPsWTextField.text]){
+        if(![self.oneNewPsWTextField.text isEqualToString:self.twoNewPsWTextField.text]){
             
             [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
             
             [SVProgressHUD showErrorWithStatus:@"两次新密码不一致"];
             
-        } else if ([_oldPsWTextField.text isEqualToString:_oneNewPsWTextField.text]) {
+        } else if ([self.oldPsWTextField.text isEqualToString:self.oneNewPsWTextField.text]) {
             [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
 
             [SVProgressHUD showErrorWithStatus:@"新旧密码不得一致"];
 
 
         } else {
-            [ChangePswViewModel changePswWithOldpwd:_oldPsWTextField.text andNewpwd:_oneNewPsWTextField.text andBlock:^(NSDictionary * changepswBlock) {
+            [ChangePswViewModel changePswWithOldpwd:self.oldPsWTextField.text andNewpwd:self.oneNewPsWTextField.text andBlock:^(NSDictionary * changepswBlock) {
                 if ([changepswBlock[@"code"]integerValue] == 49000) {
                     
                     [SVProgressHUD showSuccessWithStatus:@"操作成功"];

@@ -16,6 +16,7 @@
 #import "DeccaDownloadViewController.h"
 #import "HQJWebViewController.h"
 #import "CertificationViewController.h"
+#import "StoreManagementViewController.h"
 
 @implementation MyViewModel
 
@@ -44,26 +45,29 @@
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath { 
     if (xzw_indexPath.section == 1) {
         if (xzw_indexPath.row == 0) {
+            StoreManagementViewController *SMVC = [[StoreManagementViewController alloc]init];
+            [xzw_self.navigationController pushViewController:SMVC animated:YES];
+        } else if (xzw_indexPath.row == 1) {
             // 交易
             DealViewController *DVC = [[DealViewController alloc]init];
             [xzw_self.navigationController pushViewController:DVC animated:YES];
             
             
-        } else if (xzw_indexPath.row == 1) {
+        } else if (xzw_indexPath.row == 2) {
             //消费码核销
             ConsumerCodeVerificationViewController *ConsumerCodeVC =[[ConsumerCodeVerificationViewController alloc]init];
             [xzw_self.navigationController pushViewController:ConsumerCodeVC animated:YES];
             
             
-        } else if (xzw_indexPath.row == 2){
+        } else if (xzw_indexPath.row == 3){
            //待审核申请
             ToAuditViewController *toAuditVC = [[ToAuditViewController alloc]init];
             [xzw_self.navigationController pushViewController:toAuditVC animated:YES];
-        } else if (xzw_indexPath.row == 3) {
+        } else if (xzw_indexPath.row == 4) {
             // 消息通知
             MessageNotificationViewController *mnVC =[[MessageNotificationViewController alloc]init];
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
-        } else if (xzw_indexPath.row == 4){
+        } else if (xzw_indexPath.row == 5){
             // 优惠券
             HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
 //            webvc.webTitleString = @"优惠券";

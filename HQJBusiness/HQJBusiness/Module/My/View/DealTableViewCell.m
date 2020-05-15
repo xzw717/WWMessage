@@ -31,7 +31,8 @@
 -(NSArray *)titleLabelArray {
     if ( _titleLabelArray == nil ) {
         _titleLabelArray = @[@[],
-                             @[@"交易",
+                             @[@"店铺管理",
+                               @"交易",
                                @"消费码核销",
                                @"待审核申请",
                                @"消息通知",
@@ -46,7 +47,8 @@
 -(NSArray *)titleImageViewArray {
     if ( _titleImageViewArray == nil ) {
         _titleImageViewArray = @[@[],
-                                 @[@"icon_transaction",
+                                 @[@"icon_my_storemanagement",
+                                   @"icon_transaction",
                                    @"icon_xfm",
                                    @"icon_unverify",
                                    @"icon_notice",
