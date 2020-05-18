@@ -224,6 +224,7 @@
 		1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8161E343A300077B124 /* TabBarBannerViewModel.m */; };
 		1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8181E343A300077B124 /* TabbarManager.m */; };
 		1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */; };
+		1FBD3FD624714F77000650EB /* XDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FD524714F76000650EB /* XDViewController.m */; };
 		1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */; };
 		1FBE91EE1DEC1E59001977A6 /* HQJBusinessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91ED1DEC1E59001977A6 /* HQJBusinessTests.m */; };
 		1FBE91F91DEC1E59001977A6 /* HQJBusinessUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91F81DEC1E59001977A6 /* HQJBusinessUITests.m */; };
@@ -759,6 +760,8 @@
 		1FBBD8181E343A300077B124 /* TabbarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarManager.m; sourceTree = "<group>"; };
 		1FBBD81C1E343FF80077B124 /* ZWTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTabBarViewController.h; sourceTree = "<group>"; };
 		1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWTabBarViewController.m; sourceTree = "<group>"; };
+		1FBD3FD424714F76000650EB /* XDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDViewController.h; sourceTree = "<group>"; };
+		1FBD3FD524714F76000650EB /* XDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDViewController.m; sourceTree = "<group>"; };
 		1FBE91D01DEC1E59001977A6 /* HQJBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HQJBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBE91E41DEC1E59001977A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1355,6 +1358,7 @@
 		1F960C7A1DFE3D06003E3D17 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				1FBD3FCF24714D72000650EB /* XD */,
 				1F960C7B1DFE3D06003E3D17 /* Commodity */,
 				1F960C821DFE3D06003E3D17 /* Detail */,
 				1F960C891DFE3D06003E3D17 /* My */,
@@ -1909,6 +1913,47 @@
 				1FBBD8181E343A300077B124 /* TabbarManager.m */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		1FBD3FCF24714D72000650EB /* XD */ = {
+			isa = PBXGroup;
+			children = (
+				1FBD3FD324714DBF000650EB /* Controller */,
+				1FBD3FD224714DB6000650EB /* ViewModel */,
+				1FBD3FD124714D90000650EB /* Model */,
+				1FBD3FD024714D87000650EB /* View */,
+			);
+			path = XD;
+			sourceTree = "<group>";
+		};
+		1FBD3FD024714D87000650EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FBD3FD124714D90000650EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FBD3FD224714DB6000650EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1FBD3FD324714DBF000650EB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FBD3FD424714F76000650EB /* XDViewController.h */,
+				1FBD3FD524714F76000650EB /* XDViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1FBE91C71DEC1E59001977A6 = {
@@ -2558,6 +2603,7 @@
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
+				1FBD3FD624714F77000650EB /* XDViewController.m in Sources */,
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
