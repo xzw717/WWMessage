@@ -112,7 +112,8 @@
 #define  ToolBarHeight ([ManagerEngine isIPhoneXSeries] ?  83.f : 49.f)
 /// --- 状态栏
 #define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
-
+/// 新的比例
+#define  NewProportion(a) (a / 3.f)
 
 /******************* 屏幕宽高 **************************/
 #define  WIDTH  [[UIScreen mainScreen] bounds].size.width
