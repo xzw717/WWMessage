@@ -58,13 +58,14 @@
     UIImage *xdImageS       = [[UIImage imageNamed:@"icon_XD_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
    
     xdVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:mainImage selectedImage:mainImageS];
+
     myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
     detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
     commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
     orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
 
 
-    self.viewControllers = @[xdNvc,detailNav,orderNvc,myNav];
+    self.viewControllers = @[myNav,detailNav,orderNvc,xdNvc];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];

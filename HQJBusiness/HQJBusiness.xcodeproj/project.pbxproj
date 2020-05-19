@@ -234,6 +234,8 @@
 		1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8181E343A300077B124 /* TabbarManager.m */; };
 		1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */; };
 		1FBD3FD624714F77000650EB /* XDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FD524714F76000650EB /* XDViewController.m */; };
+		1FBD3FD92472384A000650EB /* XDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FD82472384A000650EB /* XDTableViewCell.m */; };
+		1FBD3FDC247263EA000650EB /* XDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FDB247263E8000650EB /* XDModel.m */; };
 		1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */; };
 		1FBE91EE1DEC1E59001977A6 /* HQJBusinessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91ED1DEC1E59001977A6 /* HQJBusinessTests.m */; };
 		1FBE91F91DEC1E59001977A6 /* HQJBusinessUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91F81DEC1E59001977A6 /* HQJBusinessUITests.m */; };
@@ -789,6 +791,10 @@
 		1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWTabBarViewController.m; sourceTree = "<group>"; };
 		1FBD3FD424714F76000650EB /* XDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDViewController.h; sourceTree = "<group>"; };
 		1FBD3FD524714F76000650EB /* XDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDViewController.m; sourceTree = "<group>"; };
+		1FBD3FD72472384A000650EB /* XDTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDTableViewCell.h; sourceTree = "<group>"; };
+		1FBD3FD82472384A000650EB /* XDTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDTableViewCell.m; sourceTree = "<group>"; };
+		1FBD3FDA247263E8000650EB /* XDModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModel.h; sourceTree = "<group>"; };
+		1FBD3FDB247263E8000650EB /* XDModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModel.m; sourceTree = "<group>"; };
 		1FBE91D01DEC1E59001977A6 /* HQJBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HQJBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBE91E41DEC1E59001977A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1974,18 +1980,27 @@
 		1FBD3FD024714D87000650EB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				056BD24524737433006825A7 /* XDDetailBottomView.h */,
-				056BD24624737433006825A7 /* XDDetailBottomView.m */,
-				056BD24B2473B645006825A7 /* XDPayView.h */,
-				056BD24C2473B645006825A7 /* XDPayView.m */,
-				056BD23224723070006825A7 /* XDTableViewCell.h */,
-				056BD23124723070006825A7 /* XDTableViewCell.m */,
-				056BD23A24725EED006825A7 /* XDDetailTableViewCell.h */,
-				056BD23924725EED006825A7 /* XDDetailTableViewCell.m */,
-				056BD24324726F22006825A7 /* XDDetailSecCell.h */,
-				056BD24224726F22006825A7 /* XDDetailSecCell.m */,
+				1FBD3FD72472384A000650EB /* XDTableViewCell.h */,
+				1FBD3FD82472384A000650EB /* XDTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+
+		1FBD3FD124714D90000650EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FBD3FDA247263E8000650EB /* XDModel.h */,
+				1FBD3FDB247263E8000650EB /* XDModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FBD3FD224714DB6000650EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1FBD3FD324714DBF000650EB /* Controller */ = {
@@ -2642,7 +2657,7 @@
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
 				1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */,
-				056BD23324723070006825A7 /* XDTableViewCell.m in Sources */,
+				1FBD3FD92472384A000650EB /* XDTableViewCell.m in Sources */,
 				1F960D3C1DFE3E51003E3D17 /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				1F960C9B1DFE3D06003E3D17 /* CommodityViewController.m in Sources */,
 				1F960D351DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m in Sources */,
@@ -2668,6 +2683,7 @@
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
+				1FBD3FDC247263EA000650EB /* XDModel.m in Sources */,
 				1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */,
 				1F960D501DFE735B003E3D17 /* LoginViewController.m in Sources */,
 				1F960D1D1DFE3E51003E3D17 /* NSArray+BlocksKit.m in Sources */,
