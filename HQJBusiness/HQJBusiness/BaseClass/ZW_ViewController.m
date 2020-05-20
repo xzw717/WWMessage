@@ -67,6 +67,10 @@
 
     self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,NavigationControllerHeight - 44).heightIs(44).widthIs(44);
     self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, NavigationControllerHeight - 0.5);
+    [self.zwTitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.zwNavView);
+        make.centerY.mas_equalTo(self.zwBackButton);
+    }];
     @weakify(self);
     [self.zwBackButton bk_addEventHandler:^(id  _Nonnull sender) {
         @strongify(self);
@@ -209,7 +213,7 @@
     
     CGFloat titleWidth = [ManagerEngine setTextWidthStr:zw_title andFont:[UIFont systemFontOfSize:18.f]];
     
-    self.zwTitLabel.sd_layout.leftSpaceToView(self.zwNavView,(WIDTH - titleWidth) / 2).bottomSpaceToView(self.zwNavView,15).heightIs(18).widthIs(titleWidth);
+//    self.zwTitLabel.sd_layout.leftSpaceToView(self.zwNavView,(WIDTH - titleWidth) / 2).bottomSpaceToView(self.zwNavView,15).heightIs(18).widthIs(titleWidth);
     
     
     

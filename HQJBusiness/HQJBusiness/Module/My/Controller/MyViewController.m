@@ -20,6 +20,7 @@
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
 #import "JWBluetoothManage.h"
+#import "XDShopViewController.h"
 
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
@@ -92,20 +93,12 @@
 #pragma mark --- tableView  data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 3;
+    return self.viewModel.titleLabelArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        
-        return 5;
-    } else {
-        
-        return 2;
-        
-    }
+    NSArray *ary = self.viewModel.titleLabelArray[section];
+    return ary.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -154,7 +147,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.cellIndexPath = indexPath;
-
+        cell.titleLabel.text = self.viewModel.titleLabelArray[indexPath.section][indexPath.row];
+        cell.titleImageView.image = [UIImage imageNamed:self.viewModel.titleImageViewArray[indexPath.section][indexPath.row]];
         if (indexPath.section == 2&& indexPath.row == 1) {
             CellLine(cell);
     }

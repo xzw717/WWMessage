@@ -210,6 +210,14 @@
 		1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */; };
 		1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */; };
 		1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8915B1FD15077003D2AD0 /* AlreadyVerificationVC.m */; };
+		1FB02FAD247386F500F3B2F8 /* XDShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FAC247386F500F3B2F8 /* XDShopViewController.m */; };
+		1FB02FB02473B39C00F3B2F8 /* XDShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FAF2473B39C00F3B2F8 /* XDShopTableViewCell.m */; };
+		1FB02FB32473C29F00F3B2F8 /* XDShopServiceManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FB22473C29F00F3B2F8 /* XDShopServiceManagementViewController.m */; };
+		1FB02FB62473C35900F3B2F8 /* XDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FB52473C35900F3B2F8 /* XDBaseViewController.m */; };
+		1FB02FB92473D3AF00F3B2F8 /* HQJSelectToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FB72473D3AE00F3B2F8 /* HQJSelectToolView.m */; };
+		1FB02FBC2474CA4800F3B2F8 /* XDSSMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FBB2474CA4700F3B2F8 /* XDSSMTableViewCell.m */; };
+		1FB02FBF2475044F00F3B2F8 /* XDSSMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */; };
+		1FB02FC2247507E000F3B2F8 /* XDSSMViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */; };
 		1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEAD1E02C44300F670EC /* ModeOfPaymentView.m */; };
 		1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEB01E02C9C200F670EC /* ModeOfPayCell.m */; };
 		1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEB31E036E8800F670EC /* ZW_BaseViewController.m */; };
@@ -734,6 +742,22 @@
 		1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentCodeViewModel.m; sourceTree = "<group>"; };
 		1FA8915A1FD15077003D2AD0 /* AlreadyVerificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AlreadyVerificationVC.h; path = ChildVC/AlreadyVerificationVC.h; sourceTree = "<group>"; };
 		1FA8915B1FD15077003D2AD0 /* AlreadyVerificationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AlreadyVerificationVC.m; path = ChildVC/AlreadyVerificationVC.m; sourceTree = "<group>"; };
+		1FB02FAB247386F500F3B2F8 /* XDShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDShopViewController.h; sourceTree = "<group>"; };
+		1FB02FAC247386F500F3B2F8 /* XDShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDShopViewController.m; sourceTree = "<group>"; };
+		1FB02FAE2473B39C00F3B2F8 /* XDShopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDShopTableViewCell.h; sourceTree = "<group>"; };
+		1FB02FAF2473B39C00F3B2F8 /* XDShopTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDShopTableViewCell.m; sourceTree = "<group>"; };
+		1FB02FB12473C29F00F3B2F8 /* XDShopServiceManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDShopServiceManagementViewController.h; sourceTree = "<group>"; };
+		1FB02FB22473C29F00F3B2F8 /* XDShopServiceManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDShopServiceManagementViewController.m; sourceTree = "<group>"; };
+		1FB02FB42473C35900F3B2F8 /* XDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDBaseViewController.h; sourceTree = "<group>"; };
+		1FB02FB52473C35900F3B2F8 /* XDBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDBaseViewController.m; sourceTree = "<group>"; };
+		1FB02FB72473D3AE00F3B2F8 /* HQJSelectToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJSelectToolView.m; sourceTree = "<group>"; };
+		1FB02FB82473D3AE00F3B2F8 /* HQJSelectToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJSelectToolView.h; sourceTree = "<group>"; };
+		1FB02FBA2474CA4700F3B2F8 /* XDSSMTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSSMTableViewCell.h; sourceTree = "<group>"; };
+		1FB02FBB2474CA4700F3B2F8 /* XDSSMTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSSMTableViewCell.m; sourceTree = "<group>"; };
+		1FB02FBD2475044F00F3B2F8 /* XDSSMModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSSMModel.h; sourceTree = "<group>"; };
+		1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSSMModel.m; sourceTree = "<group>"; };
+		1FB02FC0247507E000F3B2F8 /* XDSSMViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSSMViewModel.h; sourceTree = "<group>"; };
+		1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSSMViewModel.m; sourceTree = "<group>"; };
 		1FB3DEAC1E02C44300F670EC /* ModeOfPaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeOfPaymentView.h; sourceTree = "<group>"; };
 		1FB3DEAD1E02C44300F670EC /* ModeOfPaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeOfPaymentView.m; sourceTree = "<group>"; };
 		1FB3DEAF1E02C9C200F670EC /* ModeOfPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeOfPayCell.h; sourceTree = "<group>"; };
@@ -1507,6 +1531,12 @@
 				1F046CCF1E0906A0006D6EB2 /* ToAudit */,
 				1FD45B0124347C9400608675 /* CertificationViewController.h */,
 				1FD45B0224347C9400608675 /* CertificationViewController.m */,
+				1FB02FAB247386F500F3B2F8 /* XDShopViewController.h */,
+				1FB02FAC247386F500F3B2F8 /* XDShopViewController.m */,
+				1FB02FB12473C29F00F3B2F8 /* XDShopServiceManagementViewController.h */,
+				1FB02FB22473C29F00F3B2F8 /* XDShopServiceManagementViewController.m */,
+				1FB02FB42473C35900F3B2F8 /* XDBaseViewController.h */,
+				1FB02FB52473C35900F3B2F8 /* XDBaseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1532,6 +1562,8 @@
 				1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */,
 				1F016C7B1F6A7D4200716C82 /* GoodsVerificationModel.h */,
 				1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */,
+				1FB02FBD2475044F00F3B2F8 /* XDSSMModel.h */,
+				1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1539,6 +1571,8 @@
 		1F960C8E1DFE3D06003E3D17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FB02FB82473D3AE00F3B2F8 /* HQJSelectToolView.h */,
+				1FB02FB72473D3AE00F3B2F8 /* HQJSelectToolView.m */,
 				1F402917229FBBA40014769B /* SetBindingCell.h */,
 				1F402916229FBBA40014769B /* SetBindingCell.m */,
 				1F63CC4D2293AA7C0061CF09 /* SetCell.h */,
@@ -1571,6 +1605,10 @@
 				1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */,
 				1F6DA2DC1F6BB4E900BF8476 /* DeccaView.h */,
 				1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */,
+				1FB02FAE2473B39C00F3B2F8 /* XDShopTableViewCell.h */,
+				1FB02FAF2473B39C00F3B2F8 /* XDShopTableViewCell.m */,
+				1FB02FBA2474CA4700F3B2F8 /* XDSSMTableViewCell.h */,
+				1FB02FBB2474CA4700F3B2F8 /* XDSSMTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1599,6 +1637,8 @@
 				1F5A785A1EA49B0B0060E9EE /* MessageNotificationViewModel.m */,
 				1FA6D5A51F99971D0083E0A6 /* PaymentCodeViewModel.h */,
 				1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */,
+				1FB02FC0247507E000F3B2F8 /* XDSSMViewModel.h */,
+				1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2522,6 +2562,7 @@
 				1F960D2C1DFE3E51003E3D17 /* NSSet+BlocksKit.m in Sources */,
 				1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */,
 				1F960D431DFE3E51003E3D17 /* UIWebView+BlocksKit.m in Sources */,
+				1FB02FBF2475044F00F3B2F8 /* XDSSMModel.m in Sources */,
 				1F6C85DD23CEBE78005F3DB8 /* OrderDetailsThreeCell.m in Sources */,
 				1F960C9D1DFE3D06003E3D17 /* MyViewController.m in Sources */,
 				1F960D261DFE3E51003E3D17 /* NSMutableSet+BlocksKit.m in Sources */,
@@ -2549,6 +2590,7 @@
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
 				1F046D201E090DAA006D6EB2 /* SGImageButton_Horizontal.m in Sources */,
 				1F5A78551EA457A00060E9EE /* MessageNotificationViewController.m in Sources */,
+				1FB02FB62473C35900F3B2F8 /* XDBaseViewController.m in Sources */,
 				1F046D421E092E07006D6EB2 /* MyListTableViewCell.m in Sources */,
 				1F1B21DF1E00CB7000021AB2 /* ZW_ViewController.m in Sources */,
 				1F046CDB1E090769006D6EB2 /* BonusViewController.m in Sources */,
@@ -2583,6 +2625,7 @@
 				1F6C85D623CEBE78005F3DB8 /* OrderDetailsTwoCell.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
 				1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */,
+				1FB02FAD247386F500F3B2F8 /* XDShopViewController.m in Sources */,
 				1F960D291DFE3E51003E3D17 /* NSObject+BKBlockExecution.m in Sources */,
 				1FF741391E0671220004AC95 /* SetZHViewController.m in Sources */,
 				1F6C85D723CEBE78005F3DB8 /* ZW_StateLabel.m in Sources */,
@@ -2613,6 +2656,7 @@
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
+				1FB02FB92473D3AF00F3B2F8 /* HQJSelectToolView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
 				1FBD3FD624714F77000650EB /* XDViewController.m in Sources */,
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
@@ -2625,6 +2669,7 @@
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
+				1FB02FB02473B39C00F3B2F8 /* XDShopTableViewCell.m in Sources */,
 				1FBD3FDC247263EA000650EB /* XDModel.m in Sources */,
 				1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */,
 				1F960D501DFE735B003E3D17 /* LoginViewController.m in Sources */,
@@ -2651,7 +2696,9 @@
 				1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */,
 				1F046D251E090DAA006D6EB2 /* SGSegmentedControlStatic.m in Sources */,
+				1FB02FBC2474CA4800F3B2F8 /* XDSSMTableViewCell.m in Sources */,
 				1F402918229FBBA40014769B /* SetBindingCell.m in Sources */,
+				1FB02FB32473C29F00F3B2F8 /* XDShopServiceManagementViewController.m in Sources */,
 				1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */,
 				1F3949EF1E0D1C9000A3662D /* BonusDealVC.m in Sources */,
 				1F960D231DFE3E51003E3D17 /* NSMutableDictionary+BlocksKit.m in Sources */,
@@ -2673,6 +2720,7 @@
 				1F960CA01DFE3D06003E3D17 /* main.m in Sources */,
 				1F960D381DFE3E51003E3D17 /* UIActionSheet+BlocksKit.m in Sources */,
 				1FFA99C21E1F752100E9FB1D /* GlobeConst.m in Sources */,
+				1FB02FC2247507E000F3B2F8 /* XDSSMViewModel.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
 				1F046CD21E0906F2006D6EB2 /* allViewController.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,

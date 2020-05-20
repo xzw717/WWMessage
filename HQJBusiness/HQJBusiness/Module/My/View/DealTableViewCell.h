@@ -13,7 +13,6 @@
 @property (nonatomic,strong)NSIndexPath *cellIndexPath;
 @property (nonatomic,strong)UIImageView *titleImageView;
 @property (nonatomic,strong)UILabel *titleLabel;
-@property (nonatomic,strong)NSArray *titleImageViewArray;
-@property (nonatomic,strong)NSArray *titleLabelArray;
+
 
 @end

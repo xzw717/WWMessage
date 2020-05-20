@@ -122,6 +122,9 @@ extern NSString *const HQJBSendMessageInterface;
 ///获取消息
 extern NSString *const HQJBGetMessageInterface;
 
+
+///  根据商家获取订单
+extern NSString *const HQJBGetOrderListByShopIdInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

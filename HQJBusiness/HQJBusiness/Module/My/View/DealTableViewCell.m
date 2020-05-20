@@ -7,6 +7,8 @@
 //
 
 #import "DealTableViewCell.h"
+//#import "MyViewModel.h"
+
 @interface DealTableViewCell ()
 
 @end
@@ -28,36 +30,7 @@
     }
     return _titleLabel;
 }
--(NSArray *)titleLabelArray {
-    if ( _titleLabelArray == nil ) {
-        _titleLabelArray = @[@[],
-                             @[@"交易",
-                               @"消费码核销",
-                               @"待审核申请",
-                               @"消息通知",
-                               @"优惠券"],/*,
-                               */
-                             @[@"台卡下载",
-                               @"设置"]];
-    }
-    return _titleLabelArray;
-}
 
--(NSArray *)titleImageViewArray {
-    if ( _titleImageViewArray == nil ) {
-        _titleImageViewArray = @[@[],
-                                 @[@"icon_transaction",
-                                   @"icon_xfm",
-                                   @"icon_unverify",
-                                   @"icon_notice",
-                                   @"icon_my_coupon"],/*,
-                                   */
-                                 @[@"mine_icon_download",
-                                   @"icon_setting"]];
-    }
-    
-    return _titleImageViewArray;
-}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -72,8 +45,8 @@
 -(void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
   
     
-        self.titleImageView.image = [UIImage imageNamed:self.titleImageViewArray[cellIndexPath.section][cellIndexPath.row]];
-        self.titleLabel.text = self.titleLabelArray[cellIndexPath.section][cellIndexPath.row];
+//        self.titleImageView.image = [UIImage imageNamed:self.titleImageViewArray[cellIndexPath.section][cellIndexPath.row]];
+//        self.titleLabel.text = self.titleLabelArray[cellIndexPath.section][cellIndexPath.row];
     
    
     

@@ -12,7 +12,9 @@
 
 @property (nonatomic,copy)void(^myrequstBlock)(id sender);
 @property (nonatomic,copy)void(^myrequstErrorBlock)(void);
-
+@property (nonatomic,strong)NSArray *titleImageViewArray;
+@property (nonatomic,strong)NSArray *titleLabelArray;
+@property (nonatomic,strong)NSArray *xdTitleImageViewArray;
 -(void)myRequst;
 
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath;

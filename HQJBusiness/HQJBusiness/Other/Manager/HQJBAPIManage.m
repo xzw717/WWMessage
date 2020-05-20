@@ -138,6 +138,10 @@ NSString *const HQJBSendMessageInterface =  @"usercenter/discussion/SendMessage"
 ///获取消息
 NSString *const HQJBGetMessageInterface = @"usercenter/discussion/GetMessage";
 
+/*_____________________________ XD商家 接口________________________________________*/
+///根据商家获取订单
+NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";
+
 
 @implementation HQJBAPIManage
 
