@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056BD23624723D99006825A7 /* XDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD23424723D99006825A7 /* XDDetailViewController.m */; };
+		056BD23E2472628C006825A7 /* XDDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD23D2472628C006825A7 /* XDDetailViewModel.m */; };
+		056BD24A2473B373006825A7 /* XDPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2482473B373006825A7 /* XDPayViewController.m */; };
+		056BD2502473C481006825A7 /* XDPaySureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD24F2473C481006825A7 /* XDPaySureViewController.m */; };
+		056BD2542473CDB0006825A7 /* XDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2522473CDB0006825A7 /* XDModel.m */; };
+		056BD25D2473CDF4006825A7 /* XDPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2552473CDF4006825A7 /* XDPayView.m */; };
+		056BD25E2473CDF4006825A7 /* XDDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2572473CDF4006825A7 /* XDDetailBottomView.m */; };
+		056BD25F2473CDF4006825A7 /* XDDetailSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD25B2473CDF4006825A7 /* XDDetailSecCell.m */; };
+		056BD2602473CDF4006825A7 /* XDDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD25C2473CDF4006825A7 /* XDDetailTableViewCell.m */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
@@ -234,7 +243,6 @@
 		1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD81D1E343FF80077B124 /* ZWTabBarViewController.m */; };
 		1FBD3FD624714F77000650EB /* XDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FD524714F76000650EB /* XDViewController.m */; };
 		1FBD3FD92472384A000650EB /* XDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FD82472384A000650EB /* XDTableViewCell.m */; };
-		1FBD3FDC247263EA000650EB /* XDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBD3FDB247263E8000650EB /* XDModel.m */; };
 		1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */; };
 		1FBE91EE1DEC1E59001977A6 /* HQJBusinessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91ED1DEC1E59001977A6 /* HQJBusinessTests.m */; };
 		1FBE91F91DEC1E59001977A6 /* HQJBusinessUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE91F81DEC1E59001977A6 /* HQJBusinessUITests.m */; };
@@ -350,6 +358,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		056BD23424723D99006825A7 /* XDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailViewController.m; sourceTree = "<group>"; };
+		056BD23524723D99006825A7 /* XDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDDetailViewController.h; sourceTree = "<group>"; };
+		056BD23924725EED006825A7 /* XDDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailTableViewCell.m; sourceTree = "<group>"; };
+		056BD23C2472628C006825A7 /* XDDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDetailViewModel.h; sourceTree = "<group>"; };
+		056BD23D2472628C006825A7 /* XDDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDetailViewModel.m; sourceTree = "<group>"; };
+		056BD24224726F22006825A7 /* XDDetailSecCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailSecCell.m; sourceTree = "<group>"; };
+		056BD24624737433006825A7 /* XDDetailBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDetailBottomView.m; sourceTree = "<group>"; };
+		056BD2482473B373006825A7 /* XDPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDPayViewController.m; sourceTree = "<group>"; };
+		056BD2492473B373006825A7 /* XDPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDPayViewController.h; sourceTree = "<group>"; };
+		056BD24C2473B645006825A7 /* XDPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPayView.m; sourceTree = "<group>"; };
+		056BD24E2473C481006825A7 /* XDPaySureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDPaySureViewController.h; sourceTree = "<group>"; };
+		056BD24F2473C481006825A7 /* XDPaySureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPaySureViewController.m; sourceTree = "<group>"; };
+		056BD2522473CDB0006825A7 /* XDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDModel.m; sourceTree = "<group>"; };
+		056BD2532473CDB0006825A7 /* XDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDModel.h; sourceTree = "<group>"; };
+		056BD2552473CDF4006825A7 /* XDPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDPayView.m; sourceTree = "<group>"; };
+		056BD2562473CDF4006825A7 /* XDDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDDetailTableViewCell.h; sourceTree = "<group>"; };
+		056BD2572473CDF4006825A7 /* XDDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailBottomView.m; sourceTree = "<group>"; };
+		056BD2582473CDF4006825A7 /* XDPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDPayView.h; sourceTree = "<group>"; };
+		056BD2592473CDF4006825A7 /* XDDetailSecCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDDetailSecCell.h; sourceTree = "<group>"; };
+		056BD25A2473CDF4006825A7 /* XDDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDDetailBottomView.h; sourceTree = "<group>"; };
+		056BD25B2473CDF4006825A7 /* XDDetailSecCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailSecCell.m; sourceTree = "<group>"; };
+		056BD25C2473CDF4006825A7 /* XDDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailTableViewCell.m; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -790,7 +820,6 @@
 		1FBD3FD524714F76000650EB /* XDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDViewController.m; sourceTree = "<group>"; };
 		1FBD3FD72472384A000650EB /* XDTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDTableViewCell.h; sourceTree = "<group>"; };
 		1FBD3FD82472384A000650EB /* XDTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDTableViewCell.m; sourceTree = "<group>"; };
-		1FBD3FDA247263E8000650EB /* XDModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModel.h; sourceTree = "<group>"; };
 		1FBD3FDB247263E8000650EB /* XDModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModel.m; sourceTree = "<group>"; };
 		1FBE91D01DEC1E59001977A6 /* HQJBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HQJBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FBE91DF1DEC1E59001977A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1008,6 +1037,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		056BD23724725EC8006825A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				056BD2532473CDB0006825A7 /* XDModel.h */,
+				056BD2522473CDB0006825A7 /* XDModel.m */,
+			);
+			name = Model;
+			path = HQJBusiness/Module/XD/Model;
+			sourceTree = SOURCE_ROOT;
+		};
+		056BD23824725EC8006825A7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				056BD23C2472628C006825A7 /* XDDetailViewModel.h */,
+				056BD23D2472628C006825A7 /* XDDetailViewModel.m */,
+			);
+			name = ViewModel;
+			path = HQJBusiness/Module/XD/ViewModel;
+			sourceTree = SOURCE_ROOT;
+		};
+		056BD2512473CD59006825A7 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				056BD24224726F22006825A7 /* XDDetailSecCell.m */,
+				056BD24624737433006825A7 /* XDDetailBottomView.m */,
+				056BD24C2473B645006825A7 /* XDPayView.m */,
+				056BD23924725EED006825A7 /* XDDetailTableViewCell.m */,
+				1FBD3FDB247263E8000650EB /* XDModel.m */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		07B203E5119CDF40E49B4861 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1964,9 +2025,9 @@
 		1FBD3FCF24714D72000650EB /* XD */ = {
 			isa = PBXGroup;
 			children = (
+				056BD23724725EC8006825A7 /* Model */,
+				056BD23824725EC8006825A7 /* ViewModel */,
 				1FBD3FD324714DBF000650EB /* Controller */,
-				1FBD3FD224714DB6000650EB /* ViewModel */,
-				1FBD3FD124714D90000650EB /* Model */,
 				1FBD3FD024714D87000650EB /* View */,
 			);
 			path = XD;
@@ -1975,26 +2036,18 @@
 		1FBD3FD024714D87000650EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				056BD25A2473CDF4006825A7 /* XDDetailBottomView.h */,
+				056BD2572473CDF4006825A7 /* XDDetailBottomView.m */,
+				056BD2592473CDF4006825A7 /* XDDetailSecCell.h */,
+				056BD25B2473CDF4006825A7 /* XDDetailSecCell.m */,
+				056BD2562473CDF4006825A7 /* XDDetailTableViewCell.h */,
+				056BD25C2473CDF4006825A7 /* XDDetailTableViewCell.m */,
+				056BD2582473CDF4006825A7 /* XDPayView.h */,
+				056BD2552473CDF4006825A7 /* XDPayView.m */,
 				1FBD3FD72472384A000650EB /* XDTableViewCell.h */,
 				1FBD3FD82472384A000650EB /* XDTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1FBD3FD124714D90000650EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1FBD3FDA247263E8000650EB /* XDModel.h */,
-				1FBD3FDB247263E8000650EB /* XDModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1FBD3FD224714DB6000650EB /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1FBD3FD324714DBF000650EB /* Controller */ = {
@@ -2002,6 +2055,12 @@
 			children = (
 				1FBD3FD424714F76000650EB /* XDViewController.h */,
 				1FBD3FD524714F76000650EB /* XDViewController.m */,
+				056BD23524723D99006825A7 /* XDDetailViewController.h */,
+				056BD23424723D99006825A7 /* XDDetailViewController.m */,
+				056BD2492473B373006825A7 /* XDPayViewController.h */,
+				056BD2482473B373006825A7 /* XDPayViewController.m */,
+				056BD24E2473C481006825A7 /* XDPaySureViewController.h */,
+				056BD24F2473C481006825A7 /* XDPaySureViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2016,6 +2075,7 @@
 				1FBE91D11DEC1E59001977A6 /* Products */,
 				07B203E5119CDF40E49B4861 /* Pods */,
 				917148EDC51052C71EE920C9 /* Frameworks */,
+				056BD2512473CD59006825A7 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2634,6 +2694,7 @@
 				1F12F6E71E1635980056DF9A /* PayEngine.m in Sources */,
 				1F6C85DA23CEBE78005F3DB8 /* OrderTwoCell.m in Sources */,
 				1F960D4A1DFE3E51003E3D17 /* ToolView.m in Sources */,
+				056BD24A2473B373006825A7 /* XDPayViewController.m in Sources */,
 				1F402913229FBA2C0014769B /* MBProgressHUD.m in Sources */,
 				1F402914229FBA2E0014769B /* ProgressShow.m in Sources */,
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
@@ -2643,11 +2704,13 @@
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
 				1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */,
+				056BD25D2473CDF4006825A7 /* XDPayView.m in Sources */,
 				1FBD3FD92472384A000650EB /* XDTableViewCell.m in Sources */,
 				1F960D3C1DFE3E51003E3D17 /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				1F960C9B1DFE3D06003E3D17 /* CommodityViewController.m in Sources */,
 				1F960D351DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m in Sources */,
 				1F3949E61E0D0FA500A3662D /* DetailBaseVC.m in Sources */,
+				056BD2542473CDB0006825A7 /* XDModel.m in Sources */,
 				1F1B21CC1DFFC81E00021AB2 /* MyModel.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
 				1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */,
@@ -2662,6 +2725,7 @@
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
+				056BD2502473C481006825A7 /* XDPaySureViewController.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
@@ -2693,6 +2757,7 @@
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
 				1F394A011E0D224500A3662D /* DetailCell.m in Sources */,
 				1F960D181DFE3E51003E3D17 /* FileEngine.m in Sources */,
+				056BD25F2473CDF4006825A7 /* XDDetailSecCell.m in Sources */,
 				1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */,
 				1F046D251E090DAA006D6EB2 /* SGSegmentedControlStatic.m in Sources */,
@@ -2705,7 +2770,9 @@
 				1FB3DEBF1E03902800F670EC /* WTReParser.m in Sources */,
 				1F960D211DFE3E51003E3D17 /* NSMapTable+BlocksKit.m in Sources */,
 				1F960D1E1DFE3E51003E3D17 /* NSDictionary+BlocksKit.m in Sources */,
+				056BD23E2472628C006825A7 /* XDDetailViewModel.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
+				056BD2602473CDF4006825A7 /* XDDetailTableViewCell.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
 				1F046CDE1E090795006D6EB2 /* ZHProportionViewController.m in Sources */,
@@ -2723,6 +2790,7 @@
 				1FB02FC2247507E000F3B2F8 /* XDSSMViewModel.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
 				1F046CD21E0906F2006D6EB2 /* allViewController.m in Sources */,
+				056BD23624723D99006825A7 /* XDDetailViewController.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,
 				1F12C9F31E0BA8E500CF6CB7 /* ChangePswViewModel.m in Sources */,
 				1F40291B229FBC520014769B /* OrderDetailsViewController.m in Sources */,
@@ -2749,6 +2817,7 @@
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1F12C9ED1E0B7C4D00CF6CB7 /* AddressDetailsViewController.m in Sources */,
 				1F6C85DC23CEBE78005F3DB8 /* OrderTableViewCell.m in Sources */,
+				056BD25E2473CDF4006825A7 /* XDDetailBottomView.m in Sources */,
 				1F960C9F1DFE3D06003E3D17 /* AppDelegate.m in Sources */,
 				1F046D381E091913006D6EB2 /* ZHSetModel.m in Sources */,
 				1F36C9381F45A27000A47738 /* GoodsModel.m in Sources */,

@@ -57,7 +57,8 @@
     UIImage *xdImage        = [UIImage imageNamed:@"icon_XD_noselect"];
     UIImage *xdImageS       = [[UIImage imageNamed:@"icon_XD_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
    
-    xdVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:xdImage selectedImage:xdImageS];
+    xdVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:mainImage selectedImage:mainImageS];
+
     myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
     detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
     commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
