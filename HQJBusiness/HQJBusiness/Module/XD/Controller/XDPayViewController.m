@@ -9,6 +9,7 @@
 #import "XDPayViewController.h"
 #import "XDPayView.h"
 #import "XDPaySureViewController.h"
+#import "XDPayViewModel.h"
 @interface XDPayViewController ()
 @property (nonatomic,strong) XDPayView *payView;
 @end
@@ -33,14 +34,37 @@
     [ManagerEngine setTextColor:self.payView.priceLabel FontNumber:[UIFont systemFontOfSize:24.0] AndRange:[NSString stringWithFormat:@"¥%@",self.priceStr] AndColor:[ManagerEngine getColor:@"ff4a49"]];
     [self.payView.payButton addTarget:self action:@selector(getoPay) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
 
 }
 
 - (void)getoPay{
-    XDPaySureViewController *psvc = [[XDPaySureViewController alloc]init];
-    [self.navigationController pushViewController:psvc animated:YES];
+    [XDPayViewModel submitXDOrder:@"" andProid:@"" andPrice:self.priceStr completion:^(id  _Nonnull sneder) {
+        
+    }];
+    
+//    XDPaySureViewController *psvc = [[XDPaySureViewController alloc]init];
+//    [self.navigationController pushViewController:psvc animated:YES];
     //    [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2]];
+}
+
+#pragma mark --- 支付宝支付结果
+-(void)alipayResults:(NSNotification *)infos {
+    NSString *stateStr = infos.userInfo[@"strMsg"];
+    if ([stateStr isEqualToString:@"支付成功"]) {
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showSuccessWithStatus:stateStr];
+        [ManagerEngine SVPAfter:stateStr complete:^{
+            self.viewControllerName = @"XDPaySureViewController";
+            [self popViews];
+        }];
+    } else {
+
+        [SVProgressHUD showErrorWithStatus:stateStr];
+    }
+    
+    
+    
 }
 -(UIStatusBarStyle)preferredStatusBarStyle
 {

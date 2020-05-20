@@ -121,6 +121,9 @@ extern NSString *const HQJBGetCouponByIdInterface;
 extern NSString *const HQJBSendMessageInterface;
 ///获取消息
 extern NSString *const HQJBGetMessageInterface;
+/*_____________________________XD接口________________________________________*/
+///创建订单
+extern NSString *const HQJBXdorderInterface;
 
 
 ///  根据商家获取订单
