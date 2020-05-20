@@ -138,6 +138,8 @@ NSString *const HQJBSendMessageInterface =  @"usercenter/discussion/SendMessage"
 ///获取消息
 NSString *const HQJBGetMessageInterface = @"usercenter/discussion/GetMessage";
 
+/*_____________________________XD接口________________________________________*/
+NSString *const HQJBXdorderInterface = @"xdorder/save.action";
 
 @implementation HQJBAPIManage
 
