@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XDPayView : UIView
 @property (nonatomic,strong) UILabel *priceLabel;
 @property (nonatomic,strong) UIButton *payButton;
+@property (nonatomic,strong) UIButton *selectBtn;
 @end
 
 NS_ASSUME_NONNULL_END

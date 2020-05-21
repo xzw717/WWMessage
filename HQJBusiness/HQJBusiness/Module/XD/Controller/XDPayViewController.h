@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPayViewController : ZW_ViewController
+
+@property (nonatomic,strong) NSString *orderid;
+@property (nonatomic,assign) NSInteger xdType;
 @property (nonatomic,strong) NSString *priceStr;
 @end
 

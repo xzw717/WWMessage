@@ -10,8 +10,12 @@
 #import "XDPayView.h"
 #import "XDPaySureViewController.h"
 #import "XDPayViewModel.h"
+#import "PayEngine.h"
+#import "XDPayModel.h"
 @interface XDPayViewController ()
 @property (nonatomic,strong) XDPayView *payView;
+@property (nonatomic,strong) NSArray *payTypeArray;
+@property(nonatomic,strong) XDPayModel *model;
 @end
 
 @implementation XDPayViewController
@@ -22,7 +26,12 @@
     }
     return _payView;
 }
-
+- (NSArray *)payTypeArray{
+    if (_payTypeArray == nil) {
+        _payTypeArray = @[@"标识企业",@"异盟企业",@"标杆企业",@"兄弟企业",@"生态企业"];
+    }
+    return _payTypeArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = DefaultBackgroundColor;
@@ -39,13 +48,16 @@
 }
 
 - (void)getoPay{
-    [XDPayViewModel submitXDOrder:@"" andProid:@"" andPrice:self.priceStr completion:^(id  _Nonnull sneder) {
-        
-    }];
+    if (!self.payView.selectBtn.selected) {
+         [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
+    }else{
+        [XDPayViewModel submitXDOrder:@"f46d46d8-debc-4d48-a08c-78cc857d2ae1" andProid:[NSString stringWithFormat:@"%ld",self.xdType] andPrice:self.priceStr completion:^(XDPayModel *model) {
+            self.model = model;
+            [PayEngine payActionOutTradeNOStr:model.orderid andSubjectStr:self.payTypeArray[self.xdType - 1] andNameStr:self.payTypeArray[self.xdType - 1] andTotalFeeSt:@"0.01"];
+        }];
+    }
     
-//    XDPaySureViewController *psvc = [[XDPaySureViewController alloc]init];
-//    [self.navigationController pushViewController:psvc animated:YES];
-    //    [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2]];
+    
 }
 
 #pragma mark --- 支付宝支付结果
@@ -55,8 +67,8 @@
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         [SVProgressHUD showSuccessWithStatus:stateStr];
         [ManagerEngine SVPAfter:stateStr complete:^{
-            self.viewControllerName = @"XDPaySureViewController";
-            [self popViews];
+            XDPaySureViewController *psvc = [[XDPaySureViewController alloc]initWithXDPayModel:self.model];
+            [self.navigationController pushViewController:psvc animated:YES];
         }];
     } else {
 
@@ -65,10 +77,6 @@
     
     
     
-}
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 

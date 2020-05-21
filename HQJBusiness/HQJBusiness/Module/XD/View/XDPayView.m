@@ -12,7 +12,7 @@
 @property (nonatomic,strong) UILabel *payTypeLabel;
 @property (nonatomic,strong) UIImageView *zfbImageView;
 @property (nonatomic,strong) UILabel *zfbLabel;
-@property (nonatomic,strong) UIButton *selectBtn;
+
 
 @end
 
