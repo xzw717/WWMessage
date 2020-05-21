@@ -147,7 +147,7 @@
     self.view.backgroundColor = DefaultBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.zwNavView.backgroundColor = DefaultAPPColor;
-    self.zwBackButton.hidden = NO;
+    [self.zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
     [self.view addSubview:self.xdTableView];
     [self.view addSubview:self.bottomView];
     

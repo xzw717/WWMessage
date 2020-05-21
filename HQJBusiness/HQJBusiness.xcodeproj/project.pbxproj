@@ -18,6 +18,8 @@
 		056BD2602473CDF4006825A7 /* XDDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD25C2473CDF4006825A7 /* XDDetailTableViewCell.m */; };
 		056BD2632474CCA4006825A7 /* XDPayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2622474CCA4006825A7 /* XDPayViewModel.m */; };
 		056BD26624760D56006825A7 /* XDPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26524760D56006825A7 /* XDPayModel.m */; };
+		056BD2692476236B006825A7 /* ContactManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2682476236B006825A7 /* ContactManagerViewController.m */; };
+		056BD26C2476240E006825A7 /* ContactManagerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26B2476240E006825A7 /* ContactManagerHeadView.m */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
@@ -386,6 +388,10 @@
 		056BD2622474CCA4006825A7 /* XDPayViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPayViewModel.m; sourceTree = "<group>"; };
 		056BD26424760D56006825A7 /* XDPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDPayModel.h; sourceTree = "<group>"; };
 		056BD26524760D56006825A7 /* XDPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPayModel.m; sourceTree = "<group>"; };
+		056BD2672476236B006825A7 /* ContactManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactManagerViewController.h; sourceTree = "<group>"; };
+		056BD2682476236B006825A7 /* ContactManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactManagerViewController.m; sourceTree = "<group>"; };
+		056BD26A2476240E006825A7 /* ContactManagerHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactManagerHeadView.h; sourceTree = "<group>"; };
+		056BD26B2476240E006825A7 /* ContactManagerHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactManagerHeadView.m; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1602,6 +1608,8 @@
 				1F046CCF1E0906A0006D6EB2 /* ToAudit */,
 				1FD45B0124347C9400608675 /* CertificationViewController.h */,
 				1FD45B0224347C9400608675 /* CertificationViewController.m */,
+				056BD2672476236B006825A7 /* ContactManagerViewController.h */,
+				056BD2682476236B006825A7 /* ContactManagerViewController.m */,
 				1FB02FAB247386F500F3B2F8 /* XDShopViewController.h */,
 				1FB02FAC247386F500F3B2F8 /* XDShopViewController.m */,
 				1FB02FB12473C29F00F3B2F8 /* XDShopServiceManagementViewController.h */,
@@ -1644,6 +1652,8 @@
 			children = (
 				1FB02FB82473D3AE00F3B2F8 /* HQJSelectToolView.h */,
 				1FB02FB72473D3AE00F3B2F8 /* HQJSelectToolView.m */,
+				056BD26A2476240E006825A7 /* ContactManagerHeadView.h */,
+				056BD26B2476240E006825A7 /* ContactManagerHeadView.m */,
 				1F402917229FBBA40014769B /* SetBindingCell.h */,
 				1F402916229FBBA40014769B /* SetBindingCell.m */,
 				1F63CC4D2293AA7C0061CF09 /* SetCell.h */,
@@ -2786,6 +2796,8 @@
 				056BD2602473CDF4006825A7 /* XDDetailTableViewCell.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
+				056BD2692476236B006825A7 /* ContactManagerViewController.m in Sources */,
+				056BD26C2476240E006825A7 /* ContactManagerHeadView.m in Sources */,
 				1F046CDE1E090795006D6EB2 /* ZHProportionViewController.m in Sources */,
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,

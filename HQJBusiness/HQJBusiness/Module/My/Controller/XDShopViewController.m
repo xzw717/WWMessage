@@ -11,7 +11,7 @@
 #import "HQJWebViewController.h"
 #import "AppDelegate.h"
 #import "XDShopServiceManagementViewController.h"
-
+#import "ContactManagerViewController.h"
 @interface XDShopViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *xdShopTableView;
 @property (nonatomic, strong) NSArray <NSString *>*titleArray;
@@ -54,7 +54,8 @@
           UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
           [tabViewController setSelectedIndex:3];
     } else if (indexPath.row == 1) {
-        
+        ContactManagerViewController *cmvc = [[ContactManagerViewController alloc]init];
+        [self.navigationController pushViewController:cmvc animated:YES];
     } else {
         XDShopServiceManagementViewController *ssmVC = [[XDShopServiceManagementViewController alloc]init];
         [self.navigationController pushViewController:ssmVC animated:YES];

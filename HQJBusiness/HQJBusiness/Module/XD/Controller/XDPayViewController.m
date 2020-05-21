@@ -15,6 +15,7 @@
 @interface XDPayViewController ()
 @property (nonatomic,strong) XDPayView *payView;
 @property (nonatomic,strong) NSArray *payTypeArray;
+@property(nonatomic,strong) XDPayModel *model;
 @end
 
 @implementation XDPayViewController
@@ -51,6 +52,7 @@
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
         [XDPayViewModel submitXDOrder:@"f46d46d8-debc-4d48-a08c-78cc857d2ae1" andProid:[NSString stringWithFormat:@"%ld",self.xdType] andPrice:self.priceStr completion:^(XDPayModel *model) {
+            self.model = model;
             [PayEngine payActionOutTradeNOStr:model.orderid andSubjectStr:self.payTypeArray[self.xdType - 1] andNameStr:self.payTypeArray[self.xdType - 1] andTotalFeeSt:@"0.01"];
         }];
     }
@@ -65,8 +67,8 @@
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         [SVProgressHUD showSuccessWithStatus:stateStr];
         [ManagerEngine SVPAfter:stateStr complete:^{
-            self.viewControllerName = @"XDPaySureViewController";
-            [self popViews];
+            XDPaySureViewController *psvc = [[XDPaySureViewController alloc]initWithXDPayModel:self.model];
+            [self.navigationController pushViewController:psvc animated:YES];
         }];
     } else {
 
@@ -75,10 +77,6 @@
     
     
     
-}
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 

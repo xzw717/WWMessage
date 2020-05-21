@@ -12,14 +12,28 @@
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) NSArray *dataArray;
 @property (nonatomic,strong) UIButton *sureButton;
+@property(nonatomic,strong) XDPayModel *model;
 @end
 
 @implementation XDPaySureViewController
+
+- (instancetype)initWithXDPayModel:(XDPayModel *)model {
+    self = [super init];
+    if (self) {
+        
+        self.model = model;
+        
+    }
+    return self;
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = DefaultBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.zwNavView.backgroundColor = DefaultAPPColor;
+    self.zw_title = @"订单详情";
     [self.view addSubview:self.xdTableView];
     [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(-271/3);
@@ -31,7 +45,7 @@
 #pragma mark --- lazy load
 - (NSArray *)dataArray{
     if (_dataArray == nil) {
-        _dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",@"2980元"]];
+        _dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",self.model.paymoney],@[@"订单号",self.model.orderid],@[@"支付时间",self.model.paytime]];
     }
     return _dataArray;
 }
@@ -58,7 +72,7 @@
         _sureButton.backgroundColor = DefaultAPPColor;
         _sureButton.layer.masksToBounds = YES;
         _sureButton.layer.cornerRadius = 115/6;
-        [_sureButton setTitle:@"去支付" forState:UIControlStateNormal];
+        [_sureButton setTitle:@"下一步" forState:UIControlStateNormal];
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sureButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
         [self.view addSubview:_sureButton];
