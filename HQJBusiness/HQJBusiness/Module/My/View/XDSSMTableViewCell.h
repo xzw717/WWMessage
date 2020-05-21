@@ -7,11 +7,12 @@
 //
 
 #import "ZW_TableViewCell.h"
-
+typedef void (^ClickBlock)(void);
 NS_ASSUME_NONNULL_BEGIN
-
+@class XDSSMModel;
 @interface XDSSMTableViewCell : ZW_TableViewCell
-
+@property (nonatomic, strong) XDSSMModel *model;
+@property (nonatomic, copy  ) ClickBlock payBlock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,9 +9,15 @@
 #import "XDShopServiceManagementViewController.h"
 #import "HQJSelectToolView.h"
 #import "XDSSMTableViewCell.h"
-
-@interface XDShopServiceManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "XDSSMViewModel.h"
+#import "XDSSMModel.h"
+#import "XDOrderDetailsViewController.h"
+@interface XDShopServiceManagementViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
+DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) UITableView  *xdssmTableView;
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger state;
+@property (nonatomic, strong) NSMutableArray <XDSSMModel *>*modelArray;
 @end
 
 @implementation XDShopServiceManagementViewController
@@ -23,28 +29,82 @@
       @weakify(self);
      [view setIndex:^(NSInteger indx) {
          @strongify(self);
-     
+         self.state = indx == 0 ? 5 : 1;
+         [self requstList];
+         self.modelArray = [NSMutableArray array];
      }];
        view.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, NewProportion(132));
        [self.view addSubview:view];
     [self.view addSubview:self.xdssmTableView];
-}
+    self.page = 1;
+    self.state = 5;
+    [self requstList];
+    self.modelArray = [NSMutableArray array];
 
+}
+- (void)requstList {
+    @weakify(self);
+    [XDSSMViewModel requstXDShopServiceManagementList:self.page orderstate:self.state  completion:^(NSArray<XDSSMModel *> * _Nonnull modelAry) {
+        @strongify(self);
+        if (modelAry.count >0) {
+            if (self.page <= 1) {
+                self.modelArray = modelAry.mutableCopy;
+                } else {
+                    [self.modelArray addObjectsFromArray:modelAry];
+                }
+        } else {
+            if (self.page > 1) {
+                
+                self.page --;
+            } else {
+                self.modelArray = nil;
+            }
+            
+            
+        }
+        [self.xdssmTableView.mj_header endRefreshing];
+        [self.xdssmTableView.mj_footer endRefreshing];
+        [self.xdssmTableView reloadData];
+    } error:^(NSError * _Nonnull error) {
+        self.modelArray = nil;
+        [self.xdssmTableView.mj_header endRefreshing];
+        [self.xdssmTableView.mj_footer endRefreshing];
+        [self.xdssmTableView reloadData];
+    }];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return 2;
+        return self.modelArray.count;
     
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
     XDSSMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XDSSMTableViewCell class]) forIndexPath:indexPath];
+    cell.model = self.modelArray[indexPath.row];
+    @weakify(self);
+    [cell setPayBlock:^{
+        @strongify(self);
+        XDOrderDetailsViewController *xdVc = [[XDOrderDetailsViewController alloc]initWithXDSSMModel:self.modelArray[indexPath.row]];
+       [self.navigationController pushViewController:xdVc animated:YES];
+    }];
     return cell;
-    
-    
-    
-    
+
     
 }
-
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"brokenNetwork"];
+}
+//空白页点击事件
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+     [self requstList];
+}
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    if (self.modelArray) {
+        return NO;
+    } else {
+       return YES;
+    }
+    
+}
 - (UITableView *)xdssmTableView {
     if (!_xdssmTableView) {
         _xdssmTableView = [[UITableView alloc]init];
@@ -57,6 +117,20 @@
         _xdssmTableView.tableFooterView = [UIView new];
         _xdssmTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _xdssmTableView.backgroundColor = [ManagerEngine getColor:@"f3f2f7"];
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            self.page = 1;
+            [self requstList];
+         
+        }];
+        MJRefreshBackFooter *footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+            self.page ++;
+             [self requstList];
+        }];
+        _xdssmTableView.mj_header = header;
+        _xdssmTableView.mj_footer = footer;
+        _xdssmTableView.emptyDataSetSource = self;
+        _xdssmTableView.emptyDataSetDelegate = self;
+       
     }
     return _xdssmTableView;
 }

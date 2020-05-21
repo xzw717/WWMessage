@@ -34,6 +34,8 @@
 
     [userCC addScriptMessageHandler:self name:@"out"];
     [userCC addScriptMessageHandler:self name:@"exitWeb"];
+    [userCC addScriptMessageHandler:self name:@"xdShop"];
+
     self.zwNavView.hidden = YES;
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
     [self.view addSubview:self.webView];
@@ -149,6 +151,9 @@
     if ([message.name isEqualToString:@"out"]||[message.name isEqualToString:@"exitWeb"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    if ([message.name isEqualToString:@"xdShop"]) {
+        HQJLog(@"%@",message.body);
+    }
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
@@ -168,6 +173,7 @@
     WKUserContentController *controller = self.webView.configuration.userContentController;
     [controller removeScriptMessageHandlerForName:@"out"];
     [controller removeScriptMessageHandlerForName:@"exitWeb"];
+    [controller removeScriptMessageHandlerForName:@"xdShop"];
 
 }
 @end
