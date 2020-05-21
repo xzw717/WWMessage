@@ -136,6 +136,7 @@
 
 - (void)gotoPay{
     XDPayViewController *payVC = [[XDPayViewController alloc]init];
+    payVC.xdType = self.xdType + 1;
     payVC.priceStr = [XDDetailViewModel priceArray][self.xdType];
     [self.navigationController pushViewController:payVC animated:YES];
 
@@ -146,6 +147,7 @@
     self.view.backgroundColor = DefaultBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.zwNavView.backgroundColor = DefaultAPPColor;
+    self.zwBackButton.hidden = NO;
     [self.view addSubview:self.xdTableView];
     [self.view addSubview:self.bottomView];
     

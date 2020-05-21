@@ -9,18 +9,27 @@
 #import "XDPayViewModel.h"
 
 @implementation XDPayViewModel
-+ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(id sneder))completion{
++ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdorderInterface];
     NSDictionary *dict = @{@"shopid":shopid,
-                           @"Proid":proid,
-                           @"Price":price};
+                           @"proid":proid,
+                           @"price":price};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        completion(dic[@"resultMsg"]);
+        if ([dic[@"resultCode"] integerValue] == 2000) {
+            XDPayModel *model = [XDPayModel mj_objectWithKeyValues:dic[@"resultMsg"]];
+            if (completion) {
+                completion(model);
+            }
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+        }
+        
     } andError:^(NSError *error) {
         
     } ShowHUD:NO];
- 
+    
 }
 @end
