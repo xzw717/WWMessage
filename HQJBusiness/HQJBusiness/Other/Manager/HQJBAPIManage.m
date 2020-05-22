@@ -145,7 +145,9 @@ NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShop
 NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
 
 NSString *const HQJBXdorderInterface = @"xdorder/save.action";
-///商家查看合同列表
+/// 企业基础信息状态
+NSString *const HQJBXdShopAuditInterface = @"XdShopAudit/reClomn.action";
+//////商家查看合同列表
 NSString *const HQJBshopAllESignListInterface = @"xdesign/shopAllESignList.action";
 ///查询当前xd商家的流程
 NSString *const HQJBXdFlowInterface = @"xdesign/XdFlow.action";
@@ -153,3 +155,4 @@ NSString *const HQJBXdFlowInterface = @"xdesign/XdFlow.action";
 @implementation HQJBAPIManage
 
 @end
+

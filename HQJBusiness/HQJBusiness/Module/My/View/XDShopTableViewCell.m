@@ -28,9 +28,32 @@
     self.titLabel.text = tit;
 }
 
-- (void)setSubTitle:(NSString *)subTitle {
+- (void)setSubTitle:(NSInteger)state {
+    /// state  1去完善  2查看信息  3修改信息  4审核中
+    
+    
     self.subTitLabel.hidden = [self.titLabel.text isEqualToString:@"企业基础信息"] ? NO : YES;
-    self.subTitLabel.text = subTitle;
+    switch (state) {
+        case 1:
+             self.subTitLabel.text = @"去完善";
+            break;
+            case 2:
+
+            self.subTitLabel.text = @"审核成功";
+            break;
+            case 3:
+ 
+            self.subTitLabel.text = @"审核失败";
+            break;
+            case 4:
+
+            self.subTitLabel.text = @"审核中";
+            break;
+        default:
+            break;
+    }
+   
+    
 }
 - (void)updateConstraints {
     [self.titLabel mas_makeConstraints:^(MASConstraintMaker *make) {
