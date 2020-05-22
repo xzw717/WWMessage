@@ -16,7 +16,7 @@
                            @"signResul":[NSString stringWithFormat:@"%ld",signResul]};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if ([dic[@"resultCode"] integerValue] == 2000) {
+        if ([dic[@"resultCode"] integerValue] == 1800) {
             NSArray *resultMsgArray = dic[@"resultMsg"];
             NSMutableArray *resultArray = [NSMutableArray array];
              if (resultMsgArray.count > 0) {
