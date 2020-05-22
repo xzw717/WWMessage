@@ -20,4 +20,7 @@
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath;
 
 +(void)getHomeBannerBlock:(void(^)(id imageArray))sender;
+
+
+
 @end

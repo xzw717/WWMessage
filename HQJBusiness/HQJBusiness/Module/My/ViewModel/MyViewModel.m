@@ -23,6 +23,8 @@
 - (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
+    NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
+
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
@@ -36,10 +38,23 @@
                 self.myrequstErrorBlock();
             }
         } ShowHUD:YES];
+        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:dict complete:^(NSDictionary *dic) {
+            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"]  setObject:dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @"" forKey:@"shopid"];
+//            [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:@{@"shopid":dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @""}.mutableCopy];
+
+          } andError:^(NSError *error) {
+              if (self.myrequstErrorBlock) {
+                  self.myrequstErrorBlock();
+              }
+          } ShowHUD:YES];
+        
+        
+        
     }
     
     
 }
+
 
 
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath { 
