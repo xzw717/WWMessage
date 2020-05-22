@@ -151,7 +151,10 @@ NSString *const HQJBXdShopAuditInterface = @"XdShopAudit/reClomn.action";
 NSString *const HQJBshopAllESignListInterface = @"xdesign/shopAllESignList.action";
 ///查询当前xd商家的流程
 NSString *const HQJBXdFlowInterface = @"xdesign/XdFlow.action";
-
+///生成合同
+NSString *const HQJBInitiateESignInterface = @"xdesign/initiateESign.action";
+///根据订单id获取订单详情
+NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.action";
 @implementation HQJBAPIManage
 
 @end

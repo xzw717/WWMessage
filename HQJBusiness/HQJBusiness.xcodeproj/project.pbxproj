@@ -23,6 +23,7 @@
 		056BD26F24766C4F006825A7 /* ContactManagerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26E24766C4F006825A7 /* ContactManagerViewModel.m */; };
 		056BD27224766D8C006825A7 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD27124766D8C006825A7 /* ContactModel.m */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
+		05E210142477C324006A69B3 /* XDDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E210132477C324006A69B3 /* XDDetailModel.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
 		1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CB21E08E04D006D6EB2 /* ToAuditViewController.m */; };
@@ -402,6 +403,8 @@
 		056BD27124766D8C006825A7 /* ContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
+		05E210122477C324006A69B3 /* XDDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDetailModel.h; sourceTree = "<group>"; };
+		05E210132477C324006A69B3 /* XDDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDetailModel.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F016C7B1F6A7D4200716C82 /* GoodsVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVerificationModel.h; sourceTree = "<group>"; };
 		1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVerificationModel.m; sourceTree = "<group>"; };
@@ -1068,6 +1071,8 @@
 				056BD2522473CDB0006825A7 /* XDModel.m */,
 				056BD26424760D56006825A7 /* XDPayModel.h */,
 				056BD26524760D56006825A7 /* XDPayModel.m */,
+				05E210122477C324006A69B3 /* XDDetailModel.h */,
+				05E210132477C324006A69B3 /* XDDetailModel.m */,
 			);
 			name = Model;
 			path = HQJBusiness/Module/XD/Model;
@@ -2775,6 +2780,7 @@
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
+				05E210142477C324006A69B3 /* XDDetailModel.m in Sources */,
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,

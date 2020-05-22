@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XDPayModel.h"
+#import "XDDetailModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPayViewModel : NSObject
-+ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion;
++ (void)getOrderInfoById:(NSString *)orderid completion:(void(^)(XDDetailModel *model))completion;
 @end
 
 NS_ASSUME_NONNULL_END

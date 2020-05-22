@@ -10,8 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPaySureViewController : ZW_ViewController
-- (instancetype)initWithXDPayModel:(XDPayModel *)model;
-
+- (instancetype)initWithOrderid:(NSString *)orderid;
 @end
 
 NS_ASSUME_NONNULL_END

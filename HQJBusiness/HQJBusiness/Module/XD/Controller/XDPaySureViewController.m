@@ -7,27 +7,31 @@
 //
 
 #import "XDPaySureViewController.h"
-
+#import "XDPayViewModel.h"
 @interface XDPaySureViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) NSArray *dataArray;
 @property (nonatomic,strong) UIButton *sureButton;
-@property(nonatomic,strong) XDPayModel *model;
+@property(nonatomic,strong)  NSString *orderid;
 @end
 
 @implementation XDPaySureViewController
 
-- (instancetype)initWithXDPayModel:(XDPayModel *)model {
+- (instancetype)initWithXDPayModel:(NSString *)orderid {
     self = [super init];
     if (self) {
         
-        self.model = model;
+        self.orderid = orderid;
         
     }
     return self;
     
 }
-
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requsetOrderDetail];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = DefaultBackgroundColor;
@@ -40,15 +44,18 @@
         make.centerX.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(812/3, 115/3));
     }];
+    
     // Do any additional setup after loading the view.
 }
-#pragma mark --- lazy load
-- (NSArray *)dataArray{
-    if (_dataArray == nil) {
-        _dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",self.model.paymoney],@[@"订单号",self.model.orderid],@[@"支付时间",self.model.paytime]];
-    }
-    return _dataArray;
+- (void)requsetOrderDetail{
+    [XDPayViewModel getOrderInfoById:self.orderid completion:^(XDDetailModel * _Nonnull model) {
+        self.dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",model.paymoney],@[@"订单号",model.orderid],@[@"支付时间",model.paytime]];
+        [self.xdTableView reloadData];
+    }];
 }
+
+#pragma mark --- lazy load
+
 
 -(UITableView *)xdTableView {
     if ( _xdTableView == nil ) {

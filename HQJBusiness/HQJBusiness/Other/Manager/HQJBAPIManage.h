@@ -134,6 +134,10 @@ extern NSString *const HQJBGetOrderListByShopIdInterface;
 extern NSString *const HQJBXdFlowInterface;
 /// 企业基础信息状态
 extern NSString *const HQJBXdShopAuditInterface;
+///生成合同
+extern NSString *const HQJBInitiateESignInterface;
+///根据订单id获取订单详情
+extern NSString *const HQJBGetOrderInfoByIdInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

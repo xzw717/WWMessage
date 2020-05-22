@@ -9,16 +9,15 @@
 #import "XDPayViewModel.h"
 
 @implementation XDPayViewModel
-+ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion{
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdorderInterface];
-    NSDictionary *dict = @{@"shopid":shopid,
-                           @"proid":proid,
-                           @"price":price};
+
++ (void)getOrderInfoById:(NSString *)orderid completion:(void(^)(XDDetailModel *model))completion{
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetOrderInfoByIdInterface];
+    NSDictionary *dict = @{@"orderid":orderid};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"] integerValue] == 2000) {
-            XDPayModel *model = [XDPayModel mj_objectWithKeyValues:dic[@"resultMsg"]];
+            XDDetailModel *model = [XDDetailModel mj_objectWithKeyValues:dic[@"resultMsg"]];
             if (completion) {
                 completion(model);
             }
@@ -30,6 +29,5 @@
     } andError:^(NSError *error) {
         
     } ShowHUD:NO];
-    
 }
 @end

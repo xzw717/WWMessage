@@ -74,5 +74,48 @@
         
     } ShowHUD:NO];
 }
-　
++ (void)initiateESign:(NSString *)shopid andType:(NSString *)type andState:(NSString *)state andPeugeotid:(NSString *)peugeotid completion:(void(^)(id result))completion{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInitiateESignInterface];
+    NSDictionary *dict = @{@"shopid":shopid,
+                           @"type":type,
+                           @"state":@"1",
+                           @"peugeotid":peugeotid};
+    
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"resultCode"] integerValue] == 1800) {
+            if (completion) {
+                completion(dic[@"resultMsg"]);
+            }
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+        }
+        
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+}
++ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdorderInterface];
+    NSDictionary *dict = @{@"shopid":shopid,
+                           @"proid":proid,
+                           @"price":price};
+    
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"resultCode"] integerValue] == 2000) {
+            XDPayModel *model = [XDPayModel mj_objectWithKeyValues:dic[@"resultMsg"]];
+            if (completion) {
+                completion(model);
+            }
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+        }
+        
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+    
+}
 @end
