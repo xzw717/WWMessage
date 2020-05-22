@@ -71,7 +71,8 @@
         _xdTableView.rowHeight = NewProportion(183);
         [_xdTableView registerClass:[XDTableViewCell class] forCellReuseIdentifier:NSStringFromClass([XDTableViewCell class])];
         UIImageView *view = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, NewProportion(540))];
-        view.backgroundColor = [UIColor blueColor];
+        view.image = [UIImage imageNamed:@"banner"];
+//        view.backgroundColor = [UIColor blueColor];
         _xdTableView.tableHeaderView = view;
         _xdTableView.tableFooterView = [UIView new];
         _xdTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

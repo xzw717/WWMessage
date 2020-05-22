@@ -233,6 +233,8 @@
 		1FB02FBC2474CA4800F3B2F8 /* XDSSMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FBB2474CA4700F3B2F8 /* XDSSMTableViewCell.m */; };
 		1FB02FBF2475044F00F3B2F8 /* XDSSMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */; };
 		1FB02FC2247507E000F3B2F8 /* XDSSMViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */; };
+		1FB02FC5247571E300F3B2F8 /* XDOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FC4247571E300F3B2F8 /* XDOrderDetailsViewController.m */; };
+		1FB02FC8247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB02FC7247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.m */; };
 		1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEAD1E02C44300F670EC /* ModeOfPaymentView.m */; };
 		1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEB01E02C9C200F670EC /* ModeOfPayCell.m */; };
 		1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3DEB31E036E8800F670EC /* ZW_BaseViewController.m */; };
@@ -806,6 +808,10 @@
 		1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSSMModel.m; sourceTree = "<group>"; };
 		1FB02FC0247507E000F3B2F8 /* XDSSMViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSSMViewModel.h; sourceTree = "<group>"; };
 		1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSSMViewModel.m; sourceTree = "<group>"; };
+		1FB02FC3247571E300F3B2F8 /* XDOrderDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOrderDetailsViewController.h; sourceTree = "<group>"; };
+		1FB02FC4247571E300F3B2F8 /* XDOrderDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDOrderDetailsViewController.m; sourceTree = "<group>"; };
+		1FB02FC6247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOrderDetailsTableViewCell.h; sourceTree = "<group>"; };
+		1FB02FC7247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDOrderDetailsTableViewCell.m; sourceTree = "<group>"; };
 		1FB3DEAC1E02C44300F670EC /* ModeOfPaymentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeOfPaymentView.h; sourceTree = "<group>"; };
 		1FB3DEAD1E02C44300F670EC /* ModeOfPaymentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeOfPaymentView.m; sourceTree = "<group>"; };
 		1FB3DEAF1E02C9C200F670EC /* ModeOfPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeOfPayCell.h; sourceTree = "<group>"; };
@@ -1618,6 +1624,8 @@
 				056BD2682476236B006825A7 /* ContactManagerViewController.m */,
 				1FB02FAB247386F500F3B2F8 /* XDShopViewController.h */,
 				1FB02FAC247386F500F3B2F8 /* XDShopViewController.m */,
+				1FB02FC3247571E300F3B2F8 /* XDOrderDetailsViewController.h */,
+				1FB02FC4247571E300F3B2F8 /* XDOrderDetailsViewController.m */,
 				1FB02FB12473C29F00F3B2F8 /* XDShopServiceManagementViewController.h */,
 				1FB02FB22473C29F00F3B2F8 /* XDShopServiceManagementViewController.m */,
 				1FB02FB42473C35900F3B2F8 /* XDBaseViewController.h */,
@@ -1698,6 +1706,8 @@
 				1FB02FAF2473B39C00F3B2F8 /* XDShopTableViewCell.m */,
 				1FB02FBA2474CA4700F3B2F8 /* XDSSMTableViewCell.h */,
 				1FB02FBB2474CA4700F3B2F8 /* XDSSMTableViewCell.m */,
+				1FB02FC6247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.h */,
+				1FB02FC7247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2628,6 +2638,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */,
+				1FB02FC8247621AB00F3B2F8 /* XDOrderDetailsTableViewCell.m in Sources */,
+				1FB02FC5247571E300F3B2F8 /* XDOrderDetailsViewController.m in Sources */,
 				1F960D2B1DFE3E51003E3D17 /* NSOrderedSet+BlocksKit.m in Sources */,
 				1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */,
 				1F20CB371E07876000FC91B3 /* CALScanQRCodeTitleView.m in Sources */,

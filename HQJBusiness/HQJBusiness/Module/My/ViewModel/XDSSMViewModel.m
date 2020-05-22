@@ -9,12 +9,19 @@
 #import "XDSSMViewModel.h"
 #import "XDSSMModel.h"
 @implementation XDSSMViewModel
-- (void)requstXDShopServiceManagementList:(NSInteger)page complete:(void(^)(NSArray *modelAry))complete {
++ (void)requstXDShopServiceManagementList:(NSInteger)page orderstate:(NSInteger)state completion:(void(^)(NSArray <XDSSMModel *>*modelAry))completion error:(void (^)(NSError *error))xdssmError {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetOrderListByShopIdInterface];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"Shopid":@"",@"size":@(10),@"page":@(page)} complete:^(NSDictionary *dic) {
-        
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"shopid":@"f46d46d8-debc-4d48-a08c-78cc857d2ae1",@"orderstate":@(state),@"size":@(15),@"page":@(page)} complete:^(NSDictionary *dic) {
+        if ([dic[@"resultCode"] integerValue] == 2100) {
+            NSMutableArray *array = [XDSSMModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"][@"list"]];
+            !completion ? :completion(array);
+        } else {
+            NSError *er ;
+            !xdssmError ? :xdssmError (er);
+        }
     } andError:^(NSError *error) {
-    
+    !xdssmError ? :xdssmError (error);
+
     } ShowHUD:YES];
 }
 @end

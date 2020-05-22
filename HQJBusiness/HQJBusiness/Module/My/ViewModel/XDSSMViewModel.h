@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 NS_ASSUME_NONNULL_BEGIN
-
+@class XDSSMModel;
 @interface XDSSMViewModel : NSObject
-
++ (void)requstXDShopServiceManagementList:(NSInteger)page orderstate:(NSInteger)state completion:(void(^)(NSArray <XDSSMModel *>*modelAry))completion error:(void (^)(NSError *error))xdssmError;
 @end
 
 NS_ASSUME_NONNULL_END

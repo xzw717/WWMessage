@@ -7,6 +7,9 @@
 //
 
 #import "XDSSMTableViewCell.h"
+#import "XDSSMModel.h"
+#import "XDOrderDetailsViewController.h"
+
 @interface XDSSMTableViewCell ()
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIImageView *logoImageView;
@@ -28,7 +31,28 @@
     }
     return self;
 }
+- (void)setModel:(XDSSMModel *)model {
+    _model = model;
+    if ([model.orderstate isEqualToString:@"5"]) {
+        self.stateTitleLabel.text = @"支付方式";
+        self.stateLabel.text = model.paywayname;
+        self.payButton.hidden = YES;
+    }
+    if ([model.orderstate isEqualToString:@"1"]) {
+        self.stateTitleLabel.text = @"支付状态";
+        self.stateLabel.text = @"待支付";
+        self.payButton.hidden = NO;
 
+    }
+    NSMutableAttributedString *arttirbu = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.ordermoney]];
+    [arttirbu setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0]} range:NSMakeRange(1, model.ordermoney.length)];
+    self.priceLabel.attributedText = arttirbu;
+ 
+    
+}
+- (void)clickPay {
+    !self.payBlock ? : self.payBlock();
+}
 - (void)addView {
     [self.contentView addSubview:self.mainView];
     [self.mainView addSubview:self.logoImageView];
@@ -133,7 +157,7 @@
         _priceLabel = [[UILabel alloc]init];
         _priceLabel.textColor = [ManagerEngine getColor:@"ff4949"];
         _priceLabel.font = [UIFont systemFontOfSize:NewProportion(40) weight:UIFontWeightBold];
-        _priceLabel.text = @"￥2980.00";
+//        _priceLabel.text = @"￥2980.00";
     }
     return _priceLabel;
 }
@@ -142,7 +166,7 @@
         _stateTitleLabel = [[UILabel alloc]init];
         _stateTitleLabel.textColor = [ManagerEngine getColor:@"333333"];
         _stateTitleLabel.font = [UIFont systemFontOfSize:NewProportion(40)];
-        _stateTitleLabel.text = @"支付状态";
+//        _stateTitleLabel.text = @"支付状态";
     }
     return _stateTitleLabel;
 }
@@ -152,7 +176,7 @@
         _stateLabel = [[UILabel alloc]init];
         _stateLabel.textColor = [ManagerEngine getColor:@"969799"];
         _stateLabel.font = [UIFont systemFontOfSize:NewProportion(40)];
-        _stateLabel.text = @"待支付";
+//        _stateLabel.text = @"待支付";
     }
     return _stateLabel;
 }
@@ -165,6 +189,8 @@
         _payButton.layer.masksToBounds = YES;
         _payButton.layer.cornerRadius = NewProportion(42);
         [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
+        _payButton.hidden = YES;
+        [_payButton addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
     }
     return _payButton;
 }

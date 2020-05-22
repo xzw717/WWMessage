@@ -11,6 +11,7 @@
 #import "HQJWebViewController.h"
 #import "AppDelegate.h"
 #import "XDShopServiceManagementViewController.h"
+#import "HQJWebViewController.h"
 #import "ContactManagerViewController.h"
 @interface XDShopViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *xdShopTableView;
@@ -49,6 +50,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+//        HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+
+        
         [self.navigationController popToRootViewControllerAnimated:NO];
           AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
           UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
