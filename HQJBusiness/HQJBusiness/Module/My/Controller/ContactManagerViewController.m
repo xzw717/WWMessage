@@ -8,7 +8,8 @@
 
 #import "ContactManagerViewController.h"
 #import "ContactManagerHeadView.h"
-
+#import "ContactManagerViewModel.h"
+#import "ContactModel.h"
 #define TableViewCellHeight 140.f/3
 #define HeadHeight  132/3.f
 #define TableViewTopSpace 40/3.f
@@ -16,16 +17,10 @@
 @property (nonatomic, assign) NSInteger topTag;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ContactManagerHeadView *headView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray <ContactModel *>*dataArray;
 @end
 
 @implementation ContactManagerViewController
-- (NSArray *)dataArray{
-    if (_dataArray == nil) {
-        _dataArray = @[@"物联网新商业合同",@"国物追溯合同"];
-    }
-    return _dataArray;
-}
 
 -(UITableView *)tableView {
     if (!_tableView) {
@@ -52,7 +47,7 @@
         [_headView setItemBlock:^(NSInteger selectedIndex) {
             @strongify(self);
             self.topTag = selectedIndex;
-            [self.tableView reloadData];
+            [self requsetData];
         }];
     }
     return _headView;
@@ -65,6 +60,8 @@
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     self.zwTitLabel.text = @"合同管理";
     [self addSubViews];
+    [self requsetData];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -72,7 +69,12 @@
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
 }
-
+- (void)requsetData{
+    [ContactManagerViewModel getContactManagerList:Shopid andSignResul:self.topTag+1 completion:^(NSArray<ContactModel *> * _Nonnull list) {
+        self.dataArray = list;
+        [self.tableView reloadData];
+    }];
+}
 #pragma mark --- UITableViewDataSource
 
 
@@ -106,10 +108,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
+    ContactModel *model = self.dataArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.textColor = [ManagerEngine getColor:@"666666"];
     cell.textLabel.font = [UIFont systemFontOfSize:16];
-    cell.textLabel.text = self.dataArray[indexPath.row];
+    cell.textLabel.text = model.type;
     cell.detailTextLabel.textColor = [ManagerEngine getColor:@"ff4949"];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
     cell.detailTextLabel.text = @"待审核";
