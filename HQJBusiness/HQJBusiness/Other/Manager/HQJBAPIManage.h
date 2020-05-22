@@ -126,7 +126,8 @@ extern NSString *const HQJBGetMessageInterface;
 extern NSString *const HQJBXdorderInterface;
 ///商家查看合同列表
 extern NSString *const HQJBshopAllESignListInterface;
-
+/// 获取商家shopid
+extern NSString *const HQJBRetrunShopIdInterface;
 ///  根据商家获取订单
 extern NSString *const HQJBGetOrderListByShopIdInterface;
 /************************************接口（结束）**********************************************/

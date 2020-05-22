@@ -141,8 +141,9 @@ NSString *const HQJBGetMessageInterface = @"usercenter/discussion/GetMessage";
 /*_____________________________ XD商家 接口________________________________________*/
 ///根据商家获取订单
 NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";
+/// 获取商家shopid
+NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
 
-/*_____________________________XD接口________________________________________*/
 NSString *const HQJBXdorderInterface = @"xdorder/save.action";
 //////商家查看合同列表
 NSString *const HQJBshopAllESignListInterface = @"xdesign/shopAllESignList.action";

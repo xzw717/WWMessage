@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.zw_title = @"XD商家";
+    self.zw_title = @"XD商家"; 
     self.titleArray = @[@"企业基础信息",@"XD商家合同",@"XD商家服务费用"];
     [self.view addSubview:self.xdShopTableView];
 }

@@ -102,6 +102,7 @@
 #define Rrealname    [FileEngine filePathNameReadName:@"realname" andstye:fileDefaultStyle]
 #define Mmobile      [FileEngine filePathNameReadName:@"mobile" andstye:fileDefaultStyle]
 #define HashCode     [FileEngine filePathNameReadName:@"hashCode" andstye:fileLoginStyle]
+#define Shopid       [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] objectForKey:@"shopid"]
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 
 //#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
