@@ -39,7 +39,7 @@
             }
         } ShowHUD:YES];
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:dict complete:^(NSDictionary *dic) {
-            [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"]  setObject:dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @"" forKey:@"shopid"];
+            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
 //            [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:@{@"shopid":dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @""}.mutableCopy];
 
           } andError:^(NSError *error) {

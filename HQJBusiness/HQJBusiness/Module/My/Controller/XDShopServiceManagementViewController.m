@@ -11,6 +11,7 @@
 #import "XDSSMTableViewCell.h"
 #import "XDSSMViewModel.h"
 #import "XDSSMModel.h"
+#import "XDPayModel.h"
 #import "XDOrderDetailsViewController.h"
 @interface XDShopServiceManagementViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
@@ -79,16 +80,27 @@ DZNEmptyDataSetDelegate>
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  
     XDSSMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XDSSMTableViewCell class]) forIndexPath:indexPath];
-    cell.model = self.modelArray[indexPath.row];
+    XDSSMModel *ssmModel = self.modelArray[indexPath.row];
+    cell.model = ssmModel;
     @weakify(self);
     [cell setPayBlock:^{
         @strongify(self);
-        XDOrderDetailsViewController *xdVc = [[XDOrderDetailsViewController alloc]initWithXDSSMModel:self.modelArray[indexPath.row]];
-       [self.navigationController pushViewController:xdVc animated:YES];
+       XDPayModel *model = [[XDPayModel alloc]init];
+       model.orderid = ssmModel.orderid;
+       model.paymoney =  ssmModel.ordermoney ;
+       model.proid = ssmModel.proid;
+        
     }];
     return cell;
 
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.state == 0) {
+        XDOrderDetailsViewController *xdVc = [[XDOrderDetailsViewController alloc]initWithXDSSMModel:self.modelArray[indexPath.row]];
+        [self.navigationController pushViewController:xdVc animated:YES];
+    }
+
 }
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"brokenNetwork"];
