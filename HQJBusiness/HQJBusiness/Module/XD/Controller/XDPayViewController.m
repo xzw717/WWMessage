@@ -51,7 +51,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [XDPayViewModel submitXDOrder:@"f46d46d8-debc-4d48-a08c-78cc857d2ae1" andProid:[NSString stringWithFormat:@"%ld",self.xdType] andPrice:self.priceStr completion:^(XDPayModel *model) {
+        [XDPayViewModel submitXDOrder:Shopid andProid:[NSString stringWithFormat:@"%ld",self.xdType] andPrice:self.priceStr completion:^(XDPayModel *model) {
             self.model = model;
             [PayEngine payActionOutTradeNOStr:model.orderid andSubjectStr:self.payTypeArray[self.xdType - 1] andNameStr:self.payTypeArray[self.xdType - 1] andTotalFeeSt:@"0.01"];
         }];

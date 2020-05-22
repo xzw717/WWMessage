@@ -70,7 +70,7 @@
     [self.view addSubview:self.tableView];
 }
 - (void)requsetData{
-    [ContactManagerViewModel getContactManagerList:@"f46d46d8-debc-4d48-a08c-78cc857d2ae1" andSignResul:self.topTag+1 completion:^(NSArray<ContactModel *> * _Nonnull list) {
+    [ContactManagerViewModel getContactManagerList:Shopid andSignResul:self.topTag+1 completion:^(NSArray<ContactModel *> * _Nonnull list) {
         self.dataArray = list;
         [self.tableView reloadData];
     }];
