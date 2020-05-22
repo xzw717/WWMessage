@@ -23,6 +23,10 @@
 + (NSArray *)priceArray{
     return @[@"2980",@"4980",@"9980",@"19800",@"49900"];
 }
++ (NSArray *)xdImageBannerArray{
+    return @[@"标识企业",@"异盟企业",@"标杆企业",@"兄弟企业",@"生态企业"];
+}
+
 + (CGFloat)getStringHeight:(NSString *)text{
     CGFloat w = WIDTH - 156/3;
     CGSize labelsize  = [text
@@ -50,4 +54,25 @@
     }
     return y + 32;
 }
+
++ (void)getXDShopState:(NSString *)shopid andPeugeotid:(NSString *)peugeotid completion:(void(^)(id dict))completion{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdFlowInterface];
+    NSDictionary *dict = @{@"shopid":shopid,
+                           @"peugeotid":peugeotid};
+    
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if ([dic[@"resultCode"] integerValue] == 1800) {
+            if (completion) {
+                completion(dic[@"resultMsg"]);
+            }
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+        }
+        
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+}
+　
 @end

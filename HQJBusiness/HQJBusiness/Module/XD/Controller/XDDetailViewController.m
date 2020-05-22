@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) XDDetailBottomView *bottomView;
 @property (nonatomic,assign) XDType xdType;
+@property (nonatomic,assign) NSInteger xdState;
 
 @end
 
@@ -46,7 +47,7 @@
         
         
         UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 180)];
-        iv.image = [UIImage imageNamed:@"banner"];
+        iv.image = [UIImage imageNamed:[XDDetailViewModel xdImageBannerArray][self.xdType]];
         _xdTableView.tableHeaderView = iv;
         _xdTableView.tableFooterView = [UIView new];
         
@@ -139,7 +140,7 @@
     payVC.xdType = self.xdType + 1;
     payVC.priceStr = [XDDetailViewModel priceArray][self.xdType];
     [self.navigationController pushViewController:payVC animated:YES];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -158,9 +159,48 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [XDDetailViewModel getXDShopState:Shopid andPeugeotid:[NSString stringWithFormat:@"%ld",self.xdType+1] completion:^(id  _Nonnull dict) {
+        self.xdState = [dict[@"state"] integerValue];
+        NSString *stateStr;
+        switch (self.xdState) {
+            case 1:
+                stateStr = @"签第一份合同";
+                break;
+            case 2:
+                stateStr = @"签第2份合同";
+                break;
+            case 3:
+                stateStr = @"签第一份合同";
+                break;
+            case 4:
+                stateStr = @"签第一份合同";
+                break;
+            case 5:
+                stateStr = @"签第一份合同";
+                break;
+            case 6:
+                stateStr = @"签第一份合同";
+                break;
+            default:
+                break;
+        }
+
+        [self.bottomView.payButton setTitle:@"立即加入" forState:UIControlStateNormal];
+    }];
 }
 
-
+//
+//1生成第一份合同(调后台接口生成合同)
+//2第一份合同待签署(去签属合同)
+//3签署成功(去生成订单)
+//4签署失败(跳1)
+//5代付款(调支付宝付款)
+//6付款成功(生成第份合同)
+//7待签署(去签署第二份合同)
+//8签署成功(等待待审核)
+//9签署失败(跳6 )
+//10审核成功
+//11审核失败(修改信息,需要修改合同就跳6 ,或者跳8 )
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

@@ -15,8 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)secDataArray;
 + (NSArray *)tempArray;
 + (NSArray *)priceArray;
++ (NSArray *)xdImageBannerArray;
 + (CGFloat)getStringHeight:(NSString *)text;
 + (CGFloat)getSecCellHeight:(NSArray *)dataArray;
+
++ (void)getXDShopState:(NSString *)shopid andPeugeotid:(NSString *)peugeotid completion:(void(^)(id dict))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
