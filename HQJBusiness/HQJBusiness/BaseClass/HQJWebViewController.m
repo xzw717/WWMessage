@@ -7,7 +7,6 @@
 //
 
 #import "HQJWebViewController.h"
-
 @interface HQJWebViewController ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
 @end
 
@@ -22,7 +21,9 @@
     
     self.zw_title = self.webTitleString;
     self.zwNavView.backgroundColor = DefaultAPPColor;
-    
+//    NSString *oldAgent = [[[UIWebView alloc] init] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+//       NSString *customUserAgent = [NSString stringWithFormat:@"%@  hqj-sj", oldAgent];
+//       [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":customUserAgent, @"User-Agent":customUserAgent}];
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.preferences = [[WKPreferences alloc] init];
     config.preferences.minimumFontSize = 10;
@@ -38,6 +39,7 @@
 
     self.zwNavView.hidden = YES;
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
+    self.webView.customUserAgent = @"hqj-sj";
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
@@ -51,6 +53,19 @@
     if (@available(iOS 11.0, *)) {
      self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
+//    [self.webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+//               NSString *oldAgent = result;
+//
+//
+//        if (error) {
+//
+//
+//        }
+//
+//
+//
+//
+//    }];
     
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
