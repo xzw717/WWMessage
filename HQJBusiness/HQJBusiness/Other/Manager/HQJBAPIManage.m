@@ -144,6 +144,8 @@ NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShop
 
 /*_____________________________XD接口________________________________________*/
 NSString *const HQJBXdorderInterface = @"xdorder/save.action";
+//////商家查看合同列表
+NSString *const HQJBshopAllESignListInterface = @"xdesign/shopAllESignList.action";
 
 @implementation HQJBAPIManage
 

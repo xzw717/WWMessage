@@ -20,6 +20,8 @@
 		056BD26624760D56006825A7 /* XDPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26524760D56006825A7 /* XDPayModel.m */; };
 		056BD2692476236B006825A7 /* ContactManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2682476236B006825A7 /* ContactManagerViewController.m */; };
 		056BD26C2476240E006825A7 /* ContactManagerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26B2476240E006825A7 /* ContactManagerHeadView.m */; };
+		056BD26F24766C4F006825A7 /* ContactManagerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD26E24766C4F006825A7 /* ContactManagerViewModel.m */; };
+		056BD27224766D8C006825A7 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD27124766D8C006825A7 /* ContactModel.m */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
@@ -392,6 +394,10 @@
 		056BD2682476236B006825A7 /* ContactManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactManagerViewController.m; sourceTree = "<group>"; };
 		056BD26A2476240E006825A7 /* ContactManagerHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactManagerHeadView.h; sourceTree = "<group>"; };
 		056BD26B2476240E006825A7 /* ContactManagerHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactManagerHeadView.m; sourceTree = "<group>"; };
+		056BD26D24766C4F006825A7 /* ContactManagerViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactManagerViewModel.h; sourceTree = "<group>"; };
+		056BD26E24766C4F006825A7 /* ContactManagerViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactManagerViewModel.m; sourceTree = "<group>"; };
+		056BD27024766D8C006825A7 /* ContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		056BD27124766D8C006825A7 /* ContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1643,6 +1649,8 @@
 				1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */,
 				1FB02FBD2475044F00F3B2F8 /* XDSSMModel.h */,
 				1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */,
+				056BD27024766D8C006825A7 /* ContactModel.h */,
+				056BD27124766D8C006825A7 /* ContactModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1720,6 +1728,8 @@
 				1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */,
 				1FB02FC0247507E000F3B2F8 /* XDSSMViewModel.h */,
 				1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */,
+				056BD26D24766C4F006825A7 /* ContactManagerViewModel.h */,
+				056BD26E24766C4F006825A7 /* ContactManagerViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2636,6 +2646,7 @@
 				1FDF4CD423B1E7420060F485 /* APRSASigner.m in Sources */,
 				1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */,
 				1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */,
+				056BD26F24766C4F006825A7 /* ContactManagerViewModel.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
@@ -2733,6 +2744,7 @@
 				1F3949E61E0D0FA500A3662D /* DetailBaseVC.m in Sources */,
 				056BD2542473CDB0006825A7 /* XDModel.m in Sources */,
 				1F1B21CC1DFFC81E00021AB2 /* MyModel.m in Sources */,
+				056BD27224766D8C006825A7 /* ContactModel.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
 				1FD64FAE1E0A7F4D005D43F2 /* InformationViewController.m in Sources */,
 				1FFA99C51E231B4900E9FB1D /* NSString+RegexCategory.m in Sources */,
