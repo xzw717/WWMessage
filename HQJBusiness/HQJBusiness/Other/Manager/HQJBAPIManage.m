@@ -145,7 +145,9 @@ NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShop
 NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
 
 NSString *const HQJBXdorderInterface = @"xdorder/save.action";
-
+/// 企业基础信息状态
+NSString *const HQJBXdShopAuditInterface = @"XdShopAudit/reClomn.action";
 @implementation HQJBAPIManage
 
 @end
+

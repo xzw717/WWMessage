@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XDShopTableViewCell : ZW_TableViewCell
 - (void)setTitle:(NSString *)tit ;
-- (void)setSubTitle:(NSString *)subTitle;
+- (void)setSubTitle:(NSInteger)state ;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -124,12 +124,12 @@ extern NSString *const HQJBGetMessageInterface;
 /*_____________________________XD接口________________________________________*/
 ///创建订单
 extern NSString *const HQJBXdorderInterface;
-
 /// 获取商家shopid
 extern NSString *const HQJBRetrunShopIdInterface;
-
 ///  根据商家获取订单
 extern NSString *const HQJBGetOrderListByShopIdInterface;
+/// 企业基础信息状态
+extern NSString *const HQJBXdShopAuditInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject
