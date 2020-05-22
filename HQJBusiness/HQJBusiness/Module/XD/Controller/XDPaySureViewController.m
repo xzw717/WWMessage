@@ -17,7 +17,7 @@
 
 @implementation XDPaySureViewController
 
-- (instancetype)initWithXDPayModel:(NSString *)orderid {
+- (instancetype)initWithOrderid:(NSString *)orderid{
     self = [super init];
     if (self) {
         
