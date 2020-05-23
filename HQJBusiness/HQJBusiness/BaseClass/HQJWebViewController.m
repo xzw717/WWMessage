@@ -39,7 +39,7 @@
 
     self.zwNavView.hidden = YES;
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
-    self.webView.customUserAgent = @"hqj-sj";
+//    self.webView.customUserAgent = @"hqj-sj";
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;

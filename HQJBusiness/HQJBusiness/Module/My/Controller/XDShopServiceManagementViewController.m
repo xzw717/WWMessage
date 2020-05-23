@@ -12,6 +12,8 @@
 #import "XDSSMViewModel.h"
 #import "XDSSMModel.h"
 #import "XDPayModel.h"
+#import "XDPayViewController.h"
+
 #import "XDOrderDetailsViewController.h"
 @interface XDShopServiceManagementViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
@@ -85,11 +87,13 @@ DZNEmptyDataSetDelegate>
     @weakify(self);
     [cell setPayBlock:^{
         @strongify(self);
-       XDPayModel *model = [[XDPayModel alloc]init];
-       model.orderid = ssmModel.orderid;
-       model.paymoney =  ssmModel.ordermoney ;
-       model.proid = ssmModel.proid;
+        XDPayModel *model = [[XDPayModel alloc]init];
+        model.orderid = ssmModel.orderid;
+        model.paymoney =  ssmModel.ordermoney ;
+        model.proid = ssmModel.proid;
         
+        XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        [self.navigationController pushViewController:xdVC animated:YES];
     }];
     return cell;
 
