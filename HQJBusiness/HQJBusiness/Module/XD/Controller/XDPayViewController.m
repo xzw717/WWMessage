@@ -64,6 +64,7 @@
     }else{
         [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:self.model.ordermoney andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
 
+
     }
     
     

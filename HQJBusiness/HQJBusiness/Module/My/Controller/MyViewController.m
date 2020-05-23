@@ -148,7 +148,11 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.cellIndexPath = indexPath;
         cell.titleLabel.text = self.viewModel.titleLabelArray[indexPath.section][indexPath.row];
-        cell.titleImageView.image = [UIImage imageNamed:self.viewModel.titleImageViewArray[indexPath.section][indexPath.row]];
+        if ([Peugeotid integerValue] > 0) {
+            cell.titleImageView.image = [UIImage imageNamed:self.viewModel.xdTitleImageViewArray[indexPath.section][indexPath.row]];
+        } else {
+            cell.titleImageView.image = [UIImage imageNamed:self.viewModel.titleImageViewArray[indexPath.section][indexPath.row]];
+        }
         if (indexPath.section == 2&& indexPath.row == 1) {
             CellLine(cell);
     }

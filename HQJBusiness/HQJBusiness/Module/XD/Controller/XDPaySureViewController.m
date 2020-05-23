@@ -88,7 +88,6 @@
         [[_sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:self.model.proid.integerValue-1];
             [self.navigationController pushViewController:dvc animated:YES];
-
         }];
         [self.view addSubview:_sureButton];
 
