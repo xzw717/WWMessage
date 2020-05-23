@@ -54,8 +54,8 @@
 - (void)jumpH5 {
             
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
-    webVC.webUrlStr = @"http://120.26.53.18/#/test";
-//    webVC.webUrlStr = [NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=%@&peugeotid=%@",HQJBDomainName,Shopid,Mmobile,@(self.state),self.peugeotid];
+//    webVC.webUrlStr = @"http://120.26.53.18/#/test";
+    webVC.webUrlStr = [NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=%@&peugeotid=%@",HQJBDomainName,Shopid,Mmobile,@(self.state),self.peugeotid];
     [self.navigationController pushViewController:webVC animated:YES];
     
 }
