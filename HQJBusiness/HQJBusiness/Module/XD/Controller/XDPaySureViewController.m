@@ -8,11 +8,13 @@
 
 #import "XDPaySureViewController.h"
 #import "XDPayViewModel.h"
+#import "XDDetailViewController.h"
 @interface XDPaySureViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) NSArray *dataArray;
 @property (nonatomic,strong) UIButton *sureButton;
 @property(nonatomic,strong)  NSString *orderid;
+@property(nonatomic,strong)  XDDetailModel *model;
 @end
 
 @implementation XDPaySureViewController
@@ -49,6 +51,7 @@
 }
 - (void)requsetOrderDetail{
     [XDPayViewModel getOrderInfoById:self.orderid completion:^(XDDetailModel * _Nonnull model) {
+        self.model = model;
         self.dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",model.paymoney],@[@"订单号",model.orderid],@[@"支付时间",model.paytime]];
         [self.xdTableView reloadData];
     }];
@@ -82,6 +85,11 @@
         [_sureButton setTitle:@"下一步" forState:UIControlStateNormal];
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sureButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
+        [[_sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:self.model.proid.integerValue-1];
+            [self.navigationController pushViewController:dvc animated:YES];
+            
+        }];
         [self.view addSubview:_sureButton];
 
     }

@@ -61,7 +61,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:@"0.02"];
+        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:@"0.02" andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
 
     }
     

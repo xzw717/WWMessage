@@ -10,6 +10,8 @@
 #import "ContactManagerHeadView.h"
 #import "ContactManagerViewModel.h"
 #import "ContactModel.h"
+#import "ContactManagerCell.h"
+#import "HQJWebViewController.h"
 #define TableViewCellHeight 140.f/3
 #define HeadHeight  132/3.f
 #define TableViewTopSpace 40/3.f
@@ -32,7 +34,7 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_tableView registerClass:[ContactManagerCell class] forCellReuseIdentifier:NSStringFromClass([ContactManagerCell class])];
         
     }
     
@@ -70,7 +72,13 @@
     [self.view addSubview:self.tableView];
 }
 - (void)requsetData{
-    [ContactManagerViewModel getContactManagerList:Shopid andSignResul:self.topTag+1 completion:^(NSArray<ContactModel *> * _Nonnull list) {
+    NSInteger type;
+    if (self.topTag == 0) {
+        type=2;
+    }else{
+        type=1;
+    }
+    [ContactManagerViewModel getContactManagerList:Shopid andSignResul:type completion:^(NSArray<ContactModel *> * _Nonnull list) {
         self.dataArray = list;
         [self.tableView reloadData];
     }];
@@ -103,25 +111,32 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   static NSString *cellId = @"ContactManagercell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-    }
+    ContactManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactManagerCell class]) forIndexPath:indexPath];
+    
+    //"type": 1,      ----1：物联网新商业 2：国家追溯平台
+    //            "signUrl": "合同预览签署地址",
+    //"peugeotid": 3,   -----标识id
+    //            "signtime": "签署时间"
     ContactModel *model = self.dataArray[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.textColor = [ManagerEngine getColor:@"666666"];
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
-    cell.textLabel.text = model.type;
-    cell.detailTextLabel.textColor = [ManagerEngine getColor:@"ff4949"];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
-    cell.detailTextLabel.text = @"待审核";
+    NSString *result;
+    if ([model.type isEqualToString:@"1"]) {
+        result = @"物联网新商业";
+    }else{
+        result = @"国家追溯平台";
+    }
+    [cell setTitle:result];
     return cell;
     
 }
 #pragma mark ---UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    ContactModel *model = self.dataArray[indexPath.row];
+    if (model.signUrl) {
+        HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+        webVC.webUrlStr = model.signUrl;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+    
 }
 
 

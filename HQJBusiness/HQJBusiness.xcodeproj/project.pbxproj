@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054857052478CC9800DA0B89 /* ContactManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054857032478CC9700DA0B89 /* ContactManagerCell.m */; };
 		056BD23624723D99006825A7 /* XDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD23424723D99006825A7 /* XDDetailViewController.m */; };
 		056BD23E2472628C006825A7 /* XDDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD23D2472628C006825A7 /* XDDetailViewModel.m */; };
 		056BD24A2473B373006825A7 /* XDPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056BD2482473B373006825A7 /* XDPayViewController.m */; };
@@ -367,6 +368,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		054857032478CC9700DA0B89 /* ContactManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManagerCell.m; sourceTree = "<group>"; };
+		054857042478CC9800DA0B89 /* ContactManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManagerCell.h; sourceTree = "<group>"; };
 		056BD23424723D99006825A7 /* XDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailViewController.m; sourceTree = "<group>"; };
 		056BD23524723D99006825A7 /* XDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDDetailViewController.h; sourceTree = "<group>"; };
 		056BD23924725EED006825A7 /* XDDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDDetailTableViewCell.m; sourceTree = "<group>"; };
@@ -1675,6 +1678,8 @@
 				1FB02FB72473D3AE00F3B2F8 /* HQJSelectToolView.m */,
 				056BD26A2476240E006825A7 /* ContactManagerHeadView.h */,
 				056BD26B2476240E006825A7 /* ContactManagerHeadView.m */,
+				054857042478CC9800DA0B89 /* ContactManagerCell.h */,
+				054857032478CC9700DA0B89 /* ContactManagerCell.m */,
 				1F402917229FBBA40014769B /* SetBindingCell.h */,
 				1F402916229FBBA40014769B /* SetBindingCell.m */,
 				1F63CC4D2293AA7C0061CF09 /* SetCell.h */,
@@ -2749,6 +2754,7 @@
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
 				1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */,
 				1FB3DEB41E036E8800F670EC /* ZW_BaseViewController.m in Sources */,
+				054857052478CC9800DA0B89 /* ContactManagerCell.m in Sources */,
 				1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */,
 				1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */,
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
