@@ -16,7 +16,7 @@
     NSDictionary *dict = @{@"orderid":orderid};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if ([dic[@"resultCode"] integerValue] == 2000) {
+        if ([dic[@"resultCode"] integerValue] == 2400) {
             XDDetailModel *model = [XDDetailModel mj_objectWithKeyValues:dic[@"resultMsg"]];
             if (completion) {
                 completion(model);

@@ -58,10 +58,11 @@
 }
 
 - (void)getoPay{
+    
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:@"0.02"];
+        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:self.model.ordermoney andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
 
     }
     

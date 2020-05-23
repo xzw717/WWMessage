@@ -261,7 +261,7 @@
     }];
 }
 - (void)createOreder{
-    [XDDetailViewModel submitXDOrder:Shopid andProid:[NSString stringWithFormat:@"%ld",self.xdType] andPrice:[XDDetailViewModel priceArray][self.xdType] completion:^(XDPayModel *model) {
+    [XDDetailViewModel submitXDOrder:Shopid andProid:[NSString stringWithFormat:@"%ld",self.xdType+1] andPrice:[XDDetailViewModel priceArray][self.xdType] completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         [self.navigationController pushViewController:payVC animated:YES];
         
