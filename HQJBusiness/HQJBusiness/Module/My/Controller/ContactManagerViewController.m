@@ -117,13 +117,41 @@
     //            "signUrl": "合同预览签署地址",
     //"peugeotid": 3,   -----标识id
     //            "signtime": "签署时间"
-    ContactModel *model = self.dataArray[indexPath.row];
-    NSString *result;
+  ContactModel *model = self.dataArray[indexPath.row];
+    NSMutableString *result = [[NSMutableString alloc]init];
     if ([model.type isEqualToString:@"1"]) {
-        result = @"物联网新商业";
+        [result appendString:@"物联网新商业"];
     }else{
-        result = @"国家追溯平台";
+        [result appendString:@"国家追溯平台"];
     }
+
+    switch (model.peugeotid.integerValue) {
+        case 1://标识企业
+            [result appendString:@"(标识企业)"];
+            
+            break;
+            
+        case 2://异盟企业
+            [result appendString:@"(异盟企业)"];
+            
+            break;
+            
+        case 3://标杆企业
+            [result appendString:@"(标杆企业)"];
+            
+            break;
+            
+        case 4://兄弟企业
+            [result appendString:@"(兄弟企业)"];
+            
+            break;
+            
+        case 5://生态企业
+            [result appendString:@"(生态企业)"];
+            break;
+    }
+    [result appendString:@"合同"];
+    
     [cell setTitle:result];
     return cell;
     

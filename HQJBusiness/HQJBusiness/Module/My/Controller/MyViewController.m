@@ -92,7 +92,6 @@
 #pragma mark --
 #pragma mark --- tableView  data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return self.viewModel.titleLabelArray.count;
 }
 
@@ -228,6 +227,7 @@
     }];
     if (MmberidStr) {
         [self requst];
+        HQJLog(@"手机号是：%@",Mmobile);
     }
 
 }

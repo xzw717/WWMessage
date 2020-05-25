@@ -30,6 +30,7 @@
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
+            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
             }
@@ -139,7 +140,7 @@
 
 -(NSArray *)titleLabelArray {
     if ( _titleLabelArray == nil ) {
-        _titleLabelArray = @[@[],
+        _titleLabelArray = @[@[@""],
                              @[@"XD商家",
                                @"店铺管理",
                                @"交易",
@@ -156,7 +157,7 @@
 
 -(NSArray *)titleImageViewArray {
     if ( _titleImageViewArray == nil ) {
-        _titleImageViewArray = @[@[],
+        _titleImageViewArray = @[@[@""],
                                  @[@"icon_my_XD",
                                    @"icon_my_storemanagement",
                                    @"icon_transaction",

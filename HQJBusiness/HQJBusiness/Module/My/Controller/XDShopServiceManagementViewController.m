@@ -89,7 +89,7 @@ DZNEmptyDataSetDelegate>
         @strongify(self);
         XDPayModel *model = [[XDPayModel alloc]init];
         model.orderid = ssmModel.orderid;
-        model.paymoney =  ssmModel.ordermoney ;
+        model.ordermoney =  ssmModel.ordermoney ;
         model.proid = ssmModel.proid;
         
         XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];
@@ -100,7 +100,7 @@ DZNEmptyDataSetDelegate>
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.state == 0) {
+    if (self.state == 5) {
         XDOrderDetailsViewController *xdVc = [[XDOrderDetailsViewController alloc]initWithXDSSMModel:self.modelArray[indexPath.row]];
         [self.navigationController pushViewController:xdVc animated:YES];
     }
