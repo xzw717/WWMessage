@@ -54,7 +54,7 @@
     }];
     
     self.wwTitleLabel = [[UILabel alloc]init];
-    self.wwTitleLabel.text = @"第一时间物联网科技投资有限公司";
+    self.wwTitleLabel.text = @"第一时间科技投资股份有限公司";
     self.wwTitleLabel.textColor = [ManagerEngine getColor:@"000000"];
     self.wwTitleLabel.font = [UIFont systemFontOfSize:NewProportion(48)];
     [self.view addSubview:self.wwTitleLabel];
