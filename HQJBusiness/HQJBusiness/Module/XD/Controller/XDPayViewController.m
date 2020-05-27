@@ -49,8 +49,8 @@
     self.zwNavView.backgroundColor = [UIColor whiteColor];
     self.zw_title = @"支付";
     [self.view addSubview:self.payView];
-    self.payView.priceLabel.text = [NSString stringWithFormat:@"服务费用¥%@元",self.model.paymoney];
-    [ManagerEngine setTextColor:self.payView.priceLabel FontNumber:[UIFont systemFontOfSize:24.0] AndRange:[NSString stringWithFormat:@"¥%@",self.model.paymoney] AndColor:[ManagerEngine getColor:@"ff4a49"]];
+    self.payView.priceLabel.text = [NSString stringWithFormat:@"服务费用¥%@元",self.model.ordermoney];
+    [ManagerEngine setTextColor:self.payView.priceLabel FontNumber:[UIFont systemFontOfSize:24.0] AndRange:[NSString stringWithFormat:@"¥%@",self.model.ordermoney] AndColor:[ManagerEngine getColor:@"ff4a49"]];
     [self.payView.payButton addTarget:self action:@selector(getoPay) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
@@ -62,7 +62,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.payTypeArray[self.model.proid.integerValue] andNameStr:self.payTypeArray[self.model.proid.integerValue] andTotalFeeSt:self.model.ordermoney andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
+        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.payTypeArray[self.model.proid.integerValue-1] andNameStr:self.payTypeArray[self.model.proid.integerValue-1] andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
 
 
     }

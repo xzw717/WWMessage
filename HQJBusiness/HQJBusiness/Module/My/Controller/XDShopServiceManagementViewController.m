@@ -89,7 +89,7 @@ DZNEmptyDataSetDelegate>
         @strongify(self);
         XDPayModel *model = [[XDPayModel alloc]init];
         model.orderid = ssmModel.orderid;
-        model.paymoney =  ssmModel.ordermoney ;
+        model.ordermoney =  ssmModel.ordermoney ;
         model.proid = ssmModel.proid;
         
         XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];

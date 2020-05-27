@@ -172,7 +172,7 @@
             return @"签署国物溯源协议";
 
         case 10://10审核成功，流程结束
-            return @"";
+            return @"审核成功";
 
         case 11://11 审核失败，修改信息
             return @"修改信息";
@@ -200,7 +200,7 @@
                 
             case 0://0 信息未完善
                 //跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,Mmobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
+                [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
                 break;
                 
             case 1://1 信息已完善，去生成第一份合同
@@ -239,8 +239,11 @@
                 break;
                 
             case 11://11 审核失败，修改信息
-                // 跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,Mmobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
+                [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
+                    // 跳转信息填写H5页
+                    [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
+                }];
+                
                 break;
         }
     }
@@ -248,6 +251,7 @@
 }
 
 - (void)jumpH5:(NSString *)url{
+    
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
     webVC.webUrlStr = url;
     [self.navigationController pushViewController:webVC animated:YES];
@@ -277,7 +281,7 @@
     //"ordermoney": 2
     XDPayModel *model = [[XDPayModel alloc]init];
     model.orderid = self.resultDict[@"orderdata"][@"orderid"];
-    model.paymoney = self.resultDict[@"orderdata"][@"ordermoney"];
+    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
     model.proid = self.resultDict[@"orderdata"][@"proid"];
     XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
     [self.navigationController pushViewController:payVC animated:YES];
