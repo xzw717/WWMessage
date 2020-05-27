@@ -100,7 +100,7 @@
 
 #define MmberidStr   [FileEngine filePathNameReadName:@"memberid" andstye:fileLoginStyle]
 #define Rrealname    [FileEngine filePathNameReadName:@"realname" andstye:fileDefaultStyle]
-#define Mmobile      [FileEngine filePathNameReadName:@"mobile" andstye:fileDefaultStyle]
+#define Mmobile      [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"]  
 #define HashCode     [FileEngine filePathNameReadName:@"hashCode" andstye:fileLoginStyle]
 #define Shopid       [[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]
 #define Peugeotid       [[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]

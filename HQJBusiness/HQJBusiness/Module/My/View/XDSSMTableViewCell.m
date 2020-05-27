@@ -139,7 +139,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = [ManagerEngine getColor:@"000000"];
         _titleLabel.font = [UIFont systemFontOfSize:NewProportion(48)];
-        _titleLabel.text = @"第一时间物联网科技投资有限公司";
+        _titleLabel.text = @"第一时间科技投资股份有限公司";
     }
     return _titleLabel;
 }

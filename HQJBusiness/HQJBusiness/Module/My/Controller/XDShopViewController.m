@@ -35,7 +35,7 @@
 
 - (void)requstState {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBXdShopAuditInterface];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"id":MmberidStr} complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"id":Shopid} complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"] integerValue] == 2100  ) {
             self.state = [dic[@"resultMsg"][@"type"] integerValue];
             self.failreason = dic[@"resultMsg"][@"failreason"];

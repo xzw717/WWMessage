@@ -30,6 +30,7 @@
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
+            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
             }
@@ -88,13 +89,19 @@
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
         } else if (xzw_indexPath.row == 6){
             // 优惠券
-            HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
-//            webvc.webTitleString = @"优惠券";
-//            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
-            webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",WWMCouponDomain
-                               ,MmberidStr,HashCode];
-            webvc.fd_interactivePopDisabled = YES;
-            [xzw_self.navigationController pushViewController:webvc animated:YES];
+            
+            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
+                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+            } else {
+                            HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+                //            webvc.webTitleString = @"优惠券";
+                //            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
+                            webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",WWMCouponDomain
+                                               ,MmberidStr,HashCode];
+                            webvc.fd_interactivePopDisabled = YES;
+                            [xzw_self.navigationController pushViewController:webvc animated:YES];
+            }
+
             
         }
 //        else {
@@ -104,9 +111,13 @@
     }
     if (xzw_indexPath.section  == 2 ) {
         if (xzw_indexPath.row == 0) {
-            
-            DeccaDownloadViewController *deccaVC = [[DeccaDownloadViewController alloc]init];
-            [xzw_self.navigationController pushViewController:deccaVC animated:YES];
+            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
+                          [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+            } else {
+                DeccaDownloadViewController *deccaVC = [[DeccaDownloadViewController alloc]init];
+                  [xzw_self.navigationController pushViewController:deccaVC animated:YES];
+            }
+  
         }
         if (xzw_indexPath.row == 1) {
             SetViewController *setVC = [[SetViewController alloc]init];
@@ -139,7 +150,7 @@
 
 -(NSArray *)titleLabelArray {
     if ( _titleLabelArray == nil ) {
-        _titleLabelArray = @[@[],
+        _titleLabelArray = @[@[@""],
                              @[@"XD商家",
                                @"店铺管理",
                                @"交易",
@@ -156,7 +167,7 @@
 
 -(NSArray *)titleImageViewArray {
     if ( _titleImageViewArray == nil ) {
-        _titleImageViewArray = @[@[],
+        _titleImageViewArray = @[@[@""],
                                  @[@"icon_my_XD",
                                    @"icon_my_storemanagement",
                                    @"icon_transaction",
