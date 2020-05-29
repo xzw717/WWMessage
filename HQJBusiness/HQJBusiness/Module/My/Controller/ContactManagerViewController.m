@@ -117,7 +117,7 @@
     //            "signUrl": "合同预览签署地址",
     //"peugeotid": 3,   -----标识id
     //            "signtime": "签署时间"
-  ContactModel *model = self.dataArray[indexPath.row];
+    ContactModel *model = self.dataArray[indexPath.row];
     NSMutableString *result = [[NSMutableString alloc]init];
     if ([model.type isEqualToString:@"1"]) {
         [result appendString:@"物联网新商业"];

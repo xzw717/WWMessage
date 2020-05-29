@@ -170,8 +170,7 @@
 
         case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
             return @"签署国物溯源协议";
-
-       case 10://10审核成功，流程结束
+        case 10://10审核成功，流程结束
             return @"审核成功";
 
         case 11://11 审核失败，修改信息
@@ -250,6 +249,7 @@
     
 }
 - (void)jumpH5:(NSString *)url{
+    
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
     webVC.webUrlStr = url;
     [self.navigationController pushViewController:webVC animated:YES];
