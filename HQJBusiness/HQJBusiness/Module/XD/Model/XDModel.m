@@ -9,5 +9,10 @@
 #import "XDModel.h"
 
 @implementation XDModel
-
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"list":[XDSubModel class]};
+}
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"nid":@"id"};
+}
 @end

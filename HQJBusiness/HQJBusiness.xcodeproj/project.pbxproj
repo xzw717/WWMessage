@@ -88,6 +88,8 @@
 		1F20CB3A1E0788E400FC91B3 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20CB391E0788E400FC91B3 /* ScanViewController.m */; };
 		1F20CB3C1E07C3C600FC91B3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F20CB3B1E07C3C600FC91B3 /* AVFoundation.framework */; };
 		1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20CB3E1E07DEE100FC91B3 /* ManuallyAddViewController.m */; };
+		1F227F462480FC12007AE2B3 /* XDSubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F227F452480FC12007AE2B3 /* XDSubModel.m */; };
+		1F227F492480FDE2007AE2B3 /* XDViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F227F482480FDE2007AE2B3 /* XDViewModel.m */; };
 		1F25DBF71E10E90D004DC19F /* OrderBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DBF61E10E90D004DC19F /* OrderBaseVC.m */; };
 		1F25DBFD1E10E975004DC19F /* AllOrdeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DBFC1E10E975004DC19F /* AllOrdeVC.m */; };
 		1F25DC001E10E98B004DC19F /* GoodsOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DBFF1E10E98B004DC19F /* GoodsOrderVC.m */; };
@@ -524,6 +526,10 @@
 		1F20CB3B1E07C3C600FC91B3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1F20CB3D1E07DEE100FC91B3 /* ManuallyAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManuallyAddViewController.h; sourceTree = "<group>"; };
 		1F20CB3E1E07DEE100FC91B3 /* ManuallyAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManuallyAddViewController.m; sourceTree = "<group>"; };
+		1F227F442480FC12007AE2B3 /* XDSubModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSubModel.h; sourceTree = "<group>"; };
+		1F227F452480FC12007AE2B3 /* XDSubModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSubModel.m; sourceTree = "<group>"; };
+		1F227F472480FDE2007AE2B3 /* XDViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDViewModel.h; sourceTree = "<group>"; };
+		1F227F482480FDE2007AE2B3 /* XDViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDViewModel.m; sourceTree = "<group>"; };
 		1F25DBF51E10E90D004DC19F /* OrderBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderBaseVC.h; path = ChildVC/OrderBaseVC.h; sourceTree = "<group>"; };
 		1F25DBF61E10E90D004DC19F /* OrderBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderBaseVC.m; path = ChildVC/OrderBaseVC.m; sourceTree = "<group>"; };
 		1F25DBFB1E10E975004DC19F /* AllOrdeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllOrdeVC.h; path = ChildVC/AllOrdeVC.h; sourceTree = "<group>"; };
@@ -1072,6 +1078,8 @@
 			children = (
 				056BD2532473CDB0006825A7 /* XDModel.h */,
 				056BD2522473CDB0006825A7 /* XDModel.m */,
+				1F227F442480FC12007AE2B3 /* XDSubModel.h */,
+				1F227F452480FC12007AE2B3 /* XDSubModel.m */,
 				056BD26424760D56006825A7 /* XDPayModel.h */,
 				056BD26524760D56006825A7 /* XDPayModel.m */,
 				05E210122477C324006A69B3 /* XDDetailModel.h */,
@@ -1088,6 +1096,8 @@
 				056BD23D2472628C006825A7 /* XDDetailViewModel.m */,
 				056BD2612474CCA4006825A7 /* XDPayViewModel.h */,
 				056BD2622474CCA4006825A7 /* XDPayViewModel.m */,
+				1F227F472480FDE2007AE2B3 /* XDViewModel.h */,
+				1F227F482480FDE2007AE2B3 /* XDViewModel.m */,
 			);
 			name = ViewModel;
 			path = HQJBusiness/Module/XD/ViewModel;
@@ -2775,6 +2785,7 @@
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
+				1F227F462480FC12007AE2B3 /* XDSubModel.m in Sources */,
 				1FB02FB92473D3AF00F3B2F8 /* HQJSelectToolView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
 				1FBD3FD624714F77000650EB /* XDViewController.m in Sources */,
@@ -2813,6 +2824,7 @@
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
 				1F394A011E0D224500A3662D /* DetailCell.m in Sources */,
 				1F960D181DFE3E51003E3D17 /* FileEngine.m in Sources */,
+				1F227F492480FDE2007AE2B3 /* XDViewModel.m in Sources */,
 				056BD25F2473CDF4006825A7 /* XDDetailSecCell.m in Sources */,
 				1F960D361DFE3E51003E3D17 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				1F1B21F41E00F37300021AB2 /* CustomerModel.m in Sources */,

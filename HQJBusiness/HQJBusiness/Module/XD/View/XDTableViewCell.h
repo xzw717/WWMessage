@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XDTableViewCell : ZW_TableViewCell
 @property (nonatomic, strong) XDModel *model;
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 
 NS_ASSUME_NONNULL_END

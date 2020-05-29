@@ -155,6 +155,8 @@ NSString *const HQJBXdFlowInterface = @"xdesign/XdFlow.action";
 NSString *const HQJBInitiateESignInterface = @"xdesign/initiateESign.action";
 ///根据订单id获取订单详情
 NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.action";
+///查询XD商家企业基础信息
+NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
 @implementation HQJBAPIManage
 
 @end

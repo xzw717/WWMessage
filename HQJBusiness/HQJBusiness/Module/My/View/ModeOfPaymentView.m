@@ -105,8 +105,6 @@ static CGFloat const kTableHeight = 165.f;
     
     cell.isArrearage = _isArrearage;
     
-    cell.cellIndexPath = indexPath;
-
     cell.payModeStr = _payModeStr;
     
     if ( self.selectCellIndexPath == nil ) {

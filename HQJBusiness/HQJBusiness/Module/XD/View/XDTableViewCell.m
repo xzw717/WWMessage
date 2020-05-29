@@ -12,7 +12,6 @@
 @property (nonatomic, strong) UIImageView *titImageView;
 @property (nonatomic, strong) UILabel *titLabel;
 @property (nonatomic, strong) UILabel *subTitLabel;
-@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIImageView *arrowImageView;
 
 @end
@@ -33,10 +32,10 @@
 }
 - (void)setModel:(XDModel *)model {
     _model = model;
-    self.lineView.hidden = [model.titleName isEqualToString:@"生态企业"] ? YES : NO;
-    self.titImageView.image = [UIImage imageNamed:model.imageName];
-    self.titLabel.text = model.titleName;
-    self.subTitLabel.text = model.subTitleName;
+//    self.lineView.hidden = [model.businessName isEqualToString:@"生态企业"] ? YES : NO;
+    [self.titImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,model.icon]]];
+    self.titLabel.text = model.businessName;
+    self.subTitLabel.text = model.addService;
 }
 - (void)updateConstraints {
     [self.titImageView mas_makeConstraints:^(MASConstraintMaker *make) {
