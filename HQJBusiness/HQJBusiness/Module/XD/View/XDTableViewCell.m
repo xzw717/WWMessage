@@ -41,6 +41,8 @@
     [self.titImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(NewProportion(50));
         make.centerY.mas_equalTo(self.contentView);
+        make.width.height.mas_equalTo(NewProportion(84));
+
     }];
    
     [self.titLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,6 +52,7 @@
   
     [self.subTitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titLabel);
+        make.right.mas_equalTo(-NewProportion(50));
         make.top.mas_equalTo(self.titLabel.mas_bottom).mas_offset(NewProportion(25));
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -58,8 +61,8 @@
         make.bottom.mas_equalTo(self.contentView);
     }];
     [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-          make.right.mas_equalTo(-NewProportion(68));
-          make.centerY.mas_equalTo(self.contentView);
+        make.right.mas_equalTo(-NewProportion(68));
+        make.centerY.mas_equalTo(self.contentView);
       }];
     [super updateConstraints];
 }
