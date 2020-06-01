@@ -86,8 +86,9 @@
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sureButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
         [[_sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:self.model.proid.integerValue-1];
-            [self.navigationController pushViewController:dvc animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+//            XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:self.model.proid.integerValue-1];
+//            [self.navigationController pushViewController:dvc animated:YES];
         }];
         [self.view addSubview:_sureButton];
 

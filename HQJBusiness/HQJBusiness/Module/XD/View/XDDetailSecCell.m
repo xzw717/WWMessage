@@ -60,7 +60,6 @@
 @end
 
 #import "XDDetailSecCell.h"
-#import "XDDetailViewModel.h"
 
 @interface XDDetailSecCell()
 
@@ -83,14 +82,14 @@
     
     CGFloat x = 50/3,y = 10,temp;
     for (int i = 0; i < dataArray.count; i ++) {
-        NSString *result = [XDDetailViewModel secDataArray][[dataArray[i] integerValue]];
+        NSString *result = dataArray[i];
         CGFloat width = [ManagerEngine setTextWidthStr:result andFont:[UIFont systemFontOfSize:40/3]] + 22;
         XDItemView *itemView = [[XDItemView alloc]initWithFrame:CGRectMake(x, y, width, 12)];
         itemView.nameLabel.text = result;
         [self addSubview:itemView];
         x = x + width + 100/3;
         if (i < dataArray.count - 1) {
-            NSString *nextStr = [XDDetailViewModel secDataArray][[dataArray[i+1] integerValue]];
+            NSString *nextStr = dataArray[i+1];;
             CGFloat nextWidth = [ManagerEngine setTextWidthStr:nextStr andFont:[UIFont systemFontOfSize:40/3]] + 12;
             temp = x + nextWidth;
             if (temp>WIDTH-50/3) {

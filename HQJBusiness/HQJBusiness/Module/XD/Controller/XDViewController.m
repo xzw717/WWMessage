@@ -55,7 +55,7 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:indexPath.row];
+    XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDModel:self.modelAry[indexPath.row]];
     [self.navigationController pushViewController:dvc animated:YES];
 }
 //- (NSMutableArray<XDModel *> *)modelAry {

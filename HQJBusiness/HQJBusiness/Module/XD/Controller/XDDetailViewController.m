@@ -17,24 +17,32 @@
 }
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) XDDetailBottomView *bottomView;
-@property (nonatomic,assign) XDType xdType;
+@property (nonatomic,strong) XDModel *model;
 @property (nonatomic,strong) NSDictionary *resultDict;
 
 @end
 
 @implementation XDDetailViewController
 
-- (instancetype)initWithXDType:(XDType)xdType {
+//- (instancetype)initWithXDType:(XDType)xdType {
+//    self = [super init];
+//    if (self) {
+//
+//        self.xdType = xdType;
+//
+//    }
+//    return self;
+//
+//}
+- (instancetype)initWithXDModel:(XDModel *)model{
     self = [super init];
     if (self) {
         
-        self.xdType = xdType;
+        self.model = model;
         
     }
     return self;
-    
 }
-
 -(UITableView *)xdTableView {
     if ( _xdTableView == nil ) {
         _xdTableView = [[UITableView alloc]init];
@@ -48,7 +56,8 @@
         
         
         UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 180)];
-        iv.image = [UIImage imageNamed:[XDDetailViewModel xdImageBannerArray][self.xdType]];
+        [iv sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,self.model.picture]]];
+//        iv.image = [UIImage imageNamed:[XDDetailViewModel xdImageBannerArray][self.xdType]];
         _xdTableView.tableHeaderView = iv;
         _xdTableView.tableFooterView = [UIView new];
         
@@ -60,7 +69,7 @@
 - (XDDetailBottomView *)bottomView{
     if (_bottomView == nil) {
         _bottomView = [[XDDetailBottomView alloc]initWithFrame:CGRectMake(0, HEIGHT - 50, WIDTH, 50)];
-        _bottomView.priceLabel.text = [NSString stringWithFormat:@"¥%@",[XDDetailViewModel priceArray][self.xdType]];
+        _bottomView.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.model.price];
         [_bottomView.payButton addTarget:self action:@selector(handleXDState) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bottomView;
@@ -95,9 +104,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        
-        NSArray *temp = [XDDetailViewModel tempArray][self.xdType][0];
-        return temp.count;
+//        NSArray *temp = [XDDetailViewModel tempArray][self.xdType][0];
+        return self.model.list.count;
         
     }else{
         return 1;
@@ -109,12 +117,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        NSString *temp = [XDDetailViewModel firDataArray][indexPath.row][1];
-        return [XDDetailViewModel getStringHeight:temp] + 42;
+        XDSubModel *smodel = self.model.list[indexPath.row];
+        return [XDDetailViewModel getStringHeight:smodel.mark] + 42;
         
     }else{
         
-        return [XDDetailViewModel getSecCellHeight:[XDDetailViewModel tempArray][self.xdType][1]];
+        return [XDDetailViewModel getSecCellHeight:[self.model.addService componentsSeparatedByString:@"|"]];
     }
     
 }
@@ -123,13 +131,14 @@
     if (indexPath.section == 0) {
         XDDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XDDetailTableViewCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.nameLabel.text = [XDDetailViewModel firDataArray][indexPath.row][0];
-        cell.descLabel.text = [XDDetailViewModel firDataArray][indexPath.row][1];
+        XDSubModel *smodel = self.model.list[indexPath.row];
+        cell.nameLabel.text = smodel.serviceName;
+        cell.descLabel.text = smodel.mark;
         return cell;
     }else{
         XDDetailSecCell *secCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([XDDetailSecCell class]) forIndexPath:indexPath];
         secCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        secCell.dataArray = [XDDetailViewModel tempArray][self.xdType][1];
+        secCell.dataArray = [self.model.addService componentsSeparatedByString:@"|"];
         return secCell;
     }
     
@@ -199,7 +208,7 @@
                 
             case 0://0 信息未完善
                 //跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
+                [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
                 break;
                 
             case 1://1 信息已完善，去生成第一份合同
@@ -240,7 +249,7 @@
             case 11://11 审核失败，修改信息
                 [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
                     // 跳转信息填写H5页
-                    [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,[NSString stringWithFormat:@"%ld",self.xdType+1]]];
+                    [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
                 }];
                 
                 break;
@@ -256,14 +265,14 @@
     
 }
 - (void)createContract:(NSInteger)type{
-    [XDDetailViewModel initiateESign:Shopid andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:[NSString stringWithFormat:@"%ld",self.xdType+1] completion:^(id  _Nonnull result) {
+    [XDDetailViewModel initiateESign:Shopid andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:self.model.nid completion:^(id  _Nonnull result) {
         
         [self jumpH5:(NSString *)result];
         
     }];
 }
 - (void)createOreder{
-    [XDDetailViewModel submitXDOrder:Shopid andProid:[NSString stringWithFormat:@"%ld",self.xdType+1] andPrice:[XDDetailViewModel priceArray][self.xdType] completion:^(XDPayModel *model) {
+    [XDDetailViewModel submitXDOrder:Shopid andProid:self.model.nid andPrice:self.model.price completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         [self.navigationController pushViewController:payVC animated:YES];
         
@@ -300,7 +309,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [XDDetailViewModel getXDShopState:Shopid andPeugeotid:[NSString stringWithFormat:@"%ld",self.xdType+1] completion:^(id  _Nonnull dict) {
+    [XDDetailViewModel getXDShopState:Shopid andPeugeotid:self.model.nid completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
         [self.bottomView.payButton setTitle:[self getButtonString] forState:UIControlStateNormal];
     }];

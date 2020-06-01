@@ -11,11 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDDetailViewModel : NSObject
-+ (NSArray *)firDataArray;
-+ (NSArray *)secDataArray;
-+ (NSArray *)tempArray;
-+ (NSArray *)priceArray;
-+ (NSArray *)xdImageBannerArray;
+
 + (CGFloat)getStringHeight:(NSString *)text;
 + (CGFloat)getSecCellHeight:(NSArray *)dataArray;
 ///查询当前xd商家的流程

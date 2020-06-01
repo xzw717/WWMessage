@@ -7,6 +7,7 @@
 //
 
 #import "ZW_ViewController.h"
+#import "XDModel.h"
 typedef enum : NSUInteger {
     XDIdentification = 0,
     XDDifferent,
@@ -17,7 +18,8 @@ typedef enum : NSUInteger {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDDetailViewController : ZW_ViewController
-- (instancetype)initWithXDType:(XDType)xdType;
+//- (instancetype)initWithXDType:(XDType)xdType;
+- (instancetype)initWithXDModel:(XDModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END
