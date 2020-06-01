@@ -35,7 +35,7 @@
 //    self.lineView.hidden = [model.businessName isEqualToString:@"生态企业"] ? YES : NO;
     [self.titImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,model.icon]]];
     self.titLabel.text = model.businessName;
-    self.subTitLabel.text = model.addService;
+    self.subTitLabel.text = model.platService;
 }
 - (void)updateConstraints {
     [self.titImageView mas_makeConstraints:^(MASConstraintMaker *make) {
