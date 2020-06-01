@@ -9,6 +9,8 @@
 #import "XDPaySureViewController.h"
 #import "XDPayViewModel.h"
 #import "XDDetailViewController.h"
+#import "XDDetailViewModel.h"
+#import "HQJWebViewController.h"
 @interface XDPaySureViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) NSArray *dataArray;
@@ -86,14 +88,21 @@
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sureButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
         [[_sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-//            XDDetailViewController *dvc = [[XDDetailViewController alloc]initWithXDType:self.model.proid.integerValue-1];
-//            [self.navigationController pushViewController:dvc animated:YES];
+            [XDDetailViewModel initiateESign:Shopid andType:@"2" andState:@"1" andPeugeotid:self.model.proid completion:^(id  _Nonnull result) {
+                [self jumpH5:(NSString *)result];
+            }];
         }];
         [self.view addSubview:_sureButton];
 
     }
     return _sureButton;
+}
+- (void)jumpH5:(NSString *)url{
+    
+    HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+    webVC.webUrlStr = url;
+    [self.navigationController pushViewController:webVC animated:YES];
+    
 }
 #pragma mark --- tableView  data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
