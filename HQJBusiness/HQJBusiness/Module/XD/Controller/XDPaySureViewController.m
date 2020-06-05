@@ -88,7 +88,7 @@
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sureButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
         [[_sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            [XDDetailViewModel initiateESign:Shopid andType:@"2" andState:@"1" andPeugeotid:self.model.proid completion:^(id  _Nonnull result) {
+            [XDDetailViewModel initiateESign:Shopid andType:@"1" andState:@"1" andPeugeotid:self.model.proid completion:^(id  _Nonnull result) {
                 [self jumpH5:(NSString *)result];
             }];
         }];
