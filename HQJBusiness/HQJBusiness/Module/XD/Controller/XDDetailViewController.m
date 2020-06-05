@@ -57,7 +57,7 @@
         
         UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 180)];
         [iv sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HQJBImageDomainName,self.model.picture]]];
-//        iv.image = [UIImage imageNamed:[XDDetailViewModel xdImageBannerArray][self.xdType]];
+        //        iv.image = [UIImage imageNamed:[XDDetailViewModel xdImageBannerArray][self.xdType]];
         _xdTableView.tableHeaderView = iv;
         _xdTableView.tableFooterView = [UIView new];
         
@@ -104,7 +104,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-//        NSArray *temp = [XDDetailViewModel tempArray][self.xdType][0];
+        //        NSArray *temp = [XDDetailViewModel tempArray][self.xdType][0];
         return self.model.list.count;
         
     }else{
@@ -147,41 +147,43 @@
 
 - (NSString *)getButtonString{
     switch ([self.resultDict[@"state"] integerValue]) {
+            
+            //1生成订单
+            //2代付款
+            //3付款成功(生成第一份合同)
+            //4第一份合同待签署(去签属合同)
+            //5第-份合同签署成功(去生成第二-份合同)
+            //6第一份合同签署失败(跳3)
+            //7待签署(去签署第二份合同)
+            //8签署成功(等待待审核)
+            //9签署失败(跳5 )
+            //10审核成功
+            //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
         case -1://-1 不可用
             return @"不可申请";
-
+            
         case 0://0 信息未完善
             return @"立即加入";
-
-        case 1://1 信息已完善，去生成第一份合同
+            
+        case 3://1 信息已完善，去生成第一份合同
+        case 6:
             return @"签署新商业合同";
-
-        case 2://2 第一份合同未签署，去签署第一份合同
-            return @"签署新商业合同";
-
-        case 3://3 第一份合同签署完成，去生成订单
+        case 2:
+        case 1://3 第一份合同签署完成，去生成订单
             return @"立即支付";
-
+            
         case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
             return @"签署新商业合同";
-
-        case 5://5 订单已生成，待付款，跳支付页准备付款
-            return @"立即支付";
-
-        case 6://6 订单已支付，去生成第二份合同
-            return @"签署国物溯源协议";
-
-        case 7://7 第二份合同未签署，去签署第二份合同
-            return @"签署国物溯源协议";
-
+            
         case 8://8 第二份合同签署完成，等待审核
             return @"审核中";
-
+        case 5:
+        case 7:
         case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
             return @"签署国物溯源协议";
         case 10://10审核成功，流程结束
             return @"审核成功";
-
+            
         case 11://11 审核失败，修改信息
             return @"修改信息";
     }
@@ -189,17 +191,19 @@
 }
 
 - (void)handleXDState{
-    //1生成第一份合同(调后台接口生成合同)
-    //2第一份合同待签署(去签属合同)
-    //3签署成功(去生成订单)
-    //4签署失败(跳1)
-    //5代付款(调支付宝付款)
-    //6付款成功(生成第份合同)
+    
+    //1生成订单
+    //2代付款
+    //3付款成功(生成第一份合同)
+    //4第一份合同待签署(去签属合同)
+    //5第-份合同签署成功(去生成第二-份合同)
+    //6第一份合同签署失败(跳3)
     //7待签署(去签署第二份合同)
     //8签署成功(等待待审核)
-    //9签署失败(跳6 )
+    //9签署失败(跳5 )
     //10审核成功
-    //11审核失败(修改信息,需要修改合同就跳6 ,或者跳8 )
+    //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
+    
     if (self.resultDict) {
         switch ([self.resultDict[@"state"] integerValue]) {
             case -1://-1 不可用
@@ -211,30 +215,30 @@
                 [self jumpH5:[NSString stringWithFormat:@"%@assets/xdESign/index.html#/xdshopmsg?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBDomainName,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
                 break;
                 
-            case 1://1 信息已完善，去生成第一份合同
-            case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
+            case 3://1 付款成功，去生成第一份合同
+            case 6://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
                 //去生成第一份合同
                 [self createContract:1];
                 break;
                 
-            case 2://2 第一份合同未签署，去签署第一份合同
+            case 4://2 第一份合同未签署，去签署第一份合同
             case 7://7 第二份合同未签署，去签署第二份合同
                 //跳转H5去签署合同
                 [self jumpH5:self.resultDict[@"data"]];
                 break;
                 
-            case 3://3 第一份合同签署完成，去生成订单
+            case 1://3 第一份合同签署完成，去生成订单
                 [self createOreder];
                 break;
                 
-            case 5://5 订单已生成，待付款，跳支付页准备付款
+            case 2://5 订单已生成，待付款，跳支付页准备付款
                 //跳转支付页
                 [self jumpPay];
-
+                
                 break;
                 
-            case 6://6 订单已支付，去生成第二份合同
-            case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
+            case 5://第1份合同签署成功(去生成第2份合同)
+            case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤5）
                 //去生成第二份合同
                 [self createContract:2];
                 break;
