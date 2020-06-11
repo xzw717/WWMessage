@@ -163,6 +163,7 @@
 //    [cache setMemoryCapacity:0];
 }
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    HQJLog(@"message.body = %@ message.name = %@",message.body,message.name);
     if ([message.name isEqualToString:@"out"]||[message.name isEqualToString:@"exitWeb"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }

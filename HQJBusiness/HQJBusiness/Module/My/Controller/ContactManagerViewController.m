@@ -62,11 +62,11 @@
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     self.zwTitLabel.text = @"合同管理";
     [self addSubViews];
-    [self requsetData];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self requsetData];
 }
 - (void)addSubViews{
     [self.view addSubview:self.tableView];
