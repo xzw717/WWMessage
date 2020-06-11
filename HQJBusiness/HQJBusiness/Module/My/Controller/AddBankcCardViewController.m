@@ -382,7 +382,7 @@
                
                 
                 
-                if(self.cardTextField.text.length >=16 && self.cardTextField.text.length <=19) {
+                if(self.cardTextField.text.length >=10 && self.cardTextField.text.length <=30) {
                     if (self.verificationCodeTextField.text.length > 0) {
                             [self addBankCardRequst];
 
@@ -400,7 +400,7 @@
                 
             } else {
               
-                    if(self.cardTextField.text.length >=16 && self.cardTextField.text.length <=19) {
+                    if(self.cardTextField.text.length >=10 && self.cardTextField.text.length <=30) {
                         
                         [ManagerEngine dimssLoadView:self.okButton andtitle:@"确定"];
                         
