@@ -14,7 +14,6 @@
 #import "XDPayModel.h"
 @interface XDPayViewController ()
 @property (nonatomic,strong) XDPayView *payView;
-@property (nonatomic,strong) NSArray *payTypeArray;
 @property(nonatomic,strong)  XDPayModel *model;
 
 @end
@@ -36,12 +35,6 @@
     }
     return _payView;
 }
-- (NSArray *)payTypeArray{
-    if (_payTypeArray == nil) {
-        _payTypeArray = @[@"标识企业",@"异盟企业",@"标杆企业",@"兄弟企业",@"生态企业"];
-    }
-    return _payTypeArray;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = DefaultBackgroundColor;
@@ -62,7 +55,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.payTypeArray[self.model.proid.integerValue-1] andNameStr:self.payTypeArray[self.model.proid.integerValue-1] andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
+        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@__%@",self.model.orderid,MmberidStr] andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@alipayService",HQJBBonusDomainName]];
 
 
     }

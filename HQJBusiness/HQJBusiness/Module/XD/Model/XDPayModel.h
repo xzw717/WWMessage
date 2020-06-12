@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *addtime;
 @property (nonatomic, strong) NSString *proid;
 @property (nonatomic, strong) NSString *shopid;
+@property (nonatomic, strong) NSString *proname;
+//[3]    (null)    @"proname" : @"物联网XD商家"
 //"orderid": "90f23dfd156949eab58bffe2eeed5af9",
 //                "payway": 1,
 //                "ordermoney": 2980.0,

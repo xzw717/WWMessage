@@ -91,7 +91,7 @@ DZNEmptyDataSetDelegate>
         model.orderid = ssmModel.orderid;
         model.ordermoney =  ssmModel.ordermoney ;
         model.proid = ssmModel.proid;
-        
+        model.proname = ssmModel.proname;
         XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         [self.navigationController pushViewController:xdVC animated:YES];
     }];
