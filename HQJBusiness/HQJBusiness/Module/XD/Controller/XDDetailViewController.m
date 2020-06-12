@@ -294,6 +294,7 @@
     model.orderid = self.resultDict[@"orderdata"][@"orderid"];
     model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
     model.proid = self.resultDict[@"orderdata"][@"proid"];
+    model.proname = self.resultDict[@"orderdata"][@"proname"];
     XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
     [self.navigationController pushViewController:payVC animated:YES];
 }
