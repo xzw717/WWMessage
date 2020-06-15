@@ -137,7 +137,36 @@ NSString *const HQJBGetCouponByIdInterface =  @"coupon/app/getCouponById";
 NSString *const HQJBSendMessageInterface =  @"usercenter/discussion/SendMessage";
 ///获取消息
 NSString *const HQJBGetMessageInterface = @"usercenter/discussion/GetMessage";
+#pragma mark ------------------------ 商家重构增加接口 ------------------------
+///通过短信验证码登录(发送短信)
+NSString *const HQJBGetLoginCodeInterface = @"getLoginCode";
+///通过短信验证码登录
+NSString *const HQJBMerchantSmsLoginInterface = @"merchantSmsLogin";
+///服务商注册时发送手机短信R
+NSString *const HQJBRegisterCodeInterface = @"registerCode";
+/// 店铺界面订单数据
+NSString *const HQJBShopfindorderstatecodeInterface = @"order/shopfindorderstatecode.action";
 
+
+
+
+#pragma mark ------------------------ H5 ------------------------
+/// 创建店铺
+NSString *const HQJBCreateStoreInterface = @"newstore";
+/// 注册店铺审核失败
+NSString *const HQJBRegisteredStoreReviewFailedInterface = @"storemessage";
+/// 注册信息填写完成
+NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
+/// 升级/升级失败修改信息
+NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
+/// 升级规则
+NSString *const HQJBUpgradeRuleInterface = @"shopH5/register/#/upgradeAgreement";
+/// 发布规范
+NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishAgreement";
+/// 商家入驻协议
+NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
+/// 头条
+NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
 
 @implementation HQJBAPIManage
 

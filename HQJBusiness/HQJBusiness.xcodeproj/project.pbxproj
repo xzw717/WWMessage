@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
+		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
+		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
+		0585FE7B2497106C00CD7280 /* CreateShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE682497106C00CD7280 /* CreateShopViewController.m */; };
+		0585FE7C2497106C00CD7280 /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE6A2497106C00CD7280 /* ProtocolViewController.m */; };
+		0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE6E2497106C00CD7280 /* MyShopViewController.m */; };
+		0585FE7E2497106C00CD7280 /* SetUpShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE6F2497106C00CD7280 /* SetUpShopViewController.m */; };
+		0585FE7F2497106C00CD7280 /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE742497106C00CD7280 /* HintView.m */; };
+		0585FE802497106C00CD7280 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE752497106C00CD7280 /* ZGProgressHUD.m */; };
+		0585FE85249710F500CD7280 /* HQJBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE81249710F500CD7280 /* HQJBaseVC.m */; };
+		0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE83249710F500CD7280 /* HQJBaseSubVC.m */; };
+		0585FE89249712A900CD7280 /* ZGRelayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE87249712A900CD7280 /* ZGRelayoutButton.m */; };
+		0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
@@ -201,7 +214,6 @@
 		1F960D441DFE3E51003E3D17 /* ZWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960D0B1DFE3E51003E3D17 /* ZWNavigationController.m */; };
 		1F960D451DFE3E51003E3D17 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960D0C1DFE3E51003E3D17 /* NullSafe.m */; };
 		1F960D4A1DFE3E51003E3D17 /* ToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960D171DFE3E51003E3D17 /* ToolView.m */; };
-		1F960D501DFE735B003E3D17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F960D4F1DFE735B003E3D17 /* LoginViewController.m */; };
 		1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B1E1E0133DF00F1DD7C /* BonusExchangeViewController.m */; };
 		1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */; };
 		1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */; };
@@ -342,6 +354,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
+		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
+		0585FE672497106C00CD7280 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		0585FE682497106C00CD7280 /* CreateShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShopViewController.m; sourceTree = "<group>"; };
+		0585FE692497106C00CD7280 /* ForgetPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPswViewController.h; sourceTree = "<group>"; };
+		0585FE6A2497106C00CD7280 /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
+		0585FE6B2497106C00CD7280 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0585FE6D2497106C00CD7280 /* SetUpShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpShopViewController.h; sourceTree = "<group>"; };
+		0585FE6E2497106C00CD7280 /* MyShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShopViewController.m; sourceTree = "<group>"; };
+		0585FE6F2497106C00CD7280 /* SetUpShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpShopViewController.m; sourceTree = "<group>"; };
+		0585FE702497106C00CD7280 /* MyShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShopViewController.h; sourceTree = "<group>"; };
+		0585FE712497106C00CD7280 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		0585FE722497106C00CD7280 /* CreateShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShopViewController.h; sourceTree = "<group>"; };
+		0585FE742497106C00CD7280 /* HintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
+		0585FE752497106C00CD7280 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
+		0585FE762497106C00CD7280 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
+		0585FE772497106C00CD7280 /* HintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
+		0585FE81249710F500CD7280 /* HQJBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJBaseVC.m; path = BaseClass/HQJBaseVC.m; sourceTree = "<group>"; };
+		0585FE82249710F500CD7280 /* HQJBaseSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJBaseSubVC.h; path = BaseClass/HQJBaseSubVC.h; sourceTree = "<group>"; };
+		0585FE83249710F500CD7280 /* HQJBaseSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJBaseSubVC.m; path = BaseClass/HQJBaseSubVC.m; sourceTree = "<group>"; };
+		0585FE84249710F500CD7280 /* HQJBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJBaseVC.h; path = BaseClass/HQJBaseVC.h; sourceTree = "<group>"; };
+		0585FE87249712A900CD7280 /* ZGRelayoutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGRelayoutButton.m; sourceTree = "<group>"; };
+		0585FE88249712A900CD7280 /* ZGRelayoutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGRelayoutButton.h; sourceTree = "<group>"; };
+		0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZGProgressHUD+NJ.m"; sourceTree = "<group>"; };
+		0585FE8B249712E600CD7280 /* ZGProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZGProgressHUD+NJ.h"; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -716,8 +754,6 @@
 		1F960D161DFE3E51003E3D17 /* ToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolView.h; sourceTree = "<group>"; };
 		1F960D171DFE3E51003E3D17 /* ToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolView.m; sourceTree = "<group>"; };
 		1F960D4C1DFE3FD2003E3D17 /* HQJBusinessHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQJBusinessHeader.pch; sourceTree = "<group>"; };
-		1F960D4E1DFE735B003E3D17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Login/LoginViewController.h; sourceTree = "<group>"; };
-		1F960D4F1DFE735B003E3D17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Login/LoginViewController.m; sourceTree = "<group>"; };
 		1F967B1D1E0133DF00F1DD7C /* BonusExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusExchangeViewController.h; sourceTree = "<group>"; };
 		1F967B1E1E0133DF00F1DD7C /* BonusExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeViewController.m; sourceTree = "<group>"; };
 		1F967B201E01470900F1DD7C /* BonusExchangeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusExchangeViewModel.h; sourceTree = "<group>"; };
@@ -984,6 +1020,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0585FE622497106C00CD7280 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0585FE632497106C00CD7280 /* Controller */,
+				0585FE732497106C00CD7280 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0585FE632497106C00CD7280 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0585FE722497106C00CD7280 /* CreateShopViewController.h */,
+				0585FE682497106C00CD7280 /* CreateShopViewController.m */,
+				0585FE692497106C00CD7280 /* ForgetPswViewController.h */,
+				0585FE642497106C00CD7280 /* ForgetPswViewController.m */,
+				0585FE6B2497106C00CD7280 /* LoginViewController.h */,
+				0585FE652497106C00CD7280 /* LoginViewController.m */,
+				0585FE6C2497106C00CD7280 /* MyShop */,
+				0585FE662497106C00CD7280 /* ProtocolViewController.h */,
+				0585FE6A2497106C00CD7280 /* ProtocolViewController.m */,
+				0585FE712497106C00CD7280 /* RegisterViewController.h */,
+				0585FE672497106C00CD7280 /* RegisterViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0585FE6C2497106C00CD7280 /* MyShop */ = {
+			isa = PBXGroup;
+			children = (
+				0585FE702497106C00CD7280 /* MyShopViewController.h */,
+				0585FE6E2497106C00CD7280 /* MyShopViewController.m */,
+				0585FE6D2497106C00CD7280 /* SetUpShopViewController.h */,
+				0585FE6F2497106C00CD7280 /* SetUpShopViewController.m */,
+			);
+			path = MyShop;
+			sourceTree = "<group>";
+		};
+		0585FE732497106C00CD7280 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0585FE742497106C00CD7280 /* HintView.m */,
+				0585FE752497106C00CD7280 /* ZGProgressHUD.m */,
+				0585FE762497106C00CD7280 /* ZGProgressHUD.h */,
+				0585FE772497106C00CD7280 /* HintView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		07B203E5119CDF40E49B4861 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1110,6 +1195,10 @@
 		1F1B21DC1E00CB1E00021AB2 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				0585FE82249710F500CD7280 /* HQJBaseSubVC.h */,
+				0585FE83249710F500CD7280 /* HQJBaseSubVC.m */,
+				0585FE84249710F500CD7280 /* HQJBaseVC.h */,
+				0585FE81249710F500CD7280 /* HQJBaseVC.m */,
 				05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */,
 				05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */,
 				1FB3DEB21E036E8800F670EC /* ZW_BaseViewController.h */,
@@ -1665,6 +1754,10 @@
 		1F960CA11DFE3E51003E3D17 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				0585FE8B249712E600CD7280 /* ZGProgressHUD+NJ.h */,
+				0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */,
+				0585FE88249712A900CD7280 /* ZGRelayoutButton.h */,
+				0585FE87249712A900CD7280 /* ZGRelayoutButton.m */,
 				1FFC1A51214B5A72006F5BDB /* SavePhotosTool.h */,
 				1FFC1A52214B5A72006F5BDB /* SavePhotosTool.m */,
 				1F2E0B4D1EC9A7AD0072FDDD /* AppVersionManager.h */,
@@ -1859,15 +1952,6 @@
 			path = CustomNav;
 			sourceTree = "<group>";
 		};
-		1F960D4D1DFE7314003E3D17 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				1F960D4E1DFE735B003E3D17 /* LoginViewController.h */,
-				1F960D4F1DFE735B003E3D17 /* LoginViewController.m */,
-			);
-			name = Login;
-			sourceTree = "<group>";
-		};
 		1FB3DEB51E03902800F670EC /* LrdPasswordAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1953,9 +2037,9 @@
 		1FBE91D21DEC1E59001977A6 /* HQJBusiness */ = {
 			isa = PBXGroup;
 			children = (
+				0585FE622497106C00CD7280 /* Login */,
 				208D336B22812FB100E439AC /* HQJBusiness.entitlements */,
 				1F1B21DC1E00CB1E00021AB2 /* BaseClass */,
-				1F960D4D1DFE7314003E3D17 /* Login */,
 				1F960CA11DFE3E51003E3D17 /* Engine */,
 				1F960CAC1DFE3E51003E3D17 /* Library */,
 				1F960C7A1DFE3D06003E3D17 /* Module */,
@@ -2462,6 +2546,7 @@
 				1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */,
 				1F20CB371E07876000FC91B3 /* CALScanQRCodeTitleView.m in Sources */,
 				1F1B21C61DFFA37800021AB2 /* DealTableViewCell.m in Sources */,
+				0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */,
 				1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */,
 				1F25DC001E10E98B004DC19F /* GoodsOrderVC.m in Sources */,
 				1F046D491E0A111B006D6EB2 /* ZHSetTableViewCell.m in Sources */,
@@ -2476,6 +2561,7 @@
 				1FDF4CD423B1E7420060F485 /* APRSASigner.m in Sources */,
 				1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */,
 				1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */,
+				0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
@@ -2488,6 +2574,7 @@
 				1F3949F51E0D1CF200A3662D /* BonusChangeVC.m in Sources */,
 				1F960D1B1DFE3E51003E3D17 /* ManagerEngine.m in Sources */,
 				1F960D3A1DFE3E51003E3D17 /* UIBarButtonItem+BlocksKit.m in Sources */,
+				0585FE792497106C00CD7280 /* LoginViewController.m in Sources */,
 				1F1B21F11E00F34100021AB2 /* CustomerViewModel.m in Sources */,
 				1F960D281DFE3E51003E3D17 /* NSObject+BKAssociatedObjects.m in Sources */,
 				1F6C85D923CEBE78005F3DB8 /* OrderDetailsFiveCell.m in Sources */,
@@ -2497,12 +2584,14 @@
 				1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */,
 				1F046D231E090DAA006D6EB2 /* SGSegmentedControlBottomView.m in Sources */,
 				1F6C85E223CEBE78005F3DB8 /* OrderDetailsPrintHeaderView.m in Sources */,
+				0585FE7C2497106C00CD7280 /* ProtocolViewController.m in Sources */,
 				1FF741331E0533630004AC95 /* SetZHView.m in Sources */,
 				1F960D321DFE3E51003E3D17 /* NSObject+A2BlockDelegate.m in Sources */,
 				1F960D391DFE3E51003E3D17 /* UIAlertView+BlocksKit.m in Sources */,
 				1F3949F81E0D1D1100A3662D /* CashChangeVC.m in Sources */,
 				1F960D221DFE3E51003E3D17 /* NSMutableArray+BlocksKit.m in Sources */,
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
+				0585FE802497106C00CD7280 /* ZGProgressHUD.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
@@ -2546,6 +2635,7 @@
 				1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */,
 				1F960D291DFE3E51003E3D17 /* NSObject+BKBlockExecution.m in Sources */,
 				1FF741391E0671220004AC95 /* SetZHViewController.m in Sources */,
+				0585FE85249710F500CD7280 /* HQJBaseVC.m in Sources */,
 				1F6C85D723CEBE78005F3DB8 /* ZW_StateLabel.m in Sources */,
 				1F6C85DE23CEBE78005F3DB8 /* OrderOneCell.m in Sources */,
 				1FC50B671F6916240081B728 /* OrderDetailsHeaderView.m in Sources */,
@@ -2578,6 +2668,7 @@
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
+				0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
@@ -2585,7 +2676,6 @@
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
 				1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */,
-				1F960D501DFE735B003E3D17 /* LoginViewController.m in Sources */,
 				1F960D1D1DFE3E51003E3D17 /* NSArray+BlocksKit.m in Sources */,
 				1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */,
 				1F5DEFC01E121DA900AC1DF6 /* SelectBankViewController.m in Sources */,
@@ -2593,7 +2683,9 @@
 				1F046D211E090DAA006D6EB2 /* SGImageButton_Vertical.m in Sources */,
 				1F960D1C1DFE3E51003E3D17 /* RequestEngine.m in Sources */,
 				1FDF4CD323B1E7420060F485 /* openssl_wrapper.m in Sources */,
+				0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */,
 				1F20CB271E07837800FC91B3 /* ConsumerCodeVerificationViewController.m in Sources */,
+				0585FE89249712A900CD7280 /* ZGRelayoutButton.m in Sources */,
 				1F960D2E1DFE3E51003E3D17 /* A2BlockInvocation.m in Sources */,
 				1F046D3C1E091AD3006D6EB2 /* MyListModel.m in Sources */,
 				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
@@ -2626,6 +2718,7 @@
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
 				1F960C9E1DFE3D06003E3D17 /* OrderViewController.m in Sources */,
+				0585FE7F2497106C00CD7280 /* HintView.m in Sources */,
 				1F6C85D823CEBE78005F3DB8 /* OrderDetailsBaseCell.m in Sources */,
 				1F25DBFD1E10E975004DC19F /* AllOrdeVC.m in Sources */,
 				1F960CA01DFE3D06003E3D17 /* main.m in Sources */,
@@ -2641,6 +2734,8 @@
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,
+				0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */,
+				0585FE7E2497106C00CD7280 /* SetUpShopViewController.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
 				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
@@ -2653,6 +2748,7 @@
 				1F25DBF71E10E90D004DC19F /* OrderBaseVC.m in Sources */,
 				1FB3DEBE1E03902800F670EC /* LrdPasswordAlertView.m in Sources */,
 				1F12C9E61E0B6C7D00CF6CB7 /* informationModel.m in Sources */,
+				0585FE7B2497106C00CD7280 /* CreateShopViewController.m in Sources */,
 				1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */,
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,

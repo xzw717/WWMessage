@@ -42,6 +42,9 @@
 #import "LoginSingleton.h"
 #import "AppVersionManager.h"
 #import "HQJBAPIManage.h"
+
+#import "ZGProgressHUD+NJ.h"
+#import "HQJBaseSubVC.h"
 //#import "Manager.h"
 //#import "JKCountDownButton.h"
 //#import <MBProgressHUD/MBProgressHUD.h>
@@ -124,6 +127,9 @@
 #define S_5sRatioW(o)  (o / 320.0f * [UIScreen mainScreen].bounds.size.width)
 #define S_5sRatioH(o)  (o / 568.0f * [UIScreen mainScreen].bounds.size.height)
 
+#define S_XRatioW(o)  (o / 375.0f * [UIScreen mainScreen].bounds.size.width)
+#define S_XRatioH(o)  (o / 812.0f * [UIScreen mainScreen].bounds.size.height)
+
 #define CustomWindow    [UIApplication sharedApplication].keyWindow
 
 #define  LOGINSUCCESS  @"loginSuccess"
@@ -145,7 +151,14 @@
 
 #define DefaultAPPColor  [ManagerEngine getColor:@"18abf5"]
 
+#define RedColor  [ManagerEngine getColor:@"ff4949"]
+#define YellowColor  [ManagerEngine getColor:@"ffc82c"]
+#define GreenColor  [ManagerEngine getColor:@"13ce66"]
+#define GrayColor  [ManagerEngine getColor:@"b9b9b9"]
 
+#define CreateStoreTreasure @"CreateStoreTreasure"
+#define CreateStoreTreasureKey @"CreateStoreTreasureKey"
+#define StoreAddTool @"StoreAddTool"
 
 
 ///收钱到账语音提醒是否已经开启
