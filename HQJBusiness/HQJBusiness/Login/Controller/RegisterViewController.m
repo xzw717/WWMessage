@@ -55,7 +55,7 @@
 - (UIButton *)backBtn{
     if ( _backBtn == nil ) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
         [_backBtn bk_addEventHandler:^(id  _Nonnull sender) {
             NSLog(@"pop success");
             [self.navigationController popViewControllerAnimated:YES];
@@ -79,23 +79,24 @@
     return _titleLabel;
 }
 
-- (UIButton *)loginBtn{
-    if ( _loginBtn == nil ) {
-        _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-        [_loginBtn setTitleColor:[ManagerEngine getColor:@"ff494b"] forState:UIControlStateNormal];
-        _loginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//- (UIButton *)loginBtn{
+//    if ( _loginBtn == nil ) {
+//        _loginBtn = [[UIButton alloc]init];
+//        [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+//        _loginBtn.backgroundColor = [UIColor blueColor];
+//        [_loginBtn setTitleColor:[ManagerEngine getColor:@"ff494b"] forState:UIControlStateNormal];
+//        _loginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
 //        [_loginBtn addTarget:self action:@selector(popMethod) forControlEvents:UIControlEventTouchUpInside];
-
-        [_loginBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            NSLog(@"pop success");
-            [self.navigationController popViewControllerAnimated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:_loginBtn];
-    }
-    return _loginBtn;
-}
+//
+////        [_loginBtn bk_addEventHandler:^(id  _Nonnull sender) {
+////            NSLog(@"pop success");
+////            [self.navigationController popViewControllerAnimated:YES];
+////        } forControlEvents:UIControlEventTouchUpInside];
+//
+//        [self.view addSubview:_loginBtn];
+//    }
+//    return _loginBtn;
+//}
 
 -(UIImageView *)logoImageView {
     if ( _logoImageView  == nil ) {
@@ -258,7 +259,6 @@
     if ( _inviteCodeBtn == nil ) {
         _inviteCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _inviteCodeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//        button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
         [_inviteCodeBtn setTitle:@"没有邀请码？点击这里？" forState:UIControlStateNormal];
         [_inviteCodeBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
         _inviteCodeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -381,11 +381,12 @@
 }
 #pragma private method
 - (void)layoutTheSubViews{
+    
     self.titleLabel.sd_layout.topSpaceToView(self.view,StatusBarHeight).centerXEqualToView(self.view).heightIs(44).widthIs(100.0f);
     
     self.backBtn.sd_layout.centerYEqualToView(self.titleLabel).leftSpaceToView(self.view, 50.0f/3).heightIs(30.0f).widthIs(30.0f);
     
-    self.loginBtn.sd_layout.topSpaceToView(self.view,StatusBarHeight).rightSpaceToView(self.view, 20).heightIs(44).widthIs(50);
+//    self.loginBtn.sd_layout.topSpaceToView(self.view,StatusBarHeight).rightSpaceToView(self.view, 20).heightIs(44).widthIs(50);
     
     self.logoImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.titleLabel,S_XRatioH(170.0f/3)).heightIs(S_XRatioH(154.0f/3)).widthIs(S_XRatioW(76.0f));
     
@@ -449,7 +450,7 @@
         
     } andError:^(NSError *error) {
         
-        [ManagerEngine dimssLoadView:self.loginBtn andtitle:@"确认"];
+//        [ManagerEngine dimssLoadView:self.registerBtn andtitle:@"确认"];
         
     } ShowHUD:YES];
     
