@@ -78,7 +78,7 @@
     }else{
         type=1;
     }
-    [ContactManagerViewModel getContactManagerList:Shopid andSignResul:type completion:^(NSArray<ContactModel *> * _Nonnull list) {
+    [ContactManagerViewModel getContactManagerList:Shopid ? Shopid :@"" andSignResul:type completion:^(NSArray<ContactModel *> * _Nonnull list) {
         self.dataArray = list;
         [self.tableView reloadData];
     }];

@@ -39,7 +39,7 @@
 -(UITableView *)messageTableView {
     if (!_messageTableView) {
         _messageTableView = [[UITableView alloc]init];
-        _messageTableView.frame = CGRectMake(0, 64, WIDTH, HEIGHT - 64);
+        _messageTableView.frame = CGRectMake(0, NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight);
         _messageTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _messageTableView.delegate = self;
         _messageTableView.dataSource = self;
