@@ -8,6 +8,7 @@
 
 #import "StoreManagementViewController.h"
 #import "BasicInformationViewController.h"
+#import "UpgradeManagementViewController.h"
 
 @interface StoreManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *storeManagementTableView;
@@ -69,6 +70,10 @@
     if (indexPath.row == 0 || indexPath.row == 3) {
         BasicInformationViewController *BIVC = [[BasicInformationViewController alloc]initWithTitle:self.cellTitleArray[indexPath.row]];
         [self.navigationController pushViewController:BIVC animated:YES];
+    }
+    if (indexPath.row == 2) {
+        UpgradeManagementViewController *vc = [[UpgradeManagementViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

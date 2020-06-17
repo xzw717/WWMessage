@@ -36,10 +36,11 @@
 		0585FEBC24974A9200CD7280 /* LivingConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FEA924974A9200CD7280 /* LivingConfigViewController.m */; };
 		0585FEC124974AED00CD7280 /* idl-license.face-ios in Resources */ = {isa = PBXBuildFile; fileRef = 0585FEBD24974AEC00CD7280 /* idl-license.face-ios */; };
 		0585FEC224974AED00CD7280 /* com.baidu.idl.face.faceSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */; };
-		0585FEC324974AED00CD7280 /* com.baidu.idl.face.model.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0585FEBF24974AED00CD7280 /* com.baidu.idl.face.model.bundle */; };
 		0585FEC424974AED00CD7280 /* IDLFaceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0585FEC024974AED00CD7280 /* IDLFaceSDK.framework */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
+		1F034A64249879A800214E26 /* UpgradeManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F034A63249879A800214E26 /* UpgradeManagementViewController.m */; };
+		1F034A672498A05200214E26 /* UpgradeManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */; };
 		1F046CAF1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */; };
 		1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CB21E08E04D006D6EB2 /* ToAuditViewController.m */; };
 		1F046CD21E0906F2006D6EB2 /* allViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F046CD11E0906F2006D6EB2 /* allViewController.m */; };
@@ -124,6 +125,7 @@
 		1F3949FB1E0D1D2A00A3662D /* BonusBuyZHVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949FA1E0D1D2A00A3662D /* BonusBuyZHVC.m */; };
 		1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3949FD1E0D1D4000A3662D /* CashBuyZHVC.m */; };
 		1F394A011E0D224500A3662D /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F394A001E0D224500A3662D /* DetailCell.m */; };
+		1F3966EE2498685400FDA9EE /* com.baidu.idl.face.model.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F3966ED2498685400FDA9EE /* com.baidu.idl.face.model.bundle */; };
 		1F4013311E125395004E30B1 /* SelectBankViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4013301E125395004E30B1 /* SelectBankViewModel.m */; };
 		1F4013341E1254B0004E30B1 /* SelectBankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4013331E1254B0004E30B1 /* SelectBankModel.m */; };
 		1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4013361E1257F0004E30B1 /* SelectBankCell.m */; };
@@ -429,13 +431,16 @@
 		0585FEAE24974A9200CD7280 /* RemindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindView.h; sourceTree = "<group>"; };
 		0585FEBD24974AEC00CD7280 /* idl-license.face-ios */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "idl-license.face-ios"; sourceTree = "<group>"; };
 		0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.faceSDK.bundle; sourceTree = "<group>"; };
-		0585FEBF24974AED00CD7280 /* com.baidu.idl.face.model.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.model.bundle; sourceTree = "<group>"; };
 		0585FEC024974AED00CD7280 /* IDLFaceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDLFaceSDK.framework; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
 		12DF83A7241E51371EEBD693 /* Pods_HQJBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HQJBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F016C7B1F6A7D4200716C82 /* GoodsVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsVerificationModel.h; sourceTree = "<group>"; };
 		1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsVerificationModel.m; sourceTree = "<group>"; };
+		1F034A62249879A800214E26 /* UpgradeManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpgradeManagementViewController.h; sourceTree = "<group>"; };
+		1F034A63249879A800214E26 /* UpgradeManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpgradeManagementViewController.m; sourceTree = "<group>"; };
+		1F034A652498A05100214E26 /* UpgradeManagementTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpgradeManagementTableViewCell.h; sourceTree = "<group>"; };
+		1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpgradeManagementTableViewCell.m; sourceTree = "<group>"; };
 		1F046CAD1E08D0E3006D6EB2 /* ConsumerCodeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsumerCodeViewModel.h; sourceTree = "<group>"; };
 		1F046CAE1E08D0E3006D6EB2 /* ConsumerCodeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsumerCodeViewModel.m; sourceTree = "<group>"; };
 		1F046CB11E08E04D006D6EB2 /* ToAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToAuditViewController.h; sourceTree = "<group>"; };
@@ -593,6 +598,7 @@
 		1F3949FD1E0D1D4000A3662D /* CashBuyZHVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CashBuyZHVC.m; path = ChildVC/CashBuyZHVC.m; sourceTree = "<group>"; };
 		1F3949FF1E0D224500A3662D /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
 		1F394A001E0D224500A3662D /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
+		1F3966ED2498685400FDA9EE /* com.baidu.idl.face.model.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.model.bundle; sourceTree = "<group>"; };
 		1F40132F1E125395004E30B1 /* SelectBankViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBankViewModel.h; sourceTree = "<group>"; };
 		1F4013301E125395004E30B1 /* SelectBankViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBankViewModel.m; sourceTree = "<group>"; };
 		1F4013321E1254B0004E30B1 /* SelectBankModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBankModel.h; sourceTree = "<group>"; };
@@ -1719,6 +1725,8 @@
 				1FBD3F3D246BC80A000650EB /* StoreManagementViewController.m */,
 				1FBD3FCC246BE4E5000650EB /* BasicInformationViewController.h */,
 				1FBD3FCD246BE4E5000650EB /* BasicInformationViewController.m */,
+				1F034A62249879A800214E26 /* UpgradeManagementViewController.h */,
+				1F034A63249879A800214E26 /* UpgradeManagementViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1785,6 +1793,8 @@
 				1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */,
 				1FBD3FC9246BD3E2000650EB /* StoreManagementTableViewCell.h */,
 				1FBD3FCA246BD3E2000650EB /* StoreManagementTableViewCell.m */,
+				1F034A652498A05100214E26 /* UpgradeManagementTableViewCell.h */,
+				1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1908,8 +1918,8 @@
 		1F960CAC1DFE3E51003E3D17 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1F3966ED2498685400FDA9EE /* com.baidu.idl.face.model.bundle */,
 				0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */,
-				0585FEBF24974AED00CD7280 /* com.baidu.idl.face.model.bundle */,
 				0585FEBD24974AEC00CD7280 /* idl-license.face-ios */,
 				0585FEC024974AED00CD7280 /* IDLFaceSDK.framework */,
 				1F12F6D91E16323B0056DF9A /* AliPay */,
@@ -2542,7 +2552,7 @@
 				20DF4EB8229E864800317D3B /* wwm_5.mp3 in Resources */,
 				20DF4E9E229E864800317D3B /* wwm_yuan.mp3 in Resources */,
 				20DF4E7D229E840B00317D3B /* wwm_cash_pre.mp3 in Resources */,
-				0585FEC324974AED00CD7280 /* com.baidu.idl.face.model.bundle in Resources */,
+				1F3966EE2498685400FDA9EE /* com.baidu.idl.face.model.bundle in Resources */,
 				20DF4EAE229E864800317D3B /* wwm_ten_thousand.mp3 in Resources */,
 				1FB3DEBD1E03902800F670EC /* close_icon@2x.png in Resources */,
 				20DF4EA2229E864800317D3B /* wwm_default.mp3 in Resources */,
@@ -2670,6 +2680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0585FEB624974A9200CD7280 /* FaceBaseViewController.m in Sources */,
+				1F034A672498A05200214E26 /* UpgradeManagementTableViewCell.m in Sources */,
 				1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */,
 				1F960D2B1DFE3E51003E3D17 /* NSOrderedSet+BlocksKit.m in Sources */,
 				1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */,
@@ -2691,6 +2702,7 @@
 				1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */,
 				1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */,
 				0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */,
+				1F034A64249879A800214E26 /* UpgradeManagementViewController.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
