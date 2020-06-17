@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactModel : NSObject
-//"type": 1,      ----1：物联网新商业 2：国家追溯平台
+//"type": 1,      ----1：物联网新商业 2：国物追溯平台
 //            "signUrl": "合同预览签署地址",
 //"peugeotid": 3,   -----标识id
 //            "signtime": "签署时间"

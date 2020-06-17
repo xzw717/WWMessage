@@ -113,7 +113,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ContactManagerCell class]) forIndexPath:indexPath];
     
-    //"type": 1,      ----1：物联网新商业 2：国家追溯平台
+    //"type": 1,      ----1：物联网新商业 2：国物追溯平台
     //            "signUrl": "合同预览签署地址",
     //"peugeotid": 3,   -----标识id
     //            "signtime": "签署时间"
@@ -122,7 +122,7 @@
     if ([model.type isEqualToString:@"1"]) {
         [result appendString:@"物联网新商业"];
     }else{
-        [result appendString:@"国家追溯平台"];
+        [result appendString:@"国物追溯平台"];
     }
 
     switch (model.peugeotid.integerValue) {
