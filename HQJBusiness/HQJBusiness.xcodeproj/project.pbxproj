@@ -180,6 +180,8 @@
 		1F6C85E223CEBE78005F3DB8 /* OrderDetailsPrintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C85D123CEBE78005F3DB8 /* OrderDetailsPrintHeaderView.m */; };
 		1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DA1F6BB2C700BF8476 /* DeccaDownloadViewController.m */; };
 		1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */; };
+		1F6E10E6249B000B00BEDB72 /* NewWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */; };
+		1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -695,6 +697,10 @@
 		1F6DA2DA1F6BB2C700BF8476 /* DeccaDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeccaDownloadViewController.m; sourceTree = "<group>"; };
 		1F6DA2DC1F6BB4E900BF8476 /* DeccaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeccaView.h; sourceTree = "<group>"; };
 		1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeccaView.m; sourceTree = "<group>"; };
+		1F6E10E4249B000B00BEDB72 /* NewWithdrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewWithdrawViewController.h; sourceTree = "<group>"; };
+		1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWithdrawViewController.m; sourceTree = "<group>"; };
+		1F6E10E7249B100000BEDB72 /* NewWithdrawTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewWithdrawTableViewCell.h; sourceTree = "<group>"; };
+		1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWithdrawTableViewCell.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -1727,6 +1733,8 @@
 				1FBD3FCD246BE4E5000650EB /* BasicInformationViewController.m */,
 				1F034A62249879A800214E26 /* UpgradeManagementViewController.h */,
 				1F034A63249879A800214E26 /* UpgradeManagementViewController.m */,
+				1F6E10E4249B000B00BEDB72 /* NewWithdrawViewController.h */,
+				1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1795,6 +1803,8 @@
 				1FBD3FCA246BD3E2000650EB /* StoreManagementTableViewCell.m */,
 				1F034A652498A05100214E26 /* UpgradeManagementTableViewCell.h */,
 				1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */,
+				1F6E10E7249B100000BEDB72 /* NewWithdrawTableViewCell.h */,
+				1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2841,6 +2851,7 @@
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
 				1FDF4CD623B1E7420060F485 /* APAuthInfo.m in Sources */,
 				1FDF4CD223B1E7420060F485 /* APOrderInfo.m in Sources */,
+				1F6E10E6249B000B00BEDB72 /* NewWithdrawViewController.m in Sources */,
 				1F3949EC1E0D16C200A3662D /* DetailViewModel.m in Sources */,
 				1F960D201DFE3E51003E3D17 /* NSInvocation+BlocksKit.m in Sources */,
 				1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */,
@@ -2883,6 +2894,7 @@
 				1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */,
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
+				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1F5DEFBC1E120FED00AC1DF6 /* HelpMeViewController.m in Sources */,
 				0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */,
