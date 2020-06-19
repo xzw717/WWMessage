@@ -7,12 +7,13 @@
 //
 
 #import "ZW_TableViewCell.h"
-
+typedef void (^ForgetPassWordBlock)(void);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewWithdrawTableViewCell : ZW_TableViewCell
 @property (nonatomic, strong) UITextField *subTitTextField;
 - (void)setTitle:(NSString *)tit subTitle:(NSString *)subtit ;
+@property (nonatomic, copy) ForgetPassWordBlock forget;
 @end
 
 NS_ASSUME_NONNULL_END

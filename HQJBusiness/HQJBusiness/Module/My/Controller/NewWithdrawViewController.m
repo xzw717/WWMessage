@@ -6,11 +6,87 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
+
+@interface BalanceView : UIView
+@property (nonatomic, strong) NSString *balanceStr;
+@end
+@interface BalanceView ()
+@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *balanceLabel;
+@end
+@implementation BalanceView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self addSubview:self.bgView];
+        [self.bgView addSubview:self.titleLabel];
+        [self.bgView addSubview:self.balanceLabel];
+        [self updateConstraintsIfNeeded];
+    }
+    return self;
+}
+- (void)setBalanceStr:(NSString *)balanceStr {
+    _balanceStr = balanceStr;
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",balanceStr]];
+    [str setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:48 / 3.f]} range:NSMakeRange(0, 1)];
+    self.balanceLabel.attributedText = str;
+
+//    self.balanceLabel.text =
+}
+- (void)updateConstraints {
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(340 / 3.f);
+        make.left.mas_equalTo(50 / 3.f);
+        make.right.mas_equalTo(-50 / 3.f);
+        make.centerY.mas_equalTo(self);
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(100 / 3.f);
+        make.centerX.mas_equalTo(self.bgView);
+    }];
+    [self.balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(40 / 3);
+        make.centerX.mas_equalTo(self.bgView);
+    }];
+    [super updateConstraints];
+}
+- (UIView *)bgView {
+    if (!_bgView) {
+        _bgView = [[UIView alloc]init];
+        _bgView.backgroundColor = [ManagerEngine getColor:@"ffc82d"];
+        _bgView.layer.masksToBounds = YES;
+        _bgView.layer.cornerRadius = 30 / 3.f;
+    }
+    return _bgView;
+}
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc]init];
+        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.text = @"账户现金";
+        _titleLabel.font = [UIFont systemFontOfSize:48 /3.f];
+    }
+    return _titleLabel;
+}
+- (UILabel *)balanceLabel {
+    if (!_balanceLabel) {
+        _balanceLabel = [[UILabel alloc]init];
+        _balanceLabel.textColor = [UIColor blackColor];
+        _balanceLabel.font = [UIFont systemFontOfSize:72 /3.f];
+    }
+    return _balanceLabel;
+}
+@end
+
 #import "NewWithdrawViewController.h"
 #import "NewWithdrawTableViewCell.h"
 #import "SelectBankViewController.h"
 #import "BonusExchangeViewModel.h"
 #import "BonusExchangeModel.h"
+#import "ChangeTradePswViewController.h"
+#import "HintView.h"
 @interface NewWithdrawViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView  *withdrawTableView;
 @property (nonatomic, strong) UIButton *submitBtn;
@@ -20,7 +96,8 @@
 @property (nonatomic, strong) UITextField  *selectBankTextField;
 @property (nonatomic, strong) NSString *cardIDStr;
 @property (nonatomic,strong) BonusExchangeModel *model;
-//@property (nonatomic, strong) id *name;
+@property (nonatomic, strong) BalanceView *balanceView;
+@property (nonatomic, strong) HintView *hintView;
 @end
 
 @implementation NewWithdrawViewController
@@ -75,7 +152,8 @@
     return sectionSeaderView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50 / 3;
+    
+    return section == 0 ? 0.001f : 50 / 3.f;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -93,6 +171,12 @@
             self.passwordTextField = cell.subTitTextField;
             
         }
+        @weakify(self);
+        [cell setForget:^{
+            @strongify(self);
+            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:SetDealPassWordType];
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
         return cell;
     }else  {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
@@ -103,6 +187,12 @@
     }  
     
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        SelectBankViewController *selectVC = [[SelectBankViewController alloc]init];
+        [self.navigationController pushViewController:selectVC animated:YES];
+    }
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     return YES;
@@ -112,10 +202,11 @@
 #pragma mark --
 #pragma mark --- 积分及名称请求
 -(void)BonusExchangeRequst {
-    
+    @weakify(self);
     [BonusExchangeViewModel bonusExchaneViewmodelRequstandViewControllerTitle:self.zw_title AndBack:^(id sender) {
-        _model = sender;
-     
+        @strongify(self);
+        self.model = sender;
+        self.balanceView.balanceStr = [ManagerEngine retainScale:[NSString stringWithFormat:@"%f",self.model.score.cash] afterPoint:2];
 //        [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
 //
         [self setViewframe];
@@ -169,49 +260,56 @@
         
     }];
     [[self.submitBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
-        
-        if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
-            [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-            [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
-        } else {
-            if ([self.selectBankTextField.text isEqualToString:@""]) {
-                 [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
-                [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-
-            } else {
-                [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
-                    
-                    if ([dic[@"code"]integerValue] == 49000) {
-                        
-                        [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
-                        
-                        //                    [SVProgressHUD dismissWithCompletion:^{
-                        //
-                        //                    }];
-                        [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
-                            [self.navigationController popViewControllerAnimated:YES];
-                            
-                            
-                        }];
-                    } else {
-                        [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-                        //SVProgressHUD
-                        [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-                    }
-                    
-                }];
-            }
-          
-          
-        }
         
         
+        [self.hintView showView];
+        [self.hintView enrichSubviews:[NSString stringWithFormat:@"提现金额：%@元\n服务费%.2f元，实际到账%.2f元",self.BonusNumerTextField.text,[self.BonusNumerTextField.text floatValue] * 0.18,[self.BonusNumerTextField.text floatValue] - [self.BonusNumerTextField.text floatValue] * 0.18] andSureTitle:@"提现" cancelTitle:@"放弃"];
+        
+   
         
         
     }];
-    
-    
+  
+    [[self.hintView.sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
+           
+           if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
+               [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+               [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
+           } else {
+               if ([self.selectBankTextField.text isEqualToString:@""]) {
+                    [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
+                   [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+
+               } else {
+                   [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
+                       
+                       if ([dic[@"code"]integerValue] == 49000) {
+                           
+                           [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
+                           
+                           //                    [SVProgressHUD dismissWithCompletion:^{
+                           //
+                           //                    }];
+                           [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
+                               [self.navigationController popViewControllerAnimated:YES];
+                               
+                               
+                           }];
+                       } else {
+                           [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                           //SVProgressHUD
+                           [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                       }
+                       
+                   }];
+               }
+             
+             
+           }
+           
+           
+    }];
     
 }
 -(BOOL)isValidPsw:(NSString *)text {
@@ -304,8 +402,25 @@
     
 }
 
+- (HintView *)hintView{
+    if (_hintView == nil) {
+        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"" andSureTitle:@"" cancelTitle:@""];
+        @weakify(self);
+        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
+            @strongify(self);
+            [self.hintView dismssView];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _hintView;
+}
 
-
+- (BalanceView *)balanceView {
+    if (!_balanceView) {
+        _balanceView = [[BalanceView alloc]initWithFrame: CGRectMake(0, 0, WIDTH, 400 / 3)];
+    }
+    return _balanceView;
+}
 
 - (UIButton *)submitBtn {
     if (!_submitBtn) {
@@ -329,14 +444,14 @@
         _withdrawTableView.dataSource = self;
         [_withdrawTableView registerClass:[NewWithdrawTableViewCell class] forCellReuseIdentifier:NSStringFromClass([NewWithdrawTableViewCell class])];
         [_withdrawTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 400 / 3)];
-        view.backgroundColor = [ManagerEngine getColor:@"f7f7f7"];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30 / 3, 30 / 3, WIDTH - 30 * 2 / 3, 340 /3)];
-        label.backgroundColor = [ManagerEngine getColor:@"ffc82d"];
-        label.layer.masksToBounds = YES;
-        label.layer.cornerRadius = 30 / 3.f;
-        [view addSubview:label];
-        _withdrawTableView.tableHeaderView = view;
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 400 / 3)];
+//        view.backgroundColor = [ManagerEngine getColor:@"f7f7f7"];
+//       self.balanceView.frame = [[UILabel alloc]initWithFrame:CGRectMake(30 / 3, 30 / 3, WIDTH - 30 * 2 / 3, 340 /3)];
+//        label.backgroundColor = [ManagerEngine getColor:@"ffc82d"];
+//        label.layer.masksToBounds = YES;
+//        label.layer.cornerRadius = 30 / 3.f;
+//        [view addSubview:label];
+        _withdrawTableView.tableHeaderView = self.balanceView;
         _withdrawTableView.tableFooterView = [UIView new];
         
     }

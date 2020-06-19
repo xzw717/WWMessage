@@ -35,8 +35,8 @@
         _topicLabel =  [[UILabel alloc]init];
         _topicLabel.font = [UIFont systemFontOfSize:40/3];
         _topicLabel.textColor = [ManagerEngine getColor:@"010101"];
-        _topicLabel.textAlignment = NSTextAlignmentLeft;
-        _topicLabel.numberOfLines = 2;
+        _topicLabel.textAlignment = NSTextAlignmentCenter;
+        _topicLabel.numberOfLines = 0;
         [_topicLabel sizeToFit];
         [self.maskView addSubview:_topicLabel];
     }
@@ -94,6 +94,7 @@
     }
     return self;
 }
+
 - (void)enrichSubviews:(NSString *)topic andSureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle {
     
     self.maskView.sd_layout.centerYEqualToView(self).centerXEqualToView(self).heightIs(S_RatioH(470.0f/3)).widthIs(S_RatioW(240.0f));
@@ -105,6 +106,10 @@
     [self.sureButton setTitle:sureTitle forState:UIControlStateNormal];
     [self.cancelButton setTitle:cancelTitle forState:UIControlStateNormal];
     
+}
+
+- (void)showView {
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
 }
 
 -(void)dismssView {

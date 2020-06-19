@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong)UIButton *sureButton;
 
 -(instancetype)initWithFrame:(CGRect)frame withTopic:(NSString *)topic andSureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle;
+- (void)enrichSubviews:(NSString *)topic andSureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle ;
+
+- (void)showView;
 
 /**
  删除子视图移除本视图

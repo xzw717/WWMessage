@@ -32,26 +32,14 @@
     self.forgetButton.hidden = [tit isEqualToString:@"交易密码"] ? NO : YES;
     self.subTitLbale.hidden = [tit isEqualToString:@"提现方"]|[tit isEqualToString:@"受理方"] ? NO : YES;
     self.subTitTextField.hidden = [tit isEqualToString:@"提现金额"] | [tit isEqualToString:@"商家账户"] |[tit isEqualToString:@"交易密码"] ? NO : YES;
-//    self.subTitTextField.e
-//    if ([tit isEqualToString:@"提现方"]) {
-//
-//    } else if ([tit isEqualToString:@"提现金额"]) {
-//
-//    }  else if ([tit isEqualToString:@"商家账户"]) {
-//        self.subTitTextField.placeholder = subtit;
-//
-//    }  else if ([tit isEqualToString:@"受理方"]) {
-//        self.subTitLbale.text = subtit;
-//
-//    }  else if ([tit isEqualToString:@"交易密码"]) {
-//        self.subTitTextField.placeholder = subtit;
-//
-//    } else {
-//
-//    }
+    self.subTitTextField.enabled =   self.arrowImageView.hidden;
+
     
 }
 
+- (void)clickForger:(UIButton *)btn {
+    !self.forget ? :self.forget();
+}
 - (void)addViews {
     [self.contentView addSubview:self.titLabel];
     [self.contentView addSubview:self.subTitLbale];
@@ -134,6 +122,7 @@
         [_forgetButton setTitle:@"忘记交易密码?" forState:UIControlStateNormal];
         _forgetButton.titleLabel.font = [UIFont systemFontOfSize:36 / 3.f];
         _forgetButton.hidden = YES;
+        [_forgetButton addTarget:self action:@selector(clickForger:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _forgetButton;
 }

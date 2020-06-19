@@ -326,8 +326,10 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (HintView *)hintView{
     if (_hintView == nil) {
         _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"账号或密码多次错误，试试验证码登录吧。" andSureTitle:@"验证码登录" cancelTitle:@"下次再说"];
+        @weakify(self);
         [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            [_hintView dismssView];
+            @strongify(self);
+            [self.hintView dismssView];
         } forControlEvents:UIControlEventTouchUpInside];
         
     }

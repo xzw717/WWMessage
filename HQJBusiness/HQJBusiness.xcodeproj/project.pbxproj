@@ -182,6 +182,7 @@
 		1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DA2DD1F6BB4E900BF8476 /* DeccaView.m */; };
 		1F6E10E6249B000B00BEDB72 /* NewWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */; };
 		1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */; };
+		1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -701,6 +702,8 @@
 		1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWithdrawViewController.m; sourceTree = "<group>"; };
 		1F6E10E7249B100000BEDB72 /* NewWithdrawTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewWithdrawTableViewCell.h; sourceTree = "<group>"; };
 		1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWithdrawTableViewCell.m; sourceTree = "<group>"; };
+		1F6E10EA249CA7F600BEDB72 /* HQJAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQJAlertView.h; sourceTree = "<group>"; };
+		1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQJAlertView.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -1943,6 +1946,8 @@
 				1F960D0C1DFE3E51003E3D17 /* NullSafe.m */,
 				1F960D161DFE3E51003E3D17 /* ToolView.h */,
 				1F960D171DFE3E51003E3D17 /* ToolView.m */,
+				1F6E10EA249CA7F600BEDB72 /* HQJAlertView.h */,
+				1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -2788,6 +2793,7 @@
 				1F6C85D623CEBE78005F3DB8 /* OrderDetailsTwoCell.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
 				1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */,
+				1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */,
 				1F960D291DFE3E51003E3D17 /* NSObject+BKBlockExecution.m in Sources */,
 				1FF741391E0671220004AC95 /* SetZHViewController.m in Sources */,
 				0585FE85249710F500CD7280 /* HQJBaseVC.m in Sources */,
