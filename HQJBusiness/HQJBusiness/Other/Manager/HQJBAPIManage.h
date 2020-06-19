@@ -34,6 +34,8 @@ extern NSString *const HQJBBounsOrder;
 extern NSString *const WWMCouponDomain;
 /// 直播域名
 extern NSString *const WWMLiveDomain;
+/// XDH5域名
+extern NSString *const HQJBXDH5Domain;
 /************************************域名（结束）**********************************************/
 
 

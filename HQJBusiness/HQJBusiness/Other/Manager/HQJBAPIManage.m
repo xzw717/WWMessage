@@ -24,6 +24,13 @@ NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 NSString *const WWMCouponDomain = @"http://47.98.45.218/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
+
+/// XDH5域名
+NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
+
+
+测试：http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
+正式：http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
@@ -42,6 +49,8 @@ NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"http://47.98.45.218/";
+/// XDH5域名
+NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 #endif
 
 
