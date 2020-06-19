@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UITextField  *selectBankTextField;
 @property (nonatomic, strong) NSString *cardIDStr;
 @property (nonatomic,strong) BonusExchangeModel *model;
-@property (nonatomic, strong) id *name;
+//@property (nonatomic, strong) id *name;
 @end
 
 @implementation NewWithdrawViewController
@@ -82,6 +82,17 @@
         NewWithdrawTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([NewWithdrawTableViewCell class]) forIndexPath:indexPath];
         cell.subTitTextField.delegate = self;
         [cell setTitle:[self.titArray[indexPath.row] firstObject] subTitle:[self.titArray[indexPath.row] lastObject]];
+        if (indexPath.row == 1) {
+            self.BonusNumerTextField = cell.subTitTextField;
+        }
+        if (indexPath.row == 2) {
+            self.selectBankTextField = cell.subTitTextField;
+            
+        }
+        if (indexPath.row == 4) {
+            self.passwordTextField = cell.subTitTextField;
+            
+        }
         return cell;
     }else  {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
@@ -105,8 +116,8 @@
     [BonusExchangeViewModel bonusExchaneViewmodelRequstandViewControllerTitle:self.zw_title AndBack:^(id sender) {
         _model = sender;
      
-        [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
-      
+//        [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+//
         [self setViewframe];
 
     }];
@@ -231,48 +242,17 @@
 
 
 -(void)setViewframe {
-    CGFloat payLabelWith = [ManagerEngine setTextWidthStr:self.payerLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    
-    CGFloat bonusWidth = [ManagerEngine setTextWidthStr:self.BonusNumerLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    
-     CGFloat passwordWidth = [ManagerEngine setTextWidthStr:self.passwordLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    
-    self.payerLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,75 + NavigationControllerHeight).heightIs(17).widthIs(payLabelWith);
-    
 
-    self.BonusNumerLabel.sd_layout.leftEqualToView(self.payerLabel).topSpaceToView(self.payerLabel,30 + (44 - 17) / 2).heightIs(17).widthIs(bonusWidth);
-    
-    self.BonusNumerTextField.sd_layout.leftSpaceToView(self.BonusNumerLabel,0).topSpaceToView(self.payerLabel,30).heightIs(44).widthIs(WIDTH - bonusWidth - kEDGE *2);
-
-    
-    [self updateCash];
-    
-    
-    self.selectBankLabel.sd_layout.leftEqualToView(self.BonusNumerLabel).topSpaceToView(self.BonusNumerTextField,30 + (44 - 17) / 2).heightIs(17).widthIs(passwordWidth);
-    
-    
-    self.selectBankTextField.sd_layout.leftSpaceToView(self.selectBankLabel,0).topSpaceToView(self.BonusNumerTextField,30).heightIs(44).widthIs(WIDTH - passwordWidth - kEDGE *2);
-    
-    CGFloat beneficiaryWidth = [ManagerEngine setTextWidthStr:self.BeneficiaryLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    self.BeneficiaryLabel.sd_layout.leftEqualToView(self.selectBankLabel).topSpaceToView(self.selectBankTextField,30).heightIs(17).widthIs(beneficiaryWidth);
-    
-    
-    self.passwordLabel.sd_layout.leftEqualToView(self.BeneficiaryLabel).topSpaceToView(self.BeneficiaryLabel,30 + (44 - 17)/2).heightIs(17).widthIs(passwordWidth);
-
-    self.passwordTextField.sd_layout.leftSpaceToView(self.passwordLabel,0).topSpaceToView(self.BeneficiaryLabel,30).heightIs(44).widthIs(WIDTH - passwordWidth - kEDGE * 2);
-    
-    self.submitButton.sd_layout.leftEqualToView(self.passwordLabel).topSpaceToView(self.passwordTextField,40).heightIs(44).widthIs(WIDTH - kEDGE * 2);
-    
     
 #pragma mark --
 #pragma mark --- 选择银行
 
     
-    [self.selectBankTextField isMaskBtn:^{
-        SelectBankViewController *selectVC = [[SelectBankViewController alloc]init];
-        [self.navigationController pushViewController:selectVC animated:YES];
-    }];
-    
+//    [self.selectBankTextField isMaskBtn:^{
+//        SelectBankViewController *selectVC = [[SelectBankViewController alloc]init];
+//        [self.navigationController pushViewController:selectVC animated:YES];
+//    }];
+//
     
     [self signalSet];
 
@@ -282,9 +262,9 @@
 #pragma mark --
 #pragma mark --- 更新 现金 值数额
 -(void)updateCash {
-    self.canExchangeLabel.hidden = NO;
-    CGFloat cashWidth = [ManagerEngine setTextWidthStr:self.canExchangeLabel.text andFont:[UIFont systemFontOfSize:12.0]];
-    self.canExchangeLabel.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - cashWidth).topSpaceToView(self.BonusNumerTextField,(30 - 12) / 2).heightIs(12).widthIs(cashWidth);
+//    self.canExchangeLabel.hidden = NO;
+//    CGFloat cashWidth = [ManagerEngine setTextWidthStr:self.canExchangeLabel.text andFont:[UIFont systemFontOfSize:12.0]];
+//    self.canExchangeLabel.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - cashWidth).topSpaceToView(self.BonusNumerTextField,(30 - 12) / 2).heightIs(12).widthIs(cashWidth);
     
 }
 
@@ -304,7 +284,7 @@
     if (info.userInfo[@"deleted"]) {
         if ( self.cardIDStr && [info.userInfo[@"deleted"] isEqualToString:self.cardIDStr] ) {
             self.selectBankTextField.text = @"";
-            [self.selectBankTextField setLeftViewWithimageName:nil];
+//            [self.selectBankTextField setLeftViewWithimageName:nil];
 
         }
 
@@ -317,7 +297,7 @@
         [attributeString setAttributes:@{NSForegroundColorAttributeName:[ManagerEngine getColor:@"999999"],NSFontAttributeName:[UIFont systemFontOfSize:15.0],NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleNone]} range:range];
         self.cardIDStr = info.userInfo[@"id"];
         self.selectBankTextField.attributedText = attributeString;
-        [self.selectBankTextField setLeftViewWithimageName:info.userInfo[@"icon"]];
+//        [self.selectBankTextField setLeftViewWithimageName:info.userInfo[@"icon"]];
     }
     
 
@@ -326,7 +306,6 @@
 
 
 
-@end
 
 - (UIButton *)submitBtn {
     if (!_submitBtn) {

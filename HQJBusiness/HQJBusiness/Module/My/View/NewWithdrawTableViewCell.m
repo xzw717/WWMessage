@@ -26,42 +26,29 @@
 
 - (void)setTitle:(NSString *)tit subTitle:(NSString *)subtit {
     self.titLabel.text = tit;
-    if ([tit isEqualToString:@"提现方"]) {
-        self.subTitLbale.text = subtit;
-        self.arrowImageView.hidden = YES;
-        self.forgetButton.hidden = YES;
-         self.subTitLbale.hidden = NO;
-          self.subTitTextField.hidden = YES;
-    } else if ([tit isEqualToString:@"提现金额"]) {
-        self.subTitTextField.placeholder = subtit;
-        self.arrowImageView.hidden = YES;
-        self.forgetButton.hidden = YES;
-        self.subTitLbale.hidden = YES;
-        self.subTitTextField.hidden = NO;
-    }  else if ([tit isEqualToString:@"商家账户"]) {
-        self.subTitTextField.placeholder = subtit;
-        self.arrowImageView.hidden = NO;
-        self.forgetButton.hidden = YES;
-        self.subTitLbale.hidden = YES;
-        self.subTitTextField.hidden = NO;
-    }  else if ([tit isEqualToString:@"受理方"]) {
-        self.subTitLbale.text = subtit;
-        self.forgetButton.hidden = YES;
-        self.arrowImageView.hidden = YES;
-        self.subTitLbale.hidden = NO;
-        self.subTitTextField.hidden = YES;
-    }  else if ([tit isEqualToString:@"交易密码"]) {
-         self.subTitTextField.placeholder = subtit;
-        self.arrowImageView.hidden = YES;
-        self.forgetButton.hidden = NO;
-        self.subTitLbale.hidden = YES;
-        self.subTitTextField.hidden = NO;
-    } else {
-        self.arrowImageView.hidden = YES;
-        self.forgetButton.hidden = YES;
-        self.subTitLbale.hidden = YES;
-        self.subTitTextField.hidden = YES;
-    }
+    self.subTitLbale.text = subtit;
+    self.subTitTextField.placeholder = subtit;
+    self.arrowImageView.hidden = [tit isEqualToString:@"商家账户"] ? NO : YES;
+    self.forgetButton.hidden = [tit isEqualToString:@"交易密码"] ? NO : YES;
+    self.subTitLbale.hidden = [tit isEqualToString:@"提现方"]|[tit isEqualToString:@"受理方"] ? NO : YES;
+    self.subTitTextField.hidden = [tit isEqualToString:@"提现金额"] | [tit isEqualToString:@"商家账户"] |[tit isEqualToString:@"交易密码"] ? NO : YES;
+//    self.subTitTextField.e
+//    if ([tit isEqualToString:@"提现方"]) {
+//
+//    } else if ([tit isEqualToString:@"提现金额"]) {
+//
+//    }  else if ([tit isEqualToString:@"商家账户"]) {
+//        self.subTitTextField.placeholder = subtit;
+//
+//    }  else if ([tit isEqualToString:@"受理方"]) {
+//        self.subTitLbale.text = subtit;
+//
+//    }  else if ([tit isEqualToString:@"交易密码"]) {
+//        self.subTitTextField.placeholder = subtit;
+//
+//    } else {
+//
+//    }
     
 }
 
@@ -71,7 +58,7 @@
     [self.contentView addSubview:self.arrowImageView];
     [self.contentView addSubview:self.subTitTextField];
     [self.contentView addSubview:self.forgetButton];
-
+    
 }
 
 - (void)updateConstraints {
@@ -96,7 +83,7 @@
         make.right.mas_equalTo(-100 / 3);
         make.top.mas_equalTo(self.subTitTextField.mas_bottom).mas_offset(5);
     }];
-
+    
     [super updateConstraints];
 }
 
