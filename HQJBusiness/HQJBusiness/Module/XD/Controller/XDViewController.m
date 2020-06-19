@@ -26,12 +26,15 @@
     self.zwBackButton.hidden = YES;
     self.zwNavView.backgroundColor = DefaultAPPColor;
     [self.view addSubview:self.xdTableView];
-    [XDViewModel requstXDWithCompletion:^(NSArray<XDModel *> * _Nonnull modelArray) {
-        self.modelAry = modelArray.mutableCopy;
-        [self.xdTableView reloadData];
-    }];
+   
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [XDViewModel requstXDWithCompletion:^(NSArray<XDModel *> * _Nonnull modelArray) {
+           self.modelAry = modelArray.mutableCopy;
+           [self.xdTableView reloadData];
+       }];
+}
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
