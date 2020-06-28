@@ -362,9 +362,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.pswText resignFirstResponder];
 }
 - (void)secureBtnClicked:(UIButton *)sender{
-    [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
-//    sender.selected = !sender.selected;
-//    _pswText.secureTextEntry = sender.selected ? NO : YES;
+    sender.selected = !sender.selected;
+    _pswText.secureTextEntry = sender.selected ? NO : YES;
 }
 - (void)changeLoginType:(BOOL)isAuthCode{
     _isAuthCode = isAuthCode;

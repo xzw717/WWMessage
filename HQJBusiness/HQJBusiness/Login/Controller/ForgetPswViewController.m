@@ -59,7 +59,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (UIButton *)backBtn{
     if ( _backBtn == nil ) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
         [_backBtn bk_addEventHandler:^(id  _Nonnull sender) {
             NSLog(@"pop success");
             [self.navigationController popViewControllerAnimated:YES];
