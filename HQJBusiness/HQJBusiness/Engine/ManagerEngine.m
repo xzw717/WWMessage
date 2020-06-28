@@ -795,9 +795,13 @@ static const CGFloat  sAlertTimer = 3.0;
         NSDictionary *dict = parameters;
         if ([dict[@"pwdtype"] isEqual:@1]) {
             return NO;
+        } else {
+            return YES;
         }
+    } else {
+        return YES;
     }
-    return YES;
+   
     
 }
 #pragma mark --- 获取hash
@@ -809,11 +813,15 @@ static const CGFloat  sAlertTimer = 3.0;
         return @"";
     }
 }
+
 + (void)login {
-    LoginViewController *loginVC =[[LoginViewController alloc]init];
-    ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
-    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    delegate.window.rootViewController = Nav;
+    if (![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"LoginViewController"]) {
+        LoginViewController *loginVC =[[LoginViewController alloc]init];
+           ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+           AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+           delegate.window.rootViewController = Nav;
+    }
+   
 }
 
 #pragma mark --

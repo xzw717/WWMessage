@@ -564,7 +564,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)getCodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict = @{@"mobile":self.userNameText.text}.mutableCopy;
-    urlStr = [NSString stringWithFormat:@"%@%@",@"http://192.168.16.200:8080/wuwuInterface/merchant/",HQJBGetLoginCodeInterface];
+    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetLoginCodeInterface];
     HQJLog(@"---%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if([dic[@"code"]integerValue] != 49000) {
@@ -613,7 +613,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         NSMutableDictionary *dict;
         NSString *urlText;
         if (_isAuthCode) {
-            urlText = [NSString stringWithFormat:@"http://192.168.16.200:8080/wuwuInterface/merchant/%@",HQJBMerchantSmsLoginInterface];
+            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBMerchantSmsLoginInterface];
             dict = @{@"mobile":self.userNameText.text,@"code":self.pswText.text,@"membertype":@2}.mutableCopy;
         }else{
             urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
