@@ -9,7 +9,7 @@
 #import "StoreManagementViewController.h"
 #import "BasicInformationViewController.h"
 #import "UpgradeManagementViewController.h"
-
+#import "HQJWebViewController.h"
 @interface StoreManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *storeManagementTableView;
 @property (nonatomic, strong) NSMutableArray <NSString *>*cellTitleArray;
@@ -72,8 +72,11 @@
         [self.navigationController pushViewController:BIVC animated:YES];
     }
     if (indexPath.row == 2) {
-        UpgradeManagementViewController *vc = [[UpgradeManagementViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+        HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+        webvc.zw_title = @"升级规则";
+        webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
+                           ,HQJBUpgradeRuleInterface,MmberidStr];
+        [self.navigationController pushViewController:webvc animated:YES];
     }
     
 }

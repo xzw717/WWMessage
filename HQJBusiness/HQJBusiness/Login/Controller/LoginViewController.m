@@ -207,7 +207,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _pswText.keyboardType = UIKeyboardTypeASCIICapable;
         secureBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         [secureBtn setImage:[UIImage imageNamed:@"Invisible"] forState:UIControlStateNormal];
-        [secureBtn setImage:[UIImage imageNamed:@"visual"] forState:UIControlStateSelected];
+        [secureBtn setImage:[UIImage imageNamed:@"Password_visual"] forState:UIControlStateSelected];
         [secureBtn addTarget:self action:@selector(secureBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         _pswText.rightView = secureBtn;
         _pswText.secureTextEntry = secureBtn.selected ? NO : YES;

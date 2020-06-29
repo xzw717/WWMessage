@@ -20,7 +20,7 @@
 #import "MessageNotificationViewController.h"
 #import "AppDelegate.h"
 #import "JWBluetoothManage.h"
-
+#import "MyShopViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
@@ -167,6 +167,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_viewModel jumpVc:self andIndexPath:indexPath];
+    
+    
+//    MyShopViewController *vc = [[MyShopViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

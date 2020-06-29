@@ -182,11 +182,11 @@
             
         }else if (indexPath.row == 1)  {
 
-            ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:SetLoginPassWordType];
+            ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:ChangeLoginPassWordType];
             [self.navigationController pushViewController:ChangePswVC animated:YES];
         
         } else if (indexPath.row == 2){
-            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:SetDealPassWordType];
+            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:ChangeDealPassWordType];
             [self.navigationController pushViewController:CTVC animated:YES];
         } else {
             PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];

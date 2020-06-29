@@ -552,7 +552,7 @@ static const CGFloat  sAlertTimer = 3.0;
          
          */
         
-        NSString *CT_NUM = @"^((133)|(153)|(177)|(173)|(199)|(18[0,1,9]))\\d{8}$";
+        NSString *CT_NUM = @"^((133)|(153)|(177)|(173)|(199)|(191)|(18[0,1,9]))\\d{8}$";
         
         NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
         
@@ -815,7 +815,8 @@ static const CGFloat  sAlertTimer = 3.0;
 }
 
 + (void)login {
-    if (![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"LoginViewController"]) {
+    if (![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"LoginViewController"]|
+        ![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"ForgetPswViewController"]) {
         LoginViewController *loginVC =[[LoginViewController alloc]init];
            ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
            AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyShopViewController : HQJBaseSubVC
+@interface MyShopViewController : ZW_ViewController
 
 @end
 

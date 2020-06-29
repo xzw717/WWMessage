@@ -7,7 +7,7 @@
 //
 
 #import "MyShopViewController.h"
-
+#import "HintView.h"
 
 #define TopSpace 40/3.f
 
@@ -26,14 +26,17 @@
 @property (nonatomic,strong)UIView *applyTimeView;
 @property (nonatomic,strong)UILabel *applyTimeLabel;
 @property (nonatomic,strong)UILabel *applyTimeValueLabel;
+@property (nonatomic,strong)UIView *tmBottomView;
 
-
-@property (nonatomic,strong)UILabel *stateLabel;
 @property (nonatomic,strong)UIView *stateView;
-@property (nonatomic,strong)UIImageView *successImageView;
-@property (nonatomic,strong)UILabel *successLabel;
+@property (nonatomic,strong)UILabel *stateLabel;
+@property (nonatomic,strong)UILabel *stateValueLabel;
+@property (nonatomic, strong) HintView *showView;
+//@property (nonatomic,strong)UIImageView *successImageView;
+//@property (nonatomic,strong)UILabel *successLabel;
 
-@property (nonatomic,strong)UIButton *sureBtn;
+
+//@property (nonatomic,strong)UIButton *sureBtn;
 @end
 
 @implementation MyShopViewController
@@ -65,6 +68,7 @@
         _shopNameValueLabel = [[UILabel alloc]init];
         _shopNameValueLabel.font = [UIFont systemFontOfSize:16];
         _shopNameValueLabel.text = @"古风日";
+        _shopNameValueLabel.textAlignment = NSTextAlignmentRight;
         [self.shopNameView addSubview:_shopNameValueLabel];
     }
     
@@ -106,6 +110,7 @@
         _mobileValueLabel = [[UILabel alloc]init];
         _mobileValueLabel.font = [UIFont systemFontOfSize:16];
         _mobileValueLabel.text = @"13888377734";
+        _mobileValueLabel.textAlignment = NSTextAlignmentRight;
         [self.mobileView addSubview:_mobileValueLabel];
     }
     
@@ -124,6 +129,7 @@
     if (_applyTimeView == nil) {
         _applyTimeView = [[UIView alloc]init];
         _applyTimeView.backgroundColor = [UIColor whiteColor];
+    
         [self.view addSubview:_applyTimeView];
     }
     return _applyTimeView;
@@ -141,11 +147,19 @@
     return _applyTimeLabel;
 }
 
-
+- (UIView *)tmBottomView{
+    if ( _tmBottomView  == nil ) {
+        _tmBottomView = [[UIView alloc]init];
+        _tmBottomView.backgroundColor = [ManagerEngine getColor:@"e7e5e5"];
+        [self.applyTimeView addSubview:_tmBottomView];
+    }
+    return _tmBottomView;
+}
 -(UILabel *)applyTimeValueLabel {
     if ( _applyTimeValueLabel == nil ) {
         _applyTimeValueLabel = [[UILabel alloc]init];
         _applyTimeValueLabel.font = [UIFont systemFontOfSize:16];
+        _applyTimeValueLabel.textAlignment = NSTextAlignmentRight;
         _applyTimeValueLabel.text = @"2017-12-21";
         [self.applyTimeView addSubview:_applyTimeValueLabel];
     }
@@ -153,73 +167,105 @@
     return _applyTimeValueLabel;
 }
 
-
--(UILabel *)stateLabel {
-    if ( _stateLabel == nil ) {
-        _stateLabel = [[UILabel alloc]init];
-        _stateLabel.backgroundColor = [UIColor whiteColor];
-        _stateLabel.font = [UIFont boldSystemFontOfSize:18.f];
-        _stateLabel.textAlignment = NSTextAlignmentCenter;
-        _stateLabel.textColor = [ManagerEngine getColor:@"ff4949"];
-        _stateLabel.text = @"待审核...";
-        [self.view addSubview:_stateLabel];
-    }
-    
-    return _stateLabel;
-}
-
 - (UIView *)stateView{
     if (_stateView == nil) {
         _stateView = [[UIView alloc]init];
+        _stateView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickState:)];
+        [_stateView addGestureRecognizer:tap];
         _stateView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_stateView];
     }
     return _stateView;
 }
-- (UIImageView *)successImageView{
-    if (_successImageView == nil) {
-        _successImageView = [[UIImageView alloc]init];
-        _successImageView.image = [UIImage imageNamed:@"check-circle_green"];
-        [self.stateView addSubview:_successImageView];
-    }
-    return _successImageView;
-}
--(UILabel *)successLabel{
-    if ( _successLabel == nil ) {
-        _successLabel = [[UILabel alloc]init];
-        _successLabel.font = [UIFont boldSystemFontOfSize:18.f];
-        _successLabel.textAlignment = NSTextAlignmentCenter;
-        _successLabel.textColor = [ManagerEngine getColor:@"13ce67"];
-        [self.stateView addSubview:_successLabel];
+-(UILabel *)stateLabel {
+    if ( _stateLabel == nil ) {
+        _stateLabel = [[UILabel alloc]init];
+        _stateLabel.font = [UIFont systemFontOfSize:16.f];
+        _stateLabel.text = @"状态";
+        [self.stateView addSubview:_stateLabel];
     }
     
-    return _successLabel;
+    return _stateLabel;
 }
-
-- (UIButton *)sureBtn{
-    if ( _sureBtn == nil ) {
-        _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        _sureBtn.backgroundColor = DefaultAPPColor;
-        _sureBtn.layer.masksToBounds = YES;
-        _sureBtn.layer.cornerRadius = S_XRatioH(145/6);
-        _sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
-        [self.view addSubview:_sureBtn];
+- (UILabel *)stateValueLabel {
+    if ( _stateValueLabel == nil ) {
+        _stateValueLabel = [[UILabel alloc]init];
+        _stateValueLabel.font = [UIFont systemFontOfSize:16.f];
+        _stateValueLabel.textAlignment = NSTextAlignmentRight;
+        _stateValueLabel.textColor = [ManagerEngine getColor:@"ff4949"];
+        _stateValueLabel.text = @"待审核";
+        [self.stateView addSubview:_stateValueLabel];
     }
     
-    return _sureBtn;
+    return _stateValueLabel;
 }
+- (HintView *)showView {
+    if (!_showView) {
+        _showView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"失败原因：撤销合同流程" andSureTitle:@"修改" cancelTitle:@"取消"];
+        @weakify(self);
+        [_showView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
+            @strongify(self);
+            [self.showView dismssView];
+            } forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _showView;
+}
+//- (UIView *)stateView{
+//    if (_stateView == nil) {
+//        _stateView = [[UIView alloc]init];
+//        _stateView.backgroundColor = [UIColor whiteColor];
+//        [self.view addSubview:_stateView];
+//    }
+//    return _stateView;
+//}
+//- (UIImageView *)successImageView{
+//    if (_successImageView == nil) {
+//        _successImageView = [[UIImageView alloc]init];
+//        _successImageView.image = [UIImage imageNamed:@"check-circle_green"];
+//        [self.stateView addSubview:_successImageView];
+//    }
+//    return _successImageView;
+//}
+//-(UILabel *)successLabel{
+//    if ( _successLabel == nil ) {
+//        _successLabel = [[UILabel alloc]init];
+//        _successLabel.font = [UIFont boldSystemFontOfSize:18.f];
+//        _successLabel.textAlignment = NSTextAlignmentCenter;
+//        _successLabel.textColor = [ManagerEngine getColor:@"13ce67"];
+//        [self.stateView addSubview:_successLabel];
+//    }
+//
+//    return _successLabel;
+//}
 
+//- (UIButton *)sureBtn{
+//    if ( _sureBtn == nil ) {
+//        _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+//        _sureBtn.backgroundColor = DefaultAPPColor;
+//        _sureBtn.layer.masksToBounds = YES;
+//        _sureBtn.layer.cornerRadius = S_XRatioH(145/6);
+//        _sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
+//        [self.view addSubview:_sureBtn];
+//    }
+//
+//    return _sureBtn;
+//}
+- (void)clickState:(UITapGestureRecognizer *)tap {
+    [self.showView showView];
+
+}
 #pragma click method
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navType = HQJNavigationBarBlue;
-    self.isHideShadowLine = YES;
+//    self.navType = HQJNavigationBarBlue;
+//    self.isHideShadowLine = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的店铺";
+    self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
     [self layoutTheSubViews];
     
@@ -229,20 +275,30 @@
 }
 #pragma private method
 - (void)layoutTheSubViews{
-    
-    self.shopNameView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.view, TopSpace).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+//    [self.shopNameView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.mas_equalTo(0);
+//        make.top.mas_equalTo(TopSpace);
+//        make.height.mas_equalTo(S_XRatioH(130.f/3));
+//    }];
+//    [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(70.f/3);
+//        make.right.mas_equalTo();
+//
+//    }];
+    self.shopNameView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.view, TopSpace + NavigationControllerHeight).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
     
     self.shopNameLabel.sd_layout.leftSpaceToView(self.shopNameView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     
-    self.shopNameValueLabel.sd_layout.leftSpaceToView(self.shopNameLabel, 10).rightEqualToView(self.shopNameView).heightIs(S_XRatioH(130.0f/3));
+    self.shopNameValueLabel.sd_layout.leftSpaceToView(self.shopNameLabel, 10).rightSpaceToView(self.shopNameView, 70.f/3).heightIs(S_XRatioH(130.0f/3));
     
     self.snBottomView.sd_layout.leftEqualToView(self.shopNameLabel).bottomEqualToView(self.shopNameView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
     
     self.mobileView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.shopNameView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
     
     self.mobileLabel.sd_layout.leftSpaceToView(self.mobileView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     
-    self.mobileValueLabel.sd_layout.leftSpaceToView(self.mobileLabel, 10).rightEqualToView(self.mobileView).heightIs(S_XRatioH(130.0f/3));
+    self.mobileValueLabel.sd_layout.leftSpaceToView(self.mobileLabel, 10).rightSpaceToView(self.mobileView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
     self.mbBottomView.sd_layout.leftEqualToView(self.mobileLabel).bottomEqualToView(self.mobileView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
@@ -251,12 +307,18 @@
     
     self.applyTimeLabel.sd_layout.leftSpaceToView(self.applyTimeView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     
-    self.applyTimeValueLabel.sd_layout.leftSpaceToView(self.applyTimeLabel, 10).rightEqualToView(self.applyTimeView).heightIs(S_XRatioH(130.0f/3));
+    self.applyTimeValueLabel.sd_layout.leftSpaceToView(self.applyTimeLabel, 10).rightSpaceToView(self.applyTimeView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
+    self.tmBottomView.sd_layout.leftEqualToView(self.applyTimeLabel).bottomEqualToView(self.applyTimeView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+
+
+    self.stateView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.applyTimeView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+
+    self.stateLabel.sd_layout.leftSpaceToView(self.stateView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     
-    self.stateLabel.sd_layout.topSpaceToView(self.applyTimeView, 230.f/3).centerXEqualToView(self.view).heightIs(S_XRatioH(470.0f/3)).widthIs(S_XRatioW(720.0f/3));
+    self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
-    self.sureBtn.sd_layout.leftSpaceToView(self.view, 70.0f/3).bottomSpaceToView(self.view, S_XRatioH(102.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+//    self.sureBtn.sd_layout.leftSpaceToView(self.view, 70.0f/3).bottomSpaceToView(self.view, S_XRatioH(102.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
 }
 
