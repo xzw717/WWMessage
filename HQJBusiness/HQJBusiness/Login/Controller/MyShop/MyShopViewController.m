@@ -200,17 +200,7 @@
     
     return _stateValueLabel;
 }
-- (HintView *)showView {
-    if (!_showView) {
-        _showView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"失败原因：撤销合同流程" andSureTitle:@"修改" cancelTitle:@"取消"];
-        @weakify(self);
-        [_showView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            @strongify(self);
-            [self.showView dismssView];
-            } forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _showView;
-}
+
 //- (UIView *)stateView{
 //    if (_stateView == nil) {
 //        _stateView = [[UIView alloc]init];
@@ -253,7 +243,10 @@
 //    return _sureBtn;
 //}
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    [self.showView showView];
+    
+    [HintView enrichSubviews:@"失败原因：撤销合同流程" andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+        
+    }];
 
 }
 #pragma click method

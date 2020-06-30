@@ -25,7 +25,7 @@ NSString *const WWMCouponDomain = @"http://47.98.45.218/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
 
-/// 商家注册 和 商家升级 域名
+/// 商家注册 . 商家升级. 已经签合同 域名
 NSString *const HQJBH5UpDataDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/";
 
 
@@ -47,7 +47,7 @@ NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"http://47.98.45.218/";
-/// 商家注册 和 商家升级 域名
+/// 商家注册 . 商家升级. 已经签合同 域名
 NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
 #endif
 
@@ -174,6 +174,8 @@ NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishA
 NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
 /// 头条
 NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
+/// 已经签合同
+NSString *const HQJBDownloadUpdateInterface = @"downloadUpdate";
 
 @implementation HQJBAPIManage
 

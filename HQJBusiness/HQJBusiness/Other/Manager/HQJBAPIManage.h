@@ -151,7 +151,8 @@ extern NSString *const HQJBReleaseSpecificationInterface;
 extern NSString *const HQJBMerchantSettlementSgreementInterface;
 /// 头条
 extern NSString *const HQJBHeadlinesInterface;
-
+/// 已经签合同
+extern NSString *const HQJBDownloadUpdateInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

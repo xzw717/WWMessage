@@ -45,7 +45,6 @@
 
 @property (nonatomic,strong)UIButton *registerBtn;
 
-@property (nonatomic,strong)HintView *hintView;
 @end
 
 @implementation RegisterViewController
@@ -340,18 +339,6 @@
     return _registerBtn;
 }
 
-- (HintView *)hintView{
-    if (_hintView == nil) {
-        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"请联系客服：400-0591-081" andSureTitle:@"呼叫" cancelTitle:@"取消"];
-        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            //调用系统方法拨号
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://400-0591-081"]]];
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _hintView;
-}
 
 #pragma click method
 - (void)popMethod{
@@ -363,7 +350,11 @@
     _accessoryBtn.selected = !_accessoryBtn.isSelected;
 }
 - (void)secureBtnClicked:(UIButton *)sender{
-    [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
+    [HintView enrichSubviews:@"请联系客服：400-0591-081" andSureTitle:@"呼叫" cancelTitle:@"取消" sureAction:^{
+        /// 调用系统方法拨号
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://400-0591-081"]]];
+    }];
+    
     //    sender.selected = !sender.selected;
     //    _pswText.secureTextEntry = sender.selected ? NO : YES;
 }

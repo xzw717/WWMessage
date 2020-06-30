@@ -97,7 +97,7 @@
 @property (nonatomic, strong) NSString *cardIDStr;
 @property (nonatomic,strong) BonusExchangeModel *model;
 @property (nonatomic, strong) BalanceView *balanceView;
-@property (nonatomic, strong) HintView *hintView;
+//@property (nonatomic, strong) HintView *hintView;
 @end
 
 @implementation NewWithdrawViewController
@@ -260,56 +260,51 @@
         
     }];
     [[self.submitBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-        
-        [self.hintView showView];
-        [self.hintView enrichSubviews:[NSString stringWithFormat:@"提现金额：%@元\n服务费%.2f元，实际到账%.2f元",self.BonusNumerTextField.text,[self.BonusNumerTextField.text floatValue] * 0.18,[self.BonusNumerTextField.text floatValue] - [self.BonusNumerTextField.text floatValue] * 0.18] andSureTitle:@"提现" cancelTitle:@"放弃"];
-        
-   
-        
+
+        NSString *tit =  [NSString stringWithFormat:@"提现金额：%@元\n服务费%.2f元，实际到账%.2f元",self.BonusNumerTextField.text,[self.BonusNumerTextField.text floatValue] * 0.18,[self.BonusNumerTextField.text floatValue] - [self.BonusNumerTextField.text floatValue] * 0.18];
+        [HintView enrichSubviews:tit andSureTitle:@"提现" cancelTitle:@"放弃" sureAction:^{
+            [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
+            
+            if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
+                [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
+            } else {
+                if ([self.selectBankTextField.text isEqualToString:@""]) {
+                    [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
+                    [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                    
+                } else {
+                    [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
+                        
+                        if ([dic[@"code"]integerValue] == 49000) {
+                            
+                            [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
+                            
+                            //                    [SVProgressHUD dismissWithCompletion:^{
+                            //
+                            //                    }];
+                            [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
+                                [self.navigationController popViewControllerAnimated:YES];
+                                
+                                
+                            }];
+                        } else {
+                            [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                            //SVProgressHUD
+                            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                        }
+                        
+                    }];
+                }
+                
+                
+            }
+            
+            
+        }];
         
     }];
   
-    [[self.hintView.sureButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
-           
-           if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
-               [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-               [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
-           } else {
-               if ([self.selectBankTextField.text isEqualToString:@""]) {
-                    [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
-                   [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-
-               } else {
-                   [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
-                       
-                       if ([dic[@"code"]integerValue] == 49000) {
-                           
-                           [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
-                           
-                           //                    [SVProgressHUD dismissWithCompletion:^{
-                           //
-                           //                    }];
-                           [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
-                               [self.navigationController popViewControllerAnimated:YES];
-                               
-                               
-                           }];
-                       } else {
-                           [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-                           //SVProgressHUD
-                           [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-                       }
-                       
-                   }];
-               }
-             
-             
-           }
-           
-           
-    }];
     
 }
 -(BOOL)isValidPsw:(NSString *)text {
@@ -402,18 +397,18 @@
     
 }
 
-- (HintView *)hintView{
-    if (_hintView == nil) {
-        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"" andSureTitle:@"" cancelTitle:@""];
-        @weakify(self);
-        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            @strongify(self);
-            [self.hintView dismssView];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _hintView;
-}
+//- (HintView *)hintView{
+//    if (_hintView == nil) {
+//        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"" andSureTitle:@"" cancelTitle:@""];
+//        @weakify(self);
+//        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
+//            @strongify(self);
+//            [self.hintView dismssView];
+//        } forControlEvents:UIControlEventTouchUpInside];
+//
+//    }
+//    return _hintView;
+//}
 
 - (BalanceView *)balanceView {
     if (!_balanceView) {
