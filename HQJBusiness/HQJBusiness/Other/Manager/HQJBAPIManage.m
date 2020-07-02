@@ -190,7 +190,7 @@ NSString *const HQJBDownloadUpdateInterface = @"downloadUpdate";
 NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action";
 /// 入驻协议
 NSString *const HQJBRegisterAgreementListInterface = @"registerAgreement";
-/// 入驻协议
+///商家注册
 NSString *const HQJBNewstoreListInterface = @"newstore";
 
 /*_____________________________ XD商家 接口________________________________________*/
