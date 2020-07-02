@@ -16,6 +16,8 @@
 #import "ZWTabBarViewController.h"
 #import "TabBarBannerViewModel.h"
 #import "TabBarBannerModel.h"
+#import "XDViewController.h"
+
 @interface ZWTabBarViewController ()
 /*********** <#注释#>  ************/
 @property (nonatomic,weak)  UIView *tabberOldViews ;
@@ -33,6 +35,8 @@
 //    ZWNavigationController *CommodityNav = [[ZWNavigationController alloc]initWithRootViewController:CommodityVc];
     OrderViewController *orderVc = [[OrderViewController alloc]init];//--个人信息
     ZWNavigationController *orderNvc =[[ZWNavigationController alloc]initWithRootViewController:orderVc];
+    XDViewController *xdVc = [[XDViewController alloc]init];//--个人信息
+      ZWNavigationController *xdNvc =[[ZWNavigationController alloc]initWithRootViewController:xdVc];
 
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
@@ -50,16 +54,18 @@
     UIImage *BusinessImage  = [UIImage imageNamed:@"icon_order_normal"];
     UIImage *BusinessImageS = [[UIImage imageNamed:@"icon_order_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-//    UIImage *MyImage        = [UIImage imageNamed:@"icon_commodity_normal"];
-//    UIImage *MyImageS       = [[UIImage imageNamed:@"icon_commodity_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    UIImage *xdImage        = [UIImage imageNamed:@"icon_XD_noselect"];
+    UIImage *xdImageS       = [[UIImage imageNamed:@"icon_XD_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   
+    xdVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:xdImage selectedImage:xdImageS];
+
     myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
     detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
     commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
     orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
 
 
-    self.viewControllers = @[myNav,detailNav,orderNvc];
+    self.viewControllers = @[myNav,detailNav,orderNvc,xdNvc];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];

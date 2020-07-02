@@ -183,7 +183,7 @@
     
     self.paymentTextField.sd_layout.leftSpaceToView(self.paymentLabel,0).topSpaceToView(self.view,30 + NavigationControllerHeight).heightIs(44).widthIs(WIDTH - kEDGE * 2 - labelWidth);
     
-    [self updateName];
+//    [self updateName];
     
     self.payFigurelabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.paymentTextField,30  + (44 - 17 )/2).heightIs(17).widthIs(labelWidth);
     
@@ -200,26 +200,33 @@
     self.pswTextField.sd_layout.leftSpaceToView(self.pswLabel,0).topSpaceToView(self.BeneficiaryLabel,30 ).heightIs(44).widthIs(WIDTH - kEDGE * 2 - labelWidth);
     
     self.submitButton.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.pswTextField,40).heightIs(44).widthIs(WIDTH - kEDGE * 2);
-    
-    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEDGE);
+        make.centerY.mas_equalTo(self.headerImage);
+    }];
+    [self.headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.nameLabel.mas_left).mas_offset(-5);
+        make.top.mas_equalTo(self.paymentTextField.mas_bottom).mas_offset(5);
+
+    }];
     
 }
 
 #pragma mark --
 #pragma mark --- 更新名字和图标布局
--(void)updateName {
-    CGFloat nameWidth = [ManagerEngine setTextWidthStr:self.nameLabel.text andFont:[UIFont systemFontOfSize:12.0]];
-    if (nameWidth == 0 ) {
-        self.headerImage.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - 18).topSpaceToView(self.paymentTextField,5).heightIs(18).widthIs(18);
-        self.nameLabel.sd_layout.leftSpaceToView(self.headerImage,5).topSpaceToView(self.paymentTextField,5 + (18 - 12)/2).heightIs(12).widthIs(0);
-
-    } else {
-        
-        self.headerImage.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - 18 - 5 - nameWidth).topSpaceToView(self.paymentTextField,5).heightIs(18).widthIs(18);
-        
-        self.nameLabel.sd_layout.leftSpaceToView(self.headerImage,5).topSpaceToView(self.paymentTextField,5 + (18 - 12)/2).heightIs(12).widthIs(nameWidth);
-    }
-}
+//-(void)updateName {
+//    CGFloat nameWidth = [ManagerEngine setTextWidthStr:self.nameLabel.text andFont:[UIFont systemFontOfSize:12.0]];
+//    if (nameWidth == 0 ) {
+//        self.headerImage.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - 18).topSpaceToView(self.paymentTextField,5).heightIs(18).widthIs(18);
+//        self.nameLabel.sd_layout.leftSpaceToView(self.headerImage,5).topSpaceToView(self.paymentTextField,5 + (18 - 12)/2).heightIs(12).widthIs(0);
+//
+//    } else {
+//
+//        self.headerImage.sd_layout.leftSpaceToView(self.view,WIDTH - kEDGE - 18 - 5 - nameWidth).topSpaceToView(self.paymentTextField,5).heightIs(18).widthIs(18);
+//
+//        self.nameLabel.sd_layout.leftSpaceToView(self.headerImage,5).topSpaceToView(self.paymentTextField,5 + (18 - 12)/2).heightIs(12).widthIs(nameWidth);
+//    }
+//}
 
 #pragma mark --
 #pragma mark --- 更新 ZH 值数额 
@@ -241,7 +248,7 @@
             [self customermobileRequst];
         } else {
             self.nameLabel.text = @"";
-            [self updateName];
+//            [self updateName];
         }
     
         return @([ManagerEngine valiMobile:value]);
@@ -432,7 +439,7 @@
     [CustomerViewModel customerrequstNumer:self.paymentTextField.text andSender:^(id sender) {
         _model = sender;
         self.nameLabel.text = _model.realname;
-        [self updateName];
+//        [self updateName];
     }];
 }
 

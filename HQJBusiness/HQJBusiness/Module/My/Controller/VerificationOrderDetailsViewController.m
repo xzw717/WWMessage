@@ -144,9 +144,25 @@ UITableViewDataSource
             @strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.listArray.count <= 1) {
-                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 + NavigationControllerHeight -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
+                    [self.watermarkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.mas_equalTo(NavigationControllerHeight + 94 - 10);
+                        make.right.mas_equalTo(-62.5);
+                        make.width.height.mas_equalTo(62.5);
+                        
+                    }];
+//                    self.watermarkImageView.sd_layout.topSpaceToView(self.view,94 + NavigationControllerHeight -10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 } else {
-                    self.watermarkImageView.sd_layout.topSpaceToView(self.view, 94 + NavigationControllerHeight + 10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
+                    [self.watermarkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                                          
+                        make.top.mas_equalTo(NavigationControllerHeight + 94 + 10);
+                        
+                        make.right.mas_equalTo(-62.5);
+                        
+                        make.width.height.mas_equalTo(62.5);
+                                          
+                                      
+                    }];
+//                    self.watermarkImageView.sd_layout.topSpaceToView(self.view, 94 + NavigationControllerHeight + 10 ).rightSpaceToView(self.view, 62.5).heightIs(62.5).widthEqualToHeight();
                 }
             });
             

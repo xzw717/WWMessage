@@ -310,7 +310,7 @@
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
         [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {
             ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
-            pvc.webUrlStr = @"http://47.98.45.218/shopH5/register/#/storemessage?shopid=0000";
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5UpDataDomain,HQJBRegisterAgreementListInterface];
             [self.navigationController pushViewController:pvc animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_protocolBtn];

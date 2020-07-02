@@ -8,10 +8,10 @@
 
 #import "SetViewController.h"
 #import "LoginViewController.h"
-#import "InformationViewController.h"
-#import "ChangePswViewController.h"
-#import "ChangeTradePswViewController.h"
-#import "HelpMeViewController.h"
+//#import "InformationViewController.h"
+//#import "ChangePswViewController.h"
+//#import "ChangeTradePswViewController.h"
+//#import "HelpMeViewController.h"
 #import "PaymentCodeViewController.h"
 #import "AppDelegate.h"
 #import "SetCell.h"
@@ -172,78 +172,78 @@
     [userDefaults setObject:obj == YES ? @"开" : @"关" forKey:key];
     [userDefaults synchronize];
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        
-        if (indexPath.row == 0) {
-            
-            InformationViewController *IFVC =[[InformationViewController alloc]init];
-            [self.navigationController pushViewController:IFVC animated:YES];
-            
-        }else if (indexPath.row == 1)  {
-
-            ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:ChangeLoginPassWordType];
-            [self.navigationController pushViewController:ChangePswVC animated:YES];
-        
-        } else if (indexPath.row == 2){
-            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:ChangeDealPassWordType];
-            [self.navigationController pushViewController:CTVC animated:YES];
-        } else {
-            PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];
-            [self.navigationController pushViewController:PCVC animated:YES];
-
-        }
-        
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
-//        if (![BindingEquipment isEqualToString:@"连接成功"]) {
-        
-            BlueToothVC * vc =[[BlueToothVC alloc]init];
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-            [self presentViewController:nav animated:YES completion:nil];
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0) {
+//
+//        if (indexPath.row == 0) {
+//
+//            InformationViewController *IFVC =[[InformationViewController alloc]init];
+//            [self.navigationController pushViewController:IFVC animated:YES];
+//
+//        }else if (indexPath.row == 1)  {
+//
+//            ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:ChangeLoginPassWordType];
+//            [self.navigationController pushViewController:ChangePswVC animated:YES];
+//
+//        } else if (indexPath.row == 2){
+//            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:ChangeDealPassWordType];
+//            [self.navigationController pushViewController:CTVC animated:YES];
+//        } else {
+//            PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];
+//            [self.navigationController pushViewController:PCVC animated:YES];
+//
 //        }
-    } else if (indexPath.section== 2) {
-        
-        if (indexPath.row != 2) {
-            HelpMeViewController *Hvc = [[HelpMeViewController alloc]init];
-            
-            switch (indexPath.row) {
-                case 0:
-                    Hvc.SetWEBStr =@"www.chenjianping.com/Application/HQJ/View/Seller/sysInforms.html";
-                    
-                    Hvc.titleNameStr =@"系统通知";
-                    
-                    break;
-                case 1:
-                    Hvc.SetWEBStr =@"www.chenjianping.com/Application/HQJ/View/Seller/helFeed.html";
-                    Hvc.titleNameStr =@"帮助与反馈";
-                    break;
-                    
-                default:
-                    break;
-            }
-            [self.navigationController pushViewController:Hvc animated:YES];
-        }
-        
-    } else if (indexPath.section== 3){
-        [self removeData];
-        [self.navigationController popViewControllerAnimated:YES];
-        
-        LoginViewController *loginVC =[[LoginViewController alloc]init];
-        ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
-        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-
-        [UIView transitionWithView:delegate.window
-                          duration:0.5
-                           options: UIViewAnimationOptionTransitionFlipFromRight
-                        animations:^{
-        delegate.window.rootViewController = Nav;
-
-                        }
-                        completion:nil];
-
-    }
-  
-}
+//
+//    } else if (indexPath.section == 1 && indexPath.row == 0) {
+////        if (![BindingEquipment isEqualToString:@"连接成功"]) {
+//
+//            BlueToothVC * vc =[[BlueToothVC alloc]init];
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+//            [self presentViewController:nav animated:YES completion:nil];
+////        }
+//    } else if (indexPath.section== 2) {
+//
+//        if (indexPath.row != 2) {
+//            HelpMeViewController *Hvc = [[HelpMeViewController alloc]init];
+//
+//            switch (indexPath.row) {
+//                case 0:
+//                    Hvc.SetWEBStr =@"www.chenjianping.com/Application/HQJ/View/Seller/sysInforms.html";
+//
+//                    Hvc.titleNameStr =@"系统通知";
+//
+//                    break;
+//                case 1:
+//                    Hvc.SetWEBStr =@"www.chenjianping.com/Application/HQJ/View/Seller/helFeed.html";
+//                    Hvc.titleNameStr =@"帮助与反馈";
+//                    break;
+//
+//                default:
+//                    break;
+//            }
+//            [self.navigationController pushViewController:Hvc animated:YES];
+//        }
+//
+//    } else if (indexPath.section== 3){
+//        [self removeData];
+//        [self.navigationController popViewControllerAnimated:YES];
+//
+//        LoginViewController *loginVC =[[LoginViewController alloc]init];
+//        ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+//        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//
+//        [UIView transitionWithView:delegate.window
+//                          duration:0.5
+//                           options: UIViewAnimationOptionTransitionFlipFromRight
+//                        animations:^{
+//        delegate.window.rootViewController = Nav;
+//
+//                        }
+//                        completion:nil];
+//
+//    }
+//
+//}
 
 #pragma mark --
 #pragma mark --- 删除用户信息

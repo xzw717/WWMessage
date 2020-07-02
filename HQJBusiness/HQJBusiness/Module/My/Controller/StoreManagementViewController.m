@@ -10,6 +10,8 @@
 #import "BasicInformationViewController.h"
 #import "UpgradeManagementViewController.h"
 #import "HQJWebViewController.h"
+#import "ContactManagerViewController.h"
+
 @interface StoreManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *storeManagementTableView;
 @property (nonatomic, strong) NSMutableArray <NSString *>*cellTitleArray;
@@ -73,11 +75,14 @@
     }
     if (indexPath.row == 2) {
         HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
-        webvc.zw_title = @"升级规则";
+        webvc.webTitleString = @"升级规则";
         webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
                            ,HQJBUpgradeRuleInterface,MmberidStr];
         [self.navigationController pushViewController:webvc animated:YES];
     }
-    
+    if (indexPath.row == 1) {
+        ContactManagerViewController *CMVC = [[ContactManagerViewController alloc]initWithContactType:NO];
+        [self.navigationController pushViewController:CMVC animated:YES];
+    }
 }
 @end

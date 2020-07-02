@@ -36,6 +36,8 @@ extern NSString *const WWMCouponDomain;
 extern NSString *const WWMLiveDomain;
 /// H5 域名
 extern NSString *const HQJBH5UpDataDomain ;
+/// XDH5域名
+extern NSString *const HQJBXDH5Domain;
 /************************************域名（结束）**********************************************/
 
 
@@ -153,6 +155,31 @@ extern NSString *const HQJBMerchantSettlementSgreementInterface;
 extern NSString *const HQJBHeadlinesInterface;
 /// 已经签合同
 extern NSString *const HQJBDownloadUpdateInterface;
+/// 入驻协议
+extern NSString *const HQJBRegisterAgreementListInterface;
+/// 商家查看合同列表
+extern NSString *const HQJBFindShopEsignListInterface;
+/// 商家注册
+extern NSString *const HQJBNewstoreListInterface;
+/*_____________________________XD接口________________________________________*/
+///创建订单
+extern NSString *const HQJBXdorderInterface;
+///商家查看合同列表
+extern NSString *const HQJBshopAllESignListInterface;
+/// 获取商家shopid
+extern NSString *const HQJBRetrunShopIdInterface;
+///  根据商家获取订单
+extern NSString *const HQJBGetOrderListByShopIdInterface;
+///查询当前xd商家的流程
+extern NSString *const HQJBXdFlowInterface;
+/// 企业基础信息状态
+extern NSString *const HQJBXdShopAuditInterface;
+///生成合同
+extern NSString *const HQJBInitiateESignInterface;
+///根据订单id获取订单详情
+extern NSString *const HQJBGetOrderInfoByIdInterface;
+///查询XD商家企业基础信息
+extern NSString *const HQJBBuinessSignInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

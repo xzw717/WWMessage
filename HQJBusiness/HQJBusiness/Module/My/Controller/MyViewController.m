@@ -21,6 +21,8 @@
 #import "AppDelegate.h"
 #import "JWBluetoothManage.h"
 #import "MyShopViewController.h"
+#import "XDShopViewController.h"
+
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
@@ -91,21 +93,12 @@
 #pragma mark --
 #pragma mark --- tableView  data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 3;
+    return self.viewModel.titleLabelArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        
-        return 6;
-    } else {
-        
-        return 2;
-        
-    }
+    NSArray *ary = self.viewModel.titleLabelArray[section];
+    return ary.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -153,12 +146,19 @@
         DealTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DealTableViewCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.cellIndexPath = indexPath;
-
-        if (indexPath.section == 2&& indexPath.row == 1) {
-            CellLine(cell);
-    }
-    
+        cell.titleLabel.text = self.viewModel.titleLabelArray[indexPath.section][indexPath.row];
+        if ([Peugeotid integerValue] > 0) {
+            cell.titleImageView.image = [UIImage imageNamed:self.viewModel.xdTitleImageViewArray[indexPath.section][indexPath.row]];
+        } else {
+            cell.titleImageView.image = [UIImage imageNamed:self.viewModel.titleImageViewArray[indexPath.section][indexPath.row]];
+        }
+//     if (indexPath.section == 1&& indexPath.row == 6) {
+//              CellLine(cell);
+//      }
+//    if (indexPath.section == 2&& indexPath.row == 1) {
+//               CellLine(cell);
+//       }
+     
         return cell;
     }
     
@@ -224,7 +224,7 @@
     [self.titleView setTitleStr:@"" andisNav:YES andColor:DefaultAPPColor];
     [RACObserve(self, model)subscribeNext:^(MyModel *x) {
         @strongify(self);
-        NSString *nameStr = !x.realname ? @"" : x.realname;
+        NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
 //        NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         if (x.mobile) {
             [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
@@ -234,6 +234,7 @@
     }];
     if (MmberidStr) {
         [self requst];
+        HQJLog(@"手机号是：%@",Mmobile);
     }
 
 }

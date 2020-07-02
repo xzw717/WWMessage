@@ -85,7 +85,7 @@
 #import "SelectBankViewController.h"
 #import "BonusExchangeViewModel.h"
 #import "BonusExchangeModel.h"
-#import "ChangeTradePswViewController.h"
+//#import "ChangeTradePswViewController.h"
 #import "HintView.h"
 @interface NewWithdrawViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView  *withdrawTableView;
@@ -174,8 +174,8 @@
         @weakify(self);
         [cell setForget:^{
             @strongify(self);
-            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:SetDealPassWordType];
-            [self.navigationController pushViewController:vc animated:YES];
+//            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:SetDealPassWordType];
+//            [self.navigationController pushViewController:vc animated:YES];
         }];
         return cell;
     }else  {

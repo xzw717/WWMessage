@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "ZWTabBarViewController.h"
 #import "MyViewController.h"
-#import "ChangeTradePswViewController.h"
+//#import "ChangeTradePswViewController.h"
 #import "TabbarManager.h"
 #import "AppDelegate.h"
 // 引入 JPush 功能所需头文件
