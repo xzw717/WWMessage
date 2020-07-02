@@ -103,8 +103,11 @@
 
 #define MmberidStr   [FileEngine filePathNameReadName:@"memberid" andstye:fileLoginStyle]
 #define Rrealname    [FileEngine filePathNameReadName:@"realname" andstye:fileDefaultStyle]
-#define Mmobile      [FileEngine filePathNameReadName:@"mobile" andstye:fileDefaultStyle]
+#define Mmobile      [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"]  
 #define HashCode     [FileEngine filePathNameReadName:@"hashCode" andstye:fileLoginStyle]
+#define Shopid       [[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]
+#define Peugeotid       [[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]
+
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 
 //#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -115,7 +118,8 @@
 #define  ToolBarHeight ([ManagerEngine isIPhoneXSeries] ?  83.f : 49.f)
 /// --- 状态栏
 #define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
-
+/// 新的比例
+#define  NewProportion(a) (a / 3.f)
 
 /******************* 屏幕宽高 **************************/
 #define  WIDTH  [[UIScreen mainScreen] bounds].size.width

@@ -59,7 +59,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (UIButton *)backBtn{
     if ( _backBtn == nil ) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
         [_backBtn bk_addEventHandler:^(id  _Nonnull sender) {
             NSLog(@"pop success");
             [self.navigationController popViewControllerAnimated:YES];
@@ -182,7 +182,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _pswText.keyboardType = UIKeyboardTypeASCIICapable;
         _secureBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         [_secureBtn setImage:[UIImage imageNamed:@"Invisible"] forState:UIControlStateNormal];
-        [_secureBtn setImage:[UIImage imageNamed:@"visual"] forState:UIControlStateSelected];
+        [_secureBtn setImage:[UIImage imageNamed:@"Password_visual"] forState:UIControlStateSelected];
         [_secureBtn addTarget:self action:@selector(secureBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         _pswText.rightView = _secureBtn;
         _pswText.secureTextEntry = _secureBtn.selected ? NO : YES;
@@ -216,7 +216,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _againPswText.keyboardType = UIKeyboardTypeASCIICapable;
         _agSecureBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         [_agSecureBtn setImage:[UIImage imageNamed:@"Invisible"] forState:UIControlStateNormal];
-        [_agSecureBtn setImage:[UIImage imageNamed:@"visual"] forState:UIControlStateSelected];
+        [_agSecureBtn setImage:[UIImage imageNamed:@"Password_visual"] forState:UIControlStateSelected];
         [_agSecureBtn addTarget:self action:@selector(agSecureBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         _againPswText.rightView = _agSecureBtn;
         _againPswText.secureTextEntry = _agSecureBtn.selected ? NO : YES;
@@ -339,12 +339,13 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         
     }];
     [[self.confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        [ManagerEngine loadDateView:self.confirmBtn andPoint:CGPointMake(self.confirmBtn.mj_w / 2, self.confirmBtn.mj_h / 2)];
+//        [ManagerEngine loadDateView:self.confirmBtn andPoint:CGPointMake(self.confirmBtn.mj_w / 2, self.confirmBtn.mj_h / 2)];
         if (self.pswText.text.length < 6 || self.pswText.text.length > 12) {
-            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
+//            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
             [SVProgressHUD showErrorWithStatus:@"登录密码要设置6-12位哦"];
         } else {
-            if ([self.pswText.text isEqualToString:self.againPswText.text]) {
+            if (![self.pswText.text isEqualToString:self.againPswText.text]) {
+//                [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
                 [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一样"];
             }else{
                 [self nextStep];
@@ -395,8 +396,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 -(void)nextStep{
     NSMutableDictionary *dict = @{@"newpwd":self.pswText.text,
-                 @"pwdtype":@2,
-                 @"mobile":[NameSingle shareInstance].mobile,
+                 @"pwdtype":@1,
+                 @"mobile":self.mobileText.text,
                  @"inputcode":self.authCodeText.text}.mutableCopy;
 
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
@@ -408,12 +409,12 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }else{
-            [SVProgressHUD showSuccessWithStatus:@"修改失败"];
-            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+//            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
         }
         
     } andError:^(NSError *error) {
-        [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
+//        [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
         
     } ShowHUD:YES];
 }
@@ -444,7 +445,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if ([string isEqualToString:@""]) {
         return YES;
     }
-    if (textField == self.pswText) {
+    if (textField == self.pswText | textField == self.againPswText ) {
         
             if (self.pswText.text.length >=12) {
                 return NO;

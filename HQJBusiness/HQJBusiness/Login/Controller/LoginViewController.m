@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "ZWTabBarViewController.h"
 #import "MyViewController.h"
-#import "ChangeTradePswViewController.h"
+//#import "ChangeTradePswViewController.h"
 #import "TabbarManager.h"
 #import "AppDelegate.h"
 // 引入 JPush 功能所需头文件
@@ -54,12 +54,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UIButton *weixinBtn;
 @property (nonatomic,strong)UIButton *qqBtn;
 @property (nonatomic,strong)UIButton *weiboBtn;
-
-@property (nonatomic,strong)HintView *hintView;
-
 @property (nonatomic,strong)MyViewController *MVC;
 @property (nonatomic,strong)UIActivityIndicatorView *testActivityIndicator;
-
+@property (nonatomic, assign) NSInteger wrongCount;
 @end
 
 @implementation LoginViewController
@@ -207,7 +204,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _pswText.keyboardType = UIKeyboardTypeASCIICapable;
         secureBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         [secureBtn setImage:[UIImage imageNamed:@"Invisible"] forState:UIControlStateNormal];
-        [secureBtn setImage:[UIImage imageNamed:@"visual"] forState:UIControlStateSelected];
+        [secureBtn setImage:[UIImage imageNamed:@"Password_visual"] forState:UIControlStateSelected];
         [secureBtn addTarget:self action:@selector(secureBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         _pswText.rightView = secureBtn;
         _pswText.secureTextEntry = secureBtn.selected ? NO : YES;
@@ -323,16 +320,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return _testActivityIndicator;
 }
 
-- (HintView *)hintView{
-    if (_hintView == nil) {
-        _hintView = [[HintView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) withTopic:@"账号或密码多次错误，试试验证码登录吧。" andSureTitle:@"验证码登录" cancelTitle:@"下次再说"];
-        [_hintView.sureButton bk_addEventHandler:^(id  _Nonnull sender) {
-            [_hintView dismssView];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _hintView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -360,9 +347,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.pswText resignFirstResponder];
 }
 - (void)secureBtnClicked:(UIButton *)sender{
-    [[UIApplication sharedApplication].keyWindow addSubview:self.hintView];
-//    sender.selected = !sender.selected;
-//    _pswText.secureTextEntry = sender.selected ? NO : YES;
+    sender.selected = !sender.selected;
+    _pswText.secureTextEntry = sender.selected ? NO : YES;
 }
 - (void)changeLoginType:(BOOL)isAuthCode{
     _isAuthCode = isAuthCode;
@@ -480,12 +466,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     }];
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         @strongify(self);
-
         [self.testActivityIndicator startAnimating];
         [self.loginBtn setTitle:@"" forState:UIControlStateNormal];
-        
+
         [self LoginRequst];
-        
+
         [self shutDownTheFirstResponse];
         
     }];
@@ -562,7 +547,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)getCodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict = @{@"mobile":self.userNameText.text}.mutableCopy;
-    urlStr = [NSString stringWithFormat:@"%@%@",@"http://192.168.16.200:8080/wuwuInterface/merchant/",HQJBGetLoginCodeInterface];
+    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetLoginCodeInterface];
     HQJLog(@"---%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if([dic[@"code"]integerValue] != 49000) {
@@ -596,7 +581,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 #pragma mark --
 #pragma mark ---请求
 -(void)LoginRequst {
-
+    
 //    HQJLog(@"网络状态:%@",[ManagerEngine networkStatus])
     if (isNetWork == YES) {
 //        NSMutableDictionary *dict;
@@ -611,49 +596,64 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         NSMutableDictionary *dict;
         NSString *urlText;
         if (_isAuthCode) {
-            urlText = [NSString stringWithFormat:@"http://192.168.16.200:8080/wuwuInterface/merchant/%@",HQJBMerchantSmsLoginInterface];
+            urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBMerchantSmsLoginInterface];
             dict = @{@"mobile":self.userNameText.text,@"code":self.pswText.text,@"membertype":@2}.mutableCopy;
         }else{
             urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
             dict = @{@"username":self.userNameText.text,@"password":self.pswText.text,@"membertype":@2}.mutableCopy;
         }
-        
 
-        NSString *codeingUrl =  [urlText stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+
+        NSString *codeingUrl =  [urlText  stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 
         if ([dic[@"code"]integerValue] != 49000) {
-            
+
             [self.testActivityIndicator stopAnimating];
-            [SVProgressHUD showErrorWithStatus:@"用户名或者密码错误"];
             [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
-            
+
+            if ([dic[@"code"]integerValue] == 49037) {
+                self.wrongCount ++;
+                if (self.wrongCount == 3) {/// 因为只有第三次提醒，以后不再提醒，所以不做清零操作
+                    [HintView enrichSubviews:@"账号或者密码多次错误，试试验证码登录" andSureTitle:@"验证码登录" cancelTitle:@"下次再说" sureAction:^{
+                        [HintView dismssView];
+                        self.pswText.text = @"";
+                        [self changeLoginType:YES];
+                        
+                         
+                    }];
+                }
+                [SVProgressHUD showErrorWithStatus:@"用户名或者密码错误"];
+
+            }
+
+
         } else {
-            
+
             NSString *loginnameStr = [NSString stringWithFormat:@"%@",dic[@"result"][@"loginname"]];
             NSMutableDictionary *dic1;
-            
+
             if (![loginnameStr isEqualToString:@"<null>"]) {
                 dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         dic[@"result"][@"loginname"],@"loginname",
                         dic[@"result"][@"memberid"],@"memberid",
                         dic[@"result"][@"typecname"],@"typecname",
                         dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
-                
+
             } else {
-                
+
                 dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         dic[@"result"][@"memberid"],@"memberid",
                         dic[@"result"][@"typecname"],@"typecname",
                         dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
             }
-            
+
             [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:dic1];
             [self dismissViewControllerAnimated:YES completion:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changeBonus" object:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"loginSuccess" object:nil];
-            
-            
+
+
             // 初始化 tabbar
 //            [[TabbarManager shareInstance]setTabbar];
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -665,51 +665,51 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                             }
                             completion:nil];
             [UIView animateWithDuration:5 animations:^{
-                
+
                 [self.testActivityIndicator stopAnimating];
-                
+
             } completion:^(BOOL finished) {
-                
+
                 [UIView animateWithDuration:5 animations:^{
-                    
+
                     [self.loginBtn setTitle:@"登录成功" forState:UIControlStateNormal];
-                    
+
                     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
-                        
+
                     } seq:1];
                     [JPUSHService findNotification:nil];
                 } completion:^(BOOL finished) {
                     for (UIView *view in self.view.subviews) {
                         view.alpha = 0;
-                        
+
                         [view removeFromSuperview];
                     }
                     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
                 }];
-                
-                
+
+
             }];
-            
-            
+
+
         }
-        
+
         //        HQJLog(@"地址:%@",NSHomeDirectory());
-        
-        
+
+
     } andError:^(NSError *error) {
         [self.testActivityIndicator stopAnimating];
-        
+
         [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
     } ShowHUD:YES];
-        
-        
+
+
     } else {
         [self.testActivityIndicator stopAnimating];
-        
+
         [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
-        
+
         HQJLog(@"没有网了");
-        
+
     }
 }
 -(void)dianji:(NSNotification *)infof {

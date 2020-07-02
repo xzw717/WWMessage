@@ -24,6 +24,17 @@ NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 NSString *const WWMCouponDomain = @"http://47.98.45.218/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
+
+/// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
+NSString *const HQJBH5UpDataDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/";
+
+
+/// XDH5域名
+NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
+
+
+/// 测试：http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
+/// 正式：http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
@@ -42,6 +53,10 @@ NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"http://47.98.45.218/";
+/// 商家注册 . 商家升级. 已经签合同 域名
+NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
+/// XDH5域名
+NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 #endif
 
 
@@ -160,14 +175,44 @@ NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
 /// 升级/升级失败修改信息
 NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
 /// 升级规则
-NSString *const HQJBUpgradeRuleInterface = @"shopH5/register/#/upgradeAgreement";
+NSString *const HQJBUpgradeRuleInterface = @"upgradeAgreement";
 /// 发布规范
 NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishAgreement";
 /// 商家入驻协议
 NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/registerAgreement";
 /// 头条
 NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
+/// 已经签合同
+NSString *const HQJBDownloadUpdateInterface = @"downloadUpdate";
 
+///自主入驻
+/// 商家查看合同列表
+NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action";
+/// 入驻协议
+NSString *const HQJBRegisterAgreementListInterface = @"registerAgreement";
+///商家注册
+NSString *const HQJBNewstoreListInterface = @"newstore";
+
+/*_____________________________ XD商家 接口________________________________________*/
+///根据商家获取订单
+NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";
+/// 获取商家shopid
+NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
+
+NSString *const HQJBXdorderInterface = @"xdorder/save.action";
+/// 企业基础信息状态
+NSString *const HQJBXdShopAuditInterface = @"XdShopAudit/reClomn.action";
+//////商家查看合同列表
+NSString *const HQJBshopAllESignListInterface = @"xdesign/shopAllESignList.action";
+///查询当前xd商家的流程
+NSString *const HQJBXdFlowInterface = @"xdesign/XdFlow.action";
+///生成合同
+NSString *const HQJBInitiateESignInterface = @"xdesign/initiateESign.action";
+///根据订单id获取订单详情
+NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.action";
+///查询XD商家企业基础信息
+NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
 @implementation HQJBAPIManage
 
 @end
+

@@ -7,7 +7,10 @@
 //
 
 #import "ModeOfPayCell.h"
-
+#import "MyViewModel.h"
+@interface ModeOfPayCell()
+@property (nonatomic, strong) MyViewModel *viewModel;
+@end
 @implementation ModeOfPayCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -24,16 +27,16 @@
 //    @"微信支付",@"icon_wechat_pay_normal", @"银联支付",@"union_pay",  测试 刘海燕说：让微信和银联不可选
 
     if (isArrearage) {
-        self.titleLabelArray = @[@[@"支付宝支付",
+        self.viewModel.titleLabelArray = @[@[@"支付宝支付",
                                    @"积分支付(余额不足)"]];
-        self.titleImageViewArray = @[@[@"icon_alipay_normal",
+        self.viewModel.titleImageViewArray = @[@[@"icon_alipay_normal",
                                        @"icon_integration_normal"]];
     } else {
         
 //         @"微信支付",@"icon_wechat_pay_normal",@"银联支付" @"union_pay"
-        self.titleLabelArray = @[@[@"积分支付",
+        self.viewModel.titleLabelArray = @[@[@"积分支付",
                                   @"支付宝支付"]];
-        self.titleImageViewArray = @[@[@"icon_integration_normal",
+        self.viewModel.titleImageViewArray = @[@[@"icon_integration_normal",
                                        @"icon_alipay_normal"]];
     }
  
@@ -43,8 +46,8 @@
 -(void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
     
     
-    self.titleImageView.image = [UIImage imageNamed:self.titleImageViewArray[cellIndexPath.section][cellIndexPath.row]];
-    self.titleLabel.text = self.titleLabelArray[cellIndexPath.section][cellIndexPath.row];
+    self.titleImageView.image = [UIImage imageNamed:self.viewModel.titleImageViewArray[cellIndexPath.section][cellIndexPath.row]];
+    self.titleLabel.text = self.viewModel.titleLabelArray[cellIndexPath.section][cellIndexPath.row];
     
     self.titleLabel.font = [UIFont systemFontOfSize:15.0];
     
@@ -65,13 +68,11 @@
 
 
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (MyViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MyViewModel alloc]init];
+        
+    }
+    return _viewModel;
 }
-*/
-
 @end

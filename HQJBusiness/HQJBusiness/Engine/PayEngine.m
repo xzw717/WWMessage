@@ -19,9 +19,10 @@
 #pragma mark   ==============配置支付宝支付==============
 
 +(void)payActionOutTradeNOStr:(NSString *)OutTrade
-                andSubjectStr:(NSString *)Subject
-                   andNameStr:(NSString *)nameStr
-                andTotalFeeSt:(NSString *)pice
+andSubjectStr:(NSString *)Subject
+   andNameStr:(NSString *)nameStr
+andTotalFeeSt:(NSString *)pice
+andNotifyUrl:(NSString *)notify_url
 {
     
     //    fjdysj@sina.com
@@ -131,10 +132,11 @@
      //将商品信息赋予AlixPayOrder的成员变量
      APOrderInfo* order = [APOrderInfo new];
          
-    order.notify_url = [NSString stringWithFormat:@"%@alipayCallback",HQJBBonusDomainName]; //回调URL
+    order.notify_url = notify_url; //回调URL
+    
      // NOTE: app_id设置
      order.app_id = appID;
-     
+    
      // NOTE: 支付接口名称
      order.method = @"alipay.trade.app.pay";
      

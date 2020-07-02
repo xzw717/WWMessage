@@ -7,6 +7,8 @@
 //
 
 #import "DealTableViewCell.h"
+//#import "MyViewModel.h"
+
 @interface DealTableViewCell ()
 
 @end
@@ -14,7 +16,7 @@
 -(UIImageView *)titleImageView {
     if ( _titleImageView == nil ) {
         _titleImageView = [[UIImageView alloc]init];
-        [self addSubview:_titleImageView];
+        [self.contentView addSubview:_titleImageView];
     }
     
     return _titleImageView;
@@ -24,46 +26,56 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.font = [UIFont systemFontOfSize:17.0];
         _titleLabel.textColor = [UIColor blackColor];
-        [self addSubview:_titleLabel];
+        [self.contentView addSubview:_titleLabel];
     }
     return _titleLabel;
 }
--(NSArray *)titleLabelArray {
-    if ( _titleLabelArray == nil ) {
-        _titleLabelArray = @[@[],
-                             @[@"店铺管理",
-                               @"交易",
-                               @"消费码核销",
-                               @"待审核申请",
-                               @"消息通知",
-                               @"优惠券"],/*,
-                               */
-                             @[@"台卡下载",
-                               @"设置"]];
-    }
-    return _titleLabelArray;
-}
-
--(NSArray *)titleImageViewArray {
-    if ( _titleImageViewArray == nil ) {
-        _titleImageViewArray = @[@[],
-                                 @[@"icon_my_storemanagement",
-                                   @"icon_transaction",
-                                   @"icon_xfm",
-                                   @"icon_unverify",
-                                   @"icon_notice",
-                                   @"icon_my_coupon"],/*,
-                                   */
-                                 @[@"mine_icon_download",
-                                   @"icon_setting"]];
-    }
-    
-    return _titleImageViewArray;
-}
+//-(NSArray *)titleLabelArray {
+//    if ( _titleLabelArray == nil ) {
+//        _titleLabelArray = @[@[],
+//                             @[@"店铺管理",
+//                               @"交易",
+//                               @"消费码核销",
+//                               @"待审核申请",
+//                               @"消息通知",
+//                               @"优惠券"],/*,
+//                               */
+//                             @[@"台卡下载",
+//                               @"设置"]];
+//    }
+//    return _titleLabelArray;
+//}
+//
+//-(NSArray *)titleImageViewArray {
+//    if ( _titleImageViewArray == nil ) {
+//        _titleImageViewArray = @[@[],
+//                                 @[@"icon_my_storemanagement",
+//                                   @"icon_transaction",
+//                                   @"icon_xfm",
+//                                   @"icon_unverify",
+//                                   @"icon_notice",
+//                                   @"icon_my_coupon"],/*,
+//                                   */
+//                                 @[@"mine_icon_download",
+//                                   @"icon_setting"]];
+//    }
+//    
+//    return _titleImageViewArray;
+//}
+//
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.centerY.mas_equalTo(self.contentView);
+        }];
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.titleImageView.mas_right).mas_offset(10);
+            make.centerY.mas_equalTo(self.contentView);
+              
+        }];
         
     }
     
@@ -71,19 +83,6 @@
     return self;
 }
 
--(void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
-  
-    
-        self.titleImageView.image = [UIImage imageNamed:self.titleImageViewArray[cellIndexPath.section][cellIndexPath.row]];
-        self.titleLabel.text = self.titleLabelArray[cellIndexPath.section][cellIndexPath.row];
-    
-   
-    
-        CGFloat labelWidth = [ManagerEngine setTextWidthStr:self.titleLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    self.titleImageView.sd_layout.leftSpaceToView(self,15).topSpaceToView(self,(self.frame.size.height - 18)/2).heightIs(18).widthIs(18);
-    self.titleLabel.sd_layout.leftSpaceToView(self.titleImageView,10).topSpaceToView(self,(self.frame.size.height - 17)/2).heightIs(17).widthIs(labelWidth);
-    
-}
 
 
 - (void)awakeFromNib {

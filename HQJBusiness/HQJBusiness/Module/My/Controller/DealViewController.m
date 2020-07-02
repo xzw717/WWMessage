@@ -11,6 +11,7 @@
 #import "BonusExchangeViewController.h"
 #import "BuyZHViewController.h"
 #import "SetZHViewController.h"
+#import "NewWithdrawViewController.h"
 
 @interface DealViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *dealTableView;
@@ -120,8 +121,8 @@
             BVC.ViewControllerTitle = @"积分兑现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 0 && indexPath.row == 2){
-            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
-            BVC.ViewControllerTitle = @"现金提现";
+            NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
+//            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 1 && indexPath.row == 0){
             
@@ -145,8 +146,8 @@
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];
         } else if (indexPath.section == 0 && indexPath.row == 1) {
-            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
-            BVC.ViewControllerTitle = @"现金提现";
+            NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
+//            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 1 && indexPath.row == 0){
             
