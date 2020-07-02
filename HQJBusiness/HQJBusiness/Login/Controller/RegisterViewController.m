@@ -5,7 +5,16 @@
 //  Created by 姚 on 2019/6/26.
 //  Copyright © 2019年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
+@interface queryCityModel : NSObject
+@property (nonatomic, strong) NSString *aliasname;
+@property (nonatomic, strong) NSString *areaid;
 
+@end
+@interface queryCityModel ()
+
+@end
+@implementation queryCityModel
+@end
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 #import "CreateShopViewController.h"
@@ -13,7 +22,7 @@
 #import "CityListViewController.h"
 #import "JKCountDownButton.h"
 #import "HintView.h"
-@interface RegisterViewController ()<UITextFieldDelegate,CityListViewDelegate>
+@interface RegisterViewController ()<UITextFieldDelegate,CityListViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
 @property (nonatomic,strong)UIButton *backBtn;
@@ -52,7 +61,11 @@
 @property (nonatomic, strong) UIButton *cityBtn;
 /// 区
 @property (nonatomic, strong) UIButton *regionBtn;
-
+/// 区列表
+@property (nonatomic, strong) UITableView *queryCityTabelView;
+/// 区列表遮罩
+@property (nonatomic, strong) UIView *tableMaskView;
+@property (nonatomic, strong) NSMutableArray <queryCityModel *>*queryCityArray;
 @end
 
 @implementation RegisterViewController
@@ -304,11 +317,34 @@
         [_regionBtn setTitleColor:[ManagerEngine getColor:@"000000"] forState:UIControlStateNormal];
         _regionBtn.titleLabel.font = [UIFont systemFontOfSize:48 /3.f];
         [self.view addSubview:self.regionBtn];
+        [_regionBtn addTarget:self action:@selector(requstRegion) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _regionBtn;
 }
 
+- (UITableView *)queryCityTabelView {
+    if (!_queryCityTabelView) {
+        _queryCityTabelView = [[UITableView alloc]init];
+        _queryCityTabelView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
+        _queryCityTabelView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _queryCityTabelView.delegate = self;
+        _queryCityTabelView.dataSource = self;
+        [_queryCityTabelView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        _queryCityTabelView.tableFooterView = [UIView new];
+    }
+    return _queryCityTabelView;
+}
+- (UIView *)tableMaskView {
+    if (!_tableMaskView) {
+        _tableMaskView = [[UIView alloc]init];
+        _tableMaskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
+        _tableMaskView.hidden = YES;
+        [[UIApplication sharedApplication].keyWindow addSubview:_tableMaskView];
+        
+    }
+    return _tableMaskView;
+}
 #pragma click method
 - (void)popMethod{
     NSLog(@"pop");
@@ -344,7 +380,8 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self layoutTheSubViews];
     self.selected = NO;
-    // Do any additional setup after loading the view.
+    self.queryCityArray = [NSMutableArray array];
+    [self.tableMaskView addSubview:self.queryCityTabelView];
 
     
 }
@@ -442,7 +479,38 @@
          make.centerY.mas_equalTo(self.locationTitleLabel);
          make.right.mas_equalTo(self.getAuthCodeBtn);
      }];
+//    [self.tableMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.bottom.equalTo(0);
+//    }];
+//    [self.queryCityTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(UIEdgeInsetsMake(NavigationControllerHeight, 15, ToolBarHeight, 15));
+//    }];
 }
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+       
+    return self.queryCityArray.count;
+   
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+    queryCityModel *model = self.queryCityArray[indexPath.row];
+    cell.textLabel.text = model.aliasname;
+    return cell;
+    
+    
+    
+    
+    
+}
+
 -(void)getCodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict = @{@"pwdtype":@1,@"mobile":self.userNameText.text}.mutableCopy;
@@ -491,11 +559,19 @@
     [self.cityBtn setTitle:cityName forState:UIControlStateNormal];
 }
 - (void)requstRegion {
-    NSString *url = [NSString stringWithFormat:@"queryCityArea"];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url complete:^(NSDictionary *dic) {
-        
-    } andError:^(NSError *error) {
-        
-    } ShowHUD:YES];
+    if (![self.cityBtn.currentTitle isEqualToString:@"请选择"]) {
+        NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBQueryCityAreaInterface];
+          [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"city":self.cityBtn.currentTitle} complete:^(NSDictionary *dic) {
+              if ([dic[@"resultCode"]integerValue] == 1300) {
+                  self.queryCityArray = [queryCityModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"]];
+                  self.tableMaskView.hidden = YES;
+                  [self.queryCityTabelView reloadData];
+              }
+          } andError:^(NSError *error) {
+              
+          } ShowHUD:NO];
+    }
+  
+
 }
 @end

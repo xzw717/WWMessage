@@ -161,6 +161,8 @@ extern NSString *const HQJBRegisterAgreementListInterface;
 extern NSString *const HQJBFindShopEsignListInterface;
 /// 商家注册
 extern NSString *const HQJBNewstoreListInterface;
+/// 根据城市名获取地区列表
+extern NSString *const HQJBQueryCityAreaInterface;
 /*_____________________________XD接口________________________________________*/
 ///创建订单
 extern NSString *const HQJBXdorderInterface;

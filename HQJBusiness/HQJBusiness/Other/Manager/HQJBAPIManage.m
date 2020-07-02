@@ -193,6 +193,10 @@ NSString *const HQJBRegisterAgreementListInterface = @"registerAgreement";
 ///商家注册
 NSString *const HQJBNewstoreListInterface = @"newstore";
 
+/// 根据城市名获取地区列表
+NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
+
+
 /*_____________________________ XD商家 接口________________________________________*/
 ///根据商家获取订单
 NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";
