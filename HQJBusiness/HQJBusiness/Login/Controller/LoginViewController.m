@@ -50,7 +50,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UIButton *forgetPswBtn;
 @property (nonatomic,strong)UIButton *sendAuthCodeBtn;
 
-@property (nonatomic,strong)UILabel *thirdPartyLabel;
+//@property (nonatomic,strong)UILabel *thirdPartyLabel;
 @property (nonatomic,strong)UIButton *weixinBtn;
 @property (nonatomic,strong)UIButton *qqBtn;
 @property (nonatomic,strong)UIButton *weiboBtn;
@@ -95,7 +95,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(UIImageView *)headerImageView {
     if ( _headerImageView  == nil ) {
         _headerImageView = [[UIImageView alloc]init];
-        _headerImageView.image = [UIImage imageNamed:@"logowuwumap"];
+        _headerImageView.image = [UIImage imageNamed:@"logowuwumap_big"];
         [self.view addSubview:_headerImageView];
     }
     
@@ -112,6 +112,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _pswBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         [_pswBtn bk_addEventHandler:^(id  _Nonnull sender) {
             [self changeLoginType:NO];
+            self.forgetPswBtn.hidden = NO;
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_pswBtn];
     }
@@ -138,6 +139,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _authCodeBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
         [_authCodeBtn bk_addEventHandler:^(id  _Nonnull sender) {
             [self changeLoginType:YES];
+            self.forgetPswBtn.hidden = YES;
         } forControlEvents:UIControlEventTouchUpInside];
         
         [self.view addSubview:_authCodeBtn];
@@ -264,18 +266,18 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     return _forgetPswBtn;
 }
 
-- (UILabel *)thirdPartyLabel{
-    if ( _thirdPartyLabel  == nil ) {
-        _thirdPartyLabel = [[UILabel alloc]init];
-        _thirdPartyLabel.font = [UIFont systemFontOfSize:16.0f];
-        _thirdPartyLabel.text = @"使用第三方账号登录";
-        _thirdPartyLabel.textAlignment = NSTextAlignmentCenter;
-        _thirdPartyLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
-        [self.view addSubview:_thirdPartyLabel];
-    }
-    
-    return _thirdPartyLabel;
-}
+//- (UILabel *)thirdPartyLabel{
+//    if ( _thirdPartyLabel  == nil ) {
+//        _thirdPartyLabel = [[UILabel alloc]init];
+//        _thirdPartyLabel.font = [UIFont systemFontOfSize:16.0f];
+//        _thirdPartyLabel.text = @"使用第三方账号登录";
+//        _thirdPartyLabel.textAlignment = NSTextAlignmentCenter;
+//        _thirdPartyLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
+//        [self.view addSubview:_thirdPartyLabel];
+//    }
+//
+//    return _thirdPartyLabel;
+//}
 
 - (UIButton *)weixinBtn{
     if ( _weixinBtn == nil ) {
@@ -352,6 +354,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 - (void)changeLoginType:(BOOL)isAuthCode{
     _isAuthCode = isAuthCode;
+    self.userNameText.text = @"";
+    self.pswText.text = @"";
     if (isAuthCode) {
         secureBtn.hidden = YES;
         self.getAuthCodeBtn.hidden = NO;
@@ -427,7 +431,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     
     self.weiboBtn.sd_layout.leftSpaceToView(self.qqBtn, 130.0f/3).bottomEqualToView(self.qqBtn).heightIs(35.0f).widthIs(35.0f);
     
-    self.thirdPartyLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.qqBtn,S_XRatioH(30.0f)).heightIs(S_XRatioH(20.0f)).widthIs(WIDTH-S_XRatioW(100.0f));
+//    self.thirdPartyLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.qqBtn,S_XRatioH(30.0f)).heightIs(S_XRatioH(20.0f)).widthIs(WIDTH-S_XRatioW(100.0f));
     
     [self.loginBtn addSubview:self.testActivityIndicator];
 
@@ -597,7 +601,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         NSString *urlText;
         if (_isAuthCode) {
             urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBMerchantSmsLoginInterface];
-            dict = @{@"mobile":self.userNameText.text,@"code":self.pswText.text,@"membertype":@2}.mutableCopy;
+            dict = @{@"mobile":self.userNameText.text,@"code":self.pswText.text,}.mutableCopy;
         }else{
             urlText = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBLoginCheckInterface];
             dict = @{@"username":self.userNameText.text,@"password":self.pswText.text,@"membertype":@2}.mutableCopy;
@@ -611,21 +615,23 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
             [self.testActivityIndicator stopAnimating];
             [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+            if (!self.isAuthCode) {
+                if ([dic[@"code"]integerValue] == 49037) {
+                             self.wrongCount ++;
+                             if (self.wrongCount == 3) {/// 因为只有第三次提醒，以后不再提醒，所以不做清零操作
+                                 [HintView enrichSubviews:@"账号或者密码多次错误，试试验证码登录" andSureTitle:@"验证码登录" cancelTitle:@"下次再说" sureAction:^{
+                                     [HintView dismssView];
+                                     self.pswText.text = @"";
+                                     [self changeLoginType:YES];
+                                     
+                                      
+                                 }];
+                             }
 
-            if ([dic[@"code"]integerValue] == 49037) {
-                self.wrongCount ++;
-                if (self.wrongCount == 3) {/// 因为只有第三次提醒，以后不再提醒，所以不做清零操作
-                    [HintView enrichSubviews:@"账号或者密码多次错误，试试验证码登录" andSureTitle:@"验证码登录" cancelTitle:@"下次再说" sureAction:^{
-                        [HintView dismssView];
-                        self.pswText.text = @"";
-                        [self changeLoginType:YES];
-                        
-                         
-                    }];
-                }
-                [SVProgressHUD showErrorWithStatus:@"用户名或者密码错误"];
-
+                         }
             }
+         [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+
 
 
         } else {

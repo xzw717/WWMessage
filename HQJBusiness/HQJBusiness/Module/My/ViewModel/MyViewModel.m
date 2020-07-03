@@ -43,6 +43,7 @@
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:dict complete:^(NSDictionary *dic) {
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
+            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"];
 
 //            [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:@{@"shopid":dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @""}.mutableCopy];
 

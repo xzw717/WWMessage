@@ -190,13 +190,19 @@ NSString *const HQJBDownloadUpdateInterface = @"downloadUpdate";
 NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action";
 /// 入驻协议
 NSString *const HQJBRegisterAgreementListInterface = @"registerAgreement";
-///商家注册
+///商家注册完成后跳转的H5
 NSString *const HQJBNewstoreListInterface = @"newstore";
 
 /// 根据城市名获取地区列表
 NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
+/// 商家手机号注册
+NSString *const HQJBRegisterInterface = @"shopapi/register.action";
+/// 发送验证码（商家入驻 新）
+NSString *const HQJBGetByMobileCodeInterface = @"shopapi/getByMobileCode.action";
+/// 店铺升级状态接口
+NSString *const HQJBGetShopUpgradeStateInterface = @"shopapi/getShopUpgradeState.action";
 
-
+;
 /*_____________________________ XD商家 接口________________________________________*/
 ///根据商家获取订单
 NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";

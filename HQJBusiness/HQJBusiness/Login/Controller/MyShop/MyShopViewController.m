@@ -8,7 +8,7 @@
 
 #import "MyShopViewController.h"
 #import "HintView.h"
-
+#import "ProtocolViewController.h"
 #define TopSpace 40/3.f
 
 @interface MyShopViewController ()
@@ -32,11 +32,12 @@
 @property (nonatomic,strong)UILabel *stateLabel;
 @property (nonatomic,strong)UILabel *stateValueLabel;
 @property (nonatomic, strong) HintView *showView;
-//@property (nonatomic,strong)UIImageView *successImageView;
-//@property (nonatomic,strong)UILabel *successLabel;
+@property (nonatomic,strong)NSString *shopidString;
+/// 失败原因
+@property (nonatomic, strong) NSString *reason;
 
-
-//@property (nonatomic,strong)UIButton *sureBtn;
+/// 对应状态的URL
+@property (nonatomic, strong) NSString *signUrl;
 @end
 
 @implementation MyShopViewController
@@ -194,60 +195,39 @@
         _stateValueLabel.font = [UIFont systemFontOfSize:16.f];
         _stateValueLabel.textAlignment = NSTextAlignmentRight;
         _stateValueLabel.textColor = [ManagerEngine getColor:@"ff4949"];
-        _stateValueLabel.text = @"待审核";
         [self.stateView addSubview:_stateValueLabel];
     }
     
     return _stateValueLabel;
 }
 
-//- (UIView *)stateView{
-//    if (_stateView == nil) {
-//        _stateView = [[UIView alloc]init];
-//        _stateView.backgroundColor = [UIColor whiteColor];
-//        [self.view addSubview:_stateView];
-//    }
-//    return _stateView;
-//}
-//- (UIImageView *)successImageView{
-//    if (_successImageView == nil) {
-//        _successImageView = [[UIImageView alloc]init];
-//        _successImageView.image = [UIImage imageNamed:@"check-circle_green"];
-//        [self.stateView addSubview:_successImageView];
-//    }
-//    return _successImageView;
-//}
-//-(UILabel *)successLabel{
-//    if ( _successLabel == nil ) {
-//        _successLabel = [[UILabel alloc]init];
-//        _successLabel.font = [UIFont boldSystemFontOfSize:18.f];
-//        _successLabel.textAlignment = NSTextAlignmentCenter;
-//        _successLabel.textColor = [ManagerEngine getColor:@"13ce67"];
-//        [self.stateView addSubview:_successLabel];
-//    }
-//
-//    return _successLabel;
-//}
 
-//- (UIButton *)sureBtn{
-//    if ( _sureBtn == nil ) {
-//        _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-//        _sureBtn.backgroundColor = DefaultAPPColor;
-//        _sureBtn.layer.masksToBounds = YES;
-//        _sureBtn.layer.cornerRadius = S_XRatioH(145/6);
-//        _sureBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
-//        [self.view addSubview:_sureBtn];
-//    }
-//
-//    return _sureBtn;
-//}
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    
-    [HintView enrichSubviews:@"失败原因：撤销合同流程" andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
-        
-    }];
+    ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
 
+    if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
+                         pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
+    } else if ([self.stateValueLabel.text isEqualToString:@"审核成功"]) {
+        [HintView enrichSubviews:@"重新登录即可获取完整体验" andSureTitle:@"去登录" cancelTitle:@"取消" sureAction:^{
+            [ManagerEngine login];
+        }];
+    } else if ([self.stateValueLabel.text isEqualToString:@"审核失败"]) {
+        [HintView enrichSubviews:[NSString stringWithFormat:@"失败原因：%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+            pvc.webUrlStr = self.signUrl;
+            
+        }];
+    } else if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
+        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
+    } else if ([self.stateValueLabel.text isEqualToString:@"发起合同"]) {
+        
+    } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
+        pvc.webUrlStr = self.signUrl;
+    } else {
+        return;
+    }
+    [self.navigationController pushViewController:pvc animated:YES];
+
+    
 }
 #pragma click method
 
@@ -261,23 +241,60 @@
     self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
     [self layoutTheSubViews];
-    
-    // Do any additional setup after loading the view.
-    
+    [self requstState];
+
+    self.zwBackButton.hidden = YES;
+    self.fd_interactivePopDisabled = YES;
     
 }
+- (instancetype)initWithShopid:(NSString *)shopid {
+    self = [super init];
+    if (self) {
+        self.shopidString = shopid;
+    }
+    return self;
+}
+
+- (void)requstState {
+    NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":self.shopidString} complete:^(NSDictionary *dic) {
+        if([dic[@"resultCode"]integerValue] == 2100){
+            NSInteger code = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
+            self.signUrl = dic[@"resultMsg"][@"signUrl"];
+            self.shopNameValueLabel.text = dic[@"resultMsg"][@"shopname"];
+            self.mobileValueLabel.text = dic[@"resultMsg"][@"mobile"];
+            self.applyTimeValueLabel.text = dic[@"resultMsg"][@"upgraderoletime"];
+            if (code == -1) {
+                self.stateValueLabel.text = @"去开店";
+            } else if ( code == 1000 ) {
+                self.stateValueLabel.text = @"审核成功";
+
+            } else if ( code == 1001 ) {
+                self.stateValueLabel.text = @"审核失败";
+                self.reason = dic[@"resultMsg"][@"resultDescription"] ;
+            } else if ( code  == 6666 ) {
+                self.stateValueLabel.text = @"待实名认证";
+
+            } else if ( code == 8888 ) {
+                self.stateValueLabel.text = @"发起合同";
+
+            } else if ( code == 9999 ) {
+                self.stateValueLabel.text = @"签署合同";
+
+            } else {
+                self.stateValueLabel.text = @"待审核";
+
+            }
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"加载失败，请稍候重试"];
+        }
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
+
 #pragma private method
 - (void)layoutTheSubViews{
-//    [self.shopNameView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.mas_equalTo(0);
-//        make.top.mas_equalTo(TopSpace);
-//        make.height.mas_equalTo(S_XRatioH(130.f/3));
-//    }];
-//    [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(70.f/3);
-//        make.right.mas_equalTo();
-//
-//    }];
     self.shopNameView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.view, TopSpace + NavigationControllerHeight).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
     
     self.shopNameLabel.sd_layout.leftSpaceToView(self.shopNameView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
@@ -311,20 +328,9 @@
     
     self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
-//    self.sureBtn.sd_layout.leftSpaceToView(self.view, 70.0f/3).bottomSpaceToView(self.view, S_XRatioH(102.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
 }
 
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

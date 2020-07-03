@@ -308,4 +308,6 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
  */
 + (BOOL)isIPhoneXSeries;
 
+/// 登录
++ (void)login;
 @end

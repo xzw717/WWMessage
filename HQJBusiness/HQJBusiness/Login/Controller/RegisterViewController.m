@@ -22,6 +22,8 @@
 #import "CityListViewController.h"
 #import "JKCountDownButton.h"
 #import "HintView.h"
+#import "MyShopViewController.h"
+
 @interface RegisterViewController ()<UITextFieldDelegate,CityListViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -131,7 +133,7 @@
         _userNameText.delegate = self;
         _userNameText.clearsOnBeginEditing = YES;
         _userNameText.clearButtonMode = UITextFieldViewModeAlways;
-        _userNameText.keyboardType = UIKeyboardTypeASCIICapable;
+        _userNameText.keyboardType = UIKeyboardTypeNumberPad;
         _userNameText.placeholder = @" 请输入手机号";
         
         [self.view addSubview:_userNameText];
@@ -153,7 +155,7 @@
         _authCodeText.clearsOnBeginEditing = YES;
         _authCodeText.layer.masksToBounds = YES;
         _authCodeText.clearButtonMode = UITextFieldViewModeAlways;
-        _authCodeText.keyboardType = UIKeyboardTypeASCIICapable;
+        _authCodeText.keyboardType = UIKeyboardTypeNumberPad;
         _authCodeText.placeholder = @"请输入验证码";
         [self.view addSubview:_authCodeText];
         
@@ -172,10 +174,16 @@
 //            CreateShopViewController *csvc = [[CreateShopViewController alloc]init];
 //            [self.navigationController pushViewController:csvc animated:YES];
 //        } forControlEvents:UIControlEventTouchUpInside];
-        
+        @weakify(self);
         [_getAuthCodeBtn countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
-            self.getAuthCodeBtn.enabled = NO;
-            [self getCodeRequst];
+            @strongify(self);
+            if (self.userNameText.text.length == 11) {
+                self.getAuthCodeBtn.enabled = NO;
+                [self getCodeRequst];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+            }
+            
         }];
         
         [self.view addSubview:_getAuthCodeBtn];
@@ -226,11 +234,13 @@
         [_protocolBtn setTitleColor:RedColor forState:UIControlStateNormal];
         _protocolBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
-        [_protocolBtn bk_addEventHandler:^(id  _Nonnull sender) {
+        @weakify(self);
+        [[_protocolBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            @strongify(self);
             ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
             pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5UpDataDomain,HQJBRegisterAgreementListInterface];
             [self.navigationController pushViewController:pvc animated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         [self.view addSubview:_protocolBtn];
     }
     return _protocolBtn;
@@ -253,13 +263,13 @@
         [_registerBtn setTitle:@"立即入驻" forState:UIControlStateNormal];
         _registerBtn.backgroundColor = DefaultAPPColor;
         _registerBtn.layer.masksToBounds = YES;
-        _registerBtn.layer.cornerRadius = S_XRatioH(145/6);
+        _registerBtn.layer.cornerRadius = 44 / 2;
         _registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
-        [_registerBtn bk_addEventHandler:^(id  _Nonnull sender) {
-            ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
-            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface];
-            [self.navigationController pushViewController:pvc animated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
+        @weakify(self);
+        [[_registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+            @strongify(self);
+            [self registeredAction];
+        }];
         [self.view addSubview:_registerBtn];
     }
     
@@ -326,11 +336,12 @@
 - (UITableView *)queryCityTabelView {
     if (!_queryCityTabelView) {
         _queryCityTabelView = [[UITableView alloc]init];
-        _queryCityTabelView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
         _queryCityTabelView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _queryCityTabelView.delegate = self;
         _queryCityTabelView.dataSource = self;
         [_queryCityTabelView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        _queryCityTabelView.layer.masksToBounds = YES;
+        _queryCityTabelView.layer.cornerRadius = 5.f;
         _queryCityTabelView.tableFooterView = [UIView new];
     }
     return _queryCityTabelView;
@@ -339,7 +350,7 @@
     if (!_tableMaskView) {
         _tableMaskView = [[UIView alloc]init];
         _tableMaskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
-        _tableMaskView.hidden = YES;
+//        _tableMaskView.hidden = YES;
         [[UIApplication sharedApplication].keyWindow addSubview:_tableMaskView];
         
     }
@@ -378,11 +389,11 @@
     
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.tableMaskView addSubview:self.queryCityTabelView];
     [self layoutTheSubViews];
     self.selected = NO;
     self.queryCityArray = [NSMutableArray array];
-    [self.tableMaskView addSubview:self.queryCityTabelView];
-
+    self.tableMaskView.hidden = YES;
     
 }
 
@@ -418,7 +429,7 @@
     [self.authCodeText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.userNameText.mas_bottom).mas_offset(15.f);
         make.left.height.mas_equalTo(self.userNameText);
-        make.width.mas_equalTo(self.userNameText.mas_width).multipliedBy(0.54f);
+        make.width.mas_equalTo(self.userNameText.mas_width).multipliedBy(0.66f);
     }];
     [self.getAuthCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            make.top.mas_equalTo(self.userNameText.mas_bottom).mas_offset(15.f);
@@ -479,48 +490,42 @@
          make.centerY.mas_equalTo(self.locationTitleLabel);
          make.right.mas_equalTo(self.getAuthCodeBtn);
      }];
-//    [self.tableMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.top.bottom.equalTo(0);
-//    }];
-//    [self.queryCityTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(UIEdgeInsetsMake(NavigationControllerHeight, 15, ToolBarHeight, 15));
-//    }];
+    [self.tableMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.mas_equalTo(0);
+    }];
+    [self.queryCityTabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(NavigationControllerHeight, 15, ToolBarHeight, 15));
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-       
     return self.queryCityArray.count;
    
     
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
-    
-    
+   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     queryCityModel *model = self.queryCityArray[indexPath.row];
     cell.textLabel.text = model.aliasname;
     return cell;
-    
-    
-    
-    
-    
+ 
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+     queryCityModel *model = self.queryCityArray[indexPath.row];
+    [self.regionBtn setTitle:model.aliasname forState:UIControlStateNormal];
+    self.tableMaskView.hidden = YES;
+}
 -(void)getCodeRequst{
     NSString *urlStr;
-    NSMutableDictionary *dict = @{@"pwdtype":@1,@"mobile":self.userNameText.text}.mutableCopy;
-    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetPwdSMSInterface];
+    NSMutableDictionary *dict = @{@"mobile":self.userNameText.text}.mutableCopy;
+    urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetByMobileCodeInterface];
     HQJLog(@"---%@",urlStr);
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if([dic[@"code"]integerValue] != 49000) {
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        if([dic[@"resultCode"]integerValue] != 2000) {
             self.getAuthCodeBtn.enabled = YES;
             
-            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
         } else {
             [self.getAuthCodeBtn startCountDownWithSecond:60];
             
@@ -545,6 +550,39 @@
     } ShowHUD:YES];
     
 }
+
+#pragma mark --- 注册（立即入驻）
+- (void)registeredAction {
+    if (self.accessoryBtn.selected) {
+        if (self.userNameText.text.length > 1 &&
+            self.authCodeText.text.length > 1 &&
+            ![self.cityBtn.currentTitle isEqualToString:@"请选择"] &&
+            ![self.regionBtn.currentTitle isEqualToString:@"请选择"]) {
+            NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBRegisterInterface];
+            NSDictionary *paraDict = @{@"mobile":self.userNameText.text,
+                                       @"code":self.authCodeText.text,
+                                       @"area":[NSString stringWithFormat:@"%@%@",self.cityBtn.currentTitle,self.regionBtn.currentTitle]};
+            @weakify(self);
+            [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:paraDict complete:^(NSDictionary *dic) {
+                @strongify(self);
+                if ([dic[@"resultCode"]integerValue] == 2100) {
+                    MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:dic[@"resultMsg"][@"id"]];
+                    [self.navigationController pushViewController:shopVC animated:YES];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+
+                }
+            } andError:^(NSError *error) {
+                
+            } ShowHUD:YES];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"以上信息尚未完善"];
+        }
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"尚未阅读入驻协议"];
+
+    }
+}
 - (void)goCityList {
     CityListViewController *cityListView = [[CityListViewController alloc]init];
 
@@ -553,10 +591,14 @@
     cityListView.arrayHotCity = [NSMutableArray arrayWithObjects:@"北京",@"上海",@"福州",@"杭州",@"重庆",@"成都",@"株洲",@"赣州",@"内江", nil];
     //历史选择城市列表
     cityListView.arrayHistoricalCity = [NSMutableArray arrayWithObjects:@"福州",@"厦门",@"泉州", nil];
+    cityListView.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:cityListView animated:YES completion:nil];
 }
 - (void)didClickedWithCityName:(NSString *)cityName {
     [self.cityBtn setTitle:cityName forState:UIControlStateNormal];
+    if (![self.regionBtn.currentTitle isEqualToString:@"请选择"]) {
+        [self.regionBtn setTitle:@"请选择" forState:UIControlStateNormal];
+    }
 }
 - (void)requstRegion {
     if (![self.cityBtn.currentTitle isEqualToString:@"请选择"]) {
@@ -564,7 +606,21 @@
           [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"city":self.cityBtn.currentTitle} complete:^(NSDictionary *dic) {
               if ([dic[@"resultCode"]integerValue] == 1300) {
                   self.queryCityArray = [queryCityModel mj_objectArrayWithKeyValuesArray:dic[@"resultMsg"]];
-                  self.tableMaskView.hidden = YES;
+                  self.tableMaskView.hidden = NO;
+                      // 网络请求
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          
+                          //主线程刷新UI
+                          [self.queryCityTabelView mas_updateConstraints:^(MASConstraintMaker *make) {
+                              if (self.queryCityArray.count * 44.f > HEIGHT - ToolBarHeight - NavigationControllerHeight) {
+                                  make.height.mas_equalTo(HEIGHT - ToolBarHeight - NavigationControllerHeight);
+                              } else {
+                                  make.height.mas_equalTo(self.queryCityArray.count * 44.f);
+                              }
+                          }];
+                          
+                      });
+                      
                   [self.queryCityTabelView reloadData];
               }
           } andError:^(NSError *error) {

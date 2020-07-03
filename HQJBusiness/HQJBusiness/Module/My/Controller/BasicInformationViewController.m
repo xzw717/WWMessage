@@ -24,17 +24,17 @@
     if (self) {
         self.titleStr = tit;
         if ([tit isEqualToString:@"基本信息"]) {
-            self.urlLabel.text = @"baidu.com";
+            self.urlLabel.text = @"http://shop.wuwuditu.com";
 
             self.titLabel.text = @"登录电脑端商家管理系统完善信息";
 
         }else if ([tit isEqualToString:@"发布商品"]) {
             self.titLabel.text = @"登录电脑端商家管理系统发布商品";
-            self.urlLabel.text = @"bying.com";
+            self.urlLabel.text = @"http://shop.wuwuditu.com";
 
         } else {
             self.titLabel.text = @"登录电脑端商家管理系统进行详细操作";
-            self.urlLabel.text = @"https://www.betaqr.com/";
+            self.urlLabel.text = @"http://shop.wuwuditu.com";
 
         }
     }

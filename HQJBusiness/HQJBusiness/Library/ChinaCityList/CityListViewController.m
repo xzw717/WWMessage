@@ -266,7 +266,15 @@
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.text          = title;
     [customNavView addSubview:titleLab];
-
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(15, 20, 40, titleLab.frame.size.height);
+    @weakify(self);
+    [[backBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        @strongify(self);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [customNavView addSubview:backBtn];
     customNavView.backgroundColor = [UIColor whiteColor];
 
    

@@ -163,6 +163,13 @@ extern NSString *const HQJBFindShopEsignListInterface;
 extern NSString *const HQJBNewstoreListInterface;
 /// 根据城市名获取地区列表
 extern NSString *const HQJBQueryCityAreaInterface;
+/// 商家手机号注册
+extern NSString *const HQJBRegisterInterface;
+/// 发送验证码（商家入驻 新）
+extern NSString *const HQJBGetByMobileCodeInterface;
+/// 店铺升级状态接口
+extern NSString *const HQJBGetShopUpgradeStateInterface;
+
 /*_____________________________XD接口________________________________________*/
 ///创建订单
 extern NSString *const HQJBXdorderInterface;
