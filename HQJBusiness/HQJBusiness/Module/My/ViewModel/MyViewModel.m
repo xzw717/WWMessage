@@ -24,7 +24,6 @@
 - (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
-    NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
 
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
@@ -40,19 +39,8 @@
                 self.myrequstErrorBlock();
             }
         } ShowHUD:YES];
-        [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:dict complete:^(NSDictionary *dic) {
-            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
-            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
-            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"];
-
-//            [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:@{@"shopid":dic[@"resultMsg"][@"shopId"] ? dic[@"resultMsg"][@"shopId"] : @""}.mutableCopy];
-
-          } andError:^(NSError *error) {
-              if (self.myrequstErrorBlock) {
-                  self.myrequstErrorBlock();
-              }
-          } ShowHUD:YES];
-        
+   
+        [self getshopidWithMemberid:MmberidStr completion:nil];
         
         
     }
@@ -60,7 +48,27 @@
     
 }
 
-
+- (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion {
+    NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:@{@"memberid":MmberidStr} complete:^(NSDictionary *dic) {
+        !completion ? : completion(dic[@"resultMsg"][@"shopid"]);
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
+              [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
+        }
+      if (![[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]) {
+             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
+      }
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"classify"]) {
+        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"];
+        }
+ 
+                
+    } andError:^(NSError *error) {
+        if (self.myrequstErrorBlock) {
+            self.myrequstErrorBlock();
+        }
+    } ShowHUD:YES];
+}
 
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath { 
     if (xzw_indexPath.section == 1) {

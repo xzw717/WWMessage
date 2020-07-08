@@ -169,6 +169,8 @@ extern NSString *const HQJBRegisterInterface;
 extern NSString *const HQJBGetByMobileCodeInterface;
 /// 店铺升级状态接口
 extern NSString *const HQJBGetShopUpgradeStateInterface;
+/// 银行卡提现免费额度查询
+extern NSString *const HQJBFreeAmountInterface;
 
 /*_____________________________XD接口________________________________________*/
 ///创建订单

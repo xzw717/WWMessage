@@ -21,6 +21,7 @@
 
 +(void)getHomeBannerBlock:(void(^)(id imageArray))sender;
 
-
+/// 通过 memberid h获取对应商家的shopid
+- (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion;
 
 @end

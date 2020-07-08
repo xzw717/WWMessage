@@ -18,7 +18,7 @@
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 #import "CreateShopViewController.h"
-#import "ProtocolViewController.h"
+#import "HQJWebViewController.h"
 #import "CityListViewController.h"
 #import "JKCountDownButton.h"
 #import "HintView.h"
@@ -68,6 +68,8 @@
 /// 区列表遮罩
 @property (nonatomic, strong) UIView *tableMaskView;
 @property (nonatomic, strong) NSMutableArray <queryCityModel *>*queryCityArray;
+/// 选中的城市Model
+@property (nonatomic, strong) queryCityModel *cityModel;
 @end
 
 @implementation RegisterViewController
@@ -170,7 +172,7 @@
         [_getAuthCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
         [_getAuthCodeBtn setTitleColor:[ManagerEngine getColor:@"555555"] forState:UIControlStateNormal];
         _getAuthCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:48/3.f];
-//        [_getAuthCodeBtn bk_addEventHandler:^(id  _Nonnull sender) {
+//        [_getAuthCodeBtn bk_addEventHan dler:^(id  _Nonnull sender) {
 //            CreateShopViewController *csvc = [[CreateShopViewController alloc]init];
 //            [self.navigationController pushViewController:csvc animated:YES];
 //        } forControlEvents:UIControlEventTouchUpInside];
@@ -178,7 +180,8 @@
         [_getAuthCodeBtn countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
             @strongify(self);
             if (self.userNameText.text.length == 11) {
-                self.getAuthCodeBtn.enabled = NO;
+//                self.getAuthCodeBtn.enabled = NO;
+
                 [self getCodeRequst];
             } else {
                 [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
@@ -217,7 +220,6 @@
         accessoryLabel.font = [UIFont systemFontOfSize:12.0f];
         [_accessoryView addSubview:accessoryLabel];
         [_accessoryView addSubview:_accessoryBtn];
-        
         UITapGestureRecognizer *accessoryTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(accessoryClick)];
         [_accessoryView addGestureRecognizer:accessoryTap];
         
@@ -237,7 +239,7 @@
         @weakify(self);
         [[_protocolBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             @strongify(self);
-            ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
+            HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
             pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5UpDataDomain,HQJBRegisterAgreementListInterface];
             [self.navigationController pushViewController:pvc animated:YES];
         }];
@@ -261,7 +263,8 @@
     if ( _registerBtn == nil ) {
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_registerBtn setTitle:@"立即入驻" forState:UIControlStateNormal];
-        _registerBtn.backgroundColor = DefaultAPPColor;
+        _registerBtn.backgroundColor = [ManagerEngine getColor:@"b9b9b9"];
+        _registerBtn.enabled = NO;
         _registerBtn.layer.masksToBounds = YES;
         _registerBtn.layer.cornerRadius = 44 / 2;
         _registerBtn.titleLabel.font = [UIFont boldSystemFontOfSize:50/3];
@@ -394,9 +397,33 @@
     self.selected = NO;
     self.queryCityArray = [NSMutableArray array];
     self.tableMaskView.hidden = YES;
-    
+    [self setSignal];
 }
-
+- (void)setSignal {
+    @weakify(self);
+    RACSignal *nameSignal = [self.userNameText.rac_textSignal map:^id(id value) {
+        @strongify(self);
+        return @(self.userNameText.text.length > 0);
+    }];
+    RACSignal *codeSignal = [self.authCodeText.rac_textSignal map:^id(id value) {
+         @strongify(self);
+          return @(self.authCodeText.text.length > 0);
+    }];
+    RACSignal *accessorySignal = RACObserve(self.accessoryBtn, selected);
+    RACSignal *citySignal = RACObserve(self.cityBtn.titleLabel, text);
+    RACSignal *regionSignal = RACObserve(self.regionBtn.titleLabel, text);
+  
+    
+    RACSignal *combineSignal = [RACSignal combineLatest:@[nameSignal,codeSignal,accessorySignal,citySignal,regionSignal] reduce:^id (NSNumber *name,NSNumber *code,NSNumber *accessory,NSString *city,NSString *region){
+        return @([name boolValue] && [code boolValue] && [accessory boolValue] && ![city isEqualToString:@"请选择"] && ![region isEqualToString:@"请选择"]);
+    }];
+    
+    [combineSignal subscribeNext:^(NSNumber *combined) {
+         @strongify(self);
+        self.registerBtn.backgroundColor = [combined boolValue] ? DefaultAPPColor:[ManagerEngine getColor:@"b9b9b9"];
+        self.registerBtn.enabled = [combined boolValue] ;
+    }];
+}
 #pragma private method
 - (void)layoutTheSubViews{
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -513,6 +540,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      queryCityModel *model = self.queryCityArray[indexPath.row];
+    self.cityModel = model;
     [self.regionBtn setTitle:model.aliasname forState:UIControlStateNormal];
     self.tableMaskView.hidden = YES;
 }
@@ -553,6 +581,14 @@
 
 #pragma mark --- 注册（立即入驻）
 - (void)registeredAction {
+//    HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+//    
+//    pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=02bb9293-8480-4442-bb31-091ed98014a4",HQJBH5UpDataDomain,HQJBNewstoreListInterface];
+//    [self.navigationController pushViewController:pvc animated:YES];
+//    
+//    
+//    return;
+    
     if (self.accessoryBtn.selected) {
         if (self.userNameText.text.length > 1 &&
             self.authCodeText.text.length > 1 &&
@@ -561,7 +597,8 @@
             NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBRegisterInterface];
             NSDictionary *paraDict = @{@"mobile":self.userNameText.text,
                                        @"code":self.authCodeText.text,
-                                       @"area":[NSString stringWithFormat:@"%@%@",self.cityBtn.currentTitle,self.regionBtn.currentTitle]};
+                                       @"area":[NSString stringWithFormat:@"%@%@",self.cityBtn.currentTitle,self.regionBtn.currentTitle],
+                                       @"areaId":self.cityModel.areaid};
             @weakify(self);
             [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:paraDict complete:^(NSDictionary *dic) {
                 @strongify(self);

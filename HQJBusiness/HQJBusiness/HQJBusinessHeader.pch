@@ -101,12 +101,14 @@
 
 #define WeakObj(o) autoreleasepool{} __weak typeof(o) o##Weak = o;
 
-#define MmberidStr   [FileEngine filePathNameReadName:@"memberid" andstye:fileLoginStyle]
-#define Rrealname    [FileEngine filePathNameReadName:@"realname" andstye:fileDefaultStyle]
+#define MmberidStr       [[NSUserDefaults standardUserDefaults] objectForKey:@"memberid"]
+#define Rrealname       [[NSUserDefaults standardUserDefaults] objectForKey:@"realname"]
 #define Mmobile      [[NSUserDefaults standardUserDefaults] objectForKey:@"mobile"]  
-#define HashCode     [FileEngine filePathNameReadName:@"hashCode" andstye:fileLoginStyle]
+#define HashCode       [[NSUserDefaults standardUserDefaults] objectForKey:@"hashCode"]
 #define Shopid       [[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]
 #define Peugeotid       [[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]
+#define Classifyid       [[NSUserDefaults standardUserDefaults] objectForKey:@"classify"]
+
 
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 

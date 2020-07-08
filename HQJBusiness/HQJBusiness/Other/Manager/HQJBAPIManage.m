@@ -202,6 +202,9 @@ NSString *const HQJBGetByMobileCodeInterface = @"shopapi/getByMobileCode.action"
 /// 店铺升级状态接口
 NSString *const HQJBGetShopUpgradeStateInterface = @"shopapi/getShopUpgradeState.action";
 
+/// 银行卡提现免费额度查询
+NSString *const HQJBFreeAmountInterface = @"freeAmount";
+
 ;
 /*_____________________________ XD商家 接口________________________________________*/
 ///根据商家获取订单

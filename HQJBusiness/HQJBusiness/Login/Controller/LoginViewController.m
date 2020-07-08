@@ -18,7 +18,8 @@
 #import "RegisterViewController.h"
 #import "ForgetPswViewController.h"
 #import "JKCountDownButton.h"
-
+#import "MyViewModel.h"
+#import "MyShopViewController.h"
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -157,7 +158,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _getAuthCodeBtn.layer.borderColor = RedColor.CGColor;
         _getAuthCodeBtn.layer.borderWidth = 0.5f;
         [_getAuthCodeBtn countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
-            self.getAuthCodeBtn.enabled = NO;
             [self getCodeRequst];
         }];
         
@@ -177,7 +177,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _userNameText.delegate = self;
         _userNameText.clearsOnBeginEditing = YES;
 //        _userNameText.clearButtonMode = UITextFieldViewModeAlways;
-        _userNameText.keyboardType = UIKeyboardTypeNumberPad;
+        _userNameText.keyboardType = UIKeyboardTypeASCIICapable;
         _userNameText.placeholder = @"请输入手机号码/用户名";
 
         [self.view addSubview:_userNameText];
@@ -329,14 +329,30 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.view setBackgroundColor:[UIColor whiteColor]];
     _isAuthCode = NO;
     [self viewTheContent];
-    
+    [self removeInfo];
     [self signalDeal];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dianji:) name:kNetworkStatus object:nil];
     [ManagerEngine networkStatus];
-    
-  
-    
 }
+
+
+#pragma mark --- 删除删一个用户的信息
+- (void)removeInfo {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"memberid"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"realname"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"mobile"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"hashCode"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"shopid"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"peugeotid"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"newOrder"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"AutomaticallyPrintOrders"];
+    [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"BluetoothState"];
+
+}
+
+
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
@@ -359,6 +375,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if (isAuthCode) {
         secureBtn.hidden = YES;
         self.getAuthCodeBtn.hidden = NO;
+        self.userNameText.keyboardType = UIKeyboardTypeNumberPad;
+        [self.userNameText resignFirstResponder];
+        [self.pswText resignFirstResponder ];
         [_authCodeBtn setTitleColor:[ManagerEngine getColor:@"ff494b"] forState:UIControlStateNormal];
         [_pswBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
         _authCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -370,6 +389,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
          _pswText.placeholder = @"请输入验证码";
     }else{
         self.getAuthCodeBtn.hidden = YES;
+        [self.userNameText resignFirstResponder];
+        [self.pswText resignFirstResponder];
+        self.userNameText.keyboardType = UIKeyboardTypeASCIICapable;
         [_authCodeBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
         [_pswBtn setTitleColor:[ManagerEngine getColor:@"ff494b"] forState:UIControlStateNormal];
         _pswBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -612,49 +634,46 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:codeingUrl parameters:dict complete:^(NSDictionary *dic) {
 
         if ([dic[@"code"]integerValue] != 49000) {
+            if ([dic[@"code"]integerValue] != 49123) {
+                [self.testActivityIndicator stopAnimating];
+                      [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+                      if (!self.isAuthCode) {
+                          if ([dic[@"code"]integerValue] == 49037) {
+                                       self.wrongCount ++;
+                                       if (self.wrongCount == 3) {/// 因为只有第三次提醒，以后不再提醒，所以不做清零操作
+                                           [HintView enrichSubviews:@"账号或者密码多次错误，试试验证码登录" andSureTitle:@"验证码登录" cancelTitle:@"下次再说" sureAction:^{
+                                               [HintView dismssView];
+                                               self.pswText.text = @"";
+                                               [self changeLoginType:YES];
+                                               
+                                                
+                                           }];
+                                       }
 
-            [self.testActivityIndicator stopAnimating];
-            [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
-            if (!self.isAuthCode) {
-                if ([dic[@"code"]integerValue] == 49037) {
-                             self.wrongCount ++;
-                             if (self.wrongCount == 3) {/// 因为只有第三次提醒，以后不再提醒，所以不做清零操作
-                                 [HintView enrichSubviews:@"账号或者密码多次错误，试试验证码登录" andSureTitle:@"验证码登录" cancelTitle:@"下次再说" sureAction:^{
-                                     [HintView dismssView];
-                                     self.pswText.text = @"";
-                                     [self changeLoginType:YES];
-                                     
-                                      
-                                 }];
-                             }
-
-                         }
+                                   }
+                      }
+                   [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+            } else {
+                MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:dic[@"result"][@"shopid"]];
+                [self.navigationController pushViewController:shopVC animated:YES];
             }
-         [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+      
 
 
 
         } else {
 
             NSString *loginnameStr = [NSString stringWithFormat:@"%@",dic[@"result"][@"loginname"]];
-            NSMutableDictionary *dic1;
 
             if (![loginnameStr isEqualToString:@"<null>"]) {
-                dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                        dic[@"result"][@"loginname"],@"loginname",
-                        dic[@"result"][@"memberid"],@"memberid",
-                        dic[@"result"][@"typecname"],@"typecname",
-                        dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
+                [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"loginname"] forKey:@"loginname"];
+            
 
-            } else {
-
-                dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                        dic[@"result"][@"memberid"],@"memberid",
-                        dic[@"result"][@"typecname"],@"typecname",
-                        dic[@"result"][@"typeename"],@"typeename",dic[@"result"][@"hashCode"],@"hashCode",nil];
             }
-
-            [FileEngine filePathNameCreateandNameMutablefilePatch:fileLoginStyle Dictionary:dic1];
+            [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"memberid"] forKey:@"memberid"];
+            [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"typecname"] forKey:@"typecname"];
+            [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"typeename"] forKey:@"typeename"];
+            [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"hashCode"] forKey:@"hashCode"];
             [self dismissViewControllerAnimated:YES completion:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changeBonus" object:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"loginSuccess" object:nil];
@@ -747,3 +766,53 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

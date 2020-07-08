@@ -35,9 +35,11 @@
     _isHideShadowLine = isHideShadowLine;
     if (isHideShadowLine) {
         [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 
     } else {
         [self.navigationController.navigationBar setShadowImage:nil];
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 
     }
 }
@@ -81,6 +83,8 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setShadowImage:nil];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+
     self.stateBackgroundView.hidden = YES;
 }
 //- (void)setIsHideBackButton:(BOOL)isHideBackButton {

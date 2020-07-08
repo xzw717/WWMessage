@@ -148,6 +148,7 @@
     [[HintView showView].sureButton setTitle:sureTitle forState:UIControlStateNormal];
     [[HintView showView].cancelButton setTitle:cancelTitle forState:UIControlStateNormal];
     [[[HintView showView].sureButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        [HintView dismssView];
         !sure ? : sure();
     }];
     return [HintView showView];

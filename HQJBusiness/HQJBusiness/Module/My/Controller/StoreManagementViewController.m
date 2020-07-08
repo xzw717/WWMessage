@@ -77,7 +77,7 @@
         HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
         webvc.webTitleString = @"升级规则";
         webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
-                           ,HQJBUpgradeRuleInterface,MmberidStr];
+                           ,HQJBUpgradeRuleInterface,Shopid];
         [self.navigationController pushViewController:webvc animated:YES];
     }
     if (indexPath.row == 1) {

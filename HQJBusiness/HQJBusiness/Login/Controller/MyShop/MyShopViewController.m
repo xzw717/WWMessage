@@ -8,7 +8,7 @@
 
 #import "MyShopViewController.h"
 #import "HintView.h"
-#import "ProtocolViewController.h"
+#import "HQJWebViewController.h"
 #define TopSpace 40/3.f
 
 @interface MyShopViewController ()
@@ -203,7 +203,7 @@
 
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    ProtocolViewController *pvc = [[ProtocolViewController alloc]init];
+    HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
 
     if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
                          pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
@@ -212,10 +212,11 @@
             [ManagerEngine login];
         }];
     } else if ([self.stateValueLabel.text isEqualToString:@"审核失败"]) {
-        [HintView enrichSubviews:[NSString stringWithFormat:@"失败原因：%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+        [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
             pvc.webUrlStr = self.signUrl;
-            
+            [self.navigationController pushViewController:pvc animated:YES];
         }];
+         return;
     } else if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
         pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
     } else if ([self.stateValueLabel.text isEqualToString:@"发起合同"]) {
@@ -223,7 +224,7 @@
     } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
         pvc.webUrlStr = self.signUrl;
     } else {
-        return;
+       
     }
     [self.navigationController pushViewController:pvc animated:YES];
 
@@ -271,7 +272,7 @@
 
             } else if ( code == 1001 ) {
                 self.stateValueLabel.text = @"审核失败";
-                self.reason = dic[@"resultMsg"][@"resultDescription"] ;
+                self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
             } else if ( code  == 6666 ) {
                 self.stateValueLabel.text = @"待实名认证";
 

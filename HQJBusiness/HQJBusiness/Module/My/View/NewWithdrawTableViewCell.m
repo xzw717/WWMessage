@@ -102,6 +102,8 @@
         _subTitTextField.textAlignment = NSTextAlignmentRight;
         _subTitTextField.font = [UIFont systemFontOfSize:48.f / 3];
         _subTitTextField.hidden = YES;
+        _subTitTextField.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     return _subTitTextField;
 }

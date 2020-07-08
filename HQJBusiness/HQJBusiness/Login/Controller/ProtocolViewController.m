@@ -8,7 +8,7 @@
 
 #import "ProtocolViewController.h"
 
-@interface ProtocolViewController ()<WKUIDelegate,WKNavigationDelegate>
+@interface ProtocolViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
 @end
 
@@ -33,6 +33,17 @@
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
     self.webView.allowsBackForwardNavigationGestures = YES;
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+      config.preferences = [[WKPreferences alloc] init];
+      config.preferences.minimumFontSize = 10;
+      config.preferences.javaScriptEnabled = YES;
+      config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+      config.userContentController = [[WKUserContentController alloc] init];
+      config.processPool = [[WKProcessPool alloc] init];
+      WKUserContentController *userCC = config.userContentController;
+
+      [userCC addScriptMessageHandler:self name:@"out"];
+      [userCC addScriptMessageHandler:self name:@"exitWeb"];
     if (![self.webUrlStr containsString:@"http"] && ![self.webUrlStr containsString:@"https"] && ![self.webUrlStr containsString:@"HTTP"] && ![self.webUrlStr containsString:@"HTTPS"]) {
         self.webUrlStr = [NSString stringWithFormat:@"https://%@",self.webUrlStr];
     }
@@ -52,12 +63,32 @@
     [self cleanCacheAndCookie];
 }
 
-- (void)dealloc {
-    //        [self.webView removeObserver:self forKeyPath:@"title"];
-}
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     
+}
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    if ([message.name isEqualToString:@"out"]||[message.name isEqualToString:@"exitWeb"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+- (void)dealloc {
+    WKUserContentController *controller = self.webView.configuration.userContentController;
+    [controller removeScriptMessageHandlerForName:@"out"];
+    [controller removeScriptMessageHandlerForName:@"exitWeb"];
+
 }
 // 类似 UIWebView的 -webView: shouldStartLoadWithRequest: navigationType:
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void(^)(WKNavigationActionPolicy))decisionHandler {

@@ -103,7 +103,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _mobileText.clearsOnBeginEditing = YES;
         _mobileText.clearButtonMode = UITextFieldViewModeAlways;
         _mobileText.keyboardType = UIKeyboardTypeNumberPad;
-        _mobileText.placeholder = @"请输入手机号码/用户名";
+        _mobileText.placeholder = @"请输入手机号码";
         
         [self.view addSubview:_mobileText];
         
@@ -175,7 +175,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if ( _pswText == nil ) {
         _pswText = [[UITextField alloc]init];
         _pswText.clearsOnBeginEditing = YES;
-        _pswText.placeholder = @"新密码 | 请设置6-18位登录新密码";
+        _pswText.placeholder = @"新密码 | 请设置6-12位登录新密码";
         _pswText.delegate = self;
         _pswText.font = [UIFont systemFontOfSize:16];
 //        _pswText.clearButtonMode = UITextFieldViewModeAlways;
@@ -445,7 +445,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if ([string isEqualToString:@""]) {
         return YES;
     }
-    if (textField == self.pswText | textField == self.againPswText ) {
+    if (textField == self.pswText ) {
         
             if (self.pswText.text.length >=12) {
                 return NO;
@@ -455,7 +455,15 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                 return [string isEqualToString:filtered];
             }
 
-    }else{
+    } else if (textField == self.againPswText) {
+   if (self.againPswText.text.length >=12) {
+                  return NO;
+              } else {
+                  NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:kAlphaNum] invertedSet];
+                  NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+                  return [string isEqualToString:filtered];
+              }
+    } else{
         if (self.authCodeText.text.length >=6) {
             return NO;
         } else {
