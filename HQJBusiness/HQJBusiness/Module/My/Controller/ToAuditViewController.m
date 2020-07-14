@@ -7,11 +7,11 @@
 //
 
 #import "ToAuditViewController.h"
-//#import "allViewController.h"
-//#import "ZHViewController.h"
-//#import "CashWithdrawViewController.h"
-//#import "BonusViewController.h"
-//#import "ZHProportionViewController.h"
+#import "allViewController.h"
+#import "ZHViewController.h"
+#import "CashWithdrawViewController.h"
+#import "BonusViewController.h"
+#import "ZHProportionViewController.h"
 
 @interface ToAuditViewController () <SGSegmentedControlDefaultDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) SGSegmentedControlDefault *topSView;
@@ -31,39 +31,39 @@
 }
 
 -(void)initVC {
-//    allViewController *allVC = [[allViewController alloc]init];
-//    [self addChildViewController:allVC];
+    allViewController *allVC = [[allViewController alloc]init];
+    [self addChildViewController:allVC];
     
-//    ZHViewController *buyZHVC = [[ZHViewController alloc]init];
-//    [self addChildViewController:buyZHVC];
+    ZHViewController *buyZHVC = [[ZHViewController alloc]init];
+    [self addChildViewController:buyZHVC];
     
-//    CashWithdrawViewController *cashVC = [[CashWithdrawViewController alloc]init];
-//    [self addChildViewController:cashVC];
+    CashWithdrawViewController *cashVC = [[CashWithdrawViewController alloc]init];
+    [self addChildViewController:cashVC];
     
-//    BonusViewController *bonusVC =[[BonusViewController alloc]init];
-//    [self addChildViewController:bonusVC];
-//
-//    ZHProportionViewController *ZHVC =[[ZHProportionViewController alloc]init];
-//    [self addChildViewController:ZHVC];
-//
-//    NSArray *childVC = @[allVC, buyZHVC, cashVC, bonusVC,ZHVC];
-//
-//    NSArray *title_arr = @[@"全部",[NSString stringWithFormat:@"购买%@值",HQJValue],@"现金提现", @"积分兑现", [NSString stringWithFormat:@"%@值比例",HQJValue]];
-//
-//
-//    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight , WIDTH, HEIGHT - NavigationControllerHeight)];
-//    _bottomSView.childViewController = childVC;
-//    _bottomSView.backgroundColor = [UIColor clearColor];
-//    _bottomSView.delegate = self;
-//
-//    [self.view addSubview:_bottomSView];
-//
-//    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr isScaleText:NO];
-//    _topSView.showsBottomScrollIndicator = NO;
-//    _topSView.titleColorStateSelected = DefaultAPPColor;
-//    _topSView.backgroundColor = DefaultBackgroundColor;
-//    [self.view addSubview:_topSView];
-//
+    BonusViewController *bonusVC =[[BonusViewController alloc]init];
+    [self addChildViewController:bonusVC];
+
+    ZHProportionViewController *ZHVC =[[ZHProportionViewController alloc]init];
+    [self addChildViewController:ZHVC];
+
+    NSArray *childVC = @[allVC, buyZHVC, cashVC, bonusVC,ZHVC];
+
+    NSArray *title_arr = @[@"全部",[NSString stringWithFormat:@"购买%@值",HQJValue],@"现金提现", @"积分兑现", [NSString stringWithFormat:@"%@值比例",HQJValue]];
+
+
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight , WIDTH, HEIGHT - NavigationControllerHeight)];
+    _bottomSView.childViewController = childVC;
+    _bottomSView.backgroundColor = [UIColor clearColor];
+    _bottomSView.delegate = self;
+
+    [self.view addSubview:_bottomSView];
+
+    self.topSView = [SGSegmentedControlDefault segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr isScaleText:NO];
+    _topSView.showsBottomScrollIndicator = NO;
+    _topSView.titleColorStateSelected = DefaultAPPColor;
+    _topSView.backgroundColor = DefaultBackgroundColor;
+    [self.view addSubview:_topSView];
+
 //
 }
 

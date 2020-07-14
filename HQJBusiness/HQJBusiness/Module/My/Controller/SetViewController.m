@@ -225,8 +225,7 @@
         }
 
     } else if (indexPath.section== 3){
-        [self removeData];
-        [self.navigationController popViewControllerAnimated:YES];
+//        [self removeData];
 
         LoginViewController *loginVC =[[LoginViewController alloc]init];
         ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
@@ -239,7 +238,10 @@
         delegate.window.rootViewController = Nav;
 
                         }
-                        completion:nil];
+                        completion:^(BOOL finished) {
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }];
 
     }
 

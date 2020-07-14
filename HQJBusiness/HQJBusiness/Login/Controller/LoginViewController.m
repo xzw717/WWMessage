@@ -96,7 +96,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(UIImageView *)headerImageView {
     if ( _headerImageView  == nil ) {
         _headerImageView = [[UIImageView alloc]init];
-        _headerImageView.image = [UIImage imageNamed:@"logowuwumap_big"];
+        _headerImageView.image = [UIImage imageNamed:@"logowuwumap"];
         [self.view addSubview:_headerImageView];
     }
     

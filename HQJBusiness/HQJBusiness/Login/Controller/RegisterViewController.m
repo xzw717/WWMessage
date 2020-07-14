@@ -106,7 +106,7 @@
 -(UIImageView *)logoImageView {
     if ( _logoImageView  == nil ) {
         _logoImageView = [[UIImageView alloc]init];
-        _logoImageView.image = [UIImage imageNamed:@"logowuwumap_big"];
+        _logoImageView.image = [UIImage imageNamed:@"logowuwumap"];
         [self.view addSubview:_logoImageView];
     }
     
@@ -240,6 +240,7 @@
         [[_protocolBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             @strongify(self);
             HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+            pvc.zwNavView.hidden = YES;
             pvc.webUrlStr = [NSString stringWithFormat:@"%@%@",HQJBH5UpDataDomain,HQJBRegisterAgreementListInterface];
             [self.navigationController pushViewController:pvc animated:YES];
         }];
@@ -581,13 +582,14 @@
 
 #pragma mark --- 注册（立即入驻）
 - (void)registeredAction {
-//    HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
-//    
-//    pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=02bb9293-8480-4442-bb31-091ed98014a4",HQJBH5UpDataDomain,HQJBNewstoreListInterface];
-//    [self.navigationController pushViewController:pvc animated:YES];
-//    
-//    
-//    return;
+//    HQJWebViewController *pvc = [[HQJWeb ontroller:pvc animated:YES];
+    
+
+    
+    MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:@"dasghsd"];
+                 
+    [self.navigationController pushViewController:shopVC animated:YES];
+    return;
     
     if (self.accessoryBtn.selected) {
         if (self.userNameText.text.length > 1 &&

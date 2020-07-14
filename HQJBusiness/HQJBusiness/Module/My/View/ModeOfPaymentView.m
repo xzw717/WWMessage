@@ -17,6 +17,10 @@ static CGFloat const kTableHeight = 165.f;
 
 @property (nonatomic,retain) NSIndexPath *selectCellIndexPath;
 
+@property (nonatomic, strong)  NSArray *payTitleArray;
+
+@property (nonatomic, strong)  NSArray *payImageArray;
+
 @property (nonatomic,strong) UITableView *table;
 @end
 @implementation ModeOfPaymentView
@@ -27,7 +31,8 @@ static CGFloat const kTableHeight = 165.f;
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
         
         _backgroundView = [[UIView alloc]init];
-        
+        self.payImageArray = [NSArray array];
+        self.payTitleArray = [NSArray array];
         _backgroundView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_backgroundView];
         _table = [[UITableView alloc]init];
@@ -103,10 +108,16 @@ static CGFloat const kTableHeight = 165.f;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.isArrearage = _isArrearage;
-    
-    cell.payModeStr = _payModeStr;
-    
+//    cell.isArrearage = _isArrearage;
+    cell.textLabel.text = self.payTitleArray[indexPath.section][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:self.payImageArray[indexPath.section][indexPath.row]];
+    if ([self.payTitleArray[indexPath.section][indexPath.row] isEqualToString:@"积分支付(余额不足)"]) {
+           
+        cell.textLabel.textColor = [ManagerEngine getColor:@"999999"];
+        cell.userInteractionEnabled = NO;
+    }
+//    cell.payModeStr = _payModeStr;
+//    [cell setCellIndexPath:indexPath];
     if ( self.selectCellIndexPath == nil ) {
         if (_isArrearage) {
             if (indexPath.row == 3) {
@@ -155,11 +166,13 @@ static CGFloat const kTableHeight = 165.f;
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    self.selectCellIndexPath = indexPath;
+//    self.selectCellIndexPath = indexPath;
     
     [_table reloadData];
+    if (self.cellSelectBlock) {
+        self.cellSelectBlock(cell.textLabel.text);
 
-    _cellSelectBlock(cell.titleLabel.text);
+    }
     
     [self dismiss];
     
@@ -187,8 +200,36 @@ static CGFloat const kTableHeight = 165.f;
     
 }
 
+- (void)setIsArrearage:(BOOL)isArrearage {
+    //    @"微信支付",@"icon_wechat_pay_normal", @"银联支付",@"union_pay",  测试self-> 刘海燕说：让微信和银联不可选
+
+    if (isArrearage) {
+        self.payTitleArray= @[@[@"支付宝支付",
+                                   @"积分支付(余额不足)"]];
+        self.payImageArray = @[@[@"icon_alipay_normal",
+                                       @"icon_integration_normal"]];
+    } else {
+        
+//         @"微信支付",@"icon_wechat_pay_normal",@"银联支付" @"union_pay"
+        self.payTitleArray = @[@[@"积分支付",
+                                  @"支付宝支付"]];
+        self.payImageArray = @[@[@"icon_integration_normal",
+                                       @"icon_alipay_normal"]];
+    }
+ 
+    
+    
+}
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
+//self.viewModel.titleLabelArray[self.selectCellIndexPath.row]
+     
+//     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if (self.cellSelectBlock) {
+        self.cellSelectBlock(self.payTitleArray[self.selectCellIndexPath.section][self.selectCellIndexPath.row]);
+
+    }
+
     [self dismiss];
 }
 

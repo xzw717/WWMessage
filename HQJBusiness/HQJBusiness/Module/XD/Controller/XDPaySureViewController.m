@@ -100,6 +100,7 @@
 - (void)jumpH5:(NSString *)url{
     
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+    webVC.zwNavView.hidden = YES;
     webVC.webUrlStr = url;
     [self.navigationController pushViewController:webVC animated:YES];
     

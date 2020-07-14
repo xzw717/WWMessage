@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     self.zw_title = self.webTitleString;
-    self.zwNavView.backgroundColor = DefaultAPPColor;
+//    self.zwNavView.backgroundColor = DefaultAPPColor;
 //    NSString *oldAgent = [[[UIWebView alloc] init] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 //       NSString *customUserAgent = [NSString stringWithFormat:@"%@  hqj-sj", oldAgent];
 //       [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":customUserAgent, @"User-Agent":customUserAgent}];
@@ -37,9 +37,9 @@
     [userCC addScriptMessageHandler:self name:@"exitWeb"];
     [userCC addScriptMessageHandler:self name:@"xdShop"];
 
-    self.zwNavView.hidden = YES;
     self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT) configuration:config];
 //    self.webView.customUserAgent = @"hqj-sj";
+    self.webView.frame = self.zwNavView.hidden == YES ? CGRectMake(0, 0, WIDTH,HEIGHT) : CGRectMake(0, NavigationControllerHeight, WIDTH,HEIGHT - NavigationControllerHeight);
     [self.view addSubview:self.webView];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
@@ -69,8 +69,7 @@
     
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    [super preferredStatusBarStyle];
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{

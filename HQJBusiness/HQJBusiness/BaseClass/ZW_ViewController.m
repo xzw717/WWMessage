@@ -42,7 +42,7 @@
     if (!_zwBackButton) {
         _zwBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateNormal];
-        [_zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateHighlighted];
+//        [_zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_blue"] forState:UIControlStateHighlighted];
         [_zwNavView addSubview:_zwBackButton];
     }
     
@@ -148,9 +148,7 @@
 
 
 
-/*
- * 返回时的类型
- *
+
  
 -(void)setBackStyle:(NavBackStyle)backStyle {
     
@@ -170,7 +168,7 @@
 //        self.fd_interactivePopDisabled = YES;
         
         [ManagerEngine navViewWillAppearColor:self andConmp:^(id  _Nonnull sender) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:self.titleStr preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:self.ZWtitleStr preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
             [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -190,7 +188,9 @@
     
     
 }
-
+/*
+* 返回时的类型
+*
 */
 -(void)popViews {
     

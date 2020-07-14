@@ -85,7 +85,7 @@
 #import "SelectBankViewController.h"
 #import "BonusExchangeViewModel.h"
 #import "BonusExchangeModel.h"
-//#import "ChangeTradePswViewController.h"
+#import "ChangeTradePswViewController.h"
 #import "HintView.h"
 @interface NewWithdrawViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView  *withdrawTableView;
@@ -169,13 +169,14 @@
         }
         if (indexPath.row == 4) {
             self.passwordTextField = cell.subTitTextField;
+            self.passwordTextField.secureTextEntry = YES;
 
         }
         @weakify(self);
         [cell setForget:^{
             @strongify(self);
-//            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:SetDealPassWordType];
-//            [self.navigationController pushViewController:vc animated:YES];
+            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:ChangeDealPassWordType];
+            [self.navigationController pushViewController:vc animated:YES];
         }];
         return cell;
     }else  {
@@ -245,40 +246,48 @@
                            @"roleType":@(roleType),
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode};
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dic) {
-           NSString *tit =  [NSString stringWithFormat:@"手续费%.0f%%,服务费%.2f元，预估到账%.2f元",[dic[@"result"][@"feerate"] floatValue],[dic[@"result"][@"serviceFee"] floatValue],[dic[@"result"][@"willGet"] floatValue]];
-        [HintView enrichSubviews:tit andSureTitle:@"提现" cancelTitle:@"放弃" sureAction:^{
-            [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
-            
-        
-                    [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:dic[@"result"][@"willGet"] andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
-                        
-                        if ([dic[@"code"]integerValue] == 49000) {
-                            
-                            [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
-                            
-                            //                    [SVProgressHUD dismissWithCompletion:^{
-                            //
-                            //                    }];
-                            [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
-                                [self.navigationController popViewControllerAnimated:YES];
-                                
-                                
-                            }];
-                        } else {
-                            [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
-                            //SVProgressHUD
-                            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-                        }
-                        
-                    }];
-                
-                
-                
-            
-            
-            
-        }];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dics) {
+        if ([dics[@"code"]integerValue] == 49000) {
+            NSString *tit =  [NSString stringWithFormat:@"手续费%.2f%%，服务费%.2f元，预估到账%.2f元",[dics[@"result"][@"feerate"] floatValue],[dics[@"result"][@"serviceFee"] floatValue],[dics[@"result"][@"willGet"] floatValue]];
+               [HintView enrichSubviews:tit andSureTitle:@"提现" cancelTitle:@"放弃" sureAction:^{
+                       [ManagerEngine loadDateView:self.submitBtn andPoint:CGPointMake(self.submitBtn.frame.size.width/2, self.submitBtn.frame.size.height/2)];
+                       
+                       [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.zw_title andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
+                           
+                           if ([dic[@"code"]integerValue] == 49000) {
+                               
+                               [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
+                               
+                               //                    [SVProgressHUD dismissWithCompletion:^{
+                               //
+                               //                    }];
+                               [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
+                                   [self.navigationController popViewControllerAnimated:YES];
+                                   
+                                   
+                               }];
+                           } else {
+                               [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                               //SVProgressHUD
+                               [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                           }
+                           
+                       }];
+                   
+                   
+               
+                       
+                       
+                       
+                   
+                   
+                   
+               }];
+        } else {
+            [SVProgressHUD showErrorWithStatus:dics[@"msg"]];
+
+        }
+      
         
         
         

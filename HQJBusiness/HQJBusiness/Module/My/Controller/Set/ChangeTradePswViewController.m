@@ -139,32 +139,35 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    switch (self.pswType) {
-        case SetLoginPassWordType:
-            self.zw_title = @"设置登录密码";
+    if ([self.zw_title isEqualToString:@""] || self.zw_title == nil) {
+        switch (self.pswType) {
+             case SetLoginPassWordType:
+                 self.zw_title = @"设置登录密码";
 
-            break;
-            case SetDealPassWordType:
-            self.zw_title = @"设置交易密码";
+                 break;
+                 case SetDealPassWordType:
+                 self.zw_title = @"设置交易密码";
 
-                     
-            break;
-            case ChangeLoginPassWordType:
-            self.zw_title = @"修改登录密码";
+                          
+                 break;
+                 case ChangeLoginPassWordType:
+                 self.zw_title = @"修改登录密码";
 
-            break;
-            case ChangeDealPassWordType:
-            self.zw_title = @"修改交易密码";
+                 break;
+                 case ChangeDealPassWordType:
+                 self.zw_title = @"修改交易密码";
 
-                      
-            break;
-            case FindLoginPassWordType:
-            self.zw_title = @"找回登录密码";
-                   
-            break;
-        default:
-            break;
+                           
+                 break;
+                 case FindLoginPassWordType:
+                 self.zw_title = @"找回登录密码";
+                        
+                 break;
+             default:
+                 break;
+         }
     }
+ 
     [self initializeTheView];
     
     [self setSignal];

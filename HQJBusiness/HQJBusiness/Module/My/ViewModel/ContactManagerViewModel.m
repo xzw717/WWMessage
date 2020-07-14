@@ -23,7 +23,7 @@
                            @"signResul":[NSString stringWithFormat:@"%ld",signResul]};
     
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
-        if ([dic[@"resultCode"] integerValue] == 1800 | [dic[@"resultCode"] integerValue] == 2100) {
+        if ([dic[@"resultCode"] integerValue] == 1800 || [dic[@"resultCode"] integerValue] == 2100) {
                 NSArray *resultMsgArray = dic[@"resultMsg"];
                 NSMutableArray *resultArray = [NSMutableArray array];
                  if (resultMsgArray.count > 0) {

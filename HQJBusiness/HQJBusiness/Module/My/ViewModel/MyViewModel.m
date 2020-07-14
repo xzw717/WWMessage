@@ -103,6 +103,7 @@
                 [SVProgressHUD showErrorWithStatus:@"暂无权限"];
             } else {
                 HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+                webvc.zwNavView.hidden = YES;
                 //            webvc.webTitleString = @"优惠券";
                 //            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
                 webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",WWMCouponDomain
@@ -117,12 +118,12 @@
     }
     if (xzw_indexPath.section  == 2 ) {
         if (xzw_indexPath.row == 0) {
-            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
-                          [SVProgressHUD showErrorWithStatus:@"暂无权限"];
-            } else {
+//            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
+//                          [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+//            } else {  商家入驻开放台卡权限
                 DeccaDownloadViewController *deccaVC = [[DeccaDownloadViewController alloc]init];
                   [xzw_self.navigationController pushViewController:deccaVC animated:YES];
-            }
+//            }
   
         }
         if (xzw_indexPath.row == 1) {

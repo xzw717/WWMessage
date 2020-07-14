@@ -60,12 +60,33 @@
         _selectButton.imageEdgeInsets =  UIEdgeInsetsMake(0, 85, 0, 0);
         _selectButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         _selectButton.titleEdgeInsets = UIEdgeInsetsMake(0, -25, 0, 0);
-
+        @weakify(self);
         [_selectButton bk_addEventHandler:^(id  _Nonnull sender) {
+            @strongify(self);
             
-            
-            [self.payModeView showView];
+            [BuyZHViewModel buyZH:^(id sender) {
+                    
+                    self.model = sender;
+                    if ([self.numerStr doubleValue] * 4 > self.model.score.score) {
+                        
+            //            HQJLog(@"%f\n%f",[_numerStr doubleValue] * 4,[self.model.bonus doubleValue]);
+                        /**
+                         *
+                         * 积分余额不足
+                         *
+                         *
+                         */
+                        self.payModeView.isArrearage = YES;
+                        
+                    } else {
+                        
+                        self.payModeView.isArrearage = NO;
+                        
+                        
+                    }
+                [self.payModeView showView];
 
+                }];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_selectButton];
     }
@@ -78,28 +99,7 @@
     
     self.model = [[BonusExchangeModel alloc]init];
     
-    [BuyZHViewModel buyZH:^(id sender) {
-        
-        self.model = sender;
-        if ([_numerStr doubleValue] * 4 > self.model.score.score) {
-            
-//            HQJLog(@"%f\n%f",[_numerStr doubleValue] * 4,[self.model.bonus doubleValue]);
-            /**
-             *
-             * 积分余额不足
-             *
-             *
-             */
-            self.payModeView.isArrearage = YES;
-            
-        } else {
-            
-            self.payModeView.isArrearage = NO;
-            
-            
-        }
-         self.nextButton.enabled = YES;
-    }];
+    
     
    
     
@@ -108,6 +108,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.payModeView.payModeStr = @"积分支付";
+    self.nextButton.enabled = YES;
+
     @WeakObj(self);
 
     
@@ -248,14 +250,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

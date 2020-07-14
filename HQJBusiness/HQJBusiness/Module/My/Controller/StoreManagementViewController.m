@@ -76,6 +76,7 @@
     if (indexPath.row == 2) {
         HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
         webvc.webTitleString = @"升级规则";
+        webvc.zwNavView.hidden = YES;
         webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
                            ,HQJBUpgradeRuleInterface,Shopid];
         [self.navigationController pushViewController:webvc animated:YES];

@@ -11,7 +11,7 @@
 #import "BonusExchangeViewModel.h"
 #import "BonusExchangeModel.h"
 #import "SelectBankViewController.h"
-
+#import "HintView.h"
 @interface BonusExchangeViewController ()<UITextFieldDelegate>
 {
     BOOL isHaveDian;
@@ -244,13 +244,82 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+- (void)requstSubmit {
+    NSString *url = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBFreeAmountInterface];
+    NSInteger roleType = 0 ;
+    if ([[NameSingle shareInstance].role containsString:@"物联"]) {
+        roleType = 13;
+    } else if ([[NameSingle shareInstance].role containsString:@"联盟"]) {
+        roleType = 14;
+
+    } else if ([[NameSingle shareInstance].role containsString:@"合作"]) {
+        roleType = 15;
+
+    } else if ([[NameSingle shareInstance].role containsString:@"股份"]) {
+         roleType = 16;
+
+    } else if ([[NameSingle shareInstance].role containsString:@"命运"]) {
+        roleType = 17;
+
+    }
+        
+    NSDictionary *dict = @{@"memberid":MmberidStr,
+                           @"amount":self.BonusNumerTextField.text,
+                           @"roleType":@(roleType),
+                           @"merchantType":@([Classifyid integerValue]),
+                           @"hash":HashCode};
+    @weakify(self);
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dics) {
+        if ([dics[@"code"]integerValue] == 49000) {
+               NSString *tit =  [NSString stringWithFormat:@"手续费%.2f%%,服务费%.2f元，预估到账%.2f元",[dics[@"result"][@"feerate"] floatValue],[dics[@"result"][@"serviceFee"] floatValue],[dics[@"result"][@"willGet"] floatValue]];
+                
+                [HintView enrichSubviews:tit andSureTitle:@"提现" cancelTitle:@"放弃" sureAction:^{
+            
+                    @strongify(self);
+                [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:self.ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
+                            
+                            if ([dic[@"code"]integerValue] == 49000) {
+                                
+                                [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
+                                
+                                //                    [SVProgressHUD dismissWithCompletion:^{
+                                //
+                                //                    }];
+                                [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                    
+                                    
+                                }];
+                            } else {
+                                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                                //SVProgressHUD
+                                [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                            }
+                            
+                        }];
+                    
+                }];
+        } else {
+            [SVProgressHUD showErrorWithStatus:dics[@"msg"]];
+
+        }
+    
+        
+        
+        
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
+
+
 #pragma mark --
 #pragma mark --- 信号创建
 -(void)signalSet {
-    
-   
+    @weakify(self);
     RACSignal *validBounsSignal = [self.BonusNumerTextField.rac_textSignal map:^id(NSString *value) {
-       
+        @strongify(self);
         if ([value isEqualToString:@""]) {
             self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现0.00元"];
         } else {
@@ -261,7 +330,7 @@
         return @([self textFieldChanged:value]);
     }];
     RACSignal *validPswSignal = [self.passwordTextField.rac_textSignal map:^id(id value) {
-        
+        @strongify(self);
         return @([self isValidPsw:value]);
     }];
     
@@ -273,6 +342,7 @@
         return @([bounsValid boolValue]&&[pswValid boolValue]);
     }];
     [signUp subscribeNext:^(NSNumber * signUpActive) {
+        @strongify(self);
         self.submitButton.enabled = [signUpActive boolValue];
         if ([signUpActive boolValue]) {
             self.submitButton.backgroundColor = DefaultAPPColor;
@@ -283,7 +353,9 @@
         }
         
     }];
+    
     [[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
         [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.frame.size.width/2, self.submitButton.frame.size.height/2)];
         
         if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
@@ -295,27 +367,8 @@
                 [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
 
             } else {
-                [BonusExchangeViewModel bonusExchangSubmitRequstWithAmount:self.BonusNumerTextField.text andPassword:self.passwordTextField.text andViewControllerTitle:_ViewControllerTitle andcardId:self.cardIDStr andbonusBlock:^(NSDictionary * dic) {
-                    
-                    if ([dic[@"code"]integerValue] == 49000) {
-                        
-                        [SVProgressHUD showSuccessWithStatus:@"提交成功，请等待审核"];
-                        
-                        //                    [SVProgressHUD dismissWithCompletion:^{
-                        //
-                        //                    }];
-                        [ManagerEngine SVPAfter:@"提交成功，请等待审核" complete:^{
-                            [self.navigationController popViewControllerAnimated:YES];
-                            
-                            
-                        }];
-                    } else {
-                        [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
-                        //SVProgressHUD
-                        [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-                    }
-                    
-                }];
+                [self requstSubmit];
+        
             }
           
           

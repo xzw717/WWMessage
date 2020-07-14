@@ -54,6 +54,7 @@
 - (void)jumpH5 {
             
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+    webVC.zwNavView.hidden = YES;
 //    webVC.webUrlStr = @"http://120.26.53.18/#/test";
     webVC.webUrlStr = [NSString stringWithFormat:@"%@shopid=%@&mobile=%@&type=%@&peugeotid=%@",HQJBXDH5Domain,Shopid,Mmobile,@(self.state),self.peugeotid];
     [self.navigationController pushViewController:webVC animated:YES];

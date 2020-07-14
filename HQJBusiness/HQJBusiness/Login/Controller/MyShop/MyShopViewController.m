@@ -9,6 +9,7 @@
 #import "MyShopViewController.h"
 #import "HintView.h"
 #import "HQJWebViewController.h"
+//#import ""
 #define TopSpace 40/3.f
 
 @interface MyShopViewController ()
@@ -38,6 +39,9 @@
 
 /// 对应状态的URL
 @property (nonatomic, strong) NSString *signUrl;
+
+/// 客服电话
+@property (nonatomic, strong) UILabel *phoneLabel;
 @end
 
 @implementation MyShopViewController
@@ -68,7 +72,7 @@
     if ( _shopNameValueLabel == nil ) {
         _shopNameValueLabel = [[UILabel alloc]init];
         _shopNameValueLabel.font = [UIFont systemFontOfSize:16];
-        _shopNameValueLabel.text = @"古风日";
+        _shopNameValueLabel.text = @"";
         _shopNameValueLabel.textAlignment = NSTextAlignmentRight;
         [self.shopNameView addSubview:_shopNameValueLabel];
     }
@@ -200,20 +204,36 @@
     
     return _stateValueLabel;
 }
-
+- (UILabel *)phoneLabel {
+    if (!_phoneLabel) {
+        _phoneLabel = [[UILabel alloc]init];
+        _phoneLabel.text = @"客服热线：4000591081";
+        _phoneLabel.textColor = [UIColor blackColor];
+        _phoneLabel.font = [UIFont systemFontOfSize:14.f];
+        _phoneLabel.textAlignment = NSTextAlignmentCenter;
+        _phoneLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickPhone:)];
+        [_phoneLabel addGestureRecognizer:tap];
+        [self.view addSubview:_phoneLabel];
+    }
+    return _phoneLabel;
+}
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
     HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
-
+    pvc.zwNavView.hidden = YES;
     if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
-                         pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
+        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
     } else if ([self.stateValueLabel.text isEqualToString:@"审核成功"]) {
         [HintView enrichSubviews:@"重新登录即可获取完整体验" andSureTitle:@"去登录" cancelTitle:@"取消" sureAction:^{
             [ManagerEngine login];
         }];
+        return;
     } else if ([self.stateValueLabel.text isEqualToString:@"审核失败"]) {
+        @weakify(self);
         [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
-            pvc.webUrlStr = self.signUrl;
+            @strongify(self);
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
             [self.navigationController pushViewController:pvc animated:YES];
         }];
          return;
@@ -224,7 +244,7 @@
     } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
         pvc.webUrlStr = self.signUrl;
     } else {
-       
+        return;
     }
     [self.navigationController pushViewController:pvc animated:YES];
 
@@ -234,18 +254,23 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    self.navType = HQJNavigationBarBlue;
-//    self.isHideShadowLine = YES;
+
+     [self requstState];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
     [self layoutTheSubViews];
-    [self requstState];
+   
 
-    self.zwBackButton.hidden = YES;
+    self.viewControllerName = @"LoginViewController";
     self.fd_interactivePopDisabled = YES;
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:self.phoneLabel.text];
+    [attri addAttributes:@{NSForegroundColorAttributeName:DefaultAPPColor} range:NSMakeRange(5, self.phoneLabel.text.length - 5)];
+    [attri addAttributes:@{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(5, self.phoneLabel.text.length - 5)];
+    self.phoneLabel.attributedText = attri;
+   
     
 }
 - (instancetype)initWithShopid:(NSString *)shopid {
@@ -255,6 +280,12 @@
     }
     return self;
 }
+
+- (void)clickPhone:(UITapGestureRecognizer *)tap {
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://4000591081"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
 
 - (void)requstState {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
@@ -329,7 +360,10 @@
     
     self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
+    self.phoneLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.view, ToolBarHeight - 20).heightIs(20).widthIs(WIDTH);
     
+    
+
 }
 
 

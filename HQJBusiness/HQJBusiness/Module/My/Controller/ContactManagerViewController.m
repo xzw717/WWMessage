@@ -127,39 +127,44 @@
     //            "signtime": "签署时间"
     ContactModel *model = self.dataArray[indexPath.row];
     NSMutableString *result = [[NSMutableString alloc]init];
-    if ([model.type isEqualToString:@"1"]) {
-        [result appendString:@"物联网新商业"];
-    }else{
-        [result appendString:@"国物追溯平台"];
+    if (self.isxd) {
+        if ([model.type isEqualToString:@"1"]) {
+            [result appendString:@"物联网新商业"];
+        }else{
+            [result appendString:@"国物追溯平台"];
+        }
+        switch (model.peugeotid.integerValue) {
+            case 1://标识企业
+                [result appendString:@"(标识企业)"];
+                
+                break;
+                
+            case 2://异盟企业
+                [result appendString:@"(异盟企业)"];
+                
+                break;
+                
+            case 3://标杆企业
+                [result appendString:@"(标杆企业)"];
+                
+                break;
+                
+            case 4://兄弟企业
+                [result appendString:@"(兄弟企业)"];
+                
+                break;
+                
+            case 5://生态企业
+                [result appendString:@"(生态企业)"];
+                break;
+        }
+
+    } else {
+        [result appendString:model.rolename];
     }
 
-    switch (model.peugeotid.integerValue) {
-        case 1://标识企业
-            [result appendString:@"(标识企业)"];
-            
-            break;
-            
-        case 2://异盟企业
-            [result appendString:@"(异盟企业)"];
-            
-            break;
-            
-        case 3://标杆企业
-            [result appendString:@"(标杆企业)"];
-            
-            break;
-            
-        case 4://兄弟企业
-            [result appendString:@"(兄弟企业)"];
-            
-            break;
-            
-        case 5://生态企业
-            [result appendString:@"(生态企业)"];
-            break;
-    }
-    [result appendString:@"合同"];
     
+    [result appendString:@"合同"];
     [cell setTitle:result];
     return cell;
     
@@ -170,6 +175,8 @@
     if (model.signUrl) {
         HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
         webVC.webUrlStr = model.signUrl;
+        webVC.webTitleString = @"合同";
+//        webVC.zwNavView.hidden = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }
     
