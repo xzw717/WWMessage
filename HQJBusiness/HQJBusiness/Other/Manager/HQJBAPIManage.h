@@ -171,7 +171,8 @@ extern NSString *const HQJBGetByMobileCodeInterface;
 extern NSString *const HQJBGetShopUpgradeStateInterface;
 /// 银行卡提现免费额度查询
 extern NSString *const HQJBFreeAmountInterface;
-
+/// 商家查看信息是否完善
+extern NSString *const HQJBIsPerfectInterface;
 /*_____________________________XD接口________________________________________*/
 ///创建订单
 extern NSString *const HQJBXdorderInterface;

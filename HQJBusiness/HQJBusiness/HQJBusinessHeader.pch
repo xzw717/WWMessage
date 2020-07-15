@@ -108,7 +108,7 @@
 #define Shopid       [[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]
 #define Peugeotid       [[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]
 #define Classifyid       [[NSUserDefaults standardUserDefaults] objectForKey:@"classify"]
-
+#define isComplete     [[NSUserDefaults standardUserDefaults] objectForKey:@"isComplete"]
 
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 

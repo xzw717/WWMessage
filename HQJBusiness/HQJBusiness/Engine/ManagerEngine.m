@@ -925,4 +925,74 @@ static const CGFloat  sAlertTimer = 3.0;
     
     return iPhoneXSeries;
 }
+
+
++ (PswType)pswType:(BOOL)isLoginPsw {
+    PswType type ;
+    switch ([isComplete integerValue]) {
+        case 1: {
+            if (isLoginPsw) {
+                type = SetLoginPassWordType;
+            } else {
+                type = ChangeDealPassWordType;
+                
+            }
+        }
+            break;
+        case 2: {
+            if (isLoginPsw) {
+                type = ChangeLoginPassWordType;
+            } else {
+                type = SetDealPassWordType;
+                
+            }
+            
+        }
+            break;
+        case 3: {
+            if (isLoginPsw) {
+                type = SetLoginPassWordType;
+            } else {
+                type = SetDealPassWordType;
+                
+            }
+            
+        }
+            break;
+        default:{
+            if (isLoginPsw) {
+                type = ChangeLoginPassWordType;
+            } else {
+                type = ChangeDealPassWordType;
+                
+            }
+            
+        }
+            break;
+    }
+    return type;
+}
+
++ (NSString *)pswTitleWithType:(PswType)type {
+    switch (type) {
+        case SetLoginPassWordType:
+            return @"设置登录密码";
+            break;
+        case FindLoginPassWordType:
+            return @"找回登录密码";
+            break;
+        case SetDealPassWordType:
+            return @"设置交易密码";
+            break;
+        case ChangeLoginPassWordType:
+            return @"修改登录密码";
+            break;
+        default:
+            return @"修改交易密码";
+            
+            break;
+    }
+    return nil;
+    
+}
 @end

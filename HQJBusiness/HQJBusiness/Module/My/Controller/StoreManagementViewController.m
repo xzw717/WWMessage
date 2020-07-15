@@ -11,10 +11,12 @@
 #import "UpgradeManagementViewController.h"
 #import "HQJWebViewController.h"
 #import "ContactManagerViewController.h"
-
+#import "StoreInfoViewModel.h"
+#import "StoreInfoModel.h"
 @interface StoreManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *storeManagementTableView;
 @property (nonatomic, strong) NSMutableArray <NSString *>*cellTitleArray;
+@property (nonatomic, strong) StoreInfoModel *infoModel;
 @end
 
 @implementation StoreManagementViewController
@@ -26,7 +28,12 @@
     self.view.backgroundColor = DefaultBackgroundColor;
     self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",@"合同管理",@"升级管理",@"商品发布"]];
     [self.view addSubview:self.storeManagementTableView];
-    
+    @weakify(self);
+    [StoreInfoViewModel requstStoreInfoWithModel:^(StoreInfoModel * _Nonnull model) {
+        @strongify(self);
+        self.infoModel = model;
+        [self.storeManagementTableView reloadData];
+    }];
 }
 
 - (UITableView *)storeManagementTableView {
@@ -55,10 +62,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (indexPath.row == 0) {
-         cell.detailTextLabel.text=@"去完善";
+        cell.detailTextLabel.text= self.infoModel.state == 0 ? @"未完善" : @"已完善";
 
     } else if (indexPath.row == 1) {
-        cell.detailTextLabel.text=@"99";
+        cell.detailTextLabel.text= [NSString stringWithFormat:@"%ld",self.infoModel.pactCount];
 
     }
     

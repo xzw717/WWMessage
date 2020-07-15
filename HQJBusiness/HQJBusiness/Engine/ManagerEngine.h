@@ -310,4 +310,14 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
 
 /// 登录
 + (void)login;
+
+
+
+/// 返回改变密码的界面类型
+/// @param isLoginPsw 是否是登录界面
++ (PswType)pswType:(BOOL)isLoginPsw ;
+
+/// 返回对应Title的文字
+/// @param type 密码界面类型
++ (NSString *)pswTitleWithType:(PswType)type ;
 @end

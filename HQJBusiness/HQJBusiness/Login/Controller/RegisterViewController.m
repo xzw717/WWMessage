@@ -136,7 +136,7 @@
         _userNameText.clearsOnBeginEditing = YES;
         _userNameText.clearButtonMode = UITextFieldViewModeAlways;
         _userNameText.keyboardType = UIKeyboardTypeNumberPad;
-        _userNameText.placeholder = @" 请输入手机号";
+        _userNameText.placeholder = @"请输入手机号";
         
         [self.view addSubview:_userNameText];
         
@@ -233,7 +233,7 @@
 - (UIButton *)protocolBtn{
     if ( _protocolBtn == nil ) {
         _protocolBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_protocolBtn setTitleColor:RedColor forState:UIControlStateNormal];
+        [_protocolBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
         _protocolBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_protocolBtn setTitle:@"《【物物地图】商家入驻协议》" forState:UIControlStateNormal];
         @weakify(self);

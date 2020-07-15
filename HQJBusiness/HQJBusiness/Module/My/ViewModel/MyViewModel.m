@@ -31,6 +31,9 @@
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
+            [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"isComplete"]integerValue] forKey:@"isComplete"];
+
+            
             if (self.myrequstBlock) {
                 self.myrequstBlock(model);
             }

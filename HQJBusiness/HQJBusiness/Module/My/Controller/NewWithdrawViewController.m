@@ -175,7 +175,7 @@
         @weakify(self);
         [cell setForget:^{
             @strongify(self);
-            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:ChangeDealPassWordType];
+            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:[ManagerEngine pswType:NO]];
             [self.navigationController pushViewController:vc animated:YES];
         }];
         return cell;
