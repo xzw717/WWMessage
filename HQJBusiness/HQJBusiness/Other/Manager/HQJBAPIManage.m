@@ -29,8 +29,8 @@ NSString *const WWMLiveDomain = @"106.13.213.51";
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 
 
-测试：http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
-正式：http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
+/// 测试：http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
+/// 正式：http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";

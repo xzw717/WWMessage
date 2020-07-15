@@ -8,7 +8,8 @@
 
 #import "DealTableViewCell.h"
 
-@interface ModeOfPayCell : DealTableViewCell
+@interface ModeOfPayCell : UITableViewCell
 @property (nonatomic,assign) BOOL isArrearage;
 @property (nonatomic,copy) NSString *payModeStr;
+//-(void)setCellIndexPath:(NSIndexPath *)cellIndexPath;
 @end
