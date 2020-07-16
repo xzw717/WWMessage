@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ForgetPswViewController : UIViewController
-
+@interface ForgetPswViewController : ZW_ViewController
+@property (nonatomic, assign) BOOL isForget;
 @end
 
 NS_ASSUME_NONNULL_END

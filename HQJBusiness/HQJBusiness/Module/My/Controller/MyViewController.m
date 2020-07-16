@@ -22,8 +22,8 @@
 #import "JWBluetoothManage.h"
 #import "MyShopViewController.h"
 #import "XDShopViewController.h"
-
-
+#import "HintView.h"
+#import "ForgetPswViewController.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
 }
@@ -270,15 +270,29 @@
     [_viewModel  setMyrequstBlock:^(MyModel * xzw_model) {
         @strongify(self);
         self.model = xzw_model;
-//        [selfWeak.titleView removeFromSuperview];
-//        [selfWeak.view addSubview:selfWeak.titleView];
-     
+        //        [selfWeak.titleView removeFromSuperview];
+        //        [selfWeak.view addSubview:selfWeak.titleView];
+        
         [self.zwNavView removeFromSuperview];
         
         [NameSingle shareInstance].name = xzw_model.realname; // --- 单例存商家名字
         [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
         [NameSingle shareInstance].mobile = xzw_model.mobile;
         [NameSingle shareInstance].memberid = xzw_model.memberid;
+        if ([isComplete integerValue] == 1 ||[isComplete integerValue] == 3) {
+            if (![NameSingle shareInstance].isShow) {
+                [NameSingle shareInstance].isShow = YES;
+                @weakify(self);
+                [HintView enrichSubviews:@"设置登录密码，保障账户安全" andSureTitle:@"前往设置" cancelTitle:@"放弃" sureAction:^{
+                    @strongify(self);
+                    ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
+                    fpVC.isForget = NO;
+                    [self.navigationController pushViewController:fpVC animated:YES];
+                }];
+            }
+            
+        }
+        
         [self.myTableView reloadData];
         [self.myTableView.mj_header endRefreshing];
     }];

@@ -161,7 +161,9 @@
         cell.subTitTextField.delegate = self;
         [cell setTitle:[self.titArray[indexPath.row] firstObject] subTitle:[self.titArray[indexPath.row] lastObject]];
         if (indexPath.row == 1) {
+            cell.subTitTextField.keyboardType = UIKeyboardTypeDecimalPad;
             self.BonusNumerTextField = cell.subTitTextField;
+
         }
         if (indexPath.row == 2) {
             self.selectBankTextField = cell.subTitTextField;

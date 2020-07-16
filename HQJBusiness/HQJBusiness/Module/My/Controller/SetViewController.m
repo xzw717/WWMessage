@@ -17,7 +17,7 @@
 #import "SetCell.h"
 #import "BlueToothVC.h"
 #import "SetBindingCell.h"
-
+#import "ForgetPswViewController.h"
 #import "JPUSHService.h"
 
 @interface SetViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -181,9 +181,15 @@
             [self.navigationController pushViewController:IFVC animated:YES];
 
         }else if (indexPath.row == 1)  {
-
-            ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:[ManagerEngine pswType:YES]];
-            [self.navigationController pushViewController:ChangePswVC animated:YES];
+            if ([[ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]] isEqualToString:@"设置登录密码"]) {
+                ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
+                fpVC.isForget = NO;
+                [self.navigationController pushViewController:fpVC animated:YES];
+            } else {
+                ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:[ManagerEngine pswType:YES]];
+                [self.navigationController pushViewController:ChangePswVC animated:YES];
+            }
+         
 
         } else if (indexPath.row == 2){
         

@@ -256,6 +256,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //            CTVC.pswType = 1;
 //            [self.navigationController pushViewController:CTVC animated:YES];
             ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
+            fpVC.isForget = YES;
             [self.navigationController pushViewController:fpVC animated:YES];
             
         } forControlEvents:UIControlEventTouchUpInside];

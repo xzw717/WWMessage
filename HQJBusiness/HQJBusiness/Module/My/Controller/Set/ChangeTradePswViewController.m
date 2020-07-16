@@ -181,9 +181,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType ||  self.pswType == FindLoginPassWordType) {
         self.mobileLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,20 + NavigationControllerHeight).heightIs(44).widthIs(mobileWidth);
         
-        self.modelTextField.sd_layout.leftSpaceToView(self.mobileLabel,0).topSpaceToView(self.view,NavigationControllerHeight + 20 ).heightIs(44).widthIs(WIDTH - mobileWidth - kEDGE * 2);
+//        self.modelTextField.sd_layout.leftSpaceToView(self.mobileLabel,0).topSpaceToView(self.view,NavigationControllerHeight + 20 ).heightIs(44).widthIs(WIDTH - mobileWidth - kEDGE * 2);
     }else{
-        self.mobileLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,20 + NavigationControllerHeight).heightIs(17).widthIs(mobileWidth);
+//        self.mobileLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,20 + NavigationControllerHeight).heightIs(17).widthIs(mobileWidth);
     }
 
     self.verificationCodeTextField.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.mobileLabel,20).heightIs(44).widthIs(WIDTH - 100 - kEDGE * 2 - 10);
@@ -272,7 +272,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //                [self popViews];
             }];
         }else{
-            [SVProgressHUD showSuccessWithStatus:@"修改失败"];
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             [ManagerEngine dimssLoadView:self.okButtn andtitle:@"提交"];
         }
         

@@ -108,6 +108,7 @@
 #define Shopid       [[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]
 #define Peugeotid       [[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]
 #define Classifyid       [[NSUserDefaults standardUserDefaults] objectForKey:@"classify"]
+/// 1:登录密码没有设置 2：交易密码没设置 3：密码都没设置
 #define isComplete     [[NSUserDefaults standardUserDefaults] objectForKey:@"isComplete"]
 
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)

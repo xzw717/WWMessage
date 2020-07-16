@@ -15,6 +15,8 @@
 @property (nonatomic,strong)NSString *memberid;
 //子公司名称
 @property (nonatomic,strong)NSString *subCompanyName;
+/// 提示设置密码的弹窗是否已经出现
+@property (nonatomic, assign) BOOL isShow;
 +(instancetype) shareInstance ;
 
 @end

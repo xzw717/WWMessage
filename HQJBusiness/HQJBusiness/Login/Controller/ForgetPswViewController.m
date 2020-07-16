@@ -266,12 +266,30 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self layoutTheSubViews];
-    
+    self.zw_title = self.isForget ? @"忘记密码" :@"设置登录密码";
+    self.zwNavView.hidden = self.isForget;
     [self setSignal];
-    
+    self.titleLabel.hidden = !self.isForget;
+    self.backBtn.hidden = !self.isForget;
+    self.logoImageView.hidden = !self.isForget;
+    self.topicLabel.hidden = !self.isForget;
+    !self.isForget ? [self layoutTheSubView] : [self layoutTheSubViews];
+    //    if (self.isForget == NO) {
+    //        self.titleLabel.hidden = YES;
+    //        self.backBtn.hidden = YES;
+    //        self.logoImageView.hidden = YES;
+    //        self.topicLabel.hidden = YES;
+    //        [self layoutTheSubView];
+    //    } else {
+    //        self.titleLabel.hidden = NO;
+    //        self.backBtn.hidden = NO;
+    //        self.logoImageView.hidden = NO;
+    //        self.topicLabel.hidden = NO;
+    //        [self layoutTheSubViews];
+    //
+    //    }
     // Do any additional setup after loading the view.
-
+    
     
 }
 #pragma private method
@@ -305,7 +323,26 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     self.confirmBtn.sd_layout.leftEqualToView(self.mobileText).topSpaceToView(self.apBottomView,S_XRatioH(125.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
 }
-
+- (void)layoutTheSubView {
+    self.mobileText.sd_layout.leftSpaceToView(self.view,S_XRatioW(55.0f/3)).topSpaceToView(self.view,StatusBarHeight + NavigationControllerHeight).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.unBottomView.sd_layout.leftEqualToView(self.mobileText).topSpaceToView(self.mobileText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.authCodeText.sd_layout.leftEqualToView(self.mobileText).topEqualToView(self.unBottomView).rightSpaceToView(self.view,S_XRatioW(55.0f/3 + 100)).widthIs(WIDTH-S_XRatioW(110.0f/3 + 100)).heightIs(S_XRatioH(130.0f/3));
+    self.getAuthCodeBtn.sd_layout.rightSpaceToView(self.view,S_XRatioW(55.0f/3)).topSpaceToView(self.unBottomView, S_XRatioH(20.0f/3)).heightIs(S_XRatioH(30)).widthIs(S_XRatioW(100));
+    
+    self.acBottomView.sd_layout.leftEqualToView(self.authCodeText).topSpaceToView(self.authCodeText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.pswText.sd_layout.leftEqualToView(self.authCodeText).topEqualToView(self.acBottomView).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.pswBottomView.sd_layout.leftEqualToView(self.mobileText).topSpaceToView(self.pswText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.againPswText.sd_layout.leftEqualToView(self.mobileText).topEqualToView(self.pswBottomView).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.apBottomView.sd_layout.leftEqualToView(self.mobileText).topSpaceToView(self.againPswText,.5f).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+    
+    self.confirmBtn.sd_layout.leftEqualToView(self.mobileText).topSpaceToView(self.apBottomView,S_XRatioH(125.0f/3)).heightIs(S_XRatioH(145.0f/3)).widthIs(WIDTH-S_XRatioW(110.0f/3));
+}
 -(void)setSignal {
     RACSignal *mobileFieldSignal =[self.mobileText.rac_textSignal map:^id(id value) {
         return @([ManagerEngine valiMobile:value]);

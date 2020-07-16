@@ -65,7 +65,7 @@
         cell.detailTextLabel.text= self.infoModel.state == 0 ? @"未完善" : @"已完善";
 
     } else if (indexPath.row == 1) {
-        cell.detailTextLabel.text= [NSString stringWithFormat:@"%ld",self.infoModel.pactCount];
+        cell.detailTextLabel.text= [NSString stringWithFormat:@"%ld",(long)self.infoModel.pactCount];
 
     }
     

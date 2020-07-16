@@ -51,11 +51,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.pswType == SetLoginPassWordType) {
-        self.zw_title = @"登录密码设置";
+        self.zw_title = @"设置登录密码";
 
     }
     if (self.pswType == ChangeLoginPassWordType) {
-        self.zw_title = @"登录密码修改";
+        self.zw_title = @"修改登录密码";
 
     }
     [self createChangeUI];
