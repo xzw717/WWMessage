@@ -151,27 +151,18 @@ static CGFloat const kTableHeight = 165.f;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
     if (self.selectCellIndexPath) {
         ModeOfPayCell *cell = [tableView cellForRowAtIndexPath:self.selectCellIndexPath];
-
-        
         cell.accessoryType = UITableViewCellAccessoryNone;
-        
     }
     ModeOfPayCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
-    
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-//    self.selectCellIndexPath = indexPath;
+    self.selectCellIndexPath = indexPath;
     
     [_table reloadData];
     if (self.cellSelectBlock) {
         self.cellSelectBlock(cell.textLabel.text);
-
+        
     }
     
     [self dismiss];
