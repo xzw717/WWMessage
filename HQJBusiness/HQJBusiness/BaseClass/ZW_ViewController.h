@@ -39,8 +39,7 @@ typedef NS_ENUM(NSInteger, PswType) {
     /// 修改 登录密码
     ChangeLoginPassWordType,
      
-    /// 修改（重置）交易密码
-    ChangeDealPassWordType
+
 };
 
 @interface ZW_ViewController : ZW_BaseViewController

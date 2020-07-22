@@ -9,7 +9,7 @@
 #import "ChangePswViewController.h"
 
 #import "ChangePswViewModel.h"
-
+#import "MyViewModel.h"
 
 
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -23,6 +23,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UITextField *twoNewPsWTextField;
 @property (nonatomic,strong)UIButton *okBtn;
 @property (nonatomic, assign) PswType pswType;
+@property (nonatomic, strong) MyViewModel *viewModel;
 @end
 
 @implementation ChangePswViewController
@@ -255,6 +256,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                     
                     [SVProgressHUD showSuccessWithStatus:@"操作成功"];
                     [ManagerEngine SVPAfter:@"操作成功" complete:^{
+                        [self.viewModel myRequst];
                         [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
 
                         [self.navigationController popViewControllerAnimated:YES];
@@ -313,14 +315,10 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (MyViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MyViewModel alloc]init];
+    }
+    return _viewModel;
 }
-*/
-
 @end

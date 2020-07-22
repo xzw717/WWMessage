@@ -27,23 +27,28 @@
 
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {
+        @weakify(self);
         [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+            @strongify(self);
             MyModel *model = [MyModel mj_objectWithKeyValues:dic[@"result"]];
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
             [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"isComplete"]integerValue] forKey:@"isComplete"];
+            [self getshopidWithMemberid:MmberidStr completion:^(NSString *shopid) {
+                if (self.myrequstBlock) {
+                    self.myrequstBlock(model);
+                         
+                }
+            }];
 
             
-            if (self.myrequstBlock) {
-                self.myrequstBlock(model);
-            }
+           
         } andError:^(NSError *error) {
             if (self.myrequstErrorBlock) {
                 self.myrequstErrorBlock();
             }
         } ShowHUD:YES];
    
-        [self getshopidWithMemberid:MmberidStr completion:nil];
         
         
     }
@@ -58,19 +63,16 @@
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
               [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
         }
-      if (![[NSUserDefaults standardUserDefaults] objectForKey:@"peugeotid"]) {
-             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
-      }
-        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"classify"]) {
-        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"];
-        }
- 
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"peugeotid"];
+        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
+        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"]; 
                 
     } andError:^(NSError *error) {
         if (self.myrequstErrorBlock) {
             self.myrequstErrorBlock();
         }
-    } ShowHUD:YES];
+    } ShowHUD:NO];
 }
 
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath { 

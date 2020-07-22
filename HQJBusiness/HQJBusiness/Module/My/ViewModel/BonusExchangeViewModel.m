@@ -42,10 +42,11 @@
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode
     };
+
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
           !blocks ? : blocks(dic);
    
-      
+        
         
         
     } andError:^(NSError *error) {
