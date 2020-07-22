@@ -37,11 +37,13 @@
     NSDictionary *dict = @{@"memberid":MmberidStr,
                                @"accountid":accountid,
                            @"amount":amount,
+                           @"roleType":[NameSingle shareInstance].role,
+                           @"merchantType":Classifyid,
                            @"tradepwd":psw};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
           !blocks ? : blocks(dic);
    
-      
+        
         
         
     } andError:^(NSError *error) {

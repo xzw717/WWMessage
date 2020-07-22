@@ -236,7 +236,6 @@
         [self requst];
         HQJLog(@"手机号是：%@",Mmobile);
     }
-
 }
 
 

@@ -934,7 +934,7 @@ static const CGFloat  sAlertTimer = 3.0;
             if (isLoginPsw) {
                 type = SetLoginPassWordType;
             } else {
-                type = ChangeDealPassWordType;
+                type = SetDealPassWordType;
                 
             }
         }
@@ -963,7 +963,7 @@ static const CGFloat  sAlertTimer = 3.0;
             if (isLoginPsw) {
                 type = ChangeLoginPassWordType;
             } else {
-                type = ChangeDealPassWordType;
+                type = SetDealPassWordType;
                 
             }
             
