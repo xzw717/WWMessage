@@ -166,7 +166,7 @@ static CGFloat const kTableHeight = 165.f;
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-//    self.selectCellIndexPath = indexPath;
+    self.selectCellIndexPath = indexPath;
     
     [_table reloadData];
     if (self.cellSelectBlock) {

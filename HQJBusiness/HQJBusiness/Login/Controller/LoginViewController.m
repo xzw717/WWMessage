@@ -337,6 +337,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 
+
 #pragma mark --- 删除删一个用户的信息
 - (void)removeInfo {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"memberid"];
@@ -417,10 +418,13 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    
+    self.userNameText.text = @"";
+     self.pswText.text = @"";
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.userNameText resignFirstResponder];
+    [self.pswText resignFirstResponder];
     
 }
 
@@ -493,8 +497,8 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     }];
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         @strongify(self);
-        [self.testActivityIndicator startAnimating];
-        [self.loginBtn setTitle:@"" forState:UIControlStateNormal];
+//        [self.testActivityIndicator startAnimating];
+//        [self.loginBtn setTitle:@"" forState:UIControlStateNormal];
 
         [self LoginRequst];
 
@@ -692,13 +696,13 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                             completion:nil];
             [UIView animateWithDuration:5 animations:^{
 
-                [self.testActivityIndicator stopAnimating];
+//                [self.testActivityIndicator stopAnimating];
 
             } completion:^(BOOL finished) {
 
                 [UIView animateWithDuration:5 animations:^{
 
-                    [self.loginBtn setTitle:@"登录成功" forState:UIControlStateNormal];
+//                    [self.loginBtn setTitle:@"登录成功" forState:UIControlStateNormal];
 
                     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
 
@@ -723,16 +727,16 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
     } andError:^(NSError *error) {
-        [self.testActivityIndicator stopAnimating];
+//        [self.testActivityIndicator stopAnimating];
 
-        [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+//        [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
     } ShowHUD:YES];
 
 
     } else {
-        [self.testActivityIndicator stopAnimating];
+//        [self.testActivityIndicator stopAnimating];
 
-        [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+//        [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
 
         HQJLog(@"没有网了");
 

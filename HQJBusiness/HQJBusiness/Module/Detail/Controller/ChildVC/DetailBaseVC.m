@@ -24,7 +24,6 @@ DZNEmptyDataSetDelegate>
 -(UITableView *)tableView {
     if ( _tableView == nil ) {
         _tableView = [[UITableView alloc]init];
-        _tableView.rowHeight = 70.0;
         _tableView.delegate = self;
         _tableView.dataSource =self;
         _tableView.frame = CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49);
@@ -62,7 +61,6 @@ DZNEmptyDataSetDelegate>
     [self.view addSubview:self.tableView];
     
 }
-
 
 
 -(void)requstType:(NSString *)type andPage:(NSString *)page {
@@ -110,7 +108,11 @@ DZNEmptyDataSetDelegate>
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DetailCell class])];
-    return [cell cellHeightWithModel:self.listArray[indexPath.row]];
+    if (self.typePage == 2) {
+        return [cell cellHeightWithModel:self.listArray[indexPath.row]]+ 22;
+       } else {
+           return [cell cellHeightWithModel:self.listArray[indexPath.row]];
+       }
 }
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"brokenNetwork"];

@@ -246,6 +246,7 @@
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":self.BonusNumerTextField.text,
                            @"roleType":@(roleType),
+                           @"currency":@1,
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dics) {

@@ -545,6 +545,16 @@
     [self.regionBtn setTitle:model.aliasname forState:UIControlStateNormal];
     self.tableMaskView.hidden = YES;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, _queryCityTabelView.mj_w, 44.f)];
+    label.backgroundColor = DefaultBackgroundColor;
+    label.text = @"请选择区域";
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
+}
 -(void)getCodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict = @{@"mobile":self.userNameText.text}.mutableCopy;
@@ -583,14 +593,7 @@
 #pragma mark --- 注册（立即入驻）
 - (void)registeredAction {
 //    HQJWebViewController *pvc = [[HQJWeb ontroller:pvc animated:YES];
-    
 
-    
-    MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:@"dasghsd"];
-                 
-    [self.navigationController pushViewController:shopVC animated:YES];
-    return;
-    
     if (self.accessoryBtn.selected) {
         if (self.userNameText.text.length > 1 &&
             self.authCodeText.text.length > 1 &&

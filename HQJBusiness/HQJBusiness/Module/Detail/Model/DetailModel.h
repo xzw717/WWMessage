@@ -51,6 +51,7 @@
 
 @property (nonatomic,copy)NSString *mobile;
 
+
 //new add
 @property (nonatomic,copy)NSString *zh;
 @property (nonatomic,copy)NSString *score;
@@ -61,6 +62,7 @@
 /// 优惠券的金额
 @property (nonatomic,copy)NSString *reduction;
 
-
+/// 实际到账
+@property (nonatomic,copy)NSString *estimate;
 
 @end

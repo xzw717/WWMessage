@@ -15,6 +15,7 @@
 @property (nonatomic,strong)UIImageView *arrowImageView;
 @property (nonatomic,strong)ZW_Label *timerLabel;
 @property (nonatomic,strong)ZW_Label *amountTwoLabel;
+@property (nonatomic,strong)ZW_Label *actualLabel;
 
 
 
@@ -73,7 +74,15 @@
     
     return _timerLabel;
 }
-
+-(ZW_Label *)actualLabel {
+    if ( _actualLabel == nil ) {
+        _actualLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
+        _actualLabel.font = [UIFont systemFontOfSize:12.0];
+        _actualLabel.textColor = [ManagerEngine getColor:@"999999"];
+        _actualLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _actualLabel;
+}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -98,11 +107,14 @@
         twoAmountStr = model.amount;
         //        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
     }
-    if (model.tradetype.integerValue == 5) {
+    if (model.tradetype.integerValue == 5) { 
         oneUnitStr = @"积分";
         twoUnitStr = @"元";
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
+        
+        
+        
     } else if (model.tradetype.integerValue == 11){
         oneUnitStr = @"积分";
         twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
@@ -127,7 +139,7 @@
     self.typeLabel.text = [NSString stringWithFormat:@"%@",model.tradeDesc];
     
     self.timerLabel.text =[ManagerEngine zzReverseSwitchTimer:model.tradetime];
-
+//    self.actualLabel.text = [];
     self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",oneAmountStr,oneUnitStr];
     self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",twoAmountStr,twoUnitStr];
     if (model.tradetype.integerValue == 13){

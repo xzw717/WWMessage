@@ -1,7 +1,7 @@
 //
 //  BonusExchangeViewController.m
 //  HQJBusiness
-//   积分兑现 && 现金提现
+//   积分兑现
 //  Created by mymac on 2016/12/14.
 //  Copyright © 2016年 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
@@ -267,6 +267,7 @@
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":self.BonusNumerTextField.text,
                            @"roleType":@(roleType),
+                           @"currency":@2,
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode};
     @weakify(self);
@@ -292,7 +293,7 @@
                                     
                                 }];
                             } else {
-                                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+//                                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
                                 //SVProgressHUD
                                 [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
                             }
@@ -356,7 +357,7 @@
     
     [[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
-        [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.frame.size.width/2, self.submitButton.frame.size.height/2)];
+//        [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.frame.size.width/2, self.submitButton.frame.size.height/2)];
         
         if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
             [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];

@@ -167,13 +167,12 @@
 
     } else {
         if (indexPath.section == 0 && indexPath.row == 0) {
-           
-            BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
-            BVC.ViewControllerTitle = @"现金提现";
+            NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
             [self.navigationController pushViewController:BVC animated:YES];
-
             
-        } 
+            
+            
+        }
     }
     
     

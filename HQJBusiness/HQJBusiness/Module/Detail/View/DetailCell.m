@@ -13,6 +13,8 @@
 @property (nonatomic,strong)ZW_Label *amountLabel;
 @property (nonatomic,strong)ZW_Label *amountDetailsLabel;
 @property (nonatomic,strong)ZW_Label *couponLabel;
+@property (nonatomic,strong)ZW_Label *actualLabel;
+
 @end
 @implementation DetailCell
 
@@ -63,7 +65,15 @@
     }
     return _couponLabel;
 }
-
+-(ZW_Label *)actualLabel {
+    if ( _actualLabel == nil ) {
+        _actualLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
+        _actualLabel.font = [UIFont systemFontOfSize:12.0];
+        _actualLabel.textColor = [ManagerEngine getColor:@"999999"];
+        _actualLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _actualLabel;
+}
 
 -(void)setModel:(DetailModel *)model andPaging:(NSInteger)page {
     if (page <= 1) {
@@ -109,7 +119,15 @@
             self.amountDetailsLabel.text = [NSString stringWithFormat:@"(%@值:%@%@)",HQJValue,symbol,[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.zh.doubleValue)] afterPoint:5]];
         }
     }
-    
+    if (page == 2 || page == 3) {
+        self.actualLabel.hidden = NO;
+        if (model.estimate && model.estimate.doubleValue > 0.f) {
+              self.actualLabel.text = [NSString stringWithFormat:@"实际到账：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.estimate.doubleValue)] afterPoint:2]];
+        }
+      
+    } else {
+        self.actualLabel.hidden = YES;
+    }
     self.couponLabel.text = [NSString stringWithFormat:@"%@:-¥%@",model.couponType,model.reduction];
     CGFloat nameWidth = [ManagerEngine setTextWidthStr:self.nameLabel.text andFont:[UIFont systemFontOfSize:17.0]];
     
@@ -127,11 +145,15 @@
     
     CGFloat amountWidth = [ManagerEngine setTextWidthStr:self.amountLabel.text andFont:[UIFont systemFontOfSize:17.f]];
     self.amountLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountWidth).topEqualToView(self.nameLabel).heightIs(17).widthIs(amountWidth);
-//
+    
+
+    
     CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
     
     self.amountDetailsLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountDetailsWidth).topSpaceToView(self.amountLabel,11).heightIs(12).widthIs(amountDetailsWidth);
-    
+    CGFloat actualWidth = [ManagerEngine setTextWidthStr:self.actualLabel.text andFont:[UIFont systemFontOfSize:12.f]];
+
+    self.actualLabel.sd_layout.rightEqualToView(self.amountDetailsLabel).topSpaceToView([self.amountDetailsLabel.text isEqualToString:@""] ? self.amountLabel : self.amountDetailsLabel, 11).heightIs(12).widthIs(actualWidth);
     
     
     self.couponLabel.sd_layout.

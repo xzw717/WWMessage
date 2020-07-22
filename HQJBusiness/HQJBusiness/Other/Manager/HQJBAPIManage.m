@@ -205,7 +205,7 @@ NSString *const HQJBGetShopUpgradeStateInterface = @"shopapi/getShopUpgradeState
 /// 银行卡提现免费额度查询
 NSString *const HQJBFreeAmountInterface = @"freeAmount";
 /// 商家查看信息是否完善
-NSString *const HQJBIsPerfectInterface = @"isPerfect";
+NSString *const HQJBIsPerfectInterface = @"shop/isPerfect.action";
 
 
 
