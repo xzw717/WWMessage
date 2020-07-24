@@ -226,26 +226,26 @@
 
 - (void)requstSubmit {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBFreeAmountInterface];
-    NSInteger roleType = 0 ;
-    if ([[NameSingle shareInstance].role containsString:@"物联"]) {
-        roleType = 13;
-    } else if ([[NameSingle shareInstance].role containsString:@"联盟"]) {
-        roleType = 14;
-
-    } else if ([[NameSingle shareInstance].role containsString:@"合作"]) {
-        roleType = 15;
-
-    } else if ([[NameSingle shareInstance].role containsString:@"股份"]) {
-         roleType = 16;
-
-    } else if ([[NameSingle shareInstance].role containsString:@"命运"]) {
-        roleType = 17;
-
-    }
+//    NSInteger roleType = 0 ;
+//    if ([[NameSingle shareInstance].role containsString:@"物联"]) {
+//        roleType = 13;
+//    } else if ([[NameSingle shareInstance].role containsString:@"联盟"]) {
+//        roleType = 14;
+//
+//    } else if ([[NameSingle shareInstance].role containsString:@"合作"]) {
+//        roleType = 15;
+//
+//    } else if ([[NameSingle shareInstance].role containsString:@"股份"]) {
+//         roleType = 16;
+//
+//    } else if ([[NameSingle shareInstance].role containsString:@"命运"]) {
+//        roleType = 17;
+//
+//    }
         
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":self.BonusNumerTextField.text,
-                           @"roleType":@(roleType),
+                           @"roleType":[NameSingle shareInstance].membertype,
                            @"currency":@1,
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode};

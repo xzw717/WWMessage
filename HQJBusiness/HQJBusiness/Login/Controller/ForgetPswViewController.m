@@ -9,7 +9,7 @@
 #import "ForgetPswViewController.h"
 #import "JKCountDownButton.h"
 #import "HintView.h"
-
+#import "MyViewModel.h"
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 @interface ForgetPswViewController ()<UITextFieldDelegate>
@@ -438,20 +438,24 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                  @"inputcode":self.authCodeText.text}.mutableCopy;
 
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
-    
+    @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            
             [ManagerEngine SVPAfter:@"修改成功" complete:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                    @strongify(self);
+                    [self.navigationController popViewControllerAnimated:YES];
             }];
+            
+    
         }else{
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-//            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
+            //            [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
         }
         
     } andError:^(NSError *error) {
-//        [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
+        //        [ManagerEngine dimssLoadView:self.confirmBtn andtitle:@"确认"];
         
     } ShowHUD:YES];
 }

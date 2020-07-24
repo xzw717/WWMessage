@@ -278,6 +278,7 @@
         [NameSingle shareInstance].role = xzw_model.role;   //  -----   存商家类型
         [NameSingle shareInstance].mobile = xzw_model.mobile;
         [NameSingle shareInstance].memberid = xzw_model.memberid;
+        [NameSingle shareInstance].membertype = xzw_model.membertype;
         if ([isComplete integerValue] == 1 ||[isComplete integerValue] == 3) {
             if (![NameSingle shareInstance].isShow) {
                 [NameSingle shareInstance].isShow = YES;

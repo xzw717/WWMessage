@@ -19,12 +19,14 @@
 #import "SetBindingCell.h"
 #import "ForgetPswViewController.h"
 #import "JPUSHService.h"
-
+#import "MyViewModel.h"
 @interface SetViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *setTableView;
 @property (nonatomic,strong)NSArray *titleAry;
 @property (nonatomic,strong)UILabel *backLoginLabel;
 @property (nonatomic,strong)UILabel *versionLabel;
+@property (nonatomic, strong) MyViewModel *viewModel;
+
 @end
 
 @implementation SetViewController
@@ -277,9 +279,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self.setTableView reloadData];
-    
+    @weakify(self);
+    [self.viewModel setMyrequstBlock:^(id sender) {
+        @strongify(self);
+        [self.setTableView reloadData];
+
+    }];
+    [self.viewModel myRequst];
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginAfter) name:@"changeBonus" object:nil];
     
 }
@@ -376,5 +383,12 @@
     
     
     return _versionLabel;
+}
+
+- (MyViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MyViewModel alloc]init];
+    }
+    return _viewModel;
 }
 @end

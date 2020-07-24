@@ -86,7 +86,7 @@
 
     }
     self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:model.tradetime];
-    if (page == 1 || page == 3 || page == 5 ) {
+    if (page == 1 || page == 5 ) {
         //old amount
         self.amountLabel.text = [NSString stringWithFormat:@"-%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
 //        if(page == 5){
@@ -105,7 +105,7 @@
     if (page != 3) {
         if (page == 2) {
             //old camount
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(+%@元)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.cash.doubleValue)] afterPoint:2]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(+%@元)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.amount.doubleValue / 2)] afterPoint:2]];
 
         } else {
             NSString *symbol;
@@ -121,10 +121,11 @@
     }
     if (page == 2 || page == 3) {
         self.actualLabel.hidden = NO;
-        if (model.estimate && model.estimate.doubleValue > 0.f) {
-              self.actualLabel.text = [NSString stringWithFormat:@"实际到账：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.estimate.doubleValue)] afterPoint:2]];
+        if (model.camount && model.camount.doubleValue > 0.f) {
+              self.actualLabel.text = [NSString stringWithFormat:@"实际到账：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.camount.doubleValue)] afterPoint:2]];
         }
-      
+      self.amountLabel.text = [NSString stringWithFormat:@"-%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.amount.doubleValue)] afterPoint:2]];
+
     } else {
         self.actualLabel.hidden = YES;
     }

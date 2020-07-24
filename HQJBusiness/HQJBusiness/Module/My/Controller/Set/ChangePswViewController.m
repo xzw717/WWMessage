@@ -9,7 +9,6 @@
 #import "ChangePswViewController.h"
 
 #import "ChangePswViewModel.h"
-#import "MyViewModel.h"
 
 
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -23,7 +22,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)UITextField *twoNewPsWTextField;
 @property (nonatomic,strong)UIButton *okBtn;
 @property (nonatomic, assign) PswType pswType;
-@property (nonatomic, strong) MyViewModel *viewModel;
 @end
 
 @implementation ChangePswViewController
@@ -51,14 +49,10 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.pswType == SetLoginPassWordType) {
-        self.zw_title = @"设置登录密码";
-
-    }
-    if (self.pswType == ChangeLoginPassWordType) {
-        self.zw_title = @"修改登录密码";
-
-    }
+    
+    
+    self.zw_title = [ManagerEngine pswTitleWithType:self.pswType];
+ 
     [self createChangeUI];
     [self signalChangePsw];
     // Do any additional setup after loading the view.
@@ -251,22 +245,24 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 
         } else {
+            @weakify(self);
             [ChangePswViewModel changePswWithOldpwd:self.oldPsWTextField.text andNewpwd:self.oneNewPsWTextField.text andBlock:^(NSDictionary * changepswBlock) {
                 if ([changepswBlock[@"code"]integerValue] == 49000) {
+                        [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+                        [ManagerEngine SVPAfter:@"操作成功" complete:^{
+                            @strongify(self);
+                            [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
+                            
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }];
                     
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    [ManagerEngine SVPAfter:@"操作成功" complete:^{
-                        [self.viewModel myRequst];
-                        [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
-
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }];
+                    
                 } else {
                     [ManagerEngine dimssLoadView:self.okBtn andtitle:@"确定"];
-
+                    
                     [SVProgressHUD showErrorWithStatus:changepswBlock[@"msg"]];
                 }
-
+                
             }];
            
             
@@ -315,10 +311,5 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     // Dispose of any resources that can be recreated.
 }
 
-- (MyViewModel *)viewModel {
-    if (!_viewModel) {
-        _viewModel = [[MyViewModel alloc]init];
-    }
-    return _viewModel;
-}
+
 @end

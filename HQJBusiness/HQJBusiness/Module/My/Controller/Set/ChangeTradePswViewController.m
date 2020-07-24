@@ -7,7 +7,6 @@
 //
 
 #import "ChangeTradePswViewController.h"
-
 static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 @interface ChangeTradePswViewController ()<UITextFieldDelegate>
@@ -21,7 +20,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 @property (nonatomic,strong)ZW_TextField *modelTextField;
 
 @property (nonatomic,assign)PswType pswType;
-
 @end
 
 @implementation ChangeTradePswViewController
@@ -140,27 +138,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([self.zw_title isEqualToString:@""] || self.zw_title == nil) {
-        switch (self.pswType) {
-             case SetLoginPassWordType:
-                 self.zw_title = @"设置登录密码";
-
-                 break;
-                 case SetDealPassWordType:
-                 self.zw_title = @"设置交易密码";
-
-                          
-                 break;
-                 case ChangeLoginPassWordType:
-                 self.zw_title = @"修改登录密码";
-
-                 break;
-                 case FindLoginPassWordType:
-                 self.zw_title = @"找回登录密码";
-                        
-                 break;
-             default:
-                 break;
-         }
+        self.zw_title = [ManagerEngine pswTitleWithType:self.pswType];
     }
  
     [self initializeTheView];
@@ -173,7 +151,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)initializeTheView {
     
     CGFloat mobileWidth = [ManagerEngine setTextWidthStr:self.mobileLabel.text andFont:[UIFont systemFontOfSize:17.0]];
-    if (self.pswType == SetDealPassWordType ||  self.pswType == FindLoginPassWordType) {
+    if (self.pswType == SetDealPassWordType  || self.pswType == ChangeDealPassWordType ||  self.pswType == FindLoginPassWordType) {
         self.mobileLabel.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.view,20 + NavigationControllerHeight).heightIs(44).widthIs(mobileWidth);
         
 //        self.modelTextField.sd_layout.leftSpaceToView(self.mobileLabel,0).topSpaceToView(self.view,NavigationControllerHeight + 20 ).heightIs(44).widthIs(WIDTH - mobileWidth - kEDGE * 2);
@@ -197,7 +175,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)getcodeRequst{
     NSString *urlStr;
     NSMutableDictionary *dict;
-    if (self.pswType == SetDealPassWordType) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         dict = @{@"pwdtype":@2,@"mobile":[NameSingle shareInstance].mobile}.mutableCopy;
     } else {
         dict = @{@"pwdtype":@1,@"mobile":self.modelTextField.text}.mutableCopy;
@@ -245,7 +223,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 -(void)nextStep{
     NSMutableDictionary *dict;
-    if (self.pswType == SetDealPassWordType) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         dict = @{@"newpwd":self.newsPswTextField.text,
                        @"pwdtype":[NSNumber numberWithInteger:self.pswType],
                        @"mobile":[NameSingle shareInstance].mobile,
@@ -258,14 +236,18 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     }
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBInputNewpwdActionInterface];
-    
+    @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
-            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-            [ManagerEngine SVPAfter:@"修改成功" complete:^{
-                [self.navigationController popViewControllerAnimated:YES];
-//                [self popViews];
-            }];
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                
+                [ManagerEngine SVPAfter:@"修改成功" complete:^{
+                    @strongify(self);
+                    [self.navigationController popViewControllerAnimated:YES];
+                    //                [self popViews];
+                }];
+            
+            
         }else{
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             [ManagerEngine dimssLoadView:self.okButtn andtitle:@"提交"];
@@ -319,7 +301,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [[self.okButtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
          @strongify(self);
         [ManagerEngine loadDateView:self.okButtn andPoint:CGPointMake(self.okButtn.mj_w / 2, self.okButtn.mj_h / 2)];
-        if (self.pswType == SetDealPassWordType ) {
+        if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType ) {
             if (self.newsPswTextField.text.length != 6) {
                 [ManagerEngine dimssLoadView:self.okButtn andtitle:@"提交"];
                 [SVProgressHUD showErrorWithStatus:@"交易密码要设置6位哦"];
@@ -349,7 +331,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 }
 
 - (BOOL)pswlength:(NSString *)text {
-    if (self.pswType == SetDealPassWordType ) {
+    if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType ) {
         if (text.length >0 && text.length <=6) {
             return YES;
         } else {
@@ -370,7 +352,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         return YES;
     }
     if (textField == self.newsPswTextField) {
-        if (self.pswType == SetDealPassWordType ) {
+        if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType ) {
             if (self.newsPswTextField.text.length >=6) {
                 return NO;
             } else {
@@ -407,14 +389,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

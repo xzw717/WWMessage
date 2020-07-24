@@ -13,6 +13,7 @@
 @property (nonatomic,strong)NSString *role;
 @property (nonatomic,strong)NSString *mobile;
 @property (nonatomic,strong)NSString *memberid;
+@property (nonatomic,strong)NSString *membertype;
 //子公司名称
 @property (nonatomic,strong)NSString *subCompanyName;
 /// 提示设置密码的弹窗是否已经出现

@@ -38,7 +38,7 @@
                                @"accountid":accountid,
                            @"amount":amount,
                            @"tradepwd":psw,
-                           @"roleType":[NameSingle shareInstance].role,
+                           @"roleType":[NameSingle shareInstance].membertype,
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode
     };

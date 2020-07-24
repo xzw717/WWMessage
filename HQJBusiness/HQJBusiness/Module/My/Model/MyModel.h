@@ -25,7 +25,6 @@
 @property (nonatomic,copy)NSString *typeid;
 @property (nonatomic,copy)NSString *membertype;
 @property (nonatomic,copy)NSString *addtime;
-
 /// 当日积分
 @property (nonatomic,copy)NSString *incomeBToday;
 

@@ -16,6 +16,7 @@
 @property (nonatomic,strong)ZW_Label *timerLabel;
 @property (nonatomic,strong)ZW_Label *amountTwoLabel;
 @property (nonatomic,strong)ZW_Label *actualLabel;
+@property (nonatomic,strong)ZW_Label *expectLabel;
 
 
 
@@ -83,6 +84,18 @@
     }
     return _actualLabel;
 }
+-(ZW_Label *)expectLabel {
+    if ( _expectLabel == nil ) {
+        _expectLabel = [[ZW_Label alloc]initWithStr:@"" addSubView:self];
+        _expectLabel.font = [UIFont systemFontOfSize:12.0];
+        _expectLabel.textColor = [ManagerEngine getColor:@"999999"];
+        _expectLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _expectLabel;
+}
+
+
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -95,7 +108,26 @@
 
 
 -(void)setModel:(MyListModel *)model {
-    
+    /*
+     else if (model.tradetype.integerValue == 11){
+         oneUnitStr = @"积分";
+         twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
+         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
+         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
+     }else if (model.tradetype.integerValue == 2){
+         oneUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
+         twoUnitStr = @"元";
+         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
+         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
+     }else if (model.tradetype.integerValue == 13){
+         oneUnitStr = @"元";
+         twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
+         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
+         twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
+     }
+     */
+
+    NSLog(@"%@",model.tradetype);
     NSString *oneUnitStr;
     NSString *twoUnitStr;
     NSString *oneAmountStr;
@@ -115,22 +147,7 @@
         
         
         
-    } else if (model.tradetype.integerValue == 11){
-        oneUnitStr = @"积分";
-        twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
-        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
-        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
-    }else if (model.tradetype.integerValue == 2){
-        oneUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
-        twoUnitStr = @"元";
-        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
-        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:2];
-    }else if (model.tradetype.integerValue == 13){
-        oneUnitStr = @"元";
-        twoUnitStr = [NSString stringWithFormat:@"%@值",HQJValue];
-        oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
-        twoAmountStr = [ManagerEngine retainScale:twoAmountStr afterPoint:5];
-    }else{
+    } else{
         oneUnitStr = @"元";
         twoUnitStr = @"元";
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:2];
@@ -142,9 +159,10 @@
 //    self.actualLabel.text = [];
     self.amountOneLabel.text = [NSString stringWithFormat:@"%@%@",oneAmountStr,oneUnitStr];
     self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",twoAmountStr,twoUnitStr];
-    if (model.tradetype.integerValue == 13){
-        self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",twoAmountStr.floatValue/2] afterPoint:5],twoUnitStr];
+    if (model.tradetype.integerValue == 5){
+        self.amountTwoLabel.text = [NSString stringWithFormat:@"%@%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",oneAmountStr.floatValue/2] afterPoint:2],twoUnitStr];
     }
+    self.expectLabel.text = [NSString stringWithFormat:@"预计到账：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",model.estimate.floatValue] afterPoint:2]];
     [self setView];
 
 }
@@ -161,7 +179,7 @@
     
     CGFloat amountTwoLabelWidth = [ManagerEngine setTextWidthStr:self.amountTwoLabel.text andFont:[UIFont systemFontOfSize:16.0]];
     
-    
+       CGFloat expectLabelWidth = [ManagerEngine setTextWidthStr:self.expectLabel.text andFont:[UIFont systemFontOfSize:16.0]];
     self.amountOneLabel.sd_layout.leftSpaceToView(self,kEDGE).topSpaceToView(self,(self.mj_h - 16)/2).heightIs(16).widthIs(amountOneLabelWidth);
     
     self.typeLabel.sd_layout.leftSpaceToView(self,(self.mj_w - typeLabelLabelWidth)/2).topSpaceToView(self,kEDGE).heightIs(10).widthIs(typeLabelLabelWidth);
@@ -172,7 +190,8 @@
     
     self.amountTwoLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountTwoLabelWidth).topEqualToView(self.amountOneLabel).heightIs(16).widthIs(amountTwoLabelWidth);
     
-    
+    self.expectLabel.sd_layout.rightEqualToView(self.amountTwoLabel).topSpaceToView(self.amountTwoLabel, 5).heightIs(16).widthIs(expectLabelWidth);
+
 }
 
 

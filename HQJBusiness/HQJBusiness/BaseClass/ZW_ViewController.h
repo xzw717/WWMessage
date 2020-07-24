@@ -38,6 +38,9 @@ typedef NS_ENUM(NSInteger, PswType) {
     
     /// 修改 登录密码
     ChangeLoginPassWordType,
+    
+    /// 修改 交易密码
+    ChangeDealPassWordType,
      
 
 };

@@ -340,6 +340,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 #pragma mark --- 删除删一个用户的信息
 - (void)removeInfo {
+    [NameSingle shareInstance].isShow = NO;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"memberid"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"realname"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"mobile"];
