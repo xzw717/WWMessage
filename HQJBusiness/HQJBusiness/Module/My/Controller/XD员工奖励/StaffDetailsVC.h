@@ -6,11 +6,11 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "NewXDChildViewController.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StaffDetailsVC : NewXDChildViewController
+@interface StaffDetailsVC : UIViewController
 
 - (instancetype)initWithDetalisStyle:(listStyle)style;
 @end

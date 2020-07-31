@@ -191,6 +191,7 @@
 		1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */; };
 		1F76234224D3B76900ECE044 /* StaffRoleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234124D3B76900ECE044 /* StaffRoleItem.m */; };
 		1F76234524D3FFA400ECE044 /* StaffAddRoleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */; };
+		1F76234B24D41E6B00ECE044 /* RecordsConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -780,6 +781,8 @@
 		1F76234124D3B76900ECE044 /* StaffRoleItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffRoleItem.m; sourceTree = "<group>"; };
 		1F76234324D3FFA400ECE044 /* StaffAddRoleTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffAddRoleTextField.h; sourceTree = "<group>"; };
 		1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffAddRoleTextField.m; sourceTree = "<group>"; };
+		1F76234924D41E6A00ECE044 /* RecordsConsumptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordsConsumptionCell.h; sourceTree = "<group>"; };
+		1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordsConsumptionCell.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -2671,6 +2674,8 @@
 				1F76234124D3B76900ECE044 /* StaffRoleItem.m */,
 				1F76234324D3FFA400ECE044 /* StaffAddRoleTextField.h */,
 				1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */,
+				1F76234924D41E6A00ECE044 /* RecordsConsumptionCell.h */,
+				1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -3303,6 +3308,7 @@
 				1F607E1324AB2A560011915E /* ContactManagerHeadView.m in Sources */,
 				0585FE7E2497106C00CD7280 /* SetUpShopViewController.m in Sources */,
 				1F607DC224AB22A20011915E /* XDOrderDetailsViewController.m in Sources */,
+				1F76234B24D41E6B00ECE044 /* RecordsConsumptionCell.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
 				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "InvitedRecordViewController.h"
 #import "InvitedRecordTableViewCell.h"
+#import "RecordsConsumptionCell.h"
 
 @interface InvitedRecordViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *invitedRecordTableView;
@@ -35,11 +36,16 @@
  
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    InvitedRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([InvitedRecordTableViewCell class]) forIndexPath:indexPath];
-//    cell.textLabel.text = self.modelArray[indexPath.row];
-    return cell;
-   
+    if (self.style == stafflistStyle) {
+           InvitedRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([InvitedRecordTableViewCell class]) forIndexPath:indexPath];
+        //    cell.textLabel.text = self.modelArray[indexPath.row];
+            return cell;
+    } else {
+           RecordsConsumptionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecordsConsumptionCell class]) forIndexPath:indexPath];
+        //    cell.textLabel.text = self.modelArray[indexPath.row];
+            return cell;
+    }
+ 
 }
 
 - (UITableView *)invitedRecordTableView {
@@ -51,6 +57,8 @@
         _invitedRecordTableView.dataSource = self;
         _invitedRecordTableView.rowHeight = NewProportion(214);
         [_invitedRecordTableView registerClass:[InvitedRecordTableViewCell class] forCellReuseIdentifier:NSStringFromClass([InvitedRecordTableViewCell class])];
+        [_invitedRecordTableView registerClass:[RecordsConsumptionCell class] forCellReuseIdentifier:NSStringFromClass([RecordsConsumptionCell class])];
+
         _invitedRecordTableView.tableFooterView = [UIView new];
         
     }
