@@ -57,14 +57,19 @@
     }
     return _bottomLineView;
 }
-
+- (void)setNavBackgroundColor:(UIColor *)color {
+    [self setNavBackgroundColor:color alpha:1.f];
+}
+- (void)setNavBackgroundColor:(UIColor *)color alpha:(CGFloat)apl{
+    self.zwNavView.backgroundColor = [color colorWithAlphaComponent:apl];
+    self.bottomLineView.hidden = apl != 1 ? YES : NO;  /// 如果导航栏有设置透明度底部线条就隐藏
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.zwNavView];
     [self.view bringSubviewToFront:self.zwNavView];
     [self.zwNavView addSubview:self.bottomLineView];
     self.fd_prefersNavigationBarHidden = YES;
-
     self.zwBackButton.sd_layout.leftSpaceToView(self.zwNavView,0).topSpaceToView(self.zwNavView,NavigationControllerHeight - 44).heightIs(44).widthIs(44);
     self.bottomLineView.sd_layout.leftSpaceToView(self.zwNavView, 0).rightSpaceToView(self.zwNavView, 0).heightIs(0.5).topSpaceToView(self, NavigationControllerHeight - 0.5);
     [self.zwTitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -104,25 +109,23 @@
 
 }
 
-
--(void)setZWrightOneButton:(UIButton *)ZWrightOneButton {
+- (void)setZw_rightOneButton:(UIButton *)zw_rightOneButton {
     
-    _ZWrightOneButton = ZWrightOneButton;
+    _zw_rightOneButton = zw_rightOneButton;
     
-    [self.zwNavView addSubview:ZWrightOneButton];
+    [self.zwNavView addSubview:zw_rightOneButton];
     
-    ZWrightOneButton.sd_layout.rightSpaceToView(self.zwNavView, kEDGE).centerYIs(self.zwNavView.centerY_sd + 20 /2).heightIs(40).widthIs(40);
+    zw_rightOneButton.sd_layout.rightSpaceToView(self.zwNavView, kEDGE).centerYIs(self.zwNavView.centerY_sd + 20 /2).heightIs(40).widthIs(40);
     
     
 }
-
--(void)setZWrightTwoButton:(UIButton *)ZWrightTwoButton {
+- (void)setZw_rightTwoButton:(UIButton *)zw_rightTwoButton {
     
-    _ZWrightTwoButton = ZWrightTwoButton;
+    _zw_rightTwoButton = zw_rightTwoButton;
     
-    [self.zwNavView addSubview:ZWrightTwoButton];
+    [self.zwNavView addSubview:zw_rightTwoButton];
         
-    ZWrightTwoButton.sd_layout.leftSpaceToView(self.ZWrightOneButton,WIDTH - 14 * 2 - 22 * 2).topSpaceToView(self.zwNavView,33).heightIs(22).widthIs(22);
+    zw_rightTwoButton.sd_layout.leftSpaceToView(self.zw_rightOneButton,WIDTH - 14 * 2 - 22 * 2).topSpaceToView(self.zwNavView,33).heightIs(22).widthIs(22);
 
     
     
@@ -168,7 +171,7 @@
 //        self.fd_interactivePopDisabled = YES;
         
         [ManagerEngine navViewWillAppearColor:self andConmp:^(id  _Nonnull sender) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:self.ZWtitleStr preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
             [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -206,8 +209,8 @@
     
 }
 
+- (void)setZw_title:(NSString *)zw_title {
 
--(void)setZw_title:(NSString *)zw_title {
     
     self.zwTitLabel.text = zw_title;
     

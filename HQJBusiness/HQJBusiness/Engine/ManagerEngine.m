@@ -442,7 +442,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 +(CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
     
-     CGRect frame = [str boundingRectWithSize:CGSizeMake(1000, 1000)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
+     CGRect frame = [str boundingRectWithSize:CGSizeMake(WIDTH, MAXFLOAT)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
     
     
     return frame.size.width;
@@ -994,5 +994,21 @@ static const CGFloat  sAlertTimer = 3.0;
     }
     return nil;
     
+}
+//获取当前时间
++ (NSString *)currentDateStr {
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];//将时间转化成字符串
+    return dateString;
+}
+
+//获取当前时间戳
++ (NSString *)currentTimeStr {
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+    NSTimeInterval time=[date timeIntervalSince1970]*1000;// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    return timeString;
 }
 @end

@@ -135,6 +135,7 @@
 + (HintView *)showView {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window.subviews lastObject];
+    [[ManagerEngine currentViewControll].view endEditing:YES];
     if (![NSStringFromClass([view class]) isEqualToString:@"HintView"]) {
         HintView *hit = [[HintView alloc]initWithFrame:CGRectZero];
         return hit;

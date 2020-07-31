@@ -123,7 +123,16 @@
 #define  StatusBarHeight ([ManagerEngine isIPhoneXSeries] ?  44.f : 20.f)
 /// 新的比例
 #define  NewProportion(a) (a / 3.f)
+/**
+ PingFang SC
+PingFangSC-Medium
+PingFangSC-Semibold
+PingFangSC-Light
+PingFangSC-Ultralight
+PingFangSC-Regular
+PingFangSC-Thin
 
+*/
 /******************* 屏幕宽高 **************************/
 #define  WIDTH  [[UIScreen mainScreen] bounds].size.width
 #define HEIGHT  [[UIScreen mainScreen] bounds].size.height

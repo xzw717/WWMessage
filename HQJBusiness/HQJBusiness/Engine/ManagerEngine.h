@@ -21,7 +21,13 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
      */
     promptViewFadeAway
 };
-
+/// 员工会员 界面风格
+typedef NS_ENUM(NSInteger,listStyle) {
+    /// 员工
+    stafflistStyle = 0,
+    /// 会员
+    memberListStle
+};
 ///**
 // *  提示框按钮数量
 // */
@@ -319,5 +325,11 @@ typedef NS_ENUM(NSInteger,promptViewStyle) {
 
 /// 返回对应Title的文字
 /// @param type 密码界面类型
-+ (NSString *)pswTitleWithType:(PswType)type ;
++ (NSString *_Nonnull)pswTitleWithType:(PswType)type ;
+
+/// 获取当前时间
++ (NSString *_Nonnull)currentDateStr;
+
+/// 获取当前时间戳
++ (NSString *_Nonnull)currentTimeStr;
 @end

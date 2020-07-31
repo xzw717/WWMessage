@@ -67,7 +67,7 @@ NSString *const kActionBank = @"actionBank";
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
     rightBtn.bounds = CGRectMake(0, 0, 22, 22);
-    self.ZWrightOneButton = rightBtn;
+    self.zw_rightOneButton = rightBtn;
     
     [rightBtn bk_addEventHandler:^(id  _Nonnull sender) {
         if (self.bankListArray.count >= 5) {

@@ -29,7 +29,7 @@
     [rightBtn setTitle:@"添加" forState:UIControlStateNormal];
     [rightBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
     rightBtn.bounds = CGRectMake(0, 0, 60, 44);
-    self.ZWrightOneButton = rightBtn;
+    self.zw_rightOneButton = rightBtn;
     [rightBtn addTarget:self action:@selector(addCode) forControlEvents:UIControlEventTouchUpInside];
 }
 

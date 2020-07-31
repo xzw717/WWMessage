@@ -189,6 +189,8 @@
 		1F6E10E6249B000B00BEDB72 /* NewWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */; };
 		1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */; };
 		1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */; };
+		1F76234224D3B76900ECE044 /* StaffRoleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234124D3B76900ECE044 /* StaffRoleItem.m */; };
+		1F76234524D3FFA400ECE044 /* StaffAddRoleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -247,6 +249,10 @@
 		1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */; };
 		1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */; };
 		1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */; };
+		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
+		1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BF24CE849A0097E02E /* MemberStaffListViewController.m */; };
+		1FA611C324CE87230097E02E /* NewXDChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611C224CE87230097E02E /* NewXDChildViewController.m */; };
+		1FA611C624CEA6430097E02E /* MemberStaffListSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611C524CEA6430097E02E /* MemberStaffListSearchView.m */; };
 		1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */; };
 		1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */; };
 		1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8915B1FD15077003D2AD0 /* AlreadyVerificationVC.m */; };
@@ -314,6 +320,25 @@
 		1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */; };
 		1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */; };
 		1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEAF03E1F7B9576004E2F77 /* PaymentCodeTableViewCell.m */; };
+		1FF2F9BB24CFB679003A2996 /* StaffDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9BA24CFB679003A2996 /* StaffDetailsViewController.m */; };
+		1FF2F9BF24CFB7F3003A2996 /* StaffdetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9BE24CFB7F3003A2996 /* StaffdetailsHeaderView.m */; };
+		1FF2F9C224CFC1EB003A2996 /* StaffdetailsListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9C124CFC1EB003A2996 /* StaffdetailsListView.m */; };
+		1FF2F9C524CFC494003A2996 /* StaffDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9C424CFC494003A2996 /* StaffDetailsVC.m */; };
+		1FF2F9C824CFC500003A2996 /* InvitedRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9C724CFC500003A2996 /* InvitedRecordViewController.m */; };
+		1FF2F9CB24CFC542003A2996 /* RewardsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9CA24CFC542003A2996 /* RewardsRecordViewController.m */; };
+		1FF2F9CF24CFD77C003A2996 /* StaffDetailsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */; };
+		1FF2F9D324CFD7B6003A2996 /* StaffDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9D224CFD7B6003A2996 /* StaffDetailsModel.m */; };
+		1FF2F9D624D003BC003A2996 /* InvitedRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9D524D003BC003A2996 /* InvitedRecordTableViewCell.m */; };
+		1FF2F9D924D00C3C003A2996 /* MemberStaffListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9D824D00C3C003A2996 /* MemberStaffListHeaderView.m */; };
+		1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9DB24D016D4003A2996 /* AddStaffViewController.m */; };
+		1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9DE24D017C0003A2996 /* AddStaffTableViewCell.m */; };
+		1FF2F9E224D114D8003A2996 /* SelectMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E124D114D8003A2996 /* SelectMenuView.m */; };
+		1FF2F9E524D161D5003A2996 /* UITextField+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */; };
+		1FF2F9E824D1738E003A2996 /* RoleSelectVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */; };
+		1FF2F9EB24D25FBB003A2996 /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */; };
+		1FF2F9F124D2BA2E003A2996 /* HQJShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9EF24D2BA2E003A2996 /* HQJShareView.m */; };
+		1FF2F9F424D2BABC003A2996 /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9F224D2BABC003A2996 /* UIView+RoundedCorners.m */; };
+		1FF2F9F724D3A98B003A2996 /* StaffRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */; };
 		1FF741331E0533630004AC95 /* SetZHView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF741321E0533630004AC95 /* SetZHView.m */; };
 		1FF741361E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF741351E06354A0004AC95 /* ZW_ChangeFigureColorLabel.m */; };
 		1FF741391E0671220004AC95 /* SetZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF741381E0671220004AC95 /* SetZHViewController.m */; };
@@ -751,6 +776,10 @@
 		1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewWithdrawTableViewCell.m; sourceTree = "<group>"; };
 		1F6E10EA249CA7F600BEDB72 /* HQJAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQJAlertView.h; sourceTree = "<group>"; };
 		1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQJAlertView.m; sourceTree = "<group>"; };
+		1F76234024D3B76900ECE044 /* StaffRoleItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffRoleItem.h; sourceTree = "<group>"; };
+		1F76234124D3B76900ECE044 /* StaffRoleItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffRoleItem.m; sourceTree = "<group>"; };
+		1F76234324D3FFA400ECE044 /* StaffAddRoleTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffAddRoleTextField.h; sourceTree = "<group>"; };
+		1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffAddRoleTextField.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -875,6 +904,14 @@
 		1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeModel.m; sourceTree = "<group>"; };
 		1F9710A721F1C02F00F788A6 /* ManualGiftRYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ManualGiftRYViewController.h; path = ChildVC/ManualGiftRYViewController.h; sourceTree = "<group>"; };
 		1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ManualGiftRYViewController.m; path = ChildVC/ManualGiftRYViewController.m; sourceTree = "<group>"; };
+		1FA611BB24CE79900097E02E /* StaffManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffManageViewController.h; sourceTree = "<group>"; };
+		1FA611BC24CE79900097E02E /* StaffManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffManageViewController.m; sourceTree = "<group>"; };
+		1FA611BE24CE849A0097E02E /* MemberStaffListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListViewController.h; sourceTree = "<group>"; };
+		1FA611BF24CE849A0097E02E /* MemberStaffListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffListViewController.m; sourceTree = "<group>"; };
+		1FA611C124CE87230097E02E /* NewXDChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewXDChildViewController.h; sourceTree = "<group>"; };
+		1FA611C224CE87230097E02E /* NewXDChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewXDChildViewController.m; sourceTree = "<group>"; };
+		1FA611C424CEA6430097E02E /* MemberStaffListSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListSearchView.h; sourceTree = "<group>"; };
+		1FA611C524CEA6430097E02E /* MemberStaffListSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffListSearchView.m; sourceTree = "<group>"; };
 		1FA6D5A21F99949E0083E0A6 /* PaymentCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCodeModel.h; sourceTree = "<group>"; };
 		1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentCodeModel.m; sourceTree = "<group>"; };
 		1FA6D5A51F99971D0083E0A6 /* PaymentCodeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCodeViewModel.h; sourceTree = "<group>"; };
@@ -1087,6 +1124,44 @@
 		1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderVerificationModel.m; sourceTree = "<group>"; };
 		1FEAF03D1F7B9576004E2F77 /* PaymentCodeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentCodeTableViewCell.h; sourceTree = "<group>"; };
 		1FEAF03E1F7B9576004E2F77 /* PaymentCodeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentCodeTableViewCell.m; sourceTree = "<group>"; };
+		1FF2F9B924CFB679003A2996 /* StaffDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffDetailsViewController.h; sourceTree = "<group>"; };
+		1FF2F9BA24CFB679003A2996 /* StaffDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffDetailsViewController.m; sourceTree = "<group>"; };
+		1FF2F9BD24CFB7F3003A2996 /* StaffdetailsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffdetailsHeaderView.h; sourceTree = "<group>"; };
+		1FF2F9BE24CFB7F3003A2996 /* StaffdetailsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffdetailsHeaderView.m; sourceTree = "<group>"; };
+		1FF2F9C024CFC1EB003A2996 /* StaffdetailsListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffdetailsListView.h; sourceTree = "<group>"; };
+		1FF2F9C124CFC1EB003A2996 /* StaffdetailsListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffdetailsListView.m; sourceTree = "<group>"; };
+		1FF2F9C324CFC494003A2996 /* StaffDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffDetailsVC.h; sourceTree = "<group>"; };
+		1FF2F9C424CFC494003A2996 /* StaffDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffDetailsVC.m; sourceTree = "<group>"; };
+		1FF2F9C624CFC500003A2996 /* InvitedRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitedRecordViewController.h; sourceTree = "<group>"; };
+		1FF2F9C724CFC500003A2996 /* InvitedRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitedRecordViewController.m; sourceTree = "<group>"; };
+		1FF2F9C924CFC542003A2996 /* RewardsRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardsRecordViewController.h; sourceTree = "<group>"; };
+		1FF2F9CA24CFC542003A2996 /* RewardsRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordViewController.m; sourceTree = "<group>"; };
+		1FF2F9CD24CFD77C003A2996 /* StaffDetailsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffDetailsViewModel.h; sourceTree = "<group>"; };
+		1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffDetailsViewModel.m; sourceTree = "<group>"; };
+		1FF2F9D124CFD7B6003A2996 /* StaffDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffDetailsModel.h; sourceTree = "<group>"; };
+		1FF2F9D224CFD7B6003A2996 /* StaffDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffDetailsModel.m; sourceTree = "<group>"; };
+		1FF2F9D424D003BC003A2996 /* InvitedRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitedRecordTableViewCell.h; sourceTree = "<group>"; };
+		1FF2F9D524D003BC003A2996 /* InvitedRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitedRecordTableViewCell.m; sourceTree = "<group>"; };
+		1FF2F9D724D00C3C003A2996 /* MemberStaffListHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListHeaderView.h; sourceTree = "<group>"; };
+		1FF2F9D824D00C3C003A2996 /* MemberStaffListHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffListHeaderView.m; sourceTree = "<group>"; };
+		1FF2F9DA24D016D4003A2996 /* AddStaffViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddStaffViewController.h; sourceTree = "<group>"; };
+		1FF2F9DB24D016D4003A2996 /* AddStaffViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddStaffViewController.m; sourceTree = "<group>"; };
+		1FF2F9DD24D017C0003A2996 /* AddStaffTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddStaffTableViewCell.h; sourceTree = "<group>"; };
+		1FF2F9DE24D017C0003A2996 /* AddStaffTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddStaffTableViewCell.m; sourceTree = "<group>"; };
+		1FF2F9E024D114D8003A2996 /* SelectMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMenuView.h; sourceTree = "<group>"; };
+		1FF2F9E124D114D8003A2996 /* SelectMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMenuView.m; sourceTree = "<group>"; };
+		1FF2F9E324D161D5003A2996 /* UITextField+IndexPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+IndexPath.h"; sourceTree = "<group>"; };
+		1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IndexPath.m"; sourceTree = "<group>"; };
+		1FF2F9E624D1738E003A2996 /* RoleSelectVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoleSelectVIew.h; sourceTree = "<group>"; };
+		1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoleSelectVIew.m; sourceTree = "<group>"; };
+		1FF2F9E924D25FBB003A2996 /* QRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
+		1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
+		1FF2F9EF24D2BA2E003A2996 /* HQJShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJShareView.m; sourceTree = "<group>"; };
+		1FF2F9F024D2BA2E003A2996 /* HQJShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQJShareView.h; sourceTree = "<group>"; };
+		1FF2F9F224D2BABC003A2996 /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
+		1FF2F9F324D2BABC003A2996 /* UIView+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RoundedCorners.h"; sourceTree = "<group>"; };
+		1FF2F9F524D3A98B003A2996 /* StaffRoleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffRoleViewController.h; sourceTree = "<group>"; };
+		1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffRoleViewController.m; sourceTree = "<group>"; };
 		1FF741311E0533630004AC95 /* SetZHView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetZHView.h; sourceTree = "<group>"; };
 		1FF741321E0533630004AC95 /* SetZHView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetZHView.m; sourceTree = "<group>"; };
 		1FF741341E06354A0004AC95 /* ZW_ChangeFigureColorLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZW_ChangeFigureColorLabel.h; path = BaseClass/ZW_ChangeFigureColorLabel.h; sourceTree = "<group>"; };
@@ -1793,6 +1868,7 @@
 		1F960C8A1DFE3D06003E3D17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1FF2F9B824CFB59C003A2996 /* XD员工奖励 */,
 				1FC9F87F24AD82BA0037352A /* Set */,
 				1FC9F87424AD82B90037352A /* ToAudit */,
 				1F607DCF24AB23350011915E /* AddPaymentCodeViewController.h */,
@@ -1842,6 +1918,8 @@
 				1F034A63249879A800214E26 /* UpgradeManagementViewController.m */,
 				1F6E10E4249B000B00BEDB72 /* NewWithdrawViewController.h */,
 				1F6E10E5249B000B00BEDB72 /* NewWithdrawViewController.m */,
+				1FA611C124CE87230097E02E /* NewXDChildViewController.h */,
+				1FA611C224CE87230097E02E /* NewXDChildViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1849,6 +1927,7 @@
 		1F960C8D1DFE3D06003E3D17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1FF2F9D024CFD7A0003A2996 /* XD员工奖励 */,
 				1F607E1924AB2B7D0011915E /* ContactModel.h */,
 				1F607E1824AB2B7D0011915E /* ContactModel.m */,
 				1F1B21CA1DFFC81E00021AB2 /* MyModel.h */,
@@ -1880,6 +1959,7 @@
 		1F960C8E1DFE3D06003E3D17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FF2F9BC24CFB791003A2996 /* XD员工奖励 */,
 				1F607E0F24AB2A550011915E /* ContactManagerCell.h */,
 				1F607E1224AB2A560011915E /* ContactManagerCell.m */,
 				1F607E1124AB2A560011915E /* ContactManagerHeadView.h */,
@@ -1937,6 +2017,7 @@
 		1F960C8F1DFE3D06003E3D17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1FF2F9CC24CFD74A003A2996 /* XD员工奖励 */,
 				1F607E1624AB2B330011915E /* ContactManagerViewModel.h */,
 				1F607E1524AB2B320011915E /* ContactManagerViewModel.m */,
 				1F1B21C71DFFC28500021AB2 /* MyViewModel.h */,
@@ -2076,6 +2157,8 @@
 				1F960D171DFE3E51003E3D17 /* ToolView.m */,
 				1F6E10EA249CA7F600BEDB72 /* HQJAlertView.h */,
 				1F6E10EB249CA7F600BEDB72 /* HQJAlertView.m */,
+				1FF2F9F324D2BABC003A2996 /* UIView+RoundedCorners.h */,
+				1FF2F9F224D2BABC003A2996 /* UIView+RoundedCorners.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -2536,6 +2619,80 @@
 			path = AliPay/Utils;
 			sourceTree = "<group>";
 		};
+		1FF2F9B824CFB59C003A2996 /* XD员工奖励 */ = {
+			isa = PBXGroup;
+			children = (
+				1FA611BB24CE79900097E02E /* StaffManageViewController.h */,
+				1FA611BC24CE79900097E02E /* StaffManageViewController.m */,
+				1FA611BE24CE849A0097E02E /* MemberStaffListViewController.h */,
+				1FA611BF24CE849A0097E02E /* MemberStaffListViewController.m */,
+				1FF2F9B924CFB679003A2996 /* StaffDetailsViewController.h */,
+				1FF2F9BA24CFB679003A2996 /* StaffDetailsViewController.m */,
+				1FF2F9C324CFC494003A2996 /* StaffDetailsVC.h */,
+				1FF2F9C424CFC494003A2996 /* StaffDetailsVC.m */,
+				1FF2F9C624CFC500003A2996 /* InvitedRecordViewController.h */,
+				1FF2F9C724CFC500003A2996 /* InvitedRecordViewController.m */,
+				1FF2F9C924CFC542003A2996 /* RewardsRecordViewController.h */,
+				1FF2F9CA24CFC542003A2996 /* RewardsRecordViewController.m */,
+				1FF2F9DA24D016D4003A2996 /* AddStaffViewController.h */,
+				1FF2F9DB24D016D4003A2996 /* AddStaffViewController.m */,
+				1FF2F9F524D3A98B003A2996 /* StaffRoleViewController.h */,
+				1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */,
+			);
+			path = "XD员工奖励";
+			sourceTree = "<group>";
+		};
+		1FF2F9BC24CFB791003A2996 /* XD员工奖励 */ = {
+			isa = PBXGroup;
+			children = (
+				1FA611C424CEA6430097E02E /* MemberStaffListSearchView.h */,
+				1FA611C524CEA6430097E02E /* MemberStaffListSearchView.m */,
+				1FF2F9BD24CFB7F3003A2996 /* StaffdetailsHeaderView.h */,
+				1FF2F9BE24CFB7F3003A2996 /* StaffdetailsHeaderView.m */,
+				1FF2F9C024CFC1EB003A2996 /* StaffdetailsListView.h */,
+				1FF2F9C124CFC1EB003A2996 /* StaffdetailsListView.m */,
+				1FF2F9D424D003BC003A2996 /* InvitedRecordTableViewCell.h */,
+				1FF2F9D524D003BC003A2996 /* InvitedRecordTableViewCell.m */,
+				1FF2F9D724D00C3C003A2996 /* MemberStaffListHeaderView.h */,
+				1FF2F9D824D00C3C003A2996 /* MemberStaffListHeaderView.m */,
+				1FF2F9DD24D017C0003A2996 /* AddStaffTableViewCell.h */,
+				1FF2F9DE24D017C0003A2996 /* AddStaffTableViewCell.m */,
+				1FF2F9E024D114D8003A2996 /* SelectMenuView.h */,
+				1FF2F9E124D114D8003A2996 /* SelectMenuView.m */,
+				1FF2F9E324D161D5003A2996 /* UITextField+IndexPath.h */,
+				1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */,
+				1FF2F9E624D1738E003A2996 /* RoleSelectVIew.h */,
+				1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */,
+				1FF2F9E924D25FBB003A2996 /* QRCodeView.h */,
+				1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */,
+				1FF2F9F024D2BA2E003A2996 /* HQJShareView.h */,
+				1FF2F9EF24D2BA2E003A2996 /* HQJShareView.m */,
+				1F76234024D3B76900ECE044 /* StaffRoleItem.h */,
+				1F76234124D3B76900ECE044 /* StaffRoleItem.m */,
+				1F76234324D3FFA400ECE044 /* StaffAddRoleTextField.h */,
+				1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */,
+			);
+			path = "XD员工奖励";
+			sourceTree = "<group>";
+		};
+		1FF2F9CC24CFD74A003A2996 /* XD员工奖励 */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2F9CD24CFD77C003A2996 /* StaffDetailsViewModel.h */,
+				1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */,
+			);
+			path = "XD员工奖励";
+			sourceTree = "<group>";
+		};
+		1FF2F9D024CFD7A0003A2996 /* XD员工奖励 */ = {
+			isa = PBXGroup;
+			children = (
+				1FF2F9D124CFD7B6003A2996 /* StaffDetailsModel.h */,
+				1FF2F9D224CFD7B6003A2996 /* StaffDetailsModel.m */,
+			);
+			path = "XD员工奖励";
+			sourceTree = "<group>";
+		};
 		5F1E997120C61F3B001799F9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2916,11 +3073,14 @@
 				0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */,
 				1F034A64249879A800214E26 /* UpgradeManagementViewController.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
+				1FF2F9E524D161D5003A2996 /* UITextField+IndexPath.m in Sources */,
 				1FB795B324ADDC5800D4CC40 /* PinyinFormatter.m in Sources */,
 				1F607DFC24AB23C20011915E /* XDViewModel.m in Sources */,
 				1F607DFF24AB23C20011915E /* XDDetailSecCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
+				1FF2F9D324CFD7B6003A2996 /* StaffDetailsModel.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
+				1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */,
 				1F960D2C1DFE3E51003E3D17 /* NSSet+BlocksKit.m in Sources */,
 				1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */,
 				1F960D431DFE3E51003E3D17 /* UIWebView+BlocksKit.m in Sources */,
@@ -2990,6 +3150,7 @@
 				1F960D3F1DFE3E51003E3D17 /* UIPopoverController+BlocksKit.m in Sources */,
 				1FB795AC24ADDC5700D4CC40 /* NSString+PinYin4Cocoa.m in Sources */,
 				1F25DC031E10E9A4004DC19F /* TransferOrderVC.m in Sources */,
+				1FF2F9EB24D25FBB003A2996 /* QRCodeView.m in Sources */,
 				1F607E0024AB23C20011915E /* XDDetailBottomView.m in Sources */,
 				1FB795B424ADDC5800D4CC40 /* PinYinForObjc.m in Sources */,
 				1F40133A1E135767004E30B1 /* AddBankcCardViewController.m in Sources */,
@@ -2997,7 +3158,9 @@
 				1F20CB211E0772F100FC91B3 /* SetZHModel.m in Sources */,
 				1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */,
 				1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */,
+				1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */,
 				1F6C85D623CEBE78005F3DB8 /* OrderDetailsTwoCell.m in Sources */,
+				1FF2F9C224CFC1EB003A2996 /* StaffdetailsListView.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
 				1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */,
 				1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */,
@@ -3027,8 +3190,10 @@
 				1F960D3C1DFE3E51003E3D17 /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				1F960C9B1DFE3D06003E3D17 /* CommodityViewController.m in Sources */,
 				1F960D351DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m in Sources */,
+				1FF2F9F424D2BABC003A2996 /* UIView+RoundedCorners.m in Sources */,
 				1F3949E61E0D0FA500A3662D /* DetailBaseVC.m in Sources */,
 				1F1B21CC1DFFC81E00021AB2 /* MyModel.m in Sources */,
+				1FF2F9BF24CFB7F3003A2996 /* StaffdetailsHeaderView.m in Sources */,
 				1F607DC424AB22A20011915E /* XDShopViewController.m in Sources */,
 				1FC9F88B24AD82BB0037352A /* allViewController.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
@@ -3036,13 +3201,17 @@
 				1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */,
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
+				1FF2F9F124D2BA2E003A2996 /* HQJShareView.m in Sources */,
 				1F607E0524AB23C20011915E /* XDPayViewController.m in Sources */,
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
+				1FF2F9CF24CFD77C003A2996 /* StaffDetailsViewModel.m in Sources */,
 				1FB02FB92473D3AF00F3B2F8 /* HQJSelectToolView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
+				1F76234524D3FFA400ECE044 /* StaffAddRoleTextField.m in Sources */,
+				1FF2F9C524CFC494003A2996 /* StaffDetailsVC.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
@@ -3054,6 +3223,7 @@
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
 				1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */,
 				1F960D1D1DFE3E51003E3D17 /* NSArray+BlocksKit.m in Sources */,
+				1FA611C324CE87230097E02E /* NewXDChildViewController.m in Sources */,
 				1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */,
 				1F5DEFC01E121DA900AC1DF6 /* SelectBankViewController.m in Sources */,
 				1FC9F88F24AD82BB0037352A /* ChangeTradePswViewController.m in Sources */,
@@ -3070,7 +3240,9 @@
 				1F607E1424AB2A560011915E /* ContactManagerCell.m in Sources */,
 				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
+				1FF2F9CB24CFC542003A2996 /* RewardsRecordViewController.m in Sources */,
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
+				1FF2F9E224D114D8003A2996 /* SelectMenuView.m in Sources */,
 				1FDF4CD623B1E7420060F485 /* APAuthInfo.m in Sources */,
 				1FDF4CD223B1E7420060F485 /* APOrderInfo.m in Sources */,
 				1F6E10E6249B000B00BEDB72 /* NewWithdrawViewController.m in Sources */,
@@ -3091,6 +3263,7 @@
 				1F607DFB24AB23C20011915E /* XDPayViewModel.m in Sources */,
 				1F607E1724AB2B340011915E /* ContactManagerViewModel.m in Sources */,
 				1F960D211DFE3E51003E3D17 /* NSMapTable+BlocksKit.m in Sources */,
+				1FF2F9BB24CFB679003A2996 /* StaffDetailsViewController.m in Sources */,
 				1F960D1E1DFE3E51003E3D17 /* NSDictionary+BlocksKit.m in Sources */,
 				1FC9F88D24AD82BB0037352A /* ZHViewController.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
@@ -3099,9 +3272,11 @@
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
+				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
 				1F960C9E1DFE3D06003E3D17 /* OrderViewController.m in Sources */,
+				1FF2F9D624D003BC003A2996 /* InvitedRecordTableViewCell.m in Sources */,
 				1FB795AE24ADDC5800D4CC40 /* PinyinHelper.m in Sources */,
 				0585FE7F2497106C00CD7280 /* HintView.m in Sources */,
 				1F6C85D823CEBE78005F3DB8 /* OrderDetailsBaseCell.m in Sources */,
@@ -3110,6 +3285,7 @@
 				1F960D381DFE3E51003E3D17 /* UIActionSheet+BlocksKit.m in Sources */,
 				1FFA99C21E1F752100E9FB1D /* GlobeConst.m in Sources */,
 				1FB02FC2247507E000F3B2F8 /* XDSSMViewModel.m in Sources */,
+				1FA611C624CEA6430097E02E /* MemberStaffListSearchView.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,
 				1F607DF724AB23C20011915E /* XDSubModel.m in Sources */,
@@ -3121,6 +3297,7 @@
 				1FB795B624ADDC5800D4CC40 /* ButtonGroupView.m in Sources */,
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
 				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
+				1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */,
 				1F607E1324AB2A560011915E /* ContactManagerHeadView.m in Sources */,
@@ -3136,6 +3313,7 @@
 				1F20CB3A1E0788E400FC91B3 /* ScanViewController.m in Sources */,
 				1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */,
 				1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */,
+				1F76234224D3B76900ECE044 /* StaffRoleItem.m in Sources */,
 				1F25DBF71E10E90D004DC19F /* OrderBaseVC.m in Sources */,
 				1FC9F89024AD82BB0037352A /* InformationViewController.m in Sources */,
 				1FB3DEBE1E03902800F670EC /* LrdPasswordAlertView.m in Sources */,
@@ -3145,6 +3323,7 @@
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1FC9F89124AD82BB0037352A /* ChangePswViewController.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
+				1FF2F9E824D1738E003A2996 /* RoleSelectVIew.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1FC9F89324AD82BB0037352A /* HelpMeViewController.m in Sources */,
@@ -3158,14 +3337,17 @@
 				1F960D3D1DFE3E51003E3D17 /* UIImage+BlocksKit.m in Sources */,
 				1FB795B024ADDC5800D4CC40 /* HanyuPinyinOutputFormat.m in Sources */,
 				1F960D2D1DFE3E51003E3D17 /* NSTimer+BlocksKit.m in Sources */,
+				1FF2F9F724D3A98B003A2996 /* StaffRoleViewController.m in Sources */,
 				1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */,
 				1F3949F21E0D1CB700A3662D /* CashDealVC.m in Sources */,
 				1F960D1F1DFE3E51003E3D17 /* NSIndexSet+BlocksKit.m in Sources */,
 				1FB795B124ADDC5800D4CC40 /* ZYPinYinSearch.m in Sources */,
 				201BE3F2229F73EB00326500 /* ZGAudioManager.m in Sources */,
 				1F607DC124AB22A20011915E /* XDBaseViewController.m in Sources */,
+				1FF2F9D924D00C3C003A2996 /* MemberStaffListHeaderView.m in Sources */,
 				1F960D251DFE3E51003E3D17 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				1F25DC061E10EAFA004DC19F /* OrderViewModel.m in Sources */,
+				1FF2F9C824CFC500003A2996 /* InvitedRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

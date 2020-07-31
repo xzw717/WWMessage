@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, PswType) {
 /**
  提示框的提示内容
  */
-@property (nonatomic,strong) NSString *ZWtitleStr;
+@property (nonatomic,strong) NSString *zw_titleStr;
 
 
 
@@ -82,13 +82,13 @@ typedef NS_ENUM(NSInteger, PswType) {
 /**
  右边第一个按钮
  */
-@property (nonatomic,strong) UIButton *ZWrightOneButton;
+@property (nonatomic,strong) UIButton *zw_rightOneButton;
 
 
 /**
  右边第二个按钮
  */
-@property (nonatomic,strong) UIButton *ZWrightTwoButton;
+@property (nonatomic,strong) UIButton *zw_rightTwoButton;
 
 
 
@@ -99,4 +99,7 @@ typedef NS_ENUM(NSInteger, PswType) {
 
 
 
+/// 设置导航栏背景色
+- (void)setNavBackgroundColor:(UIColor *)color ;
+- (void)setNavBackgroundColor:(UIColor *)color alpha:(CGFloat)apl;
 @end

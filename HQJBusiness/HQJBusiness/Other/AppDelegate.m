@@ -21,8 +21,12 @@
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
+#import "AddStaffViewController.h"
+
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
+#import "StaffRoleViewController.h"
+
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
 @end
@@ -50,11 +54,16 @@
     
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//
+//    StaffRoleViewController *loginVC =[[StaffRoleViewController alloc]init];
+//       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+//       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//       delegate.window.rootViewController = Nav;
     if ( MmberidStr == nil) {
         //
-        
+
         [self goLogin];
-        
+
     } else {
         delegate.window.rootViewController = [ZWTabBarViewController  new];
 //        delegate.window.rootViewController = [PushViewController  new];
