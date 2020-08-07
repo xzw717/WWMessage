@@ -155,7 +155,7 @@ NSString *const kActionBank = @"actionBank";
 #pragma mark --- 删除 银行卡
 - (void)deleteCardRequst:(NSInteger)index {
     SelectBankModel *model = self.bankListArray[index];
-    NSString *strUrl = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDeleteBankCardInterface];
+    NSString *strUrl = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBDeleteBankCardInterface];
     NSDictionary *dict = @{@"bankid":model.bid,@"memberid":MmberidStr};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:strUrl parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {

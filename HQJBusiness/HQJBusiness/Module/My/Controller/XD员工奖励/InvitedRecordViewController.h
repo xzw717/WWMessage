@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MemberStaffModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface InvitedRecordViewController : UIViewController
-- (instancetype)initRecordWithStyle:(listStyle)style;
+- (instancetype)initRecordWithStyle:(listStyle)style
+                        detaliModel:(MemberStaffModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

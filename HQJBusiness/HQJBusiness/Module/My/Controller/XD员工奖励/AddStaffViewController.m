@@ -10,7 +10,9 @@
 #import "AddStaffTableViewCell.h"
 #import "UITextField+IndexPath.h"
 #import "SelectMenuView.h"
-#import "RoleSelectVIew.h"
+#import "RoleSelectView.h"
+#import "AddStaffViewModel.h"
+#import "RoleListModel.h"
 @interface AddStaffViewController ()<UITableViewDelegate,UITableViewDataSource,RoleDelegate>
 @property (nonatomic, strong) UITableView *addStaffTableView;
 @property (nonatomic, strong) NSArray *titleAry;
@@ -19,7 +21,7 @@
 @property (nonatomic, strong) UITextField *nameTextField;
 @property (nonatomic, strong) UITextField *phoneTextField;
 @property (nonatomic, strong) UIButton *saveButton;
-@property (nonatomic, strong) RoleSelectVIew *roleButton;
+@property (nonatomic, strong) RoleSelectView *roleButton;
 
 @end
 
@@ -52,28 +54,49 @@
 }
 - (void)SelectRole:(UIButton *)btn {
     @weakify(self);
-    [[SelectMenuView showMenuWithView:btn].munuAry(@[@"角色一",@"角色二",@"角色三",@"角色一"]) setClickTitle:^(NSString * _Nonnull str) {
-        @strongify(self);
-        [btn setTitle:str forState:UIControlStateNormal];
-//        self.roleButton = btn;
-        [self.dataSouceAry replaceObjectAtIndex:3 withObject:str];
-        [self changeSaveButtonState];
+    [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
+        [[SelectMenuView showMenuWithView:btn].munuAry(modelArray) setClickModel:^(RoleListModel * _Nonnull model) {
+                @strongify(self);
+                [btn setTitle:model.roleName forState:UIControlStateNormal];
+        //        self.roleButton = btn;
+                [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.roleName];
+                [self changeSaveButtonState];
+            }];
     }];
+    
+   
 }
 - (void)changeSaveButtonState {
     BOOL saveState =  ![self.dataSouceAry[0] isEqualToString:@""] && ![self.dataSouceAry[1] isEqualToString:@""] &&![self.dataSouceAry[2] isEqualToString:@""] && self.roleButton && ![self.roleButton.roleTitleString isEqualToString:@"请选择角色"];
     self.saveButton.enabled = saveState;
     self.saveButton.backgroundColor = saveState ? DefaultAPPColor : [ManagerEngine getColor:@"b9b9b9"];
 }
-- (void)clickRoleView:(RoleSelectVIew *)view {
+- (void)clickRoleView:(RoleSelectView *)view {
     @weakify(self);
-     [[SelectMenuView showMenuWithView:view].munuAry(@[@"角色一",@"角色二",@"角色三",@"角色一"]) setClickTitle:^(NSString * _Nonnull str) {
-         @strongify(self);
-         view.roleTitleString = str;
-         self.roleButton = view;
-         [self.dataSouceAry replaceObjectAtIndex:3 withObject:str];
-         [self changeSaveButtonState];
-     }];
+    [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
+        [[SelectMenuView showMenuWithView:view].munuAry(modelArray) setClickModel:^(RoleListModel * _Nonnull model) {
+            @strongify(self);
+            view.roleTitleString = model.roleName;
+            
+            self.roleButton = view;
+            [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.nid];
+            [self changeSaveButtonState];
+        }];
+    }];
+
+}
+- (void)addStaffAction {
+    NSDictionary *dict = @{@"sid":MmberidStr,
+                           @"nickname":self.dataSouceAry[1],
+                           @"mobile":self.dataSouceAry[2],
+                           @"title":@"1", /// 许峰说随便填
+                           @"gender":@"1",
+                           @"age":@"1",
+                           @"account":@"1",/// 许峰说随便填
+                           @"cid":@(1),
+                           @"empNo":self.dataSouceAry[0],
+                           @"role":@([self.dataSouceAry[3] integerValue])};
+    [AddStaffViewModel addStaff:dict];
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -141,6 +164,7 @@
         [_saveButton setBackgroundColor:[ManagerEngine getColor:@"b9b9b9"]];
         _saveButton.layer.masksToBounds = YES;
         _saveButton.layer.cornerRadius = 5.f;
+        [_saveButton addTarget:self action:@selector(addStaffAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;
 }

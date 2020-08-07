@@ -25,7 +25,7 @@
 
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
-#import "StaffRoleViewController.h"
+#import "RewardSetViewController.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
@@ -55,7 +55,7 @@
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //
-//    StaffRoleViewController *loginVC =[[StaffRoleViewController alloc]init];
+//    RewardSetViewController *loginVC =[[RewardSetViewController alloc]init];
 //       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
 //       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //       delegate.window.rootViewController = Nav;

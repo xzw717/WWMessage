@@ -58,7 +58,7 @@
 - (UILabel *)bossNameLabel {
     if (!_bossNameLabel) {
         _bossNameLabel = [[UILabel alloc]init];
-        _bossNameLabel.text = @"曹孟德";
+        _bossNameLabel.text = @"";
         _bossNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:NewProportion(48)];
         _bossNameLabel.textColor = [ManagerEngine getColor:@"000000"];
     }
@@ -67,7 +67,7 @@
 - (UILabel *)shopNameLabel {
     if (!_shopNameLabel) {
         _shopNameLabel = [[UILabel alloc]init];
-        _shopNameLabel.text = @"三国时期魏国国主";
+        _shopNameLabel.text = [NameSingle shareInstance].name;
         _shopNameLabel.font = [UIFont systemFontOfSize:NewProportion(36)];
         _shopNameLabel.textColor = [ManagerEngine getColor:@"555555"];
     }

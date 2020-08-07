@@ -11,7 +11,8 @@
 #import "StaffDetailsViewController.h"
 #import "MemberStaffListHeaderView.h"
 #import "AddStaffViewController.h"
-
+#import "MemberStaffListViewModel.h"
+#import "MemberStaffListModel.h"
 @interface MemberStaffListViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ResultsListDelegate>
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) UILabel   *footerLabel;
@@ -19,7 +20,9 @@
 @property (nonatomic, strong) MemberStaffListSearchView *searchView;
 @property (nonatomic, strong) MemberStaffListHeaderView *headerView;
 @property (nonatomic, assign) listStyle style;
-
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) MemberStaffListViewModel *viewModel;
+@property (nonatomic, strong) MemberStaffListModel *listModel;
 @end
 
 @implementation MemberStaffListViewController
@@ -27,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, 64)];
-    self.bar.placeholder = @"员工66位";
     self.bar.searchBarStyle = UISearchBarStyleProminent;
     self.bar.delegate = self;
     self.bar.searchTextField.backgroundColor = [ManagerEngine getColor:@"ffffff"];
@@ -35,12 +37,11 @@
     self.bar.searchTextField.layer.cornerRadius = 18.f;
     self.bar.backgroundImage = [self imageWithColor:[ManagerEngine getColor:@"f5f5f5"] size:self.bar.frame.size];
 
-
-//    bar.inputAccessoryView = [];
     [self.view addSubview:self.bar];
     [self.view addSubview:self.listView];  
     [self.view addSubview:self.searchView];
     self.listView.tableHeaderView = self.headerView;
+    self.page = 1;
     if (self.style == stafflistStyle) {
            self.zw_title = @"员工列表";
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -63,6 +64,12 @@
     }
     return self;
 }
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size{
     CGRect rect =CGRectMake(0,0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
@@ -79,11 +86,33 @@
     self.bar.showsCancelButton=NO;//隐藏取消按钮
     [self.bar resignFirstResponder];//退回键盘
     self.searchView.hidden = YES;
-    [self.searchView.resultsArray removeAllObjects];
+//    [self.searchView.resultsArray removeAllObjects];
     [self.searchView reloadSearchList];
 
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requstMemberStaffList];
 
+}
+- (void)requstMemberStaffList {
+    [self.viewModel requstListWithPage:self.page completion:^(MemberStaffListModel * _Nonnull model) {
+           self.listModel = model;
+        [self.listView.mj_header endRefreshing];
+        [self.listView.mj_footer endRefreshing];
+        self.bar.placeholder = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",model.total];
+        self.footerLabel.text = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",model.total];
+        [self.listView reloadData];
+    } error:^{
+        if (self.page != 1) {
+            self.page -- ;
+        }
+        [self.listView.mj_header endRefreshing];
+        [self.listView.mj_footer endRefreshing];
+        [self.listView reloadData];
+
+    }];
+}
 /// 搜索框开始编辑时调用
 -(void)searchBarTextDidBeginEditing:(UISearchBar*)searchBar {
     self.bar.showsCancelButton=YES;//显示取消按钮
@@ -98,26 +127,36 @@
         self.bar.showsCancelButton=YES;
     }
     self.searchView.hidden = !self.bar.showsCancelButton;
+    self.searchView.searchModel = [[MemberStaffListModel alloc]init];
 
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     //    NSString * match = @"890";
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@",searchText];
-        NSArray * results = [[self listArray] filteredArrayUsingPredicate:predicate];
-    self.searchView.resultsArray = results.mutableCopy;
-    [self.searchView reloadSearchList];
+//        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@",searchText];
+//        NSArray * results = [[self listArray] filteredArrayUsingPredicate:predicate];
+//    self.searchView.resultsArray = results.mutableCopy;
+
+    [self.viewModel requstSearchListWithKey:searchText completion:^(MemberStaffListModel * _Nonnull model) {
+        self.searchView.searchModel = model;
+        [self.searchView reloadSearchList];
+
+    } error:^{
+        [self.searchView reloadSearchList];
+
+    }];
+
 //    NSLog(@"%@",results);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return [self listArray].count;
+        return self.listModel.data.count;
    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    cell.textLabel.text = [self listArray][indexPath.row];
+    cell.textLabel.text = self.listModel.data[indexPath.row].nickname;
     cell.imageView.image = [UIImage imageNamed:@"headportrait"];
     cell.imageView.layer.masksToBounds =  YES;
     cell.imageView.layer.cornerRadius = NewProportion(120)/2.f;
@@ -131,14 +170,16 @@
    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-        [self jumpDetails];
+        [self jumpDetailsWithModel:self.listModel.data[indexPath.row]];
 }
-- (void)didSelectRowAtIndexPathWithName:(NSString *)name {
+- (void)didSelectRowAtIndexPathWithName:(MemberStaffModel *)model {
     [self searchBarCancelButtonClicked:self.bar];
-    [self jumpDetails];
+    [self jumpDetailsWithModel:model];
+
 }
-- (void)jumpDetails {
-    StaffDetailsViewController *vc = [[StaffDetailsViewController alloc]initWithDetailsStyle:self.style];
+
+- (void)jumpDetailsWithModel:(MemberStaffModel *)model {
+    StaffDetailsViewController *vc = [[StaffDetailsViewController alloc]initWithDetailsStyle:self.style objectModel:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (UITableView *)listView {
@@ -154,10 +195,22 @@
         _footerLabel.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
         _footerLabel.textColor = [ManagerEngine getColor:@"333333"];
         _footerLabel.textAlignment = NSTextAlignmentCenter;
-        _footerLabel.text = @"共有66位员工";
+//        _footerLabel.text = @"共有66位员工";
         _footerLabel.font = [UIFont systemFontOfSize:14.f];
         _listView.tableFooterView = _footerLabel;
-        
+        @weakify(self);
+        _listView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+             @strongify(self);
+             self.page = 1;
+             [self requstMemberStaffList];
+             
+             
+         }];
+         _listView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+             @strongify(self);
+             self.page ++;
+             [self requstMemberStaffList];
+         }];
     }
     return _listView;
 }
@@ -175,6 +228,14 @@
     }
     return _searchView;
 }
+
+- (MemberStaffListViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MemberStaffListViewModel alloc]initWithListType:self.style];
+    }
+    return _viewModel;
+}
+
 - (NSArray *)listArray {
     return @[@"慕芷琪",
              @"王雁凡",

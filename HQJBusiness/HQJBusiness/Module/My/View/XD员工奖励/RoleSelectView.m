@@ -6,13 +6,13 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "RoleSelectVIew.h"
-@interface RoleSelectVIew ()
+#import "RoleSelectView.h"
+@interface RoleSelectView ()
 @property (nonatomic, strong) UILabel *roleLabel;
 @property (nonatomic, strong) UIImageView *arrowImage;
 
 @end
-@implementation RoleSelectVIew
+@implementation RoleSelectView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -25,6 +25,8 @@
         [self.roleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(5);
             make.centerY.mas_equalTo(self);
+            make.right.mas_equalTo(self.arrowImage.mas_left).mas_offset(-5);
+
         }];
         [self.arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-5);

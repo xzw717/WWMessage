@@ -9,7 +9,7 @@
 #import "AddStaffTableViewCell.h"
 #import "SelectMenuView.h"
 #import "UITextField+IndexPath.h"
-#import "RoleSelectVIew.h"
+#import "RoleSelectView.h"
 
 @interface AddStaffTableViewCell ()
 @property (nonatomic, strong) UILabel *addStafftitleLabel;
@@ -80,9 +80,9 @@
     }
     return _contentTextField;
 }
-- (RoleSelectVIew *)selectButton {
+- (RoleSelectView *)selectButton {
     if (!_selectButton) {
-        _selectButton = [[RoleSelectVIew alloc]init];
+        _selectButton = [[RoleSelectView alloc]init];
 //        [_selectButton setTitle:@"请选择角色" forState:UIControlStateNormal];
 //        [_selectButton setImage:[UIImage imageNamed:@"chevron-down"] forState:UIControlStateNormal];
 //        _selectButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(30)];

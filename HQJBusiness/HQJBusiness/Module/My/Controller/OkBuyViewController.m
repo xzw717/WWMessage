@@ -221,7 +221,7 @@
         
     } else if([self.payModeLabel.text isEqualToString:@"支付宝支付，"]) {
 //
-       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2] andNotifyUrl:[NSString stringWithFormat:@"%@alipayCallback",HQJBBonusDomainName]];
+       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayCallbackInterface]];
       
     } else {
         [SVProgressHUD showInfoWithStatus:@"暂未开放"];

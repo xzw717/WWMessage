@@ -8,6 +8,7 @@
 
 #import "RequestEngine.h"
 #import "AFNetworkActivityIndicatorManager.h"
+
 static AFHTTPSessionManager *httpManager = nil;
 
 @implementation RequestEngine
@@ -74,16 +75,66 @@ static AFHTTPSessionManager *httpManager = nil;
     [self HQJBusinessGETRequestDetailsUrl:urlStr parameters:nil complete:complete andError:errors ShowHUD:show];
 }
 
+
++ (void)HQJBusinessGETRequestUrl:(NSString *)urlStr parameters:(id)parameters complete:(void (^)(NSDictionary *))complete andError:(void (^)(NSError *))errors ShowHUD:(BOOL)show {
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:parameters];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+        if (show == YES) {
+                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+
+                [SVProgressHUD showWithStatus:@"加载中..."];
+            }
+        NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer]requestWithMethod:@"POST" URLString:urlStr parameters:nil error:nil];
+        [request addValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+        request.timeoutInterval= 30;
+        [request setHTTPBody:data];
+        HQJLog(@"HTTPBody:%@",request.HTTPBody);
+
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+        responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
+                                                                          @"text/html",
+                                                                          @"text/json",
+                                                                          @"text/plain",
+                                                                          @"text/javascript",
+                                                                          @"text/xml",
+                                                                          @"image/jpeg",
+                                                                          @"image/png",
+                                                                          @"application/octet-stream"]];
+        manager.responseSerializer = responseSerializer;
+
+
+        [[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+           if (responseObject)  {
+               if (show == YES) {
+                   [SVProgressHUD dismiss];
+               }
+               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+               NSString *receiveStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+               NSData * data = [receiveStr dataUsingEncoding:NSUTF8StringEncoding];
+               NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+
+               !complete?:complete(jsonDict);
+                  
+           }
+            if (error) {
+                !errors ?:errors(error);
+            }
+        }] resume];
+    
+}
 + (void)HQJBusinessGETRequestDetailsUrl:(NSString *)urlStr parameters:(id)parameters complete:(void (^)(NSDictionary *dic))complete andError:(void(^)(NSError *error))errors ShowHUD:(BOOL)show {
     if (show == YES) {
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+
         [SVProgressHUD showWithStatus:@"加载中..."];
     }
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [[AFHTTPSessionManager manager].operationQueue cancelAllOperations];
     AFHTTPSessionManager *manager = [self getAFManager];
-    manager.requestSerializer.timeoutInterval = 30.f;
+    manager.requestSerializer.timeoutInterval = 180;
     //    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     
     //检查地址中是否有中文

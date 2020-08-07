@@ -15,7 +15,7 @@
 
 +(void)intoRequstZHRatio:(void(^)(id sender))intoBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantZHRateInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantZHRateInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         intoBlock(dic[@"result"][@"cashZH"]);
@@ -29,7 +29,7 @@
 
 
 + (void)customerrequstNumer:(NSString *)numer andSender:(void(^)(id sender))customerBlock {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetConsumerInfoByMobileInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetConsumerInfoByMobileInterface];
     NSDictionary *dict = @{@"mobile":numer,
                            @"membertype":@1,@"mid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
@@ -43,7 +43,7 @@
 
 + (void)submitRequstCustomerid:(NSString *)cusId andZH:(NSString *)zh andPsw:(NSString *)psw andAmount:(NSString *)amount andReturn:(void(^)(id sneder))submitBlcok {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBCashSalesInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBCashSalesInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"cusid":cusId,
                            @"zh":zh,

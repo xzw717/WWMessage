@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MemberStaffModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StaffdetailsHeaderView : UIImageView
+@property (nonatomic, strong) MemberStaffModel *headerModel;
 
 @end
 

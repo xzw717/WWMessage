@@ -719,14 +719,18 @@ static const CGFloat  sAlertTimer = 3.0;
     return confromTimespStr;
 }
 #pragma mark --- 时间戳转时间
-+(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str{
++(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str dateFormat:(NSString *)format{
     double time = [str doubleValue];
-    NSDate *myDate = [NSDate dateWithTimeIntervalSince1970:time];
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-    //将时间转换为字符串
-    NSString *timeS = [formatter stringFromDate:myDate];
-    return timeS;
+     NSDate *myDate = [NSDate dateWithTimeIntervalSince1970:time];
+     NSDateFormatter *formatter = [NSDateFormatter new];
+     [formatter setDateFormat:format];
+     //将时间转换为字符串
+     NSString *timeS = [formatter stringFromDate:myDate];
+     return timeS;
+}
+
++(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str{
+    return [self zzReverseSwitchTimer:str dateFormat:@"YYYY-MM-dd HH:mm"];
 }
 + (CIImage *)outputImageStr:(NSString *)str {
     // 1.创建过滤器

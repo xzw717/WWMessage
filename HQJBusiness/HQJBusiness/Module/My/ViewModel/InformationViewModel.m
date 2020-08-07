@@ -13,7 +13,7 @@
 
 + (void)informationRequstBlock:(void(^)(id infoBlock))sender {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
-    NSString *urlStr =[NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantMasterInfoInterface];
+    NSString *urlStr =[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantMasterInfoInterface];
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {

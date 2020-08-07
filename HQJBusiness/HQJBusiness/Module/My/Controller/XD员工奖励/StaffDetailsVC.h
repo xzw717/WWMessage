@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MemberStaffModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StaffDetailsVC : UIViewController
 
-- (instancetype)initWithDetalisStyle:(listStyle)style;
+- (instancetype)initWithDetalisStyle:(listStyle)style
+                         detaliModel:(MemberStaffModel *)model ;
 @end
 
 NS_ASSUME_NONNULL_END

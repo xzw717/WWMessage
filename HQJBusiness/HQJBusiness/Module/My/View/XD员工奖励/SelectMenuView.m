@@ -7,9 +7,10 @@
 //
 
 #import "SelectMenuView.h"
+#import "RoleListModel.h"
 @interface SelectMenuView ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *menuTableView;
-@property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSArray <RoleListModel *>*titleArray;
 @end
 @implementation SelectMenuView
 
@@ -82,7 +83,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    cell.textLabel.text = self.titleArray[indexPath.row];
+    cell.textLabel.text = self.titleArray[indexPath.row].roleName;
     return cell;
   
     
@@ -91,14 +92,14 @@
     [self removeView];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    !self.clickTitle?:self.clickTitle(self.titleArray[indexPath.row]);
+    !self.clickModel?:self.clickModel(self.titleArray[indexPath.row]);
     [self removeView];
     
 }
 - (MenuArrayBlock)munuAry {
     if (!_munuAry) {
         __weak typeof(self) weakSelf = self;
-         return ^(NSArray *titArray){
+         return ^(NSArray <RoleListModel *>*titArray){
              weakSelf.titleArray = titArray;
              return weakSelf;
          };

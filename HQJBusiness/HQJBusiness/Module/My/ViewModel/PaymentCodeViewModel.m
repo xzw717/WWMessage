@@ -11,7 +11,7 @@
 @implementation PaymentCodeViewModel
 - (void)paymentCodeRequstList:(void(^)(NSArray *models))codelist codelistNull:(void(^)(void))isNull {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"type":@0}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPayCodeInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             NSArray *modelArray = [PaymentCodeModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
@@ -27,7 +27,7 @@
 
 - (void)paymentCodeDeletList:(NSString *)codeid complete:(void(^)(void))complete {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"id":codeid}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBDelPayCodeInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBDelPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
@@ -42,7 +42,7 @@
     /// UTF-8 编码
     NSString * encodeString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)codeurl, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8));
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"codeurl":encodeString,@"codetype":type}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddPayCodeInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAddPayCodeInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
             !complete ? : complete(dic[@"msg"]);
         

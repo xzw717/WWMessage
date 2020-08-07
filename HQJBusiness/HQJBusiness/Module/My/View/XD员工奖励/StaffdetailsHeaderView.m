@@ -7,6 +7,7 @@
 //
 
 #import "StaffdetailsHeaderView.h"
+#import "MemberStaffModel.h"
 @interface StaffdetailsHeaderView ()
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *companyLabel;
@@ -30,12 +31,16 @@
     }
     return self;
 }
+- (void)setHeaderModel:(MemberStaffModel *)headerModel {
+    _headerModel = headerModel;
+    self.nameLabel.text = headerModel.nickname;
+    self.companyLabel.text = [NameSingle shareInstance].name;
+}
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc]init];
         _nameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:NewProportion(86)];
         _nameLabel.textColor = [ManagerEngine getColor:@"ffffff"];
-        _nameLabel.text = @"刘玄德";
     }
     return _nameLabel;
 }
@@ -44,7 +49,6 @@
         _companyLabel = [[UILabel alloc]init];
         _companyLabel.font = [UIFont systemFontOfSize:NewProportion(46)];
         _companyLabel.textColor = [ManagerEngine getColor:@"ffffff"];
-        _companyLabel.text = @"三国时期蜀国国主";
         
     }
     return _companyLabel;

@@ -12,7 +12,7 @@
 @implementation BuyZHViewModel
 +(void)buyZH:(void(^)(id sender))buyBlock {
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBZhQueryInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBZhQueryInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         BonusExchangeModel *model = [BonusExchangeModel mj_objectWithKeyValues:dic[@"result"]];
@@ -26,7 +26,7 @@
 
 + (void)generateTradeidRequstAmount:(NSString *)amount andBlock:(void(^)(id Tradeid))sender {
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingAlipayInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBPurchseZhUsingAlipayInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":amount,
                            @"hash":HashCode};
@@ -50,7 +50,7 @@
 
 + (void)payRequstWithAmount:(NSString *)amount andPassword:(NSString *)psw andPopViewController:(ZW_ViewController *)zw_self {
  
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPurchseZhUsingScoreInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBPurchseZhUsingScoreInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                                @"tradepwd":psw,
                                @"amount":amount};

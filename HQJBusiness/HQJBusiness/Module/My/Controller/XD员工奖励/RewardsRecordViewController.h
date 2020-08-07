@@ -6,11 +6,11 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "NewXDChildViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RewardsRecordViewController : UIViewController
+@interface RewardsRecordViewController : NewXDChildViewController
 
 @end
 

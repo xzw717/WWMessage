@@ -12,7 +12,7 @@
 @implementation SelectBankViewModel
 + (void)selectBankBLock:(void (^)(id sender))select {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAccountListInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAccountListInterface];
     HQJLog(@"%@",MmberidStr);
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:@{@"memberid":MmberidStr} complete:^(NSDictionary *dic) {
         if ([dic[@"code"] integerValue] == 49000) {

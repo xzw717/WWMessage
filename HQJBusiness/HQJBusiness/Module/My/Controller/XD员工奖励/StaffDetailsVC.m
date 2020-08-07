@@ -9,18 +9,22 @@
 #import "StaffDetailsVC.h"
 #import "StaffDetailsViewModel.h"
 #import "StaffDetailsModel.h"
+#import "MemberStaffModel.h"
 @interface StaffDetailsVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *staffDetailsTableView;
 @property (nonatomic, strong) NSArray <NSString *>*modelArray;
 @property (nonatomic, assign) listStyle style;
+@property (nonatomic, strong) MemberStaffModel *model;
 
 @end
 
 @implementation StaffDetailsVC
-- (instancetype)initWithDetalisStyle:(listStyle)style {
+- (instancetype)initWithDetalisStyle:(listStyle)style
+                         detaliModel:(MemberStaffModel *)model {
     self = [super init];
     if (self) {
-        _style = style;
+        self.style = style;
+        self.model = model;
     }
     return self;
 }
@@ -39,7 +43,24 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    cell.textLabel.text = self.modelArray[indexPath.row];
+    NSString *contentStr ;
+    if (indexPath.row == 0) {
+        contentStr = self.model.empNo;
+    } else if (indexPath.row == 1) {
+        contentStr = self.model.nickname;
+
+    } else if (indexPath.row == 2) {
+        contentStr = self.model.mobile;
+
+    } else if (indexPath.row == 3) {
+        contentStr = self.model.role;
+
+    } else if (indexPath.row == 4) {
+        contentStr = [ManagerEngine zzReverseSwitchTimer:self.model.entryTime dateFormat:@"YYYY-MM-dd"];
+
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@  %@",self.modelArray[indexPath.row],contentStr];
     return cell;
    
 }

@@ -14,7 +14,7 @@
     if (old) {
         NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"membertype":@1,@"pwdtype":@1,@"oldpwd":old,@"newpwd":new}.mutableCopy;
            
-           NSString *urlStr =[NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBPasswordSaveActionInterface];
+           NSString *urlStr =[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBPasswordSaveActionInterface];
            [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict  complete:^(NSDictionary *dic) {
                if (sender) {
                    sender(dic);

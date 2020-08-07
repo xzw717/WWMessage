@@ -169,8 +169,8 @@
 - (QrCodeImagelock)qrCode {
     if (!_qrCode) {
         __weak typeof(self) weakSelf = self;
-       return  ^(UIImage * qrImage) {
-           weakSelf.qrcodeImageView.image = qrImage;
+       return  ^(NSString * qrImageUrl) {
+           [weakSelf.qrcodeImageView sd_setImageWithURL:[NSURL URLWithString:qrImageUrl]];
            return weakSelf;
         };
     }

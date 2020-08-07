@@ -9,10 +9,14 @@
 #import "InvitedRecordViewController.h"
 #import "InvitedRecordTableViewCell.h"
 #import "RecordsConsumptionCell.h"
-
+#import "InvitedRecordModel.h"
+#import "MemberStaffModel.h"
+#import "StaffDetailsViewModel.h"
 @interface InvitedRecordViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *invitedRecordTableView;
 @property (nonatomic, assign) listStyle style;
+@property (nonatomic, strong) MemberStaffModel *model;
+@property (nonatomic, strong) NSArray <InvitedRecordModel *>*modelAry;
 
 @end
 
@@ -21,25 +25,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.invitedRecordTableView];
-    
+    if (self.style == stafflistStyle) {
+        [self requstInvitedRecord];
+
+    } else {
+        
+    }
 }
-- (instancetype)initRecordWithStyle:(listStyle)style {
+- (instancetype)initRecordWithStyle:(listStyle)style
+                        detaliModel:(MemberStaffModel *)model{
     self = [super init];
     if (self) {
-        _style = style;
+        self.style = style;
+        self.model = model;
     }
     return self;
 }
+
+- (void)requstInvitedRecord {
+    [StaffDetailsViewModel getInvitedRecordListWithStaffID:self.model.nid completion:^(NSArray<InvitedRecordModel *> * _Nonnull ary) {
+         self.modelAry = ary;
+        [self.invitedRecordTableView.mj_header endRefreshing];
+         [self.invitedRecordTableView reloadData];
+    } error:^(NSError * _Nonnull err) {
+        [self.invitedRecordTableView.mj_header endRefreshing];
+        if (err.code == 490) {
+            [SVProgressHUD showErrorWithStatus:err.userInfo[@"msg"]];
+        }
+    }];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return  10;
+    return  self.modelAry.count;
  
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.style == stafflistStyle) {
            InvitedRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([InvitedRecordTableViewCell class]) forIndexPath:indexPath];
-        //    cell.textLabel.text = self.modelArray[indexPath.row];
-            return cell;
+        cell.model = self.modelAry[indexPath.row];
+        return cell;
     } else {
            RecordsConsumptionCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecordsConsumptionCell class]) forIndexPath:indexPath];
         //    cell.textLabel.text = self.modelArray[indexPath.row];
@@ -60,7 +85,14 @@
         [_invitedRecordTableView registerClass:[RecordsConsumptionCell class] forCellReuseIdentifier:NSStringFromClass([RecordsConsumptionCell class])];
 
         _invitedRecordTableView.tableFooterView = [UIView new];
-        
+        @weakify(self);
+        _invitedRecordTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                 @strongify(self);
+                [self requstInvitedRecord];
+
+                 
+                 
+             }];
     }
     return _invitedRecordTableView;
 }

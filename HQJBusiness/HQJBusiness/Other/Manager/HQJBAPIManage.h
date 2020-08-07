@@ -42,6 +42,10 @@ extern NSString *const HQJBXDH5Domain;
 
 
 /************************************接口（开始）**********************************************/
+
+/// 积分相关的项目
+extern NSString *const HQJBMerchantInterface ;
+
 ///获取商家信息
 extern NSString *const HQJBGetMerchantInfoInterface;
 /// 修改登录密码
@@ -173,6 +177,10 @@ extern NSString *const HQJBGetShopUpgradeStateInterface;
 extern NSString *const HQJBFreeAmountInterface;
 /// 商家查看信息是否完善
 extern NSString *const HQJBIsPerfectInterface;
+/// 支付宝支付回调
+extern NSString *const HQJBAlipayCallbackInterface;
+/// XD支付支付宝回调
+extern NSString *const HQJBAlipayServiceInterface;
 /*_____________________________XD接口________________________________________*/
 ///创建订单
 extern NSString *const HQJBXdorderInterface;
@@ -192,6 +200,66 @@ extern NSString *const HQJBInitiateESignInterface;
 extern NSString *const HQJBGetOrderInfoByIdInterface;
 ///查询XD商家企业基础信息
 extern NSString *const HQJBBuinessSignInterface;
+
+
+
+/*_____________________________ XD商家奖励 接口________________________________________*/
+/// 商家奖励项目
+extern NSString *const HQJBXdMerchantProject ;
+
+/// 员工列表
+extern NSString *const HQJBGetMerchantEmployeeListInterface ;
+/// 员工详情
+extern NSString *const HQJBGetEmployeeDetailInterface ;
+/// 员工邀请会员列表
+extern NSString *const HQJBGetInvitedConsumerInterface ;
+/// 员工邀请奖励明细（员工个人的奖励明细）
+extern NSString *const HQJBGetEmployeeAwardInterface ;
+/// 添加奖励
+extern NSString *const HQJBAddXdAwardInterface ;
+/// 员工详细资料（包括会员帐号信息）
+extern NSString *const HQJBEmployeeDetailInterface ;
+/// 删除员工
+extern NSString *const HQJBRemoveEmployeeInterface ;
+/// 员工二维码
+extern NSString *const HQJBGetEmployeeQrcodeInterface ;
+/// 新增员工
+extern NSString *const HQJBAddEmployeeInterface  ;
+/// 修改员工信息
+extern NSString *const HQJBUpdateEmployeeInterface  ;
+/// 生成二维码
+extern NSString *const HQJBSaveQrcodeInterface  ;
+/// 商家奖励
+extern NSString *const HQJBGetMerchantAwardtInterface  ;
+/// 员工角色显示
+extern NSString *const HQJBGetRoleListInterface  ;
+/// 新增角色（JSON对象，完整参数）
+extern NSString *const HQJBAddRoleInterface  ;
+/// 新增角色名称
+extern NSString *const HQJBAddRoleNameInterface  ;
+/// 修改角色
+extern NSString *const HQJBUpdateRoleInterface  ;
+/// 删除角色
+extern NSString *const HQJBRemoveRoleInterface  ;
+/// 奖励设置
+extern NSString *const HQJBSetupAwardRateInterface  ;
+/// 根据用户名关键字查询员工信息
+extern NSString *const HQJSearchEmployeeByNameInterface  ;
+/// 根据手机号关键数字查询员工信息
+extern NSString *const HQJBSearchEmployeeByMobileInterface  ;
+/// 根据用户名或手机号关键字查询员工信息
+extern NSString *const HQJBSearchEmployeeInterface  ;
+/// 返回职务列表
+extern NSString *const HQJBGetTitleInterface ;
+/// 获取商家注册的用户
+extern NSString *const HQJBGetMemberListInterface ;
+/// 根据用户名或手机号关键字查询商家用户
+extern NSString *const HQJBSearchMemberListInterface ;
+/// 根据用户名关键字查询商家注册用户信息
+extern NSString *const HQJBSearchMemberListByNameInterface ;
+/// 根据手机号关键字查询商家注册用户信息
+extern NSString *const HQJBSearchMemberListByMobileInterface ;
+
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

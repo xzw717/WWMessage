@@ -8,11 +8,11 @@
 
 #import "NewXDChildViewController.h"
 //@calss MemberStaffListViewController;
-
+@class MemberStaffModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StaffDetailsViewController : NewXDChildViewController
-- (instancetype)initWithDetailsStyle:(listStyle)style ;
+- (instancetype)initWithDetailsStyle:(listStyle)style objectModel:(MemberStaffModel *)model;
 
 @end
 

@@ -12,7 +12,7 @@
 @implementation BonusExchangeViewModel
 + (void)bonusExchaneViewmodelRequstandViewControllerTitle:(NSString *)str AndBack:(void(^)(id sender))exchaneBlock {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBScoreQueryInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBScoreQueryInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         BonusExchangeModel *model = [BonusExchangeModel mj_objectWithKeyValues:dic[@"result"]];
@@ -33,7 +33,7 @@
         urlType = HQJBDrawCashInterface;
     }
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,urlType];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,urlType];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                                @"accountid":accountid,
                            @"amount":amount,

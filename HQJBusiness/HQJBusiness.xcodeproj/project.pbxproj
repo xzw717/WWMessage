@@ -86,6 +86,18 @@
 		1F25DC031E10E9A4004DC19F /* TransferOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DC021E10E9A4004DC19F /* TransferOrderVC.m */; };
 		1F25DC061E10EAFA004DC19F /* OrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DC051E10EAFA004DC19F /* OrderViewModel.m */; };
 		1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F25DC081E10FD0D004DC19F /* OrderModel.m */; };
+		1F276F8C24D7A70C0049E227 /* RewardsRecordChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F8B24D7A70C0049E227 /* RewardsRecordChildCell.m */; };
+		1F276F8F24D7BA880049E227 /* RewardSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F8E24D7BA880049E227 /* RewardSetViewController.m */; };
+		1F276F9224D7BD090049E227 /* RewardSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F9124D7BD090049E227 /* RewardSetCell.m */; };
+		1F276F9524D7E2EA0049E227 /* RewardSetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F9424D7E2EA0049E227 /* RewardSetHeaderView.m */; };
+		1F276F9824D8F9EB0049E227 /* RewardSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F9724D8F9EB0049E227 /* RewardSetModel.m */; };
+		1F276F9B24D943F50049E227 /* RewardSetFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F9A24D943F50049E227 /* RewardSetFootView.m */; };
+		1F276F9E24D962430049E227 /* MemberStaffListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276F9D24D962430049E227 /* MemberStaffListModel.m */; };
+		1F276FA124DA4BA60049E227 /* MemberStaffModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA024DA4BA50049E227 /* MemberStaffModel.m */; };
+		1F276FA424DA4CFE0049E227 /* MemberStaffListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA324DA4CFE0049E227 /* MemberStaffListViewModel.m */; };
+		1F276FA724DB9B040049E227 /* AddStaffViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA624DB9B040049E227 /* AddStaffViewModel.m */; };
+		1F276FAA24DBA2940049E227 /* RoleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA924DBA2940049E227 /* RoleListModel.m */; };
+		1F276FAD24DBFE4F0049E227 /* InvitedRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */; };
 		1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AB29A1F62894800D296F3 /* SelectButtonView.m */; };
 		1F2E0B4B1EC99EED0072FDDD /* LoginSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E0B4A1EC99EED0072FDDD /* LoginSingleton.m */; };
 		1F2E0B4E1EC9A7AD0072FDDD /* AppVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E0B4C1EC9A7AD0072FDDD /* AppVersionManager.m */; };
@@ -335,7 +347,7 @@
 		1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9DE24D017C0003A2996 /* AddStaffTableViewCell.m */; };
 		1FF2F9E224D114D8003A2996 /* SelectMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E124D114D8003A2996 /* SelectMenuView.m */; };
 		1FF2F9E524D161D5003A2996 /* UITextField+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */; };
-		1FF2F9E824D1738E003A2996 /* RoleSelectVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */; };
+		1FF2F9E824D1738E003A2996 /* RoleSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9E724D1738E003A2996 /* RoleSelectView.m */; };
 		1FF2F9EB24D25FBB003A2996 /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */; };
 		1FF2F9F124D2BA2E003A2996 /* HQJShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9EF24D2BA2E003A2996 /* HQJShareView.m */; };
 		1FF2F9F424D2BABC003A2996 /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2F9F224D2BABC003A2996 /* UIView+RoundedCorners.m */; };
@@ -584,6 +596,30 @@
 		1F25DC051E10EAFA004DC19F /* OrderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewModel.m; sourceTree = "<group>"; };
 		1F25DC071E10FD0D004DC19F /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		1F25DC081E10FD0D004DC19F /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		1F276F8A24D7A70C0049E227 /* RewardsRecordChildCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardsRecordChildCell.h; sourceTree = "<group>"; };
+		1F276F8B24D7A70C0049E227 /* RewardsRecordChildCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordChildCell.m; sourceTree = "<group>"; };
+		1F276F8D24D7BA880049E227 /* RewardSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardSetViewController.h; sourceTree = "<group>"; };
+		1F276F8E24D7BA880049E227 /* RewardSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardSetViewController.m; sourceTree = "<group>"; };
+		1F276F9024D7BD090049E227 /* RewardSetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardSetCell.h; sourceTree = "<group>"; };
+		1F276F9124D7BD090049E227 /* RewardSetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardSetCell.m; sourceTree = "<group>"; };
+		1F276F9324D7E2EA0049E227 /* RewardSetHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardSetHeaderView.h; sourceTree = "<group>"; };
+		1F276F9424D7E2EA0049E227 /* RewardSetHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardSetHeaderView.m; sourceTree = "<group>"; };
+		1F276F9624D8F9EB0049E227 /* RewardSetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardSetModel.h; sourceTree = "<group>"; };
+		1F276F9724D8F9EB0049E227 /* RewardSetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardSetModel.m; sourceTree = "<group>"; };
+		1F276F9924D943F50049E227 /* RewardSetFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardSetFootView.h; sourceTree = "<group>"; };
+		1F276F9A24D943F50049E227 /* RewardSetFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardSetFootView.m; sourceTree = "<group>"; };
+		1F276F9C24D962430049E227 /* MemberStaffListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListModel.h; sourceTree = "<group>"; };
+		1F276F9D24D962430049E227 /* MemberStaffListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffListModel.m; sourceTree = "<group>"; };
+		1F276F9F24DA4BA50049E227 /* MemberStaffModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffModel.h; sourceTree = "<group>"; };
+		1F276FA024DA4BA50049E227 /* MemberStaffModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffModel.m; sourceTree = "<group>"; };
+		1F276FA224DA4CFE0049E227 /* MemberStaffListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListViewModel.h; sourceTree = "<group>"; };
+		1F276FA324DA4CFE0049E227 /* MemberStaffListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberStaffListViewModel.m; sourceTree = "<group>"; };
+		1F276FA524DB9B040049E227 /* AddStaffViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddStaffViewModel.h; sourceTree = "<group>"; };
+		1F276FA624DB9B040049E227 /* AddStaffViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddStaffViewModel.m; sourceTree = "<group>"; };
+		1F276FA824DBA2940049E227 /* RoleListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoleListModel.h; sourceTree = "<group>"; };
+		1F276FA924DBA2940049E227 /* RoleListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoleListModel.m; sourceTree = "<group>"; };
+		1F276FAB24DBFE4F0049E227 /* InvitedRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitedRecordModel.h; sourceTree = "<group>"; };
+		1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitedRecordModel.m; sourceTree = "<group>"; };
 		1F2AB2991F62894800D296F3 /* SelectButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButtonView.h; sourceTree = "<group>"; };
 		1F2AB29A1F62894800D296F3 /* SelectButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButtonView.m; sourceTree = "<group>"; };
 		1F2E0B491EC99EED0072FDDD /* LoginSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSingleton.h; sourceTree = "<group>"; };
@@ -1155,8 +1191,8 @@
 		1FF2F9E124D114D8003A2996 /* SelectMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMenuView.m; sourceTree = "<group>"; };
 		1FF2F9E324D161D5003A2996 /* UITextField+IndexPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+IndexPath.h"; sourceTree = "<group>"; };
 		1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IndexPath.m"; sourceTree = "<group>"; };
-		1FF2F9E624D1738E003A2996 /* RoleSelectVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoleSelectVIew.h; sourceTree = "<group>"; };
-		1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoleSelectVIew.m; sourceTree = "<group>"; };
+		1FF2F9E624D1738E003A2996 /* RoleSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoleSelectView.h; sourceTree = "<group>"; };
+		1FF2F9E724D1738E003A2996 /* RoleSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoleSelectView.m; sourceTree = "<group>"; };
 		1FF2F9E924D25FBB003A2996 /* QRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
 		1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
 		1FF2F9EF24D2BA2E003A2996 /* HQJShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQJShareView.m; sourceTree = "<group>"; };
@@ -2641,6 +2677,8 @@
 				1FF2F9DB24D016D4003A2996 /* AddStaffViewController.m */,
 				1FF2F9F524D3A98B003A2996 /* StaffRoleViewController.h */,
 				1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */,
+				1F276F8D24D7BA880049E227 /* RewardSetViewController.h */,
+				1F276F8E24D7BA880049E227 /* RewardSetViewController.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2664,8 +2702,8 @@
 				1FF2F9E124D114D8003A2996 /* SelectMenuView.m */,
 				1FF2F9E324D161D5003A2996 /* UITextField+IndexPath.h */,
 				1FF2F9E424D161D5003A2996 /* UITextField+IndexPath.m */,
-				1FF2F9E624D1738E003A2996 /* RoleSelectVIew.h */,
-				1FF2F9E724D1738E003A2996 /* RoleSelectVIew.m */,
+				1FF2F9E624D1738E003A2996 /* RoleSelectView.h */,
+				1FF2F9E724D1738E003A2996 /* RoleSelectView.m */,
 				1FF2F9E924D25FBB003A2996 /* QRCodeView.h */,
 				1FF2F9EA24D25FBB003A2996 /* QRCodeView.m */,
 				1FF2F9F024D2BA2E003A2996 /* HQJShareView.h */,
@@ -2676,6 +2714,14 @@
 				1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */,
 				1F76234924D41E6A00ECE044 /* RecordsConsumptionCell.h */,
 				1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */,
+				1F276F8A24D7A70C0049E227 /* RewardsRecordChildCell.h */,
+				1F276F8B24D7A70C0049E227 /* RewardsRecordChildCell.m */,
+				1F276F9024D7BD090049E227 /* RewardSetCell.h */,
+				1F276F9124D7BD090049E227 /* RewardSetCell.m */,
+				1F276F9324D7E2EA0049E227 /* RewardSetHeaderView.h */,
+				1F276F9424D7E2EA0049E227 /* RewardSetHeaderView.m */,
+				1F276F9924D943F50049E227 /* RewardSetFootView.h */,
+				1F276F9A24D943F50049E227 /* RewardSetFootView.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2685,6 +2731,10 @@
 			children = (
 				1FF2F9CD24CFD77C003A2996 /* StaffDetailsViewModel.h */,
 				1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */,
+				1F276FA224DA4CFE0049E227 /* MemberStaffListViewModel.h */,
+				1F276FA324DA4CFE0049E227 /* MemberStaffListViewModel.m */,
+				1F276FA524DB9B040049E227 /* AddStaffViewModel.h */,
+				1F276FA624DB9B040049E227 /* AddStaffViewModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2694,6 +2744,16 @@
 			children = (
 				1FF2F9D124CFD7B6003A2996 /* StaffDetailsModel.h */,
 				1FF2F9D224CFD7B6003A2996 /* StaffDetailsModel.m */,
+				1F276F9624D8F9EB0049E227 /* RewardSetModel.h */,
+				1F276F9724D8F9EB0049E227 /* RewardSetModel.m */,
+				1F276F9C24D962430049E227 /* MemberStaffListModel.h */,
+				1F276F9D24D962430049E227 /* MemberStaffListModel.m */,
+				1F276F9F24DA4BA50049E227 /* MemberStaffModel.h */,
+				1F276FA024DA4BA50049E227 /* MemberStaffModel.m */,
+				1F276FA824DBA2940049E227 /* RoleListModel.h */,
+				1F276FA924DBA2940049E227 /* RoleListModel.m */,
+				1F276FAB24DBFE4F0049E227 /* InvitedRecordModel.h */,
+				1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -3052,6 +3112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F034A672498A05200214E26 /* UpgradeManagementTableViewCell.m in Sources */,
+				1F276FA424DA4CFE0049E227 /* MemberStaffListViewModel.m in Sources */,
 				1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */,
 				1F960D2B1DFE3E51003E3D17 /* NSOrderedSet+BlocksKit.m in Sources */,
 				1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */,
@@ -3108,11 +3169,13 @@
 				1F960D441DFE3E51003E3D17 /* ZWNavigationController.m in Sources */,
 				1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */,
 				1F607E0224AB23C20011915E /* XDPaySureViewController.m in Sources */,
+				1F276F9824D8F9EB0049E227 /* RewardSetModel.m in Sources */,
 				1FC9F88A24AD82BB0037352A /* BonusViewController.m in Sources */,
 				1F402911229FBA230014769B /* UIWebView+UIImage.m in Sources */,
 				1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */,
 				1F046D231E090DAA006D6EB2 /* SGSegmentedControlBottomView.m in Sources */,
 				1F6C85E223CEBE78005F3DB8 /* OrderDetailsPrintHeaderView.m in Sources */,
+				1F276FA124DA4BA60049E227 /* MemberStaffModel.m in Sources */,
 				0585FE7C2497106C00CD7280 /* ProtocolViewController.m in Sources */,
 				1F607E0424AB23C20011915E /* XDViewController.m in Sources */,
 				1FF741331E0533630004AC95 /* SetZHView.m in Sources */,
@@ -3122,6 +3185,7 @@
 				1F960D221DFE3E51003E3D17 /* NSMutableArray+BlocksKit.m in Sources */,
 				1FBBD81E1E343FF80077B124 /* ZWTabBarViewController.m in Sources */,
 				0585FE802497106C00CD7280 /* ZGProgressHUD.m in Sources */,
+				1F276F8F24D7BA880049E227 /* RewardSetViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
@@ -3159,6 +3223,7 @@
 				1F607E0024AB23C20011915E /* XDDetailBottomView.m in Sources */,
 				1FB795B424ADDC5800D4CC40 /* PinYinForObjc.m in Sources */,
 				1F40133A1E135767004E30B1 /* AddBankcCardViewController.m in Sources */,
+				1F276F9B24D943F50049E227 /* RewardSetFootView.m in Sources */,
 				1F2E0B4B1EC99EED0072FDDD /* LoginSingleton.m in Sources */,
 				1F20CB211E0772F100FC91B3 /* SetZHModel.m in Sources */,
 				1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */,
@@ -3174,6 +3239,7 @@
 				0585FE85249710F500CD7280 /* HQJBaseVC.m in Sources */,
 				1F6C85D723CEBE78005F3DB8 /* ZW_StateLabel.m in Sources */,
 				1F6C85DE23CEBE78005F3DB8 /* OrderOneCell.m in Sources */,
+				1F276F9E24D962430049E227 /* MemberStaffListModel.m in Sources */,
 				1FB795B224ADDC5800D4CC40 /* ChineseToPinyinResource.m in Sources */,
 				1FC50B671F6916240081B728 /* OrderDetailsHeaderView.m in Sources */,
 				1F12F6E71E1635980056DF9A /* PayEngine.m in Sources */,
@@ -3193,6 +3259,8 @@
 				1F960D311DFE3E51003E3D17 /* NSURLConnection+BlocksKit.m in Sources */,
 				1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */,
 				1F960D3C1DFE3E51003E3D17 /* UIGestureRecognizer+BlocksKit.m in Sources */,
+				1F276F9524D7E2EA0049E227 /* RewardSetHeaderView.m in Sources */,
+				1F276FA724DB9B040049E227 /* AddStaffViewModel.m in Sources */,
 				1F960C9B1DFE3D06003E3D17 /* CommodityViewController.m in Sources */,
 				1F960D351DFE3E51003E3D17 /* MFMailComposeViewController+BlocksKit.m in Sources */,
 				1FF2F9F424D2BABC003A2996 /* UIView+RoundedCorners.m in Sources */,
@@ -3273,6 +3341,7 @@
 				1FC9F88D24AD82BB0037352A /* ZHViewController.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
+				1F276F8C24D7A70C0049E227 /* RewardsRecordChildCell.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
@@ -3317,11 +3386,14 @@
 				1FBBD8191E343A300077B124 /* TabBarBannerModel.m in Sources */,
 				1F607DC024AB22A20011915E /* XDShopServiceManagementViewController.m in Sources */,
 				1F20CB3A1E0788E400FC91B3 /* ScanViewController.m in Sources */,
+				1F276FAA24DBA2940049E227 /* RoleListModel.m in Sources */,
 				1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */,
+				1F276FAD24DBFE4F0049E227 /* InvitedRecordModel.m in Sources */,
 				1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */,
 				1F76234224D3B76900ECE044 /* StaffRoleItem.m in Sources */,
 				1F25DBF71E10E90D004DC19F /* OrderBaseVC.m in Sources */,
 				1FC9F89024AD82BB0037352A /* InformationViewController.m in Sources */,
+				1F276F9224D7BD090049E227 /* RewardSetCell.m in Sources */,
 				1FB3DEBE1E03902800F670EC /* LrdPasswordAlertView.m in Sources */,
 				1F12C9E61E0B6C7D00CF6CB7 /* informationModel.m in Sources */,
 				0585FE7B2497106C00CD7280 /* CreateShopViewController.m in Sources */,
@@ -3329,7 +3401,7 @@
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1FC9F89124AD82BB0037352A /* ChangePswViewController.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
-				1FF2F9E824D1738E003A2996 /* RoleSelectVIew.m in Sources */,
+				1FF2F9E824D1738E003A2996 /* RoleSelectView.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1FC9F89324AD82BB0037352A /* HelpMeViewController.m in Sources */,

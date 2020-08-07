@@ -23,7 +23,7 @@
 
 - (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantInfoInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantInfoInterface];
 
     HQJLog(@"地址：%@",urlStr);
     if (MmberidStr) {

@@ -277,7 +277,8 @@ typedef NS_ENUM(NSInteger,listStyle) {
  @return 时间
  */
 +(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str;
-
+///  format  : 所需时间格式
++(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str dateFormat:(NSString *_Nullable)format;
 /**
  生成二维码
 

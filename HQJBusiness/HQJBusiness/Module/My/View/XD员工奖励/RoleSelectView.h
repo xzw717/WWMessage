@@ -1,5 +1,5 @@
 //
-//  RoleSelectVIew.h
+//  RoleSelectView.h
 //  HQJBusiness
 //
 //  Created by mymac on 2020/7/29.
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RoleSelectVIew : UIView
+@interface RoleSelectView : UIView
 @property (nonatomic, weak) id <RoleDelegate> delegate;
 @property (nonatomic, strong) NSString *roleTitleString;
 @end

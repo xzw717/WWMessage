@@ -16,9 +16,9 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/wuwuInterface/merchant/";
+NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
-/// 台卡域名
+/// 台卡域名   XD 商家奖励通用
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// 优惠券
 NSString *const WWMCouponDomain = @"http://47.98.45.218/";
@@ -42,7 +42,7 @@ NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.com/";
 NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
-NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/wuwuInterface/merchant/";
+NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/";
 /// 优惠券
 NSString *const WWMCouponDomain = @"http://statics.wuwuditu.com/";
 
@@ -63,7 +63,14 @@ NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.h
 NSString *const HQJBImageDomainName = @"http://wuwuditu.img-cn-hangzhou.aliyuncs.com/";
 
 
+
+
+
 /*_____________________________我是分割线________________________________________*/
+
+/// 积分相关的项目
+NSString *const HQJBMerchantInterface = @"wuwuInterface/merchant/";
+
 ///获取商家信息
 NSString *const HQJBGetMerchantInfoInterface = @"getMerchantInfo?";
 /// 修改登录密码
@@ -96,6 +103,13 @@ NSString *const HQJBCashDrawApplyListInterface = @"cashDrawApplyList";
 NSString *const HQJBScoreExchangeInterface = @"scoreExchange";
 /// 待审核申请（ZH值设定）
 NSString *const HQJBZHSetupInterface = @"zhSetup";
+
+/// 支付宝支付回调
+NSString *const HQJBAlipayCallbackInterface = @"alipayCallback";
+/// XD支付支付宝回调
+NSString *const HQJBAlipayServiceInterface = @"alipayService";
+
+
 
 
 
@@ -213,6 +227,8 @@ NSString *const HQJBIsPerfectInterface = @"shop/isPerfect.action";
 /*_____________________________ XD商家 接口________________________________________*/
 ///根据商家获取订单
 NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShopId.action";
+
+
 /// 获取商家shopid
 NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
 
@@ -229,6 +245,68 @@ NSString *const HQJBInitiateESignInterface = @"xdesign/initiateESign.action";
 NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.action";
 ///查询XD商家企业基础信息
 NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
+
+/*_____________________________ XD商家奖励 接口________________________________________*/
+
+/// 商家奖励项目
+NSString *const HQJBXdMerchantProject = @"wuwuInterface/xdMerchant/";
+
+/// 员工列表
+NSString *const HQJBGetMerchantEmployeeListInterface = @"getMerchantEmployeeList";
+/// 员工详情
+NSString *const HQJBGetEmployeeDetailInterface = @"getEmployeeDetail";
+/// 员工邀请会员列表
+NSString *const HQJBGetInvitedConsumerInterface = @"getInvitedConsumer";
+/// 员工邀请奖励明细（员工个人的奖励明细）
+NSString *const HQJBGetEmployeeAwardInterface = @"getEmployeeAward";
+/// 添加奖励
+NSString *const HQJBAddXdAwardInterface = @"addXdAward";
+/// 员工详细资料（包括会员帐号信息）
+NSString *const HQJBEmployeeDetailInterface = @"employeeDetail";
+/// 删除员工
+NSString *const HQJBRemoveEmployeeInterface = @"removeEmployee";
+/// 员工二维码
+NSString *const HQJBGetEmployeeQrcodeInterface = @"getEmployeeQrcode";
+/// 新增员工
+NSString *const HQJBAddEmployeeInterface = @"addEmployee";
+/// 修改员工信息
+NSString *const HQJBUpdateEmployeeInterface = @"updateEmployee";
+/// 生成二维码
+NSString *const HQJBSaveQrcodeInterface = @"saveQrcode";
+/// 商家奖励
+NSString *const HQJBGetMerchantAwardtInterface = @"getMerchantAward";
+/// 员工角色显示
+NSString *const HQJBGetRoleListInterface = @"getRoleList";
+/// 新增角色（JSON对象，完整参数）
+NSString *const HQJBAddRoleInterface = @"addRole";
+/// 新增角色名称
+NSString *const HQJBAddRoleNameInterface =@"addRoleName";
+/// 修改角色
+NSString *const HQJBUpdateRoleInterface =@"updateRole";
+/// 删除角色
+NSString *const HQJBRemoveRoleInterface =@"removeRole";
+/// 奖励设置
+NSString *const HQJBSetupAwardRateInterface =@"setupAwardRate";
+/// 根据用户名关键字查询员工信息
+NSString *const HQJSearchEmployeeByNameInterface =@"searchEmployeeByName";
+/// 根据手机号关键数字查询员工信息
+NSString *const HQJBSearchEmployeeByMobileInterface =@"searchEmployeeByMobile";
+/// 根据用户名或手机号关键字查询员工信息
+NSString *const HQJBSearchEmployeeInterface =@"searchEmployee";
+/// 返回职务列表
+NSString *const HQJBGetTitleInterface =@"getTitle";
+/// 获取商家注册的用户
+NSString *const HQJBGetMemberListInterface =@"getMemberList";
+/// 根据用户名或手机号关键字查询商家用户
+NSString *const HQJBSearchMemberListInterface =@"searchMemberList";
+/// 根据用户名关键字查询商家注册用户信息
+NSString *const HQJBSearchMemberListByNameInterface =@"searchMemberListByName";
+/// 根据手机号关键字查询商家注册用户信息
+NSString *const HQJBSearchMemberListByMobileInterface =@"searchMemberListByMobile";
+
+ 
+
+
 @implementation HQJBAPIManage
 
 @end

@@ -310,7 +310,7 @@
 
 
 -(void)bankNameRequst {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBBankAccountInterface];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBBankAccountInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlString complete:^(NSDictionary *dic) {
         
         
@@ -436,7 +436,7 @@
     
 //    NSString *urlStr = [NSString stringWithFormat:@"%@%@?mobile=%@&membertype=1&realname=%@",HQJBBonusDomainName,@"/merchant/getSMS",[NameSingle shareInstance].mobile,[NameSingle shareInstance].name];
     NSDictionary *dict = @{@"mobile":[NameSingle shareInstance].mobile,@"membertype":@1,@"realname":self.nameTextField.text};
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetSMSInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetSMSInterface];
 //    HQJLog(@"------%@",dict[@"realname"]);
     @weakify(self);
     [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
@@ -480,7 +480,7 @@
                            @"payaccount":self.cardTextField.text,
                            @"payname":self.nameTextField.text,
                            @"bankbranch":self.branchTextField.text};
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddBankCardInterface];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAddBankCardInterface];
 
 //    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

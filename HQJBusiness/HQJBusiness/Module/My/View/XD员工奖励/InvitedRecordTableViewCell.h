@@ -7,12 +7,12 @@
 //
 
 #import "ZW_TableViewCell.h"
-
+@class InvitedRecordModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface InvitedRecordTableViewCell : ZW_TableViewCell
 @property (nonatomic, assign) listStyle recordstyle;
-
+@property (nonatomic, strong) InvitedRecordModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

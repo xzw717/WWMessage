@@ -11,7 +11,7 @@
 typedef QRCodeView * (^CompanyBlock)(NSString *str);
 typedef QRCodeView * (^NameBlock)(NSString *str);
 typedef QRCodeView * (^PhoneBlock)(NSString *str);
-typedef QRCodeView * (^QrCodeImagelock)(UIImage *image);
+typedef QRCodeView * (^QrCodeImagelock)(NSString *imageUrl);
 
 NS_ASSUME_NONNULL_BEGIN
 

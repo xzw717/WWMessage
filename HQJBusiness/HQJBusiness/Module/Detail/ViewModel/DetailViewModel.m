@@ -26,7 +26,7 @@
         dict = @{@"memberid":MmberidStr,@"page":page,@"hash":HashCode}.mutableCopy;
         
     }
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@?",HQJBBonusDomainName,type];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@?",HQJBBonusDomainName,HQJBMerchantInterface,type];
     HQJLog(@"-%@ dict = %@",urlStr,dict);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         

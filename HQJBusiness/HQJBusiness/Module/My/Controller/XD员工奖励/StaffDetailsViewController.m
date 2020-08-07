@@ -13,7 +13,8 @@
 #import "RewardsRecordViewController.h"
 #import "SGSegmentedControlBottomView.h"
 #import "QRCodeView.h"
-
+#import "MemberStaffModel.h"
+#import "StaffDetailsViewModel.h"
 @interface StaffDetailsViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) StaffdetailsHeaderView *headerView;
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
@@ -21,7 +22,7 @@
 @property (nonatomic, strong) UIButton *editorButton;
 @property (nonatomic, strong) UIButton *deleteButton;
 @property (nonatomic, assign) listStyle style;
-
+@property (nonatomic, strong) MemberStaffModel *model;
 @end
 
 @implementation StaffDetailsViewController
@@ -65,26 +66,38 @@
      }];
 }
 - (void)showQRCode {
-    [QRCodeView showQrCode].company(@"腾讯科技股份有限公司").name(@"马化腾").phone(@"1353838438");
+    @weakify(self);
+    [StaffDetailsViewModel getQrCodeWithStaffID:self.model.nid completion:^(NSString * _Nonnull imageUrl) {
+        @strongify(self);
+        [QRCodeView showQrCode].
+        company([NameSingle shareInstance].name).
+        name(self.model.nickname).
+        phone(self.model.mobile).
+        qrCode(imageUrl);
+
+    }];
 }
-- (instancetype)initWithDetailsStyle:(listStyle)style {
+- (void)removeStaff {
+    [StaffDetailsViewModel removeStaffWithStaffID:self.model.nid];
+}
+- (instancetype)initWithDetailsStyle:(listStyle)style objectModel:(nonnull MemberStaffModel *)model{
     self = [super init];
     if (self) {
-        _style = style;
-
+        self.style = style;
+        self.model = model;
     }
     return self;
 }
 -(void)initVC {
-    StaffDetailsVC *sdVC = [[StaffDetailsVC alloc]initWithDetalisStyle:self.style];
+    StaffDetailsVC *sdVC = [[StaffDetailsVC alloc]initWithDetalisStyle:self.style detaliModel:self.model];
     [self addChildViewController:sdVC];
     
-    InvitedRecordViewController *irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style];
+    InvitedRecordViewController *irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style detaliModel:self.model];
     [self addChildViewController:irZHVC];
     
     NSArray *childVC = @[sdVC, irZHVC];
     
-    NSArray *title_arr = @[@"详情",self.style == stafflistStyle ? @"邀请奖励":@"消费记录"];
+    NSArray *title_arr = @[@"详情",self.style == stafflistStyle ? @"邀请记录":@"消费记录"];
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + NewProportion(710) , WIDTH, HEIGHT - NavigationControllerHeight - NewProportion(710))];
     _bottomSView.childViewController = childVC;
@@ -143,6 +156,7 @@
 - (StaffdetailsHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[StaffdetailsHeaderView alloc]init];
+        _headerView.headerModel = self.model;
     }
     return _headerView;
 }
@@ -170,6 +184,7 @@
         [_deleteButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
         [_deleteButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
         _deleteButton.hidden = self.style == stafflistStyle ? NO : YES;
+        [_deleteButton addTarget:self action:@selector(removeStaff) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _deleteButton;

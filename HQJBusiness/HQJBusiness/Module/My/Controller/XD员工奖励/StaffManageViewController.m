@@ -16,6 +16,8 @@
 #import "StoreInfoModel.h"
 #import "MemberStaffListViewController.h"
 #import "StaffRoleViewController.h"
+#import "RewardsRecordViewController.h"
+#import "RewardSetViewController.h"
 
 @interface StaffManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *staffManagementTableView;
@@ -97,12 +99,20 @@
         MemberStaffListViewController *biVC = [[MemberStaffListViewController alloc]initWithListStyle:stafflistStyle];
         [self.navigationController pushViewController:biVC animated:YES];
     }
+    if (indexPath.row == 1) {
+        StaffRoleViewController *addRoleVC = [[StaffRoleViewController alloc]init];
+        [self.navigationController pushViewController:addRoleVC animated:YES];
+    }
     if (indexPath.row == 2) {
         MemberStaffListViewController *biVC = [[MemberStaffListViewController alloc]initWithListStyle:memberListStle];
         [self.navigationController pushViewController:biVC animated:YES];
     }
-    if (indexPath.row == 1) {
-        StaffRoleViewController *addRoleVC = [[StaffRoleViewController alloc]init];
+    if (indexPath.row == 3) {
+        RewardsRecordViewController *rewardsRecordVC = [[RewardsRecordViewController alloc]init];
+        [self.navigationController pushViewController:rewardsRecordVC animated:YES];
+    }
+    if (indexPath.row == 4) {
+        RewardSetViewController *addRoleVC = [[RewardSetViewController alloc]init];
         [self.navigationController pushViewController:addRoleVC animated:YES];
     }
 }

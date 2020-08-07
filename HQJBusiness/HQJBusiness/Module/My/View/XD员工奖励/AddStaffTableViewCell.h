@@ -7,7 +7,7 @@
 //
 
 #import "ZW_TableViewCell.h"
-@class RoleSelectVIew;
+@class RoleSelectView;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddStaffTableViewCell : ZW_TableViewCell
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *roleArray;
 @property (nonatomic, strong) UITextField *contentTextField;
 @property (nonatomic, strong) NSIndexPath *cellIndexPath;
-@property (nonatomic, strong) RoleSelectVIew   *selectButton;
+@property (nonatomic, strong) RoleSelectView   *selectButton;
 
 @end
 

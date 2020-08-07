@@ -225,7 +225,7 @@
 }
 
 - (void)requstSubmit {
-    NSString *url = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBFreeAmountInterface];
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBFreeAmountInterface];
 //    NSInteger roleType = 0 ;
 //    if ([[NameSingle shareInstance].role containsString:@"物联"]) {
 //        roleType = 13;

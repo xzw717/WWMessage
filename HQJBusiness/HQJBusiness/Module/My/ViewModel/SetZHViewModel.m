@@ -11,7 +11,7 @@
 
 @implementation SetZHViewModel
 + (void)getBonusZHCashZHWithBlock:(void(^)(id sender))proportion {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetZhRateInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetZhRateInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"code"]integerValue] == 49000) {
@@ -25,7 +25,7 @@
 }
 
 + (void)setBonusZH:(NSString *)bonus andCashZH:(NSString *)cash andViewController:(UIViewController *)zw_self  {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSetZhRateInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBSetZhRateInterface];
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"bonuszh":bonus,
                            @"cashzh":cash};

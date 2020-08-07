@@ -7,6 +7,7 @@
 //
 
 #import "InvitedRecordTableViewCell.h"
+#import "InvitedRecordModel.h"
 @interface InvitedRecordTableViewCell ()
 @property (nonatomic, strong) UILabel *namelabel;
 @property (nonatomic, strong) UILabel *timerlabel;
@@ -34,6 +35,12 @@
         }];
     }
     return self;
+}
+- (void)setModel:(InvitedRecordModel *)model {
+    _model = model;
+    self.namelabel.text = model.nickname;
+    self.timerlabel.text = [ManagerEngine zzReverseSwitchTimer:model.registerTime dateFormat:@"YYYY-MM-DD"];
+    self.phoneLabel.text = model.mobile;
 }
 - (UILabel *)namelabel {
     if (!_namelabel) {

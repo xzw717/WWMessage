@@ -7,6 +7,7 @@
 //
 
 #import "MemberStaffListSearchView.h"
+#import "MemberStaffListModel.h"
 @interface MemberStaffListSearchView ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *resultsList;
 @end
@@ -22,20 +23,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return self.resultsArray.count;
+        return self.searchModel.data.count;
    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-    cell.textLabel.text = self.resultsArray[indexPath.row];
+    cell.textLabel.text = self.searchModel.data[indexPath.row].nickname;
     return cell;
   
 }
  
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectRowAtIndexPathWithName:)]) {
-        [self.delegate didSelectRowAtIndexPathWithName:self.resultsArray[indexPath.row]];
+        [self.delegate didSelectRowAtIndexPathWithName:self.searchModel.data[indexPath.row]];
     }
 }
 - (void)reloadSearchList {
