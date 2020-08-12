@@ -14,7 +14,11 @@
 #import "SelectMenuView.h"
 #import "ZGRelayoutButton.h"
 #import "RewardSetFootView.h"
-
+#import "AddStaffViewModel.h"
+#import "RoleListModel.h"
+#import "AddStaffViewModel.h"
+#import "StaffRoleViewController.h"
+#import "NSString+RegexCategory.h"
 @interface RewardSetViewController ()<UITableViewDelegate,UITableViewDataSource,RewardSetEditDelegate>{
     BOOL _isEnabled;
 }
@@ -23,7 +27,14 @@
 @property (nonatomic, strong) RewardSetFootView *footView;
 @property (nonatomic, strong) NSMutableArray <RewardSetModel *>*roleSetArray;
 @property (nonatomic, strong) UIButton *saveSetButton;
-@property (nonatomic, strong) NSMutableArray <NSString *>*roleArray;
+
+/// 已有的角色
+@property (nonatomic, strong) NSMutableArray <RoleListModel *>*roleList;
+/// 已设置和将要设置的角色
+@property (nonatomic, strong) NSMutableArray <RoleListModel *>*hasSetArray;
+
+
+
 
 @end
 
@@ -38,65 +49,113 @@
     RewardSetModel *model = [[RewardSetModel alloc]init];
     model.roleTitle = @"全部";
     self.roleSetArray = [NSMutableArray arrayWithObject:model];
-    self.roleArray = [NSMutableArray arrayWithObjects:@"角色一",@"角色二",@"角色三", nil];
+    self.roleList = [NSMutableArray array];
+    self.hasSetArray = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChanged:)name:UITextFieldTextDidChangeNotification object:nil];
+    
+    [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
+        self.roleList = [modelArray mutableCopy];
+        [modelArray enumerateObjectsUsingBlock:^(RoleListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.roleAward && ![obj.roleAward isEqualToString:@"0"]) {
+                [self.hasSetArray addObject:obj];
+            }
+            if (idx == modelArray.count - 1) {
+                if (self.hasSetArray.count <= 0) {
+                    RoleListModel *objs = [[RoleListModel alloc]init];
+                    objs.roleName = @"请选择";
+                    [self.hasSetArray insertObject:objs atIndex:0];
+                }
+               
+                [self.rewardSetTableView reloadData];
+            }
+        }];
+        
+    }];
 }
-- (void)textFieldDidChanged:(NSNotification *)noti{
+- (void)textFieldDidChanged:(NSNotification *)noti {
     UITextField *textField=noti.object;
     NSIndexPath *indexPath = textField.indexPath;
     RewardSetCell *cell = [self.rewardSetTableView dequeueReusableCellWithIdentifier:NSStringFromClass([RewardSetCell class]) forIndexPath:indexPath];
     HQJLog(@"%@",cell.btnTitle);
-    [self setModelRoleWithIndexpath:indexPath title:nil number:textField.text];
+    [self setModelRoleWithIndexpath:indexPath titleid:nil number:textField.text];
 
 }
 
 
 - (void)saveAction {
-    [self.roleSetArray enumerateObjectsUsingBlock:^(RewardSetModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ( [obj.roleTitle isEqualToString:@"请选择"]||  [obj.number isEqualToString:@""] || obj.number == nil) {
-            [SVProgressHUD showErrorWithStatus:@"数据未设置"];
-            *stop = YES;
-        } else {
-            if (idx == self.roleSetArray.count - 1) {
-                /// 可以提交
-            }
-        }
+    NSMutableDictionary *setDict = [NSMutableDictionary dictionary];
+    [self.hasSetArray enumerateObjectsUsingBlock:^(RoleListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           if ( [obj.roleName isEqualToString:@"请选择"]||  [obj.roleAward isEqualToString:@""] || obj.roleAward == nil) {
+                [SVProgressHUD showErrorWithStatus:@"数据未设置"];
+                *stop = YES;
+           } else {
+               if ([obj.roleAward deptNumInputShouldNumber]) {
+                   if ([obj.roleAward integerValue] > 100 || [obj.roleAward integerValue] < 0 ) {
+                       [SVProgressHUD showErrorWithStatus:@"请输入正确的比例"];
+                       *stop = YES;
+
+                   } else {
+                       [setDict setValue:obj.roleAward forKey:obj.nid];
+
+                   }
+
+               } else {
+                   [SVProgressHUD showErrorWithStatus:@"请输入正确的比例"];
+                   *stop = YES;
+                   
+               }
+           }
     }];
+    HQJLog(@"我要设置的角色比例：%@",setDict);
 }
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return self.roleSetArray.count;
+        return self.hasSetArray.count;
 
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RewardSetCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RewardSetCell class]) forIndexPath:indexPath];
-    cell.cellModel = self.roleSetArray[indexPath.row];
+    cell.cellModel = self.hasSetArray[indexPath.row];
     @weakify(self);
     [cell setAddAction:^{
         @strongify(self);
-        if (self.roleArray.count + 1 > self.roleSetArray.count) {
+//        if (self.roleArray.count + 1 > self.roleSetArray.count) {
             /// 设置的条数不能大于总角色数+1（全部角色算一条）
-            [self.roleSetArray addObject:[[RewardSetModel alloc]init]];
+            [self.hasSetArray addObject:[[RoleListModel alloc]init]];
             [self addNewRole];
             [self.rewardSetTableView reloadData];
-        }
+//        }
         
     }];
     [cell setRemoveAction:^{
         @strongify(self);
-        [self.roleSetArray removeObjectAtIndex:indexPath.row];
+        [self.hasSetArray removeObjectAtIndex:indexPath.row];
         [self.rewardSetTableView reloadData];
 
     }];
     [cell setSelectRoleAction:^(UIButton *btn) {
-#warning  show  menu  title
-//        [[SelectMenuView showMenuWithView:btn].munuAry(self.roleArray) setClickTitle:^(NSString * _Nonnull str) {
-//            @strongify(self);
-//            [self setModelRoleWithIndexpath:indexPath title:str number:nil];
-//            [self.rewardSetTableView reloadData];
-//
-//        }];
+        [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
+            
+            if (modelArray.count && modelArray.count > 0) {
+                [[SelectMenuView showMenuWithView:btn].munuAry(modelArray) setClickModel:^(RoleListModel * _Nonnull model) {
+                              @strongify(self);
+                              [self setModelRoleWithIndexpath:indexPath titleid:model.nid number:nil];
+                              [self.rewardSetTableView reloadData];
+                          }];
+            } else {
+                [SVProgressHUD showWithStatus:@"没有角色请添加"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    @strongify(self);
+                    [SVProgressHUD dismiss];
+                    StaffRoleViewController *vc = [[StaffRoleViewController alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                });
+            }
+          
+        }];
+        
     }];
-
     return cell;
     
 }
@@ -104,30 +163,33 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull RewardSetCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    [cell setIsEnabled:_isEnabled];
-    [cell setCellIndexPath:indexPath];
+        [cell setCellIndexPath:indexPath];
 
 }
-- (void)clickEdit {
-    _isEnabled = YES;
-    self.saveSetButton.hidden = NO;
-    [self.rewardSetTableView reloadData];
-    HQJLog(@"开始编辑 ");
-}
+ 
 #pragma mark --- 更新数据
-- (void )setModelRoleWithIndexpath:(NSIndexPath *)index title:(NSString *)title number:(NSString *)num  {
-    RewardSetModel *model = self.roleSetArray[index.row];
-    model.roleTitle = title ? title : model.roleTitle;
-    model.number = num ? num :model.number;
-    [self.roleSetArray replaceObjectAtIndex:index.row withObject:model];
+- (void )setModelRoleWithIndexpath:(NSIndexPath *)index
+                           titleid:(NSString *)titleid
+                            number:(NSString *)num  {
+    RoleListModel *model = self.hasSetArray[index.row];
+    [self.roleList enumerateObjectsUsingBlock:^(RoleListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.nid isEqualToString:titleid]) {
+            model.roleName = obj.roleName;
+            *stop = YES;
+        }
+    }];
+    model.nid = titleid ? titleid : model.nid;
+    model.roleAward = num ? num :model.roleAward;
+    [self.hasSetArray replaceObjectAtIndex:index.row withObject:model];
     
 }
 
-
 #pragma mark ---添加新的一行角色
 - (void)addNewRole {
-    NSIndexPath *index= [NSIndexPath indexPathForRow:self.roleSetArray.count - 1 inSection:0];
-    [self setModelRoleWithIndexpath:index title:@"请选择" number:nil];
+    NSIndexPath *index= [NSIndexPath indexPathForRow:self.hasSetArray.count - 1 inSection:0];
+    RoleListModel *model = self.hasSetArray[index.row];
+    model.roleName = @"请选择";
+    [self.hasSetArray replaceObjectAtIndex:index.row withObject:model];
 }
 
 - (UITableView *)rewardSetTableView {
@@ -173,7 +235,7 @@
         _saveSetButton.layer.masksToBounds = YES;
         _saveSetButton.layer.cornerRadius = NewProportion(65);
         [_saveSetButton addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
-        _saveSetButton.hidden = YES;
+//        _saveSetButton.hidden = YES;
     }
     return _saveSetButton;
 }

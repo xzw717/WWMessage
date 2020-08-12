@@ -27,6 +27,7 @@
             MemberStaffListModel *model = [MemberStaffListModel mj_objectWithKeyValues:dic[@"result"]];
             !completion?:completion(model);
         } else {
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             !listRrror ? :listRrror();
         }
     } andError:^(NSError *error) {

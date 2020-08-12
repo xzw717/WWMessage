@@ -259,7 +259,8 @@ extern NSString *const HQJBSearchMemberListInterface ;
 extern NSString *const HQJBSearchMemberListByNameInterface ;
 /// 根据手机号关键字查询商家注册用户信息
 extern NSString *const HQJBSearchMemberListByMobileInterface ;
-
+/// 商家获取所有员工的奖励记录
+extern NSString *const HQJBGetAllEmployeeAwardListInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

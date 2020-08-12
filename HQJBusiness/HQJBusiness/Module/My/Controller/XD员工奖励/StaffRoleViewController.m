@@ -54,11 +54,13 @@
 #import "StaffRoleItem.h"
 #import "HintView.h"
 #import "StaffAddRoleTextField.h"
-
+#import "AddStaffViewModel.h"
+#import "RoleListModel.h"
 @interface StaffRoleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,AddRoleDelegate>
 @property (nonatomic, strong) StaffAddRoleTextField *roleTextField;
 @property (nonatomic, strong) UICollectionView * collectionView;
-@property (nonatomic, strong) NSMutableArray *itemDataSource;
+@property (nonatomic, strong) NSMutableArray <RoleListModel *>*itemDataSource;
+
 @property (nonatomic, strong) UILabel *existingRoleTitleLabel;
 
 @end
@@ -85,17 +87,51 @@
         make.top.mas_equalTo(self.existingRoleTitleLabel.mas_bottom).mas_offset(NewProportion(50));
         make.left.bottom.right.mas_equalTo(0);
     }];
-    self.itemDataSource = [NSMutableArray arrayWithArray:[self itemArray]];
+    self.itemDataSource = [NSMutableArray array];
+    [self getRole];
+}
+- (void)getRole {
+    [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
+        self.itemDataSource = [modelArray mutableCopy];
+        [self.collectionView reloadData];
+    }];
 }
 
+- (void)roleAction:(BOOL)isAdd nameWithID:(NSString *)nameID {
+    dispatch_group_t downloadGroup = dispatch_group_create();
+     dispatch_group_enter(downloadGroup);
+    if (isAdd) {
+        [AddStaffViewModel addRoleNameWithName:nameID completion:^{
+                dispatch_group_leave(downloadGroup);
+            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+
+            }];
+    } else {
+        [AddStaffViewModel removeRoleNameWithRoleID:nameID completion:^{
+            dispatch_group_leave(downloadGroup);
+            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+
+        }];
+    }
+    
+     dispatch_group_notify(downloadGroup, dispatch_get_main_queue(), ^{
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             [self getRole];
+
+         });
+     });
+}
+
+
 - (void)addRoleWithTile:(NSString *)role {
-    [self.itemDataSource addObject:role];
-    [self.collectionView reloadData];
+//    [self.itemDataSource addObject:role];
+    [self roleAction:YES nameWithID:role];
     HQJLog(@"保存的角色是：%@",role);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat w = [ManagerEngine setTextWidthStr:self.itemDataSource[indexPath.row] andFont:[UIFont systemFontOfSize:14.f]];
-    return  CGSizeMake(w + NewProportion(50) * 2 , 44);
+    CGFloat textWidth = [ManagerEngine setTextWidthStr:self.itemDataSource[indexPath.row].roleName andFont:[UIFont systemFontOfSize:14.f]];
+    CGFloat w = textWidth > 50.f ? textWidth : 50.f ;
+    return  CGSizeMake(w + NewProportion(50) * 2  , 44);
 
 }
 
@@ -106,17 +142,14 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     StaffRoleItem *cell = (StaffRoleItem *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([StaffRoleItem class]) forIndexPath:indexPath];
-    cell.roleTitle = self.itemDataSource[indexPath.row];
+    cell.roleTitle = self.itemDataSource[indexPath.row].roleName;
     cell.backgroundColor = [UIColor whiteColor];
     @weakify(self);
     [cell setClickDelete:^(NSString *title) {
         @strongify(self);
         [HintView enrichSubviews:[NSString stringWithFormat:@"确定删除“%@”吗",title] andSureTitle:@"确定" cancelTitle:@"取消" sureAction:^{
-            HQJLog(@"删除了%@",title);
-                for (NSInteger i = self.itemDataSource.count - 1; i >= 0; i --) {
-                    [self.itemDataSource removeObject:title];
-                }
-                [self.collectionView reloadData];
+              [self roleAction:NO nameWithID:self.itemDataSource[indexPath.row].nid];
+
         }];
     
     }];

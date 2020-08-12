@@ -15,6 +15,7 @@
 #import "QRCodeView.h"
 #import "MemberStaffModel.h"
 #import "StaffDetailsViewModel.h"
+#import "AddStaffViewController.h"
 @interface StaffDetailsViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) StaffdetailsHeaderView *headerView;
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
@@ -77,9 +78,24 @@
 
     }];
 }
+
+
+#pragma mark --- 删除员工
 - (void)removeStaff {
-    [StaffDetailsViewModel removeStaffWithStaffID:self.model.nid];
+    
+    [StaffDetailsViewModel removeStaffWithStaffID:self.model.nid completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
 }
+
+
+#pragma mark --- 编辑员工
+- (void)editStaff {
+    AddStaffViewController *vc = [[AddStaffViewController alloc]initWithStaffModel:self.model];
+       [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (instancetype)initWithDetailsStyle:(listStyle)style objectModel:(nonnull MemberStaffModel *)model{
     self = [super init];
     if (self) {
@@ -95,9 +111,9 @@
     InvitedRecordViewController *irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style detaliModel:self.model];
     [self addChildViewController:irZHVC];
     
-    NSArray *childVC = @[sdVC, irZHVC];
+    NSArray *childVC = self.style == stafflistStyle ?  @[sdVC, irZHVC] : @[sdVC];
     
-    NSArray *title_arr = @[@"详情",self.style == stafflistStyle ? @"邀请记录":@"消费记录"];
+    NSArray *title_arr =self.style == stafflistStyle ? @[@"详情",@"邀请记录"] : @[@"详情"];
     
     self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + NewProportion(710) , WIDTH, HEIGHT - NavigationControllerHeight - NewProportion(710))];
     _bottomSView.childViewController = childVC;
@@ -170,6 +186,7 @@
         [_editorButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
         [_editorButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
         _editorButton.hidden = self.style == stafflistStyle ? NO : YES;
+        [_editorButton addTarget:self action:@selector(editStaff) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _editorButton;

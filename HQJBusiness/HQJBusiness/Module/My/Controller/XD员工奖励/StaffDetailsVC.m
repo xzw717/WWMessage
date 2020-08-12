@@ -45,15 +45,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     NSString *contentStr ;
     if (indexPath.row == 0) {
-        contentStr = self.model.empNo;
+        contentStr = self.style == stafflistStyle ? self.model.empNo : self.model.nickname;
     } else if (indexPath.row == 1) {
-        contentStr = self.model.nickname;
+        contentStr = self.style == stafflistStyle ? self.model.nickname : self.model.mobile;
 
     } else if (indexPath.row == 2) {
-        contentStr = self.model.mobile;
+        contentStr = self.style == stafflistStyle ? self.model.mobile : self.model.registerTime;
 
     } else if (indexPath.row == 3) {
-        contentStr = self.model.role;
+        contentStr = self.model.roleName;
 
     } else if (indexPath.row == 4) {
         contentStr = [ManagerEngine zzReverseSwitchTimer:self.model.entryTime dateFormat:@"YYYY-MM-dd"];

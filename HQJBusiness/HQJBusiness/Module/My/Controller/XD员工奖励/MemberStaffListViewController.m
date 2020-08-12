@@ -69,7 +69,11 @@
     [super viewDidDisappear:animated];
     [SVProgressHUD dismiss];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requstMemberStaffList];
 
+}
 - (UIImage *)imageWithColor:(UIColor*)color size:(CGSize)size{
     CGRect rect =CGRectMake(0,0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
@@ -90,29 +94,37 @@
     [self.searchView reloadSearchList];
 
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self requstMemberStaffList];
 
-}
 - (void)requstMemberStaffList {
     [self.viewModel requstListWithPage:self.page completion:^(MemberStaffListModel * _Nonnull model) {
            self.listModel = model;
         [self.listView.mj_header endRefreshing];
         [self.listView.mj_footer endRefreshing];
-        self.bar.placeholder = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",model.total];
-        self.footerLabel.text = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",model.total];
+        [self updateHeardFoot];
         [self.listView reloadData];
     } error:^{
         if (self.page != 1) {
             self.page -- ;
+        } else {
+            self.listModel = [[MemberStaffListModel alloc]init];
         }
+           [self updateHeardFoot];
+
         [self.listView.mj_header endRefreshing];
         [self.listView.mj_footer endRefreshing];
         [self.listView reloadData];
 
     }];
 }
+
+- (void)updateHeardFoot {
+    if (self.listModel) {
+        self.bar.placeholder = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",self.listModel.total];
+         self.footerLabel.text = [NSString stringWithFormat:@"%@%ld位",self.style == stafflistStyle ? @"员工":@"会员",self.listModel.total];
+    }
+ 
+}
+
 /// 搜索框开始编辑时调用
 -(void)searchBarTextDidBeginEditing:(UISearchBar*)searchBar {
     self.bar.showsCancelButton=YES;//显示取消按钮

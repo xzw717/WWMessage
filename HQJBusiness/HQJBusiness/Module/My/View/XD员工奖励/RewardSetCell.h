@@ -11,7 +11,7 @@ typedef void(^CellSelectActionBlock)(UIButton *btn);
 #import "ZW_TableViewCell.h"
 NS_ASSUME_NONNULL_BEGIN
 @class ZGRelayoutButton;
-@class RewardSetModel;
+@class RoleListModel;
 @interface RewardSetCell : ZW_TableViewCell
 @property (nonatomic, strong) NSIndexPath *cellIndexPath;
 @property (nonatomic, assign) BOOL isEnabled;
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy  ) CellActionBlock removeAction;
 @property (nonatomic, strong) NSString *btnTitle;
 @property (nonatomic, strong) ZGRelayoutButton *roleButton;
-@property (nonatomic, strong) RewardSetModel *cellModel;
+@property (nonatomic, strong) RoleListModel *cellModel;
 @end
 
 NS_ASSUME_NONNULL_END

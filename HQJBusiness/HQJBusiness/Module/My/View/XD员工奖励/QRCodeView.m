@@ -9,7 +9,8 @@
 #import "QRCodeView.h"
 #import "SavePhotosTool.h"
 #import "HQJShareView.h"
-
+#import <UShareUI/UShareUI.h>
+#import "UMShareManager.h"
 @interface QRCodeView ()
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIImageView *qrcodeImageView;
@@ -21,22 +22,26 @@
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) HQJShareView * share;
 @property (nonatomic, assign) NSInteger animateTag;
+@property (nonatomic, strong) NSString *imageUrl;
 @end
 @implementation QRCodeView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     if (self) {
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.layer.shadowOffset = CGSizeMake(5, 5);
-        self.layer.shadowOpacity = 0.5;
-        self.layer.shadowRadius = 5.0;
-        self.layer.cornerRadius = 9.0;
-        self.clipsToBounds = NO;
-        self.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.f];
+//        self.layer.shadowColor = [UIColor blackColor].CGColor;
+//        self.layer.shadowOffset = CGSizeMake(5, 5);
+//        self.layer.shadowOpacity = 0.5;
+//        self.layer.shadowRadius = 5.0;
+//        self.layer.cornerRadius = 9.0;
+//        self.clipsToBounds = NO;
+        self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3f];
         [CustomWindow addSubview:self];
         [self addView];
         [self setLayout];
+        [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
+                                                     @(UMSocialPlatformType_WechatTimeLine),
+                                                   @(UMSocialPlatformType_WechatFavorite)]];
     }
     return self;
 }
@@ -100,40 +105,40 @@
     }];
 }
 - (void)shareAction {
-    NSArray *titleArr = @[@[@"微信",@"icon_share_wx"],@[@"QQ",@"icon_share_qq"]];
+
+    NSArray *titleArr = @[@[@"微信",@"icon_share_wx"],@[@"朋友圈",@"icon_share_pyq"]];
     self.share = [HQJShareView showShareViewWithArray:titleArr];
     self.share.frame = CGRectMake(WIDTH, 0, WIDTH, HEIGHT);
-    [CustomWindow addSubview:self.share];
+    self.share.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3f];
     @weakify(self);
-    [UIView animateWithDuration:0.15 animations:^{
-        self.frame = CGRectMake(10, 0, WIDTH, HEIGHT);
-        self.share.frame = CGRectMake(WIDTH + 10 , 0, WIDTH, HEIGHT);
+    [self.share setClickItemblock:^(NSString * _Nonnull title) {
+        @strongify(self);
+        ShareMessage * message = [[ShareMessage alloc]init];
+          message.thubImg = self.qrcodeImageView.image;
+        message.imgUrl = self.imageUrl;
+        [[UMShareManager manager] clickShareViewWithTitle:title message:message];
+    }];
+    [CustomWindow addSubview:self.share];
+    [UIView animateWithDuration:0.25 animations:^{
+//        self.alpha = 0.f;
+        self.frame = CGRectMake(-WIDTH, 0, WIDTH, HEIGHT);
+        self.share.frame = CGRectMake(0 , 0, WIDTH, HEIGHT);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.alpha = 0.f;
-            self.frame = CGRectMake(-WIDTH, 0, WIDTH, HEIGHT);
-            self.share.frame = CGRectMake(0 , 0, WIDTH, HEIGHT);
-        } completion:^(BOOL finished) {
-        }];
     }];
     [self.share setCancel:^{
         @strongify(self);
         self.hidden = NO;
-        [UIView animateWithDuration:0.15 animations:^{
-            self.alpha = 1.f;
-            self.frame = CGRectMake(-WIDTH, 0, WIDTH, HEIGHT);
-            self.share.frame = CGRectMake(-10 , 0, WIDTH, HEIGHT);
+        [UIView animateWithDuration:0.25 animations:^{
+//            self.alpha = 1.f;
 
+                   self.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
+                  self.share.frame = CGRectMake(WIDTH , 0, WIDTH, HEIGHT);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.25 animations:^{
-                       self.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
-                      self.share.frame = CGRectMake(WIDTH , 0, WIDTH, HEIGHT);
-            } completion:^(BOOL finished) {
-                [self.share removeFromSuperview];
-            }];
+            [self.share removeFromSuperview];
         }];
     }];
 }
+
 - (CompanyBlock)company {
     if (!_company) {
         __weak typeof(self) weakSelf = self;
@@ -170,6 +175,7 @@
     if (!_qrCode) {
         __weak typeof(self) weakSelf = self;
        return  ^(NSString * qrImageUrl) {
+           weakSelf.imageUrl = qrImageUrl;
            [weakSelf.qrcodeImageView sd_setImageWithURL:[NSURL URLWithString:qrImageUrl]];
            return weakSelf;
         };
@@ -248,7 +254,6 @@
 - (UIImageView *)qrcodeImageView {
     if (!_qrcodeImageView) {
         _qrcodeImageView = [[UIImageView alloc]init];
-        _qrcodeImageView.backgroundColor = [UIColor greenColor];
         _qrcodeImageView.layer.borderColor = [[UIColor blackColor]CGColor];
         _qrcodeImageView.layer.borderWidth = 1.f;
     }

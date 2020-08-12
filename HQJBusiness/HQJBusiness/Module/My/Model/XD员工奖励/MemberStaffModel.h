@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *empNo;
 @property (nonatomic, strong) NSString *salt;
 @property (nonatomic, strong) NSString *qrcode;
-
+@property (nonatomic, strong) NSString *roleName;
 
 /*
  id    long    数据库编号

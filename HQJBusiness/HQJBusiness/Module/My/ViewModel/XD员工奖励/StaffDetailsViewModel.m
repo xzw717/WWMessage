@@ -17,7 +17,7 @@
     if (mode  == stafflistStyle) {
         initialArray = @[@"员工编号",@"员工姓名",@"手机号码",@"员工岗位",@"入职时间"];
     } else {
-        initialArray = @[@"会员姓名",@"手机号码",@"邀请人员",@"注册时间"];
+        initialArray = @[@"会员姓名",@"手机号码",@"注册时间"];
 
     }
     
@@ -61,10 +61,12 @@
        } ShowHUD:YES];
 }
 
-+ (void)removeStaffWithStaffID:(NSString *)staffid {
++ (void)removeStaffWithStaffID:(NSString *)staffid
+                    completion:(void(^)(void))completion {
     NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,HQJBRemoveEmployeeInterface];
       [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"myid":MmberidStr,@"id":staffid,@"hash":HashCode} complete:^(NSDictionary *dic) {
           if ([dic[@"code"] integerValue] == 49000) {
+              !completion ? : completion();
               [SVProgressHUD showSuccessWithStatus:@"删除成功"];
           } else {
               [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];

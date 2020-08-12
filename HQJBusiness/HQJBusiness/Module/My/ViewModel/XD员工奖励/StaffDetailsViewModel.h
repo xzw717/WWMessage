@@ -23,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
                              completion:(void(^)(NSArray <InvitedRecordModel *>*ary))completion
                                   error:(void(^)(NSError *err))listError;
 /// 删除员工
-+ (void)removeStaffWithStaffID:(NSString *)staffid;
++ (void)removeStaffWithStaffID:(NSString *)staffid
+                    completion:(void(^)(void))completion;
 @end
 
 NS_ASSUME_NONNULL_END

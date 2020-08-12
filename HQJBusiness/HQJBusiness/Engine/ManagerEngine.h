@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger,listStyle) {
     /// 会员
     memberListStle
 };
+
 ///**
 // *  提示框按钮数量
 // */

@@ -6,34 +6,53 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 #import "RewardsRecordChildCell.h"
-
+#import "RewardsRecordViewModel.h"
+#import "RewardsRecordSuperModel.h"
 #pragma mark --- 子控制器
 @interface RewardsRecordChildVC: UIViewController
-
+/// 显示的类型： 员工 or 商家
+@property (nonatomic, strong) NSString *typeStr;
 @end
 @interface RewardsRecordChildVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *recordTableView;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) RewardsRecordSuperModel *model;
+@property (nonatomic, strong) NSMutableArray <RewardsRecordModel *>*modeAry;
 @end
 @implementation RewardsRecordChildVC
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.recordTableView];
     self.page = 1;
+    self.modeAry = [NSMutableArray array];
+    [self requst];
 }
 - (void)requst {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.recordTableView.mj_header endRefreshing];
-        [self.recordTableView.mj_footer endRefreshing];
+    
+    [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model) {
+        if (self.page > 1) {
+            if (model.data.count == 0) {
+                self.page --;
+            } else {
+                [self.modeAry addObjectsFromArray:model.data];
+            }
+        } else {
+            self.modeAry = [model.data mutableCopy];
 
-    });
+        }
+     
+        [self.recordTableView reloadData];
+        [self.recordTableView.mj_header endRefreshing];
+             [self.recordTableView.mj_footer endRefreshing];
+    }];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return 3;
+    return self.modeAry.count;
 
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RewardsRecordChildCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RewardsRecordChildCell class]) forIndexPath:indexPath];
+    cell.cellModel = self.modeAry[indexPath.row];
     return cell;
     
 }
@@ -86,9 +105,11 @@
 }
 -(void)initVC {
     RewardsRecordChildVC *sdVC = [[RewardsRecordChildVC alloc]init];
+    sdVC.typeStr = @"员工";
     [self addChildViewController:sdVC];
     
     RewardsRecordChildVC *irZHVC = [[RewardsRecordChildVC alloc]init];
+    irZHVC.typeStr = @"商家";
     [self addChildViewController:irZHVC];
     
     NSArray *childVC = @[sdVC, irZHVC];

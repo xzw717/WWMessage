@@ -7,6 +7,7 @@
 //
 
 #import "RewardsRecordChildCell.h"
+#import "RewardsRecordModel.h"
 @interface RewardsRecordChildCell ()
 @property (nonatomic, strong) UILabel *recordTitleLabel;
 @property (nonatomic, strong) UILabel *timerLabel;
@@ -26,7 +27,11 @@
     }
     return self;
 }
-
+- (void)setCellModel:(RewardsRecordModel *)cellModel {
+    _cellModel = cellModel;
+    self.numberLabel.text = [NSString stringWithFormat:@"+%.2f",cellModel.score];
+    self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:cellModel.createTime dateFormat:@"YYYY-MM-dd"];
+}
 - (void)updateConstraints {
     [self.recordTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);

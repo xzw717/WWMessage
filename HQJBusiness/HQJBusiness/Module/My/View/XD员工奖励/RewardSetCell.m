@@ -9,7 +9,7 @@
 #import "RewardSetCell.h"
 #import "UITextField+IndexPath.h"
 #import "ZGRelayoutButton.h"
-#import "RewardSetModel.h"
+#import "RoleListModel.h"
 @interface RewardSetCell ()
 @property (nonatomic, strong) UIView    *bgView;
 @property (nonatomic, strong) UIButton *addButton;
@@ -26,7 +26,7 @@
         [self addSubview:self.addButton];
         [self addSubview:self.minusButton];
         [self updateConstraintsIfNeeded];
-        [self setIsEnabled:NO];
+//        [self setIsEnabled:NO];
     }
     return self;
 }
@@ -36,42 +36,41 @@
   
     
 }
-- (void)setCellModel:(RewardSetModel *)cellModel {
+- (void)setCellModel:(RoleListModel *)cellModel {
     _cellModel = cellModel;
-    [self.roleButton setTitle:cellModel.roleTitle forState:UIControlStateNormal];
-    self.numberTextField.text = cellModel.number;
+    [self.roleButton setTitle:cellModel.roleName forState:UIControlStateNormal];
+    self.numberTextField.text = cellModel.roleAward;
 }
-- (void)setIsEnabled:(BOOL)isEnabled {
-    _isEnabled = isEnabled;
-    self.roleButton.userInteractionEnabled = isEnabled;
-    self.numberTextField.userInteractionEnabled = isEnabled;
-    self.addButton.hidden = !isEnabled;
-    self.minusButton.hidden = YES;
-
-}
+//- (void)setIsEnabled:(BOOL)isEnabled {
+//    _isEnabled = isEnabled;
+//    self.roleButton.userInteractionEnabled = isEnabled;
+//    self.numberTextField.userInteractionEnabled = isEnabled;
+//    self.addButton.hidden = !isEnabled;
+//    self.minusButton.hidden = YES;
+//
+//}
 - (void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
     _cellIndexPath = cellIndexPath;
     self.numberTextField.indexPath = cellIndexPath;
-    if (self.isEnabled ) {
+//    if (self.isEnabled ) {
         if (cellIndexPath.row == 0) {
-            self.roleButton.enabled = NO;
-            [self.numberTextField becomeFirstResponder];
+//            [self.numberTextField becomeFirstResponder];
             self.addButton.hidden = NO;
             self.minusButton.hidden = YES;
         } else {
             self.roleButton.enabled = YES;
-            [self.numberTextField becomeFirstResponder];
+//            [self.numberTextField becomeFirstResponder];
             self.addButton.hidden = YES;
             self.minusButton.hidden = NO;
         }
         
-    } else {
-         self.roleButton.enabled = YES;
-        [self.numberTextField resignFirstResponder];
-        self.addButton.hidden = YES;
-        self.minusButton.hidden = YES;
-
-    }
+//    } else {
+//         self.roleButton.enabled = YES;
+//        [self.numberTextField resignFirstResponder];
+//        self.addButton.hidden = YES;
+//        self.minusButton.hidden = YES;
+//
+//    }
     
 }
 
@@ -145,6 +144,7 @@
         _numberTextField.font = [UIFont systemFontOfSize:13.f];
         _numberTextField.placeholder = @"设置奖励比例%";
         _numberTextField.textAlignment = NSTextAlignmentCenter;
+        _numberTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     }
     return _numberTextField;
 }

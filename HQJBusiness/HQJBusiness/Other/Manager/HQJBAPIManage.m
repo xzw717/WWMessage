@@ -303,7 +303,8 @@ NSString *const HQJBSearchMemberListInterface =@"searchMemberList";
 NSString *const HQJBSearchMemberListByNameInterface =@"searchMemberListByName";
 /// 根据手机号关键字查询商家注册用户信息
 NSString *const HQJBSearchMemberListByMobileInterface =@"searchMemberListByMobile";
-
+/// 商家获取所有员工的奖励记录
+NSString *const HQJBGetAllEmployeeAwardListInterface =@"getAllEmployeeAwardList";
  
 
 

@@ -31,6 +31,29 @@
 - (void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
     _cellIndexPath = cellIndexPath;
     self.contentTextField.indexPath = cellIndexPath;
+
+}
+- (void)setContentText:(NSString *)contentText {
+    _contentText = contentText;
+    if (contentText) {
+        if (self.cellIndexPath.row == 1 || self.cellIndexPath.row == 2 || self.cellIndexPath.row == 4) {
+               self.contentTextField.enabled = NO;
+            self.contentTextField.textColor = RedColor;
+            self.contentTextField.text = contentText;
+        } else {
+            if (self.cellIndexPath.row == 3) {
+                self.selectButton.roleTitleString = contentText;
+            } else {
+                self.contentTextField.enabled = YES;
+
+            }
+            
+
+        }
+    }
+  
+    
+    self.contentTextField.text = contentText;
 }
 - (void)updateConstraints {
     [self.addStafftitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -48,6 +71,13 @@
             make.width.mas_equalTo(NewProportion(250));
         }];
     [super updateConstraints];
+}
+- (void)setIsClear:(BOOL)isClear {
+    _isClear = isClear;
+    if (isClear) {
+        self.contentTextField.text = @"";
+        self.selectButton.roleTitleString = @"请选择角色";
+    }
 }
 - (void)setTitle:(NSString *)title {
     _title = title;
@@ -76,19 +106,13 @@
 - (UITextField *)contentTextField {
     if (!_contentTextField) {
         _contentTextField = [[UITextField alloc]init];
-        _contentTextField.placeholder = @"测试";
+//        _contentTextField.placeholder = @"测试";
     }
     return _contentTextField;
 }
 - (RoleSelectView *)selectButton {
     if (!_selectButton) {
         _selectButton = [[RoleSelectView alloc]init];
-//        [_selectButton setTitle:@"请选择角色" forState:UIControlStateNormal];
-//        [_selectButton setImage:[UIImage imageNamed:@"chevron-down"] forState:UIControlStateNormal];
-//        _selectButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(30)];
-//        [_selectButton setTitleColor:[ManagerEngine getColor:@"555555"] forState:UIControlStateNormal];
-//        [_selectButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -22, 0, 0)];
-//        [_selectButton setImageEdgeInsets:UIEdgeInsetsMake(0, 40, 0, -70)];
         _selectButton.layer.masksToBounds = YES;
         _selectButton.layer.cornerRadius = 2.f;
         _selectButton.layer.borderColor = [[ManagerEngine getColor:@"20a0ff"]CGColor];

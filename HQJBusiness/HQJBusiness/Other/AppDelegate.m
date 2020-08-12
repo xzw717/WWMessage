@@ -26,6 +26,8 @@
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 #import "RewardSetViewController.h"
+#import "UMShareManager.h"
+
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
@@ -73,39 +75,9 @@
     /* 极光 */
     [self jpushService:launchOptions];
     
+    /* 友 盟 */
+      [UMShareManager manager];
     
-    // Optional
-    // 获取 IDFA
-    // 如需使用 IDFA 功能请添加此代码并在初始化方法的 advertisingIdentifier 参数中填写对应值
-//    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    
-    // Required
-    // init Push
-    // notice: 2.1.5 版本的 SDK 新增的注册方法，改成可上报 IDFA，如果没有使用 IDFA 直接传 nil
-//    [JPUSHService setupWithOption:launchOptions appKey:appKey
-//                          channel:channel
-//                 apsForProduction:isProduction
-//            advertisingIdentifier:advertisingId];
-//    [[TabbarManager shareInstance]setTabbar];
-//    VerificationOrderDetailsViewController *vc = [[VerificationOrderDetailsViewController alloc]init];
-//    [[UIApplication sharedApplication].delegate.window setRootViewController:vc];
-
-    
-    
-    
-    
-    
-//    [manage connectPeripheral:peripheral completion:^(CBPeripheral *perpheral, NSError *error) {
-//        if (!error) {
-//            [SVProgressHUD showSuccessWithStatus:@"连接成功！"];
-////            self.title = [NSString stringWithFormat:@"已连接-%@",perpheral.name];
-////            dispatch_async(dispatch_get_main_queue(), ^{
-////                [tableView reloadData];
-////            });
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:error.domain];
-//        }
-//    }];
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
         
       NSString *automaticallyPrintOrders = [userDefaults objectForKey:@"AutomaticallyPrintOrders"];
@@ -135,6 +107,55 @@
 
         return YES;
 }
+
+
+
+
+//- (void)confitUShareSettings
+//{
+//    [UMCommonLogManager setUpUMCommonLogManager];
+//    [UMConfigure setLogEnabled:YES];
+//    [[UMSocialManager defaultManager] openLog:YES];//打开调试日志
+//
+//
+//
+//    [UMConfigure initWithAppkey:@"5f237473d30932215473a0ff" channel:@"App Store"];
+//    /*
+//     * 打开图片水印
+//     */
+//    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+//
+//    /*
+//     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+//     <key>NSAppTransportSecurity</key>
+//     <dict>
+//     <key>NSAllowsArbitraryLoads</key>
+//     <true/>
+//     </dict>
+//     */
+//    //[UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+//        //配置微信平台的Universal Links
+//    //微信和QQ完整版会校验合法的universalLink，不设置会在初始化平台失败
+////    [UMSocialGlobal shareInstance].universalLinkDic = @{@(UMSocialPlatformType_WechatSession):@"https://umplus-sdk-download.oss-cn-shanghai.aliyuncs.com/",
+////                                                        @(UMSocialPlatformType_QQ):@"https://umplus-sdk-download.oss-cn-shanghai.aliyuncs.com/qq_conn/101830139"
+////                                                        };
+//
+//
+//}
+//
+//- (void)configUSharePlatforms
+//{
+//    /* 设置微信的appKey和appSecret */
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxbaea3263c2c6bbe6" appSecret:@"c11612aad04a5379cc2432448676c3cd" redirectURL:@""];
+//
+//
+//
+//
+//
+//
+//}
+
+
 //初始化播报开关常量
 - (void)initializeAutoValue{
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"];
@@ -216,7 +237,11 @@
     
     
     }
-    
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+       if (!result) {
+           // 其他如支付等SDK的回调
+       
+       }
     return YES;
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application {

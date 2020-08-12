@@ -29,7 +29,9 @@ pod 'Masonry'
 pod 'JKCountDownButton'
 
 pod 'SWTableViewCell', '~> 0.3.7'
-
+pod 'UMCCommon'
+pod 'UMengUShare/UI'      # U-Share SDK UI模块
+pod 'UMengUShare/Social/ReducedWeChat'  # 集成微信(精简版0.2M)
 use_frameworks!
 
 #pod 'ReactiveObjC'

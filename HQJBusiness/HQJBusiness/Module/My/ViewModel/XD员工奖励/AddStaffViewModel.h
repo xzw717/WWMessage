@@ -5,12 +5,15 @@
 //  Created by mymac on 2020/8/6.
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
+typedef void(^CompletionBlock)(void);
 
 #import <Foundation/Foundation.h>
 @class RoleListModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddStaffViewModel : NSObject
+
+//@property (nonatomic, strong) CompletionBlock ;
 + (void)getTitlesWithCompletion:(void(^)(NSArray <RoleListModel *>*modelArray))completion;
 
 
@@ -28,7 +31,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 /// 添加角色或 添加员工
 /// @param dic 对应的字典数据
-+ (void)addStaff:(NSDictionary *)dic;
++ (void)addStaff:(NSDictionary *)dic
+      completion:(CompletionBlock)completion;
+/// 编辑员工信息
++ (void)editStaff:(NSDictionary *)dic
+       completion:(CompletionBlock)completion;
+/// 添加员工角色
++ (void)addRoleNameWithName:(NSString *)name
+                 completion:(CompletionBlock)completion;
+/// 删除员工角色
++ (void)removeRoleNameWithRoleID:(NSString *)roleid
+                 completion:(CompletionBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END

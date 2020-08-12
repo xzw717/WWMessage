@@ -204,6 +204,11 @@
 		1F76234224D3B76900ECE044 /* StaffRoleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234124D3B76900ECE044 /* StaffRoleItem.m */; };
 		1F76234524D3FFA400ECE044 /* StaffAddRoleTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */; };
 		1F76234B24D41E6B00ECE044 /* RecordsConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */; };
+		1F7ADB7E24DD4805009079F2 /* RewardsRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB7D24DD4805009079F2 /* RewardsRecordModel.m */; };
+		1F7ADB8124DD4952009079F2 /* RewardsRecordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8024DD4952009079F2 /* RewardsRecordViewModel.m */; };
+		1F7ADB8424DD4CC4009079F2 /* RewardsRecordSuperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */; };
+		1F7ADB8524E27422009079F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CF1E1631D00056DF9A /* CoreGraphics.framework */; };
+		1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8724E3733F009079F2 /* UMShareManager.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -819,6 +824,14 @@
 		1F76234424D3FFA400ECE044 /* StaffAddRoleTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffAddRoleTextField.m; sourceTree = "<group>"; };
 		1F76234924D41E6A00ECE044 /* RecordsConsumptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordsConsumptionCell.h; sourceTree = "<group>"; };
 		1F76234A24D41E6A00ECE044 /* RecordsConsumptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordsConsumptionCell.m; sourceTree = "<group>"; };
+		1F7ADB7C24DD4805009079F2 /* RewardsRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardsRecordModel.h; sourceTree = "<group>"; };
+		1F7ADB7D24DD4805009079F2 /* RewardsRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordModel.m; sourceTree = "<group>"; };
+		1F7ADB7F24DD4952009079F2 /* RewardsRecordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardsRecordViewModel.h; sourceTree = "<group>"; };
+		1F7ADB8024DD4952009079F2 /* RewardsRecordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordViewModel.m; sourceTree = "<group>"; };
+		1F7ADB8224DD4CC4009079F2 /* RewardsRecordSuperModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardsRecordSuperModel.h; sourceTree = "<group>"; };
+		1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordSuperModel.m; sourceTree = "<group>"; };
+		1F7ADB8624E3733F009079F2 /* UMShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMShareManager.h; sourceTree = "<group>"; };
+		1F7ADB8724E3733F009079F2 /* UMShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMShareManager.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -1264,6 +1277,7 @@
 				1FFA03F023B200C400D35FF2 /* WebKit.framework in Frameworks */,
 				208D336D228166FB00E439AC /* libsqlite3.tbd in Frameworks */,
 				1F12F6C61E1631890056DF9A /* libz.tbd in Frameworks */,
+				1F7ADB8524E27422009079F2 /* CoreGraphics.framework in Frameworks */,
 				1FDF4CD523B1E7420060F485 /* AlipaySDK.framework in Frameworks */,
 				1F12F6D81E1631F60056DF9A /* CoreMotion.framework in Frameworks */,
 				1F12F6D61E1631EB0056DF9A /* CFNetwork.framework in Frameworks */,
@@ -2145,6 +2159,8 @@
 		1F960CA11DFE3E51003E3D17 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				1F7ADB8624E3733F009079F2 /* UMShareManager.h */,
+				1F7ADB8724E3733F009079F2 /* UMShareManager.m */,
 				0585FE8B249712E600CD7280 /* ZGProgressHUD+NJ.h */,
 				0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */,
 				0585FE88249712A900CD7280 /* ZGRelayoutButton.h */,
@@ -2735,6 +2751,8 @@
 				1F276FA324DA4CFE0049E227 /* MemberStaffListViewModel.m */,
 				1F276FA524DB9B040049E227 /* AddStaffViewModel.h */,
 				1F276FA624DB9B040049E227 /* AddStaffViewModel.m */,
+				1F7ADB7F24DD4952009079F2 /* RewardsRecordViewModel.h */,
+				1F7ADB8024DD4952009079F2 /* RewardsRecordViewModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2754,6 +2772,10 @@
 				1F276FA924DBA2940049E227 /* RoleListModel.m */,
 				1F276FAB24DBFE4F0049E227 /* InvitedRecordModel.h */,
 				1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */,
+				1F7ADB7C24DD4805009079F2 /* RewardsRecordModel.h */,
+				1F7ADB7D24DD4805009079F2 /* RewardsRecordModel.m */,
+				1F7ADB8224DD4CC4009079F2 /* RewardsRecordSuperModel.h */,
+				1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2819,6 +2841,7 @@
 				1FBE91CE1DEC1E59001977A6 /* Resources */,
 				98E6F3C7708CAF6437F9B6E3 /* [CP] Embed Pods Frameworks */,
 				1F63CCC1229536870061CF09 /* Embed App Extensions */,
+				DE4007CCA3E9826B666A2173 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3084,6 +3107,26 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DE4007CCA3E9826B666A2173 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-resources.sh",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HQJBusiness/Pods-HQJBusiness-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3290,6 +3333,7 @@
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
+				1F7ADB7E24DD4805009079F2 /* RewardsRecordModel.m in Sources */,
 				1F607DD024AB23350011915E /* AddPaymentCodeViewController.m in Sources */,
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
@@ -3331,6 +3375,7 @@
 				1F402918229FBBA40014769B /* SetBindingCell.m in Sources */,
 				1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */,
 				1F3949EF1E0D1C9000A3662D /* BonusDealVC.m in Sources */,
+				1F7ADB8124DD4952009079F2 /* RewardsRecordViewModel.m in Sources */,
 				1F960D231DFE3E51003E3D17 /* NSMutableDictionary+BlocksKit.m in Sources */,
 				1FB3DEBF1E03902800F670EC /* WTReParser.m in Sources */,
 				1F607DFB24AB23C20011915E /* XDPayViewModel.m in Sources */,
@@ -3346,6 +3391,7 @@
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
+				1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */,
 				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
@@ -3354,6 +3400,7 @@
 				1FB795AE24ADDC5800D4CC40 /* PinyinHelper.m in Sources */,
 				0585FE7F2497106C00CD7280 /* HintView.m in Sources */,
 				1F6C85D823CEBE78005F3DB8 /* OrderDetailsBaseCell.m in Sources */,
+				1F7ADB8424DD4CC4009079F2 /* RewardsRecordSuperModel.m in Sources */,
 				1F25DBFD1E10E975004DC19F /* AllOrdeVC.m in Sources */,
 				1F960CA01DFE3D06003E3D17 /* main.m in Sources */,
 				1F960D381DFE3E51003E3D17 /* UIActionSheet+BlocksKit.m in Sources */,

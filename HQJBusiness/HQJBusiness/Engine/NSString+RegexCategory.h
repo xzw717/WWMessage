@@ -107,4 +107,7 @@
               containLetter:(BOOL)containLetter
       containOtherCharacter:(NSString *)containOtherCharacter
         firstCannotBeDigtal:(BOOL)firstCannotBeDigtal;
+
+/// 是否是纯数字
+- (BOOL)deptNumInputShouldNumber;
 @end
