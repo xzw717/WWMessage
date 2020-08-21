@@ -10,14 +10,14 @@
 #import "ModeOfPaymentView.h"
 #import "LrdPasswordAlertView.h"
 #import "PayEngine.h"
-
+#import "ZGRelayoutButton.h"
 @interface OkBuyViewController ()
 
 @property (nonatomic,strong) ZW_Label *needPayLabel; // --- 需要付多少
 
 @property (nonatomic,strong) ZW_Label *payModeLabel; // --- 支付方式
 
-@property (nonatomic,strong) UIButton *selectButton; // --- 选择支付方式
+@property (nonatomic,strong) ZGRelayoutButton *selectButton; // --- 选择支付方式
 
 @property (nonatomic,strong) ModeOfPaymentView *payModeView; // --- 选择支付方式视图
 
@@ -38,8 +38,9 @@
 
 -(ZW_Label *)payModeLabel {
     if (!_payModeLabel) {
-        _payModeLabel = [[ZW_Label alloc]initWithStr:@"积分支付，" addSubView:self.view];
+        _payModeLabel = [[ZW_Label alloc]initWithStr:@"积分支付," addSubView:self.view];
         _payModeLabel.font = [UIFont systemFontOfSize:15.0];
+        _payModeLabel.textAlignment = NSTextAlignmentRight;
     }
     return _payModeLabel;
 }
@@ -50,16 +51,17 @@
     
     return _payModeView;
 }
--(UIButton *)selectButton {
+-(ZGRelayoutButton *)selectButton {
     if (!_selectButton) {
-        _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _selectButton = [ZGRelayoutButton buttonWithType:UIButtonTypeCustom];
         [_selectButton setTitle:@"其他支付方式" forState:UIControlStateNormal];
         [_selectButton setImage:[UIImage imageNamed:@"icon_arrow_pay_down"] forState:UIControlStateNormal];
+        _selectButton.titleLabel.textAlignment = NSTextAlignmentLeft;
        [_selectButton setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
         _selectButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-        _selectButton.imageEdgeInsets =  UIEdgeInsetsMake(0, 85, 0, 0);
-        _selectButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        _selectButton.titleEdgeInsets = UIEdgeInsetsMake(0, -25, 0, 0);
+        _selectButton.type = ZGRelayoutButtonTypeLeft;
+        _selectButton.imageSize = CGSizeMake(12, 12);
+        _selectButton.offset = 2.f;
         @weakify(self);
         [_selectButton bk_addEventHandler:^(id  _Nonnull sender) {
             @strongify(self);
@@ -126,7 +128,7 @@
                 
             }];
         }
-     selfWeak.payModeLabel.text = [NSString stringWithFormat:@"%@，",title];
+     selfWeak.payModeLabel.text = [NSString stringWithFormat:@"%@,",title];
      [selfWeak  setPayModel];
 
  }];
@@ -194,7 +196,7 @@
     @WeakObj(self);
 
     [ManagerEngine dimssLoadView:self.nextButton andtitle:@"确认支付"];
-    if([self.payModeLabel.text isEqualToString:@"积分支付，"]){
+    if([self.payModeLabel.text isEqualToString:@"积分支付,"]){
         if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
             if ([_numerStr doubleValue] * 4 > self.model.score.score) {
                 [SVProgressHUD showErrorWithStatus:@"你的积分好像不够了"];
@@ -215,13 +217,13 @@
             [SVProgressHUD showErrorWithStatus:@"积分购买仅限股份商家"];
         }
        
-    } else if([self.payModeLabel.text isEqualToString:@"微信支付，"]) {
+    } else if([self.payModeLabel.text isEqualToString:@"微信支付,"]) {
         [PayEngine jumpToBizPayOrderidStr:self.orderID andUseridStr:MmberidStr];
 //        [SVProgressHUD showInfoWithStatus:@"暂未开放"];
         
-    } else if([self.payModeLabel.text isEqualToString:@"支付宝支付，"]) {
+    } else if([self.payModeLabel.text isEqualToString:@"支付宝支付,"]) {
 //
-       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayCallbackInterface]];
+       [PayEngine payActionOutTradeNOStr:self.orderID andSubjectStr:[NSString stringWithFormat:@"%@@%@",self.model.parentName,[NameSingle shareInstance].name] andNameStr:@"商品一批" andTotalFeeSt:[NSString stringWithFormat:@"%.2f",[_numerStr doubleValue] * 2] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayCallbackInterface] buytype:buyRY];
       
     } else {
         [SVProgressHUD showInfoWithStatus:@"暂未开放"];
@@ -234,12 +236,22 @@
 #pragma mark --
 #pragma mark --- 支付方式变后跟着变
 -(void)setPayModel {
-    CGFloat modeWidth = [ManagerEngine setTextWidthStr:self.payModeLabel.text andFont:[UIFont systemFontOfSize:15.0]];
-    CGFloat selectWidth = [ManagerEngine setTextWidthStr:self.selectButton.titleLabel.text andFont:[UIFont systemFontOfSize:15.0]];
-    self.payModeLabel.sd_layout.leftSpaceToView(self.view,(WIDTH - modeWidth - selectWidth)/2).topSpaceToView(self.view,HEIGHT - (44 - 15) / 2 - 30).heightIs(15).widthIs(modeWidth);
-    
-    self.selectButton.sd_layout.leftSpaceToView(self.payModeLabel,0).topSpaceToView(self.view,HEIGHT -  30 - 44 + 15).heightIs(44).widthIs(selectWidth);
-    
+//    CGFloat modeWidth = [ManagerEngine setTextWidthStr:self.payModeLabel.text andFont:[UIFont systemFontOfSize:15.0]];
+//    CGFloat selectWidth = [ManagerEngine setTextWidthStr:self.selectButton.titleLabel.text andFont:[UIFont systemFontOfSize:15.0]];
+//    self.payModeLabel.sd_layout.leftSpaceToView(self.view,(WIDTH - modeWidth - selectWidth)/2).topSpaceToView(self.view,HEIGHT - (44 - 15) / 2 - 30).heightIs(15).widthIs(modeWidth);
+//
+//    self.selectButton.sd_layout.leftSpaceToView(self.payModeLabel,0).topSpaceToView(self.view,HEIGHT -  30 - 44 + 15).heightIs(44).widthIs(selectWidth);
+    [self.payModeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.width.mas_equalTo(WIDTH/2);
+        make.bottom.mas_equalTo(-30.f);
+    }];
+    [self.selectButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.payModeLabel.mas_right);
+        make.bottom.mas_equalTo(self.payModeLabel);
+        make.width.mas_equalTo(114.f);
+
+    }];
     
 }
 

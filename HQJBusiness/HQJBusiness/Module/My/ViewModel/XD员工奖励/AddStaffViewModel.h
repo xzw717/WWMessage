@@ -35,13 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
       completion:(CompletionBlock)completion;
 /// 编辑员工信息
 + (void)editStaff:(NSDictionary *)dic
+           editID:(NSString *)editid
        completion:(CompletionBlock)completion;
+
 /// 添加员工角色
 + (void)addRoleNameWithName:(NSString *)name
                  completion:(CompletionBlock)completion;
 /// 删除员工角色
 + (void)removeRoleNameWithRoleID:(NSString *)roleid
-                 completion:(CompletionBlock)completion;
+                      completion:(CompletionBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END

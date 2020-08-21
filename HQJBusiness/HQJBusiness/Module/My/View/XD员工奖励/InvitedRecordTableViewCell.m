@@ -8,6 +8,7 @@
 
 #import "InvitedRecordTableViewCell.h"
 #import "InvitedRecordModel.h"
+#import "HintView.h"
 @interface InvitedRecordTableViewCell ()
 @property (nonatomic, strong) UILabel *namelabel;
 @property (nonatomic, strong) UILabel *timerlabel;
@@ -31,7 +32,7 @@
         }];
         [self.timerlabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-NewProportion(50));
-            make.top.mas_equalTo(self.namelabel);
+            make.centerY.mas_equalTo(self.contentView);
         }];
     }
     return self;

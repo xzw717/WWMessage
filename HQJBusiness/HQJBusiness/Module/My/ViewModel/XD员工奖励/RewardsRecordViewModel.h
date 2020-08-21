@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)getAwardWithType:(NSString *)type
                     page:(NSInteger)page
-              completion:(void(^)(RewardsRecordSuperModel *model))completion;
+              completion:(void(^)(RewardsRecordSuperModel *model,NSError *requstError))completion;
 @end
 
 NS_ASSUME_NONNULL_END

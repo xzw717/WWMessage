@@ -11,6 +11,7 @@
 #import "XDDetailViewController.h"
 #import "XDDetailViewModel.h"
 #import "HQJWebViewController.h"
+#import "HintView.h"
 @interface XDPaySureViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) NSArray *dataArray;
@@ -53,9 +54,14 @@
 }
 - (void)requsetOrderDetail{
     [XDPayViewModel getOrderInfoById:self.orderid completion:^(XDDetailModel * _Nonnull model) {
-        self.model = model;
-        self.dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",model.paymoney],@[@"订单号",model.orderid],@[@"支付时间",model.paytime]];
-        [self.xdTableView reloadData];
+        if ([model.orderstate integerValue] == 1 && self.isAlipaySuccess) {
+            [HintView enrichSubviews:@"你的交易支付因网络原因暂时无法反馈结果，稍后请至支付宝账单或商家APP订单查询" andSureTitle:@"确定" cancelTitle:nil sureAction:nil];
+        } else {
+            self.model = model;
+                   self.dataArray = @[@[@"收款方",@"第一时间科技投资股份有限公司"],@[@"支付方式",@"支付宝"],@[@"支付金额",model.paymoney],@[@"订单号",model.orderid],@[@"支付时间",model.paytime]];
+                   [self.xdTableView reloadData];
+        }
+       
     }];
 }
 

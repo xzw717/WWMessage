@@ -98,7 +98,6 @@
     [super viewDidDisappear:animated];
     self.webView.UIDelegate = nil;
     self.webView.navigationDelegate =  nil;
-    [self cleanCacheAndCookie];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
@@ -189,6 +188,7 @@
     [controller removeScriptMessageHandlerForName:@"out"];
     [controller removeScriptMessageHandlerForName:@"exitWeb"];
     [controller removeScriptMessageHandlerForName:@"xdShop"];
+    [self cleanCacheAndCookie];
 
 }
 @end

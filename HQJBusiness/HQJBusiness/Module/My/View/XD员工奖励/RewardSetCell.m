@@ -30,8 +30,12 @@
     }
     return self;
 }
-
+- (void)setIsFull:(BOOL)isFull {
+    _isFull = isFull;
+    self.addButton.hidden = isFull;
+}
 - (void)selectRole:(ZGRelayoutButton *)btn {
+    btn.btnIndexPath = self.cellIndexPath;
     !self.selectRoleAction?:self.selectRoleAction(btn);
   
     
@@ -39,7 +43,7 @@
 - (void)setCellModel:(RoleListModel *)cellModel {
     _cellModel = cellModel;
     [self.roleButton setTitle:cellModel.roleName forState:UIControlStateNormal];
-    self.numberTextField.text = cellModel.roleAward;
+    self.numberTextField.text = cellModel.roleRate;
 }
 //- (void)setIsEnabled:(BOOL)isEnabled {
 //    _isEnabled = isEnabled;
@@ -55,7 +59,7 @@
 //    if (self.isEnabled ) {
         if (cellIndexPath.row == 0) {
 //            [self.numberTextField becomeFirstResponder];
-            self.addButton.hidden = NO;
+            self.addButton.hidden = self.isFull;
             self.minusButton.hidden = YES;
         } else {
             self.roleButton.enabled = YES;
@@ -92,7 +96,7 @@
     }];
     [self.roleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.mas_equalTo(self.bgView);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(WIDTH / 3);
     }];
     [self.numberTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.roleButton.mas_right);

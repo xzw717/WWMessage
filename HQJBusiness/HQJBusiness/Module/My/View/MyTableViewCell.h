@@ -11,4 +11,5 @@
 
 @interface MyTableViewCell : ZW_TableViewCell
 @property (nonatomic,strong)MyModel *model;
+@property (nonatomic, strong) NSString *cellReward;
 @end

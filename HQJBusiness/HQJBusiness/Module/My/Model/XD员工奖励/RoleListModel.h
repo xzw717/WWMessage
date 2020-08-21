@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RoleListModel : NSObject
+@interface RoleListModel : NSObject <NSCopying,NSMutableCopying>
 @property (nonatomic, strong) NSString *nid;
 @property (nonatomic, strong) NSString *mid;
 @property (nonatomic, strong) NSString *roleName;

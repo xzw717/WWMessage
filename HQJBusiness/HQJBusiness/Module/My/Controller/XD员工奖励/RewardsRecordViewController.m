@@ -28,23 +28,26 @@
     [self requst];
 }
 - (void)requst {
-    
-    [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model) {
-        if (self.page > 1) {
-            if (model.data.count == 0) {
-                self.page --;
-            } else {
-                [self.modeAry addObjectsFromArray:model.data];
-            }
-        } else {
-            self.modeAry = [model.data mutableCopy];
+    [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model, NSError * _Nonnull requstError) {
+        if (!requstError) {
+            if (self.page > 1) {
+                            if (model.data.count == 0) {
+                                self.page --;
+                            } else {
+                                [self.modeAry addObjectsFromArray:model.data];
+                            }
+                        } else {
+                            self.modeAry = [model.data mutableCopy];
 
+                        }
         }
-     
-        [self.recordTableView reloadData];
-        [self.recordTableView.mj_header endRefreshing];
-             [self.recordTableView.mj_footer endRefreshing];
+      
+           
+              [self.recordTableView reloadData];
+              [self.recordTableView.mj_header endRefreshing];
+              [self.recordTableView.mj_footer endRefreshing];
     }];
+ 
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.modeAry.count;

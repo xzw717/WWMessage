@@ -49,7 +49,7 @@
                                     @"hash":HashCode};
        [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parameterDict complete:^(NSDictionary *dic) {
            if ([dic[@"code"] integerValue] == 49000) {
-               NSArray *modelAry = [InvitedRecordModel mj_objectArrayWithKeyValuesArray:dic[@"result"]];
+               NSArray *modelAry = [InvitedRecordModel mj_objectArrayWithKeyValuesArray:dic[@"result"][@"data"]];
                !completion ? :completion(modelAry);
            } else {
                NSError *er = [NSError errorWithDomain:NSCocoaErrorDomain code:490 userInfo:dic];

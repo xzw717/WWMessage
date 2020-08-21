@@ -38,6 +38,8 @@ extern NSString *const WWMLiveDomain;
 extern NSString *const HQJBH5UpDataDomain ;
 /// XDH5域名
 extern NSString *const HQJBXDH5Domain;
+/// 商家奖励
+extern NSString *const HQJBRewardDomainName;
 /************************************域名（结束）**********************************************/
 
 
@@ -261,6 +263,20 @@ extern NSString *const HQJBSearchMemberListByNameInterface ;
 extern NSString *const HQJBSearchMemberListByMobileInterface ;
 /// 商家获取所有员工的奖励记录
 extern NSString *const HQJBGetAllEmployeeAwardListInterface;
+/// XD商家设置比率（多项提交）
+extern NSString *const HQJBSetupMultiAwardRateInterface;
+/// 获取商家总奖励的积分
+extern NSString *const HQJBGetMerchantTotalAwardInterface;
+
+/*   支付项目  */
+extern NSString *const HQJBPurchasePayProject;
+/// 购买XD商家
+extern NSString *const HQJBXDaliPayInterface;
+/// 购买RY值
+extern NSString *const HQJBAliPayInterface;
+
+
+
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

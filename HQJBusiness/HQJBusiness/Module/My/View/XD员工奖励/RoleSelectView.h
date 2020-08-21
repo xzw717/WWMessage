@@ -15,6 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RoleSelectView : UIView
+@property (nonatomic, strong) UILabel *roleLabel;
+@property (nonatomic, strong) UIImageView *arrowImage;
 @property (nonatomic, weak) id <RoleDelegate> delegate;
 @property (nonatomic, strong) NSString *roleTitleString;
 @end

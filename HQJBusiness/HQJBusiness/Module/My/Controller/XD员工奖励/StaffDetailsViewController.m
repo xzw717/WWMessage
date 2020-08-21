@@ -16,14 +16,20 @@
 #import "MemberStaffModel.h"
 #import "StaffDetailsViewModel.h"
 #import "AddStaffViewController.h"
+#import "HintView.h"
+#import "ZGRelayoutButton.h"
+#import "MemberStaffListViewModel.h"
+
 @interface StaffDetailsViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) StaffdetailsHeaderView *headerView;
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
 @property (nonatomic, strong) SGSegmentedControlBottomView *bottomSView;
-@property (nonatomic, strong) UIButton *editorButton;
-@property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic, strong) ZGRelayoutButton *editorButton;
+@property (nonatomic, strong) ZGRelayoutButton *deleteButton;
 @property (nonatomic, assign) listStyle style;
 @property (nonatomic, strong) MemberStaffModel *model;
+@property (nonatomic, strong) StaffDetailsVC *sdVC;
+@property (nonatomic, strong) InvitedRecordViewController *irZHVC;
 @end
 
 @implementation StaffDetailsViewController
@@ -32,7 +38,7 @@
     [super viewDidLoad];
     [self initView];
     [self initVC];
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeData:) name:@"changeStaff" object:nil];
 }
 - (void)initView {
     [self.zwBackButton setImage:[UIImage imageNamed:self.style == stafflistStyle ? @"icon_Return_02" : @"icon_Return_01"] forState:UIControlStateNormal];
@@ -66,6 +72,17 @@
          make.centerY.width.height.mas_equalTo(self.editorButton);
      }];
 }
+- (void)changeData:(NSNotificationCenter *)notifi {
+    [MemberStaffListViewModel requstStaffWithKey:self.model.nid completion:^(MemberStaffModel * _Nonnull model) {
+        self.model = model;
+        [self.sdVC updateModel:self.model];
+    } error:^{
+        
+    }];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (void)showQRCode {
     @weakify(self);
     [StaffDetailsViewModel getQrCodeWithStaffID:self.model.nid completion:^(NSString * _Nonnull imageUrl) {
@@ -82,10 +99,14 @@
 
 #pragma mark --- 删除员工
 - (void)removeStaff {
-    
-    [StaffDetailsViewModel removeStaffWithStaffID:self.model.nid completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
+    @weakify(self);
+    [HintView enrichSubviews:@"删除该员工即刻停止奖励" andSureTitle:@"确认" cancelTitle:@"取消" sureAction:^{
+        @strongify(self);
+        [StaffDetailsViewModel removeStaffWithStaffID:self.model.nid completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }];
+    
     
 }
 
@@ -105,13 +126,13 @@
     return self;
 }
 -(void)initVC {
-    StaffDetailsVC *sdVC = [[StaffDetailsVC alloc]initWithDetalisStyle:self.style detaliModel:self.model];
-    [self addChildViewController:sdVC];
+//   _sdVC = [[StaffDetailsVC alloc]initWithDetalisStyle:self.style detaliModel:self.model];
+//            [self addChildViewController:_sdVC];
+//    
+//   _irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style detaliModel:self.model];
+//        [self addChildViewController:_irZHVC];
     
-    InvitedRecordViewController *irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style detaliModel:self.model];
-    [self addChildViewController:irZHVC];
-    
-    NSArray *childVC = self.style == stafflistStyle ?  @[sdVC, irZHVC] : @[sdVC];
+    NSArray *childVC = self.style == stafflistStyle ?  @[self.sdVC, self.irZHVC] : @[self.sdVC];
     
     NSArray *title_arr =self.style == stafflistStyle ? @[@"详情",@"邀请记录"] : @[@"详情"];
     
@@ -176,34 +197,55 @@
     }
     return _headerView;
 }
-- (UIButton *)editorButton {
+- (ZGRelayoutButton *)editorButton {
     if (!_editorButton) {
-        _editorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _editorButton = [ZGRelayoutButton buttonWithType:UIButtonTypeCustom];
         [_editorButton setImage:[UIImage imageNamed:@"icon_edit_1"] forState:UIControlStateNormal];
         [_editorButton setTitle:@"编辑" forState:UIControlStateNormal];
-        _editorButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(40)];
+        _editorButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(38)];
         [_editorButton setTitleColor:[ManagerEngine getColor:@"777777"] forState:UIControlStateNormal];
-        [_editorButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
-        [_editorButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
+//        [_editorButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
+//        [_editorButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
+        _editorButton.type = ZGRelayoutButtonTypeBottom;
+             _editorButton.offset = 5.f;
+        _editorButton.imageSize = CGSizeMake(20, 20);
         _editorButton.hidden = self.style == stafflistStyle ? NO : YES;
         [_editorButton addTarget:self action:@selector(editStaff) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _editorButton;
 }
-- (UIButton *)deleteButton {
+- (ZGRelayoutButton *)deleteButton {
     if (!_deleteButton) {
-        _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteButton = [ZGRelayoutButton buttonWithType:UIButtonTypeCustom];
         [_deleteButton setImage:[UIImage imageNamed:@"icon_trash_1"] forState:UIControlStateNormal];
-        _deleteButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(40)];
+        _deleteButton.titleLabel.font = [UIFont systemFontOfSize:NewProportion(38)];
             [_deleteButton setTitleColor:[ManagerEngine getColor:@"777777"] forState:UIControlStateNormal];
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        [_deleteButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
-        [_deleteButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
+//        [_deleteButton setTitleEdgeInsets:UIEdgeInsetsMake(50, 22, 5, 0)];
+//        [_deleteButton setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 15, 25)];
+        _deleteButton.type = ZGRelayoutButtonTypeBottom;
+        _deleteButton.offset = 5.f;
+        _deleteButton.imageSize = CGSizeMake(20, 20);
         _deleteButton.hidden = self.style == stafflistStyle ? NO : YES;
         [_deleteButton addTarget:self action:@selector(removeStaff) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _deleteButton;
+}
+- (StaffDetailsVC *)sdVC {
+    if (!_sdVC) {
+        _sdVC = [[StaffDetailsVC alloc]initWithDetalisStyle:self.style detaliModel:self.model];
+           [self addChildViewController:_sdVC];
+    }
+    return _sdVC;;
+}
+- (InvitedRecordViewController *)irZHVC {
+    if (!_irZHVC) {
+        _irZHVC = [[InvitedRecordViewController alloc]initRecordWithStyle:self.style detaliModel:self.model];
+           [self addChildViewController:_irZHVC];
+        
+    }
+    return _irZHVC;
 }
 @end

@@ -22,7 +22,7 @@
 @implementation MyViewModel
 
 - (void)myRequst {
-    NSMutableDictionary *dict = @{@"memberid":MmberidStr}.mutableCopy;
+    NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"hash":HashCode}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantInfoInterface];
 
     HQJLog(@"地址：%@",urlStr);
@@ -55,6 +55,30 @@
     
     
 }
++ (void)getMerchantTotalAward:(void(^)(NSString *award))completion {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,HQJBGetMerchantTotalAwardInterface];
+
+    if (MmberidStr) {
+        [RequestEngine HQJBusinessGETRequestDetailsUrl:urlStr parameters:@{@"myid":MmberidStr,
+                                                                            @"id":MmberidStr,
+                                                                            @"hash":HashCode
+        } complete:^(NSDictionary *dic) {
+            if ([dic[@"code"] integerValue] == 49000) {
+                !completion ? :completion(dic[@"result"]);
+            } else if ([dic[@"code"] integerValue] == 49126) {
+                !completion ? :completion(@"0.00");
+            } else {
+                !completion ? :completion(@"0.00");
+                [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+            }
+           
+        } andError:^(NSError *error) {
+        
+        } ShowHUD:NO];
+}
+
+}
+
 
 - (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion {
     NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
@@ -139,6 +163,21 @@
     }
     
 }
+
+
++ (void)getXdShopAuditWithCompletion:(void(^)(NSDictionary *dict))completion {
+    NSString *url = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBXdShopAuditInterface];
+     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"id":Shopid ? Shopid :@""} complete:^(NSDictionary *dic) {
+         if ([dic[@"resultCode"] integerValue] == 2100  ) {
+             !completion? : completion(dic[@"resultMsg"]);
+         } else {
+//             [SVProgressHUD showErrorWithStatus:@"获取状态失败，请稍候重试"];
+         }
+     } andError:^(NSError *error) {
+         
+     } ShowHUD:NO];
+}
+
 
 +(void)getHomeBannerBlock:(void (^)(id))sender {
     

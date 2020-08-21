@@ -59,7 +59,7 @@
     if (!_bossNameLabel) {
         _bossNameLabel = [[UILabel alloc]init];
         _bossNameLabel.text = @"";
-        _bossNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:NewProportion(48)];
+        _bossNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:NewProportion(36)];
         _bossNameLabel.textColor = [ManagerEngine getColor:@"000000"];
     }
     return _bossNameLabel;
@@ -68,7 +68,7 @@
     if (!_shopNameLabel) {
         _shopNameLabel = [[UILabel alloc]init];
         _shopNameLabel.text = [NameSingle shareInstance].name;
-        _shopNameLabel.font = [UIFont systemFontOfSize:NewProportion(36)];
+        _shopNameLabel.font = [UIFont systemFontOfSize:NewProportion(48)];
         _shopNameLabel.textColor = [ManagerEngine getColor:@"555555"];
     }
     return _shopNameLabel;

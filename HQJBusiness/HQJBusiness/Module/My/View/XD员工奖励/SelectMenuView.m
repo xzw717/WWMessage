@@ -57,6 +57,9 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.15 animations:^{
             [self.menuTableView setFrame:CGRectMake(rect.origin.x , rect.origin.y + rect.size.height + NewProportion(30), rect.size.width, NewProportion(320))];
+            if (self.delegate &&[self.delegate respondsToSelector:@selector(showSelectMenuView)]) {
+                [self.delegate showSelectMenuView];
+            }
         }];
     }];
    
@@ -71,6 +74,12 @@
               [self.menuTableView setFrame:CGRectMake(self.menuTableView.frame.origin.x , self.menuTableView.frame.origin.y, self.menuTableView.frame.size.width, 0)];
           } completion:^(BOOL finished) {
               [self removeFromSuperview];
+              if (self.clickModel) {
+                    self.clickModel(nil);
+                }
+              if (self.delegate &&[self.delegate respondsToSelector:@selector(dismissSelectMenuView)]) {
+                  [self.delegate dismissSelectMenuView];
+              }
           }];
           
       }];
@@ -84,6 +93,7 @@
   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.textLabel.text = self.titleArray[indexPath.row].roleName;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
   
     
@@ -92,10 +102,22 @@
     [self removeView];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    !self.clickModel?:self.clickModel(self.titleArray[indexPath.row]);
+    if (self.clickModel) {
+        self.clickModel(self.titleArray[indexPath.row]);
+    }
+    if (self.delegate &&[self.delegate respondsToSelector:@selector(clickWithModel:)]) {
+           [self.delegate clickWithModel:self.titleArray[indexPath.row]];
+       
+    }
     [self removeView];
     
 }
+//- (id<SelectMenuViewDelegate>)delegate {
+//    if (!_delegate) {
+//        return <#expression#>;
+//    }
+//    return _delegate;
+//}
 - (MenuArrayBlock)munuAry {
     if (!_munuAry) {
         __weak typeof(self) weakSelf = self;
@@ -129,7 +151,7 @@
         _menuTableView.layer.cornerRadius = 2; //设置imageView的圆角
         _menuTableView.layer.masksToBounds = YES;
         _menuTableView.backgroundColor = [UIColor whiteColor];
-
+        _menuTableView.tableFooterView = [UIView new];
     }
     return _menuTableView;
 }

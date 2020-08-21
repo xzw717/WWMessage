@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef NS_ENUM(NSInteger,buyType) {
+    buyRY ,
+    buyXD
+    
+};
 @interface PayEngine : NSObject
          /****************************** AliPay ************************************/
 
@@ -24,8 +28,8 @@
                 andSubjectStr:(NSString *)Subject
                    andNameStr:(NSString *)nameStr
                 andTotalFeeSt:(NSString *)pice
-                andNotifyUrl:(NSString *)notify_url;
-
+                andNotifyUrl:(NSString *)notify_url
+                      buytype:(buyType)type;
 
 
        /********************************  WXPay  **********************************/

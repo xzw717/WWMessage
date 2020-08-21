@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDetalisStyle:(listStyle)style
                          detaliModel:(MemberStaffModel *)model ;
+- (void)updateModel:(MemberStaffModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

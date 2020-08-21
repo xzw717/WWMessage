@@ -10,7 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPaySureViewController : ZW_ViewController
+/// 支付宝支付状态
+@property (nonatomic, assign) BOOL isAlipaySuccess;
 - (instancetype)initWithOrderid:(NSString *)orderid;
+
 @end
 
 NS_ASSUME_NONNULL_END

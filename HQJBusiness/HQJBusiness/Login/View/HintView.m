@@ -14,7 +14,7 @@
 @property (nonatomic,strong)UIButton *cancelButton;
 @property (nonatomic,strong)UILabel *topicLabel;
 @property (nonatomic,strong)UIView *divisionView;
-
+@property (nonatomic, assign) BOOL isSingleButton;
 @end
 
 @implementation HintView
@@ -68,7 +68,7 @@
         [_cancelButton bk_addEventHandler:^(id  _Nonnull sender) {
             @strongify(self);
             ! self.cancelAction ? [HintView dismssView] :  self.cancelAction ();
-//            [self dismssView];
+            //            [self dismssView];
         } forControlEvents:UIControlEventTouchUpInside];
         
         [self.maskView addSubview:_cancelButton];
@@ -94,29 +94,44 @@
     if (self) {
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
         [[UIApplication sharedApplication].keyWindow addSubview:self];
-//        [self enrichSubviews:topic andSureTitle:sureTitle cancelTitle:cancelTitle];
+        //        [self enrichSubviews:topic andSureTitle:sureTitle cancelTitle:cancelTitle];
         [self updateConstraintsIfNeeded];
     }
     return self;
 }
+- (void)setIsSingleButton:(BOOL)isSingleButton {
+    _isSingleButton = isSingleButton;
+    if (self.isSingleButton) {
+         [self.sureButton mas_updateConstraints:^(MASConstraintMaker *make) {
+             make.centerX.mas_equalTo(self.maskView);
+  
+         }];
+        [self.cancelButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+            make.width.mas_equalTo(0);
+        }];
+     }
+     
+}
 - (void)updateConstraints {
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(self);
-//        make.height.mas_equalTo(S_RatioH(470.0f/3));
+        //        make.height.mas_equalTo(S_RatioH(470.0f/3));
         make.width.mas_equalTo(S_RatioW(240.0f));
     }];
-    [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-S_RatioW(40/3));
-        make.left.mas_equalTo(S_RatioW(40/3));
-        make.height.mas_equalTo(S_RatioH(100.0f/3));
-        make.width.mas_equalTo(S_RatioW(100.0f));
-    }];
-    [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-S_RatioW(40/3));
-        make.right.mas_equalTo(-S_RatioW(40/3));
-        make.height.mas_equalTo(S_RatioH(100.0f/3));
-        make.width.mas_equalTo(S_RatioW(100.0f));
-    }];
+        [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(-S_RatioW(40/3));
+            make.left.mas_equalTo(S_RatioW(40/3));
+            make.height.mas_equalTo(S_RatioH(100.0f/3));
+            make.width.mas_equalTo(S_RatioW(100.0f));
+        }];
+        [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(-S_RatioW(40/3));
+            make.right.mas_equalTo(-S_RatioW(40/3));
+            make.height.mas_equalTo(S_RatioH(100.0f/3));
+            make.width.mas_equalTo(S_RatioW(100.0f));
+        }];
+    
     [self.divisionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.sureButton.mas_top).mas_offset(-S_RatioW(40/3));
         make.right.mas_equalTo(-10);
@@ -124,11 +139,11 @@
         make.height.mas_equalTo(0.5f);
     }];
     [self.topicLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.top.mas_equalTo(70.f / 3);
-         make.right.mas_equalTo(-25);
-         make.left.mas_equalTo(25);
-         make.bottom.mas_equalTo(self.divisionView.mas_top).mas_offset(-70.f / 3);
-     }];
+        make.top.mas_equalTo(70.f / 3);
+        make.right.mas_equalTo(-25);
+        make.left.mas_equalTo(25);
+        make.bottom.mas_equalTo(self.divisionView.mas_top).mas_offset(-70.f / 3);
+    }];
     [super updateConstraints];
 }
 
@@ -145,7 +160,10 @@
 }
 
 + (HintView *)enrichSubviews:(NSString *)topic andSureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle sureAction:(void(^)(void))sure {
+    
     [HintView showView].topicLabel.text = topic;
+    [HintView showView].isSingleButton =! cancelTitle ? YES : NO;
+    [HintView showView].cancelButton.hidden = ! cancelTitle ? YES : NO;
     [[HintView showView].sureButton setTitle:sureTitle forState:UIControlStateNormal];
     [[HintView showView].cancelButton setTitle:cancelTitle forState:UIControlStateNormal];
     [[[HintView showView].sureButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {

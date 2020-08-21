@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *nickname;
 @property (nonatomic, strong) NSString *idcard;
 
-
 ///                 员工字段
+@property (nonatomic, strong) NSString * cid;
 @property (nonatomic, strong) NSString *sid;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSString *title;

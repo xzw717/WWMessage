@@ -9,6 +9,7 @@
 #import "MyShopViewController.h"
 #import "HintView.h"
 #import "HQJWebViewController.h"
+#import "HQJLocationManager.h"
 //#import ""
 #define TopSpace 40/3.f
 
@@ -42,6 +43,10 @@
 
 /// 客服电话
 @property (nonatomic, strong) UILabel *phoneLabel;
+/// 纬度
+@property (nonatomic, assign) CGFloat latitude ;
+/// 经度
+@property (nonatomic, assign) CGFloat longitude ;
 @end
 
 @implementation MyShopViewController
@@ -220,33 +225,35 @@
 }
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
+
     HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
-    pvc.zwNavView.hidden = YES;
-    if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
-        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
-    } else if ([self.stateValueLabel.text isEqualToString:@"审核成功"]) {
-        [HintView enrichSubviews:@"重新登录即可获取完整体验" andSureTitle:@"去登录" cancelTitle:@"取消" sureAction:^{
-            [ManagerEngine login];
-        }];
-        return;
-    } else if ([self.stateValueLabel.text isEqualToString:@"审核失败"]) {
-        @weakify(self);
-        [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
-            @strongify(self);
-            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
-            [self.navigationController pushViewController:pvc animated:YES];
-        }];
-         return;
-    } else if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
-        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString];
-    } else if ([self.stateValueLabel.text isEqualToString:@"发起合同"]) {
-        
-    } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
-        pvc.webUrlStr = self.signUrl;
-    } else {
-        return;
-    }
-    [self.navigationController pushViewController:pvc animated:YES];
+          pvc.zwNavView.hidden = YES;
+          if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
+              
+              pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+          } else if ([self.stateValueLabel.text isEqualToString:@"审核成功"]) {
+              [HintView enrichSubviews:@"重新登录即可获取完整体验" andSureTitle:@"去登录" cancelTitle:@"取消" sureAction:^{
+                  [ManagerEngine login];
+              }];
+              return;
+          } else if ([self.stateValueLabel.text isEqualToString:@"审核失败"]) {
+              @weakify(self);
+              [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+                  @strongify(self);
+                  pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+                  [self.navigationController pushViewController:pvc animated:YES];
+              }];
+               return;
+          } else if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
+              pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+          } else if ([self.stateValueLabel.text isEqualToString:@"发起合同"]) {
+              
+          } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
+              pvc.webUrlStr = self.signUrl;
+          } else {
+              return;
+          }
+          [self.navigationController pushViewController:pvc animated:YES];
 
     
 }
@@ -262,15 +269,22 @@
     self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
     [self layoutTheSubViews];
-   
-
+    [SVProgressHUD showWithStatus:@"获取定位中"];
     self.viewControllerName = @"LoginViewController";
     self.fd_interactivePopDisabled = YES;
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:self.phoneLabel.text];
     [attri addAttributes:@{NSForegroundColorAttributeName:DefaultAPPColor} range:NSMakeRange(5, self.phoneLabel.text.length - 5)];
     [attri addAttributes:@{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]} range:NSMakeRange(5, self.phoneLabel.text.length - 5)];
     self.phoneLabel.attributedText = attri;
-   
+   @weakify(self);
+   [[[HQJLocationManager shareInstance]getLocation] setLocation:^(CGFloat lat, CGFloat lon, NSString * _Nonnull cityName) {
+       @strongify(self);
+       [SVProgressHUD dismiss];
+
+       self.latitude = lat;
+       self.longitude = lon;
+     
+   }];
     
 }
 - (instancetype)initWithShopid:(NSString *)shopid {

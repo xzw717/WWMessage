@@ -11,7 +11,7 @@
 @implementation RewardsRecordViewModel
 + (void)getAwardWithType:(NSString *)type
                     page:(NSInteger)page
-                      completion:(void(^)(RewardsRecordSuperModel *model))completion {
+                      completion:(void(^)(RewardsRecordSuperModel *model,NSError *requstError))completion {
     NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,[type isEqualToString:@"商家"] ?  HQJBGetMerchantAwardtInterface : HQJBGetAllEmployeeAwardListInterface];
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"myid":MmberidStr,
                                                                     [type isEqualToString:@"商家"] ?@"id" : @"sid":MmberidStr,
@@ -19,12 +19,18 @@
                                                                     @"page":@(page),
                                                                     @"pageSize":@(15)
     } complete:^(NSDictionary *dic) {
+        RewardsRecordSuperModel *superModel;
+        NSError *er;
           if ([dic[@"code"]integerValue] == 49000) {
-              RewardsRecordSuperModel *superModel = [RewardsRecordSuperModel mj_objectWithKeyValues:dic[@"result"]];
-              !completion?:completion(superModel);
+             superModel = [RewardsRecordSuperModel mj_objectWithKeyValues:dic[@"result"]];
+          } else {
+            er = [NSError errorWithDomain:NSCocoaErrorDomain code:40001 userInfo:@{@"content":@"没有更多数据"}];
           }
+        !completion?:completion(superModel,er);
+
       } andError:^(NSError *error) {
-          
+          !completion?:completion(nil,error);
+
       } ShowHUD:YES];
 }
 

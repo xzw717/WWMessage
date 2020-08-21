@@ -334,4 +334,8 @@ typedef NS_ENUM(NSInteger,listStyle) {
 
 /// 获取当前时间戳
 + (NSString *_Nonnull)currentTimeStr;
+
+/// 时间转时间戳   eg type：YYYY-MM-dd
++ (NSString *_Nonnull)getTimeStrWithString:(NSString *)str;
++ (NSString *_Nonnull)getTimeStrWithString:(NSString *)str timeType:(NSString *)type;
 @end

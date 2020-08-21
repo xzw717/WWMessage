@@ -13,6 +13,8 @@
 #import "AddStaffViewController.h"
 #import "MemberStaffListViewModel.h"
 #import "MemberStaffListModel.h"
+
+typedef void(^ClickNameCellBlock)(void);
 @interface MemberStaffListViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ResultsListDelegate>
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) UILabel   *footerLabel;
@@ -23,6 +25,7 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) MemberStaffListViewModel *viewModel;
 @property (nonatomic, strong) MemberStaffListModel *listModel;
+@property (nonatomic, copy  ) ClickNameCellBlock  nameClick;
 @end
 
 @implementation MemberStaffListViewController
@@ -32,9 +35,15 @@
     self.bar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, 64)];
     self.bar.searchBarStyle = UISearchBarStyleProminent;
     self.bar.delegate = self;
-    self.bar.searchTextField.backgroundColor = [ManagerEngine getColor:@"ffffff"];
-    self.bar.searchTextField.layer.masksToBounds = YES;
-    self.bar.searchTextField.layer.cornerRadius = 18.f;
+    if (@available(iOS 13.0, *)) {
+        self.bar.searchTextField.backgroundColor = [ManagerEngine getColor:@"ffffff"];
+
+        self.bar.searchTextField.layer.masksToBounds = YES;
+        self.bar.searchTextField.layer.cornerRadius = 18.f;
+
+    } else {
+        // Fallback on earlier versions
+    }
     self.bar.backgroundImage = [self imageWithColor:[ManagerEngine getColor:@"f5f5f5"] size:self.bar.frame.size];
 
     [self.view addSubview:self.bar];
@@ -68,6 +77,12 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [SVProgressHUD dismiss];
+    self.searchView.hidden = YES;
+    self.searchView.searchModel = [[MemberStaffListModel alloc]init];
+    self.bar.showsCancelButton=NO;
+    self.bar.text = @"";
+    [self.searchView reloadSearchList];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -90,7 +105,7 @@
     self.bar.showsCancelButton=NO;//隐藏取消按钮
     [self.bar resignFirstResponder];//退回键盘
     self.searchView.hidden = YES;
-//    [self.searchView.resultsArray removeAllObjects];
+    self.searchView.searchModel = [[MemberStaffListModel alloc]init];
     [self.searchView reloadSearchList];
 
 }
@@ -132,16 +147,17 @@
 }
 
 /// 搜索框结束编辑时调用（例如可以在用户点击屏幕内其它地方时，让搜索框结束编辑）
-- (void)searchBarTextDidEndEditing:(UISearchBar*)searchBar {
-    if([searchBar.text isEqualToString:@""]) {//如果没有文字，才隐藏取消按钮
-        self.bar.showsCancelButton=NO;
-    }else{
-        self.bar.showsCancelButton=YES;
-    }
-    self.searchView.hidden = !self.bar.showsCancelButton;
-    self.searchView.searchModel = [[MemberStaffListModel alloc]init];
-
-}
+//- (void)searchBarTextDidEndEditing:(UISearchBar*)searchBar {
+//    if([searchBar.text isEqualToString:@""]) {//如果没有文字，才隐藏取消按钮
+//        self.bar.showsCancelButton=NO;
+//    }else{
+//        self.bar.showsCancelButton=YES;
+//    }
+//    self.searchView.hidden = !self.bar.showsCancelButton;
+//    self.searchView.searchModel = [[MemberStaffListModel alloc]init];
+//
+//
+//}
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     //    NSString * match = @"890";
 //        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS %@",searchText];
@@ -166,7 +182,6 @@
    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.textLabel.text = self.listModel.data[indexPath.row].nickname;
     cell.imageView.image = [UIImage imageNamed:@"headportrait"];
@@ -185,7 +200,6 @@
         [self jumpDetailsWithModel:self.listModel.data[indexPath.row]];
 }
 - (void)didSelectRowAtIndexPathWithName:(MemberStaffModel *)model {
-    [self searchBarCancelButtonClicked:self.bar];
     [self jumpDetailsWithModel:model];
 
 }
@@ -193,6 +207,7 @@
 - (void)jumpDetailsWithModel:(MemberStaffModel *)model {
     StaffDetailsViewController *vc = [[StaffDetailsViewController alloc]initWithDetailsStyle:self.style objectModel:model];
     [self.navigationController pushViewController:vc animated:YES];
+
 }
 - (UITableView *)listView {
     if (!_listView) {

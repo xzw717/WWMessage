@@ -34,6 +34,10 @@
     [self.view addSubview:self.staffDetailsTableView];
     
 }
+- (void)updateModel:(MemberStaffModel *)model {
+    self.model = model;
+    [self.staffDetailsTableView reloadData];
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -50,10 +54,10 @@
         contentStr = self.style == stafflistStyle ? self.model.nickname : self.model.mobile;
 
     } else if (indexPath.row == 2) {
-        contentStr = self.style == stafflistStyle ? self.model.mobile : self.model.registerTime;
+        contentStr = self.style == stafflistStyle ? self.model.mobile : [ManagerEngine zzReverseSwitchTimer:self.model.registerTime dateFormat:@"YYYY-MM-dd"] ;
 
     } else if (indexPath.row == 3) {
-        contentStr = self.model.roleName;
+        contentStr = self.model.roleName ?  self.model.roleName : @"";
 
     } else if (indexPath.row == 4) {
         contentStr = [ManagerEngine zzReverseSwitchTimer:self.model.entryTime dateFormat:@"YYYY-MM-dd"];

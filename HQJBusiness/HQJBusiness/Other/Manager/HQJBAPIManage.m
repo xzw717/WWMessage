@@ -16,7 +16,7 @@ NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218:80/";
+NSString *const HQJBBonusDomainName = @"http://47.98.45.218/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名   XD 商家奖励通用
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
@@ -27,7 +27,8 @@ NSString *const WWMLiveDomain = @"106.13.213.51";
 
 /// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
 NSString *const HQJBH5UpDataDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/";
-
+/// 商家奖励
+NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
@@ -54,9 +55,11 @@ NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"http://47.98.45.218/";
 /// 商家注册 . 商家升级. 已经签合同 域名
-NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
+NSString *const HQJBH5UpDataDomain = @"https://statics.wuwuditu.com/shopappH5/index.html#/";
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
+/// 商家奖励
+NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 #endif
 
 
@@ -305,8 +308,19 @@ NSString *const HQJBSearchMemberListByNameInterface =@"searchMemberListByName";
 NSString *const HQJBSearchMemberListByMobileInterface =@"searchMemberListByMobile";
 /// 商家获取所有员工的奖励记录
 NSString *const HQJBGetAllEmployeeAwardListInterface =@"getAllEmployeeAwardList";
- 
+/// XD商家设置比率（多项提交）
+NSString *const HQJBSetupMultiAwardRateInterface =@"setupMultiAwardRate";
+/// 获取商家总奖励的积分
+NSString *const HQJBGetMerchantTotalAwardInterface =@"getMerchantTotalAward";
 
+
+
+/*   支付项目  */
+NSString *const HQJBPurchasePayProject =@"purchasePay/pay/";
+/// 购买RY值
+NSString *const HQJBAliPayInterface = @"aliPay";
+/// 购买XD商家
+NSString *const HQJBXDaliPayInterface =@"XDaliPay";
 
 @implementation HQJBAPIManage
 

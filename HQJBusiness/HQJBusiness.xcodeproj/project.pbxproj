@@ -134,6 +134,7 @@
 		1F402940229FBDAF0014769B /* RemotePushListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F40293B229FBDAF0014769B /* RemotePushListModel.m */; };
 		1F402941229FBDCA0014769B /* JWPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63CD112297BA910061CF09 /* JWPrinter.m */; };
 		1F4FFBE01F6634AD00FF3C39 /* CashOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4FFBDF1F6634AD00FF3C39 /* CashOnlineCell.m */; };
+		1F52A90424EA7AE400FF8110 /* SelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F52A90324EA7AE400FF8110 /* SelectTimeView.m */; };
 		1F5A78551EA457A00060E9EE /* MessageNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A78541EA457A00060E9EE /* MessageNotificationViewController.m */; };
 		1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A78571EA45D040060E9EE /* MessageNotificationCell.m */; };
 		1F5A785B1EA49B0B0060E9EE /* MessageNotificationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5A785A1EA49B0B0060E9EE /* MessageNotificationViewModel.m */; };
@@ -209,6 +210,7 @@
 		1F7ADB8424DD4CC4009079F2 /* RewardsRecordSuperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */; };
 		1F7ADB8524E27422009079F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CF1E1631D00056DF9A /* CoreGraphics.framework */; };
 		1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8724E3733F009079F2 /* UMShareManager.m */; };
+		1F7ADBD524E516F4009079F2 /* SetProportionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -303,6 +305,8 @@
 		1FB795B724ADDC5800D4CC40 /* CityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB795A824ADDC5700D4CC40 /* CityItem.m */; };
 		1FB795B824ADDC5800D4CC40 /* CityButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB795A924ADDC5700D4CC40 /* CityButton.m */; };
 		1FB795B924ADDC5800D4CC40 /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB795AA24ADDC5700D4CC40 /* CityListViewController.m */; };
+		1FB904FD24EF62A900FB848D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB904FC24EF62A900FB848D /* CoreLocation.framework */; };
+		1FB9050024EF62E100FB848D /* HQJLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB904FF24EF62E100FB848D /* HQJLocationManager.m */; };
 		1FBBD8191E343A300077B124 /* TabBarBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8141E343A300077B124 /* TabBarBannerModel.m */; };
 		1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8161E343A300077B124 /* TabBarBannerViewModel.m */; };
 		1FBBD81B1E343A300077B124 /* TabbarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBBD8181E343A300077B124 /* TabbarManager.m */; };
@@ -682,6 +686,8 @@
 		1F40293C229FBDAF0014769B /* RemotePushOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushOrderModel.h; sourceTree = "<group>"; };
 		1F4FFBDE1F6634AD00FF3C39 /* CashOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashOnlineCell.h; sourceTree = "<group>"; };
 		1F4FFBDF1F6634AD00FF3C39 /* CashOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashOnlineCell.m; sourceTree = "<group>"; };
+		1F52A90224EA7AE400FF8110 /* SelectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectTimeView.h; sourceTree = "<group>"; };
+		1F52A90324EA7AE400FF8110 /* SelectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectTimeView.m; sourceTree = "<group>"; };
 		1F5A78531EA457A00060E9EE /* MessageNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNotificationViewController.h; sourceTree = "<group>"; };
 		1F5A78541EA457A00060E9EE /* MessageNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNotificationViewController.m; sourceTree = "<group>"; };
 		1F5A78561EA45D040060E9EE /* MessageNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNotificationCell.h; sourceTree = "<group>"; };
@@ -832,6 +838,8 @@
 		1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardsRecordSuperModel.m; sourceTree = "<group>"; };
 		1F7ADB8624E3733F009079F2 /* UMShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMShareManager.h; sourceTree = "<group>"; };
 		1F7ADB8724E3733F009079F2 /* UMShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMShareManager.m; sourceTree = "<group>"; };
+		1F7ADBD324E516F4009079F2 /* SetProportionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetProportionViewModel.h; sourceTree = "<group>"; };
+		1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetProportionViewModel.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -1030,6 +1038,9 @@
 		1FB795A924ADDC5700D4CC40 /* CityButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityButton.m; sourceTree = "<group>"; };
 		1FB795AA24ADDC5700D4CC40 /* CityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListViewController.m; sourceTree = "<group>"; };
 		1FB795AB24ADDC5700D4CC40 /* ButtonGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonGroupView.h; sourceTree = "<group>"; };
+		1FB904FC24EF62A900FB848D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1FB904FE24EF62E100FB848D /* HQJLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQJLocationManager.h; sourceTree = "<group>"; };
+		1FB904FF24EF62E100FB848D /* HQJLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQJLocationManager.m; sourceTree = "<group>"; };
 		1FBBD8131E343A300077B124 /* TabBarBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBannerModel.h; sourceTree = "<group>"; };
 		1FBBD8141E343A300077B124 /* TabBarBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarBannerModel.m; sourceTree = "<group>"; };
 		1FBBD8151E343A300077B124 /* TabBarBannerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarBannerViewModel.h; sourceTree = "<group>"; };
@@ -1267,6 +1278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB904FD24EF62A900FB848D /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2188,6 +2200,8 @@
 				1FBBD8121E343A300077B124 /* Tabbar */,
 				1F2E0B491EC99EED0072FDDD /* LoginSingleton.h */,
 				1F2E0B4A1EC99EED0072FDDD /* LoginSingleton.m */,
+				1FB904FE24EF62E100FB848D /* HQJLocationManager.h */,
+				1FB904FF24EF62E100FB848D /* HQJLocationManager.m */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -2738,6 +2752,8 @@
 				1F276F9424D7E2EA0049E227 /* RewardSetHeaderView.m */,
 				1F276F9924D943F50049E227 /* RewardSetFootView.h */,
 				1F276F9A24D943F50049E227 /* RewardSetFootView.m */,
+				1F52A90224EA7AE400FF8110 /* SelectTimeView.h */,
+				1F52A90324EA7AE400FF8110 /* SelectTimeView.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2753,6 +2769,8 @@
 				1F276FA624DB9B040049E227 /* AddStaffViewModel.m */,
 				1F7ADB7F24DD4952009079F2 /* RewardsRecordViewModel.h */,
 				1F7ADB8024DD4952009079F2 /* RewardsRecordViewModel.m */,
+				1F7ADBD324E516F4009079F2 /* SetProportionViewModel.h */,
+				1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2792,6 +2810,7 @@
 		917148EDC51052C71EE920C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FB904FC24EF62A900FB848D /* CoreLocation.framework */,
 				1FFA03EF23B200C400D35FF2 /* WebKit.framework */,
 				208D336C228166FB00E439AC /* libsqlite3.tbd */,
 				1F12F6D71E1631F60056DF9A /* CoreMotion.framework */,
@@ -3071,6 +3090,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/HQJToolManager/HQJToolManager.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/JKCountDownButton/JKCountDownButton.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -3089,6 +3109,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HQJToolManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKCountDownButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
@@ -3420,12 +3441,14 @@
 				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
 				1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
+				1FB9050024EF62E100FB848D /* HQJLocationManager.m in Sources */,
 				0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */,
 				1F607E1324AB2A560011915E /* ContactManagerHeadView.m in Sources */,
 				0585FE7E2497106C00CD7280 /* SetUpShopViewController.m in Sources */,
 				1F607DC224AB22A20011915E /* XDOrderDetailsViewController.m in Sources */,
 				1F76234B24D41E6B00ECE044 /* RecordsConsumptionCell.m in Sources */,
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
+				1F52A90424EA7AE400FF8110 /* SelectTimeView.m in Sources */,
 				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
@@ -3449,6 +3472,7 @@
 				1FC9F89124AD82BB0037352A /* ChangePswViewController.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
 				1FF2F9E824D1738E003A2996 /* RoleSelectView.m in Sources */,
+				1F7ADBD524E516F4009079F2 /* SetProportionViewModel.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1FC9F89324AD82BB0037352A /* HelpMeViewController.m in Sources */,
@@ -3524,7 +3548,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.1.2;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -3551,7 +3575,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.1.2;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -3686,7 +3710,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.1.2;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;
@@ -3735,7 +3759,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.1.2;
+				CURRENT_PROJECT_VERSION = 3.2.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;

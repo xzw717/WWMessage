@@ -25,33 +25,32 @@
 
 
 
-
 + (void)addStaff:(NSDictionary *)dic
-      completion:(void(^)(void))completion {
-    NSString *url = [NSString stringWithFormat:@"http://47.98.45.218/%@%@?myid=%@&hash=%@",HQJBXdMerchantProject,HQJBAddEmployeeInterface,MmberidStr,HashCode];
+      completion:(CompletionBlock)completion {
+    NSString *url = [NSString stringWithFormat:@"%@%@%@?myid=%@&hash=%@",HQJBBonusDomainName,HQJBXdMerchantProject,HQJBAddEmployeeInterface,MmberidStr,HashCode];
 
-    [RequestEngine HQJBusinessGETRequestUrl:url parameters:dic complete:^(NSDictionary *dic) {
-        if ([dic[@"code"]integerValue] == 49000) {
+    [RequestEngine HQJBusinessGETRequestUrl:url parameters:dic complete:^(NSDictionary *dict) {
+        if ([dict[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"添加成功"];
             !completion? :completion();
         } else {
-            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+            [SVProgressHUD showErrorWithStatus:dict[@"msg"]];
 
         }
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];
 }
-
 + (void)editStaff:(NSDictionary *)dic
-      completion:(void(^)(void))completion {
-    NSString *url = [NSString stringWithFormat:@"http://47.98.45.218/%@%@?myid=%@&hash=%@",HQJBXdMerchantProject,HQJBUpdateEmployeeInterface,MmberidStr,HashCode];
-    [RequestEngine HQJBusinessGETRequestUrl:url parameters:dic complete:^(NSDictionary *dic) {
-        if ([dic[@"code"]integerValue] == 49000) {
+           editID:(NSString *)editid
+       completion:(CompletionBlock)completion {
+    NSString *url = [NSString stringWithFormat:@"%@%@%@?myid=%@&hash=%@&id=%@",HQJBBonusDomainName,HQJBXdMerchantProject,HQJBUpdateEmployeeInterface,MmberidStr,HashCode,editid];
+    [RequestEngine HQJBusinessGETRequestUrl:url parameters:dic complete:^(NSDictionary *dict) {
+        if ([dict[@"code"]integerValue] == 49000) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             !completion? :completion();
         } else {
-            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+            [SVProgressHUD showErrorWithStatus:dict[@"msg"]];
 
         }
     } andError:^(NSError *error) {

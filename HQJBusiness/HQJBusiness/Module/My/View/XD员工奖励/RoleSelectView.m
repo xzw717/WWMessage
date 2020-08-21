@@ -7,9 +7,13 @@
 //
 
 #import "RoleSelectView.h"
+#define Spacing (5.f)
+
+
+
+
 @interface RoleSelectView ()
-@property (nonatomic, strong) UILabel *roleLabel;
-@property (nonatomic, strong) UIImageView *arrowImage;
+
 
 @end
 @implementation RoleSelectView
@@ -28,6 +32,14 @@
             make.right.mas_equalTo(self.arrowImage.mas_left).mas_offset(-5);
 
         }];
+        
+//        self.roleLabel.frame = CGRectMake(Spacing, (self.mj_h - self.roleLabel.font.pointSize) / 2, self.mj_h - [self imageSizeMAX].width - Spacing *3, self.roleLabel.font.pointSize);
+//
+//
+//        self.arrowImage.frame = CGRectMake(self.roleLabel.mj_x + self.roleLabel.mj_w + Spacing, (self.mj_h - [self imageSizeMAX].height) / 2,  [self imageSizeMAX].width, [self imageSizeMAX].height);
+
+        
+        
         [self.arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-5);
             make.centerY.mas_equalTo(self);
@@ -35,6 +47,15 @@
         }];
     }
     return self;
+}
+- (CGSize)imageSizeMAX {
+    if (self.arrowImage.size.width > self.mj_w || self.arrowImage.size.height > self.mj_h) {
+        return CGSizeMake(13, 13);
+    } else {
+        return self.arrowImage.size;
+
+    }
+    
 }
 - (void)clickRole:(UITapGestureRecognizer *)recong {
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickRoleView:)]) {

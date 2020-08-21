@@ -36,7 +36,7 @@ static const CGFloat  sAlertTimer = 3.0;
     if (self) {
         
     }
-   
+    
     return self;
 }
 
@@ -73,7 +73,7 @@ static const CGFloat  sAlertTimer = 3.0;
     
     [MyNav.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -4)];
     [[UITabBar appearance]setTintColor:[self getColor:@"18abf5"]];
-
+    
     
     
 #pragma mark -----明细
@@ -85,16 +85,16 @@ static const CGFloat  sAlertTimer = 3.0;
     UIImage *mainImageS = [[UIImage imageNamed:@"icon_details_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     
-
+    
     detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:mainImage selectedImage:mainImageS];
     
-
+    
     ZWNavigationController *detailNvc =[[ZWNavigationController alloc]initWithRootViewController:detailVc];
     
     [detailNvc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -4)];
-
-
-
+    
+    
+    
     
 #pragma mark -----订单
     
@@ -107,10 +107,10 @@ static const CGFloat  sAlertTimer = 3.0;
     orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:DetailImage selectedImage:DetailImageS];
     
     
-      ZWNavigationController *orderNav = [[ZWNavigationController alloc]initWithRootViewController:orderVc];
+    ZWNavigationController *orderNav = [[ZWNavigationController alloc]initWithRootViewController:orderVc];
     
     [orderNav.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -4)];
-
+    
 #pragma mark -----商品
     
     CommodityViewController *commditVc = [[CommodityViewController alloc]init];
@@ -129,10 +129,10 @@ static const CGFloat  sAlertTimer = 3.0;
     
     UITabBarController *tabbars = [[UITabBarController alloc]init];
     
-
+    
     
     tabbars.viewControllers = @[MyNav,detailNvc,orderNav,commditNav];
-
+    
     
     [[UIApplication sharedApplication].delegate.window setRootViewController:tabbars];
     
@@ -140,12 +140,12 @@ static const CGFloat  sAlertTimer = 3.0;
     
     backView.backgroundColor = [UIColor whiteColor];
     
-
-
+    
+    
     
     tabbars.tabBar.opaque = YES;
-
- 
+    
+    
 }
 
 #pragma mark --
@@ -182,11 +182,11 @@ static const CGFloat  sAlertTimer = 3.0;
     range.location = 2;
     
     [[NSScanner localizedScannerWithString:[hexColor substringWithRange:range]]scanHexInt:&green];
-
-     range.location = 4;
+    
+    range.location = 4;
     
     [[NSScanner localizedScannerWithString:[hexColor substringWithRange:range]]scanHexInt:&blue];
-
+    
     return [UIColor colorWithRed:(float)(red/255.0f) green:(float)(green/255.0f) blue:(float)(blue/255.0f) alpha:1.0f];
 }
 
@@ -211,28 +211,28 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark ---提醒动画
 +(void)homeSvpStr:(NSString *)tit andcenterView:(UIView *)view andStyle:(promptViewStyle)type {
     
-        [self dismissHomeSvP];
+    [self dismissHomeSvP];
     
     
     
-        alertLabel = [[UILabel alloc]init];
-        alertLabel.text = tit;
-        alertLabel.font = [UIFont systemFontOfSize:12];
-        alertLabel.numberOfLines = 0;
-        alertLabel.textAlignment = NSTextAlignmentCenter;
-        alertLabel.alpha = 0;
-        [view addSubview:alertLabel];
+    alertLabel = [[UILabel alloc]init];
+    alertLabel.text = tit;
+    alertLabel.font = [UIFont systemFontOfSize:12];
+    alertLabel.numberOfLines = 0;
+    alertLabel.textAlignment = NSTextAlignmentCenter;
+    alertLabel.alpha = 0;
+    [view addSubview:alertLabel];
     
-        CGFloat  timers =  tit.length *0.15f ; // 延迟消失时间
-        
+    CGFloat  timers =  tit.length *0.15f ; // 延迟消失时间
     
-  
+    
+    
     if (type == promptViewDefault) {
         
-
+        
         
         alertLabel.alpha = 1;
-
+        
         alertLabel.frame = CGRectMake(0, - NavigationControllerHeight, WIDTH,  NavigationControllerHeight);
         
         alertLabel.backgroundColor = [UIColor whiteColor];
@@ -243,19 +243,19 @@ static const CGFloat  sAlertTimer = 3.0;
             alertLabel.frame = CGRectMake(0, 0, WIDTH,  NavigationControllerHeight );
             
         } completion:^(BOOL finished) {
- 
-            [UIView animateWithDuration:1 delay:timers options:UIViewAnimationOptionLayoutSubviews animations:^{
-                        
-                        alertLabel.frame = CGRectMake(0, -  NavigationControllerHeight, WIDTH,  NavigationControllerHeight);
-                        
-                    } completion:^(BOOL finished) {
-                        
-                        [self dismissHomeSvP];
-                    }];
             
+            [UIView animateWithDuration:1 delay:timers options:UIViewAnimationOptionLayoutSubviews animations:^{
                 
-
+                alertLabel.frame = CGRectMake(0, -  NavigationControllerHeight, WIDTH,  NavigationControllerHeight);
                 
+            } completion:^(BOOL finished) {
+                
+                [self dismissHomeSvP];
+            }];
+            
+            
+            
+            
             
         }];
     } else if (type == promptViewFadeAway){
@@ -278,7 +278,7 @@ static const CGFloat  sAlertTimer = 3.0;
             
             [UIView animateWithDuration:sAlertTimer animations:^{
                 alertLabel.alpha = 0;
-
+                
             } completion:^(BOOL finished) {
                 [self dismissHomeSvP];
             }];
@@ -290,7 +290,7 @@ static const CGFloat  sAlertTimer = 3.0;
         alertLabel = nil;
         
     }
-
+    
     
     
 }
@@ -304,14 +304,14 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark -----网络状态
 +(NSString *)networkStatus
 {
-     static NSString *typ;
+    static NSString *typ;
     // 1.获得网络监控的管理者
     AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
     
     // 2.设置网络状态改变后的处理
     [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         // 当网络状态改变了, 就会调用这个block
-      
+        
         switch (status) {
             case AFNetworkReachabilityStatusUnknown: // 未知网络
                 typ =kUnknownNetwork;
@@ -319,7 +319,7 @@ static const CGFloat  sAlertTimer = 3.0;
                 
             case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
                 typ =kNoInternet;
-
+                
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
@@ -332,7 +332,7 @@ static const CGFloat  sAlertTimer = 3.0;
                 break ;
         }
         [[NSNotificationCenter defaultCenter]postNotificationName:kNetworkStatus object:nil userInfo:@{@"IAmaNetwork":typ}];
-
+        
     }];
     [mgr startMonitoring];
     return typ;
@@ -422,7 +422,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 
 + (void)navUnColorStyle:(UIViewController *)viewController {
-
+    
     [viewController.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
@@ -442,7 +442,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 +(CGFloat)setTextWidthStr:(NSString *)str andFont:(UIFont *)fonts {
     
-     CGRect frame = [str boundingRectWithSize:CGSizeMake(WIDTH, MAXFLOAT)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
+    CGRect frame = [str boundingRectWithSize:CGSizeMake(WIDTH, MAXFLOAT)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: fonts} context:nil];
     
     
     return frame.size.width;
@@ -603,7 +603,7 @@ static const CGFloat  sAlertTimer = 3.0;
     } else {
         [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
     }
-   
+    
     [selfController presentViewController:alert animated:YES completion:nil];
     
     
@@ -631,7 +631,7 @@ static const CGFloat  sAlertTimer = 3.0;
     viewConoller.navigationItem.leftBarButtonItem = leftBar;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-
+    
     viewConoller.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
 }
@@ -640,7 +640,7 @@ static const CGFloat  sAlertTimer = 3.0;
 // 改白色导航的标题
 +(void)navTitle:(UIViewController *)viewConoller andTitle:(NSString *)title {
     
-
+    
     UILabel *customeTitLabel      = [[UILabel alloc]init];
     
     customeTitLabel.textColor     = [UIColor blackColor];
@@ -668,7 +668,7 @@ static const CGFloat  sAlertTimer = 3.0;
     
     viewContoller.navigationController.navigationBar.barTintColor = [self getColor:@"18abf5"];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-
+    
     
 }
 
@@ -721,13 +721,27 @@ static const CGFloat  sAlertTimer = 3.0;
 #pragma mark --- 时间戳转时间
 +(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str dateFormat:(NSString *)format{
     double time = [str doubleValue];
-     NSDate *myDate = [NSDate dateWithTimeIntervalSince1970:time];
-     NSDateFormatter *formatter = [NSDateFormatter new];
-     [formatter setDateFormat:format];
-     //将时间转换为字符串
-     NSString *timeS = [formatter stringFromDate:myDate];
-     return timeS;
+    NSDate *myDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:format];
+    //将时间转换为字符串
+    NSString *timeS = [formatter stringFromDate:myDate];
+    return timeS;
 }
+
+
+//字符串转时间戳 如：2017-4-10 17:15:10
++ (NSString *)getTimeStrWithString:(NSString *)str {
+    return [self getTimeStrWithString:str timeType:@"YYYY-MM-dd HH:mm:ss"];
+}
++ (NSString *)getTimeStrWithString:(NSString *)str timeType:(NSString *)type {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+    [dateFormatter setDateFormat:type]; //设定时间的格式
+    NSDate *tempDate = [dateFormatter dateFromString:str];//将字符串转换为时间对象
+    NSString *timeStr = [NSString stringWithFormat:@"%ld",[type containsString:@"HH:mm:ss"] ?  (long)[tempDate timeIntervalSince1970]*1000 : (long)[tempDate timeIntervalSince1970]];//字符串转成时间戳,精确到毫秒*1000
+    return timeStr;
+}
+
 
 +(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str{
     return [self zzReverseSwitchTimer:str dateFormat:@"YYYY-MM-dd HH:mm"];
@@ -796,7 +810,7 @@ static const CGFloat  sAlertTimer = 3.0;
     if ([urlString containsString:HQJBLoginCheckInterface] ||
         [urlString containsString:HQJBGetByMobileCodeInterface] ||
         [urlString containsString:HQJBGetShopUpgradeStateInterface] ||
-         [urlString containsString:HQJBMerchantSmsLoginInterface]) {
+        [urlString containsString:HQJBMerchantSmsLoginInterface]) {
         return NO;
     }else if([urlString containsString:HQJBGetPwdSMSInterface]||[urlString containsString:HQJBInputNewpwdActionInterface]){
         NSDictionary *dict = parameters;
@@ -808,7 +822,7 @@ static const CGFloat  sAlertTimer = 3.0;
     } else {
         return YES;
     }
-   
+    
     
 }
 #pragma mark --- 获取hash
@@ -826,11 +840,11 @@ static const CGFloat  sAlertTimer = 3.0;
         ![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"ForgetPswViewController"]&&
         ![NSStringFromClass([[ManagerEngine currentViewControll] class]) isEqualToString:@"RegisterViewController"]) {
         LoginViewController *loginVC =[[LoginViewController alloc]init];
-           ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
-           AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-           delegate.window.rootViewController = Nav;
+        ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        delegate.window.rootViewController = Nav;
     }
-   
+    
 }
 
 #pragma mark --
@@ -842,13 +856,13 @@ static const CGFloat  sAlertTimer = 3.0;
     }
     if ([textField.text containsString:@"."]) {
         isHaveDian = YES;
-
+        
     }
     if ([string length]>0) {
         if ([textField.text length]>7) {
             [self showMessage:@"亲，输入超出限制了哟"];
-
-//            [ManagerEngine homeSvpStr:@"亲，输入超出限制了哟" andcenterView:[ManagerEngine currentViewControll].view andStyle:promptViewDefault];
+            
+            //            [ManagerEngine homeSvpStr:@"亲，输入超出限制了哟" andcenterView:[ManagerEngine currentViewControll].view andStyle:promptViewDefault];
             
             return NO;
         }
@@ -865,7 +879,7 @@ static const CGFloat  sAlertTimer = 3.0;
                     return YES;
                 } else {
                     [self showMessage:@"亲，您已经输入过小数点了"];
-
+                    
                     
                     [textField.text stringByReplacingCharactersInRange:range withString:@""];
                     return NO;
@@ -909,7 +923,7 @@ static const CGFloat  sAlertTimer = 3.0;
 }
 
 - (void)showMessage:(NSString *)message {
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert] ;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert] ;
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
     [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
 }

@@ -14,6 +14,8 @@
 #import "AddStaffViewModel.h"
 #import "RoleListModel.h"
 #import "MemberStaffModel.h"
+#import "SelectTimeView.h"
+
 @interface AddStaffViewController ()<UITableViewDelegate,UITableViewDataSource,RoleDelegate>
 @property (nonatomic, strong) UITableView *addStaffTableView;
 @property (nonatomic, strong) NSArray *titleAry;
@@ -25,7 +27,7 @@
 @property (nonatomic, strong) RoleSelectView *roleButton;
 @property (nonatomic, assign) BOOL isClear;
 @property (nonatomic, strong) MemberStaffModel *staffModel;
-
+@property (nonatomic, strong) UIDatePicker *datePicker;
 @end
 
 @implementation AddStaffViewController
@@ -47,7 +49,9 @@
     self.nameTextField = [[UITextField alloc]init];
     self.phoneTextField = [[UITextField alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChanged:)name:UITextFieldTextDidChangeNotification object:nil];
-
+    
+    
+    
 }
 - (instancetype)initWithStaffModel:(MemberStaffModel *)model{
     self = [super init];
@@ -70,18 +74,23 @@
     @weakify(self);
     [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
         [[SelectMenuView showMenuWithView:btn].munuAry(modelArray) setClickModel:^(RoleListModel * _Nonnull model) {
-                @strongify(self);
-                [btn setTitle:model.roleName forState:UIControlStateNormal];
-        //        self.roleButton = btn;
-                [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.roleName];
-                [self changeSaveButtonState];
-            }];
+            @strongify(self);
+            [btn setTitle:model.roleName forState:UIControlStateNormal];
+            //        self.roleButton = btn;
+            [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.roleName];
+            [self changeSaveButtonState];
+        }];
     }];
     
-   
+    
 }
 - (void)changeSaveButtonState {
-    BOOL saveState =  ![self.dataSouceAry[0] isEqualToString:@""] && ![self.dataSouceAry[1] isEqualToString:@""] &&![self.dataSouceAry[2] isEqualToString:@""] && self.roleButton && ![self.roleButton.roleTitleString isEqualToString:@"请选择角色"];
+    BOOL saveState = NO;
+    if (self.staffModel) {
+        saveState =  ![self.dataSouceAry[0] isEqualToString:@""] && ![self.dataSouceAry[1] isEqualToString:@""] &&![self.dataSouceAry[2] isEqualToString:@""];
+    } else {
+        saveState =  ![self.dataSouceAry[0] isEqualToString:@""] && ![self.dataSouceAry[1] isEqualToString:@""] &&![self.dataSouceAry[2] isEqualToString:@""] && self.roleButton && ![self.roleButton.roleTitleString isEqualToString:@"请选择角色"];
+    }
     self.saveButton.enabled = saveState;
     self.saveButton.backgroundColor = saveState ? DefaultAPPColor : [ManagerEngine getColor:@"b9b9b9"];
 }
@@ -90,14 +99,16 @@
     [AddStaffViewModel getTitlesWithCompletion:^(NSArray<RoleListModel *> * _Nonnull modelArray) {
         [[SelectMenuView showMenuWithView:view].munuAry(modelArray) setClickModel:^(RoleListModel * _Nonnull model) {
             @strongify(self);
-            view.roleTitleString = model.roleName;
+            if (model) {
+                view.roleTitleString = model.roleName;
+                self.roleButton = view;
+                [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.nid];
+                [self changeSaveButtonState];
+            }
             
-            self.roleButton = view;
-            [self.dataSouceAry replaceObjectAtIndex:3 withObject:model.nid];
-            [self changeSaveButtonState];
         }];
     }];
-
+    
 }
 - (void)addStaffAction {
     NSDictionary *dict = @{@"sid":MmberidStr,
@@ -107,8 +118,8 @@
                            @"gender":@"1",
                            @"age":@"1",
                            @"account":@"1",/// 许峰说随便填
-                           @"cid":@(1),
                            @"empNo":self.dataSouceAry[0],
+                           @"entryTime":[ManagerEngine getTimeStrWithString:self.dataSouceAry[4] timeType:@"YYYY-MM-dd"],
                            @"role":@([self.dataSouceAry[3] integerValue])};
     @weakify(self);
     [AddStaffViewModel addStaff:dict completion:^{
@@ -117,25 +128,30 @@
         self.isClear = YES;
         [self  changeSaveButtonState];
         [self.addStaffTableView reloadData];
+        [self.navigationController popViewControllerAnimated:YES];
+
     }];
 }
 
 - (void)editStaffAction {
-    NSDictionary *dict = @{@"sid":MmberidStr,
-                              @"nickname":self.dataSouceAry[1],
-                              @"mobile":self.dataSouceAry[2],
-                              @"title":@"1", /// 许峰说随便填
-                              @"gender":@"1",
-                              @"age":@"1",
-                              @"account":@"1",/// 许峰说随便填
-                              @"cid":@(1),
-                              @"empNo":self.dataSouceAry[0],
-                              @"role":@([self.dataSouceAry[3] integerValue])};
-       @weakify(self);
-       [AddStaffViewModel editStaff:dict completion:^{
-           @strongify(self);
-           [self.navigationController popViewControllerAnimated:YES];
-       }];
+    NSDictionary *dict = @{@"id":self.staffModel.nid,
+                           @"sid":MmberidStr,
+                           @"nickname":self.dataSouceAry[1],
+                           @"mobile":self.dataSouceAry[2],
+                           @"title":@"1", /// 许峰说随便填
+                           @"gender":@"1",
+                           @"age":@"1",
+                           @"account":@"1",/// 许峰说随便填
+                           @"cid":self.staffModel.cid,
+                           @"empNo":self.dataSouceAry[0],
+                           @"entryTime":[ManagerEngine getTimeStrWithString:self.dataSouceAry[4] timeType:@"YYYY-MM-dd"],
+                           @"role":@([self.dataSouceAry[3] integerValue])};
+    @weakify(self);
+    [AddStaffViewModel editStaff:dict editID:self.staffModel.nid  completion:^{
+        @strongify(self);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"changeStaff" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 
@@ -146,8 +162,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return  self.titleAry.count;
- 
+    return  self.titleAry.count;
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -158,12 +174,14 @@
     cell.selectButton.delegate = self;
     if (self.staffModel) {
         cell.contentText = self.dataSouceAry[indexPath.row];
-
+        
+    }
+    if (indexPath.row == 4) {
+        [self.dataSouceAry replaceObjectAtIndex:indexPath.row withObject:[ManagerEngine currentDateStr]];
     }
     return cell;
     
 }
-
 - (UITableView *)addStaffTableView {
     if (!_addStaffTableView) {
         _addStaffTableView = [[UITableView alloc]init];
@@ -188,10 +206,10 @@
         _saveButton.layer.cornerRadius = 5.f;
         if (self.staffModel) {
             [_saveButton addTarget:self action:@selector(editStaffAction) forControlEvents:UIControlEventTouchUpInside];
-
+            
         } else {
             [_saveButton addTarget:self action:@selector(addStaffAction) forControlEvents:UIControlEventTouchUpInside];
-
+            
         }
     }
     return _saveButton;
@@ -200,10 +218,10 @@
     if (!_dataSouceAry) {
         if (!self.staffModel) {
             _dataSouceAry = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@""]];
-
+            
         } else {
             _dataSouceAry = [NSMutableArray arrayWithArray:@[self.staffModel.empNo,self.staffModel.nickname,self.staffModel.mobile,self.staffModel.roleName,[ManagerEngine zzReverseSwitchTimer:self.staffModel.createTime dateFormat:@"YYYY-MM-dd"]]];
-
+            
         }
     }
     return _dataSouceAry;

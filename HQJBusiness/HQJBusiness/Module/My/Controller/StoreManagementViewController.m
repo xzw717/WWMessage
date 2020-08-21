@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UITableView *storeManagementTableView;
 @property (nonatomic, strong) NSMutableArray <NSString *>*cellTitleArray;
 @property (nonatomic, strong) NSMutableArray <NSString *>*cellImageArray;
-
+@property (nonatomic, assign) NSInteger peugeotid;
 @property (nonatomic, strong) StoreInfoModel *infoModel;
 @end
 
@@ -28,17 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"店铺管理";
-    self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
-                                                           @"合同管理",
-                                                           @"升级管理",
-                                                           @"商品发布",
-                                                           @"员工管理"]];
-    self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
-                                                           @"icon_contractmanagement",
-                                                           @"icon_Upgrademanagement",
-                                                           @"icon_Productrelease",
-                                                           @"icon_Employeemanagement"]];
-
+    self.cellTitleArray = [NSMutableArray array];
+    self.cellImageArray = [NSMutableArray array];
+    
     [self.view addSubview:self.storeManagementTableView];
     @weakify(self);
     [StoreInfoViewModel requstStoreInfoWithModel:^(StoreInfoModel * _Nonnull model) {
@@ -46,6 +38,33 @@
         self.infoModel = model;
         [self.storeManagementTableView reloadData];
     }];
+    
+    
+    if ([NameSingle shareInstance].peugeotid == 6) {
+        self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+                                                               @"合同管理",
+                                                               @"升级管理",
+                                                               @"商品发布",
+                                                               @"员工管理"]];
+        
+        self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
+                                                               @"icon_contractmanagement",
+                                                               @"icon_Upgrademanagement",
+                                                               @"icon_Productrelease",
+                                                               @"icon_Employeemanagement"]];
+    } else {
+        self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+                                                               @"合同管理",
+                                                               @"升级管理",
+                                                               @"商品发布"]];
+
+        self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
+                                                               @"icon_contractmanagement",
+                                                               @"icon_Upgrademanagement",
+                                                               @"icon_Productrelease"]];
+    }
+    
+    
 }
 
 - (UITableView *)storeManagementTableView {
@@ -63,7 +82,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return self.cellTitleArray.count;
+    return self.cellTitleArray.count;
     
 }
 
@@ -75,17 +94,17 @@
     cell.imageView.image = [UIImage imageNamed:self.cellImageArray[indexPath.row]];
     if (indexPath.row == 0) {
         cell.detailTextLabel.text= self.infoModel.state == 0 ? @"未完善" : @"已完善";
-
+        
     } else if (indexPath.row == 1) {
         cell.detailTextLabel.text= [NSString stringWithFormat:@"%ld",(long)self.infoModel.pactCount];
-
+        
     }
     if (indexPath.row == self.cellTitleArray.count - 1) {
         cell.separatorInset =  UIEdgeInsetsMake(0, 0, 0, MAXFLOAT);
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  return cell;
- 
+    return cell;
+    
     
     
 }

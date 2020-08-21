@@ -24,4 +24,9 @@
 /// 通过 memberid h获取对应商家的shopid
 - (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion;
 
+/// XD 商家审核状态
++ (void)getXdShopAuditWithCompletion:(void(^)(NSDictionary *dict))completion;
+
+/// 许峰的 神奇接口 只有一个返回参数  商家宗奖励积分
++ (void)getMerchantTotalAward:(void(^)(NSString *award))completion;
 @end

@@ -24,6 +24,11 @@ typedef NS_ENUM(NSInteger,ZGRelayoutButtonType) {
 @property (assign,nonatomic)IBInspectable CGFloat offset;
 
 @property (assign,nonatomic)IBInspectable ZGRelayoutButtonType type;
+
+/// 奖励设置界面使用
+@property (nonatomic, strong) NSIndexPath *btnIndexPath;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

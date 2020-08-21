@@ -53,4 +53,24 @@
         
     } ShowHUD:YES];
 }
+
++ (void)requstStaffWithKey:(NSString *)staffid
+                completion:(requstStaffCompletionBlock)completion
+                     error:(void(^)(void))listRrror {
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject, HQJBGetEmployeeDetailInterface];
+    NSDictionary *parametersDict = @{@"myid":MmberidStr,@"id":staffid,@"hash":HashCode};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parametersDict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"] integerValue] == 49000) {
+            MemberStaffModel *model = [MemberStaffModel mj_objectWithKeyValues:dic[@"result"]];
+            !completion?:completion(model);
+        } else {
+            !listRrror ? :listRrror();
+        }
+    } andError:^(NSError *error) {
+        !listRrror ? :listRrror();
+        
+    } ShowHUD:YES];
+}
+
+
 @end

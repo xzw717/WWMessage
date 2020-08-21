@@ -29,8 +29,8 @@
 }
 - (void)setCellModel:(RewardsRecordModel *)cellModel {
     _cellModel = cellModel;
-    self.numberLabel.text = [NSString stringWithFormat:@"+%.2f",cellModel.score];
-    self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:cellModel.createTime dateFormat:@"YYYY-MM-dd"];
+    self.numberLabel.text = [NSString stringWithFormat:@"+%.5f",cellModel.score];
+    self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:cellModel.createTime dateFormat:@"YYYY-MM-dd HH:mm:ss"];
 }
 - (void)updateConstraints {
     [self.recordTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -10,10 +10,11 @@
 #import "SelectMenuView.h"
 #import "UITextField+IndexPath.h"
 #import "RoleSelectView.h"
+#import "SelectTimeView.h"
 
 @interface AddStaffTableViewCell ()
 @property (nonatomic, strong) UILabel *addStafftitleLabel;
-
+@property (nonatomic, strong) SelectTimeView *timerView;
 @end
 @implementation AddStaffTableViewCell
 
@@ -31,7 +32,11 @@
 - (void)setCellIndexPath:(NSIndexPath *)cellIndexPath {
     _cellIndexPath = cellIndexPath;
     self.contentTextField.indexPath = cellIndexPath;
+    if (cellIndexPath.row == 4) {
 
+    } else {
+
+    }
 }
 - (void)setContentText:(NSString *)contentText {
     _contentText = contentText;
@@ -68,7 +73,7 @@
         [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.addStafftitleLabel.mas_right).mas_offset(NewProportion(50));
             make.centerY.height.mas_equalTo(self.addStafftitleLabel);
-            make.width.mas_equalTo(NewProportion(250));
+            make.width.mas_equalTo(WIDTH / 3);
         }];
     [super updateConstraints];
 }
@@ -84,12 +89,21 @@
     self.addStafftitleLabel.text = title;
       self.contentTextField.hidden = [title isEqualToString:@"员工角色"] ? YES : NO;
       self.selectButton.hidden = !self.contentTextField.hidden;
+    self.contentTextField.placeholder = [NSString stringWithFormat:@"请输入%@",title];
+
     if ([title containsString:@"时间"]) {
-        self.contentTextField.enabled = NO;
         self.contentTextField.text = [ManagerEngine currentDateStr];
+        self.contentTextField.inputView = self.timerView;
+        @weakify(self);
+        [self.timerView setFinish:^(NSString * _Nonnull timer) {
+            @strongify(self);
+            self.contentTextField.text = timer;
+
+        }];
     } else {
-        self.contentTextField.enabled = YES;
-        self.contentTextField.placeholder = [NSString stringWithFormat:@"请输入%@",title];
+//        self.contentTextField.enabled = YES;
+        self.contentTextField.inputView = nil;
+
     }
 }
 
@@ -106,7 +120,8 @@
 - (UITextField *)contentTextField {
     if (!_contentTextField) {
         _contentTextField = [[UITextField alloc]init];
-//        _contentTextField.placeholder = @"测试";
+//_contentTextField.inputView = self.timerView;
+
     }
     return _contentTextField;
 }
@@ -117,8 +132,14 @@
         _selectButton.layer.cornerRadius = 2.f;
         _selectButton.layer.borderColor = [[ManagerEngine getColor:@"20a0ff"]CGColor];
         _selectButton.layer.borderWidth = 1.f;
+        _selectButton.roleLabel.font = [UIFont systemFontOfSize:NewProportion(48)];
     }
     return _selectButton;
 }
-
+- (SelectTimeView *)timerView {
+    if (!_timerView) {
+        _timerView = [[SelectTimeView alloc]init];
+    }
+    return _timerView;
+}
 @end

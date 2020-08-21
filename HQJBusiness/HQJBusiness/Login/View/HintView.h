@@ -26,7 +26,7 @@ typedef void(^CancelActionBlock)(void);
 /// @param sureTitle 确定按钮文字
 /// @param cancelTitle 取消按钮文字
 /// @param sure 确定按钮点击方法
-+ (HintView *)enrichSubviews:(NSString *)topic andSureTitle:(NSString *)sureTitle cancelTitle:(NSString *)cancelTitle sureAction:(void(^)(void))sure;
++ (HintView *)enrichSubviews:(NSString *__nonnull)topic andSureTitle:(NSString *__nonnull)sureTitle cancelTitle:(NSString *__nullable)cancelTitle sureAction:(void(^__nullable)(void ))sure;
 /**
  删除子视图移除本视图
  */
