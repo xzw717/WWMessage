@@ -231,6 +231,8 @@
           if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
               
               pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+              
+              
           } else if ([self.stateValueLabel.text isEqualToString:@"审核成功"]) {
               [HintView enrichSubviews:@"重新登录即可获取完整体验" andSureTitle:@"去登录" cancelTitle:@"取消" sureAction:^{
                   [ManagerEngine login];

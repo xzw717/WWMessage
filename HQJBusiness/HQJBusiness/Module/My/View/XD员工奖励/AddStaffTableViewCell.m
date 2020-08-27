@@ -98,7 +98,7 @@
         [self.timerView setFinish:^(NSString * _Nonnull timer) {
             @strongify(self);
             self.contentTextField.text = timer;
-
+            !self.timeBlock ?:self.timeBlock(timer);
         }];
     } else {
 //        self.contentTextField.enabled = YES;

@@ -202,7 +202,8 @@ extern NSString *const HQJBInitiateESignInterface;
 extern NSString *const HQJBGetOrderInfoByIdInterface;
 ///查询XD商家企业基础信息
 extern NSString *const HQJBBuinessSignInterface;
-
+/// H5 企业基础信息
+extern NSString *const HQJBXdshopmsgInterface;
 
 
 /*_____________________________ XD商家奖励 接口________________________________________*/

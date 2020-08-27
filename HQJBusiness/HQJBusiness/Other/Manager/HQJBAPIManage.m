@@ -34,8 +34,18 @@ NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 
 
-/// 测试：http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
-/// 正式：http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&peugeotid=xxx
+//1.企业基础信息
+//测试：
+//http://28ko268520.qicp.vip/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&t
+//ype=xxx&peugeotid=xxx
+//正式：
+//http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&
+//type=xxx&peugeotid=xxx
+//2.合同查看下载
+//测试：
+//http://28ko268520.qicp.vip/shopappH5/index.html#/downloadPact?docId=xxx
+//正式：
+//http://statics.wuwuditu.com/shopappH5/index.html#/downloadPact?docId=xxx
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
@@ -55,7 +65,7 @@ NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"http://47.98.45.218/";
 /// 商家注册 . 商家升级. 已经签合同 域名
-NSString *const HQJBH5UpDataDomain = @"https://statics.wuwuditu.com/shopappH5/index.html#/";
+NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 /// 商家奖励
@@ -248,6 +258,8 @@ NSString *const HQJBInitiateESignInterface = @"xdesign/initiateESign.action";
 NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.action";
 ///查询XD商家企业基础信息
 NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
+/// H5 企业基础信息
+NSString *const HQJBXdshopmsgInterface = @"xdshopmsg";
 
 /*_____________________________ XD商家奖励 接口________________________________________*/
 

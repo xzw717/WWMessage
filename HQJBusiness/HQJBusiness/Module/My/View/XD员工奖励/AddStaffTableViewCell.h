@@ -8,6 +8,7 @@
 
 #import "ZW_TableViewCell.h"
 @class RoleSelectView;
+typedef void(^AddStaffTimerBlock)(NSString *timer);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddStaffTableViewCell : ZW_TableViewCell
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) RoleSelectView   *selectButton;
 /// 清空输入框的值
 @property (nonatomic, assign) BOOL isClear;
+@property (nonatomic, copy  ) AddStaffTimerBlock timeBlock;
 @end
 
 NS_ASSUME_NONNULL_END

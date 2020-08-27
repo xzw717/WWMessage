@@ -738,7 +738,7 @@ static const CGFloat  sAlertTimer = 3.0;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
     [dateFormatter setDateFormat:type]; //设定时间的格式
     NSDate *tempDate = [dateFormatter dateFromString:str];//将字符串转换为时间对象
-    NSString *timeStr = [NSString stringWithFormat:@"%ld",[type containsString:@"HH:mm:ss"] ?  (long)[tempDate timeIntervalSince1970]*1000 : (long)[tempDate timeIntervalSince1970]];//字符串转成时间戳,精确到毫秒*1000
+    NSString *timeStr = [NSString stringWithFormat:@"%ld",[type containsString:@"ss"] ?  (long)[tempDate timeIntervalSince1970]*1000 : (long)[tempDate timeIntervalSince1970]];//字符串转成时间戳,精确到毫秒*1000
     return timeStr;
 }
 

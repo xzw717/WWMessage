@@ -40,7 +40,7 @@
 - (void)setModel:(InvitedRecordModel *)model {
     _model = model;
     self.namelabel.text = model.nickname;
-    self.timerlabel.text = [ManagerEngine zzReverseSwitchTimer:model.registerTime dateFormat:@"YYYY-MM-DD"];
+    self.timerlabel.text = [ManagerEngine zzReverseSwitchTimer:model.registerTime dateFormat:@"YYYY-MM-dd"];
     self.phoneLabel.text = model.mobile;
 }
 - (UILabel *)namelabel {

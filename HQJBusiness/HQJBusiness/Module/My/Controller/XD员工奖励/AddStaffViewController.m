@@ -49,7 +49,8 @@
     self.nameTextField = [[UITextField alloc]init];
     self.phoneTextField = [[UITextField alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChanged:)name:UITextFieldTextDidChangeNotification object:nil];
-    
+    [self.dataSouceAry replaceObjectAtIndex:4 withObject:[ManagerEngine currentDateStr]];
+
     
     
 }
@@ -176,9 +177,12 @@
         cell.contentText = self.dataSouceAry[indexPath.row];
         
     }
-    if (indexPath.row == 4) {
-        [self.dataSouceAry replaceObjectAtIndex:indexPath.row withObject:[ManagerEngine currentDateStr]];
-    }
+    @weakify(self);
+    [cell setTimeBlock:^(NSString *timer) {
+        @strongify(self);
+        [self.dataSouceAry replaceObjectAtIndex:4 withObject:timer];
+//        [self.addStaffTableView reloadData];
+    }];
     return cell;
     
 }

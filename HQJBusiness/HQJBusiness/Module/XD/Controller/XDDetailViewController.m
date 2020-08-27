@@ -212,7 +212,7 @@
                 
             case 0://0 信息未完善
                 //跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBXDH5Domain,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                [self jumpH5:[NSString stringWithFormat:@"%@%@shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
 //                http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg
                 break;
                 
@@ -254,7 +254,7 @@
             case 11://11 审核失败，修改信息
                 [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
                     // 跳转信息填写H5页
-                    [self jumpH5:[NSString stringWithFormat:@"%@shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBXDH5Domain,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                    [self jumpH5:[NSString stringWithFormat:@"%@%@shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
                 }];
                 
                 break;
