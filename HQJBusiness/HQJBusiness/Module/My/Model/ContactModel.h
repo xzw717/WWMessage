@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 //            "signUrl": "合同预览签署地址",
 //"peugeotid": 3,   -----标识id
 //            "signtime": "签署时间"
+@property (nonatomic, strong) NSString *docid;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *signUrl;
 @property (nonatomic, strong) NSString *peugeotid;

@@ -158,12 +158,22 @@
 }
 #pragma mark ---UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     ContactModel *model = self.dataArray[indexPath.row];
-    if (model.signUrl) {
-        HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
-        webVC.webUrlStr = model.signUrl;
-        [self.navigationController pushViewController:webVC animated:YES];
+    if (self.topTag == 0) {
+        if (model.docid) {
+            HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+            webVC.webUrlStr = [NSString stringWithFormat:@"%@?docId=%@",HQJBXDDownloadPactDomain,model.docid];
+            [self.navigationController pushViewController:webVC animated:YES];
+        }
+    }else{
+        if (model.signUrl) {
+            HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+            webVC.webUrlStr = model.signUrl;
+            [self.navigationController pushViewController:webVC animated:YES];
+        }
     }
+    
     
 }
 

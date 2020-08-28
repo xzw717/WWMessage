@@ -36,6 +36,8 @@ extern NSString *const WWMCouponDomain;
 extern NSString *const WWMLiveDomain;
 /// XDH5域名
 extern NSString *const HQJBXDH5Domain;
+/// XD合同下载
+extern NSString *const HQJBXDDownloadPactDomain;
 /************************************域名（结束）**********************************************/
 
 
