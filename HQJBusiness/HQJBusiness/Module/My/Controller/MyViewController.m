@@ -25,7 +25,6 @@
 #import "HintView.h"
 #import "ForgetPswViewController.h"
 #import "HQJLocationManager.h"
-//#import "ScoreGiftViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;

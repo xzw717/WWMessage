@@ -97,7 +97,7 @@ static NSString *const totalKey = @"totalKey";
 
 #pragma mark --- 主控制器
 #import "RewardsRecordViewController.h"
-
+#import "ScoreGiftViewController.h"
 @interface RewardsRecordViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
 @property (nonatomic, strong) SGSegmentedControlBottomView *bottomSView;
@@ -110,7 +110,17 @@ static NSString *const totalKey = @"totalKey";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"消费奖励记录";
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setTitle:@"赠送" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
+    rightBtn.bounds = CGRectMake(0, 0, 60, 44);
+    self.zw_rightOneButton = rightBtn;
+    [rightBtn addTarget:self action:@selector(scoreGiftClicked) forControlEvents:UIControlEventTouchUpInside];
     [self initVC];
+}
+- (void)scoreGiftClicked{
+    ScoreGiftViewController *vc = [[ScoreGiftViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)initVC {
     RewardsRecordChildVC *sdVC = [[RewardsRecordChildVC alloc]init];
