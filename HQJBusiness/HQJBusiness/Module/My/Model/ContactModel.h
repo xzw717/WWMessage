@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
          },
  
  */
+@property (nonatomic, strong) NSString *docid;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *signUrl;
 @property (nonatomic, strong) NSString *peugeotid;

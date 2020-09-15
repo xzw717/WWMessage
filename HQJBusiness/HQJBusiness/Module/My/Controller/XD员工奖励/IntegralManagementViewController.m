@@ -44,6 +44,8 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+
 - (UITableView *)integralManagementTableView {
     if (!_integralManagementTableView) {
         _integralManagementTableView = [[UITableView alloc]init];

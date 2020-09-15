@@ -25,6 +25,8 @@
 #import "HintView.h"
 #import "ForgetPswViewController.h"
 #import "HQJLocationManager.h"
+//#import "ScoreGiftViewController.h"
+
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
 }
@@ -174,8 +176,8 @@
     [_viewModel jumpVc:self andIndexPath:indexPath];
     
     
-    //    MyShopViewController *vc = [[MyShopViewController alloc]init];
-    //    [self.navigationController pushViewController:vc animated:YES];
+//        ScoreGiftViewController *vc = [[ScoreGiftViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
 }
 
 

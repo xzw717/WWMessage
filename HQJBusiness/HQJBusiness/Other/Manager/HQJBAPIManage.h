@@ -38,6 +38,8 @@ extern NSString *const WWMLiveDomain;
 extern NSString *const HQJBH5UpDataDomain ;
 /// XDH5域名
 extern NSString *const HQJBXDH5Domain;
+/// XD合同下载
+extern NSString *const HQJBXDDownloadPactDomain;
 /// 商家奖励
 extern NSString *const HQJBRewardDomainName;
 /************************************域名（结束）**********************************************/
