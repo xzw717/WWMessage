@@ -32,6 +32,10 @@ NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
+/// XD合同下载
+NSString *const HQJBXDDownloadPactDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/downloadPact";
+
+
 
 
 //1.企业基础信息
@@ -68,6 +72,9 @@ NSString *const WWMLiveDomain = @"http://47.98.45.218/";
 NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
+/// XD合同下载
+NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/downloadPact";
+
 /// 商家奖励
 NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 #endif

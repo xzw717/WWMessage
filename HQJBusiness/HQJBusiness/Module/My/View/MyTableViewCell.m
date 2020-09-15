@@ -11,9 +11,6 @@
 @interface MyTableViewCell()
 
 
-@property (nonatomic,strong) UILabel * rewardIncomeLabel;
-
-@property (nonatomic,strong) UILabel * rewardIncomeLabelS;
 
 @property (nonatomic,strong) UILabel * todayBonusLabel;
 
@@ -27,6 +24,10 @@
 
 @property (nonatomic,strong) UILabel * allZHLabelS;
 
+@property (nonatomic, strong) UILabel * moreLabel;
+
+@property (nonatomic, strong) UIView * linkView;
+
 @end
 
 @implementation MyTableViewCell
@@ -38,13 +39,13 @@
         
         [RACObserve(self, model)subscribeNext:^(MyModel *model) {
             if ([NameSingle shareInstance].peugeotid == 6) {
-                [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_equalTo(WIDTH / 4);
-                }];
+//                [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.width.mas_equalTo(WIDTH / 4);
+//                }];
             } else {
-                [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_equalTo(0);
-                }];
+//                [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.width.mas_equalTo(0);
+//                }];
             }
             if (model.incomeBToday) {
                 self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomeBToday afterPoint:2]];
@@ -66,52 +67,24 @@
 }
 - (void)setCellReward:(NSString *)cellReward {
     _cellReward = cellReward;
-    self.rewardIncomeLabel.text = cellReward ? [ManagerEngine retainScale:cellReward afterPoint:2] : @"0.00";
-    [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(WIDTH / 4);
-    }];
+//    self.rewardIncomeLabel.text = cellReward ? [ManagerEngine retainScale:cellReward afterPoint:2] : @"0.00";
+//    [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(WIDTH / 4);
+//    }];
 }
 
 - (void)clickReward {
     RewardsRecordViewController *rewardsRecordVC = [[RewardsRecordViewController alloc]init];
     [[ManagerEngine currentViewControll].navigationController pushViewController:rewardsRecordVC animated:YES];
 }
-- (UILabel *)rewardIncomeLabel {
-    if ( _rewardIncomeLabel == nil ) {
-        _rewardIncomeLabel = [[UILabel alloc]init];
-        _rewardIncomeLabel.font = [UIFont systemFontOfSize:17.f];
-        _rewardIncomeLabel.text = @"0.00";
-        _rewardIncomeLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickReward)];
-        [_rewardIncomeLabel addGestureRecognizer:tap];
-        _rewardIncomeLabel.textAlignment = NSTextAlignmentCenter;
-        _rewardIncomeLabel.textColor = [ManagerEngine getColor:@"12b312"];
-        [self addSubview:_rewardIncomeLabel];
-        
-    }
-    return _rewardIncomeLabel;
-}
-- (UILabel *)rewardIncomeLabelS {
-    if (_rewardIncomeLabelS == nil ) {
-        _rewardIncomeLabelS = [[UILabel alloc]init];
-        _rewardIncomeLabelS.font = [UIFont systemFontOfSize:15.f];
-        _rewardIncomeLabelS.text = @"奖励积分收入";
-        _rewardIncomeLabelS.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickReward)];
-        [_rewardIncomeLabelS addGestureRecognizer:tap];
-        _rewardIncomeLabelS.textAlignment = NSTextAlignmentCenter;
-        _rewardIncomeLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self addSubview:_rewardIncomeLabelS];
-    }
-    return _rewardIncomeLabelS;
-}
+
 - (UILabel *)todayBonusLabel {
     if ( _todayBonusLabel == nil ) {
         _todayBonusLabel = [[UILabel alloc]init];
         _todayBonusLabel.font = [UIFont systemFontOfSize:17.f];
         _todayBonusLabel.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabel.textColor = [ManagerEngine getColor:@"12b312"];
-        [self addSubview:_todayBonusLabel];
+        [self.contentView addSubview:_todayBonusLabel];
         
     }
     return _todayBonusLabel;
@@ -122,7 +95,7 @@
         _todayCashLabel.font = [UIFont systemFontOfSize:17.f];
         _todayCashLabel.textAlignment = NSTextAlignmentCenter;
         _todayCashLabel.textColor = [ManagerEngine getColor:@"12b312"];
-        [self addSubview:_todayCashLabel];
+        [self.contentView addSubview:_todayCashLabel];
     }
     return _todayCashLabel;
 }
@@ -133,7 +106,7 @@
         _allZHLabel.font = [UIFont systemFontOfSize:17.f];
         _allZHLabel.textAlignment = NSTextAlignmentCenter;
         _allZHLabel.textColor = [ManagerEngine getColor:@"18abf5"];
-        [self addSubview:_allZHLabel];
+        [self.contentView addSubview:_allZHLabel];
     }
     return _allZHLabel;
 }
@@ -145,7 +118,7 @@
         _todayBonusLabelS.text = @"当日积分收入";
         _todayBonusLabelS.textAlignment = NSTextAlignmentCenter;
         _todayBonusLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self addSubview:_todayBonusLabelS];
+        [self.contentView addSubview:_todayBonusLabelS];
     }
     return _todayBonusLabelS;
 }
@@ -157,7 +130,7 @@
         _todayCashLabelS.textAlignment = NSTextAlignmentCenter;
         _todayCashLabelS.text = @"当日现金收入";
         _todayCashLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self addSubview:_todayCashLabelS];
+        [self.contentView addSubview:_todayCashLabelS];
     }
     return _todayCashLabelS;
 }
@@ -169,11 +142,33 @@
         _allZHLabelS.textAlignment = NSTextAlignmentCenter;
         _allZHLabelS.text = [NSString stringWithFormat:@"%@值余额",HQJValue];
         _allZHLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self addSubview:_allZHLabelS];
+        [self.contentView addSubview:_allZHLabelS];
         
     }
     return _allZHLabelS;
 }
+- (UILabel *)moreLabel {
+    if ( _moreLabel == nil ) {
+        _moreLabel = [[UILabel alloc]init];
+        _moreLabel.font = [UIFont systemFontOfSize:16.f];
+        _moreLabel.textAlignment = NSTextAlignmentCenter;
+        _moreLabel.text = @"更多";
+        _moreLabel.textColor = [UIColor blackColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickReward)];
+        [self.contentView addSubview:_moreLabel];
+    }
+    return _moreLabel;
+}
+
+- (UIView *)linkView {
+    if (!_linkView){
+        _linkView = [[UIView alloc]init];
+        _linkView.backgroundColor = [ManagerEngine getColor:@"cccccc"];
+        [self.contentView addSubview:_linkView];
+    }
+    return _linkView;;
+}
+
 
 -(void)layoutSubviews {
     [self setViewFrame];
@@ -195,24 +190,25 @@
     //
     //    CGFloat SpacerWidth  = (WIDTH - 15 * 2 - ZHSWidth - todayBonusSWidth - todayCashSWidth) / 2;
     CGFloat oneLabelWith = [NameSingle shareInstance].peugeotid == 6 ? WIDTH / 4 : 0;
-    CGFloat labelWith = [NameSingle shareInstance].peugeotid == 6 ? WIDTH / 4 : WIDTH /3;
+    //    CGFloat labelWith = [NameSingle shareInstance].peugeotid == 6 ? WIDTH / 4 : WIDTH /3;
     
-    self.rewardIncomeLabel.hidden = self.rewardIncomeLabelS.hidden =  [NameSingle shareInstance].peugeotid == 6 ? NO : YES;
-    [self.rewardIncomeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    self.moreLabel.hidden = self.linkView.hidden =  [NameSingle shareInstance].peugeotid == 6 ? NO : YES;
+    //    [self.rewardIncomeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.mas_equalTo(0);
+    //        make.top.mas_equalTo(16);
+    //        make.width.mas_equalTo(oneLabelWith);
+    //    }];
+    //    [self.rewardIncomeLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.mas_equalTo(self.rewardIncomeLabel.mas_bottom).mas_offset(10);
+    //        make.left.right.mas_equalTo(self.rewardIncomeLabel);
+    //    }];
+    [self.todayBonusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(16);
         make.width.mas_equalTo(oneLabelWith);
-    }];
-    [self.rewardIncomeLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.rewardIncomeLabel.mas_bottom).mas_offset(10);
-        make.left.right.mas_equalTo(self.rewardIncomeLabel);
-    }];
-    [self.todayBonusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.rewardIncomeLabel.mas_right);
-        make.top.mas_equalTo(self.rewardIncomeLabel);
-        make.width.mas_equalTo(labelWith);
         
     }];
+    
     [self.todayBonusLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.todayBonusLabel.mas_bottom).mas_offset(10);
         make.left.right.mas_equalTo(self.todayBonusLabel);
@@ -232,6 +228,19 @@
     [self.allZHLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.allZHLabel.mas_bottom).mas_offset(10);
         make.left.right.mas_equalTo(self.allZHLabel);
+    }];
+    
+    [self.moreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+          make.centerY.mas_equalTo(self.contentView);
+          make.width.mas_equalTo(self.allZHLabel);
+        make.right.mas_equalTo(0);
+    }];
+    [self.linkView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.moreLabel.mas_left);
+        make.centerY.mas_equalTo(self.contentView);
+        make.top.mas_equalTo(16);
+        make.bottom.mas_equalTo(-16);
+        make.width.mas_equalTo(.5f);
     }];
     //    if ([NameSingle shareInstance].peugeotid == 6) {
     //        self.rewardIncomeLabel.hidden = NO;

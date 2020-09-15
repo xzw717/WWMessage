@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055996AE251072FB006C9716 /* ScoreGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996AD251072FB006C9716 /* ScoreGiftViewController.m */; };
+		055996B12510A045006C9716 /* ScoreGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B02510A045006C9716 /* ScoreGiftView.m */; };
+		055996B42510A2D2006C9716 /* ScoreGiftViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B32510A2D2006C9716 /* ScoreGiftViewModel.m */; };
 		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
 		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
 		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
@@ -339,6 +342,7 @@
 		1FDF4CD523B1E7420060F485 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDF4CCF23B1E7420060F485 /* AlipaySDK.framework */; };
 		1FDF4CD623B1E7420060F485 /* APAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF4CD023B1E7420060F485 /* APAuthInfo.m */; };
 		1FDF4CD723B1E7420060F485 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1FDF4CD123B1E7420060F485 /* AlipaySDK.bundle */; };
+		1FE0EAD0251068E600CAC83F /* IntegralManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0EACF251068E600CAC83F /* IntegralManagementViewController.m */; };
 		1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */; };
 		1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */; };
 		1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEAF03E1F7B9576004E2F77 /* PaymentCodeTableViewCell.m */; };
@@ -456,6 +460,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		055996AC251072FB006C9716 /* ScoreGiftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewController.h; sourceTree = "<group>"; };
+		055996AD251072FB006C9716 /* ScoreGiftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewController.m; sourceTree = "<group>"; };
+		055996AF2510A045006C9716 /* ScoreGiftView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreGiftView.h; sourceTree = "<group>"; };
+		055996B02510A045006C9716 /* ScoreGiftView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftView.m; sourceTree = "<group>"; };
+		055996B22510A2D2006C9716 /* ScoreGiftViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewModel.h; sourceTree = "<group>"; };
+		055996B32510A2D2006C9716 /* ScoreGiftViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewModel.m; sourceTree = "<group>"; };
 		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
@@ -1181,6 +1191,8 @@
 		1FDF4CCF23B1E7420060F485 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = AliPay/AlipaySDK.framework; sourceTree = "<group>"; };
 		1FDF4CD023B1E7420060F485 /* APAuthInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APAuthInfo.m; path = AliPay/APAuthInfo.m; sourceTree = "<group>"; };
 		1FDF4CD123B1E7420060F485 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = AliPay/AlipaySDK.bundle; sourceTree = "<group>"; };
+		1FE0EACE251068E600CAC83F /* IntegralManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralManagementViewController.h; sourceTree = "<group>"; };
+		1FE0EACF251068E600CAC83F /* IntegralManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralManagementViewController.m; sourceTree = "<group>"; };
 		1FE83D7D1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationOrderDetailsCell.h; sourceTree = "<group>"; };
 		1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationOrderDetailsCell.m; sourceTree = "<group>"; };
 		1FE83D801F6A309B008F0ED6 /* OrderVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderVerificationModel.h; sourceTree = "<group>"; };
@@ -1682,16 +1694,16 @@
 		1F607DE224AB23C20011915E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F607DE324AB23C20011915E /* XDPayView.m */,
-				1F607DE424AB23C20011915E /* XDDetailTableViewCell.m */,
-				1F607DE524AB23C20011915E /* XDTableViewCell.h */,
-				1F607DE624AB23C20011915E /* XDDetailSecCell.m */,
+				1F607DEC24AB23C20011915E /* XDDetailBottomView.h */,
 				1F607DE724AB23C20011915E /* XDDetailBottomView.m */,
 				1F607DE824AB23C20011915E /* XDDetailSecCell.h */,
-				1F607DE924AB23C20011915E /* XDTableViewCell.m */,
+				1F607DE624AB23C20011915E /* XDDetailSecCell.m */,
 				1F607DEA24AB23C20011915E /* XDDetailTableViewCell.h */,
+				1F607DE424AB23C20011915E /* XDDetailTableViewCell.m */,
 				1F607DEB24AB23C20011915E /* XDPayView.h */,
-				1F607DEC24AB23C20011915E /* XDDetailBottomView.h */,
+				1F607DE324AB23C20011915E /* XDPayView.m */,
+				1F607DE524AB23C20011915E /* XDTableViewCell.h */,
+				1F607DE924AB23C20011915E /* XDTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1699,14 +1711,14 @@
 		1F607DED24AB23C20011915E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1F607DEE24AB23C20011915E /* XDViewController.h */,
-				1F607DEF24AB23C20011915E /* XDPaySureViewController.m */,
-				1F607DF024AB23C20011915E /* XDDetailViewController.m */,
-				1F607DF124AB23C20011915E /* XDPayViewController.h */,
-				1F607DF224AB23C20011915E /* XDViewController.m */,
 				1F607DF324AB23C20011915E /* XDDetailViewController.h */,
+				1F607DF024AB23C20011915E /* XDDetailViewController.m */,
 				1F607DF424AB23C20011915E /* XDPaySureViewController.h */,
+				1F607DEF24AB23C20011915E /* XDPaySureViewController.m */,
+				1F607DF124AB23C20011915E /* XDPayViewController.h */,
 				1F607DF524AB23C20011915E /* XDPayViewController.m */,
+				1F607DEE24AB23C20011915E /* XDViewController.h */,
+				1F607DF224AB23C20011915E /* XDViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2709,6 +2721,10 @@
 				1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */,
 				1F276F8D24D7BA880049E227 /* RewardSetViewController.h */,
 				1F276F8E24D7BA880049E227 /* RewardSetViewController.m */,
+				1FE0EACE251068E600CAC83F /* IntegralManagementViewController.h */,
+				1FE0EACF251068E600CAC83F /* IntegralManagementViewController.m */,
+				055996AC251072FB006C9716 /* ScoreGiftViewController.h */,
+				055996AD251072FB006C9716 /* ScoreGiftViewController.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2754,6 +2770,8 @@
 				1F276F9A24D943F50049E227 /* RewardSetFootView.m */,
 				1F52A90224EA7AE400FF8110 /* SelectTimeView.h */,
 				1F52A90324EA7AE400FF8110 /* SelectTimeView.m */,
+				055996AF2510A045006C9716 /* ScoreGiftView.h */,
+				055996B02510A045006C9716 /* ScoreGiftView.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2761,6 +2779,8 @@
 		1FF2F9CC24CFD74A003A2996 /* XD员工奖励 */ = {
 			isa = PBXGroup;
 			children = (
+				055996B22510A2D2006C9716 /* ScoreGiftViewModel.h */,
+				055996B32510A2D2006C9716 /* ScoreGiftViewModel.m */,
 				1FF2F9CD24CFD77C003A2996 /* StaffDetailsViewModel.h */,
 				1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */,
 				1F276FA224DA4CFE0049E227 /* MemberStaffListViewModel.h */,
@@ -2933,7 +2953,7 @@
 					1FBE91CF1DEC1E59001977A6 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = Y28K2L3GRG;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3249,6 +3269,7 @@
 				0585FE802497106C00CD7280 /* ZGProgressHUD.m in Sources */,
 				1F276F8F24D7BA880049E227 /* RewardSetViewController.m in Sources */,
 				1F046D291E091473006D6EB2 /* ZW_TableViewController.m in Sources */,
+				1FE0EAD0251068E600CAC83F /* IntegralManagementViewController.m in Sources */,
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
@@ -3265,6 +3286,7 @@
 				1F402910229FBA1F0014769B /* JWBluetoothManage.m in Sources */,
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,
 				1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */,
+				055996B12510A045006C9716 /* ScoreGiftView.m in Sources */,
 				1F960D2A1DFE3E51003E3D17 /* NSObject+BKBlockObservation.m in Sources */,
 				1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */,
 				1F1B21F71E0117C900021AB2 /* ZW_TextField.m in Sources */,
@@ -3349,6 +3371,7 @@
 				1FF2F9C524CFC494003A2996 /* StaffDetailsVC.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */,
+				055996AE251072FB006C9716 /* ScoreGiftViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
@@ -3411,6 +3434,7 @@
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
 				1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */,
+				055996B42510A2D2006C9716 /* ScoreGiftViewModel.m in Sources */,
 				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
@@ -3546,13 +3570,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
@@ -3574,13 +3598,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3707,12 +3731,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y28K2L3GRG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3740,11 +3764,11 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = adhocHQJB;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3756,12 +3780,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y28K2L3GRG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3789,11 +3813,11 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = adhocHQJB;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
