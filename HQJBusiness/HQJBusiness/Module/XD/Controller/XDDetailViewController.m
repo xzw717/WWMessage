@@ -272,7 +272,6 @@
 }
 - (void)createContract:(NSInteger)type{
     [XDDetailViewModel initiateESign:Shopid andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:self.model.nid completion:^(id  _Nonnull result) {
-        
         [self jumpH5:(NSString *)result];
         
     }];

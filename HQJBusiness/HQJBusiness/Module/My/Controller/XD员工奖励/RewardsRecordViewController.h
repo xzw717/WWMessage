@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RewardsRecordViewController : NewXDChildViewController
-
+/// 是否是会员消费奖励界面     否 ：XD商家活动积分
+@property (nonatomic, assign) BOOL isMembersRewards;
 @end
 
 NS_ASSUME_NONNULL_END

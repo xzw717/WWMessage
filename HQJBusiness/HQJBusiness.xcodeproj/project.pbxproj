@@ -339,6 +339,7 @@
 		1FDF4CD523B1E7420060F485 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDF4CCF23B1E7420060F485 /* AlipaySDK.framework */; };
 		1FDF4CD623B1E7420060F485 /* APAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF4CD023B1E7420060F485 /* APAuthInfo.m */; };
 		1FDF4CD723B1E7420060F485 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1FDF4CD123B1E7420060F485 /* AlipaySDK.bundle */; };
+		1FE0EAD62510B27A00CAC83F /* IntegralManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0EAD52510B27900CAC83F /* IntegralManagementViewController.m */; };
 		1FE83D7F1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */; };
 		1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE83D811F6A309B008F0ED6 /* OrderVerificationModel.m */; };
 		1FEAF03F1F7B9576004E2F77 /* PaymentCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEAF03E1F7B9576004E2F77 /* PaymentCodeTableViewCell.m */; };
@@ -1181,6 +1182,8 @@
 		1FDF4CCF23B1E7420060F485 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = AliPay/AlipaySDK.framework; sourceTree = "<group>"; };
 		1FDF4CD023B1E7420060F485 /* APAuthInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APAuthInfo.m; path = AliPay/APAuthInfo.m; sourceTree = "<group>"; };
 		1FDF4CD123B1E7420060F485 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = AliPay/AlipaySDK.bundle; sourceTree = "<group>"; };
+		1FE0EAD42510B27900CAC83F /* IntegralManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralManagementViewController.h; sourceTree = "<group>"; };
+		1FE0EAD52510B27900CAC83F /* IntegralManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralManagementViewController.m; sourceTree = "<group>"; };
 		1FE83D7D1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationOrderDetailsCell.h; sourceTree = "<group>"; };
 		1FE83D7E1F6A0ADA008F0ED6 /* VerificationOrderDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationOrderDetailsCell.m; sourceTree = "<group>"; };
 		1FE83D801F6A309B008F0ED6 /* OrderVerificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderVerificationModel.h; sourceTree = "<group>"; };
@@ -2709,6 +2712,8 @@
 				1FF2F9F624D3A98B003A2996 /* StaffRoleViewController.m */,
 				1F276F8D24D7BA880049E227 /* RewardSetViewController.h */,
 				1F276F8E24D7BA880049E227 /* RewardSetViewController.m */,
+				1FE0EAD42510B27900CAC83F /* IntegralManagementViewController.h */,
+				1FE0EAD52510B27900CAC83F /* IntegralManagementViewController.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2933,7 +2938,7 @@
 					1FBE91CF1DEC1E59001977A6 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = Y28K2L3GRG;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3211,6 +3216,7 @@
 				1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */,
 				1F960D2C1DFE3E51003E3D17 /* NSSet+BlocksKit.m in Sources */,
 				1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */,
+				1FE0EAD62510B27A00CAC83F /* IntegralManagementViewController.m in Sources */,
 				1F960D431DFE3E51003E3D17 /* UIWebView+BlocksKit.m in Sources */,
 				1FB02FBF2475044F00F3B2F8 /* XDSSMModel.m in Sources */,
 				1F6C85DD23CEBE78005F3DB8 /* OrderDetailsThreeCell.m in Sources */,
@@ -3546,13 +3552,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
@@ -3574,13 +3580,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3707,12 +3713,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y28K2L3GRG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3740,11 +3746,11 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = adhocHQJB;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3756,12 +3762,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = HQJBusiness/HQJBusiness.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3.3.0;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3.3.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y28K2L3GRG;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3789,11 +3795,11 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = adhocHQJB;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

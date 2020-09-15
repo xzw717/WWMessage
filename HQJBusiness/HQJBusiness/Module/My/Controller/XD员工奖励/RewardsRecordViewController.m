@@ -8,6 +8,9 @@
 #import "RewardsRecordChildCell.h"
 #import "RewardsRecordViewModel.h"
 #import "RewardsRecordSuperModel.h"
+
+static NSString *const totalKey = @"totalKey";
+
 #pragma mark --- 子控制器
 @interface RewardsRecordChildVC: UIViewController
 /// 显示的类型： 员工 or 商家
@@ -29,6 +32,7 @@
 }
 - (void)requst {
     [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model, NSError * _Nonnull requstError) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:requstError];
         if (!requstError) {
             if (self.page > 1) {
                             if (model.data.count == 0) {
@@ -97,6 +101,8 @@
 @interface RewardsRecordViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
 @property (nonatomic, strong) SGSegmentedControlBottomView *bottomSView;
+/// 总计label
+@property (nonatomic, strong) UILabel *totalLabel;
 @end
 
 @implementation RewardsRecordViewController
@@ -117,9 +123,9 @@
     
     NSArray *childVC = @[sdVC, irZHVC];
     
-    NSArray *title_arr = @[@"员工邀请奖励",@"商家邀请奖励"];
-    
-    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44 , WIDTH, HEIGHT - NavigationControllerHeight - 44)];
+    NSArray *title_arr = self.isMembersRewards ? @[@"员工邀请奖励",@"商家邀请奖励"] :@[@"奖励记录",@"赠送记录"];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeTotal:) name:totalKey object:nil];
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44 + 44 , WIDTH, HEIGHT - NavigationControllerHeight - 44)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];
     _bottomSView.delegate = self;
@@ -138,9 +144,15 @@
     
     _topSView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_topSView];
+    [self.view addSubview:self.totalLabel];
 //    [self.view bringSubviewToFront:self.editorButton];
 //    [self.view bringSubviewToFront:self.deleteButton];
 }
+
+- (void)changeTotal:(NSNotificationCenter *)notifi {
+    self.totalLabel.text = @"    收到了变化通知";
+}
+
 - (void)SGSegmentedControlStatic:(SGSegmentedControlStatic *)segmentedControlStatic didSelectTitleAtIndex:(NSInteger)index  {
     // 计算滚动的位置
     CGFloat offsetX = index * self.view.frame.size.width;
@@ -166,5 +178,18 @@
         
     }
     
+}
+- (UILabel *)totalLabel {
+    if (!_totalLabel) {
+        _totalLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight + 44, WIDTH, 44)];
+        _totalLabel.backgroundColor = DefaultAPPColor;
+        _totalLabel.textColor = [UIColor whiteColor];
+        _totalLabel.font = [UIFont systemFontOfSize:14.f];
+        _totalLabel.text = @"    暂无变化";
+    }
+    return _totalLabel;
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end
