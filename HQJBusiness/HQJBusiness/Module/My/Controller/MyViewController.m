@@ -25,7 +25,6 @@
 #import "HintView.h"
 #import "ForgetPswViewController.h"
 #import "HQJLocationManager.h"
-//#import "ScoreGiftViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
     JWBluetoothManage * manage;
@@ -174,10 +173,6 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_viewModel jumpVc:self andIndexPath:indexPath];
-    
-    
-//        ScoreGiftViewController *vc = [[ScoreGiftViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
 }
 
 
