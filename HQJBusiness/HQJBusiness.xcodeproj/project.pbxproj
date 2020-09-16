@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B52510BABB006C9716 /* ScoreGiftViewController.m */; };
+		055996BA2510BAD8006C9716 /* ScoreGiftViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */; };
+		055996BD2510BAE8006C9716 /* ScoreGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996BB2510BAE8006C9716 /* ScoreGiftView.m */; };
 		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
 		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
 		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
@@ -457,6 +460,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		055996B52510BABB006C9716 /* ScoreGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewController.m; sourceTree = "<group>"; };
+		055996B62510BABB006C9716 /* ScoreGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewController.h; sourceTree = "<group>"; };
+		055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewModel.m; sourceTree = "<group>"; };
+		055996B92510BAD8006C9716 /* ScoreGiftViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewModel.h; sourceTree = "<group>"; };
+		055996BB2510BAE8006C9716 /* ScoreGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftView.m; sourceTree = "<group>"; };
+		055996BC2510BAE8006C9716 /* ScoreGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftView.h; sourceTree = "<group>"; };
 		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
@@ -2694,6 +2703,8 @@
 		1FF2F9B824CFB59C003A2996 /* XD员工奖励 */ = {
 			isa = PBXGroup;
 			children = (
+				055996B62510BABB006C9716 /* ScoreGiftViewController.h */,
+				055996B52510BABB006C9716 /* ScoreGiftViewController.m */,
 				1FA611BB24CE79900097E02E /* StaffManageViewController.h */,
 				1FA611BC24CE79900097E02E /* StaffManageViewController.m */,
 				1FA611BE24CE849A0097E02E /* MemberStaffListViewController.h */,
@@ -2721,6 +2732,8 @@
 		1FF2F9BC24CFB791003A2996 /* XD员工奖励 */ = {
 			isa = PBXGroup;
 			children = (
+				055996BC2510BAE8006C9716 /* ScoreGiftView.h */,
+				055996BB2510BAE8006C9716 /* ScoreGiftView.m */,
 				1FA611C424CEA6430097E02E /* MemberStaffListSearchView.h */,
 				1FA611C524CEA6430097E02E /* MemberStaffListSearchView.m */,
 				1FF2F9BD24CFB7F3003A2996 /* StaffdetailsHeaderView.h */,
@@ -2766,6 +2779,8 @@
 		1FF2F9CC24CFD74A003A2996 /* XD员工奖励 */ = {
 			isa = PBXGroup;
 			children = (
+				055996B92510BAD8006C9716 /* ScoreGiftViewModel.h */,
+				055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */,
 				1FF2F9CD24CFD77C003A2996 /* StaffDetailsViewModel.h */,
 				1FF2F9CE24CFD77C003A2996 /* StaffDetailsViewModel.m */,
 				1F276FA224DA4CFE0049E227 /* MemberStaffListViewModel.h */,
@@ -3229,6 +3244,7 @@
 				1F960D1B1DFE3E51003E3D17 /* ManagerEngine.m in Sources */,
 				1F960D3A1DFE3E51003E3D17 /* UIBarButtonItem+BlocksKit.m in Sources */,
 				0585FE792497106C00CD7280 /* LoginViewController.m in Sources */,
+				055996BD2510BAE8006C9716 /* ScoreGiftView.m in Sources */,
 				1FAF236624BDA22B0042394B /* StoreInfoModel.m in Sources */,
 				1F1B21F11E00F34100021AB2 /* CustomerViewModel.m in Sources */,
 				1F607DFA24AB23C20011915E /* XDDetailViewModel.m in Sources */,
@@ -3300,6 +3316,7 @@
 				1F6C85D623CEBE78005F3DB8 /* OrderDetailsTwoCell.m in Sources */,
 				1FF2F9C224CFC1EB003A2996 /* StaffdetailsListView.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
+				055996BA2510BAD8006C9716 /* ScoreGiftViewModel.m in Sources */,
 				1F960D331DFE3E51003E3D17 /* NSObject+A2DynamicDelegate.m in Sources */,
 				1F6E10EC249CA7F600BEDB72 /* HQJAlertView.m in Sources */,
 				1F960D291DFE3E51003E3D17 /* NSObject+BKBlockExecution.m in Sources */,
@@ -3355,6 +3372,7 @@
 				1FF2F9C524CFC494003A2996 /* StaffDetailsVC.m in Sources */,
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */,
+				055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
