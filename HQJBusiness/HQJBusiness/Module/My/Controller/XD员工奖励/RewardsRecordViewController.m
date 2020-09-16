@@ -109,13 +109,14 @@ static NSString *const totalKey = @"totalKey";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"消费奖励记录";
+    self.zw_title =  self.isMembersRewards ? @"消费奖励记录" : @"XD商家活动积分";
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setTitle:@"赠送" forState:UIControlStateNormal];
     [rightBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];
     rightBtn.bounds = CGRectMake(0, 0, 60, 44);
     self.zw_rightOneButton = rightBtn;
     [rightBtn addTarget:self action:@selector(scoreGiftClicked) forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.hidden = self.isMembersRewards ;
     [self initVC];
 }
 - (void)scoreGiftClicked{

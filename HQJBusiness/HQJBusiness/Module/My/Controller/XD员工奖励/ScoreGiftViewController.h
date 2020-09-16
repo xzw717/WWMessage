@@ -6,11 +6,11 @@
 //  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ZW_ViewController.h"
+#import "NewXDChildViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScoreGiftViewController : ZW_ViewController
+@interface ScoreGiftViewController : NewXDChildViewController
 
 @end
 

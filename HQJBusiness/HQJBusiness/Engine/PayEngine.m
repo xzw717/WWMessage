@@ -8,7 +8,6 @@
 
 #import "PayEngine.h"
 #import <AlipaySDK/AlipaySDK.h>
-#import "UPPaymentControl.h"
 #import <AliPaySDK/AlipaySDK.h>
 #import "WXApi.h"
 #import "APAuthInfo.h"

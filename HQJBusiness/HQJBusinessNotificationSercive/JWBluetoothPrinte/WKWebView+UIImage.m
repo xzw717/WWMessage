@@ -1,17 +1,14 @@
 //
-//  UIWebView+UIImage.m
-//  HLBluetoothDemo
+//  WKWebView+UIImage.m
+//  HQJBusinessNotificationSercive
 //
-//  Created by Harvey on 16/5/13.
-//  Copyright © 2016年 Halley. All rights reserved.
+//  Created by Ethan on 2020/9/16.
+//  Copyright © 2020 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
+#import "WKWebView+UIImage.h"
 
-#import "UIWebView+UIImage.h"
-
-@implementation UIWebView (UIImage)
-
+@implementation WKWebView (UIImage)
 /**
  *  获取当前加载的网页的截图
  *  获取当前WebView的size,然后一屏一屏的截图后，再拼接成一张完整的图片

@@ -40,6 +40,7 @@
                 
                 
                 ScanViewController *SVC =[[ScanViewController alloc]init];
+                SVC.modalPresentationStyle = UIModalPresentationFullScreen;
                 [self presentViewController:SVC animated:YES completion:nil];
                 
             } else {
