@@ -11,8 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScoreGiftViewModel : NSObject
-+ (void)senderCodePhone:(NSString *)phone complete:(void(^)(id responsObject))complete;
-+ (void)sunmitGifterInfo:(NSString *)mobile smsCode:(NSString *)smsCode complete:(void(^)(id responsObject))completeBlock;
+
+@property (nonatomic,copy) NSString * phoneNumer;
+@property (nonatomic,copy) NSString * authCode;
+@property (nonatomic,copy) NSString * score;
+
+@property (nonatomic, strong, readonly) RACSignal  *codeBtnEnable;
+@property (nonatomic, strong, readonly) RACCommand *codeBtnCommand;
+
+@property (nonatomic,strong,readonly) RACSignal  *summitBtnEnable;
+@property (nonatomic,strong,readonly) RACCommand *summitBtnCommand;
+
 @end
 
 NS_ASSUME_NONNULL_END

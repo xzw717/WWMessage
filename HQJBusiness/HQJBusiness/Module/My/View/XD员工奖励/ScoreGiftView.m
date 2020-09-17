@@ -16,8 +16,8 @@
 - (UILabel *)nameTipLabel{
     if (_nameTipLabel == nil) {
         _nameTipLabel = [[UILabel alloc]init];
-        _nameTipLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
-        _nameTipLabel.text = @"*请输入【物物地图h】会员手机号";
+        _nameTipLabel.textColor = [UIColor blackColor];
+        _nameTipLabel.text = @"*请输入【物物地图】会员手机号";
         _nameTipLabel.font = [UIFont systemFontOfSize:16];
     }
     return _nameTipLabel;
@@ -25,7 +25,7 @@
 - (UILabel *)numberTipLabel{
     if (_numberTipLabel == nil) {
         _numberTipLabel = [[UILabel alloc]init];
-        _numberTipLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
+        _numberTipLabel.textColor = [UIColor blackColor];
         _numberTipLabel.text = @"*赠送积分数量";
         _numberTipLabel.font = [UIFont systemFontOfSize:16];
     }
@@ -81,7 +81,7 @@
         _authCodeTextfield.placeholder = @"请输入验证码";
         _authCodeTextfield.tintColor = [ManagerEngine getColor:@"bfbfbf"];
         _authCodeTextfield.returnKeyType = UIReturnKeyDone;
-        _authCodeTextfield.keyboardType = UIKeyboardTypeASCIICapable;
+        _authCodeTextfield.keyboardType = UIKeyboardTypeNumberPad;
         _authCodeTextfield.clearButtonMode = UITextAutocorrectionTypeNo;
     }
     return _authCodeTextfield;
@@ -140,7 +140,7 @@
         make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 20));
     }];
     [self.userNameTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(50);
+        make.top.mas_equalTo(self.nameTipLabel.mas_bottom).offset(10);
         make.centerX.mas_equalTo(self);
         make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 50));
     }];
@@ -160,7 +160,7 @@
         make.size.mas_equalTo(CGSizeMake(100, 50));
     }];
     [self.authCodeTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.userNameTextfield.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
         make.right.mas_equalTo(self.getCodeBtn.mas_left).offset(-5);
         make.left.height.mas_equalTo(self.userNameTextfield);
     }];

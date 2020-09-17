@@ -341,7 +341,11 @@ NSString *const HQJBPurchasePayProject =@"purchasePay/pay/";
 /// 购买RY值
 NSString *const HQJBAliPayInterface = @"aliPay";
 /// 购买XD商家
-NSString *const HQJBXDaliPayInterface =@"XDaliPay";
+NSString *const HQJBXDaliPayInterface = @"XDaliPay";
+///积分赠送发送验证码
+NSString *const HQJBXdAwardSmsInterface = @"xdAwardSms";
+///商家奖励会员的积分
+NSString *const HQJBMerchantAwardToConsumerInterface = @"merchantAwardToConsumer";
 
 @implementation HQJBAPIManage
 

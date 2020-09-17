@@ -280,6 +280,10 @@ extern NSString *const HQJBPurchasePayProject;
 extern NSString *const HQJBXDaliPayInterface;
 /// 购买RY值
 extern NSString *const HQJBAliPayInterface;
+///积分赠送发送验证码
+extern NSString *const HQJBXdAwardSmsInterface;
+///商家奖励会员的积分M
+extern NSString *const HQJBMerchantAwardToConsumerInterface;
 
 
 
