@@ -9,9 +9,28 @@
 #import "ScoreGiftView.h"
 #define DEF_MAIL @"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @interface ScoreGiftView ()<UITextFieldDelegate>
-
+@property(nonatomic,strong)UILabel  *nameTipLabel;
+@property(nonatomic,strong)UILabel  *numberTipLabel;
 @end
 @implementation ScoreGiftView
+- (UILabel *)nameTipLabel{
+    if (_nameTipLabel == nil) {
+        _nameTipLabel = [[UILabel alloc]init];
+        _nameTipLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
+        _nameTipLabel.text = @"*请输入【物物地图h】会员手机号";
+        _nameTipLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _nameTipLabel;
+}
+- (UILabel *)numberTipLabel{
+    if (_numberTipLabel == nil) {
+        _numberTipLabel = [[UILabel alloc]init];
+        _numberTipLabel.textColor = [ManagerEngine getColor:@"bfbfbf"];
+        _numberTipLabel.text = @"*赠送积分数量";
+        _numberTipLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _numberTipLabel;
+}
 - (UITextField *)userNameTextfield {
     if (_userNameTextfield == nil) {
         _userNameTextfield = [[UITextField alloc]init];
@@ -23,13 +42,31 @@
         _userNameTextfield.backgroundColor = [UIColor whiteColor];
         _userNameTextfield.font = [UIFont systemFontOfSize:16];
         _userNameTextfield.delegate = self;
-        _userNameTextfield.placeholder = @"请输入11位手机号码";
         _userNameTextfield.tintColor = [ManagerEngine getColor:@"bfbfbf"];
         _userNameTextfield.keyboardType = UIKeyboardTypeNumberPad;
         _userNameTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
         _userNameTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
     }
     return _userNameTextfield;
+}
+- (UITextField *)scoreNumTextfield{
+    if (_scoreNumTextfield == nil) {
+        _scoreNumTextfield = [[UITextField alloc]init];
+        _scoreNumTextfield.layer.masksToBounds = YES;
+        _scoreNumTextfield.layer.cornerRadius = 5;
+        _scoreNumTextfield.layer.borderWidth = 0.5;
+        _scoreNumTextfield.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _scoreNumTextfield.placeholder = @"请输入大于0的数字";
+        _scoreNumTextfield.backgroundColor = [UIColor whiteColor];
+        _scoreNumTextfield.font = [UIFont systemFontOfSize:16];
+        _scoreNumTextfield.delegate = self;
+        _scoreNumTextfield.tintColor = [ManagerEngine getColor:@"bfbfbf"];
+        _scoreNumTextfield.keyboardType = UIKeyboardTypeNumberPad;
+        _scoreNumTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _scoreNumTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
+    }
+    return _scoreNumTextfield;
+    
 }
 - (UITextField *)authCodeTextfield{
     if (_authCodeTextfield == nil) {
@@ -80,8 +117,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        [self addSubview:self.nameTipLabel];
+        [self addSubview:self.numberTipLabel];
         [self addSubview:self.userNameTextfield];
         [self addSubview:self.authCodeTextfield];
+        [self addSubview:self.scoreNumTextfield];
         [self addSubview:self.getCodeBtn];
         [self addSubview:self.submitButton];
         [self addSubview:self.authCodeTextfield];
@@ -94,15 +134,28 @@
 }
 - (void)setViewLayout {
 
-    
+    [self.nameTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(50);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 20));
+    }];
     [self.userNameTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(50);
         make.centerX.mas_equalTo(self);
         make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 50));
     }];
-
+    [self.numberTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.userNameTextfield.mas_bottom).offset(10);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 20));
+    }];
+    [self.scoreNumTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.numberTipLabel.mas_bottom).offset(10);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 50));
+    }];
     [self.getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.userNameTextfield.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
         make.right.mas_equalTo(-28);
         make.size.mas_equalTo(CGSizeMake(100, 50));
     }];
@@ -112,7 +165,6 @@
         make.left.height.mas_equalTo(self.userNameTextfield);
     }];
 
-    
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.authCodeTextfield.mas_bottom).offset(NewProportion(100));
         make.centerX.mas_equalTo(self);
