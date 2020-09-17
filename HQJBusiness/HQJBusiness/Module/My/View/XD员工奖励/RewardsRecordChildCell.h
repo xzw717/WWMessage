@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RewardsRecordChildCell : ZW_TableViewCell
-@property (nonatomic, strong) RewardsRecordModel *cellModel;
+//@property (nonatomic, strong) RewardsRecordModel *cellModel;
+- (void)setModelWithModel:(RewardsRecordModel *)cellModel type:(NSString *)type;
 @end
 
 NS_ASSUME_NONNULL_END

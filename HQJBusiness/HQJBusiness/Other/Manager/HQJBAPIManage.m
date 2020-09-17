@@ -331,8 +331,10 @@ NSString *const HQJBGetAllEmployeeAwardListInterface =@"getAllEmployeeAwardList"
 NSString *const HQJBSetupMultiAwardRateInterface =@"setupMultiAwardRate";
 /// 获取商家总奖励的积分
 NSString *const HQJBGetMerchantTotalAwardInterface =@"getMerchantTotalAward";
-
-
+/// 商家奖励会员的积分列表
+NSString *const HQJBSubAwardListInterface = @"subAwardList";
+/// 商家奖励会员的积分列表
+NSString *const HQJBMerchnatAwardListInterface =@"merchnatAwardList";
 
 /*   支付项目  */
 NSString *const HQJBPurchasePayProject =@"purchasePay/pay/";
