@@ -227,7 +227,7 @@
     [RACObserve(self, model)subscribeNext:^(MyModel *x) {
         @strongify(self);
         NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
-        //        NSString *mobileStr= !x.mobile ? @"" : [x.mobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+
         if (x.mobile) {
             [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
         }
@@ -237,17 +237,12 @@
     if (MmberidStr) {
         [self requst];
     }
-  
- 
-//    self.hqjManage = [[HQJLocationManager alloc]init];
-//    [self.hqjManage getLocation];
 }
 
 
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    //    [self.navigationController setNavigationBarHidden:NO animated:animated];
     
 }
 

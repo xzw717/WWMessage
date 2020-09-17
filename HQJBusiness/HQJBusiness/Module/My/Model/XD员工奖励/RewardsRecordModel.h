@@ -72,6 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger curstate;
 @property (nonatomic, strong) NSString *orderNo;
 @property (nonatomic, strong) NSString *note;
+@property (nonatomic, strong) NSString *uname;
+@property (nonatomic, strong) NSString *mobile;
 
 @end
 

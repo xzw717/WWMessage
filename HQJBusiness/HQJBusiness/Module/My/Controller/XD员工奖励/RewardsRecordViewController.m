@@ -30,36 +30,37 @@ static NSString *const totalKey = @"totalKey";
     self.modeAry = [NSMutableArray array];
     [self requst];
 }
+
 - (void)requst {
     [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model, NSError * _Nonnull requstError) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:requstError];
+        [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:@{@"total":model.total ?model.total :@"0",@"score":model.totalScore ? model.totalScore : @"0"}];
         if (!requstError) {
             if (self.page > 1) {
-                            if (model.data.count == 0) {
-                                self.page --;
-                            } else {
-                                [self.modeAry addObjectsFromArray:model.data];
-                            }
-                        } else {
-                            self.modeAry = [model.data mutableCopy];
-
-                        }
+                if (model.data.count == 0) {
+                    self.page --;
+                } else {
+                    [self.modeAry addObjectsFromArray:model.data];
+                }
+            } else {
+                self.modeAry = [model.data mutableCopy];
+                
+            }
         }
-      
-           
-              [self.recordTableView reloadData];
-              [self.recordTableView.mj_header endRefreshing];
-              [self.recordTableView.mj_footer endRefreshing];
+        
+        
+        [self.recordTableView reloadData];
+        [self.recordTableView.mj_header endRefreshing];
+        [self.recordTableView.mj_footer endRefreshing];
     }];
- 
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.modeAry.count;
-
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RewardsRecordChildCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RewardsRecordChildCell class]) forIndexPath:indexPath];
-    cell.cellModel = self.modeAry[indexPath.row];
+    [cell setModelWithModel:self.modeAry[indexPath.row] type:self.typeStr];
     return cell;
     
 }
@@ -101,6 +102,8 @@ static NSString *const totalKey = @"totalKey";
 @interface RewardsRecordViewController ()<UIScrollViewDelegate,SGSegmentedControlStaticDelegate>
 @property (nonatomic, strong) SGSegmentedControlStatic *topSView;
 @property (nonatomic, strong) SGSegmentedControlBottomView *bottomSView;
+@property (nonatomic, strong) RewardsRecordChildVC *sdVC;
+@property (nonatomic, strong) RewardsRecordChildVC *irZHVC;
 /// 总计label
 @property (nonatomic, strong) UILabel *totalLabel;
 @end
@@ -124,15 +127,15 @@ static NSString *const totalKey = @"totalKey";
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)initVC {
-    RewardsRecordChildVC *sdVC = [[RewardsRecordChildVC alloc]init];
-    sdVC.typeStr = @"员工";
-    [self addChildViewController:sdVC];
+    self.sdVC = [[RewardsRecordChildVC alloc]init];
+    self.sdVC.typeStr = self.isMembersRewards ? @"员工" : @"奖励记录";
+    [self addChildViewController:self.sdVC];
     
-    RewardsRecordChildVC *irZHVC = [[RewardsRecordChildVC alloc]init];
-    irZHVC.typeStr = @"商家";
-    [self addChildViewController:irZHVC];
+    self.irZHVC = [[RewardsRecordChildVC alloc]init];
+    self.irZHVC.typeStr = self.isMembersRewards ? @"商家" : @"赠送记录";
+    [self addChildViewController:self.irZHVC];
     
-    NSArray *childVC = @[sdVC, irZHVC];
+    NSArray *childVC = @[self.sdVC, self.irZHVC];
     
     NSArray *title_arr = self.isMembersRewards ? @[@"员工邀请奖励",@"商家邀请奖励"] :@[@"奖励记录",@"赠送记录"];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeTotal:) name:totalKey object:nil];
@@ -156,12 +159,12 @@ static NSString *const totalKey = @"totalKey";
     _topSView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_topSView];
     [self.view addSubview:self.totalLabel];
-//    [self.view bringSubviewToFront:self.editorButton];
-//    [self.view bringSubviewToFront:self.deleteButton];
+    //    [self.view bringSubviewToFront:self.editorButton];
+    //    [self.view bringSubviewToFront:self.deleteButton];
 }
 
-- (void)changeTotal:(NSNotificationCenter *)notifi {
-    self.totalLabel.text = @"    收到了变化通知";
+- (void)changeTotal:(NSNotification *)notifi {
+    self.totalLabel.text = [NSString stringWithFormat:@"    合计：赠送%@积分，总计%@",notifi.userInfo[@"total"],notifi.userInfo[@"score"]];
 }
 
 - (void)SGSegmentedControlStatic:(SGSegmentedControlStatic *)segmentedControlStatic didSelectTitleAtIndex:(NSInteger)index  {
@@ -169,7 +172,14 @@ static NSString *const totalKey = @"totalKey";
     CGFloat offsetX = index * self.view.frame.size.width;
     self.bottomSView.contentOffset = CGPointMake(offsetX, 0);
     [self.bottomSView showChildVCViewWithIndex:index outsideVC:self];
+    if (index == 0) {
+        [self.sdVC requst];
 
+    } else {
+        [self.irZHVC requst];
+
+
+    }
 }
 
 
@@ -186,9 +196,16 @@ static NSString *const totalKey = @"totalKey";
         
         // 2.把对应的标题选中
         [self.topSView changeThePositionOfTheSelectedBtnWithScrollView:scrollView];
-        
+        if (index == 0) {
+             [self.sdVC requst];
+
+         } else {
+             [self.irZHVC requst];
+
+         }
     }
-    
+//    [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:@{@"total":model.total ?model.total :@"0",@"score":model.totalScore ? model.totalScore : @"0"}];
+
 }
 - (UILabel *)totalLabel {
     if (!_totalLabel) {
@@ -196,7 +213,7 @@ static NSString *const totalKey = @"totalKey";
         _totalLabel.backgroundColor = DefaultAPPColor;
         _totalLabel.textColor = [UIColor whiteColor];
         _totalLabel.font = [UIFont systemFontOfSize:14.f];
-        _totalLabel.text = @"    暂无变化";
+        _totalLabel.text = @"    加载中";
     }
     return _totalLabel;
 }

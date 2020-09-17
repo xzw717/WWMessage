@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RewardsRecordSuperModel : NSObject
 @property (nonatomic, strong) NSString *total;
+@property (nonatomic, strong) NSString *totalScore;
 @property (nonatomic, strong) NSArray <RewardsRecordModel *>*data;
 @end
 

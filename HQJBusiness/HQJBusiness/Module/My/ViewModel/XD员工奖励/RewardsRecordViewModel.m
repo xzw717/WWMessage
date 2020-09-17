@@ -12,13 +12,22 @@
 + (void)getAwardWithType:(NSString *)type
                     page:(NSInteger)page
                       completion:(void(^)(RewardsRecordSuperModel *model,NSError *requstError))completion {
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,[type isEqualToString:@"商家"] ?  HQJBGetMerchantAwardtInterface : HQJBGetAllEmployeeAwardListInterface];
-    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"myid":MmberidStr,
-                                                                    [type isEqualToString:@"商家"] ?@"id" : @"sid":MmberidStr,
+    NSString *url ;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:@{@"myid":MmberidStr,
+                                                                   
                                                                     @"hash":HashCode,
                                                                     @"page":@(page),
                                                                     @"pageSize":@(15)
-    } complete:^(NSDictionary *dic) {
+    }];
+    if ([type isEqualToString:@"商家"] || [type isEqualToString:@"员工"]) {
+        url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,[type isEqualToString:@"商家"] ?  HQJBGetMerchantAwardtInterface : HQJBGetAllEmployeeAwardListInterface];
+        [dict setValue:MmberidStr forKey:[type isEqualToString:@"商家"] ?@"id" : @"sid"];
+    } else {
+        url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,[type isEqualToString:@"奖励记录"] ?  HQJBSubAwardListInterface : HQJBMerchnatAwardListInterface];
+        [dict setValue:MmberidStr forKey:@"merchantId"];
+
+    }
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dic) {
         RewardsRecordSuperModel *superModel;
         NSError *er;
           if ([dic[@"code"]integerValue] == 49000) {

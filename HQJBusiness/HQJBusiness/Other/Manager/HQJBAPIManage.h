@@ -270,7 +270,10 @@ extern NSString *const HQJBGetAllEmployeeAwardListInterface;
 extern NSString *const HQJBSetupMultiAwardRateInterface;
 /// 获取商家总奖励的积分
 extern NSString *const HQJBGetMerchantTotalAwardInterface;
-
+/// 子公司奖励商家的积分列表
+extern NSString *const HQJBSubAwardListInterface;
+// 商家奖励会员的积分列表
+extern NSString *const HQJBMerchnatAwardListInterface ;
 /*   支付项目  */
 extern NSString *const HQJBPurchasePayProject;
 /// 购买XD商家
