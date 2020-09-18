@@ -11,6 +11,7 @@
 @interface ScoreGiftView ()<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel  *nameTipLabel;
 @property(nonatomic,strong)UILabel  *numberTipLabel;
+@property(nonatomic,strong)UILabel  *scoreTipLabel;
 @end
 @implementation ScoreGiftView
 - (UILabel *)nameTipLabel{
@@ -30,6 +31,16 @@
         _numberTipLabel.font = [UIFont systemFontOfSize:16];
     }
     return _numberTipLabel;
+}
+- (UILabel *)scoreTipLabel{
+    if (_scoreTipLabel == nil) {
+        _scoreTipLabel = [[UILabel alloc]init];
+        _scoreTipLabel.textColor = [UIColor blackColor];
+        _scoreTipLabel.textAlignment = NSTextAlignmentCenter;
+        _scoreTipLabel.text = @"个";
+        _scoreTipLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _scoreTipLabel;
 }
 - (UITextField *)userNameTextfield {
     if (_userNameTextfield == nil) {
@@ -119,6 +130,7 @@
     if (self) {
         [self addSubview:self.nameTipLabel];
         [self addSubview:self.numberTipLabel];
+        [self addSubview:self.scoreTipLabel];
         [self addSubview:self.userNameTextfield];
         [self addSubview:self.authCodeTextfield];
         [self addSubview:self.scoreNumTextfield];
@@ -151,8 +163,13 @@
     }];
     [self.scoreNumTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.numberTipLabel.mas_bottom).offset(10);
-        make.centerX.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 50));
+        make.left.mas_equalTo(self.userNameTextfield);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2 - 30, 50));
+    }];
+    [self.scoreTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.numberTipLabel.mas_bottom).offset(10);
+        make.right.mas_equalTo(-28);
+        make.size.mas_equalTo(CGSizeMake(20, 50));
     }];
     [self.getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
