@@ -68,7 +68,7 @@ static NSString *const totalKey = @"totalKey";
 - (UITableView *)recordTableView {
     if (!_recordTableView) {
         _recordTableView = [[UITableView alloc]init];
-        _recordTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, HEIGHT - NavigationControllerHeight - 44);
+        _recordTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, HEIGHT - NavigationControllerHeight - 44 - 44);
         _recordTableView.backgroundColor = [ManagerEngine getColor:@"f5f5f5"];
         _recordTableView.delegate = self;
         _recordTableView.dataSource = self;
@@ -139,7 +139,7 @@ static NSString *const totalKey = @"totalKey";
     
     NSArray *title_arr = self.isMembersRewards ? @[@"员工邀请奖励",@"商家邀请奖励"] :@[@"奖励记录",@"赠送记录"];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeTotal:) name:totalKey object:nil];
-    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44 + 44 , WIDTH, HEIGHT - NavigationControllerHeight - 44)];
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44 + 44 , WIDTH, HEIGHT - NavigationControllerHeight - 44 - 44)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];
     _bottomSView.delegate = self;
@@ -164,7 +164,7 @@ static NSString *const totalKey = @"totalKey";
 }
 
 - (void)changeTotal:(NSNotification *)notifi {
-    self.totalLabel.text = [NSString stringWithFormat:@"    合计：赠送%@积分，总计%@",notifi.userInfo[@"total"],notifi.userInfo[@"score"]];
+    self.totalLabel.text = [NSString stringWithFormat:@"    合计：赠送%@积分，总计%@次",notifi.userInfo[@"score"],notifi.userInfo[@"total"]];
 }
 
 - (void)SGSegmentedControlStatic:(SGSegmentedControlStatic *)segmentedControlStatic didSelectTitleAtIndex:(NSInteger)index  {

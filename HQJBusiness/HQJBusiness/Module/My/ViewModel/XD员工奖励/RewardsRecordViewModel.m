@@ -27,6 +27,7 @@
         [dict setValue:MmberidStr forKey:@"merchantId"];
 
     }
+    
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dic) {
         RewardsRecordSuperModel *superModel;
         NSError *er;
