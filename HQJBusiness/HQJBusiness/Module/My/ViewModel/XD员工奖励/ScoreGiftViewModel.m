@@ -103,6 +103,7 @@
                                     @"mobile":mobile,
                                     @"verifyCode":smsCode,
                                     @"amount":score,
+                                    @"orderNo":[NSString stringWithFormat:@"%@%@",MmberidStr,[ManagerEngine currentTimeStr]],
                                     @"hash":HashCode};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parameterDict complete:^(NSDictionary *dic) {
         !completion ? :completion(dic);
