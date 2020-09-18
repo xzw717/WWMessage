@@ -82,6 +82,7 @@
         [x subscribeNext:^(NSDictionary *value) {
             if ([value[@"code"] integerValue] == 49000) {
                 [SVProgressHUD showSuccessWithStatus:value[@"msg"]];
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [SVProgressHUD showErrorWithStatus:value[@"msg"]];
             }
