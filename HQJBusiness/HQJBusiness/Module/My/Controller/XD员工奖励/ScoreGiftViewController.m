@@ -81,6 +81,7 @@
         @strongify(self);
         [x subscribeNext:^(NSDictionary *value) {
             if ([value[@"code"] integerValue] == 49000) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changScore" object:nil];
                 [SVProgressHUD showSuccessWithStatus:value[@"msg"]];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{

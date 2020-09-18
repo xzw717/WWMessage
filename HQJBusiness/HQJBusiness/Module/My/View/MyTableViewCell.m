@@ -38,7 +38,7 @@
         
         
         [RACObserve(self, model)subscribeNext:^(MyModel *model) {
-            if ([NameSingle shareInstance].peugeotid == 6) {
+            if ([Peugeotid integerValue] == 6) {
                 [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.width.mas_equalTo(WIDTH / 4);
                 }];
@@ -185,10 +185,10 @@
 //}
 - (void)setViewFrame {
     
-    CGFloat oneLabelWith = [NameSingle shareInstance].peugeotid == 6 ? WIDTH / 4 : 0;
-    CGFloat labelWith = [NameSingle shareInstance].peugeotid == 6 ? WIDTH / 4 : WIDTH /3;
+    CGFloat oneLabelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : 0;
+    CGFloat labelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : WIDTH /3;
     
-    self.moreLabel.hidden = self.linkView.hidden =  [NameSingle shareInstance].peugeotid == 6 ? NO : YES;
+    self.moreLabel.hidden = self.linkView.hidden =  [Peugeotid integerValue] == 6 ? NO : YES;
     
     [self.moreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);

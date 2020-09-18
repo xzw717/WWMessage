@@ -109,6 +109,7 @@
     }
     if (indexPath.row == 3) {
         RewardsRecordViewController *rewardsRecordVC = [[RewardsRecordViewController alloc]init];
+        rewardsRecordVC.isMembersRewards = YES;
         [self.navigationController pushViewController:rewardsRecordVC animated:YES];
     }
     if (indexPath.row == 4) {

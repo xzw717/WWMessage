@@ -142,7 +142,7 @@
         MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MyTableViewCell class]) forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setModel:_model];
-        if ([NameSingle shareInstance].peugeotid == 6) {
+        if ([Peugeotid integerValue] == 6) {
             cell.cellReward = self.reward;
         }
         return cell;
@@ -308,6 +308,7 @@
             }
             
         }];
+        [self.myTableView reloadData];
     }];
     [_viewModel setMyrequstErrorBlock:^{
         @strongify(self);

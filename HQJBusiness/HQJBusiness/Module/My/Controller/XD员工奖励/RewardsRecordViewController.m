@@ -10,6 +10,7 @@
 #import "RewardsRecordSuperModel.h"
 
 static NSString *const totalKey = @"totalKey";
+static NSString *const totalHeightKey = @"totalHeightKey";
 
 #pragma mark --- 子控制器
 @interface RewardsRecordChildVC: UIViewController
@@ -29,8 +30,17 @@ static NSString *const totalKey = @"totalKey";
     self.page = 1;
     self.modeAry = [NSMutableArray array];
     [self requst];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeFrame:) name:totalHeightKey object:nil];
 }
+- (void)changeFrame:(NSNotification *)notifi {
+    if ([notifi.userInfo[@"totalLabelHidden"] boolValue]) {
+        _recordTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, HEIGHT - NavigationControllerHeight - 44);
 
+    } else {
+        _recordTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, HEIGHT - NavigationControllerHeight - 44 - 44);
+
+    }
+}
 - (void)requst {
     [RewardsRecordViewModel getAwardWithType:self.typeStr page:self.page completion:^(RewardsRecordSuperModel * _Nonnull model, NSError * _Nonnull requstError) {
         [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:@{@"total":model.total ?model.total :@"0",@"score":model.totalScore ? model.totalScore : @"0"}];
@@ -121,6 +131,12 @@ static NSString *const totalKey = @"totalKey";
     [rightBtn addTarget:self action:@selector(scoreGiftClicked) forControlEvents:UIControlEventTouchUpInside];
     rightBtn.hidden = self.isMembersRewards ;
     [self initVC];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeGiftRequst:) name:@"changScore" object:nil];
+
+}
+
+- (void)changeGiftRequst:(NSNotification *)notifi {
+    [self.irZHVC requst];
 }
 - (void)scoreGiftClicked{
     ScoreGiftViewController *vc = [[ScoreGiftViewController alloc]init];
@@ -164,7 +180,7 @@ static NSString *const totalKey = @"totalKey";
 }
 
 - (void)changeTotal:(NSNotification *)notifi {
-    self.totalLabel.text = [NSString stringWithFormat:@"    合计：赠送%@积分，总计%@次",notifi.userInfo[@"score"],notifi.userInfo[@"total"]];
+    self.totalLabel.text = [NSString stringWithFormat:@"    合计：赠送%.5f积分，总计%@次",[notifi.userInfo[@"score"] doubleValue] ,notifi.userInfo[@"total"]];
 }
 
 - (void)SGSegmentedControlStatic:(SGSegmentedControlStatic *)segmentedControlStatic didSelectTitleAtIndex:(NSInteger)index  {
@@ -172,13 +188,13 @@ static NSString *const totalKey = @"totalKey";
     CGFloat offsetX = index * self.view.frame.size.width;
     self.bottomSView.contentOffset = CGPointMake(offsetX, 0);
     [self.bottomSView showChildVCViewWithIndex:index outsideVC:self];
+    [self setTitLeLabelWithHidden:!index];
+    
     if (index == 0) {
         [self.sdVC requst];
-
     } else {
         [self.irZHVC requst];
-
-
+        
     }
 }
 
@@ -196,17 +212,29 @@ static NSString *const totalKey = @"totalKey";
         
         // 2.把对应的标题选中
         [self.topSView changeThePositionOfTheSelectedBtnWithScrollView:scrollView];
+        [self setTitLeLabelWithHidden:!index];
         if (index == 0) {
-             [self.sdVC requst];
-
-         } else {
-             [self.irZHVC requst];
-
-         }
+            [self.sdVC requst];
+        } else {
+            [self.irZHVC requst];
+        }
     }
-//    [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:@{@"total":model.total ?model.total :@"0",@"score":model.totalScore ? model.totalScore : @"0"}];
-
+    //    [[NSNotificationCenter defaultCenter]postNotificationName:totalKey object:nil userInfo:@{@"total":model.total ?model.total :@"0",@"score":model.totalScore ? model.totalScore : @"0"}];
+    
 }
+
+- (void)setTitLeLabelWithHidden:(BOOL)hidden {
+    [[NSNotificationCenter defaultCenter]postNotificationName:totalHeightKey object:nil userInfo:@{@"totalLabelHidden":@(hidden)}];
+    if (hidden) {
+        self.totalLabel.hidden = YES;
+        self.bottomSView.frame = CGRectMake(0, NavigationControllerHeight + 44 , WIDTH, HEIGHT - NavigationControllerHeight - 44);
+    } else {
+        self.totalLabel.hidden = NO;
+        self.bottomSView.frame = CGRectMake(0, NavigationControllerHeight + 44 + 44  , WIDTH, HEIGHT - NavigationControllerHeight - 44 - 44);
+
+    }
+}
+
 - (UILabel *)totalLabel {
     if (!_totalLabel) {
         _totalLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, NavigationControllerHeight + 44, WIDTH, 44)];
