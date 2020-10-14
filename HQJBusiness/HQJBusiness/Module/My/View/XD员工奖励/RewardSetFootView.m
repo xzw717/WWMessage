@@ -46,7 +46,7 @@
         _remindLabel.textColor = [ManagerEngine getColor:@"666666"];
         _remindLabel.numberOfLines = 0;
         _remindLabel.textAlignment = NSTextAlignmentLeft;
-        _remindLabel.text = @"注意：\n1.员工奖励来源与平台奖励；\n2.员工奖励最大设置100%，不足100%的，剩余部分归商家所有；\n3.当员工注册的会员消费时才可获取奖励；\n4。奖励金额与会员消费商家直接相关，不同商家消费奖励不同";
+        _remindLabel.text = @"注意：\n1.员工奖励来源于平台奖励；\n2.员工奖励最大设置100%，不足100%的，剩余部分归商家所有；\n3.当员工注册的会员消费时才可获取奖励；\n4。奖励金额与会员消费商家直接相关，不同商家消费奖励不同";
     }
     return _remindLabel;
 }

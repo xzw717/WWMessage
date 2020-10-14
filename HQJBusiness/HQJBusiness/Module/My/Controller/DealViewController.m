@@ -28,8 +28,8 @@
         _dealTableView.dataSource = self;
         
         _dealTableView.scrollEnabled = NO;
-//        [_dealTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-    
+        //        [_dealTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        
         UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 30)];
         footerView.backgroundColor = DefaultBackgroundColor;
         
@@ -51,18 +51,25 @@
                               @"积分兑现",
                               @"现金提现"],
                             @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
-
+            
         } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
             _titleArray = @[@[@"现金销售",
                               @"现金提现"],
                             @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
         } else {
-            _titleArray = @[@[@"现金提现"]];
+            if ([NameSingle shareInstance].peugeotid == 6) {
+                _titleArray = @[@[@"现金销售",
+                                  @"现金提现"],
+                                  @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
+                
+            } else {
+                _titleArray = @[@[@"现金提现"]];
+                
+            }
         }
-           }
+    }
     return _titleArray;
 }
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     
@@ -90,14 +97,14 @@
             return arrys.count;
             
         }
-
+        
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
     static NSString *cellID = @"cellid";
-   
+    
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if ( cell == nil ) {
@@ -107,7 +114,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
-   
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,7 +129,7 @@
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 0 && indexPath.row == 2){
             NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
-//            BVC.ViewControllerTitle = @"现金提现";
+            //            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 1 && indexPath.row == 0){
             
@@ -139,7 +146,7 @@
             
             
         }
-
+        
         
     } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
@@ -147,7 +154,7 @@
             [self.navigationController pushViewController:CVC animated:YES];
         } else if (indexPath.section == 0 && indexPath.row == 1) {
             NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
-//            BVC.ViewControllerTitle = @"现金提现";
+            //            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 1 && indexPath.row == 0){
             
@@ -164,15 +171,41 @@
             
             
         }
-
+        
     } else {
-        if (indexPath.section == 0 && indexPath.row == 0) {
-            NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
-            [self.navigationController pushViewController:BVC animated:YES];
+        if ([NameSingle shareInstance].peugeotid == 6) {
+            if (indexPath.section == 0 && indexPath.row == 0) {
+                CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
+                [self.navigationController pushViewController:CVC animated:YES];
+            } else if (indexPath.section == 0 && indexPath.row == 1) {
+                NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
+                //            BVC.ViewControllerTitle = @"现金提现";
+                [self.navigationController pushViewController:BVC animated:YES];
+            } else if (indexPath.section == 1 && indexPath.row == 0){
+                
+                
+                BuyZHViewController *buyVC = [[BuyZHViewController alloc]init];
+                [self.navigationController pushViewController:buyVC animated:YES];
+                
+                
+            } else {
+                
+                SetZHViewController *SVC = [[SetZHViewController alloc]init];
+                
+                [self.navigationController pushViewController:SVC animated:YES];
+                
+                
+            }
             
             
             
+        } else {
+            if (indexPath.section == 0 && indexPath.row == 0) {
+                NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
+                [self.navigationController pushViewController:BVC animated:YES];
+            }
         }
+      
     }
     
     
@@ -180,7 +213,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -191,13 +224,13 @@
     self.zw_title = @"交易";
     self.view.backgroundColor = DefaultBackgroundColor;
     [self.dealTableView reloadData];
-
+    
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
-
-
+    
+    
+    
 }
 //-(BOOL)backOnAnInterface {
 //   return  [super backOnAnInterface];
@@ -209,13 +242,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

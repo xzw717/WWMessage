@@ -207,7 +207,8 @@ extern NSString *const HQJBBuinessSignInterface;
 /// H5 企业基础信息
 extern NSString *const HQJBXdshopmsgInterface;
 
-
+/// XD合同下载
+extern NSString *const HQJBDownloadPactInterface;
 /*_____________________________ XD商家奖励 接口________________________________________*/
 /// 商家奖励项目
 extern NSString *const HQJBXdMerchantProject ;

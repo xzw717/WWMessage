@@ -32,8 +32,8 @@ NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
-/// XD合同下载
-NSString *const HQJBXDDownloadPactDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/downloadPact";
+/// H5域名
+NSString *const HQJBXDDownloadPactDomain = @"http://28ko268520.qicp.vip/";
 
 
 
@@ -72,8 +72,8 @@ NSString *const WWMLiveDomain = @"http://47.98.45.218/";
 NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
-/// XD合同下载
-NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/downloadPact";
+/// H5域名
+NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
 
 /// 商家奖励
 NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
@@ -217,7 +217,7 @@ NSString *const HQJBMerchantSettlementSgreementInterface = @"shopH5/register/#/r
 /// 头条
 NSString *const HQJBHeadlinesInterface = @"appH5/#/shopH5";
 /// 已经签合同
-NSString *const HQJBDownloadUpdateInterface = @"downloadUpdate";
+NSString *const HQJBDownloadUpdateInterface = @"shopappH5/index.html#/downloadUpdate";
 
 ///自主入驻
 /// 商家查看合同列表
@@ -267,6 +267,11 @@ NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.actio
 NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
 /// H5 企业基础信息
 NSString *const HQJBXdshopmsgInterface = @"xdshopmsg";
+
+
+
+/// XD合同下载
+NSString *const HQJBDownloadPactInterface = @"shopappH5/index.html#/downloadPact";
 
 /*_____________________________ XD商家奖励 接口________________________________________*/
 
