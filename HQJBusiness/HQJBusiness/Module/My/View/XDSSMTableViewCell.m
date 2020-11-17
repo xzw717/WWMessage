@@ -188,7 +188,7 @@
         [_payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _payButton.layer.masksToBounds = YES;
         _payButton.layer.cornerRadius = NewProportion(42);
-        [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
+        [_payButton setTitle:[NSString stringWithFormat:@"去支付%@",TrainingVersion] forState:UIControlStateNormal];
         _payButton.hidden = YES;
         [_payButton addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
     }

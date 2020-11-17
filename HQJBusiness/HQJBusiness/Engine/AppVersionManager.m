@@ -40,7 +40,7 @@ static  NSInteger const kAPPType = 3;
 
 -(void)isUpdataApp {
     
-    NSString *appURLStr = [NSString stringWithFormat:@"%@app/iosNewestVersion.action?type=%ld",UpdataApp_URL,(long)kAPPType];
+    NSString *appURLStr = [NSString stringWithFormat:@"%@app/iosNewestVersion.action?type=%ld",HQJBUpdataAPPDomainName,(long)kAPPType];
     
     // 请求APP版本信息
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:appURLStr complete:^(NSDictionary *dic) {

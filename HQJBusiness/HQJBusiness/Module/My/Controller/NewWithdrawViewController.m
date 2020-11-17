@@ -270,7 +270,7 @@
                                    
                                }];
                            } else {
-                               [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                               [ManagerEngine dimssLoadView:self.submitBtn andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
                                //SVProgressHUD
                                [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
                            }
@@ -344,12 +344,12 @@
     [[self.submitBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
         if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
-            [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+            [ManagerEngine dimssLoadView:self.submitBtn andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
             [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
         } else {
             if ([self.selectBankTextField.text isEqualToString:@""]) {
                 [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
-                [ManagerEngine dimssLoadView:self.submitBtn andtitle:@"提交"];
+                [ManagerEngine dimssLoadView:self.submitBtn andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
                 
             } else {
                 [self requstSubmit];
@@ -483,7 +483,7 @@
         _submitBtn.layer.cornerRadius = 65 / 3.f;
         _submitBtn.frame = CGRectMake(70 / 3, HEIGHT - 240 / 3, WIDTH - 70 * 2 / 3, 130 / 3);
         _submitBtn.backgroundColor = [ManagerEngine getColor:@"20a0ff"];
-        [_submitBtn setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitBtn setTitle:[NSString stringWithFormat:@"提交%@",TrainingVersion] forState:UIControlStateNormal];
         [_submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _submitBtn.titleLabel.font = [UIFont systemFontOfSize:55 / 3.f];
     }

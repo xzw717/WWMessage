@@ -34,6 +34,8 @@
             [NameSingle shareInstance].subCompanyName = dic[@"result"][@"subCompanyName"];// --- 单例存子公司名字
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
             [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"isComplete"]integerValue] forKey:@"isComplete"];
+            [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"typeid"]integerValue] forKey:@"typeid"];
+
             [self getshopidWithMemberid:MmberidStr completion:^(NSString *shopid) {
                 if (self.myrequstBlock) {
                     self.myrequstBlock(model);

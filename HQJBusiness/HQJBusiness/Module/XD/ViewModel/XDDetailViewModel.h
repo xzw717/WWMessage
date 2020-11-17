@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XDPayModel.h"
+#import "XDModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDDetailViewModel : NSObject

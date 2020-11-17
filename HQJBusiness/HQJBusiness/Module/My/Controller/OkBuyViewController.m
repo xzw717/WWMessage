@@ -166,7 +166,7 @@
     
     self.nextButton.backgroundColor = DefaultAPPColor;
     
-    [self.nextButton setTitle:@"确认支付" forState:UIControlStateNormal];
+    [self.nextButton setTitle:[NSString stringWithFormat:@"确认支付%@",TrainingVersion] forState:UIControlStateNormal];
     
 //    self.nextButton.enabled = NO;
     
@@ -195,7 +195,7 @@
 -(void)nextBtn {
     @WeakObj(self);
 
-    [ManagerEngine dimssLoadView:self.nextButton andtitle:@"确认支付"];
+    [ManagerEngine dimssLoadView:self.nextButton andtitle:[NSString stringWithFormat:@"确认支付%@",TrainingVersion]];
     if([self.payModeLabel.text isEqualToString:@"积分支付,"]){
         if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
             if ([_numerStr doubleValue] * 4 > self.model.score.score) {

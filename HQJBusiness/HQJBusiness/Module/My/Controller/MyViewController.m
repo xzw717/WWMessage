@@ -229,7 +229,7 @@
         NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
 
         if (x.mobile) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,x.role] andisNav:YES andColor:DefaultAPPColor];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:x.role]] andisNav:YES andColor:DefaultAPPColor];
         }
         
         
@@ -238,7 +238,86 @@
         [self requst];
     }
 }
+- (NSString *)setShopTitle:(NSString *)title {
+    NSString *name;
+    if ([title containsString:@"共同体"]) {
+        title = @"共同体";
+    } else {
+        title = [title substringToIndex:2];
+    }
+    
+    if ([Ttypeid integerValue] == 113) {
+        name = @"XD";
+        
+    } else {
+        /// ;//XD企业类型 0非XD企业 1.标识企业 2.异盟企业 3.标杆企业 4.兄弟企业 5.生态企业 6.XD商家
+        NSArray * ary = @[@"",@"标识",@"异盟",@"标杆",@"兄弟",@"生态",@"XD"];
+        NSInteger titleTag = [NameSingle shareInstance].peugeotid;
+        titleTag = titleTag >6 || titleTag < 0 ? 0 : titleTag;
+            
+        if (titleTag == 0) {
+                name = [NSString stringWithFormat:@"%@",title];
 
+
+            
+        } else {
+            
+            name = [NSString stringWithFormat:@"%@·%@",title,ary[titleTag]];
+
+            
+        }
+
+//        switch ([NameSingle shareInstance].peugeotid) {
+//            case 0:
+//            {
+//                name = [NSString stringWithFormat:@"%@",title];
+//
+//            }
+//                break;
+//            case 1:
+//            {
+//                name = [NSString stringWithFormat:@"标识·%@",title];
+//
+//            }
+//                break;
+//            case 2:
+//            {
+//                name = [NSString stringWithFormat:@"异盟·%@",title];
+//
+//            }
+//                break;
+//            case 3:
+//            {
+//                name = [NSString stringWithFormat:@"标杆·%@",title];
+//
+//            }
+//                break;
+//            case 4:
+//            {
+//                name = [NSString stringWithFormat:@"兄弟·%@",title];
+//
+//            }
+//                break;
+//            case 5:
+//            {
+//                name = [NSString stringWithFormat:@"生态·%@",title];
+//
+//            }
+//                break;
+//            case 6:
+//            {
+//                name = [NSString stringWithFormat:@"XD·%@",title];
+//            }
+//
+//                break;
+//            default:
+//                break;
+//        }
+
+        
+    }
+    return  name;
+}
 
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -294,6 +373,7 @@
         }
         [MyViewModel getXdShopAuditWithCompletion:^(NSDictionary *dict) {
             [NameSingle shareInstance].peugeotid  = [dict[@"peugeotid"] integerValue];
+            self.model = self.model;
             if ([dict[@"peugeotid"] integerValue] == 6) {
                 [MyViewModel getMerchantTotalAward:^(NSString *award) {
                     self.reward = award;

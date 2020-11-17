@@ -27,7 +27,7 @@
 #import <AdSupport/AdSupport.h>
 #import "RewardSetViewController.h"
 #import "UMShareManager.h"
-
+#import "MyShopViewController.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
@@ -57,7 +57,7 @@
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //
-//    RewardSetViewController *loginVC =[[RewardSetViewController alloc]init];
+//    MyShopViewController *loginVC =[[MyShopViewController alloc]init];
 //       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
 //       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //       delegate.window.rootViewController = Nav;
@@ -67,8 +67,8 @@
         [self goLogin];
 
     } else {
-        delegate.window.rootViewController = [ZWTabBarViewController  new];
-//        delegate.window.rootViewController = [PushViewController  new];
+//        delegate.window.rootViewController = [ZWTabBarViewController  new];
+        delegate.window.rootViewController = [[MyShopViewController  alloc]initWithShopid:@"a26488e7-2db8-4e61-bccf-14cd592e0aef"];
 
     }
     [self initializeAutoValue];

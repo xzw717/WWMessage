@@ -53,10 +53,12 @@
                                                                @"icon_Productrelease",
                                                                @"icon_Employeemanagement"]];
     } else {
-        self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
-                                                               @"合同管理",
-                                                               @"升级管理",
-                                                               @"商品发布"]];
+        self.cellTitleArray = [NSMutableArray arrayWithArray:[Ttypeid integerValue] == 113 ? @[@"基本信息",
+                  @"合同管理",
+                  @"商品发布"] : @[@"基本信息",
+                                @"合同管理",
+                                @"升级管理",
+                                @"商品发布"]];
 
         self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
                                                                @"icon_contractmanagement",

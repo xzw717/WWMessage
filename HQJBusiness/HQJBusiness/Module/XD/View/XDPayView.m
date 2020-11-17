@@ -87,7 +87,7 @@
         _payButton.backgroundColor = DefaultAPPColor;
         _payButton.layer.masksToBounds = YES;
         _payButton.layer.cornerRadius = 115/6;
-        [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
+        [_payButton setTitle:[NSString stringWithFormat:@"去支付%@",TrainingVersion] forState:UIControlStateNormal];
         [_payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _payButton.titleLabel.font = [UIFont systemFontOfSize:48/3];
         [self addSubview:_payButton];

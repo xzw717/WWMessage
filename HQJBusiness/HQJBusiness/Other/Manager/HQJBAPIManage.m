@@ -11,6 +11,7 @@
 #ifdef DEBUG  //测试阶段
 
 
+#pragma mark --- 测试使用的域名
 NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
@@ -36,26 +37,39 @@ NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/in
 NSString *const HQJBXDDownloadPactDomain = @"http://28ko268520.qicp.vip/";
 
 
+#pragma mark ---培训使用的域名
+
+//NSString *const HQJBDomainName = @"http://shop.wuwuditu.cn/";
+//NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.cn/";
+//NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.cn/";
+//NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
+//NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
+//NSString *const HQJBBonusDomainName = @"http://www.wuwuditu.cn/";
+//NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.cn/";
+///// 台卡域名   XD 商家奖励通用
+////NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+///// 优惠券
+//NSString *const WWMCouponDomain = @"http://h5.wuwuditu.cn/";
+//
+///// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
+//NSString *const HQJBH5UpDataDomain = @"http://h5.wuwuditu.cn/";
+///// 商家奖励
+////NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+//
+///// XDH5域名
+////NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
+///// H5域名
+//NSString *const HQJBXDDownloadPactDomain = @"http://h5.wuwuditu.cn/";
 
 
-//1.企业基础信息
-//测试：
-//http://28ko268520.qicp.vip/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&t
-//ype=xxx&peugeotid=xxx
-//正式：
-//http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?shopid=xxx&mobile=xxx&
-//type=xxx&peugeotid=xxx
-//2.合同查看下载
-//测试：
-//http://28ko268520.qicp.vip/shopappH5/index.html#/downloadPact?docId=xxx
-//正式：
-//http://statics.wuwuditu.com/shopappH5/index.html#/downloadPact?docId=xxx
+
+
 #else         //发布阶段
 
 NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
 NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.com/";
 NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
-NSString *const HQJBUpdataAPPDomainName = @"http://app.heqijia.net/app/";
+NSString *const HQJBUpdataAPPDomainName = @"http://app.wuwuditu.cn/";
 NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/";
 /// 优惠券
@@ -65,18 +79,17 @@ NSString *const WWMCouponDomain = @"http://statics.wuwuditu.com/";
 NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.com/";
 
 
-NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
-/// 直播域名
-NSString *const WWMLiveDomain = @"http://47.98.45.218/";
+//NSString *const HQJBBonusDomainDeccaName = @"http://interface.ww1000.cn:8080/";
+
 /// 商家注册 . 商家升级. 已经签合同 域名
-NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/shopappH5/index.html#/";
+NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/";
 /// XDH5域名
-NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
+//NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 /// H5域名
 NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
 
 /// 商家奖励
-NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+//NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 #endif
 
 
@@ -209,7 +222,7 @@ NSString *const HQJBRegistrationInformationCompletedInterface = @"goaudit";
 /// 升级/升级失败修改信息
 NSString *const HQJBUpgradeUnsuccessfulInterface = @"upgrade";
 /// 升级规则
-NSString *const HQJBUpgradeRuleInterface = @"upgradeAgreement";
+NSString *const HQJBUpgradeRuleInterface = @"shopappH5/index.html#/upgradeAgreement";
 /// 发布规范
 NSString *const HQJBReleaseSpecificationInterface = @"shopH5/register/#/publishAgreement";
 /// 商家入驻协议
@@ -223,9 +236,9 @@ NSString *const HQJBDownloadUpdateInterface = @"shopappH5/index.html#/downloadUp
 /// 商家查看合同列表
 NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action";
 /// 入驻协议
-NSString *const HQJBRegisterAgreementListInterface = @"registerAgreement";
+NSString *const HQJBRegisterAgreementListInterface = @"shopappH5/index.html#/registerAgreement";
 ///商家注册完成后跳转的H5
-NSString *const HQJBNewstoreListInterface = @"newstore";
+NSString *const HQJBNewstoreListInterface = @"shopappH5/index.html#/newstore";
 
 /// 根据城市名获取地区列表
 NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
@@ -266,7 +279,7 @@ NSString *const HQJBGetOrderInfoByIdInterface = @"xdorder/getOrderInfoById.actio
 ///查询XD商家企业基础信息
 NSString *const HQJBBuinessSignInterface =@"buinessSign/retrunBussiness.action";
 /// H5 企业基础信息
-NSString *const HQJBXdshopmsgInterface = @"xdshopmsg";
+NSString *const HQJBXdshopmsgInterface = @"shopappH5/index.html#/xdshopmsg";
 
 
 

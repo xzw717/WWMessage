@@ -66,7 +66,7 @@
 }
 + (void)requestCouponTypeWithid:(NSString *)customerID
                               complete:(void(^)(NSString *couponType))complete {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainDeccaName,HQJBGetCouponByIdInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetCouponByIdInterface];
     NSDictionary *dict = @{@"couponId":customerID,
                            @"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {

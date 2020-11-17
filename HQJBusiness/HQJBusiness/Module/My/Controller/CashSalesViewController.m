@@ -143,7 +143,7 @@
         _submitButton.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
         _submitButton.layer.masksToBounds = YES;
         _submitButton.layer.cornerRadius = 5 ;
-        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitButton setTitle:[NSString stringWithFormat:@"提交%@",TrainingVersion] forState:UIControlStateNormal];
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _submitButton.timeInterval = 2.0;
         [self.view addSubview:_submitButton];
@@ -294,13 +294,13 @@
         [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.frame.size.width/2, self.submitButton.frame.size.height/2)];
         
         if ([self.payFigureTextField.text doubleValue] < 0 ) {
-            [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+            [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
             [SVProgressHUD showErrorWithStatus:@"付款金额要大于 0"];
         } else {
             if (_model.memberid) {
                  [self submitRequst];
             } else {
-                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
                 [SVProgressHUD showErrorWithStatus:@"请检查支付方手机号"];
 
             }
@@ -455,12 +455,12 @@
         if ([sender isEqualToString:@"操作成功"]) {
             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
             [ManagerEngine SVPAfter:@"提交成功" complete:^{
-                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+            [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
 
             [SVProgressHUD showErrorWithStatus:sender];
         }

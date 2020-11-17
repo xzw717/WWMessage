@@ -435,7 +435,9 @@
     
     
 //    NSString *urlStr = [NSString stringWithFormat:@"%@%@?mobile=%@&membertype=1&realname=%@",HQJBBonusDomainName,@"/merchant/getSMS",[NameSingle shareInstance].mobile,[NameSingle shareInstance].name];
-    NSDictionary *dict = @{@"mobile":[NameSingle shareInstance].mobile,@"membertype":@1,@"realname":self.nameTextField.text};
+    NSDictionary *dict = @{@"mobile":[NameSingle shareInstance].mobile,
+                           @"membertype":@1,
+                           @"realname":self.nameTextField.text};
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetSMSInterface];
 //    HQJLog(@"------%@",dict[@"realname"]);
     @weakify(self);

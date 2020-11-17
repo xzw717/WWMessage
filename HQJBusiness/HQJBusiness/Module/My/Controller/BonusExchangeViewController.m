@@ -134,7 +134,7 @@
         _submitButton.backgroundColor = [ManagerEngine getColor:@"7fd4ff"];
         _submitButton.layer.masksToBounds = YES;
         _submitButton.layer.cornerRadius = 5 ;
-        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitButton setTitle:[NSString stringWithFormat:@"提交%@",TrainingVersion] forState:UIControlStateNormal];
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.view addSubview:_submitButton];
     }
@@ -360,12 +360,12 @@
 //        [ManagerEngine loadDateView:self.submitButton andPoint:CGPointMake(self.submitButton.frame.size.width/2, self.submitButton.frame.size.height/2)];
         
         if ([self.BonusNumerTextField.text doubleValue] < 0 ) {
-            [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+            [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
             [SVProgressHUD showErrorWithStatus:@"数额要大于 0"];
         } else {
             if ([self.selectBankTextField.text isEqualToString:@""]) {
                  [SVProgressHUD showErrorWithStatus:@"还没选择银行卡"];
-                [ManagerEngine dimssLoadView:self.submitButton andtitle:@"提交"];
+                [ManagerEngine dimssLoadView:self.submitButton andtitle:[NSString stringWithFormat:@"提交%@",TrainingVersion]];
 
             } else {
                 [self requstSubmit];

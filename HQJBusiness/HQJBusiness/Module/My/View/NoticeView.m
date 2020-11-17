@@ -80,8 +80,6 @@
         textColor= [UIColor whiteColor];
         font = [UIFont systemFontOfSize:18.0];
         
-        self.NewTitleLabel.font = [UIFont systemFontOfSize:18.0];
-//        labelY = (NavigationControllerHeight - 20.0) / 2.0 + 10.0 ;
         labelY = NavigationControllerHeight - 15.f - 18.f;
         self.titleLabel.text = titleStr;
 
@@ -103,11 +101,10 @@
     _timerIntrger = titleStr.length/3;
     if (titleWidth + kEDGE * 2 > WIDTH) {    //  --- 字数超过屏幕
         self.titleLabel.frame = CGRectMake(kEDGE , labelY, titleWidth, 20);
-        self.NewTitleLabel.frame =CGRectMake(self.titleLabel.frame.origin.x + titleWidth + kEDGE, self.titleLabel.frame.origin.y, titleWidth, 20);
+        self.NewTitleLabel.frame =CGRectMake(self.titleLabel.frame.origin.x + titleWidth + kEDGE, self.titleLabel.frame.origin.y , titleWidth, 20);
         self.NewTitleLabel.text = titleStr;
         _timer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(animationStar) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
-        [self animationStar];
         
     } else {                           //   --
          self.titleLabel.frame = CGRectMake((WIDTH - kEDGE * 2 - titleWidth)/2 + kEDGE, labelY, titleWidth, 20);
@@ -166,7 +163,7 @@
     [UIView animateWithDuration:_timerIntrger delay:3.0 options:UIViewAnimationOptionCurveLinear animations:^{
         
         self.titleLabel.frame = CGRectMake(-self.titleLabel.frame.size.width, self.titleLabel.frame.origin.y, self.titleLabel.frame.size.width, 20);
-        self.NewTitleLabel.frame = CGRectMake(15, self.NewTitleLabel.frame.origin.y, self.NewTitleLabel.frame.size.width, 20);
+        self.NewTitleLabel.frame = CGRectMake(15, self.titleLabel.frame.origin.y, self.NewTitleLabel.frame.size.width, 20);
         
     } completion:^(BOOL finished) {
         self.titleLabel.frame = titleFrame ;

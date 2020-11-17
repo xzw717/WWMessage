@@ -10,7 +10,9 @@
 #import "HintView.h"
 #import "HQJWebViewController.h"
 #import "HQJLocationManager.h"
-//#import ""
+#import "XDDetailViewModel.h"
+#import "XDPayViewController.h"
+
 #define TopSpace 40/3.f
 
 @interface MyShopViewController ()
@@ -47,6 +49,12 @@
 @property (nonatomic, assign) CGFloat latitude ;
 /// 经度
 @property (nonatomic, assign) CGFloat longitude ;
+@property (nonatomic,strong) XDModel *model;
+@property (nonatomic,strong) NSDictionary *resultDict;
+
+/// XD 商家独立入驻
+@property (nonatomic, assign) CGFloat roleValue;
+
 @end
 
 @implementation MyShopViewController
@@ -225,7 +233,11 @@
 }
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
+    if (self.roleValue == 7) {
+        [self handleXDState];
 
+    } else {
+  
     HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
           pvc.zwNavView.hidden = YES;
           if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
@@ -257,7 +269,8 @@
           }
           [self.navigationController pushViewController:pvc animated:YES];
 
-    
+        
+    }
 }
 #pragma click method
 
@@ -287,6 +300,7 @@
        self.longitude = lon;
      
    }];
+   
     
 }
 - (instancetype)initWithShopid:(NSString *)shopid {
@@ -295,6 +309,166 @@
         self.shopidString = shopid;
     }
     return self;
+}
+/// XD 商家独立入驻
+- (void)requstXD {
+    [XDDetailViewModel getXDShopState:Shopid andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
+        self.resultDict = dict;
+        self.stateValueLabel.text = [self getButtonString];
+    }];
+}
+- (void)handleXDState{
+    
+    //1生成订单
+    //2代付款
+    //3付款成功(生成第一份合同)
+    //4第一份合同待签署(去签属合同)
+    //5第-份合同签署成功(去生成第二-份合同)
+    //6第一份合同签署失败(跳3)
+    //7待签署(去签署第二份合同)
+    //8签署成功(等待待审核)
+    //9签署失败(跳5 )
+    //10审核成功
+    //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
+    
+    if (self.resultDict) {
+        switch ([self.resultDict[@"state"] integerValue]) {
+            case -1://-1 不可用
+                [SVProgressHUD showErrorWithStatus:@"当前状态暂不支持申请"];
+                break;
+                
+            case 0://0 信息未完善
+                //跳转信息填写H5页
+                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+//                http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg
+                break;
+                
+            case 3://1 付款成功，去生成第一份合同
+            case 6://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
+                //去生成第一份合同
+                [self createContract:1];
+                break;
+                
+            case 4://2 第一份合同未签署，去签署第一份合同
+            case 7://7 第二份合同未签署，去签署第二份合同
+                //跳转H5去签署合同
+                [self jumpH5:self.resultDict[@"data"]];
+                break;
+                
+            case 1://3 第一份合同签署完成，去生成订单
+                [self createOreder];
+                break;
+                
+            case 2://5 订单已生成，待付款，跳支付页准备付款
+                //跳转支付页
+                [self jumpPay];
+                
+                break;
+                
+            case 5://第1份合同签署成功(去生成第2份合同)
+            case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤5）
+                //去生成第二份合同
+                [self createContract:2];
+                break;
+                
+            case 8://8 第二份合同签署完成，等待审核
+                [SVProgressHUD showSuccessWithStatus:@"等待审核"];
+                break;
+                
+            case 10://10 审核成功，流程结束
+                break;
+                
+            case 11://11 审核失败，修改信息
+                [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
+                    // 跳转信息填写H5页
+                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                }];
+                
+                break;
+        }
+    }
+    
+}
+- (void)jumpH5:(NSString *)url{
+    
+    HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+    webVC.zwNavView.hidden = YES;
+    webVC.webUrlStr = url;
+    [self.navigationController pushViewController:webVC animated:YES];
+    
+}
+- (void)createContract:(NSInteger)type{
+    [XDDetailViewModel initiateESign:Shopid andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:self.model.nid completion:^(id  _Nonnull result) {
+        [self jumpH5:(NSString *)result];
+        
+    }];
+}
+- (void)createOreder{
+    [XDDetailViewModel submitXDOrder:Shopid andProid:self.model.nid andPrice:self.model.price completion:^(XDPayModel *model) {
+        XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        [self.navigationController pushViewController:payVC animated:YES];
+        
+    }];
+}
+- (void)jumpPay{
+    //            "state": 5,
+    //"orderdata":
+    //{
+    //"orderid": 2,
+    //"shopid": 2,
+    //"proid": 2,
+    //"ordermoney": 2
+    XDPayModel *model = [[XDPayModel alloc]init];
+    model.orderid = self.resultDict[@"orderdata"][@"orderid"];
+    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
+    model.proid = self.resultDict[@"orderdata"][@"proid"];
+    model.proname = self.resultDict[@"orderdata"][@"proname"];
+    XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+    [self.navigationController pushViewController:payVC animated:YES];
+}
+- (NSString *)getButtonString{
+    switch ([self.resultDict[@"state"] integerValue]) {
+            
+            //1生成订单
+            //2代付款
+            //3付款成功(生成第一份合同)
+            //4第一份合同待签署(去签属合同)
+            //5第-份合同签署成功(去生成第二-份合同)
+            //6第一份合同签署失败(跳3)
+            //7待签署(去签署第二份合同)
+            //8签署成功(等待待审核)
+            //9签署失败(跳5 )
+            //10审核成功
+            //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
+        case -1://-1 不可用
+            return @"不可申请";
+            
+        case 0://0 信息未完善
+            return @"立即加入";
+            
+        case 3://1 信息已完善，去生成第一份合同
+        case 6:
+            return @"签署新商业合同";
+        case 2:
+        case 1://3 第一份合同签署完成，去生成订单
+            return @"立即支付";
+            
+        case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
+            return @"签署新商业合同";
+            
+        case 8://8 第二份合同签署完成，等待审核
+            return @"审核中";
+        case 5:
+        case 7:
+        case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
+            return @"签署国物溯源协议";
+        case 10://10审核成功，流程结束
+            return @"审核成功";
+            
+        case 11://11 审核失败，修改信息
+            return @"修改信息";
+    }
+    return @"";
 }
 
 - (void)clickPhone:(UITapGestureRecognizer *)tap {
@@ -307,30 +481,38 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":self.shopidString} complete:^(NSDictionary *dic) {
         if([dic[@"resultCode"]integerValue] == 2100){
+          
             NSInteger code = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
             self.signUrl = dic[@"resultMsg"][@"signUrl"];
             self.shopNameValueLabel.text = dic[@"resultMsg"][@"shopname"];
             self.mobileValueLabel.text = dic[@"resultMsg"][@"mobile"];
             self.applyTimeValueLabel.text = dic[@"resultMsg"][@"upgraderoletime"];
-            if (code == -1) {
-                self.stateValueLabel.text = @"去开店";
-            } else if ( code == 1000 ) {
-                self.stateValueLabel.text = @"审核成功";
-
-            } else if ( code == 1001 ) {
-                self.stateValueLabel.text = @"审核失败";
-                self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
-            } else if ( code  == 6666 ) {
-                self.stateValueLabel.text = @"待实名认证";
-
-            } else if ( code == 8888 ) {
-                self.stateValueLabel.text = @"发起合同";
-
-            } else if ( code == 9999 ) {
-                self.stateValueLabel.text = @"签署合同";
+            self.roleValue = [dic[@"resultMsg"][@"role"] integerValue];
+            if (self.roleValue == 7) {
+                [self requstXD];
 
             } else {
-                self.stateValueLabel.text = @"待审核";
+                if (code == -1) {
+                    self.stateValueLabel.text = @"去开店";
+                } else if ( code == 1000 ) {
+                    self.stateValueLabel.text = @"审核成功";
+
+                } else if ( code == 1001 ) {
+                    self.stateValueLabel.text = @"审核失败";
+                    self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
+                } else if ( code  == 6666 ) {
+                    self.stateValueLabel.text = @"待实名认证";
+
+                } else if ( code == 8888 ) {
+                    self.stateValueLabel.text = @"发起合同";
+
+                } else if ( code == 9999 ) {
+                    self.stateValueLabel.text = @"签署合同";
+
+                } else {
+                    self.stateValueLabel.text = @"待审核";
+
+                }
 
             }
         } else {

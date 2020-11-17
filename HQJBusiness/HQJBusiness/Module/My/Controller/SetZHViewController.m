@@ -72,7 +72,7 @@
         _submitButton.backgroundColor = DefaultAPPColor;
         _submitButton.layer.masksToBounds = YES;
         _submitButton.layer.cornerRadius = 5 ;
-        [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_submitButton setTitle:[NSString stringWithFormat:@"提交%@",TrainingVersion] forState:UIControlStateNormal];
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _submitButton.timeInterval = 2.0;
             
