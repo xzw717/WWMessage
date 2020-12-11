@@ -8,10 +8,11 @@
 
 #import "ZW_ViewController.h"
 #import "XDPayModel.h"
+#import "PayEngine.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPayViewController : ZW_ViewController
-
+@property (nonatomic, assign) buyType payType;
 - (instancetype)initWithXDPayModel:(XDPayModel *)model;
 @end
 

@@ -13,7 +13,6 @@
 #import "XDSSMModel.h"
 #import "XDPayModel.h"
 #import "XDPayViewController.h"
-
 #import "XDOrderDetailsViewController.h"
 @interface XDShopServiceManagementViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
@@ -93,6 +92,7 @@ DZNEmptyDataSetDelegate>
         model.proid = ssmModel.proid;
         model.proname = ssmModel.proname;
         XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        xdVC.payType = buyXD;
         [self.navigationController pushViewController:xdVC animated:YES];
     }];
     return cell;

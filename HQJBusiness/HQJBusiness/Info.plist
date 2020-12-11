@@ -63,6 +63,8 @@
 	<string>需要连接蓝牙才可实现打印功能</string>
 	<key>NSCameraUsageDescription</key>
 	<string>物物地图需要访问您的相机,通过相机扫描扫描商家二维码识别核销码等</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>需要使用您的地理位置，便于使用开店注册等功能</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>需要使用您的地理位置，便于使用开店注册等功能</string>
 	<key>NSMicrophoneUsageDescription</key>

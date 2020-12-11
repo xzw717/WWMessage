@@ -35,7 +35,7 @@
             [[NSUserDefaults standardUserDefaults]  setObject:dic[@"result"][@"mobile"] ? dic[@"result"][@"mobile"] : @"" forKey:@"mobile"];
             [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"isComplete"]integerValue] forKey:@"isComplete"];
             [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"typeid"]integerValue] forKey:@"typeid"];
-
+            [[NSUserDefaults standardUserDefaults]  setInteger:[dic[@"result"][@"lockedDuration"]integerValue] forKey:@"lockedDuration"];
             [self getshopidWithMemberid:MmberidStr completion:^(NSString *shopid) {
                 if (self.myrequstBlock) {
                     self.myrequstBlock(model);
@@ -85,7 +85,6 @@
 - (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion {
     NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:@{@"memberid":MmberidStr} complete:^(NSDictionary *dic) {
-        !completion ? : completion(dic[@"resultMsg"][@"shopid"]);
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
               [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
         }
@@ -93,7 +92,8 @@
         [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
         [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"]; 
-                
+        !completion ? : completion(dic[@"resultMsg"][@"shopid"]);
+
     } andError:^(NSError *error) {
         if (self.myrequstErrorBlock) {
             self.myrequstErrorBlock();
@@ -169,6 +169,7 @@
 
 + (void)getXdShopAuditWithCompletion:(void(^)(NSDictionary *dict))completion {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBXdShopAuditInterface];
+    
      [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:@{@"id":Shopid ? Shopid :@""} complete:^(NSDictionary *dic) {
          if ([dic[@"resultCode"] integerValue] == 2100  ) {
              !completion? : completion(dic[@"resultMsg"]);

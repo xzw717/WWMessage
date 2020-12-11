@@ -57,8 +57,8 @@
 #define AppSel_URL @"http://test.chenjianping.com/" //测试接口
 #define Api_URL @"http://test.chenjianping.com/Api4/" // 测试接口
 
-#define TrainingVersion @"（培训专用版）"
- 
+#define TrainingVersion @""
+ /// （培训专用版）
 /******   商品列表接口---测试   ***********/
 #define OrderTest_URL @"http://shopdevelop.heqijia.net/"
 
@@ -112,6 +112,7 @@
 /// 1:登录密码没有设置 2：交易密码没设置 3：密码都没设置
 #define isComplete     [[NSUserDefaults standardUserDefaults] objectForKey:@"isComplete"]
 #define Ttypeid     [[NSUserDefaults standardUserDefaults] objectForKey:@"typeid"]
+#define LlockedDuration     [[NSUserDefaults standardUserDefaults] objectForKey:@"lockedDuration"]
 
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 

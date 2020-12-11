@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 typedef NS_ENUM(NSInteger,buyType) {
     buyRY ,
-    buyXD
+    buyXD ,
+    registerXD
     
 };
 @interface PayEngine : NSObject

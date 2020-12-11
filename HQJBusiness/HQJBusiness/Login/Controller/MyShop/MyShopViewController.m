@@ -11,8 +11,8 @@
 #import "HQJWebViewController.h"
 #import "HQJLocationManager.h"
 #import "XDDetailViewModel.h"
-#import "XDPayViewController.h"
 
+#import "XDPayViewController.h"
 #define TopSpace 40/3.f
 
 @interface MyShopViewController ()
@@ -54,6 +54,9 @@
 
 /// XD 商家独立入驻
 @property (nonatomic, assign) CGFloat roleValue;
+@property (nonatomic, assign) NSInteger code;
+
+@property (nonatomic, assign) CGFloat price;
 
 @end
 
@@ -233,15 +236,13 @@
 }
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    if (self.roleValue == 7) {
+    if ( self.roleValue == 7) {
         [self handleXDState];
 
     } else {
-  
-    HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
-          pvc.zwNavView.hidden = YES;
+        HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+        pvc.zwNavView.hidden = YES;
           if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
-              
               pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
               
               
@@ -254,7 +255,7 @@
               @weakify(self);
               [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
                   @strongify(self);
-                  pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+                  pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,self.shopidString,self.latitude,self.longitude];
                   [self.navigationController pushViewController:pvc animated:YES];
               }];
                return;
@@ -312,7 +313,7 @@
 }
 /// XD 商家独立入驻
 - (void)requstXD {
-    [XDDetailViewModel getXDShopState:Shopid andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
+    [XDDetailViewModel getXDShopState:self.shopidString andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
         self.stateValueLabel.text = [self getButtonString];
     }];
@@ -339,7 +340,7 @@
                 
             case 0://0 信息未完善
                 //跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=1&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&type=1&peugeotid=6",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid]];
 //                http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg
                 break;
                 
@@ -379,14 +380,34 @@
                 break;
                 
             case 11://11 审核失败，修改信息
-                [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
-                    // 跳转信息填写H5页
-                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+            {
+//                HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+//                pvc.zwNavView.hidden = YES;
+                @weakify(self);
+                [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+                    @strongify(self);
+                    [SVProgressHUD showWithStatus:@"加载中"];
+                    [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
+                        [SVProgressHUD dismiss];
+                        // 跳转信息填写H5页
+                        [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&type=3&peugeotid=6",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid]];
+                    }];
                 }];
                 
-                break;
+                
+               
+                
+            } break;
         }
     }
+    if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
+        HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+        pvc.zwNavView.hidden = YES;
+        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
+        [self.navigationController pushViewController:pvc animated:YES];
+
+    }
+
     
 }
 - (void)jumpH5:(NSString *)url{
@@ -398,14 +419,15 @@
     
 }
 - (void)createContract:(NSInteger)type{
-    [XDDetailViewModel initiateESign:Shopid andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:self.model.nid completion:^(id  _Nonnull result) {
+    [XDDetailViewModel initiateESign:self.shopidString andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:@"6" completion:^(id  _Nonnull result) {
         [self jumpH5:(NSString *)result];
         
     }];
 }
 - (void)createOreder{
-    [XDDetailViewModel submitXDOrder:Shopid andProid:self.model.nid andPrice:self.model.price completion:^(XDPayModel *model) {
+    [XDDetailViewModel submitXDOrder:self.shopidString andProid:@"6" andPrice:[NSString stringWithFormat:@"%f",self.price] completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        payVC.payType = registerXD;
         [self.navigationController pushViewController:payVC animated:YES];
         
     }];
@@ -424,6 +446,7 @@
     model.proid = self.resultDict[@"orderdata"][@"proid"];
     model.proname = self.resultDict[@"orderdata"][@"proname"];
     XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+    payVC.payType = registerXD;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 - (NSString *)getButtonString{
@@ -465,8 +488,8 @@
         case 10://10审核成功，流程结束
             return @"审核成功";
             
-        case 11://11 审核失败，修改信息
-            return @"修改信息";
+        case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
+            return @"审核失败";
     }
     return @"";
 }
@@ -482,39 +505,45 @@
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":self.shopidString} complete:^(NSDictionary *dic) {
         if([dic[@"resultCode"]integerValue] == 2100){
           
-            NSInteger code = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
+            self.code = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
             self.signUrl = dic[@"resultMsg"][@"signUrl"];
             self.shopNameValueLabel.text = dic[@"resultMsg"][@"shopname"];
             self.mobileValueLabel.text = dic[@"resultMsg"][@"mobile"];
             self.applyTimeValueLabel.text = dic[@"resultMsg"][@"upgraderoletime"];
             self.roleValue = [dic[@"resultMsg"][@"role"] integerValue];
-            if (self.roleValue == 7) {
+            self.price = [dic[@"resultMsg"][@"price"] floatValue];
+            self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
+
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
+                  [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
+            }
+            
+            if (self.code != 6666 &&  self.roleValue == 7) {
                 [self requstXD];
 
             } else {
-                if (code == -1) {
+                if (self.code == -1) {
                     self.stateValueLabel.text = @"去开店";
-                } else if ( code == 1000 ) {
+                } else if ( self.code == 1000 ) {
                     self.stateValueLabel.text = @"审核成功";
 
-                } else if ( code == 1001 ) {
+                } else if ( self.code == 1001 ) {
                     self.stateValueLabel.text = @"审核失败";
-                    self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
-                } else if ( code  == 6666 ) {
+                } else if ( self.code  == 6666 ) {
                     self.stateValueLabel.text = @"待实名认证";
 
-                } else if ( code == 8888 ) {
+                } else if ( self.code == 8888 ) {
                     self.stateValueLabel.text = @"发起合同";
 
-                } else if ( code == 9999 ) {
+                } else if ( self.code == 9999 ) {
                     self.stateValueLabel.text = @"签署合同";
 
                 } else {
                     self.stateValueLabel.text = @"待审核";
 
                 }
-
             }
+
         } else {
             [SVProgressHUD showErrorWithStatus:@"加载失败，请稍候重试"];
         }

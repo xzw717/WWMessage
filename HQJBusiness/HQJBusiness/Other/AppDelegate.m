@@ -67,8 +67,8 @@
         [self goLogin];
 
     } else {
-//        delegate.window.rootViewController = [ZWTabBarViewController  new];
-        delegate.window.rootViewController = [[MyShopViewController  alloc]initWithShopid:@"a26488e7-2db8-4e61-bccf-14cd592e0aef"];
+        delegate.window.rootViewController = [ZWTabBarViewController  new];
+//        delegate.window.rootViewController = [[MyShopViewController  alloc]initWithShopid:@"a26488e7-2db8-4e61-bccf-14cd592e0aef"];
 
     }
     [self initializeAutoValue];

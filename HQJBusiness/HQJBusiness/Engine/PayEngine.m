@@ -25,9 +25,17 @@
                       buytype:(buyType)type
 {
     
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBPurchasePayProject,type == buyRY ?  HQJBAliPayInterface : HQJBXDaliPayInterface];
+    NSString * interfaceStr ;
+    if (type == buyRY) {
+        interfaceStr = HQJBAliPayInterface;
+    } else if (type == buyXD) {
+        interfaceStr =  HQJBXDaliPayInterface;
+    } else {
+        interfaceStr = HQJBXDRegisterAlipayInterface;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBPurchasePayProject,interfaceStr];
     NSString *appScheme = @"aliPayURL";
-    NSDictionary *parameters = type == buyRY ? @{@"orderNo":OutTrade} : @{@"orderNo":OutTrade,@"memberid":MmberidStr};
+    NSDictionary *parameters = @{@"orderNo":OutTrade};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:parameters complete:^(NSDictionary *dic) {
         if ([dic[@"code"] integerValue] == 49000) {
             // NOTE: 调用支付结果开始支付

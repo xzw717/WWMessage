@@ -15,7 +15,7 @@
 NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
-NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/app/";
+NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 NSString *const HQJBBonusDomainName = @"http://47.98.45.218/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
@@ -27,14 +27,14 @@ NSString *const WWMCouponDomain = @"http://47.98.45.218/";
 NSString *const WWMLiveDomain = @"106.13.213.51";
 
 /// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
-NSString *const HQJBH5UpDataDomain = @"http://28ko268520.qicp.vip/shopappH5/index.html#/";
+NSString *const HQJBH5UpDataDomain = @"http://47.98.45.218:8080/";
 /// 商家奖励
 NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 /// H5域名
-NSString *const HQJBXDDownloadPactDomain = @"http://28ko268520.qicp.vip/";
+NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
 
 
 #pragma mark ---培训使用的域名
@@ -238,7 +238,7 @@ NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action"
 /// 入驻协议
 NSString *const HQJBRegisterAgreementListInterface = @"shopappH5/index.html#/registerAgreement";
 ///商家注册完成后跳转的H5
-NSString *const HQJBNewstoreListInterface = @"shopappH5/index.html#/newstore";
+NSString *const HQJBNewstoreListInterface = @"shopappH5/#/newstore";
 
 /// 根据城市名获取地区列表
 NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
@@ -360,6 +360,8 @@ NSString *const HQJBPurchasePayProject =@"purchasePay/pay/";
 NSString *const HQJBAliPayInterface = @"aliPay";
 /// 购买XD商家
 NSString *const HQJBXDaliPayInterface = @"XDaliPay";
+/// 商家直接注册支付宝回调接口
+NSString *const HQJBXDRegisterAlipayInterface = @"XDRegisterAlipay";
 ///积分赠送发送验证码
 NSString *const HQJBXdAwardSmsInterface = @"xdAwardSms";
 ///商家奖励会员的积分

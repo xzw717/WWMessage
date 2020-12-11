@@ -810,7 +810,13 @@ static const CGFloat  sAlertTimer = 3.0;
     if ([urlString containsString:HQJBLoginCheckInterface] ||
         [urlString containsString:HQJBGetByMobileCodeInterface] ||
         [urlString containsString:HQJBGetShopUpgradeStateInterface] ||
-        [urlString containsString:HQJBMerchantSmsLoginInterface]) {
+        [urlString containsString:HQJBMerchantSmsLoginInterface] ||
+        [urlString containsString:HQJBXdFlowInterface] ||
+        [urlString containsString:HQJBXDaliPayInterface] ||
+        [urlString containsString:HQJBGetOrderInfoByIdInterface]||
+        [urlString containsString:HQJBInitiateESignInterface] ||
+        [urlString containsString:HQJBXDRegisterAlipayInterface] ||
+        [urlString containsString:HQJBXdorderInterface]) {
         return NO;
     }else if([urlString containsString:HQJBGetPwdSMSInterface]||[urlString containsString:HQJBInputNewpwdActionInterface]){
         NSDictionary *dict = parameters;

@@ -277,6 +277,8 @@ extern NSString *const HQJBMerchnatAwardListInterface ;
 extern NSString *const HQJBPurchasePayProject;
 /// 购买XD商家
 extern NSString *const HQJBXDaliPayInterface;
+/// 商家直接注册支付宝回调接口
+extern NSString *const HQJBXDRegisterAlipayInterface;
 /// 购买RY值
 extern NSString *const HQJBAliPayInterface;
 ///积分赠送发送验证码

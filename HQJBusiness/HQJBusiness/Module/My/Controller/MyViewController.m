@@ -229,7 +229,7 @@
         NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
 
         if (x.mobile) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:x.role]] andisNav:YES andColor:DefaultAPPColor];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
         }
         
         
@@ -238,6 +238,25 @@
         [self requst];
     }
 }
+
+- (NSString *)roleStr {
+    if ([Ttypeid integerValue] == 13) {
+        return @"物联商家";
+    } else if ([Ttypeid integerValue] == 14){
+        return @"联盟商家";
+    }  else if ([Ttypeid integerValue] == 15){
+        return @"合作商家";
+    }  else if ([Ttypeid integerValue] == 16){
+        return @"股份商家";
+    }  else if ([Ttypeid integerValue] == 17){
+        return @"命运共同体";
+    }  else if ([Ttypeid integerValue] == 113){
+        return @"XD商家";
+    } else {
+        return @"未认证商家";
+    }
+}
+
 - (NSString *)setShopTitle:(NSString *)title {
     NSString *name;
     if ([title containsString:@"共同体"]) {
@@ -246,10 +265,11 @@
         title = [title substringToIndex:2];
     }
     
-    if ([Ttypeid integerValue] == 113) {
+    if ([LlockedDuration integerValue] == 7) {
         name = @"XD";
         
-    } else {
+    }
+    if ([LlockedDuration integerValue] == 6) {
         /// ;//XD企业类型 0非XD企业 1.标识企业 2.异盟企业 3.标杆企业 4.兄弟企业 5.生态企业 6.XD商家
         NSArray * ary = @[@"",@"标识",@"异盟",@"标杆",@"兄弟",@"生态",@"XD"];
         NSInteger titleTag = [NameSingle shareInstance].peugeotid;
@@ -266,55 +286,10 @@
 
             
         }
-
-//        switch ([NameSingle shareInstance].peugeotid) {
-//            case 0:
-//            {
-//                name = [NSString stringWithFormat:@"%@",title];
-//
-//            }
-//                break;
-//            case 1:
-//            {
-//                name = [NSString stringWithFormat:@"标识·%@",title];
-//
-//            }
-//                break;
-//            case 2:
-//            {
-//                name = [NSString stringWithFormat:@"异盟·%@",title];
-//
-//            }
-//                break;
-//            case 3:
-//            {
-//                name = [NSString stringWithFormat:@"标杆·%@",title];
-//
-//            }
-//                break;
-//            case 4:
-//            {
-//                name = [NSString stringWithFormat:@"兄弟·%@",title];
-//
-//            }
-//                break;
-//            case 5:
-//            {
-//                name = [NSString stringWithFormat:@"生态·%@",title];
-//
-//            }
-//                break;
-//            case 6:
-//            {
-//                name = [NSString stringWithFormat:@"XD·%@",title];
-//            }
-//
-//                break;
-//            default:
-//                break;
-//        }
-
         
+    }
+    if ([LlockedDuration integerValue] == 0) {
+        name = title;
     }
     return  name;
 }

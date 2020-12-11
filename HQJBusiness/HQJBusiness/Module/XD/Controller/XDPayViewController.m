@@ -10,7 +10,6 @@
 #import "XDPayView.h"
 #import "XDPaySureViewController.h"
 #import "XDPayViewModel.h"
-#import "PayEngine.h"
 #import "XDPayModel.h"
 @interface XDPayViewController ()
 @property (nonatomic,strong) XDPayView *payView;
@@ -55,7 +54,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@",self.model.orderid] andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:buyXD];
+        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@",self.model.orderid] andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:self.payType];
 
 
     }

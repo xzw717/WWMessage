@@ -13,6 +13,7 @@
 #import "XDDetailBottomView.h"
 #import "XDPayViewController.h"
 #import "HQJWebViewController.h"
+#import "PayEngine.h"
 @interface XDDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
 }
 @property (nonatomic,strong) UITableView *xdTableView;
@@ -279,6 +280,7 @@
 - (void)createOreder{
     [XDDetailViewModel submitXDOrder:Shopid andProid:self.model.nid andPrice:self.model.price completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        payVC.payType = buyXD;
         [self.navigationController pushViewController:payVC animated:YES];
         
     }];
@@ -297,6 +299,7 @@
     model.proid = self.resultDict[@"orderdata"][@"proid"];
     model.proname = self.resultDict[@"orderdata"][@"proname"];
     XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+    payVC.payType = buyXD;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 - (void)viewDidLoad {

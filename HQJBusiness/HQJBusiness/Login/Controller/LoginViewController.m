@@ -330,7 +330,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [self.view setBackgroundColor:[UIColor whiteColor]];
     _isAuthCode = NO;
     [self viewTheContent];
-    [self removeInfo];
     [self signalDeal];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dianji:) name:kNetworkStatus object:nil];
     [ManagerEngine networkStatus];
@@ -348,10 +347,15 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"shopid"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"peugeotid"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isComplete"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"typeid"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lockedDuration"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"newOrder"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"AutomaticallyPrintOrders"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"BluetoothState"];
-
+    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        
+    } seq:1];
 }
 
 
@@ -414,6 +418,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    [self removeInfo];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
@@ -434,7 +439,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     self.titleLabel.sd_layout.topSpaceToView(self.view,StatusBarHeight).centerXEqualToView(self.view).heightIs(44).widthIs(100.0f);
     self.registerBtn.sd_layout.topSpaceToView(self.view,StatusBarHeight).rightSpaceToView(self.view, 20).heightIs(44).widthIs(50);
     
-    self.headerImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.titleLabel,S_XRatioH(170.0f/3)).heightIs(S_XRatioH(154.0f/3)).widthIs(S_XRatioW(76.0f));
+    self.headerImageView.sd_layout.centerXEqualToView(self.view).topSpaceToView(self.titleLabel,S_XRatioH(170.0f/3)).heightIs(S_XRatioW(76.0f)).widthIs(S_XRatioW(76.0f));
     
     self.verticalView.sd_layout.leftSpaceToView(self.view,WIDTH/2).topSpaceToView(self.headerImageView,S_XRatioH(75.0f)).heightIs(S_XRatioH(20.0f)).widthIs(0.5f);
     
