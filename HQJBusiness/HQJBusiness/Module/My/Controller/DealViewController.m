@@ -119,7 +119,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     HQJLog(@"[NameSingle shareInstance].role = %@",[NameSingle shareInstance].role);
-    if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
+    if ([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];
@@ -148,7 +148,7 @@
         }
         
         
-    } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
+    } else if ([[NameSingle shareInstance].role containsString:@"合作商家"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];

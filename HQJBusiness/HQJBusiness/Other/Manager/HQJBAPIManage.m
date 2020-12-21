@@ -16,7 +16,6 @@ NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
-NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 NSString *const HQJBBonusDomainName = @"http://47.98.45.218/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名   XD 商家奖励通用
@@ -43,7 +42,6 @@ NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
 //NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.cn/";
 //NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.cn/";
 //NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
-//NSString *const HQJBItunesDomainName= @"https://www.pgyer.com/WuWuMap_test";
 //NSString *const HQJBBonusDomainName = @"http://www.wuwuditu.cn/";
 //NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.cn/";
 ///// 台卡域名   XD 商家奖励通用
@@ -70,7 +68,6 @@ NSString *const HQJBDomainName = @"http://shop.wuwuditu.com/";
 NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.com/";
 NSString *const HQJBversionInformationDomainName = @"http://app.wuwuditu.com/";
 NSString *const HQJBUpdataAPPDomainName = @"http://app.wuwuditu.cn/";
-NSString *const HQJBItunesDomainName= @"https://itunes.apple.com/cn/app/%E7%89%A9%E7%89%A9%E5%9C%B0%E5%9B%BE/id1132505092?mt=8";
 NSString *const HQJBBonusDomainName = @"http://interface.ww1000.cn:8080/";
 /// 优惠券
 NSString *const WWMCouponDomain = @"http://statics.wuwuditu.com/";

@@ -168,6 +168,8 @@
 #pragma mark --- 极光推送
 - (void)jpushService:(NSDictionary *)launchOptions {
     /// 初始化APNs
+    [JPUSHService setDebugMode];
+
     JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc]init];
     entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge |JPAuthorizationOptionSound;
     //可以添加自定义categories
@@ -180,7 +182,6 @@
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
-    
     [JPUSHService setupWithOption:launchOptions appKey:@"13c8038285777340293529d0"
                           channel:nil
                  apsForProduction:0
@@ -190,6 +191,8 @@
     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
 
     } seq:1];
+
+  
 }
 - (void)goLogin {
     

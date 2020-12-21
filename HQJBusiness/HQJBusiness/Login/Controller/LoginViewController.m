@@ -713,7 +713,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
 
                     } seq:1];
-                    [JPUSHService findNotification:nil];
+//                    [JPUSHService findNotification:nil];
                 } completion:^(BOOL finished) {
                     for (UIView *view in self.view.subviews) {
                         view.alpha = 0;
