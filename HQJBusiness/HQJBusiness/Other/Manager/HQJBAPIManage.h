@@ -22,8 +22,6 @@ extern NSString *const HQJBFeedbackDomainName;
 extern NSString *const HQJBVersionInformationDomainName;
 /// 更新APP
 extern NSString *const HQJBUpdataAPPDomainName;
-/// 更新APP的地址
-extern NSString *const HQJBItunesDomainName;
 /// 物物地图商家版 图片域名
 extern NSString *const HQJBImageDomainName;
 ///商品订单相关

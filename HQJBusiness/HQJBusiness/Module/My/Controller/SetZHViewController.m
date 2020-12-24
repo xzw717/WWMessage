@@ -93,7 +93,7 @@
     self.cashView.proportionTextField.delegate = [ManagerEngine sharedManager];
     
     
-    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]){
+    if([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]){
         self.bonusView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.cashView,15).heightIs(S_RatioH(120)).widthIs(WIDTH);
         [self.bonusView setTitleStr:@"积分消费时：" andplaceholderStr:@"例如：15"];
         self.bonusView.proportionTextField.delegate = [ManagerEngine sharedManager];
@@ -121,7 +121,7 @@
         return [values boolValue]?[ManagerEngine getColor:@"323232"]:[ManagerEngine getColor:@"999999"];
     }];
     
-    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]){
+    if([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]){
    
         RACSignal *validBounsSignal = [self.bonusView.proportionTextField.rac_textSignal map:^id(NSString *value) {
             [self updateBonusDetaile:value];
@@ -140,7 +140,7 @@
                     [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"%@值比率调整申请，还在审核中，请耐心等候处理",HQJValue]];
         } else {
             
-            if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]){
+            if([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]){
 
                 HQJLog(@"---111-");
                 if ([self.cashView.proportionTextField.text isEqualToString:@""] || [self.bonusView.proportionTextField.text isEqualToString:@""]) {
@@ -212,7 +212,7 @@
         self.cashView.sd_layout.leftSpaceToView(self.view,0).topSpaceToView(self.view,NavigationControllerHeight+kEDGE).heightIs(120).widthIs(WIDTH);
         
     }
-    if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
+    if([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]) {
         self.submitButton.sd_layout.leftSpaceToView(self.view,kEDGE).topSpaceToView(self.bonusView,30).heightIs(44).widthIs(WIDTH - kEDGE * 2);
         
     } else {
@@ -285,7 +285,7 @@
         _model = sender;
         self.cashView.proportionTextField.text = [NSString stringWithFormat:@"%.2f",[_model.cashZH floatValue] *100];
         
-        if([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]){
+        if([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]){
             
             self.bonusView.proportionTextField.text = [NSString stringWithFormat:@"%.2f",[_model.bonusZH floatValue] *100];
             
