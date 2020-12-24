@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * phoneNumer;
 @property (nonatomic,copy) NSString * authCode;
 @property (nonatomic,copy) NSString * score;
+@property (nonatomic,copy) NSString * remainScore;
+
+@property (nonatomic, strong, readonly) RACSignal  *phoneNumerEnable;
+@property (nonatomic, strong, readonly) RACCommand *phoneNumerCommand;
 
 @property (nonatomic, strong, readonly) RACSignal  *codeBtnEnable;
 @property (nonatomic, strong, readonly) RACCommand *codeBtnCommand;

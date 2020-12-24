@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UIView * linkView;
 
+
 @end
 
 @implementation MyTableViewCell
@@ -38,15 +39,15 @@
         
         
         [RACObserve(self, model)subscribeNext:^(MyModel *model) {
-            if ([Peugeotid integerValue] == 6) {
-                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_equalTo(WIDTH / 4);
-                }];
-            } else {
-                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_equalTo(0);
-                }];
-            }
+//            if ([Peugeotid integerValue] == 6) {
+//                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.width.mas_equalTo(WIDTH / 4);
+//                }];
+//            } else {
+//                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.width.mas_equalTo(0);
+//                }];
+//            }
             if (model.incomeBToday) {
                 self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomeBToday afterPoint:2]];
                 self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomCToday afterPoint:2]];
@@ -185,10 +186,11 @@
 //}
 - (void)setViewFrame {
     
-    CGFloat oneLabelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : 0;
-    CGFloat labelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : WIDTH /3;
+//    CGFloat oneLabelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : 0;
+//    CGFloat labelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : WIDTH /3;
+    CGFloat oneLabelWith = WIDTH / 4 ,labelWith =  WIDTH / 4;
     
-    self.moreLabel.hidden = self.linkView.hidden =  [Peugeotid integerValue] == 6 ? NO : YES;
+//    self.moreLabel.hidden = self.linkView.hidden =  [Peugeotid integerValue] == 6 ? NO : YES;
     
     [self.moreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);

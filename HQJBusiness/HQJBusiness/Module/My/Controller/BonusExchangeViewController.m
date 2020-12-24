@@ -103,7 +103,7 @@
         _canExchangeLabel.hidden = YES;
         _canExchangeLabel.font  = [UIFont systemFontOfSize:12.0];
         _canExchangeLabel.textColor = [ManagerEngine getColor:@"999999"];
-        if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
+        if ([_ViewControllerTitle isEqualToString:@"积分兑现"]||[self.ViewControllerTitle isEqualToString:@"预约积分兑现"]) {
             [self.view addSubview:_canExchangeLabel];
 
         }
@@ -182,15 +182,19 @@
 #pragma mark --
 #pragma mark --- 积分及名称请求
 -(void)BonusExchangeRequst {
-    
+    @weakify(self);
     [BonusExchangeViewModel bonusExchaneViewmodelRequstandViewControllerTitle:_ViewControllerTitle AndBack:^(id sender) {
-        _model = sender;
-        if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@个积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.score] afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+        @strongify(self);
+        self.model = sender;
+        if ([self.ViewControllerTitle isEqualToString:@"积分兑现"]) {
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@个积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",self.model.score.score] afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            
+        } else if ([self.ViewControllerTitle isEqualToString:@"预约积分兑现"]) {
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@个预约积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",self.model.score.activityScore] afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
             
         } else {
             
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",_model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+            [self.titleView setTitleStr:[NSString stringWithFormat:@"当前商家账户有%@元现金",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",self.model.score.cash] afterPoint:2]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
 
             
         }
@@ -203,7 +207,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([_ViewControllerTitle isEqualToString:@"积分兑现"]) {
+    if ([_ViewControllerTitle isEqualToString:@"积分兑现"]||[_ViewControllerTitle isEqualToString:@"预约积分兑现"]) {
         
         _withdrawDepositStr = @"支付方";
         
@@ -324,7 +328,12 @@
         if ([value isEqualToString:@""]) {
             self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现0.00元"];
         } else {
-            self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2] ];
+            if ([self.ViewControllerTitle isEqualToString:@"积分兑现"]) {
+                self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2] ];
+            }else{
+                self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] * self.model.exchangeRate] afterPoint:2] ];
+            }
+            
            
         }
         [self updateCash];

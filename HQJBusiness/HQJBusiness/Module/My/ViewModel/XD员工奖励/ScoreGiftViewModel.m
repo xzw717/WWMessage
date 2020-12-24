@@ -35,6 +35,12 @@
             
         }];
         
+        [phoneSignal subscribeNext:^(NSNumber *mergeSignal) {
+            if ([mergeSignal boolValue]) {
+                [self getAwardTotal:self.phoneNumer];
+            }
+        }];
+        
         RACSignal *authCodeSignal = [RACObserve(self, authCode) map:^id(NSString *value) {
             if (value.length == 6) {
                 return @(YES);
@@ -44,16 +50,25 @@
             
         }];
         RACSignal *scoreSignal = [RACObserve(self, score) map:^id(NSString *value) {
-            if (value.integerValue > 0 && value.integerValue < 2000) {
+            if (value.integerValue > 0 && self.remainScore.integerValue > 0 && value.integerValue < self.remainScore.integerValue) {
                 return @(YES);
             }else{
                 return @(NO);
             }
             
         }];
+        [scoreSignal subscribeNext:^(id x) {
+            if (self.remainScore.integerValue>0 && self.score.integerValue > self.remainScore.integerValue) {
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"提现积分数量不能超过%@",self.remainScore]];
+            }
+        }];
         
-        _codeBtnEnable = [RACSignal combineLatest:@[phoneSignal] reduce:^id(NSNumber *phoneNumer){
-            return @([phoneNumer boolValue]);
+//        if (![mergeSignal boolValue]) {
+//            [SVProgressHUD showErrorWithStatus:@"提现积分数量超出范围"];
+//        }
+        
+        _codeBtnEnable = [RACSignal combineLatest:@[phoneSignal,scoreSignal] reduce:^id(NSNumber *phoneNumer,NSNumber *scoreSignal){
+            return @([phoneNumer boolValue] && [scoreSignal boolValue]);
         }];
         
         _codeBtnCommand =  [[RACCommand alloc]initWithEnabled:_codeBtnEnable signalBlock:^RACSignal *(id input) {
@@ -89,6 +104,25 @@
                                     @"hash":HashCode};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parameterDict complete:^(NSDictionary *dic) {
         !completion ? :completion(dic);
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+    
+    
+}
+- (void)getAwardTotal:(NSString *)mobile{
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBXdMerchantProject,HQJBGetAwardTotalInterface];
+    
+    NSDictionary *parameterDict = @{@"myid":MmberidStr,
+                                    @"mobile":mobile,
+                                    @"hash":HashCode};
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parameterDict complete:^(NSDictionary *dic) {
+        if ([dic[@"code"] integerValue] == 49000) {
+            self.remainScore = dic[@"result"][@"remain"];
+        }else{
+            [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+        }
+        
     } andError:^(NSError *error) {
         
     } ShowHUD:YES];

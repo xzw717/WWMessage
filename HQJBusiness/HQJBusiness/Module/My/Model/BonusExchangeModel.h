@@ -10,6 +10,7 @@
 
 @interface score : NSObject
 @property (nonatomic,assign) double score;
+@property (nonatomic,assign) double activityScore;
 @property (nonatomic,assign) double cash;
 @property (nonatomic,assign) double zhValue;
 @end
@@ -18,6 +19,8 @@
 @property (nonatomic,strong) score *score;
 @property (nonatomic,copy) NSString *ownName;
 @property (nonatomic,copy) NSString *parentName;
+@property (nonatomic,assign) double exchangeRate;
+
 @end
 
 

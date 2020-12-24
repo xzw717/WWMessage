@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailBaseVC : UIViewController
+@interface DetailBaseVC : ZW_ViewController
 
 @property (nonatomic,assign) NSInteger  page;
 

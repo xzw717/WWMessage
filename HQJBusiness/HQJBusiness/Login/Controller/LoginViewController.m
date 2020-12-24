@@ -350,6 +350,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"isComplete"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"typeid"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lockedDuration"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"canUseBookScore"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"newOrder"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"AutomaticallyPrintOrders"];
     [[[NSUserDefaults alloc] initWithSuiteName:@"group.com.first.HQJBusiness"] removeObjectForKey:@"BluetoothState"];

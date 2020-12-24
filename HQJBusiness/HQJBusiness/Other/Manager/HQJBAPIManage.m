@@ -264,6 +264,10 @@ NSString *const HQJBGetOrderListByShopIdInterface = @"xdorder/getOrderListByShop
 
 /// 获取商家shopid
 NSString *const HQJBRetrunShopIdInterface = @"shopAdmin/retrunShopId.action";
+///是否可以使用预约积分
+NSString *const HQJBUseBookingInterface = @"wuwuInterface/Api/useBooking";
+
+
 
 NSString *const HQJBXdorderInterface = @"xdorder/save.action";
 /// 企业基础信息状态
@@ -364,8 +368,14 @@ NSString *const HQJBXDaliPayInterface = @"XDaliPay";
 NSString *const HQJBXDRegisterAlipayInterface = @"XDRegisterAlipay";
 ///积分赠送发送验证码
 NSString *const HQJBXdAwardSmsInterface = @"xdAwardSms";
+///会员可以赠送活动积分的数量
+NSString *const HQJBGetAwardTotalInterface = @"getAwardTotal";
 ///商家奖励会员的积分
 NSString *const HQJBMerchantAwardToConsumerInterface = @"merchantAwardToConsumer";
+///商家预约积分列表
+NSString *const HQJBMerchantBookingListInterface = @"merchantBookingList";
+
+
 
 @implementation HQJBAPIManage
 

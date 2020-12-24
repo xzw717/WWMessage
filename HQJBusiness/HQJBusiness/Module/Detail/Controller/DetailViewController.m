@@ -35,8 +35,13 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.view.backgroundColor = DefaultBackgroundColor;
-    self.title = @"明细";
+    self.zwNavView.backgroundColor = DefaultAPPColor;
+    self.zwBackButton.hidden = YES;
+    self.zw_title = @"明细";
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.zwTitLabel.textColor = [UIColor whiteColor];
     HQJLog(@"id\n%@",MmberidStr);
     BonusDealVC *BDVC = [[BonusDealVC alloc]init];
     [self addChildViewController:BDVC];

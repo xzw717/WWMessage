@@ -319,7 +319,7 @@
     
     
     [self.titleView.activityIndicator stopAnimating];
-    
+    [MyViewModel getUseBookingInfo];
     [_viewModel  setMyrequstBlock:^(MyModel * xzw_model) {
         @strongify(self);
         self.model = xzw_model;

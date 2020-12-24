@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054DDE4C2589AE72006EFB39 /* BookScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054DDE4B2589AE71006EFB39 /* BookScoreViewController.m */; };
+		054DDE4F2589B184006EFB39 /* BookScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 054DDE4E2589B184006EFB39 /* BookScoreViewModel.m */; };
+		054DDE522589B1E4006EFB39 /* BooKScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 054DDE502589B1E4006EFB39 /* BooKScoreModel.m */; };
+		054DDE552589EBC8006EFB39 /* BookScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054DDE532589EBC8006EFB39 /* BookScoreCell.m */; };
+		054DDE59258AF352006EFB39 /* idl-license.face-ios in Resources */ = {isa = PBXBuildFile; fileRef = 054DDE58258AF351006EFB39 /* idl-license.face-ios */; };
 		055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B52510BABB006C9716 /* ScoreGiftViewController.m */; };
 		055996BA2510BAD8006C9716 /* ScoreGiftViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */; };
 		055996BD2510BAE8006C9716 /* ScoreGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996BB2510BAE8006C9716 /* ScoreGiftView.m */; };
@@ -23,7 +28,6 @@
 		0585FE86249710F500CD7280 /* HQJBaseSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE83249710F500CD7280 /* HQJBaseSubVC.m */; };
 		0585FE89249712A900CD7280 /* ZGRelayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE87249712A900CD7280 /* ZGRelayoutButton.m */; };
 		0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */; };
-		0585FEC124974AED00CD7280 /* idl-license.face-ios in Resources */ = {isa = PBXBuildFile; fileRef = 0585FEBD24974AEC00CD7280 /* idl-license.face-ios */; };
 		0585FEC224974AED00CD7280 /* com.baidu.idl.face.faceSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */; };
 		05A03F4F23C46EF100B2DA98 /* HQJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */; };
 		1F016C7D1F6A7D4200716C82 /* GoodsVerificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F016C7C1F6A7D4200716C82 /* GoodsVerificationModel.m */; };
@@ -457,6 +461,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		054DDE4A2589AE71006EFB39 /* BookScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookScoreViewController.h; sourceTree = "<group>"; };
+		054DDE4B2589AE71006EFB39 /* BookScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookScoreViewController.m; sourceTree = "<group>"; };
+		054DDE4D2589B183006EFB39 /* BookScoreViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookScoreViewModel.h; sourceTree = "<group>"; };
+		054DDE4E2589B184006EFB39 /* BookScoreViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookScoreViewModel.m; sourceTree = "<group>"; };
+		054DDE502589B1E4006EFB39 /* BooKScoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooKScoreModel.m; sourceTree = "<group>"; };
+		054DDE512589B1E4006EFB39 /* BooKScoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooKScoreModel.h; sourceTree = "<group>"; };
+		054DDE532589EBC8006EFB39 /* BookScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookScoreCell.m; sourceTree = "<group>"; };
+		054DDE542589EBC8006EFB39 /* BookScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookScoreCell.h; sourceTree = "<group>"; };
+		054DDE58258AF351006EFB39 /* idl-license.face-ios */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "idl-license.face-ios"; sourceTree = "<group>"; };
 		055996B52510BABB006C9716 /* ScoreGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewController.m; sourceTree = "<group>"; };
 		055996B62510BABB006C9716 /* ScoreGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewController.h; sourceTree = "<group>"; };
 		055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftViewModel.m; sourceTree = "<group>"; };
@@ -489,7 +502,6 @@
 		0585FE88249712A900CD7280 /* ZGRelayoutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGRelayoutButton.h; sourceTree = "<group>"; };
 		0585FE8A249712E600CD7280 /* ZGProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZGProgressHUD+NJ.m"; sourceTree = "<group>"; };
 		0585FE8B249712E600CD7280 /* ZGProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZGProgressHUD+NJ.h"; sourceTree = "<group>"; };
-		0585FEBD24974AEC00CD7280 /* idl-license.face-ios */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "idl-license.face-ios"; sourceTree = "<group>"; };
 		0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.faceSDK.bundle; sourceTree = "<group>"; };
 		05A03F4D23C46EF000B2DA98 /* HQJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQJWebViewController.h; path = BaseClass/HQJWebViewController.h; sourceTree = "<group>"; };
 		05A03F4E23C46EF100B2DA98 /* HQJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQJWebViewController.m; path = BaseClass/HQJWebViewController.m; sourceTree = "<group>"; };
@@ -1703,14 +1715,14 @@
 		1F607DED24AB23C20011915E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1F607DEE24AB23C20011915E /* XDViewController.h */,
-				1F607DEF24AB23C20011915E /* XDPaySureViewController.m */,
-				1F607DF024AB23C20011915E /* XDDetailViewController.m */,
-				1F607DF124AB23C20011915E /* XDPayViewController.h */,
-				1F607DF224AB23C20011915E /* XDViewController.m */,
 				1F607DF324AB23C20011915E /* XDDetailViewController.h */,
+				1F607DF024AB23C20011915E /* XDDetailViewController.m */,
 				1F607DF424AB23C20011915E /* XDPaySureViewController.h */,
+				1F607DEF24AB23C20011915E /* XDPaySureViewController.m */,
+				1F607DF124AB23C20011915E /* XDPayViewController.h */,
 				1F607DF524AB23C20011915E /* XDPayViewController.m */,
+				1F607DEE24AB23C20011915E /* XDViewController.h */,
+				1F607DF224AB23C20011915E /* XDViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2216,7 +2228,7 @@
 				1FB7959024ADDC5700D4CC40 /* ChinaCityList */,
 				1F3966ED2498685400FDA9EE /* com.baidu.idl.face.model.bundle */,
 				0585FEBE24974AEC00CD7280 /* com.baidu.idl.face.faceSDK.bundle */,
-				0585FEBD24974AEC00CD7280 /* idl-license.face-ios */,
+				054DDE58258AF351006EFB39 /* idl-license.face-ios */,
 				1F12F6D91E16323B0056DF9A /* AliPay */,
 				1F046D0F1E090DAA006D6EB2 /* SGSegmentedControl */,
 				1F20CB281E07875F00FC91B3 /* CALScanQRCode */,
@@ -2705,6 +2717,8 @@
 				1F276F8E24D7BA880049E227 /* RewardSetViewController.m */,
 				1FE0EAD42510B27900CAC83F /* IntegralManagementViewController.h */,
 				1FE0EAD52510B27900CAC83F /* IntegralManagementViewController.m */,
+				054DDE4A2589AE71006EFB39 /* BookScoreViewController.h */,
+				054DDE4B2589AE71006EFB39 /* BookScoreViewController.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2712,6 +2726,8 @@
 		1FF2F9BC24CFB791003A2996 /* XD员工奖励 */ = {
 			isa = PBXGroup;
 			children = (
+				054DDE542589EBC8006EFB39 /* BookScoreCell.h */,
+				054DDE532589EBC8006EFB39 /* BookScoreCell.m */,
 				055996BC2510BAE8006C9716 /* ScoreGiftView.h */,
 				055996BB2510BAE8006C9716 /* ScoreGiftView.m */,
 				1FA611C424CEA6430097E02E /* MemberStaffListSearchView.h */,
@@ -2771,6 +2787,8 @@
 				1F7ADB8024DD4952009079F2 /* RewardsRecordViewModel.m */,
 				1F7ADBD324E516F4009079F2 /* SetProportionViewModel.h */,
 				1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */,
+				054DDE4D2589B183006EFB39 /* BookScoreViewModel.h */,
+				054DDE4E2589B184006EFB39 /* BookScoreViewModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -2794,6 +2812,8 @@
 				1F7ADB7D24DD4805009079F2 /* RewardsRecordModel.m */,
 				1F7ADB8224DD4CC4009079F2 /* RewardsRecordSuperModel.h */,
 				1F7ADB8324DD4CC4009079F2 /* RewardsRecordSuperModel.m */,
+				054DDE512589B1E4006EFB39 /* BooKScoreModel.h */,
+				054DDE502589B1E4006EFB39 /* BooKScoreModel.m */,
 			);
 			path = "XD员工奖励";
 			sourceTree = "<group>";
@@ -3033,12 +3053,12 @@
 				1F20CB341E07876000FC91B3 /* CALScanQRCode.bundle in Resources */,
 				20DF4EA0229E864800317D3B /* wwm_0.mp3 in Resources */,
 				1FBE91E01DEC1E59001977A6 /* Assets.xcassets in Resources */,
-				0585FEC124974AED00CD7280 /* idl-license.face-ios in Resources */,
 				20DF4EAA229E864800317D3B /* wwm_7.mp3 in Resources */,
 				201BE3FC229FB3F500326500 /* wwm_dot.mp3 in Resources */,
 				1FDF4CD723B1E7420060F485 /* AlipaySDK.bundle in Resources */,
 				20DF4EAC229E864800317D3B /* wwm_2.mp3 in Resources */,
 				20DF4E9C229E864800317D3B /* wwm_thousand.mp3 in Resources */,
+				054DDE59258AF352006EFB39 /* idl-license.face-ios in Resources */,
 				20DF4EA8229E864800317D3B /* wwm_6.mp3 in Resources */,
 				1FB3DF3E1E03C11700F670EC /* README.txt in Resources */,
 				20DF4EA6229E864800317D3B /* wwm_ten.mp3 in Resources */,
@@ -3337,6 +3357,7 @@
 				1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */,
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
+				054DDE4F2589B184006EFB39 /* BookScoreViewModel.m in Sources */,
 				1FF2F9F124D2BA2E003A2996 /* HQJShareView.m in Sources */,
 				1F607E0524AB23C20011915E /* XDPayViewController.m in Sources */,
 				1FB3DEAE1E02C44300F670EC /* ModeOfPaymentView.m in Sources */,
@@ -3359,6 +3380,7 @@
 				1F6C85D523CEBE78005F3DB8 /* OrderDetailsSixCell.m in Sources */,
 				1F6C85D323CEBE78005F3DB8 /* HQJBusinessAlertView.m in Sources */,
 				1FFB5B1D1E109D9800B7E917 /* NSDictionary+Preoperty.m in Sources */,
+				054DDE4C2589AE72006EFB39 /* BookScoreViewController.m in Sources */,
 				1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */,
 				1F960D1D1DFE3E51003E3D17 /* NSArray+BlocksKit.m in Sources */,
 				1FA611C324CE87230097E02E /* NewXDChildViewController.m in Sources */,
@@ -3476,6 +3498,7 @@
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1FC9F89324AD82BB0037352A /* HelpMeViewController.m in Sources */,
+				054DDE552589EBC8006EFB39 /* BookScoreCell.m in Sources */,
 				1FBD3FCB246BD3E2000650EB /* StoreManagementTableViewCell.m in Sources */,
 				1F6C85DC23CEBE78005F3DB8 /* OrderTableViewCell.m in Sources */,
 				1F960C9F1DFE3D06003E3D17 /* AppDelegate.m in Sources */,
@@ -3487,6 +3510,7 @@
 				1FB795B024ADDC5800D4CC40 /* HanyuPinyinOutputFormat.m in Sources */,
 				1F960D2D1DFE3E51003E3D17 /* NSTimer+BlocksKit.m in Sources */,
 				1FF2F9F724D3A98B003A2996 /* StaffRoleViewController.m in Sources */,
+				054DDE522589B1E4006EFB39 /* BooKScoreModel.m in Sources */,
 				1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */,
 				1F3949F21E0D1CB700A3662D /* CashDealVC.m in Sources */,
 				1F960D1F1DFE3E51003E3D17 /* NSIndexSet+BlocksKit.m in Sources */,

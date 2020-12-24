@@ -55,7 +55,14 @@ DZNEmptyDataSetDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.zwNavView.backgroundColor = DefaultAPPColor;
+    self.zwBackButton.hidden = YES;
+    self.zw_title = @"明细";
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.zwTitLabel.textColor = [UIColor whiteColor];
+    
     _page = 1;
     _listArray = [NSMutableArray array];
     [self.view addSubview:self.tableView];
@@ -80,8 +87,8 @@ DZNEmptyDataSetDelegate>
 
             }
         }
-//        self.tableView.emptyDataSetSource = self;
-//        self.tableView.emptyDataSetDelegate = self;
+        self.tableView.emptyDataSetSource = self;
+        self.tableView.emptyDataSetDelegate = self;
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];

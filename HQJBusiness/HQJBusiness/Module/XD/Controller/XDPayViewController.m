@@ -54,7 +54,7 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:[NSString stringWithFormat:@"%@",self.model.orderid] andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:self.payType];
+        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:self.payType];
 
 
     }

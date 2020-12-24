@@ -65,4 +65,8 @@
 /// 实际到账
 @property (nonatomic,copy)NSString *estimate;
 
+/// 预约积分
+@property (nonatomic,copy)NSString *activityScore;
+
+
 @end

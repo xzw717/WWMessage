@@ -29,4 +29,7 @@
 
 /// 许峰的 神奇接口 只有一个返回参数  商家宗奖励积分
 + (void)getMerchantTotalAward:(void(^)(NSString *award))completion;
+///  是否可以使用预约积分
++ (void)getUseBookingInfo;
+
 @end

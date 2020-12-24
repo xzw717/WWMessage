@@ -100,7 +100,23 @@
         }
     } ShowHUD:NO];
 }
++ (void)getUseBookingInfo{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBUseBookingInterface];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:@{@"userid":MmberidStr,@"merchantId":MmberidStr,@"hash":HashCode} complete:^(NSDictionary *dic) {
+        if ([dic[@"code"] integerValue] == 49000) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"canUseBookScore"];
+            [[NSUserDefaults standardUserDefaults]  setObject:@"YES" forKey:@"canUseBookScore"];
+        } else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"canUseBookScore"];
+            [[NSUserDefaults standardUserDefaults]  setObject:@"NO" forKey:@"canUseBookScore"];
+        }
 
+    } andError:^(NSError *error) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"canUseBookScore"];
+        [[NSUserDefaults standardUserDefaults]  setObject:@"NO" forKey:@"canUseBookScore"];
+        
+    } ShowHUD:NO];
+}
 -(void)jumpVc:(UIViewController *)xzw_self andIndexPath:(NSIndexPath *)xzw_indexPath { 
     if (xzw_indexPath.section == 1) {
         if (xzw_indexPath.row == 0) {

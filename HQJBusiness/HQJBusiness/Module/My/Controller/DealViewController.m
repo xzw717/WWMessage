@@ -49,21 +49,24 @@
         if ([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运"]) {
             _titleArray = @[@[@"现金销售",
                               @"积分兑现",
+                              @"预约积分兑现",
                               @"现金提现"],
                             @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
             
         } else if ([[NameSingle shareInstance].role containsString:@"合作"]) {
             _titleArray = @[@[@"现金销售",
-                              @"现金提现"],
+                              @"现金提现",
+                              @"预约积分兑现"],
                             @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
         } else {
             if ([NameSingle shareInstance].peugeotid == 6) {
                 _titleArray = @[@[@"现金销售",
-                                  @"现金提现"],
+                                  @"现金提现",
+                                  @"预约积分兑现"],
                                   @[[NSString stringWithFormat:@"购买%@值",HQJValue]]];
                 
             } else {
-                _titleArray = @[@[@"现金提现"]];
+                _titleArray = @[@[@"现金提现"],@[@"预约积分兑现"]];
                 
             }
         }
@@ -71,8 +74,6 @@
     return _titleArray;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    
     return self.titleArray.count;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -119,7 +120,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     HQJLog(@"[NameSingle shareInstance].role = %@",[NameSingle shareInstance].role);
-    if ([[NameSingle shareInstance].role isEqualToString:@"股份商家"]||[[NameSingle shareInstance].role isEqualToString:@"命运共同体"]) {
+    if ([[NameSingle shareInstance].role containsString:@"股份"]||[[NameSingle shareInstance].role containsString:@"命运"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];
@@ -128,9 +129,19 @@
             BVC.ViewControllerTitle = @"积分兑现";
             [self.navigationController pushViewController:BVC animated:YES];
         } else if (indexPath.section == 0 && indexPath.row == 2){
+            if ([CanUseBookScore isEqualToString:@"YES"]) {
+                BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+                BVC.ViewControllerTitle = @"预约积分兑现";
+                [self.navigationController pushViewController:BVC animated:YES];
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+            }
+        } else if (indexPath.section == 0 && indexPath.row == 3){
             NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
             //            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
+            
+
         } else if (indexPath.section == 1 && indexPath.row == 0){
             
             
@@ -148,7 +159,7 @@
         }
         
         
-    } else if ([[NameSingle shareInstance].role isEqualToString:@"合作商家"]) {
+    } else if ([[NameSingle shareInstance].role containsString:@"合作"]) {
         if (indexPath.section == 0 && indexPath.row == 0) {
             CashSalesViewController * CVC = [[CashSalesViewController alloc]init];
             [self.navigationController pushViewController:CVC animated:YES];
@@ -156,7 +167,15 @@
             NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
             //            BVC.ViewControllerTitle = @"现金提现";
             [self.navigationController pushViewController:BVC animated:YES];
-        } else if (indexPath.section == 1 && indexPath.row == 0){
+        } else if (indexPath.section == 0 && indexPath.row == 2){
+            if ([CanUseBookScore isEqualToString:@"YES"]) {
+                BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+                BVC.ViewControllerTitle = @"预约积分兑现";
+                [self.navigationController pushViewController:BVC animated:YES];
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+            }
+        }  else if (indexPath.section == 1 && indexPath.row == 0){
             
             
             BuyZHViewController *buyVC = [[BuyZHViewController alloc]init];
@@ -181,6 +200,14 @@
                 NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
                 //            BVC.ViewControllerTitle = @"现金提现";
                 [self.navigationController pushViewController:BVC animated:YES];
+            } else if (indexPath.section == 0 && indexPath.row == 2){
+                if ([CanUseBookScore isEqualToString:@"YES"]) {
+                    BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+                    BVC.ViewControllerTitle = @"预约积分兑现";
+                    [self.navigationController pushViewController:BVC animated:YES];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+                }
             } else if (indexPath.section == 1 && indexPath.row == 0){
                 
                 
@@ -203,6 +230,14 @@
             if (indexPath.section == 0 && indexPath.row == 0) {
                 NewWithdrawViewController *BVC = [[NewWithdrawViewController alloc]init];
                 [self.navigationController pushViewController:BVC animated:YES];
+            }else{
+                if ([CanUseBookScore isEqualToString:@"YES"]) {
+                    BonusExchangeViewController *BVC = [[BonusExchangeViewController alloc]init];
+                    BVC.ViewControllerTitle = @"预约积分兑现";
+                    [self.navigationController pushViewController:BVC animated:YES];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+                }
             }
         }
       

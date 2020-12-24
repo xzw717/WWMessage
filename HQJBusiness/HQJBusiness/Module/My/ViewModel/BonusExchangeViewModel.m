@@ -27,22 +27,37 @@
 + (void)bonusExchangSubmitRequstWithAmount:(NSString *)amount andPassword:(NSString *)psw andViewControllerTitle:(NSString *)str andcardId:(NSString *)accountid andbonusBlock:(void(^)(id sender))blocks {
     
     static NSString *urlType;
-    if ([str isEqualToString:@"积分兑现"]) {
+    NSDictionary *dict;
+    if ([str isEqualToString:@"积分兑现"]||[str isEqualToString:@"预约积分兑现"]) {
         urlType = HQJBCashExchangeInterface;
+        static NSString *exchangeType;
+        if ([str isEqualToString:@"积分兑现"]) {
+            exchangeType = @"1";
+        }else{
+            exchangeType = @"56";
+        }
+        dict = @{@"memberid":MmberidStr,
+                               @"accountid":accountid,
+                               @"amount":amount,
+                               @"tradepwd":psw,
+                               @"roleType":[NameSingle shareInstance].membertype,
+                               @"merchantType":@([Classifyid integerValue]),
+                               @"exchangeType":exchangeType,
+                               @"hash":HashCode
+        };
     } else {
         urlType = HQJBDrawCashInterface;
+        dict = @{@"memberid":MmberidStr,
+        @"accountid":accountid,
+        @"amount":amount,
+        @"tradepwd":psw,
+        @"roleType":[NameSingle shareInstance].membertype,
+        @"merchantType":@([Classifyid integerValue]),
+        @"hash":HashCode};
     }
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,urlType];
-    NSDictionary *dict = @{@"memberid":MmberidStr,
-                               @"accountid":accountid,
-                           @"amount":amount,
-                           @"tradepwd":psw,
-                           @"roleType":[NameSingle shareInstance].membertype,
-                           @"merchantType":@([Classifyid integerValue]),
-                           @"hash":HashCode
-    };
-
+        
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
           !blocks ? : blocks(dic);
    

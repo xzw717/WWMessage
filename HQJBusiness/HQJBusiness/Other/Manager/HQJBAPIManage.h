@@ -190,6 +190,8 @@ extern NSString *const HQJBXdorderInterface;
 extern NSString *const HQJBshopAllESignListInterface;
 /// 获取商家shopid
 extern NSString *const HQJBRetrunShopIdInterface;
+///是否可以使用预约积分
+extern NSString *const HQJBUseBookingInterface;
 ///  根据商家获取订单
 extern NSString *const HQJBGetOrderListByShopIdInterface;
 ///查询当前xd商家的流程
@@ -283,9 +285,12 @@ extern NSString *const HQJBXDRegisterAlipayInterface;
 extern NSString *const HQJBAliPayInterface;
 ///积分赠送发送验证码
 extern NSString *const HQJBXdAwardSmsInterface;
+///会员可以赠送活动积分的数量
+extern NSString *const HQJBGetAwardTotalInterface;
 ///商家奖励会员的积分M
 extern NSString *const HQJBMerchantAwardToConsumerInterface;
-
+///商家预约积分列表
+extern NSString *const HQJBMerchantBookingListInterface;
 
 
 /************************************接口（结束）**********************************************/

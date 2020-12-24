@@ -8,7 +8,7 @@
 
 #import "IntegralManagementViewController.h"
 #import "RewardsRecordViewController.h"
-
+#import "BookScoreViewController.h"
 @interface IntegralManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *integralManagementTableView;
 @end
@@ -23,25 +23,42 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"会员消费奖励积分";
-        
-    } else {
-        cell.textLabel.text = @"XD商家活动积分";
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"会员消费奖励积分";
+            break;
+        case 1:
+            cell.textLabel.text = @"XD商家活动积分";
+            break;
+        case 2:
+            cell.textLabel.text = @"预约积分";
+            break;
+        default:
+            break;
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    RewardsRecordViewController *vc = [[RewardsRecordViewController alloc]init];
-    vc.isMembersRewards =  indexPath.row == 0 ? YES : NO;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == 2) {
+        if ([CanUseBookScore isEqualToString:@"YES"]) {
+            BookScoreViewController *bvc = [[BookScoreViewController alloc]init];
+            [self.navigationController pushViewController:bvc animated:YES];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+        }
+    }else{
+        RewardsRecordViewController *vc = [[RewardsRecordViewController alloc]init];
+        vc.isMembersRewards =  indexPath.row == 0 ? YES : NO;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     
 }
 
