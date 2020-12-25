@@ -119,6 +119,9 @@
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parameterDict complete:^(NSDictionary *dic) {
         if ([dic[@"code"] integerValue] == 49000) {
             self.remainScore = dic[@"result"][@"remain"];
+            if (self.remainScore.integerValue>0 && self.score.integerValue > self.remainScore.integerValue) {
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"提现积分数量不能超过%@",self.remainScore]];
+            }
         }else{
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
