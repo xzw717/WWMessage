@@ -31,7 +31,7 @@ DZNEmptyDataSetDelegate>
         [_tableView registerClass:[DetailCell class] forCellReuseIdentifier:NSStringFromClass([DetailCell class])];
     }
     _tableView.contentInset = UIEdgeInsetsZero;
-  @weakify(self);
+    @weakify(self);
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
         self.page = 1;
@@ -77,14 +77,14 @@ DZNEmptyDataSetDelegate>
         if (1 == self.page) {
             [self.listArray  removeAllObjects];
             [self.self.listArray addObjectsFromArray:sender];
-
+            
         } else {
             if (sender.count == 0 ) {
                 self.page --;
                 [SVProgressHUD showErrorWithStatus:@"没有更多数据了"];
             } else {
                 [self.listArray addObjectsFromArray:sender];
-
+                
             }
         }
         self.tableView.emptyDataSetSource = self;
@@ -104,12 +104,15 @@ DZNEmptyDataSetDelegate>
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    static NSString *CellIdentifier = @"DetailCell";
+    DetailCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    if (cell == nil) {
+        cell = [[DetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+//    DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DetailCell class]) forIndexPath:indexPath];
     
-  
-        DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DetailCell class]) forIndexPath:indexPath];
-    
-      [cell setModel:self.listArray[indexPath.row] andPaging:_typePage];
-        return cell;
+    [cell setModel:self.listArray[indexPath.row] andPaging:_typePage];
+    return cell;
     
     
 }
@@ -117,9 +120,9 @@ DZNEmptyDataSetDelegate>
     DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DetailCell class])];
     if (self.typePage == 2) {
         return [cell cellHeightWithModel:self.listArray[indexPath.row]]+ 22;
-       } else {
-           return [cell cellHeightWithModel:self.listArray[indexPath.row]];
-       }
+    } else {
+        return [cell cellHeightWithModel:self.listArray[indexPath.row]];
+    }
 }
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"brokenNetwork"];
@@ -127,7 +130,7 @@ DZNEmptyDataSetDelegate>
 //空白页点击事件
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
     [self requstType:_type andPage:@"1"];
-
+    
 }
 
 

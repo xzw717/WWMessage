@@ -162,12 +162,13 @@
     
     CGFloat amountWidth = [ManagerEngine setTextWidthStr:self.amountLabel.text andFont:[UIFont systemFontOfSize:17.f]];
     self.amountLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountWidth).topEqualToView(self.nameLabel).heightIs(17).widthIs(amountWidth);
+    CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
     if (page == 0 && [self isActivityScore:model]) {
         self.activityScoreLabel.hidden = NO;
         self.activityScoreLabel.text = [NSString stringWithFormat:@"其中预约积分%@",model.activityScore];
         self.activityScoreLabel.sd_layout.rightEqualToView(self.amountLabel).topSpaceToView(self.amountLabel,1).heightIs(20).widthIs(200);
         
-        CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
+        
         
         self.amountDetailsLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountDetailsWidth).topSpaceToView(self.activityScoreLabel,11).heightIs(12).widthIs(amountDetailsWidth);
         
@@ -175,7 +176,6 @@
         
     }else{
         self.activityScoreLabel.hidden = YES;
-        CGFloat amountDetailsWidth = [ManagerEngine setTextWidthStr:self.amountDetailsLabel.text andFont:[UIFont systemFontOfSize:12.0]];
         
         self.amountDetailsLabel.sd_layout.leftSpaceToView(self,WIDTH - kEDGE - amountDetailsWidth).topSpaceToView(self.amountLabel,11).heightIs(12).widthIs(amountDetailsWidth);
         
