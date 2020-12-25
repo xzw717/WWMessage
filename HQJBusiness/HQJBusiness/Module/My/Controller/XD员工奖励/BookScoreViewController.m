@@ -84,7 +84,7 @@
         if (self.page != 1) {
             if (array.count == 0) {
                 
-                //                [SVProgressHUD showErrorWithStatus:@"已经是最后一页了"]];
+                [SVProgressHUD showErrorWithStatus:@"已经是最后一页了"];
                 self.page = self.page - 1;
             }
         }

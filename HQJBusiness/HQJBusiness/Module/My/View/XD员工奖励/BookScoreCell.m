@@ -118,7 +118,7 @@
     self.orderLabel.text = [NSString stringWithFormat:@"订单号：%@",model.orderNo];
     self.typeLabel.text = model.uname;
     self.amountLabel.text = model.activityScore;
-    self.timeLabel.text = [ManagerEngine reverseSwitchTimer:model.createTime];
+    self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.createTime];
 }
 
 @end
