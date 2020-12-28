@@ -267,11 +267,17 @@
         roleType = 17;
 
     }
+    NSNumber *currency;
+    if ([_ViewControllerTitle isEqualToString:@"预约积分兑现"]) {
+        currency = @3;
+    }else{
+        currency = @2;
+    }
         
     NSDictionary *dict = @{@"memberid":MmberidStr,
                            @"amount":self.BonusNumerTextField.text,
                            @"roleType":@(roleType),
-                           @"currency":@2,
+                           @"currency":currency,
                            @"merchantType":@([Classifyid integerValue]),
                            @"hash":HashCode};
     @weakify(self);
