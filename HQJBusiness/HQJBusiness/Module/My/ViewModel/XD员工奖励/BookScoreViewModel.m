@@ -14,7 +14,7 @@
     NSDictionary *parametersDict = @{@"merchantid":MmberidStr,@"page":@(page),@"pageSize":@(size),@"hash":HashCode};
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:parametersDict complete:^(NSDictionary *dic) {
         if ([dic[@"code"] integerValue] == 49000) {
-           ! completion ? : completion(dic[@"result"][@"totalScore"],[BooKScoreModel mj_objectArrayWithKeyValuesArray:dic[@"result"][@"data"]]);
+           ! completion ? : completion(dic[@"result"][@"leftActivityScore"],[BooKScoreModel mj_objectArrayWithKeyValuesArray:dic[@"result"][@"data"]]);
         } else {
             [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
         }
