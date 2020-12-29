@@ -21,6 +21,7 @@
     NSString *_withdrawDepositNumerStr;
     
     NSString *_manageStr;
+    
 }
 @property (nonatomic,strong) NoticeView *titleView ;  // ---- 黄色广告条
 
@@ -52,6 +53,9 @@
  选择的银行卡id
  */
 @property (nonatomic,strong)NSString *cardIDStr;
+
+@property (nonatomic,strong)NSString *cashString;//提现金额
+
 
 @end
 
@@ -283,7 +287,8 @@
     @weakify(self);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:dict complete:^(NSDictionary *dics) {
         if ([dics[@"code"]integerValue] == 49000) {
-               NSString *tit =  [NSString stringWithFormat:@"手续费%.2f%%,服务费%.2f元，预估到账%.2f元",[dics[@"result"][@"feerate"] floatValue],[dics[@"result"][@"serviceFee"] floatValue],[dics[@"result"][@"willGet"] floatValue]];
+            
+               NSString *tit =  [NSString stringWithFormat:@"%@\n   手续费%.2f%%,服务费%.2f元，预估到账%.2f元",self.cashString,[dics[@"result"][@"feerate"] floatValue],[dics[@"result"][@"serviceFee"] floatValue],[dics[@"result"][@"willGet"] floatValue]];
                 
                 [HintView enrichSubviews:tit andSureTitle:@"提现" cancelTitle:@"放弃" sureAction:^{
             
@@ -335,9 +340,11 @@
             self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现0.00元"];
         } else {
             if ([self.ViewControllerTitle isEqualToString:@"积分兑现"]) {
-                self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2] ];
+                self.canExchangeLabel.text = [NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2]];
+                self.cashString = [NSString stringWithFormat:@"提现金额：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] / 2] afterPoint:2]];
             }else{
-                self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] * self.model.exchangeRate] afterPoint:2] ];
+                self.canExchangeLabel.text =[NSString stringWithFormat:@"可兑现%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] * self.model.exchangeRate] afterPoint:2]];
+                self.cashString = [NSString stringWithFormat:@"提现金额：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",[value doubleValue] * self.model.exchangeRate] afterPoint:2]];
             }
             
            
