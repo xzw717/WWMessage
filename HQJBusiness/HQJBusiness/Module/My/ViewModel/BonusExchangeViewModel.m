@@ -34,7 +34,7 @@
         if ([str isEqualToString:@"积分兑现"]) {
             exchangeType = @"1";
         }else{
-            exchangeType = @"56";
+            exchangeType = @"59";
         }
         dict = @{@"memberid":MmberidStr,
                                @"accountid":accountid,
