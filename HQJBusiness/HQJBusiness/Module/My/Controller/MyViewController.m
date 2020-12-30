@@ -269,7 +269,7 @@
         name = @"XD";
         
     }
-    if ([LlockedDuration integerValue] == 6) {
+    if ([LlockedDuration integerValue] <= 6&&[LlockedDuration integerValue] >= 1) {
         /// ;//XD企业类型 0非XD企业 1.标识企业 2.异盟企业 3.标杆企业 4.兄弟企业 5.生态企业 6.XD商家
         NSArray * ary = @[@"",@"标识",@"异盟",@"标杆",@"兄弟",@"生态",@"XD"];
         NSInteger titleTag = [NameSingle shareInstance].peugeotid;

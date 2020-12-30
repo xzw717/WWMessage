@@ -45,7 +45,9 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = NewProportion(184) + 20;
-        
+        _tableView.emptyDataSetSource = self;
+        _tableView.emptyDataSetDelegate = self;
+        _tableView.tableFooterView = [UIView new];
         [_tableView registerClass:[BookScoreCell class] forCellReuseIdentifier:NSStringFromClass([BookScoreCell class])];
         @weakify(self);
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -67,6 +69,8 @@
     [super viewDidLoad];
     self.zw_title = @"预约积分";
     self.page = 1;
+    self.totalScore = @"0";
+    [self initTitleViewData];
     [self.view addSubview:self.tableView];
     [self requstBookScoreList];
     
@@ -77,7 +81,8 @@
     [BookScoreViewModel requsetBookScoreList:self.page andSize:10 completion:^(NSString * _Nonnull totalScore, NSArray<BooKScoreModel *> * _Nonnull array) {
         @strongify(self);
         self.totalScore = totalScore;
-        [self.titleView setTitleStr:[NSString stringWithFormat:@"当前可用预约积分%@个积分",[ManagerEngine retainScale:self.totalScore afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
+        [self initTitleViewData];
+
         if (1 == self.page) {
             self.dataArray = nil;
         }
@@ -90,11 +95,12 @@
         }
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
-        self.tableView.emptyDataSetSource = self;
-        self.tableView.emptyDataSetDelegate = self;
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
+}
+- (void)initTitleViewData{
+    [self.titleView setTitleStr:[NSString stringWithFormat:@"当前可用预约积分%@个积分",[ManagerEngine retainScale:self.totalScore afterPoint:5]] andisNav:NO andColor:[ManagerEngine getColor:@"fff2b2"]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -110,6 +116,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //    [self jumpDetailsWithModel:self.listModel.data[indexPath.row]];
+}
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"brokenNetwork"];
+}
+//空白页点击事件
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
+    [self requstBookScoreList];
+    
 }
 /*
  #pragma mark - Navigation

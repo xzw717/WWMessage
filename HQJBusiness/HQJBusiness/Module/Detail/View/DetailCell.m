@@ -141,7 +141,7 @@
             if (model.camount) {
                 self.actualLabel.text = [NSString stringWithFormat:@"实际到账：%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.camount.doubleValue)] afterPoint:2]];
             }
-            self.amountLabel.text = [NSString stringWithFormat:@"-%@元",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.score.doubleValue)] afterPoint:2]];
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@积分",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.score.doubleValue)] afterPoint:2]];
         }else{
             self.actualLabel.hidden = NO;
             if (model.camount && model.camount.doubleValue > 0.f) {

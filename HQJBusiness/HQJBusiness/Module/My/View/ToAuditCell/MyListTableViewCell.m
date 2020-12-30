@@ -139,7 +139,7 @@
         twoAmountStr = model.amount;
         //        amountTwoLabelStr = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
     }
-    if (model.tradetype.integerValue == 5) { 
+    if (model.tradetype.integerValue == 5||model.tradetype.integerValue == 59) {
         oneUnitStr = @"积分";
         twoUnitStr = @"元";
         oneAmountStr = [ManagerEngine retainScale:model.amount afterPoint:5];
