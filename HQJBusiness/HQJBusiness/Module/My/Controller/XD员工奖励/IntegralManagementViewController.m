@@ -54,9 +54,14 @@
             [SVProgressHUD showErrorWithStatus:@"暂无权限"];
         }
     }else{
-        RewardsRecordViewController *vc = [[RewardsRecordViewController alloc]init];
-        vc.isMembersRewards =  indexPath.row == 0 ? YES : NO;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([Peugeotid integerValue] == 6) {
+            RewardsRecordViewController *vc = [[RewardsRecordViewController alloc]init];
+            vc.isMembersRewards =  indexPath.row == 0 ? YES : NO;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+        }
+        
     }
     
     

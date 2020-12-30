@@ -50,7 +50,7 @@
             
         }];
         RACSignal *scoreSignal = [RACObserve(self, score) map:^id(NSString *value) {
-            if (value.integerValue > 0 && self.remainScore.integerValue > 0 && value.integerValue < self.remainScore.integerValue) {
+            if (value.integerValue > 0 && self.remainScore.integerValue > 0 && value.integerValue <= self.remainScore.integerValue) {
                 return @(YES);
             }else{
                 return @(NO);
