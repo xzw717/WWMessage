@@ -732,7 +732,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 //字符串转时间戳 如：2017-4-10 17:15:10
 + (NSString *)getTimeStrWithString:(NSString *)str {
-    return [self getTimeStrWithString:str timeType:@"YYYY-MM-dd HH:mm:ss"];
+    return [self getTimeStrWithString:str timeType:@"yyyy-MM-dd HH:mm:ss"];
 }
 + (NSString *)getTimeStrWithString:(NSString *)str timeType:(NSString *)type {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
@@ -744,7 +744,7 @@ static const CGFloat  sAlertTimer = 3.0;
 
 
 +(NSString *_Nonnull)zzReverseSwitchTimer:(NSString *_Nonnull)str{
-    return [self zzReverseSwitchTimer:str dateFormat:@"YYYY-MM-dd HH:mm"];
+    return [self zzReverseSwitchTimer:str dateFormat:@"yyyy-MM-dd HH:mm"];
 }
 + (CIImage *)outputImageStr:(NSString *)str {
     // 1.创建过滤器
