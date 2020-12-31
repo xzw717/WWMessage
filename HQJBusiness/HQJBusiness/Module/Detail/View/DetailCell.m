@@ -16,6 +16,8 @@
 @property (nonatomic,strong)ZW_Label *couponLabel;
 @property (nonatomic,strong)ZW_Label *actualLabel;
 @property (nonatomic,strong)ZW_Label *activityScoreLabel;
+@property (nonatomic, assign) NSInteger page;
+
 
 @end
 @implementation DetailCell
@@ -92,6 +94,7 @@
 }
 
 -(void)setModel:(DetailModel *)model andPaging:(NSInteger)page {
+    self.page = page;
     if (page <= 1) {
         NSString *mobile = [model.tmobile stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         self.nameLabel.needChangeStr =[NSString stringWithFormat:@"(%@)",mobile];
@@ -121,7 +124,7 @@
     if (page != 3) {
         if (page == 2) {
             //old camount
-            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(+%@元)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.amount.doubleValue / 2)] afterPoint:2]];
+            self.amountDetailsLabel.text = [NSString stringWithFormat:@"(+%@元)",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",fabs(model.amount.doubleValue)] afterPoint:2]];
             
         } else {
             NSString *symbol;
@@ -212,7 +215,7 @@
 }
 /// 判断含有预约积分
 - (BOOL)isActivityScore:(DetailModel *)model {
-    if (model.activityScore.integerValue > 0) {
+    if (model.activityScore.integerValue > 0 && self.page == 0) {
         return YES;
     } else {
         return NO;
