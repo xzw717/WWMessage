@@ -32,7 +32,7 @@
         urlType = HQJBCashExchangeInterface;
         static NSString *exchangeType;
         if ([str isEqualToString:@"积分兑现"]) {
-            exchangeType = @"1";
+            exchangeType = @"5";
         }else{
             exchangeType = @"59";
         }
