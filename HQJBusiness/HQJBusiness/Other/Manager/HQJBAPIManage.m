@@ -21,7 +21,7 @@ NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名   XD 商家奖励通用
 NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
 /// 优惠券
-NSString *const WWMCouponDomain = @"http://47.98.45.218/";
+NSString *const WWMCouponDomain = @"http://47.98.45.218:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
 

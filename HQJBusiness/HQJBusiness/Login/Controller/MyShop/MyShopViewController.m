@@ -236,7 +236,7 @@
 }
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    if ( self.roleValue == 7) {
+    if ( self.code != 6666 &&  self.roleValue == 7) {
         [self handleXDState];
 
     } else {
@@ -255,7 +255,7 @@
               @weakify(self);
               [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
                   @strongify(self);
-                  pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,self.shopidString,self.latitude,self.longitude];
+                  pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
                   [self.navigationController pushViewController:pvc animated:YES];
               }];
                return;
