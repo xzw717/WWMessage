@@ -372,7 +372,33 @@ NSString *const HQJBMerchantAwardToConsumerInterface = @"merchantAwardToConsumer
 ///商家预约积分列表
 NSString *const HQJBMerchantBookingListInterface = @"merchantBookingList";
 
-
+/*   联盟券接口  */
+///联盟活动记录
+NSString *const HQJBGetActivityByMidListInterface = @"coupon/activity/getActivityByMid";
+///上传图片（商家APP，添加或编辑联盟活动时上传图片）
+NSString *const HQJBUploadImageInterface = @"coupon/activity/uploadImage";
+///获取区域
+NSString *const HQJBGetAreaInterface = @"coupon/activity/getArea";
+///查询商家行业接口
+NSString *const HQJBGetIndustryInterface = @"coupon/activity/industry";
+///查询商家分类接口
+NSString *const HQJBGetMerchantTypeInterface = @"coupon/activity/merchantType";
+///根据手机号查询商家信息接口
+NSString *const HQJBGetMerchantByMobileInterface = @"coupon/app/getMerchantByMobile";
+///根据id删除联盟记录
+NSString *const HQJBModifyCurstateInterface = @"coupon/activity/modifyCurstate";
+///新增联盟活动记录接口（商家APP，新增或编辑联盟活动页面使用）
+NSString *const HQJBAddActivityInterface = @"coupon/activity/addActivity";
+///根据id查询联盟活动详细接口
+NSString *const HQJBGetActivityByIdInterface = @"coupon/activity/getActivityById";
+///根据id查询联盟活动记录接口
+NSString *const HQJBGetActivityInfoByIdInterface = @"coupon/activity/getActivityInfoById";
+///添加或编辑联盟活动券（商家APP，添加或编辑联盟券页面）
+NSString *const HQJBAddCouponInterface = @"coupon/activity/addCoupon";
+///商家报名参加联盟活动接口（页面：商家APP，用于商家报名）
+NSString *const HQJBSignUpInterface = @"coupon/activity/signUp";
+///根据id查询优惠券信息接口（商家APP，在报名后跳转到新增联盟券的页面时使用的接口，或编辑联盟券时使用
+NSString *const HQJBGetUnionCouponByIdInterface = @"coupon/activity/getCouponById";
 
 @implementation HQJBAPIManage
 

@@ -15,6 +15,29 @@
 		055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B52510BABB006C9716 /* ScoreGiftViewController.m */; };
 		055996BA2510BAD8006C9716 /* ScoreGiftViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996B82510BAD8006C9716 /* ScoreGiftViewModel.m */; };
 		055996BD2510BAE8006C9716 /* ScoreGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055996BB2510BAE8006C9716 /* ScoreGiftView.m */; };
+		0577A72D25BFC18C002C44D7 /* UnionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A72C25BFC18C002C44D7 /* UnionActivityViewController.m */; };
+		0577A73025BFC280002C44D7 /* UnionActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A72F25BFC280002C44D7 /* UnionActivityCell.m */; };
+		0577A73625C3A29C002C44D7 /* UnionActivityViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A73525C3A29C002C44D7 /* UnionActivityViewModel.m */; };
+		0577A73925C3A740002C44D7 /* UnionActivityListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A73825C3A740002C44D7 /* UnionActivityListModel.m */; };
+		0577A73C25C3FFBE002C44D7 /* AddUnionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A73B25C3FFBE002C44D7 /* AddUnionActivityViewController.m */; };
+		0577A73F25C8E18C002C44D7 /* AddUnionActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A73E25C8E18C002C44D7 /* AddUnionActivityView.m */; };
+		0577A74225C8F39E002C44D7 /* AddUnionActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A74125C8F39E002C44D7 /* AddUnionActivityCell.m */; };
+		0577A74525C8F5A5002C44D7 /* AddUnionActivityViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A74425C8F5A5002C44D7 /* AddUnionActivityViewModel.m */; };
+		0577A74825CA4319002C44D7 /* AddUnionTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A74725CA4319002C44D7 /* AddUnionTimerCell.m */; };
+		0577A74B25CA4AB3002C44D7 /* AddUnionImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A74A25CA4AB3002C44D7 /* AddUnionImageCell.m */; };
+		0577A74E25CA52B8002C44D7 /* ZWActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A74D25CA52B8002C44D7 /* ZWActionSheetView.m */; };
+		0577A75125CA800E002C44D7 /* AddUnionSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A75025CA800E002C44D7 /* AddUnionSelectCell.m */; };
+		0577A75425CA8CBE002C44D7 /* AddUnionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A75325CA8CBE002C44D7 /* AddUnionModel.m */; };
+		0577A75A25CD2CD5002C44D7 /* AddUnionSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A75925CD2CD5002C44D7 /* AddUnionSectionView.m */; };
+		0577A75D25CFD84E002C44D7 /* AddUnionSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A75C25CFD84E002C44D7 /* AddUnionSubCell.m */; };
+		0577A76025E48D16002C44D7 /* ShowMobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A75F25E48D16002C44D7 /* ShowMobileView.m */; };
+		0577A76325E5E0C5002C44D7 /* UnionActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76125E5E0C4002C44D7 /* UnionActivityDetailViewController.m */; };
+		0577A76625E5F18A002C44D7 /* UnionActivityDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76525E5F18A002C44D7 /* UnionActivityDetailViewModel.m */; };
+		0577A76925E5F6BA002C44D7 /* UnionDetailSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76725E5F6BA002C44D7 /* UnionDetailSectionView.m */; };
+		0577A76C25E5F9C7002C44D7 /* AddUnionCoponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76A25E5F9C7002C44D7 /* AddUnionCoponViewController.m */; };
+		0577A76F25E5FCB3002C44D7 /* AddUnionCoponViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76D25E5FCB3002C44D7 /* AddUnionCoponViewModel.m */; };
+		0577A77225E73905002C44D7 /* EditUnionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77125E73905002C44D7 /* EditUnionActivityViewController.m */; };
+		0577A77525EC9420002C44D7 /* UnionActivityDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77425EC9420002C44D7 /* UnionActivityDetailCell.m */; };
 		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
 		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
 		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
@@ -476,6 +499,52 @@
 		055996B92510BAD8006C9716 /* ScoreGiftViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftViewModel.h; sourceTree = "<group>"; };
 		055996BB2510BAE8006C9716 /* ScoreGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreGiftView.m; sourceTree = "<group>"; };
 		055996BC2510BAE8006C9716 /* ScoreGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreGiftView.h; sourceTree = "<group>"; };
+		0577A72B25BFC18C002C44D7 /* UnionActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityViewController.h; sourceTree = "<group>"; };
+		0577A72C25BFC18C002C44D7 /* UnionActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityViewController.m; sourceTree = "<group>"; };
+		0577A72E25BFC280002C44D7 /* UnionActivityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityCell.h; sourceTree = "<group>"; };
+		0577A72F25BFC280002C44D7 /* UnionActivityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityCell.m; sourceTree = "<group>"; };
+		0577A73425C3A29C002C44D7 /* UnionActivityViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityViewModel.h; sourceTree = "<group>"; };
+		0577A73525C3A29C002C44D7 /* UnionActivityViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityViewModel.m; sourceTree = "<group>"; };
+		0577A73725C3A740002C44D7 /* UnionActivityListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityListModel.h; sourceTree = "<group>"; };
+		0577A73825C3A740002C44D7 /* UnionActivityListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityListModel.m; sourceTree = "<group>"; };
+		0577A73A25C3FFBE002C44D7 /* AddUnionActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionActivityViewController.h; sourceTree = "<group>"; };
+		0577A73B25C3FFBE002C44D7 /* AddUnionActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionActivityViewController.m; sourceTree = "<group>"; };
+		0577A73D25C8E18C002C44D7 /* AddUnionActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionActivityView.h; sourceTree = "<group>"; };
+		0577A73E25C8E18C002C44D7 /* AddUnionActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionActivityView.m; sourceTree = "<group>"; };
+		0577A74025C8F39E002C44D7 /* AddUnionActivityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionActivityCell.h; sourceTree = "<group>"; };
+		0577A74125C8F39E002C44D7 /* AddUnionActivityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionActivityCell.m; sourceTree = "<group>"; };
+		0577A74325C8F5A5002C44D7 /* AddUnionActivityViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionActivityViewModel.h; sourceTree = "<group>"; };
+		0577A74425C8F5A5002C44D7 /* AddUnionActivityViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionActivityViewModel.m; sourceTree = "<group>"; };
+		0577A74625CA4319002C44D7 /* AddUnionTimerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionTimerCell.h; sourceTree = "<group>"; };
+		0577A74725CA4319002C44D7 /* AddUnionTimerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionTimerCell.m; sourceTree = "<group>"; };
+		0577A74925CA4AB3002C44D7 /* AddUnionImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionImageCell.h; sourceTree = "<group>"; };
+		0577A74A25CA4AB3002C44D7 /* AddUnionImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionImageCell.m; sourceTree = "<group>"; };
+		0577A74C25CA52B8002C44D7 /* ZWActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZWActionSheetView.h; path = BaseClass/ZWActionSheetView.h; sourceTree = "<group>"; };
+		0577A74D25CA52B8002C44D7 /* ZWActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZWActionSheetView.m; path = BaseClass/ZWActionSheetView.m; sourceTree = "<group>"; };
+		0577A74F25CA800D002C44D7 /* AddUnionSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnionSelectCell.h; sourceTree = "<group>"; };
+		0577A75025CA800E002C44D7 /* AddUnionSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnionSelectCell.m; sourceTree = "<group>"; };
+		0577A75225CA8CBE002C44D7 /* AddUnionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionModel.h; sourceTree = "<group>"; };
+		0577A75325CA8CBE002C44D7 /* AddUnionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionModel.m; sourceTree = "<group>"; };
+		0577A75825CD2CD5002C44D7 /* AddUnionSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionSectionView.h; sourceTree = "<group>"; };
+		0577A75925CD2CD5002C44D7 /* AddUnionSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionSectionView.m; sourceTree = "<group>"; };
+		0577A75B25CFD84E002C44D7 /* AddUnionSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnionSubCell.h; sourceTree = "<group>"; };
+		0577A75C25CFD84E002C44D7 /* AddUnionSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnionSubCell.m; sourceTree = "<group>"; };
+		0577A75E25E48D16002C44D7 /* ShowMobileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowMobileView.h; sourceTree = "<group>"; };
+		0577A75F25E48D16002C44D7 /* ShowMobileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowMobileView.m; sourceTree = "<group>"; };
+		0577A76125E5E0C4002C44D7 /* UnionActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnionActivityDetailViewController.m; sourceTree = "<group>"; };
+		0577A76225E5E0C5002C44D7 /* UnionActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnionActivityDetailViewController.h; sourceTree = "<group>"; };
+		0577A76425E5F18A002C44D7 /* UnionActivityDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnionActivityDetailViewModel.h; sourceTree = "<group>"; };
+		0577A76525E5F18A002C44D7 /* UnionActivityDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnionActivityDetailViewModel.m; sourceTree = "<group>"; };
+		0577A76725E5F6BA002C44D7 /* UnionDetailSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnionDetailSectionView.m; sourceTree = "<group>"; };
+		0577A76825E5F6BA002C44D7 /* UnionDetailSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnionDetailSectionView.h; sourceTree = "<group>"; };
+		0577A76A25E5F9C7002C44D7 /* AddUnionCoponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnionCoponViewController.m; sourceTree = "<group>"; };
+		0577A76B25E5F9C7002C44D7 /* AddUnionCoponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnionCoponViewController.h; sourceTree = "<group>"; };
+		0577A76D25E5FCB3002C44D7 /* AddUnionCoponViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnionCoponViewModel.m; sourceTree = "<group>"; };
+		0577A76E25E5FCB3002C44D7 /* AddUnionCoponViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnionCoponViewModel.h; sourceTree = "<group>"; };
+		0577A77025E73905002C44D7 /* EditUnionActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUnionActivityViewController.h; sourceTree = "<group>"; };
+		0577A77125E73905002C44D7 /* EditUnionActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUnionActivityViewController.m; sourceTree = "<group>"; };
+		0577A77325EC9420002C44D7 /* UnionActivityDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityDetailCell.h; sourceTree = "<group>"; };
+		0577A77425EC9420002C44D7 /* UnionActivityDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityDetailCell.m; sourceTree = "<group>"; };
 		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
@@ -1501,6 +1570,8 @@
 		1F1B21DC1E00CB1E00021AB2 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				0577A74C25CA52B8002C44D7 /* ZWActionSheetView.h */,
+				0577A74D25CA52B8002C44D7 /* ZWActionSheetView.m */,
 				0585FE82249710F500CD7280 /* HQJBaseSubVC.h */,
 				0585FE83249710F500CD7280 /* HQJBaseSubVC.m */,
 				0585FE84249710F500CD7280 /* HQJBaseVC.h */,
@@ -1968,6 +2039,16 @@
 				1F607DAE24AB22A10011915E /* XDShopViewController.m */,
 				1F960C8B1DFE3D06003E3D17 /* MyViewController.h */,
 				1F960C8C1DFE3D06003E3D17 /* MyViewController.m */,
+				0577A72B25BFC18C002C44D7 /* UnionActivityViewController.h */,
+				0577A72C25BFC18C002C44D7 /* UnionActivityViewController.m */,
+				0577A76225E5E0C5002C44D7 /* UnionActivityDetailViewController.h */,
+				0577A76125E5E0C4002C44D7 /* UnionActivityDetailViewController.m */,
+				0577A76B25E5F9C7002C44D7 /* AddUnionCoponViewController.h */,
+				0577A76A25E5F9C7002C44D7 /* AddUnionCoponViewController.m */,
+				0577A73A25C3FFBE002C44D7 /* AddUnionActivityViewController.h */,
+				0577A73B25C3FFBE002C44D7 /* AddUnionActivityViewController.m */,
+				0577A77025E73905002C44D7 /* EditUnionActivityViewController.h */,
+				0577A77125E73905002C44D7 /* EditUnionActivityViewController.m */,
 				1F1B21CD1DFFD6E700021AB2 /* DealViewController.h */,
 				1F1B21CE1DFFD6E700021AB2 /* DealViewController.m */,
 				1F20CB251E07837800FC91B3 /* ConsumerCodeVerificationViewController.h */,
@@ -2033,6 +2114,10 @@
 				1FB02FBE2475044F00F3B2F8 /* XDSSMModel.m */,
 				1FAF236424BDA22B0042394B /* StoreInfoModel.h */,
 				1FAF236524BDA22B0042394B /* StoreInfoModel.m */,
+				0577A73725C3A740002C44D7 /* UnionActivityListModel.h */,
+				0577A73825C3A740002C44D7 /* UnionActivityListModel.m */,
+				0577A75225CA8CBE002C44D7 /* AddUnionModel.h */,
+				0577A75325CA8CBE002C44D7 /* AddUnionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2041,6 +2126,8 @@
 			isa = PBXGroup;
 			children = (
 				1FF2F9BC24CFB791003A2996 /* XD员工奖励 */,
+				0577A73D25C8E18C002C44D7 /* AddUnionActivityView.h */,
+				0577A73E25C8E18C002C44D7 /* AddUnionActivityView.m */,
 				1F607E0F24AB2A550011915E /* ContactManagerCell.h */,
 				1F607E1224AB2A560011915E /* ContactManagerCell.m */,
 				1F607E1124AB2A560011915E /* ContactManagerHeadView.h */,
@@ -2091,6 +2178,26 @@
 				1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */,
 				1F6E10E7249B100000BEDB72 /* NewWithdrawTableViewCell.h */,
 				1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */,
+				0577A72E25BFC280002C44D7 /* UnionActivityCell.h */,
+				0577A72F25BFC280002C44D7 /* UnionActivityCell.m */,
+				0577A75E25E48D16002C44D7 /* ShowMobileView.h */,
+				0577A75F25E48D16002C44D7 /* ShowMobileView.m */,
+				0577A76825E5F6BA002C44D7 /* UnionDetailSectionView.h */,
+				0577A76725E5F6BA002C44D7 /* UnionDetailSectionView.m */,
+				0577A75825CD2CD5002C44D7 /* AddUnionSectionView.h */,
+				0577A75925CD2CD5002C44D7 /* AddUnionSectionView.m */,
+				0577A74025C8F39E002C44D7 /* AddUnionActivityCell.h */,
+				0577A74125C8F39E002C44D7 /* AddUnionActivityCell.m */,
+				0577A74625CA4319002C44D7 /* AddUnionTimerCell.h */,
+				0577A74725CA4319002C44D7 /* AddUnionTimerCell.m */,
+				0577A74925CA4AB3002C44D7 /* AddUnionImageCell.h */,
+				0577A74A25CA4AB3002C44D7 /* AddUnionImageCell.m */,
+				0577A74F25CA800D002C44D7 /* AddUnionSelectCell.h */,
+				0577A75025CA800E002C44D7 /* AddUnionSelectCell.m */,
+				0577A75B25CFD84E002C44D7 /* AddUnionSubCell.h */,
+				0577A75C25CFD84E002C44D7 /* AddUnionSubCell.m */,
+				0577A77325EC9420002C44D7 /* UnionActivityDetailCell.h */,
+				0577A77425EC9420002C44D7 /* UnionActivityDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2126,6 +2233,14 @@
 				1FB02FC1247507E000F3B2F8 /* XDSSMViewModel.m */,
 				1FAF236724BDA2830042394B /* StoreInfoViewModel.h */,
 				1FAF236824BDA2830042394B /* StoreInfoViewModel.m */,
+				0577A73425C3A29C002C44D7 /* UnionActivityViewModel.h */,
+				0577A73525C3A29C002C44D7 /* UnionActivityViewModel.m */,
+				0577A76425E5F18A002C44D7 /* UnionActivityDetailViewModel.h */,
+				0577A76525E5F18A002C44D7 /* UnionActivityDetailViewModel.m */,
+				0577A74325C8F5A5002C44D7 /* AddUnionActivityViewModel.h */,
+				0577A74425C8F5A5002C44D7 /* AddUnionActivityViewModel.m */,
+				0577A76E25E5FCB3002C44D7 /* AddUnionCoponViewModel.h */,
+				0577A76D25E5FCB3002C44D7 /* AddUnionCoponViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3136,6 +3251,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/NSDictionary-NilSafe/NSDictionary_NilSafe.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
@@ -3154,6 +3270,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDictionary_NilSafe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
@@ -3205,6 +3322,7 @@
 				1F25DC001E10E98B004DC19F /* GoodsOrderVC.m in Sources */,
 				1FAF236924BDA2830042394B /* StoreInfoViewModel.m in Sources */,
 				1F046D491E0A111B006D6EB2 /* ZHSetTableViewCell.m in Sources */,
+				0577A72D25BFC18C002C44D7 /* UnionActivityViewController.m in Sources */,
 				1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */,
 				1F20CB361E07876000FC91B3 /* CALScanQRCodeCameraView.m in Sources */,
 				1F12C9E21E0B672D00CF6CB7 /* InformationCell.m in Sources */,
@@ -3226,6 +3344,7 @@
 				1F607DFC24AB23C20011915E /* XDViewModel.m in Sources */,
 				1F607DFF24AB23C20011915E /* XDDetailSecCell.m in Sources */,
 				1F960D411DFE3E51003E3D17 /* UITextView+BlocksKit.m in Sources */,
+				0577A76625E5F18A002C44D7 /* UnionActivityDetailViewModel.m in Sources */,
 				1FF2F9D324CFD7B6003A2996 /* StaffDetailsModel.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
 				1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */,
@@ -3278,6 +3397,7 @@
 				1F1B21DF1E00CB7000021AB2 /* ZW_ViewController.m in Sources */,
 				1F960D301DFE3E51003E3D17 /* NSCache+BlocksKit.m in Sources */,
 				1FC9F88E24AD82BB0037352A /* CashWithdrawViewController.m in Sources */,
+				0577A73025BFC280002C44D7 /* UnionActivityCell.m in Sources */,
 				1F6C85D423CEBE78005F3DB8 /* OrderTableViewFooterView.m in Sources */,
 				1FB795B824ADDC5800D4CC40 /* CityButton.m in Sources */,
 				1F40133D1E1359DB004E30B1 /* pickerView.m in Sources */,
@@ -3287,6 +3407,7 @@
 				1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */,
 				1F960D2A1DFE3E51003E3D17 /* NSObject+BKBlockObservation.m in Sources */,
 				1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */,
+				0577A77225E73905002C44D7 /* EditUnionActivityViewController.m in Sources */,
 				1F1B21F71E0117C900021AB2 /* ZW_TextField.m in Sources */,
 				1F607DFE24AB23C20011915E /* XDDetailTableViewCell.m in Sources */,
 				1F6C85E023CEBE78005F3DB8 /* OrderTableViewHeader.m in Sources */,
@@ -3326,6 +3447,7 @@
 				1FB795B224ADDC5800D4CC40 /* ChineseToPinyinResource.m in Sources */,
 				1FC50B671F6916240081B728 /* OrderDetailsHeaderView.m in Sources */,
 				1F12F6E71E1635980056DF9A /* PayEngine.m in Sources */,
+				0577A74B25CA4AB3002C44D7 /* AddUnionImageCell.m in Sources */,
 				1F6C85DA23CEBE78005F3DB8 /* OrderTwoCell.m in Sources */,
 				1F607DF924AB23C20011915E /* XDDetailModel.m in Sources */,
 				1F960D4A1DFE3E51003E3D17 /* ToolView.m in Sources */,
@@ -3350,8 +3472,10 @@
 				1F3949E61E0D0FA500A3662D /* DetailBaseVC.m in Sources */,
 				1F1B21CC1DFFC81E00021AB2 /* MyModel.m in Sources */,
 				1FF2F9BF24CFB7F3003A2996 /* StaffdetailsHeaderView.m in Sources */,
+				0577A74825CA4319002C44D7 /* AddUnionTimerCell.m in Sources */,
 				1F607DC424AB22A20011915E /* XDShopViewController.m in Sources */,
 				1FC9F88B24AD82BB0037352A /* allViewController.m in Sources */,
+				0577A74525C8F5A5002C44D7 /* AddUnionActivityViewModel.m in Sources */,
 				1F1B21E51E00E57800021AB2 /* ZW_Label.m in Sources */,
 				1FFA99C51E231B4900E9FB1D /* NSString+RegexCategory.m in Sources */,
 				1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */,
@@ -3365,6 +3489,7 @@
 				1FB02FB92473D3AF00F3B2F8 /* HQJSelectToolView.m in Sources */,
 				1FC50B641F68D4EB0081B728 /* VerificationOrderDetailsViewController.m in Sources */,
 				1F960D421DFE3E51003E3D17 /* UIView+BlocksKit.m in Sources */,
+				0577A76325E5E0C5002C44D7 /* UnionActivityDetailViewController.m in Sources */,
 				1F402941229FBDCA0014769B /* JWPrinter.m in Sources */,
 				1F3949FE1E0D1D4000A3662D /* CashBuyZHVC.m in Sources */,
 				1F76234524D3FFA400ECE044 /* StaffAddRoleTextField.m in Sources */,
@@ -3374,6 +3499,8 @@
 				055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
+				0577A75425CA8CBE002C44D7 /* AddUnionModel.m in Sources */,
+				0577A74E25CA52B8002C44D7 /* ZWActionSheetView.m in Sources */,
 				1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */,
 				1F7ADB7E24DD4805009079F2 /* RewardsRecordModel.m in Sources */,
 				1F607DD024AB23350011915E /* AddPaymentCodeViewController.m in Sources */,
@@ -3399,6 +3526,7 @@
 				1F046D3C1E091AD3006D6EB2 /* MyListModel.m in Sources */,
 				1F607E1424AB2A560011915E /* ContactManagerCell.m in Sources */,
 				1F402915229FBA330014769B /* UIImage+Bitmap.m in Sources */,
+				0577A76925E5F6BA002C44D7 /* UnionDetailSectionView.m in Sources */,
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
 				1FF2F9CB24CFC542003A2996 /* RewardsRecordViewController.m in Sources */,
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
@@ -3433,10 +3561,17 @@
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
 				1F960D241DFE3E51003E3D17 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
+				0577A75D25CFD84E002C44D7 /* AddUnionSubCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
 				1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */,
+				0577A73C25C3FFBE002C44D7 /* AddUnionActivityViewController.m in Sources */,
 				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
 				1F5A78581EA45D040060E9EE /* MessageNotificationCell.m in Sources */,
+				0577A73F25C8E18C002C44D7 /* AddUnionActivityView.m in Sources */,
+				0577A77525EC9420002C44D7 /* UnionActivityDetailCell.m in Sources */,
+				0577A74225C8F39E002C44D7 /* AddUnionActivityCell.m in Sources */,
+				0577A75A25CD2CD5002C44D7 /* AddUnionSectionView.m in Sources */,
+				0577A76F25E5FCB3002C44D7 /* AddUnionCoponViewModel.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
 				1F960C9E1DFE3D06003E3D17 /* OrderViewController.m in Sources */,
 				1FF2F9D624D003BC003A2996 /* InvitedRecordTableViewCell.m in Sources */,
@@ -3452,6 +3587,8 @@
 				1FA611C624CEA6430097E02E /* MemberStaffListSearchView.m in Sources */,
 				1FB3DEC01E03902800F670EC /* WTReTextField.m in Sources */,
 				1F960D1A1DFE3E51003E3D17 /* Manager.m in Sources */,
+				0577A76025E48D16002C44D7 /* ShowMobileView.m in Sources */,
+				0577A73625C3A29C002C44D7 /* UnionActivityViewModel.m in Sources */,
 				1F607DF724AB23C20011915E /* XDSubModel.m in Sources */,
 				1FB795AF24ADDC5800D4CC40 /* ChineseInclude.m in Sources */,
 				1F12C9F31E0BA8E500CF6CB7 /* ChangePswViewModel.m in Sources */,
@@ -3460,6 +3597,7 @@
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
 				1FB795B624ADDC5800D4CC40 /* ButtonGroupView.m in Sources */,
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
+				0577A75125CA800E002C44D7 /* AddUnionSelectCell.m in Sources */,
 				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
 				1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
@@ -3472,6 +3610,7 @@
 				1F046D241E090DAA006D6EB2 /* SGSegmentedControlDefault.m in Sources */,
 				1F52A90424EA7AE400FF8110 /* SelectTimeView.m in Sources */,
 				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
+				0577A73925C3A740002C44D7 /* UnionActivityListModel.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
 				1F12C9DA1E0B5AA100CF6CB7 /* ZW_imageView.m in Sources */,
@@ -3519,6 +3658,7 @@
 				1F607DC124AB22A20011915E /* XDBaseViewController.m in Sources */,
 				1FF2F9D924D00C3C003A2996 /* MemberStaffListHeaderView.m in Sources */,
 				1F960D251DFE3E51003E3D17 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
+				0577A76C25E5F9C7002C44D7 /* AddUnionCoponViewController.m in Sources */,
 				1F25DC061E10EAFA004DC19F /* OrderViewModel.m in Sources */,
 				1FF2F9C824CFC500003A2996 /* InvitedRecordViewController.m in Sources */,
 			);

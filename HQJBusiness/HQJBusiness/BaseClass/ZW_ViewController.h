@@ -89,8 +89,10 @@ typedef NS_ENUM(NSInteger, PswType) {
  右边第二个按钮
  */
 @property (nonatomic,strong) UIButton *zw_rightTwoButton;
-
-
+/**
+ 底部线条
+*/
+@property (nonatomic, strong) UIView *bottomLineView;
 
 /**
  直接 pop 到某个控制器

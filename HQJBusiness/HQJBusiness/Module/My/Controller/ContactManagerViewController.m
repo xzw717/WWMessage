@@ -50,7 +50,7 @@
 
 - (ContactManagerHeadView *)headView{
     if (_headView == nil) {
-        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"已签合同",@"待签合同"]];
+        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"已签合同",@"待签合同"] andIsBlue:NO];
         _headView.selectIndex = 0;
         @weakify(self);
         [_headView setItemBlock:^(NSInteger selectedIndex) {

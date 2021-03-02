@@ -673,7 +673,6 @@ static const CGFloat  sAlertTimer = 3.0;
 }
 
 
-
 +(void)SVPAfter:(NSString *)str complete:(void(^)(void))jump {
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([SVProgressHUD displayDurationForString:str]/*延迟执行时间*/ * NSEC_PER_SEC));
     
@@ -1035,4 +1034,59 @@ static const CGFloat  sAlertTimer = 3.0;
     NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
     return timeString;
 }
+
+
+#pragma mark --- 调整图片尺寸和大小
++ (NSData *)reSizeImageData:(UIImage *)sourceImage maxImageSize:(CGFloat)maxImageSize maxSizeWithKB:(CGFloat) maxSize
+{
+    
+    if (maxSize <= 0.0) maxSize = 1024.0 * 2;
+    if (maxImageSize <= 0.0) maxImageSize = 1024.0;
+    
+    //先调整分辨率
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    
+    CGFloat tempHeight = newSize.height / maxImageSize;
+    CGFloat tempWidth = newSize.width / maxImageSize;
+    
+    if (tempWidth > 1.0 && tempWidth > tempHeight) {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    }
+    else if (tempHeight > 1.0 && tempWidth < tempHeight){
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    
+    UIGraphicsBeginImageContext(newSize);
+    [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //调整大小
+    NSData *imageData = UIImageJPEGRepresentation(newImage,1.0);
+    CGFloat sizeOriginKB = imageData.length / 1024.0;
+    
+    CGFloat resizeRate = 0.9;
+    while (sizeOriginKB > maxSize && resizeRate > 0.1) {
+        imageData = UIImageJPEGRepresentation(newImage,resizeRate);
+        sizeOriginKB = imageData.length / 1024.0;
+        resizeRate -= 0.1;
+    }
+    
+    return imageData;
+}
+
++ (BOOL)isNumber:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    int val;
+    float val1;
+    BOOL isInt = [scan scanInt:&val] && [scan isAtEnd];
+    BOOL isFloat = [scan scanFloat:&val1] && [scan isAtEnd];
+
+    if( !isInt||!isFloat){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 @end

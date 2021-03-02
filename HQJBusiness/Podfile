@@ -1,5 +1,6 @@
 platform :ios, '8.0'
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'HQJBusiness' do
 
 pod 'AFNetworking', '~> 3.1.0'
@@ -38,6 +39,6 @@ use_frameworks!
 #pod 'ReactiveObjC'
 pod 'ReactiveCocoa', :git => 'https://github.com/zhao0/ReactiveCocoa.git', :tag => '2.5.2'
 pod 'JPush'
-
+pod "NSDictionary-NilSafe"
 
 end

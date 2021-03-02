@@ -10,9 +10,6 @@
 
 @interface ZW_ViewController ()
 
-@property (nonatomic, strong) UIView *bottomLineView;
-
-
 @end
 
 @implementation ZW_ViewController

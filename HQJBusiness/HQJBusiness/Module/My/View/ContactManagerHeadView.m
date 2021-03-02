@@ -70,6 +70,8 @@
 @interface ContactManagerHeadView ()
 @property (nonatomic,strong)NSArray *titleArray;
 @property (nonatomic,strong)ContactItemView *itemView;
+@property (nonatomic, assign)BOOL isBlue;
+
 
 @end
 
@@ -78,10 +80,11 @@
 
 
 #pragma lazy-load
-- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray{
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray andIsBlue:(BOOL)isBlue{
     self = [super initWithFrame:frame ];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.isBlue = isBlue;
+        self.backgroundColor = self.isBlue ? DefaultAPPColor:[UIColor whiteColor];
         _titleArray = titleArray;
         [self addTheSubViews];
     }
@@ -94,17 +97,19 @@
     CGFloat JGGMinY = 0;//起始y值
     CGFloat SPspace = 0;//水平距离
     CGFloat ItemWidth = WIDTH / _titleArray.count;
-
     
-        for (NSInteger i = 0; i < _titleArray.count; i ++) {
+    
+    for (NSInteger i = 0; i < _titleArray.count; i ++) {
         CGFloat x =  JGGMinX + i % _titleArray.count * (ItemWidth + SPspace);
         CGFloat y =  JGGMinY + i / _titleArray.count * HeadHeight;
         ContactItemView *itemView = [[ContactItemView alloc]initWithFrame:CGRectMake(x, y, ItemWidth, HeadHeight)];
         itemView.nameLabel.text = _titleArray[i];
+        itemView.nameLabel.textColor = self.isBlue ? [UIColor whiteColor] : [ManagerEngine getColor:@"464648"];
         if (i == self.selectIndex) {
-            itemView.nameLabel.textColor = DefaultAPPColor;
+            itemView.nameLabel.textColor = self.isBlue ? [UIColor whiteColor] : DefaultAPPColor;
             itemView.nameLabel.font = [UIFont boldSystemFontOfSize:16.f];
             itemView.bottomView.hidden = NO;
+            itemView.bottomView.backgroundColor = self.isBlue ? [UIColor whiteColor] : DefaultAPPColor;
         }
         itemView.tag = 1000 + i;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(itemViewClick:)];
@@ -124,12 +129,13 @@
     !self.itemBlock? :self.itemBlock(itemView.tag - 1000);
 }
 - (void)itemViewSelected:(ContactItemView *)itemView{
-    itemView.nameLabel.textColor = DefaultAPPColor;
+    itemView.nameLabel.textColor = self.isBlue ? [UIColor whiteColor] : DefaultAPPColor;
     itemView.nameLabel.font = [UIFont boldSystemFontOfSize:16.f];
     itemView.bottomView.hidden = NO;
+    itemView.bottomView.backgroundColor = self.isBlue ? [UIColor whiteColor] : DefaultAPPColor;
 }
 - (void)itemViewUnSelected:(ContactItemView *)itemView{
-    itemView.nameLabel.textColor = [ManagerEngine getColor:@"464648"];
+    itemView.nameLabel.textColor = self.isBlue ? [UIColor whiteColor] : [ManagerEngine getColor:@"464648"];
     itemView.nameLabel.font = [UIFont systemFontOfSize:16.f];
     itemView.bottomView.hidden = YES;
 }

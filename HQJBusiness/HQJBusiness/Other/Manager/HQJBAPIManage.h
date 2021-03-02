@@ -290,7 +290,33 @@ extern NSString *const HQJBMerchantAwardToConsumerInterface;
 ///商家预约积分列表
 extern NSString *const HQJBMerchantBookingListInterface;
 
-
+/*   联盟券接口  */
+///联盟活动记录
+extern NSString *const HQJBGetActivityByMidListInterface;
+///上传图片（商家APP，添加或编辑联盟活动时上传图片）
+extern NSString *const HQJBUploadImageInterface;
+///获取区域
+extern NSString *const HQJBGetAreaInterface;
+///查询商家行业接口
+extern NSString *const HQJBGetIndustryInterface;
+///查询商家分类接口
+extern NSString *const HQJBGetMerchantTypeInterface;
+///根据手机号查询商家信息接口
+extern NSString *const HQJBGetMerchantByMobileInterface;
+///根据id删除联盟记录
+extern NSString *const HQJBModifyCurstateInterface;
+///新增联盟活动记录接口（商家APP，新增或编辑联盟活动页面使用）
+extern NSString *const HQJBAddActivityInterface;
+///添加或编辑联盟活动券（商家APP，添加或编辑联盟券页面）
+extern NSString *const HQJBAddCouponInterface;
+///根据id查询联盟活动详细接口
+extern NSString *const HQJBGetActivityByIdInterface;
+///根据id查询联盟活动记录接口
+extern NSString *const HQJBGetActivityInfoByIdInterface;
+///商家报名参加联盟活动接口（页面：商家APP，用于商家报名）
+extern NSString *const HQJBSignUpInterface;
+///根据id查询优惠券信息接口（商家APP，在报名后跳转到新增联盟券的页面时使用的接口，或编辑联盟券时使用
+extern NSString *const HQJBGetUnionCouponByIdInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

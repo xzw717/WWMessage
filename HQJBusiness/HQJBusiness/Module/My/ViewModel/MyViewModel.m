@@ -18,7 +18,7 @@
 #import "CertificationViewController.h"
 #import "StoreManagementViewController.h"
 #import "XDShopViewController.h"
-
+#import "UnionActivityViewController.h"
 @implementation MyViewModel
 
 - (void)myRequst {
@@ -160,6 +160,9 @@
             }
             
             
+        }else if (xzw_indexPath.row == 7){
+            UnionActivityViewController *uaVC = [[UnionActivityViewController alloc]init];
+            [xzw_self.navigationController pushViewController:uaVC animated:YES];
         }
         
     }
@@ -227,7 +230,8 @@
                                @"消费码核销",
                                @"待审核申请",
                                @"消息通知",
-                               @"优惠券"],/*,
+                               @"优惠券",
+                               @"联盟活动"],/*,
                                */
                              @[@"台卡下载",
                                @"设置"]];
@@ -244,7 +248,8 @@
                                    @"icon_xfm",
                                    @"icon_unverify",
                                    @"icon_notice",
-                                   @"icon_my_coupon"],/*,
+                                   @"icon_my_coupon",
+                                 @"icon_my_coupon"],/*,
                                    */
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];
@@ -261,7 +266,8 @@
                                    @"icon_XD_xfm",
                                    @"icon_XD_unverify",
                                    @"icon_XD_notice",
-                                   @"icon_XD_coupon"],/*,
+                                   @"icon_XD_coupon",
+                                 @"icon_my_coupon"],/*,
                                    */
                                  @[@"icon_XD_download",
                                    @"icon_XD_set"]];

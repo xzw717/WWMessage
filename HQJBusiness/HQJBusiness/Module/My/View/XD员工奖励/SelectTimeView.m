@@ -58,7 +58,7 @@
                  // 设置当前显示时间
         [_datePicker setDate:[NSDate date] animated:YES];
                    // 设置显示最大时间（此处为当前时间）
-        [_datePicker setMaximumDate:[NSDate date]];
+//        [_datePicker setMaximumDate:[NSDate date]];
         [_datePicker addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
 
     }
