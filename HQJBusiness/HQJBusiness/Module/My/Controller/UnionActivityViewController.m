@@ -124,7 +124,7 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
-  
+    
 }
 - (void)deleteActicityById:(NSString *)activityId{
     [UnionActivityViewModel modifyCurstate:activityId completion:^(NSDictionary * _Nonnull dic) {
@@ -148,7 +148,7 @@
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
             [tabViewController setSelectedIndex:3];
-
+            
         }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -188,17 +188,17 @@
                 }
                 
             }
-
+            
         }else{
             UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
             [self.navigationController pushViewController:vc animated:YES];
         }
-
+        
     }else if (self.topTag == 1){
         if ([model.curstate isEqualToString:@"报名中"]) {
             AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
             [self.navigationController pushViewController:vc animated:YES];
-
+            
         }else{
             UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
             [self.navigationController pushViewController:vc animated:YES];
@@ -233,28 +233,30 @@
         [self deleteActicityById:model.activityId];
     }
 }
-
- 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
-
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
-    UnionActivityEmptyView *view = [[UnionActivityEmptyView alloc]init];
-    view.sureButtonBlock = ^{
-        AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    };
-    return view;
+    return [[UnionActivityEmptyView alloc]init];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//空白页点击事件
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
+    AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
-*/
+
+
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

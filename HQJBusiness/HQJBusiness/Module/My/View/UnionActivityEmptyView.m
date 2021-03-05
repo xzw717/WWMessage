@@ -17,7 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor redColor];
+        self.userInteractionEnabled = YES;
         [self addSubview:self.headImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.sureButton];

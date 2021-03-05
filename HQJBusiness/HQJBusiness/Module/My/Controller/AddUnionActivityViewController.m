@@ -421,7 +421,8 @@
                 if (cell == nil) {
                     cell = [[AddUnionTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
                 }
-                
+                cell.model = self.model;
+                cell.dataArray = sectionArray;
                 @weakify(self);
                 cell.textFieldResult = ^(NSString * _Nonnull value) {
                     @strongify(self);

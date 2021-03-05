@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - DZNEmptyDataSet (1.8.1)
+  - DZNEmptyDataSet (1.6.1)
   - FDFullscreenPopGesture (1.1)
   - IQKeyboardManager (6.3.0)
   - JCore (2.0.1)
@@ -107,7 +107,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IQKeyboardManager: 2ca9d64893247556f53523dcd8d78641f0ba7c23
   JCore: 8425fb3f85f1400f9bc8ccf8121cd5694a790f3b
@@ -127,6 +127,6 @@ SPEC CHECKSUMS:
   UMCCommon: 0263a057a2e1ae1da4c8308541e56904a493ce13
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
 
-PODFILE CHECKSUM: 0c40ef1ce8b9a2faac11c10c580aa7ad21e0bdd7
+PODFILE CHECKSUM: 57931a10e4ba906142b322b950bd3201e3b924eb
 
 COCOAPODS: 1.9.1
