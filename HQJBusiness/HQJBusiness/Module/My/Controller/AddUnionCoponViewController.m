@@ -27,7 +27,7 @@
 @implementation AddUnionCoponViewController
 - (NSArray *)dataArray{
     if (_dataArray == nil) {
-        _dataArray = @[@[@[@"0",@"联盟券类型：",@"选择联盟券类型",@"typeId"],@[@"0",@"联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"发行数量：",@"1 - 10000",@"count"],@[@"0",@"每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"]],@[@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]]];
+        _dataArray = @[@[@[@"0",@"联盟券类型：",@"选择联盟券类型",@"typeName"],@[@"0",@"联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"发行数量：",@"1 - 10000",@"count"],@[@"0",@"每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"]],@[@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]]];
     }
     return _dataArray;
 }
@@ -56,6 +56,7 @@
         _addButton.frame = CGRectMake(10, 10, WIDTH - 20, 40);
         _addButton.layer.masksToBounds = YES;
         _addButton.layer.cornerRadius = 5;
+        _addButton.backgroundColor = DefaultAPPColor;
         [_addButton setTitle:@"确认添加" forState:UIControlStateNormal];
         [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_addButton addTarget:self action:@selector(addButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -71,12 +72,13 @@
         [AddUnionCoponViewModel getUnionCouponById:activityId completion:^(NSDictionary * _Nonnull dic) {
             if ([dic[@"code"] integerValue] == 49000) {
                 self.model = [AddUnionModel mj_objectWithKeyValues:dic[@"result"][@"coupon"]];
-                if (self.model.curstate.integerValue == 0) {
-                    self.addButton.userInteractionEnabled = YES;
-                    self.addButton.backgroundColor = DefaultAPPColor;
+                
+                if (self.model.isHost.integerValue == 0) {
+                    self.zw_title =  self.model.activityName;
+                    [self.addButton setTitle:@"确认加入" forState:UIControlStateNormal];
                 }else{
-                    self.addButton.userInteractionEnabled = NO;
-                    self.addButton.backgroundColor = GrayColor;
+                    self.zw_title = self.model.couponId.integerValue == 0 ? @"添加联盟券":@"修改联盟券";
+                    [self.addButton setTitle:self.model.couponId.integerValue == 0 ? @"确认添加":@"确认修改" forState:UIControlStateNormal];
                 }
                 
                 [self.tableView reloadData];
@@ -91,7 +93,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title = @"添加联盟券";
     
     [self initUI];
     
@@ -107,30 +108,50 @@
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setImage:[UIImage imageNamed:@"icon_explain"] forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(addUnionActivity) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(explainClicked) forControlEvents:UIControlEventTouchUpInside];
     self.zw_rightOneButton = rightBtn;
 }
 - (void)updateModel:(NSString *)key andValue:(NSString *)value{
     [self.model setValue:value forKey:key];
 }
 - (void)addButtonClicked{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认发布？" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认操作\n是否同意联盟规则？？" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [AddUnionCoponViewModel addUnionCopon:self.model andIsNew:YES completion:^(NSDictionary * _Nonnull dic) {
-            if ([dic[@"code"] integerValue] == 49000) {
-                [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
-                [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
-            }
-        }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"同意并确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (self.model.isHost.integerValue == 0) {
+            @weakify(self);
+            [AddUnionCoponViewModel signUp:self.activityId completion:^(NSDictionary * _Nonnull dic) {
+                if ([dic[@"code"] integerValue] == 49000) {
+                    [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
+                    [ManagerEngine SVPAfter:dic[@"msg"] complete:^{
+                        @strongify(self);
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                }
+            }];
+        }else{
+            @weakify(self);
+            [AddUnionCoponViewModel addUnionCopon:self.model andActivityId:self.activityId completion:^(NSDictionary * _Nonnull dic) {
+                if ([dic[@"code"] integerValue] == 49000) {
+                    [SVProgressHUD showSuccessWithStatus:dic[@"msg"]];
+                    [ManagerEngine SVPAfter:dic[@"msg"] complete:^{
+                        @strongify(self);
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
+                }
+            }];
+        }
+        
         
     }]];
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-- (void)addUnionActivity{
+- (void)explainClicked{
     
 }
 #pragma mark --- UITableViewDataSource
@@ -144,7 +165,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return TableViewTopSpace;
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -163,7 +183,7 @@
         AddUnionActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AddUnionActivityCell class]) forIndexPath:indexPath];
         cell.model = self.model;
         cell.dataArray = sectionArray;
-        if (self.model.curstate.integerValue == 0) {
+        if (indexPath.row != 0&&self.model.isHost.integerValue == 1) {
             cell.textField.userInteractionEnabled = YES;
         }else{
             cell.textField.userInteractionEnabled = NO;
@@ -179,7 +199,7 @@
         AddUnionTimerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AddUnionTimerCell class]) forIndexPath:indexPath];
         cell.model = self.model;
         cell.dataArray = sectionArray;
-        if (self.model.curstate.integerValue == 0) {
+        if (indexPath.row == 1&&self.model.isHost.integerValue == 1) {
             cell.textField.userInteractionEnabled = YES;
         }else{
             cell.textField.userInteractionEnabled = NO;
@@ -198,18 +218,19 @@
 }
 #pragma mark ---UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.model.curstate.integerValue == 0) {
+    NSArray *sectionArray = self.dataArray[indexPath.section][indexPath.row];
+    if (self.model.isHost.integerValue == 1) {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-                if (self.model.couponType) {
-                    NSMutableArray *sepArray = [NSMutableArray arrayWithArray:[self.model.couponType componentsSeparatedByString:@","]];
+                if (self.model.text) {
+                    NSMutableArray *sepArray = [NSMutableArray arrayWithArray:[self.model.text componentsSeparatedByString:@","]];
                     self.pickView = [[pickerView alloc]initWithFrame:CGRectMake(30, HEIGHT*0.2, WIDTH - 60 , HEIGHT*0.6) andTitleAry:sepArray];
                     self.pickView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
                     [self.pickView showView];
                     @weakify(self);
                     [self.pickView setSenderBlock:^(id sender) {
                         @strongify(self);
-                        //            [self updateModel:[sectionArray lastObject] andValue:sepArray[[sender integerValue]];
+                        [self updateModel:[sectionArray lastObject] andValue:sepArray[[sender integerValue]]];
                         [self.tableView reloadData];
                     }];
                 }else{

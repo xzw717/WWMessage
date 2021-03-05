@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *curstate;
 @property (nonatomic, strong) NSString *isHost;
 @property (nonatomic, strong) NSString *isSelfHost;//0.是自己发起  1.不是自己发起
-
+@property (nonatomic, strong) NSString *isSignUp;//0.未报名  1.已报名
 @end
 
 NS_ASSUME_NONNULL_END

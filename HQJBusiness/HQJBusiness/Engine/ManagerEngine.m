@@ -1082,10 +1082,10 @@ static const CGFloat  sAlertTimer = 3.0;
     BOOL isInt = [scan scanInt:&val] && [scan isAtEnd];
     BOOL isFloat = [scan scanFloat:&val1] && [scan isAtEnd];
 
-    if( !isInt||!isFloat){
-        return NO;
-    }else{
+    if( isInt||isFloat){
         return YES;
+    }else{
+        return NO;
     }
 }
 

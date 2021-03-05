@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddUnionCoponViewModel : NSObject
 + (void)getUnionCouponById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
-+ (void)addUnionCopon:(AddUnionModel *)model andIsNew:(BOOL)isNew completion:(void(^)(NSDictionary *dic))completion;
-
++ (void)addUnionCopon:(AddUnionModel *)model andActivityId:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
++ (void)signUp:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
 @end
 
 NS_ASSUME_NONNULL_END

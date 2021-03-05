@@ -9,5 +9,7 @@
 #import "AddUnionModel.h"
 
 @implementation AddUnionModel
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"couponId":@"id"};
+}
 @end

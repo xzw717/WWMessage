@@ -10,6 +10,7 @@
 #import "AddUnionActivityViewModel.h"
 #import "AddUnionActivityCell.h"
 #import "AddUnionTimerCell.h"
+#import "AddUnionTextViewCell.h"
 #import "pickerView.h"
 #import "AddUnionModel.h"
 #define TableViewCellHeight 50.f
@@ -34,14 +35,6 @@
         [AddUnionActivityViewModel getActivityById:activityId completion:^(NSDictionary * _Nonnull dic) {
             if ([dic[@"code"] integerValue] == 49000) {
                 self.model = [AddUnionModel mj_objectWithKeyValues:dic[@"result"]];
-                if (self.model.curstate.integerValue == 0) {
-                    self.addButton.userInteractionEnabled = YES;
-                    self.addButton.backgroundColor = DefaultAPPColor;
-                }else{
-                    self.addButton.userInteractionEnabled = NO;
-                    self.addButton.backgroundColor = GrayColor;
-                }
-                
                 [self.tableView reloadData];
             }else{
                 self.model = [[AddUnionModel alloc]init];
@@ -64,6 +57,8 @@
         _tableView.tableFooterView = self.bottomView;
         [_tableView registerClass:[AddUnionActivityCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionActivityCell class])];
         [_tableView registerClass:[AddUnionTimerCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionTimerCell class])];
+        [_tableView registerClass:[AddUnionTextViewCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionTextViewCell class])];
+        
         
     }
     
@@ -76,6 +71,7 @@
         _addButton.frame = CGRectMake(10, 10, WIDTH - 20, 40);
         _addButton.layer.masksToBounds = YES;
         _addButton.layer.cornerRadius = 5;
+        _addButton.backgroundColor = DefaultAPPColor;
         [_addButton setTitle:@"确认修改" forState:UIControlStateNormal];
         [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_addButton addTarget:self action:@selector(addButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -148,7 +144,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2) {
-        return 100;
+        return 150;
     }
     return TableViewCellHeight;
 }
@@ -200,7 +196,23 @@
             return cell;
         }
             break;
+        case 5:{
+            NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+            AddUnionTextViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            if (cell == nil) {
+                cell = [[AddUnionTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
             
+            @weakify(self);
+            cell.textFieldResult = ^(NSString * _Nonnull value) {
+                @strongify(self);
+                NSLog(@"value = %@",value);
+                [self updateModel:[sectionArray lastObject] andValue:value];
+            };
+            
+            return cell;
+        }
+            break;
         default:
             return nil;
             break;

@@ -22,13 +22,13 @@
     
     
 }
-+ (void)addUnionCopon:(AddUnionModel *)model andIsNew:(BOOL)isNew completion:(void(^)(NSDictionary *dic))completion{
++ (void)addUnionCopon:(AddUnionModel *)model andActivityId:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
     if (!model.couponName) {
         [SVProgressHUD showErrorWithStatus:@"优惠券名称不能为空"];
         return;
     }
-    if (!model.typeId) {
-        [SVProgressHUD showErrorWithStatus:@"联盟券类型不能为空且应为纯数字"];
+    if (!model.typeName) {
+        [SVProgressHUD showErrorWithStatus:@"联盟券类型不能为空"];
         return;
     }
     if (!model.reducePrice||![ManagerEngine isNumber:model.reducePrice]) {
@@ -56,16 +56,10 @@
         }
     }
 
-    NSDictionary *dict = @{@"couponName":model.couponName,@"reducePrice":model.reducePrice,@"minPrice":model.minPrice,@"typeId":model.typeId,@"count":model.count,@"receiveNumber":model.receiveNumber,@"endTime":model.endTime};
+    NSDictionary *dict = @{@"id":model.couponId,@"userId":MmberidStr,@"couponName":model.couponName,@"reducePrice":model.reducePrice,@"minPrice":model.minPrice,@"typeId":model.typeName,@"count":model.count,@"receiveNumber":model.receiveNumber,@"endTime":model.endTime,@"startTime":model.startTime};
     
-    NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:dict];
-    if (isNew) {
-        
-    }else{
-        
-    }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddCouponInterface];
-    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
     } andError:^(NSError *error) {
         
@@ -73,4 +67,17 @@
     
     
 }
++ (void)signUp:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
+    NSDictionary *dict = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSignUpInterface];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
+        !completion ? : completion(dic);
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+    
+    
+}
+
 @end

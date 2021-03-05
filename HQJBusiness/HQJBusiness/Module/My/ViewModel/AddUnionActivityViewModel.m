@@ -91,12 +91,12 @@
         [SVProgressHUD showErrorWithStatus:@"开始时间不能大于结束时间"];
         return;
     }
-    if (!model.maxCount||![ManagerEngine isNumber:model.receiveNumber]) {
+    if (!model.maxCount||![ManagerEngine isNumber:model.maxCount]) {
         [SVProgressHUD showErrorWithStatus:@"联盟商家上限不能为空且应为纯数字"];
         return;
     }
-    if (!model.merchantCount||![ManagerEngine isNumber:model.receiveNumber]) {
-        [SVProgressHUD showErrorWithStatus:@"联盟成立数量不能为空且应为纯数字"];
+    if (!model.merchantCount||![ManagerEngine isNumber:model.merchantCount]||model.merchantCount.integerValue < 3) {
+        [SVProgressHUD showErrorWithStatus:@"联盟成立数量不能为空且不能小于3"];
         return;
     }
     if (!model.area) {
@@ -172,6 +172,7 @@
     }else{
         dict = @{@"userId":MmberidStr,@"activityName":[self getTrueField:model.activityName],@"start":[self getTrueField:model.start],@"end":[self getTrueField:model.end],@"banner":[self getTrueField:model.banner],@"area":[self getTrueField:model.areaId],@"merchantCount":[self getTrueField:model.merchantCount],@"maxCount":[self getTrueField:model.maxCount],@"industry":model.industryId,@"pushSettings":[self getTrueField:model.pushSettingsId],@"merchantType":[self getTrueField:model.merchantTypeId],@"mid":[self getTrueField:model.midId],@"couponType":[self getTrueField:model.couponType],@"rule":[self getTrueField:model.rule],@"isHost":[self getTrueField:model.isHostId],@"couponName":[self getTrueField:model.couponName],@"reducePrice":[self getTrueField:model.reducePrice],@"minPrice":[self getTrueField:model.minPrice],@"typeId":[self getTrueField:model.typeId],@"count":[self getTrueField:model.count],@"receiveNumber":[self getTrueField:model.receiveNumber],@"startTime":[self getTrueField:model.startTime],@"endTime":[self getTrueField:model.endTime],@"mobile":[self getTrueField:model.mobile],@"hash":HashCode};
     }
+    
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:dict];
     [parameter setObject:[[self getTrueField:activityId] isEqualToString:@""]?@"0":activityId forKey:@"id"];
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddActivityInterface];
@@ -193,7 +194,9 @@
         
     } ShowHUD:NO];
 }
-
++ (NSString *)getUrlEncode:(NSString *)field{
+    return [field stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+}
 + (NSString *)getTrueField:(NSString *)field{
     if (!field) {
         return @"";
@@ -216,14 +219,15 @@
     return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于2的整数",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于2且小于等于联盟商家上限数字",@"merchantCount"]]
              ,@[@"4",@"* 商家区域：",@"选择商家区域",@"area"],@[@"4",@"* 商家类型：",@"选择商家类型",@"merchantType"],@[@"4",@"指定商家：",@"选择指定商家",@"mid"],@[@"4",@"* 商家分类：",@"选择商家分类",@"industry"],
              
-             @[@[@"2",@"* 优惠券类型：",@"店铺优惠券,店铺收藏券,商家折扣券,商家满赠券",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后,登录时",@"pushSettings"]],
+             @[@[@"2",@"* 优惠券类型：",@"店铺优惠券,商家折扣券,商家满赠券",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后,登录时",@"pushSettings"]],
              @[@[@"2",@"* 发券方：",@"发起人,参与人",@"isHost"],@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
-  @[@[@"0",@"* 规则说明：",@"输入规则说明",@"rule"]]];
+  @[@[@"5",@"* 规则说明：",@"输入规则说明",@"rule"]]];
+//    ,店铺收藏券
 }
 + (NSArray *)getEditDataArray{
     return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于2的整数",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于2且小于等于联盟商家上限数字",@"merchantCount"]],
              
              @[@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
-  @[@[@"0",@"* 规则说明：",@"输入规则说明",@"rule"]]];
+  @[@[@"5",@"* 规则说明：",@"输入规则说明",@"rule"]]];
 }
 @end

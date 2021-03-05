@@ -14,6 +14,7 @@
 #import "AddUnionTimerCell.h"
 #import "AddUnionSelectCell.h"
 #import "AddUnionSubCell.h"
+#import "AddUnionTextViewCell.h"
 #import "pickerView.h"
 #import "ShowMobileView.h"
 #import "AddUnionModel.h"
@@ -60,6 +61,8 @@
         [_tableView registerClass:[AddUnionTimerCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionTimerCell class])];
         [_tableView registerClass:[AddUnionSelectCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionSelectCell class])];
         [_tableView registerClass:[AddUnionSubCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionSubCell class])];
+        [_tableView registerClass:[AddUnionTextViewCell class] forCellReuseIdentifier:NSStringFromClass([AddUnionTextViewCell class])];
+        
         
     }
     
@@ -98,6 +101,7 @@
      2:AddUnionSelectCell
      3:AddUnionImageCell
      4:AddUnionSubCell
+     5:AddUnionTextViewCell
      **/
     [self.tableView reloadData];
 }
@@ -271,7 +275,7 @@
         }
     }
     if (indexPath.section == 7) {
-        return 100;
+        return 150;
     }
     return TableViewCellHeight;
 }
@@ -316,6 +320,7 @@
          2:AddUnionSelectCell
          3:AddUnionImageCell
          4:AddUnionSubCell
+         5:AddUnionTextViewCell
          **/
         switch ([sectionArray[0] integerValue]) {
             case 0:{
@@ -408,6 +413,22 @@
                     }
                 };
                 
+                return cell;
+            }
+            case 5:{
+                NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+                AddUnionTextViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                if (cell == nil) {
+                    cell = [[AddUnionTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                }
+                
+                @weakify(self);
+                cell.textFieldResult = ^(NSString * _Nonnull value) {
+                    @strongify(self);
+                    NSLog(@"value = %@",value);
+                    [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:NO];
+                };
+
                 return cell;
             }
                 break;

@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///联盟券
 @property (nonatomic, strong) NSString *isHost;//0.发起人  1.参与方
 @property (nonatomic, strong) NSString *isHostId;//0.发起人  1.参与方
+@property (nonatomic, strong) NSString *couponId;//优惠券Id
 @property (nonatomic, strong) NSString *couponName;//优惠券名称
 @property (nonatomic, strong) NSString *typeId;//联盟券类型
 @property (nonatomic, strong) NSString *userId;//商家id
@@ -55,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *usedCount;//使用数量
 
+@property (nonatomic, strong) NSString *typeName;//联盟活动选择的的优惠券类型
+@property (nonatomic, strong) NSString *text;//联盟活动的优惠券类型，商家可以发送的优惠券类型
 @end
 
 NS_ASSUME_NONNULL_END

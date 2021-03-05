@@ -249,7 +249,7 @@
                                    @"icon_unverify",
                                    @"icon_notice",
                                    @"icon_my_coupon",
-                                 @"icon_my_coupon"],/*,
+                                 @"icon_allianceactivities"],/*,
                                    */
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];
@@ -267,7 +267,7 @@
                                    @"icon_XD_unverify",
                                    @"icon_XD_notice",
                                    @"icon_XD_coupon",
-                                 @"icon_my_coupon"],/*,
+                                 @"icon_XD_allianceactivities"],/*,
                                    */
                                  @[@"icon_XD_download",
                                    @"icon_XD_set"]];

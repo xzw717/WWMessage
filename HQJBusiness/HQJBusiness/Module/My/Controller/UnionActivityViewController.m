@@ -14,6 +14,8 @@
 #import "EditUnionActivityViewController.h"
 #import "AddUnionCoponViewController.h"
 #import "UnionActivityDetailViewController.h"
+#import "UnionActivityEmptyView.h"
+#import "AppDelegate.h"
 #define TableViewCellHeight 300.f
 #define HeadHeight  132/3.f
 #define TableViewTopSpace 40/3.f
@@ -41,6 +43,8 @@
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.emptyDataSetSource = self;
+        _tableView.emptyDataSetDelegate = self;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;
         [_tableView registerClass:[UnionActivityCell class] forCellReuseIdentifier:NSStringFromClass([UnionActivityCell class])];
@@ -117,8 +121,6 @@
         }
         [self.dataArray addObjectsFromArray:list];
         [self.tableView reloadData];
-        self.tableView.emptyDataSetSource = self;
-        self.tableView.emptyDataSetDelegate = self;
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
@@ -136,9 +138,20 @@
 }
 
 - (void)addUnionActivity{
-    AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    if ([NameSingle shareInstance].peugeotid == 6) {
+        AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"XD商家专享权限\n是否申请成为XD商家？" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
+            [tabViewController setSelectedIndex:3];
+
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 #pragma mark --- UITableViewDataSource
 
@@ -166,8 +179,14 @@
                 EditUnionActivityViewController *vc = [[EditUnionActivityViewController alloc]initWithActivityId:model.activityId];
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
-                AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
-                [self.navigationController pushViewController:vc animated:YES];
+                if (model.isSignUp.integerValue == 0) {
+                    AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else{
+                    UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
             }
 
         }else{
@@ -176,11 +195,24 @@
         }
 
     }else if (self.topTag == 1){
-        AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([model.curstate isEqualToString:@"报名中"]) {
+            AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
+            [self.navigationController pushViewController:vc animated:YES];
+
+        }else{
+            UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
     }else{
-        EditUnionActivityViewController *vc = [[EditUnionActivityViewController alloc]initWithActivityId:model.activityId];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([model.curstate isEqualToString:@"报名中"]) {
+            EditUnionActivityViewController *vc = [[EditUnionActivityViewController alloc]initWithActivityId:model.activityId];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
         
     }
     
@@ -206,8 +238,14 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"commoditymanagement_emptypages"];
+
+- (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
+    UnionActivityEmptyView *view = [[UnionActivityEmptyView alloc]init];
+    view.sureButtonBlock = ^{
+        AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    return view;
 }
 /*
 #pragma mark - Navigation

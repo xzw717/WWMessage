@@ -38,6 +38,9 @@
 		0577A76F25E5FCB3002C44D7 /* AddUnionCoponViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A76D25E5FCB3002C44D7 /* AddUnionCoponViewModel.m */; };
 		0577A77225E73905002C44D7 /* EditUnionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77125E73905002C44D7 /* EditUnionActivityViewController.m */; };
 		0577A77525EC9420002C44D7 /* UnionActivityDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77425EC9420002C44D7 /* UnionActivityDetailCell.m */; };
+		0577A77825EDCFED002C44D7 /* UnionActivityEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77625EDCFED002C44D7 /* UnionActivityEmptyView.m */; };
+		0577A77B25F07410002C44D7 /* ContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77A25F0740F002C44D7 /* ContentTextView.m */; };
+		0577A77E25F0748F002C44D7 /* AddUnionTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77D25F0748F002C44D7 /* AddUnionTextViewCell.m */; };
 		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
 		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
 		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
@@ -545,6 +548,12 @@
 		0577A77125E73905002C44D7 /* EditUnionActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUnionActivityViewController.m; sourceTree = "<group>"; };
 		0577A77325EC9420002C44D7 /* UnionActivityDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnionActivityDetailCell.h; sourceTree = "<group>"; };
 		0577A77425EC9420002C44D7 /* UnionActivityDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnionActivityDetailCell.m; sourceTree = "<group>"; };
+		0577A77625EDCFED002C44D7 /* UnionActivityEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnionActivityEmptyView.m; sourceTree = "<group>"; };
+		0577A77725EDCFED002C44D7 /* UnionActivityEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnionActivityEmptyView.h; sourceTree = "<group>"; };
+		0577A77925F0740E002C44D7 /* ContentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTextView.h; sourceTree = "<group>"; };
+		0577A77A25F0740F002C44D7 /* ContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTextView.m; sourceTree = "<group>"; };
+		0577A77C25F0748F002C44D7 /* AddUnionTextViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionTextViewCell.h; sourceTree = "<group>"; };
+		0577A77D25F0748F002C44D7 /* AddUnionTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionTextViewCell.m; sourceTree = "<group>"; };
 		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
@@ -2178,16 +2187,22 @@
 				1F034A662498A05100214E26 /* UpgradeManagementTableViewCell.m */,
 				1F6E10E7249B100000BEDB72 /* NewWithdrawTableViewCell.h */,
 				1F6E10E8249B100000BEDB72 /* NewWithdrawTableViewCell.m */,
+				0577A77725EDCFED002C44D7 /* UnionActivityEmptyView.h */,
+				0577A77625EDCFED002C44D7 /* UnionActivityEmptyView.m */,
 				0577A72E25BFC280002C44D7 /* UnionActivityCell.h */,
 				0577A72F25BFC280002C44D7 /* UnionActivityCell.m */,
 				0577A75E25E48D16002C44D7 /* ShowMobileView.h */,
 				0577A75F25E48D16002C44D7 /* ShowMobileView.m */,
+				0577A77925F0740E002C44D7 /* ContentTextView.h */,
+				0577A77A25F0740F002C44D7 /* ContentTextView.m */,
 				0577A76825E5F6BA002C44D7 /* UnionDetailSectionView.h */,
 				0577A76725E5F6BA002C44D7 /* UnionDetailSectionView.m */,
 				0577A75825CD2CD5002C44D7 /* AddUnionSectionView.h */,
 				0577A75925CD2CD5002C44D7 /* AddUnionSectionView.m */,
 				0577A74025C8F39E002C44D7 /* AddUnionActivityCell.h */,
 				0577A74125C8F39E002C44D7 /* AddUnionActivityCell.m */,
+				0577A77C25F0748F002C44D7 /* AddUnionTextViewCell.h */,
+				0577A77D25F0748F002C44D7 /* AddUnionTextViewCell.m */,
 				0577A74625CA4319002C44D7 /* AddUnionTimerCell.h */,
 				0577A74725CA4319002C44D7 /* AddUnionTimerCell.m */,
 				0577A74925CA4AB3002C44D7 /* AddUnionImageCell.h */,
@@ -3355,6 +3370,7 @@
 				1F6C85DD23CEBE78005F3DB8 /* OrderDetailsThreeCell.m in Sources */,
 				1FB795B724ADDC5800D4CC40 /* CityItem.m in Sources */,
 				1F960C9D1DFE3D06003E3D17 /* MyViewController.m in Sources */,
+				0577A77B25F07410002C44D7 /* ContentTextView.m in Sources */,
 				1F960D261DFE3E51003E3D17 /* NSMutableSet+BlocksKit.m in Sources */,
 				1F607E0324AB23C20011915E /* XDDetailViewController.m in Sources */,
 				1F607DD124AB23350011915E /* PaymentCodeViewController.m in Sources */,
@@ -3617,6 +3633,7 @@
 				1FBBD8191E343A300077B124 /* TabBarBannerModel.m in Sources */,
 				1F607DC024AB22A20011915E /* XDShopServiceManagementViewController.m in Sources */,
 				1F20CB3A1E0788E400FC91B3 /* ScanViewController.m in Sources */,
+				0577A77825EDCFED002C44D7 /* UnionActivityEmptyView.m in Sources */,
 				1F276FAA24DBA2940049E227 /* RoleListModel.m in Sources */,
 				1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */,
 				1F276FAD24DBFE4F0049E227 /* InvitedRecordModel.m in Sources */,
@@ -3635,6 +3652,7 @@
 				1FF2F9E824D1738E003A2996 /* RoleSelectView.m in Sources */,
 				1F7ADBD524E516F4009079F2 /* SetProportionViewModel.m in Sources */,
 				1F1B21C91DFFC28500021AB2 /* MyViewModel.m in Sources */,
+				0577A77E25F0748F002C44D7 /* AddUnionTextViewCell.m in Sources */,
 				1F6C85DB23CEBE78005F3DB8 /* OrderDetailsFourCell.m in Sources */,
 				1FC9F89324AD82BB0037352A /* HelpMeViewController.m in Sources */,
 				054DDE552589EBC8006EFB39 /* BookScoreCell.m in Sources */,
@@ -3876,7 +3894,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8.5;
+				CURRENT_PROJECT_VERSION = 3.8.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -3906,7 +3924,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.9;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3925,7 +3943,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8.5;
+				CURRENT_PROJECT_VERSION = 3.8.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
@@ -3955,7 +3973,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.2.9;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
