@@ -41,6 +41,7 @@
 		0577A77825EDCFED002C44D7 /* UnionActivityEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77625EDCFED002C44D7 /* UnionActivityEmptyView.m */; };
 		0577A77B25F07410002C44D7 /* ContentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77A25F0740F002C44D7 /* ContentTextView.m */; };
 		0577A77E25F0748F002C44D7 /* AddUnionTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A77D25F0748F002C44D7 /* AddUnionTextViewCell.m */; };
+		0577A78125F9A3D2002C44D7 /* ShowUnionRuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0577A78025F9A3D2002C44D7 /* ShowUnionRuleView.m */; };
 		0585FE782497106C00CD7280 /* ForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE642497106C00CD7280 /* ForgetPswViewController.m */; };
 		0585FE792497106C00CD7280 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE652497106C00CD7280 /* LoginViewController.m */; };
 		0585FE7A2497106C00CD7280 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585FE672497106C00CD7280 /* RegisterViewController.m */; };
@@ -554,6 +555,8 @@
 		0577A77A25F0740F002C44D7 /* ContentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTextView.m; sourceTree = "<group>"; };
 		0577A77C25F0748F002C44D7 /* AddUnionTextViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUnionTextViewCell.h; sourceTree = "<group>"; };
 		0577A77D25F0748F002C44D7 /* AddUnionTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUnionTextViewCell.m; sourceTree = "<group>"; };
+		0577A77F25F9A3D1002C44D7 /* ShowUnionRuleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowUnionRuleView.h; sourceTree = "<group>"; };
+		0577A78025F9A3D2002C44D7 /* ShowUnionRuleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowUnionRuleView.m; sourceTree = "<group>"; };
 		0585FE642497106C00CD7280 /* ForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswViewController.m; sourceTree = "<group>"; };
 		0585FE652497106C00CD7280 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0585FE662497106C00CD7280 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
@@ -2193,6 +2196,8 @@
 				0577A72F25BFC280002C44D7 /* UnionActivityCell.m */,
 				0577A75E25E48D16002C44D7 /* ShowMobileView.h */,
 				0577A75F25E48D16002C44D7 /* ShowMobileView.m */,
+				0577A77F25F9A3D1002C44D7 /* ShowUnionRuleView.h */,
+				0577A78025F9A3D2002C44D7 /* ShowUnionRuleView.m */,
 				0577A77925F0740E002C44D7 /* ContentTextView.h */,
 				0577A77A25F0740F002C44D7 /* ContentTextView.m */,
 				0577A76825E5F6BA002C44D7 /* UnionDetailSectionView.h */,
@@ -3513,6 +3518,7 @@
 				1F20CB3F1E07DEE100FC91B3 /* ManuallyAddViewController.m in Sources */,
 				0585FE7D2497106C00CD7280 /* MyShopViewController.m in Sources */,
 				055996B72510BABB006C9716 /* ScoreGiftViewController.m in Sources */,
+				0577A78125F9A3D2002C44D7 /* ShowUnionRuleView.m in Sources */,
 				1F046D221E090DAA006D6EB2 /* SGNavigationItemTitleView.m in Sources */,
 				1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */,
 				0577A75425CA8CBE002C44D7 /* AddUnionModel.m in Sources */,

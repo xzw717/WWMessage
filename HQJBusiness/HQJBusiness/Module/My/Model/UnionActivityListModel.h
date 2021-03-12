@@ -26,9 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *endTime;
 @property (nonatomic, strong) NSString *banner;
 @property (nonatomic, strong) NSString *curstate;
-@property (nonatomic, strong) NSString *isHost;
+@property (nonatomic, strong) NSString *isHost;//0.发起人  1.参与方
 @property (nonatomic, strong) NSString *isSelfHost;//0.是自己发起  1.不是自己发起
 @property (nonatomic, strong) NSString *isSignUp;//0.未报名  1.已报名
+@property (nonatomic, strong) NSString *isModify;//0.可编辑  1.不可编辑
+@property (nonatomic, strong) NSString *isModifyCoupon;//0.可编辑  1.不可编辑
 @end
 
 NS_ASSUME_NONNULL_END

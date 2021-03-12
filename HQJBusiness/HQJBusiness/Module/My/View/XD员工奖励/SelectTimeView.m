@@ -8,7 +8,6 @@
 
 #import "SelectTimeView.h"
 @interface SelectTimeView ()
-@property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) NSString *timerString;
 @end
 @implementation SelectTimeView

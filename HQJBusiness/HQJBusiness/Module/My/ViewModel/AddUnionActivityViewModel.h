@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)uploadImage:(UIImage *)image andUrl:(NSString *)url alertText:(NSString *)text completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error,UIImage *image))completionBlock;
 + (void)getMerchantByMobile:(NSString *)mobile completion:(void(^)(NSDictionary *dic))completion;
 + (void)addUnionActivity:(AddUnionModel *)model andActivityId:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
++ (void)getActivityInfoById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
 + (void)getActivityById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
+
 + (NSArray *)getDataArray;
 + (NSArray *)getEditDataArray;
 @end

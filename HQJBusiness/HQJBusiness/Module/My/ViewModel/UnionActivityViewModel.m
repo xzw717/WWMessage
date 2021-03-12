@@ -32,7 +32,7 @@
 + (void)modifyCurstate:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBModifyCurstateInterface];
     
-    NSDictionary *dict = @{@"activityId":activityId};
+    NSDictionary *dict = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);

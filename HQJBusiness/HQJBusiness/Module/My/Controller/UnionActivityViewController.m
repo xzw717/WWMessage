@@ -85,8 +85,11 @@
     self.zw_title = @"联盟活动";
     [self initUI];
     self.page = 1;
-    [self requsetData];
     // Do any additional setup after loading the view.
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requsetData];
 }
 - (void)initUI{
     self.zwNavView.backgroundColor = DefaultAPPColor;
@@ -109,6 +112,7 @@
     }else{
         type = 1;
     }
+    
     [UnionActivityViewModel getUnionActivityList:MmberidStr activityCurstate:type andPage:self.page completion:^(NSArray<UnionActivityListModel *> * _Nonnull list) {
         if (1 == self.page) {
             self.dataArray = nil;
@@ -175,16 +179,21 @@
     UnionActivityListModel *model = self.dataArray[indexPath.row];
     if (self.topTag == 0) {
         if ([model.curstate isEqualToString:@"报名中"]) {
-            if (model.isSelfHost.integerValue == 0) {
+            if (model.isSelfHost.integerValue == 0&&model.isModify.integerValue == 0) {
                 EditUnionActivityViewController *vc = [[EditUnionActivityViewController alloc]initWithActivityId:model.activityId];
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
-                if (model.isSignUp.integerValue == 0) {
+                if (model.isHost.integerValue == 1&model.isModifyCoupon.integerValue == 0) {
                     AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
                     [self.navigationController pushViewController:vc animated:YES];
                 }else{
-                    UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
-                    [self.navigationController pushViewController:vc animated:YES];
+                    if (model.isSignUp.integerValue == 0) {
+                        AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else{
+                        UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
                 }
                 
             }
@@ -196,8 +205,19 @@
         
     }else if (self.topTag == 1){
         if ([model.curstate isEqualToString:@"报名中"]) {
-            AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            if (model.isHost.integerValue == 1&model.isModifyCoupon.integerValue == 0) {
+                AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                if (model.isSignUp.integerValue == 0) {
+                    AddUnionCoponViewController *vc = [[AddUnionCoponViewController alloc]initWithActivityId:model.activityId];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }else{
+                    UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }
             
         }else{
             UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
@@ -205,15 +225,13 @@
         }
         
     }else{
-        if ([model.curstate isEqualToString:@"报名中"]) {
+        if ([model.curstate isEqualToString:@"报名中"]&&model.isModify.integerValue == 0) {
             EditUnionActivityViewController *vc = [[EditUnionActivityViewController alloc]initWithActivityId:model.activityId];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             UnionActivityDetailViewController *vc = [[UnionActivityDetailViewController alloc]initWithModel:model];
             [self.navigationController pushViewController:vc animated:YES];
         }
-        
-        
     }
     
 }
@@ -230,21 +248,26 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         UnionActivityListModel *model = self.dataArray[indexPath.row];
-        [self deleteActicityById:model.activityId];
+        if ([model.curstate isEqualToString:@"报名中"]){
+            [self deleteActicityById:model.activityId];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"活动已经不能删除!"];
+        }
+        
     }
 }
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
 }
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
-    return [[UnionActivityEmptyView alloc]init];
+    UnionActivityEmptyView *view = [[UnionActivityEmptyView alloc]init];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    return view;
 }
 
 //空白页点击事件
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView {
-    AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-
+    [self addUnionActivity];
 }
 
 

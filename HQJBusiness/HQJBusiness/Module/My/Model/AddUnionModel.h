@@ -48,16 +48,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *minPrice;//使用条件：    最低订单金额
 
 @property (nonatomic, strong) NSString *count;//发行量
+@property (nonatomic, strong) NSString *couponCount;//发行量
+
 @property (nonatomic, strong) NSString *receiveNumber;//每人限领：    1 （默认一张，可修改）
+@property (nonatomic, strong) NSString *receiveNum;//每人限领：    1 （默认一张，可修改）
+
 
 @property (nonatomic, strong) NSString *mobile;
 
-@property (nonatomic, strong) NSString *receiverCount;//领取数量
+@property (nonatomic, strong) NSString *receiveCount;//领取数量
 
 @property (nonatomic, strong) NSString *usedCount;//使用数量
+@property (nonatomic, strong) NSString *useCount;//使用数量
 
 @property (nonatomic, strong) NSString *typeName;//联盟活动选择的的优惠券类型
 @property (nonatomic, strong) NSString *text;//联盟活动的优惠券类型，商家可以发送的优惠券类型
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

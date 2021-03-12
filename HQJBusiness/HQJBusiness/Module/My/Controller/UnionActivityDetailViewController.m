@@ -11,7 +11,7 @@
 #import "UnionActivityDetailCell.h"
 #import "UnionDetailSectionView.h"
 #import "AddUnionModel.h"
-#import "AddUnionCoponViewModel.h"
+#import "AddUnionActivityViewModel.h"
 
 #define TableViewCellHeight 300.f
 #define TableViewTopSpace 40/3.f
@@ -25,7 +25,7 @@
 @implementation UnionActivityDetailViewController
 - (NSArray *)dataArray{
     if (_dataArray == nil) {
-        _dataArray = @[@[@"联盟券类型：",@"typeId"],@[@"联盟券面额：",@"reducePrice"],@[@"每人限领：",@"receiveNumber"],@[@"发行数量：",@"count"],@[@"领取数量：",@"receiverCount"],@[@"使用数量：",@"usedCount"]];
+        _dataArray = @[@[@"联盟券类型：",@"typeName",@""],@[@"联盟券面额：",@"reducePrice",@""],@[@"每人限领：",@"receiveNum",@""],@[@"发行数量：",@"couponCount",@"张"],@[@"领取数量：",@"receiveCount",@"张"],@[@"使用数量：",@"useCount",@"张"]];
     }
     return _dataArray;
 }
@@ -51,9 +51,9 @@
     self = [super init];
     if (self) {
         self.listModel = model;
-        [AddUnionCoponViewModel getUnionCouponById:model.activityId completion:^(NSDictionary * _Nonnull dic) {
+        [AddUnionActivityViewModel getActivityById:model.activityId completion:^(NSDictionary * _Nonnull dic) {
             if ([dic[@"code"] integerValue] == 49000) {
-                self.unoinModel = [AddUnionModel mj_objectWithKeyValues:dic[@"result"][@"coupon"]];
+                self.unoinModel = [AddUnionModel mj_objectWithKeyValues:dic[@"result"]];
 
                 [self.tableView reloadData];
             }else{

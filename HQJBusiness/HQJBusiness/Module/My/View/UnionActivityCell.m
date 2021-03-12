@@ -147,8 +147,8 @@
 
 - (void)setModel:(UnionActivityListModel *)model{
     self.nameLabel.text = model.activityName;
-    self.timeLabel.text = model.duration;
-    self.endTimeLabel.text = model.endTime;
+    self.timeLabel.text = [NSString stringWithFormat:@"活动时间：%@",model.duration];
+    self.endTimeLabel.text = [NSString stringWithFormat:@"报名截止时间：%@",model.endTime];;
     [self.stateButton setTitle:model.curstate forState:UIControlStateNormal];
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:model.banner]];
 }

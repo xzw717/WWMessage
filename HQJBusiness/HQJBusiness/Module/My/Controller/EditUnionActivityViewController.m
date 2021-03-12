@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         self.activityId = activityId;
-        [AddUnionActivityViewModel getActivityById:activityId completion:^(NSDictionary * _Nonnull dic) {
+        [AddUnionActivityViewModel getActivityInfoById:activityId completion:^(NSDictionary * _Nonnull dic) {
             if ([dic[@"code"] integerValue] == 49000) {
                 self.model = [AddUnionModel mj_objectWithKeyValues:dic[@"result"]];
                 [self.tableView reloadData];
@@ -163,7 +163,7 @@
             }
             cell.model = self.model;
             cell.dataArray = sectionArray;
-            if (indexPath.section == 6&&indexPath.row == 1) {
+            if (indexPath.section == 1&&indexPath.row == 0) {
                 cell.textField.userInteractionEnabled = NO;
             }else{
                 cell.textField.userInteractionEnabled = YES;
@@ -202,7 +202,8 @@
             if (cell == nil) {
                 cell = [[AddUnionTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             }
-            
+            cell.model = self.model;
+            cell.dataArray = sectionArray;
             @weakify(self);
             cell.textFieldResult = ^(NSString * _Nonnull value) {
                 @strongify(self);
@@ -226,8 +227,8 @@
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             NSArray *sectionArray = self.dataArray[indexPath.section][indexPath.row];
-            if (self.model.couponType) {
-                NSMutableArray *sepArray = [NSMutableArray arrayWithArray:[self.model.couponType componentsSeparatedByString:@","]];
+            if (self.model.text) {
+                NSMutableArray *sepArray = [NSMutableArray arrayWithArray:[self.model.text componentsSeparatedByString:@","]];
                 self.pickView = [[pickerView alloc]initWithFrame:CGRectMake(30, HEIGHT*0.2, WIDTH - 60 , HEIGHT*0.6) andTitleAry:sepArray];
                 self.pickView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
                 [self.pickView showView];

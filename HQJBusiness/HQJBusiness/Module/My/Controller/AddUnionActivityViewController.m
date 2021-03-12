@@ -94,6 +94,8 @@
 }
 - (void)initData{
     self.model = [[AddUnionModel alloc]init];
+    
+    self.model.rule = [NSString stringWithFormat:@"默认规则：\n1、本规则对参与所有商家同等有效；\n2、联盟活动成立，联盟活动券生效；\n3、联盟活动券使用规则见券面信息；\n4、联盟券不可叠加使用；\n5、活动有效期%@ - %@\n6、本活动最终解释权归活动创建方所有，如有疑问请致电%@。",[ManagerEngine getTrueField:self.model.start],[ManagerEngine getTrueField:self.model.end],Mmobile];
     self.dataArray = [AddUnionActivityViewModel getDataArray];
     /*
      0:AddUnionActivityCell
@@ -360,6 +362,10 @@
                     @strongify(self);
                     NSLog(@"value = %@",value);
                     [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:NO];
+                    if ([[sectionArray lastObject] isEqualToString:@"start"]||[[sectionArray lastObject] isEqualToString:@"end"]) {
+                        self.model.rule = [NSString stringWithFormat:@"默认规则：\n1、本规则对参与所有商家同等有效；\n2、联盟活动成立，联盟活动券生效；\n3、联盟活动券使用规则见券面信息；\n4、联盟券不可叠加使用；\n5、活动有效期%@ - %@\n6、本活动最终解释权归活动创建方所有，如有疑问请致电%@。",[ManagerEngine getTrueField:self.model.start],[ManagerEngine getTrueField:self.model.end],Mmobile];
+                        [self.tableView reloadData];
+                    }
                 };
                 
                 return cell;
@@ -384,9 +390,9 @@
                         [self.tableView reloadData];
                     }else{
                         [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:YES];
-                        if ([[sectionArray lastObject] isEqualToString:@"pushSettings"]) {
-                            [self updateModel:[NSString stringWithFormat:@"%@Id",[sectionArray lastObject]] andValue:[value isEqualToString:@"消费后"]?@"0":@"1" andIsMuti:YES];
-                        }
+//                        if ([[sectionArray lastObject] isEqualToString:@"pushSettings"]) {
+//                            [self updateModel:[NSString stringWithFormat:@"%@Id",[sectionArray lastObject]] andValue:[value isEqualToString:@"消费后"]?@"0":@"1" andIsMuti:YES];
+//                        }
                     }
                 };
                 return cell;
@@ -416,7 +422,7 @@
                 return cell;
             }
             case 5:{
-                NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+                NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",(long)indexPath.section,indexPath.row];
                 AddUnionTextViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                 if (cell == nil) {
                     cell = [[AddUnionTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];

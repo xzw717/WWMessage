@@ -14,6 +14,7 @@
 #define TableViewCellHeight 50.f
 #define TableViewTopSpace 40/3.f
 #import "AddUnionModel.h"
+#import "ShowUnionRuleView.h"
 @interface AddUnionCoponViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
@@ -27,7 +28,7 @@
 @implementation AddUnionCoponViewController
 - (NSArray *)dataArray{
     if (_dataArray == nil) {
-        _dataArray = @[@[@[@"0",@"联盟券类型：",@"选择联盟券类型",@"typeName"],@[@"0",@"联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"发行数量：",@"1 - 10000",@"count"],@[@"0",@"每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"]],@[@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]]];
+        _dataArray = @[@[@[@"0",@"联盟券类型：",@"选择联盟券类型",@"",@"typeName"],@[@"0",@"联盟券名称：",@" 请输入优惠券名称",@"",@"couponName"],@[@"0",@"联盟券面额：",@"1 - 500",@"",@"reducePrice"],@[@"0",@"使用条件：",@"最低订单金额",@"元",@"minPrice"],@[@"0",@"发行数量：",@"1 - 10000",@"张",@"count"],@[@"0",@"每人限领：",@"1 （默认一张，可修改）",@"张",@"receiveNumber"]],@[@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]]];
     }
     return _dataArray;
 }
@@ -152,6 +153,12 @@
     
 }
 - (void)explainClicked{
+    if ([[ManagerEngine getTrueField:self.model.rule] isEqualToString:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"暂无规则"];
+    }else{
+        ShowUnionRuleView *view = [[ShowUnionRuleView alloc]initWithContent:self.model.rule andFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+        [view show];
+    }
     
 }
 #pragma mark --- UITableViewDataSource

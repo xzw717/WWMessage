@@ -68,6 +68,12 @@
         [item setImage:[UIImage imageNamed:@"icon_cart_unsel"] forState:UIControlStateNormal];
         [item setImage:[UIImage imageNamed:@"icon_select"] forState:UIControlStateSelected];
         [item setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        if ([sepArray[i] isEqualToString:@"消费后"]) {
+            [self itemClicked:item];
+            item.userInteractionEnabled = NO;
+        }else{
+            item.userInteractionEnabled = YES;
+        }
         [item setTitle:sepArray[i] forState:UIControlStateNormal];
         [item addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
         if ([tempArray containsObject:sepArray[i]]) {

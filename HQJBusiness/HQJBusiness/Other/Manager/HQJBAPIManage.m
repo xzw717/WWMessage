@@ -16,24 +16,24 @@ NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218/";
+NSString *const HQJBBonusDomainName = @"http://test.hqjplatform.com/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名   XD 商家奖励通用
-NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+NSString *const HQJBBonusDomainDeccaName = @"http://test.hqjplatform.com:80/";
 /// 优惠券
-NSString *const WWMCouponDomain = @"http://47.98.45.218:8080/";
+NSString *const WWMCouponDomain = @"http://test.hqjplatform.com:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
 
 /// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
-NSString *const HQJBH5UpDataDomain = @"http://47.98.45.218:8080/";
+NSString *const HQJBH5UpDataDomain = @"http://test.hqjplatform.com:8080/";
 /// 商家奖励
-NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 /// H5域名
-NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
+NSString *const HQJBXDDownloadPactDomain = @"http://test.hqjplatform.com:8080/";
 
 
 #pragma mark ---培训使用的域名
@@ -45,14 +45,14 @@ NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
 //NSString *const HQJBBonusDomainName = @"http://www.wuwuditu.cn/";
 //NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.cn/";
 ///// 台卡域名   XD 商家奖励通用
-////NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+////NSString *const HQJBBonusDomainDeccaName = @"http://test.hqjplatform.com:80/";
 ///// 优惠券
 //NSString *const WWMCouponDomain = @"http://h5.wuwuditu.cn/";
 //
 ///// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
 //NSString *const HQJBH5UpDataDomain = @"http://h5.wuwuditu.cn/";
 ///// 商家奖励
-////NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+////NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 //
 ///// XDH5域名
 ////NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
@@ -86,7 +86,7 @@ NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/";
 NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
 
 /// 商家奖励
-//NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+//NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 #endif
 
 

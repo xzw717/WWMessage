@@ -119,10 +119,10 @@
         [SVProgressHUD showErrorWithStatus:@"活动图片不能为空"];
         return;
     }
-    if (!model.pushSettings) {
-        [SVProgressHUD showErrorWithStatus:@"推送时间不能为空"];
-        return;
-    }
+//    if (!model.pushSettings) {
+//        [SVProgressHUD showErrorWithStatus:@"推送时间不能为空"];
+//        return;
+//    }
     if (!model.isHost) {
         [SVProgressHUD showErrorWithStatus:@"发券方不能为空"];
         return;
@@ -168,9 +168,9 @@
     
     NSDictionary *dict;
     if (![[self getTrueField:activityId] isEqualToString:@""]) {
-        dict = @{@"userId":MmberidStr,@"activityName":[self getTrueField:model.activityName],@"start":[self getTrueField:model.start],@"end":[self getTrueField:model.end],@"banner":[self getTrueField:model.banner],@"area":[self getTrueField:model.area],@"merchantCount":[self getTrueField:model.merchantCount],@"maxCount":[self getTrueField:model.maxCount],@"industry":model.industry,@"pushSettings":[self getTrueField:model.pushSettings],@"merchantType":[self getTrueField:model.merchantType],@"mid":[self getTrueField:model.mid],@"couponType":[self getTrueField:model.couponType],@"rule":[self getTrueField:model.rule],@"isHost":[self getTrueField:model.isHost],@"couponName":[self getTrueField:model.couponName],@"reducePrice":[self getTrueField:model.reducePrice],@"minPrice":[self getTrueField:model.minPrice],@"typeId":[self getTrueField:model.typeId],@"count":[self getTrueField:model.count],@"receiveNumber":[self getTrueField:model.receiveNumber],@"startTime":[self getTrueField:model.startTime],@"endTime":[self getTrueField:model.endTime],@"mobile":[self getTrueField:model.mobile],@"hash":HashCode};
+        dict = @{@"userId":MmberidStr,@"activityName":[self getTrueField:model.activityName],@"start":[self getTrueField:model.start],@"end":[self getTrueField:model.end],@"banner":[self getTrueField:model.banner],@"area":[self getTrueField:model.area],@"merchantCount":[self getTrueField:model.merchantCount],@"maxCount":[self getTrueField:model.maxCount],@"industry":model.industry,@"pushSettings":@"0",@"merchantType":[self getTrueField:model.merchantType],@"mid":[self getTrueField:model.mid],@"couponType":[self getTrueField:model.couponType],@"rule":[self getTrueField:model.rule],@"isHost":[self getTrueField:model.isHost],@"couponName":[self getTrueField:model.couponName],@"reducePrice":[self getTrueField:model.reducePrice],@"minPrice":[self getTrueField:model.minPrice],@"typeId":[self getTrueField:model.typeId],@"count":[self getTrueField:model.count],@"receiveNumber":[self getTrueField:model.receiveNumber],@"startTime":[self getTrueField:model.startTime],@"endTime":[self getTrueField:model.endTime],@"mobile":[self getTrueField:model.mobile],@"hash":HashCode};
     }else{
-        dict = @{@"userId":MmberidStr,@"activityName":[self getTrueField:model.activityName],@"start":[self getTrueField:model.start],@"end":[self getTrueField:model.end],@"banner":[self getTrueField:model.banner],@"area":[self getTrueField:model.areaId],@"merchantCount":[self getTrueField:model.merchantCount],@"maxCount":[self getTrueField:model.maxCount],@"industry":model.industryId,@"pushSettings":[self getTrueField:model.pushSettingsId],@"merchantType":[self getTrueField:model.merchantTypeId],@"mid":[self getTrueField:model.midId],@"couponType":[self getTrueField:model.couponType],@"rule":[self getTrueField:model.rule],@"isHost":[self getTrueField:model.isHostId],@"couponName":[self getTrueField:model.couponName],@"reducePrice":[self getTrueField:model.reducePrice],@"minPrice":[self getTrueField:model.minPrice],@"typeId":[self getTrueField:model.typeId],@"count":[self getTrueField:model.count],@"receiveNumber":[self getTrueField:model.receiveNumber],@"startTime":[self getTrueField:model.startTime],@"endTime":[self getTrueField:model.endTime],@"mobile":[self getTrueField:model.mobile],@"hash":HashCode};
+        dict = @{@"userId":MmberidStr,@"activityName":[self getTrueField:model.activityName],@"start":[self getTrueField:model.start],@"end":[self getTrueField:model.end],@"banner":[self getTrueField:model.banner],@"area":[self getTrueField:model.areaId],@"merchantCount":[self getTrueField:model.merchantCount],@"maxCount":[self getTrueField:model.maxCount],@"industry":model.industryId,@"pushSettings":@"0",@"merchantType":[self getTrueField:model.merchantTypeId],@"mid":[self getTrueField:model.midId],@"couponType":[self getTrueField:model.couponType],@"rule":[self getTrueField:model.rule],@"isHost":[self getTrueField:model.isHostId],@"couponName":[self getTrueField:model.couponName],@"reducePrice":[self getTrueField:model.reducePrice],@"minPrice":[self getTrueField:model.minPrice],@"typeId":[self getTrueField:model.typeId],@"count":[self getTrueField:model.count],@"receiveNumber":[self getTrueField:model.receiveNumber],@"startTime":[self getTrueField:model.startTime],@"endTime":[self getTrueField:model.endTime],@"mobile":[self getTrueField:model.mobile],@"hash":HashCode};
     }
     
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:dict];
@@ -185,6 +185,16 @@
     
 }
 + (void)getActivityById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetActivityByIdInterface];
+    NSDictionary * parameter = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
+        !completion ? : completion(dic);
+
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+}
++ (void)getActivityInfoById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetActivityInfoByIdInterface];
     NSDictionary * parameter = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
@@ -216,18 +226,18 @@
 }
 
 + (NSArray *)getDataArray{
-    return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于3的整数",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于3且小于等于联盟商家上限数字",@"merchantCount"]]
+    return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于3的整数",@"个",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于3且小于等于联盟商家上限数字",@"个",@"merchantCount"]]
              ,@[@"4",@"* 商家区域：",@"选择商家区域",@"area"],@[@"4",@"* 商家类型：",@"选择商家类型",@"merchantType"],@[@"4",@"指定商家：",@"选择指定商家",@"mid"],@[@"4",@"* 商家分类：",@"选择商家分类",@"industry"],
              
-             @[@[@"2",@"* 优惠券类型：",@"店铺优惠券,商家折扣券,商家满赠券",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后,登录时",@"pushSettings"]],
-             @[@[@"2",@"* 发券方：",@"发起人,参与人",@"isHost"],@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
+             @[@[@"2",@"* 优惠券类型：",@"店铺优惠券,商家折扣券,商家满赠券",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后",@"pushSettings"]],
+             @[@[@"2",@"* 发券方：",@"发起人,参与人",@"isHost"],@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"元",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"张",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"张",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
   @[@[@"5",@"* 规则说明：",@"输入规则说明",@"rule"]]];
 //    ,店铺收藏券
 }
 + (NSArray *)getEditDataArray{
-    return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于3的整数",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于3且小于等于联盟商家上限数字",@"merchantCount"]],
+    return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于3的整数",@"个",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于3且小于等于联盟商家上限数字",@"个",@"merchantCount"]],
              
-             @[@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
+             @[@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"元",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"张",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"张",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
   @[@[@"5",@"* 规则说明：",@"输入规则说明",@"rule"]]];
 }
 @end

@@ -350,6 +350,8 @@ typedef NS_ENUM(NSInteger,listStyle) {
 + (NSData *_Nullable)reSizeImageData:(UIImage *_Nullable)sourceImage maxImageSize:(CGFloat)maxImageSize maxSizeWithKB:(CGFloat) maxSize;
 /// 是否是纯数字
 + (BOOL)isNumber:(NSString *_Nullable)string;
+/// 获取非空字符
++ (NSString *)getTrueField:(NSString *)field;
 /// view转image
 + (UIImage *_Nullable)convertViewToImage:(UIView *_Nullable)view;
 @end

@@ -146,9 +146,9 @@
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
         }  else if (xzw_indexPath.row == 6){
             // 优惠券
-            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
-                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
-            } else {
+//            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
+//                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+//            } else {
                 HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
                 webvc.zwNavView.hidden = YES;
                 //            webvc.webTitleString = @"优惠券";
@@ -157,7 +157,7 @@
                                    ,MmberidStr,HashCode];
                 webvc.fd_interactivePopDisabled = YES;
                 [xzw_self.navigationController pushViewController:webvc animated:YES];
-            }
+//            }
             
             
         }else if (xzw_indexPath.row == 7){

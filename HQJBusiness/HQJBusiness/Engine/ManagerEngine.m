@@ -1088,7 +1088,23 @@ static const CGFloat  sAlertTimer = 3.0;
         return NO;
     }
 }
-
++ (NSString *)getTrueField:(NSString *)field{
+    if (!field) {
+        return @"";
+    }
+    if ([field isKindOfClass:[NSNull class]]) {
+        return @"";
+    }
+    if (!field.length) {
+        return @"";
+    }
+    NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmedStr = [field stringByTrimmingCharactersInSet:set];
+    if (!trimmedStr.length) {
+        return @"";
+    }
+    return field;
+}
 + (UIImage *_Nullable)convertViewToImage:(UIView *_Nullable)view{
     
     UIImage *imageRet = [[UIImage alloc]init];

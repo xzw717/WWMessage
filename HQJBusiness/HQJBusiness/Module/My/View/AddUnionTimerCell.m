@@ -39,6 +39,8 @@
 - (SelectTimeView *)timerView {
     if (!_timerView) {
         _timerView = [[SelectTimeView alloc]init];
+        NSTimeInterval oneDay = 24 * 60 * 60;
+        [_timerView.datePicker setMinimumDate:[[NSDate date] initWithTimeIntervalSinceNow: oneDay * 3]];
     }
     return _timerView;
 }

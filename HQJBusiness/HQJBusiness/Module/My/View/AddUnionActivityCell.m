@@ -10,6 +10,7 @@
 #define LeftMargin 10
 @interface AddUnionActivityCell ()<UITextFieldDelegate>
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *unitLabel;
 @end
 @implementation AddUnionActivityCell
 - (UILabel *)nameLabel {
@@ -18,6 +19,13 @@
         _nameLabel.font = [UIFont systemFontOfSize:15];
     }
     return _nameLabel;
+}
+- (UILabel *)unitLabel {
+    if (!_unitLabel) {
+        _unitLabel = [[UILabel alloc]init];
+        _unitLabel.font = [UIFont systemFontOfSize:15];
+    }
+    return _unitLabel;
 }
 - (UITextField *)textField {
     if (_textField == nil) {
@@ -34,7 +42,7 @@
     if (self) {
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.textField];
-        
+        [self.contentView addSubview:self.unitLabel];
         [self updateConstraintsIfNeeded];
     }
     return self;
@@ -47,11 +55,15 @@
         make.size.mas_equalTo(CGSizeMake(120, 30));
     }];
     [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10);
+        make.top.bottom.mas_equalTo(self.contentView);
         make.left.mas_equalTo(self.nameLabel.mas_right);
+        make.right.mas_equalTo(-50);
+    }];
+    [self.unitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(self.textField.mas_right);
         make.bottom.right.mas_equalTo(-10);
     }];
-    
     [super updateConstraints];
 }
 - (void)setDataArray:(NSArray *)dataArray{
@@ -63,9 +75,21 @@
         self.nameLabel.text = dataArray[1];
     }
     self.textField.placeholder = dataArray[2];
-    if ([self.model valueForKey:dataArray[3]]) {
-        self.textField.text = [self.model valueForKey:dataArray[3]];
+    if ([self.model valueForKey:[dataArray lastObject]]) {
+        self.textField.text = [self.model valueForKey:[dataArray lastObject]];
     }
+    if ([dataArray[1] containsString:@"联盟券面额"]) {
+        if ([self.model.typeId containsString:@"折扣"]||[self.model.typeName containsString:@"折扣"]) {
+            self.unitLabel.text = @"折";
+            self.textField.placeholder = @"0-10";
+        }else{
+            self.textField.placeholder = dataArray[2];
+            self.unitLabel.text = @"元";
+        }
+    }else{
+        self.unitLabel.text = dataArray[3];
+    }
+    
 }
 #pragma mark 监听textField的值改变事件
 - (void)textFiledEdingChanged{

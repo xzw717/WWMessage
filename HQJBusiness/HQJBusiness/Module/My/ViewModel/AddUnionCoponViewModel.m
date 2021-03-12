@@ -56,7 +56,7 @@
         }
     }
 
-    NSDictionary *dict = @{@"id":model.couponId,@"userId":MmberidStr,@"couponName":model.couponName,@"reducePrice":model.reducePrice,@"minPrice":model.minPrice,@"typeId":model.typeName,@"count":model.count,@"receiveNumber":model.receiveNumber,@"endTime":model.endTime,@"startTime":model.startTime};
+    NSDictionary *dict = @{@"id":model.couponId,@"userId":MmberidStr,@"couponName":model.couponName,@"reducePrice":model.reducePrice,@"minPrice":model.minPrice,@"typeId":model.typeName,@"count":model.count,@"receiveNumber":model.receiveNumber,@"endTime":model.endTime,@"startTime":model.startTime,@"voucherTypeId":activityId};
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddCouponInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
