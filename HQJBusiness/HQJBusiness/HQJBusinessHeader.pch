@@ -114,7 +114,7 @@
 /// 1:登录密码没有设置 2：交易密码没设置 3：密码都没设置
 #define isComplete     [[NSUserDefaults standardUserDefaults] objectForKey:@"isComplete"]
 #define Ttypeid     [[NSUserDefaults standardUserDefaults] objectForKey:@"typeid"]
-#define LlockedDuration     [[NSUserDefaults standardUserDefaults] objectForKey:@"lockedDuration"]
+#define LlockedDuration     [[NSUserDefaults standardUserDefaults] objectForKey:@"lockedDuration"]//lockedDuration;//0:普通商家 6:XD商家 7：直接注册XD商家
 
 //#define IS_IPhoneX_All ([UIScreen mainScreen].bounds.size.height == 812 || [UIScreen mainScreen].bounds.size.height == 896)
 

@@ -41,25 +41,44 @@
     
     
     if ([NameSingle shareInstance].peugeotid == 6) {
-        self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
-                                                               @"合同管理",
-                                                               @"升级管理",
-                                                               @"商品发布",
-                                                               @"员工管理"]];
+        if ([LlockedDuration integerValue] == 7 ||([Ttypeid integerValue] == 15 && [LlockedDuration integerValue] == 6)) {
+            self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+                                                                   @"合同管理",
+                                                                   @"商品发布",
+                                                                   @"员工管理"]];
+            
+            self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
+                                                                   @"icon_contractmanagement",
+                                                                   @"icon_Productrelease",
+                                                                   @"icon_Employeemanagement"]];
+        }else{
+            self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+                                                                   @"合同管理",
+                                                                   @"升级管理",
+                                                                   @"商品发布",
+                                                                   @"员工管理"]];
+            
+            self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
+                                                                   @"icon_contractmanagement",
+                                                                   @"icon_Upgrademanagement",
+                                                                   @"icon_Productrelease",
+                                                                   @"icon_Employeemanagement"]];
+        }
         
-        self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
-                                                               @"icon_contractmanagement",
-                                                               @"icon_Upgrademanagement",
-                                                               @"icon_Productrelease",
-                                                               @"icon_Employeemanagement"]];
+        
     } else {
-        self.cellTitleArray = [NSMutableArray arrayWithArray:[Ttypeid integerValue] == 113 ? @[@"基本信息",
-                  @"合同管理",
-                  @"商品发布"] : @[@"基本信息",
-                                @"合同管理",
-                                @"升级管理",
-                                @"商品发布"]];
-
+        if ([LlockedDuration integerValue] == 7 ||([Ttypeid integerValue] == 15 && [LlockedDuration integerValue] == 6)) {
+            self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+            @"合同管理",
+            @"商品发布"]];
+        
+        }else{
+            self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",
+            @"合同管理",
+            @"升级管理",
+            @"商品发布"]];
+            
+        }
         self.cellImageArray = [NSMutableArray arrayWithArray:@[@"icon_essentialinformation",
                                                                @"icon_contractmanagement",
                                                                @"icon_Upgrademanagement",
