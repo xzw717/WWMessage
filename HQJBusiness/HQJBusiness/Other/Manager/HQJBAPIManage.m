@@ -399,7 +399,8 @@ NSString *const HQJBAddCouponInterface = @"coupon/activity/addCoupon";
 NSString *const HQJBSignUpInterface = @"coupon/activity/signUp";
 ///根据id查询优惠券信息接口（商家APP，在报名后跳转到新增联盟券的页面时使用的接口，或编辑联盟券时使用
 NSString *const HQJBGetUnionCouponByIdInterface = @"coupon/activity/getCouponById";
-
+///查询商家优惠券类型接口
+NSString *const HQJBGetTypesInterface = @"coupon/activity/getTypes";
 @implementation HQJBAPIManage
 
 @end

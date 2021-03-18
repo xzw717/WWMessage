@@ -49,10 +49,15 @@
     }else{
         self.nameLabel.text = dataArray[1];
     }
-    NSArray *sepArray = [dataArray[2] componentsSeparatedByString:@","];
-    NSArray * tempArray;
+    NSArray *sepArray;
+    if ([[dataArray lastObject] isEqualToString:@"couponType"]) {
+        sepArray = [self.model.couponTypeId componentsSeparatedByString:@","];
+    }else{
+        sepArray = [dataArray[2] componentsSeparatedByString:@","];
+    }
+    NSArray * selectArray;
     if ([self.model valueForKey:[dataArray lastObject]]) {
-        tempArray = [[self.model valueForKey:[dataArray lastObject]] componentsSeparatedByString:@","];
+        selectArray = [[self.model valueForKey:[dataArray lastObject]] componentsSeparatedByString:@","];
     }
     ZGRelayoutButton *lastView;
     NSInteger itemCount = sepArray.count > 2 ? 2 : sepArray.count;
@@ -76,7 +81,7 @@
         }
         [item setTitle:sepArray[i] forState:UIControlStateNormal];
         [item addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
-        if ([tempArray containsObject:sepArray[i]]) {
+        if ([selectArray containsObject:sepArray[i]]) {
             [self itemClicked:item];
         }
         item.tag = i;
@@ -108,7 +113,12 @@
 }
 - (void)itemClicked:(ZGRelayoutButton *)button{
     button.selected = !button.selected;
-    NSArray *sepArray = [self.tempArray[2] componentsSeparatedByString:@","];
+    NSArray *sepArray;
+    if ([[self.tempArray lastObject] isEqualToString:@"couponType"]) {
+        sepArray = [self.model.couponTypeId componentsSeparatedByString:@","];
+    }else{
+        sepArray = [self.tempArray[2] componentsSeparatedByString:@","];
+    }
     !self.clickBlock ? : self.clickBlock(sepArray[button.tag]);
 }
 

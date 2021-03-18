@@ -93,10 +93,20 @@
     // Do any additional setup after loading the view.
 }
 - (void)initData{
-    self.model = [[AddUnionModel alloc]init];
-    
-    self.model.rule = [NSString stringWithFormat:@"默认规则：\n1、本规则对参与所有商家同等有效；\n2、联盟活动成立，联盟活动券生效；\n3、联盟活动券使用规则见券面信息；\n4、联盟券不可叠加使用；\n5、活动有效期%@ - %@\n6、本活动最终解释权归活动创建方所有，如有疑问请致电%@。",[ManagerEngine getTrueField:self.model.start],[ManagerEngine getTrueField:self.model.end],Mmobile];
     self.dataArray = [AddUnionActivityViewModel getDataArray];
+    self.model = [[AddUnionModel alloc]init];
+    self.model.rule = [NSString stringWithFormat:@"默认规则：\n1、本规则对参与所有商家同等有效；\n2、联盟活动成立，联盟活动券生效；\n3、联盟活动券使用规则见券面信息；\n4、联盟券不可叠加使用；\n5、活动有效期联盟活动开始时间 - 联盟活动结束时间\n6、本活动最终解释权归活动创建方所有，如有疑问请致电%@。",Mmobile];
+    [AddUnionActivityViewModel getCouponTypes:^(NSDictionary * _Nonnull dic) {
+        if ([dic[@"code"] integerValue] == 49000) {
+            NSMutableString *tempValue = [NSMutableString string];
+            for (NSDictionary *dict in dic[@"result"]) {
+                [tempValue appendString:[NSString stringWithFormat:@"%@,",dict[@"typeName"]]];
+            }
+            [tempValue deleteCharactersInRange:NSMakeRange(tempValue.length-1, 1)];
+            self.model.couponTypeId = tempValue;
+        }
+        [self.tableView reloadData];
+    }];
     /*
      0:AddUnionActivityCell
      1:AddUnionTimerCell
@@ -105,7 +115,6 @@
      4:AddUnionSubCell
      5:AddUnionTextViewCell
      **/
-    [self.tableView reloadData];
 }
 - (void)showMobileView:(NSString *)key{
     self.mobileView = [[ShowMobileView alloc]initWithFrame:CGRectMake(30, HEIGHT*0.2, WIDTH - 60 , HEIGHT*0.6)];
@@ -273,6 +282,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 5) {
         if (indexPath.row == 0||indexPath.row == 1) {
+            if (indexPath.row == 0) {
+                NSArray * sepArray = [self.model.couponTypeId componentsSeparatedByString:@","];
+                return (sepArray.count/2 + sepArray.count%2) * 50;
+            }
             return 100;
         }
     }
@@ -362,10 +375,6 @@
                     @strongify(self);
                     NSLog(@"value = %@",value);
                     [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:NO];
-                    if ([[sectionArray lastObject] isEqualToString:@"start"]||[[sectionArray lastObject] isEqualToString:@"end"]) {
-                        self.model.rule = [NSString stringWithFormat:@"默认规则：\n1、本规则对参与所有商家同等有效；\n2、联盟活动成立，联盟活动券生效；\n3、联盟活动券使用规则见券面信息；\n4、联盟券不可叠加使用；\n5、活动有效期%@ - %@\n6、本活动最终解释权归活动创建方所有，如有疑问请致电%@。",[ManagerEngine getTrueField:self.model.start],[ManagerEngine getTrueField:self.model.end],Mmobile];
-                        [self.tableView reloadData];
-                    }
                 };
                 
                 return cell;
@@ -390,9 +399,9 @@
                         [self.tableView reloadData];
                     }else{
                         [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:YES];
-//                        if ([[sectionArray lastObject] isEqualToString:@"pushSettings"]) {
-//                            [self updateModel:[NSString stringWithFormat:@"%@Id",[sectionArray lastObject]] andValue:[value isEqualToString:@"消费后"]?@"0":@"1" andIsMuti:YES];
-//                        }
+                        //                        if ([[sectionArray lastObject] isEqualToString:@"pushSettings"]) {
+                        //                            [self updateModel:[NSString stringWithFormat:@"%@Id",[sectionArray lastObject]] andValue:[value isEqualToString:@"消费后"]?@"0":@"1" andIsMuti:YES];
+                        //                        }
                     }
                 };
                 return cell;
@@ -435,7 +444,7 @@
                     NSLog(@"value = %@",value);
                     [self updateModel:[sectionArray lastObject] andValue:value andIsMuti:NO];
                 };
-
+                
                 return cell;
             }
                 break;

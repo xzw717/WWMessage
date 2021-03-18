@@ -31,6 +31,15 @@
         
     } ShowHUD:NO];
 }
++ (void)getCouponTypes:(void(^)(NSDictionary *dic))completion{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetTypesInterface];
+    [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:nil complete:^(NSDictionary *dic) {
+        !completion ? : completion(dic);
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:NO];
+}
+
 + (void)uploadImage:(UIImage *)image andUrl:(NSString *)url alertText:(NSString *)text completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error,UIImage *image))completionBlock{
     
     NSData *imgData = [ManagerEngine reSizeImageData:image maxImageSize:WIDTH maxSizeWithKB:200.0];
@@ -229,7 +238,7 @@
     return @[@[@[@"0",@"* 联盟名称：",@"30个汉字以内",@"",@"activityName"],@[@"1",@"* 开始时间：",@"选择开始时间",@"start"],@[@"1",@"* 结束时间：",@"选择结束时间",@"end"],@[@"0",@"* 联盟商家上限：",@"大于3的整数",@"个",@"maxCount"],@[@"0",@"* 联盟成立数量：",@"大于3且小于等于联盟商家上限数字",@"个",@"merchantCount"]]
              ,@[@"4",@"* 商家区域：",@"选择商家区域",@"area"],@[@"4",@"* 商家类型：",@"选择商家类型",@"merchantType"],@[@"4",@"指定商家：",@"选择指定商家",@"mid"],@[@"4",@"* 商家分类：",@"选择商家分类",@"industry"],
              
-             @[@[@"2",@"* 优惠券类型：",@"店铺优惠券,商家折扣券,商家满赠券",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后",@"pushSettings"]],
+             @[@[@"2",@"* 优惠券类型：",@"",@"couponType"],@[@"3",@"* 活动图片：",@"banner"],@[@"2",@"* 推送时间：",@"消费后",@"pushSettings"]],
              @[@[@"2",@"* 发券方：",@"发起人,参与人",@"isHost"],@[@"0",@"* 联盟券类型：",@"选择联盟券类型",@"",@"typeId"],@[@"0",@"* 联盟券名称：",@" 请输入优惠券名称",@"",@"couponName"],@[@"0",@"* 联盟券面额：",@"1 - 500",@"",@"reducePrice"],@[@"0",@"* 使用条件：",@"最低订单金额",@"元",@"minPrice"],@[@"0",@"* 发行数量：",@"1 - 10000",@"张",@"count"],@[@"0",@"* 每人限领：",@"1 （默认一张，可修改）",@"张",@"receiveNumber"],@[@"1",@"开始时间：",@"选择开始时间",@"startTime"],@[@"1",@"结束时间：",@"选择结束时间",@"endTime"]],
   @[@[@"5",@"* 规则说明：",@"输入规则说明",@"rule"]]];
 //    ,店铺收藏券

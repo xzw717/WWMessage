@@ -317,6 +317,8 @@ extern NSString *const HQJBGetActivityInfoByIdInterface;
 extern NSString *const HQJBSignUpInterface;
 ///根据id查询优惠券信息接口（商家APP，在报名后跳转到新增联盟券的页面时使用的接口，或编辑联盟券时使用
 extern NSString *const HQJBGetUnionCouponByIdInterface;
+///查询商家优惠券类型接口
+extern NSString *const HQJBGetTypesInterface;
 /************************************接口（结束）**********************************************/
 
 @interface HQJBAPIManage : NSObject

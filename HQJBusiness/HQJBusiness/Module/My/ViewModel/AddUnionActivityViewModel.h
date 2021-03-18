@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddUnionActivityViewModel : NSObject
 + (void)getTempData:(NSString *)url completion:(void(^)(NSDictionary *dic))completion;
++ (void)getCouponTypes:(void(^)(NSDictionary *dic))completion;
 + (void)uploadImage:(UIImage *)image andUrl:(NSString *)url alertText:(NSString *)text completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error,UIImage *image))completionBlock;
 + (void)getMerchantByMobile:(NSString *)mobile completion:(void(^)(NSDictionary *dic))completion;
 + (void)addUnionActivity:(AddUnionModel *)model andActivityId:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion;
