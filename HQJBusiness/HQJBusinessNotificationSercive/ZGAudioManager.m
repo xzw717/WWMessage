@@ -13,8 +13,8 @@
 
 @interface ZGAudioManager() <AVAudioPlayerDelegate>{
     NSInteger itype;
-    int audioIndex ;
-    NSArray *audioFiles ;
+    int audioIndex;
+    NSArray *audioFiles;
 }
 
 //声音文件的播放器

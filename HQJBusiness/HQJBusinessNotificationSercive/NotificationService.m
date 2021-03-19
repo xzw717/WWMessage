@@ -162,7 +162,7 @@ typedef void(^PlayVoiceBlock)(void);
     self.contentHandler(self.bestAttemptContent);
 }
 
-- (NSArray *) playMoneyReceived:(NSString *)moneyAmount{
+- (NSArray *)playMoneyReceived:(NSString *)moneyAmount{
     // 语音文件数组
     NSMutableArray *audioFiles = [[NSMutableArray alloc]init] ;
     // 将金额转换为对应的文字

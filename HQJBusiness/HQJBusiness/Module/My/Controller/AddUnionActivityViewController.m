@@ -231,18 +231,18 @@
             NSString *urlStr,*tempKey;
             switch (section) {
                 case 1:
-                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetAreaInterface];
+                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetAreaInterface];
                     tempKey = @"pname";
                     break;
                 case 2:
-                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantTypeInterface];
+                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetMerchantTypeInterface];
                     tempKey = @"value";
                     break;
                 case 3:
                     [self showMobileView:[sectionArray lastObject]];
                     break;
                 case 4:
-                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetIndustryInterface];
+                    urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetIndustryInterface];
                     tempKey = @"name";
                     break;
                     
