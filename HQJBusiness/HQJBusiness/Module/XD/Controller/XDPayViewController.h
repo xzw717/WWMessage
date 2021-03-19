@@ -13,6 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XDPayViewController : ZW_ViewController
 @property (nonatomic, assign) buyType payType;
+
+@property (nonatomic,strong)NSString *xdPayshopidString;
+/// 纬度
+@property (nonatomic, assign) CGFloat xdPaylatitude ;
+/// 经度
+@property (nonatomic, assign) CGFloat xdPaylongitude ;
+
+@property (nonatomic, assign) NSInteger xdPayroleValue;
 - (instancetype)initWithXDPayModel:(XDPayModel *)model;
 @end
 

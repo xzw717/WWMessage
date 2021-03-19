@@ -65,7 +65,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"实付";
+        _titleLabel.text = @"实收";
         _titleLabel.font = [UIFont systemFontOfSize:14.f];
         _titleLabel.textColor = [ManagerEngine getColor:@"323232"];
     }

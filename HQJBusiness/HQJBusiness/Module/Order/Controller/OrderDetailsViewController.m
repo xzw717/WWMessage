@@ -147,7 +147,7 @@
             return cell;
         } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
             OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = [self.dataModel.actualpayment floatValue];
+            cell.priceStr = self.dataModel.shoppaidin;
             if (self.couponTypeNam) {
                 cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
             }
