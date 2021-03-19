@@ -32,11 +32,14 @@
 @property (nonatomic,strong)UILabel *applyTimeValueLabel;
 @property (nonatomic,strong)UIView *tmBottomView;
 
+@property (nonatomic,strong)UIView *bonusView;
+@property (nonatomic,strong)UILabel *bonusLabel;
+@property (nonatomic,strong)UILabel *bonusValueLabel;
+
 @property (nonatomic,strong)UIView *stateView;
 @property (nonatomic,strong)UILabel *stateLabel;
 @property (nonatomic,strong)UILabel *stateValueLabel;
 @property (nonatomic, strong) HintView *showView;
-@property (nonatomic,strong)NSString *shopidString;
 /// 失败原因
 @property (nonatomic, strong) NSString *reason;
 
@@ -45,6 +48,8 @@
 
 /// 客服电话
 @property (nonatomic, strong) UILabel *phoneLabel;
+
+@property (nonatomic,strong)NSString *shopidString;
 /// 纬度
 @property (nonatomic, assign) CGFloat latitude ;
 /// 经度
@@ -235,18 +240,47 @@
     return _phoneLabel;
 }
 
+
+- (UIView *)bonusView{
+    if (_bonusView == nil) {
+        _bonusView = [[UIView alloc]init];
+        _bonusView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_bonusView];
+    }
+    return _bonusView;
+}
+- (UILabel *)bonusLabel{
+    if ( _bonusLabel == nil ) {
+        _bonusLabel = [[UILabel alloc]init];
+        _bonusLabel.font = [UIFont systemFontOfSize:16];
+        _bonusLabel.text = @"活动积分";
+        [self.bonusView addSubview:_bonusLabel];
+        
+    }
+    
+    return _bonusLabel;
+}
+
+-(UILabel *)bonusValueLabel {
+    if ( _bonusValueLabel == nil ) {
+        _bonusValueLabel = [[UILabel alloc]init];
+        _bonusValueLabel.font = [UIFont systemFontOfSize:16];
+        _bonusValueLabel.textAlignment = NSTextAlignmentRight;
+        _bonusValueLabel.text = @"20000.00000     个";
+        [self.bonusView addSubview:_bonusValueLabel];
+    }
+    
+    return _bonusValueLabel;
+}
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    if ( self.code != 6666 ) {
-        if ( self.roleValue == 7) {
+    if ( self.code != 6666 && self.roleValue == 7) {
             [self handleXDState:NO];
 
-        }
-        if ( self.roleValue == 8) {
-            [self handleXDState:YES];
 
-        }
+    } else  if ( self.code != 6666 && self.roleValue == 8) {
+        [self handleXDState:YES];
 
-    } else {
+    }  else {
         HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
         pvc.zwNavView.hidden = YES;
           if ([self.stateValueLabel.text isEqualToString:@"去开店"]) {
@@ -448,6 +482,10 @@
     [XDDetailViewModel submitXDOrder:self.shopidString andProid:@"6" andPrice:[NSString stringWithFormat:@"%f",self.price] completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         payVC.payType = registerXD;
+        payVC.xdPayroleValue = self.roleValue;
+        payVC.xdPayshopidString = self.shopidString;
+        payVC.xdPaylatitude = self.latitude;
+        payVC.xdPaylongitude = self.longitude;
         [self.navigationController pushViewController:payVC animated:YES];
         
     }];
@@ -467,6 +505,10 @@
     model.proname = self.resultDict[@"orderdata"][@"proname"];
     XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
     payVC.payType = registerXD;
+    payVC.xdPayshopidString = self.shopidString;
+    payVC.xdPaylatitude = self.latitude;
+    payVC.xdPaylongitude = self.longitude;
+    payVC.xdPayroleValue = self.roleValue;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 - (NSString *)getButtonString{
@@ -550,6 +592,9 @@
             if (self.code != 6666 &&  self.roleValue == 7) {
                 [self requstXD];
 
+            } else   if (self.code != 6666 &&  self.roleValue == 8) {
+                [self requstXD];
+
             } else {
                 if (self.code == -1) {
                     self.stateValueLabel.text = @"去开店";
@@ -615,6 +660,10 @@
     self.stateLabel.sd_layout.leftSpaceToView(self.stateView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     
     self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+   
+    self.bonusView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.stateView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+    self.bonusLabel.sd_layout.leftSpaceToView(self.bonusView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
+    self.bonusValueLabel.sd_layout.leftSpaceToView(self.bonusLabel, 10).rightSpaceToView(self.bonusView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     
     self.phoneLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.view, ToolBarHeight - 20).heightIs(20).widthIs(WIDTH);
     

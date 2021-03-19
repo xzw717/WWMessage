@@ -70,6 +70,10 @@
         [SVProgressHUD showSuccessWithStatus:stateStr];
         [ManagerEngine SVPAfter:stateStr complete:^{
             XDPaySureViewController *psvc = [[XDPaySureViewController alloc]initWithOrderid:self.model.orderid];
+            psvc.xdPaySureroleValue = self.xdPayroleValue;
+            psvc.xdPaySureshopidString = self.xdPayshopidString;
+            psvc.xdPaySurelatitude = self.xdPaylatitude;
+            psvc.xdPaySurelongitude = self.xdPaylongitude;
             [self.navigationController pushViewController:psvc animated:YES];
         }];
     } else {
