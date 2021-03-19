@@ -34,8 +34,8 @@ NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 /// H5域名
 NSString *const HQJBXDDownloadPactDomain = @"http://test.hqjplatform.com:8080/";
-
-
+///联盟券
+NSString *const HQJBUnionCouponDomain = @"http://test.hqjplatform.com/";
 #pragma mark ---培训使用的域名
 
 //NSString *const HQJBDomainName = @"http://shop.wuwuditu.cn/";
@@ -58,7 +58,8 @@ NSString *const HQJBXDDownloadPactDomain = @"http://test.hqjplatform.com:8080/";
 ////NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 ///// H5域名
 //NSString *const HQJBXDDownloadPactDomain = @"http://h5.wuwuditu.cn/";
-
+/////联盟券
+//NSString *const HQJBUnionCouponDomain = @"http://www.wuwuditu.cn/";
 
 
 
@@ -84,6 +85,8 @@ NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/";
 //NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 /// H5域名
 NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
+///联盟券
+NSString *const HQJBUnionCouponDomain = @"http://47.97.229.170:8080/";
 
 /// 商家奖励
 //NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";

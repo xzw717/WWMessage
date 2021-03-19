@@ -38,6 +38,8 @@ extern NSString *const HQJBXDH5Domain;
 extern NSString *const HQJBXDDownloadPactDomain;
 /// 商家奖励
 extern NSString *const HQJBRewardDomainName;
+/// 联盟券
+extern NSString *const HQJBUnionCouponDomain;
 /************************************域名（结束）**********************************************/
 
 

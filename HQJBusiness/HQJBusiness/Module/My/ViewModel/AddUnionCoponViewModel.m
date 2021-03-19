@@ -11,7 +11,7 @@
 @implementation AddUnionCoponViewModel
 
 + (void)getUnionCouponById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetUnionCouponByIdInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetUnionCouponByIdInterface];
     NSDictionary * parameter = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
@@ -58,7 +58,7 @@
 
     NSDictionary *dict = @{@"id":model.couponId,@"userId":MmberidStr,@"couponName":model.couponName,@"reducePrice":model.reducePrice,@"minPrice":model.minPrice,@"typeId":model.typeName,@"count":model.count,@"receiveNumber":model.receiveNumber,@"endTime":model.endTime,@"startTime":model.startTime,@"voucherTypeId":activityId};
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddCouponInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBAddCouponInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
     } andError:^(NSError *error) {
@@ -70,7 +70,7 @@
 + (void)signUp:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
     NSDictionary *dict = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBSignUpInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBSignUpInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
     } andError:^(NSError *error) {

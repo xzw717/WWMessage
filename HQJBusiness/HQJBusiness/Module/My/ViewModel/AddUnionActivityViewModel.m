@@ -23,7 +23,7 @@
     } ShowHUD:NO];
 }
 + (void)getMerchantByMobile:(NSString *)mobile completion:(void(^)(NSDictionary *dic))completion{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetMerchantByMobileInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetMerchantByMobileInterface];
     NSDictionary *parameter = @{@"mobile":mobile};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
@@ -32,7 +32,7 @@
     } ShowHUD:NO];
 }
 + (void)getCouponTypes:(void(^)(NSDictionary *dic))completion{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetTypesInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetTypesInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:nil complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
     } andError:^(NSError *error) {
@@ -184,7 +184,7 @@
     
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:dict];
     [parameter setObject:[[self getTrueField:activityId] isEqualToString:@""]?@"0":activityId forKey:@"id"];
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBAddActivityInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBAddActivityInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
     } andError:^(NSError *error) {
@@ -194,7 +194,7 @@
     
 }
 + (void)getActivityById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetActivityByIdInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetActivityByIdInterface];
     NSDictionary * parameter = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
@@ -204,7 +204,7 @@
     } ShowHUD:NO];
 }
 + (void)getActivityInfoById:(NSString *)activityId completion:(void(^)(NSDictionary *dic))completion{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBBonusDomainName,HQJBGetActivityInfoByIdInterface];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBUnionCouponDomain,HQJBGetActivityInfoByIdInterface];
     NSDictionary * parameter = @{@"activityId":activityId,@"merchantId":MmberidStr,@"hash":HashCode};
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:parameter complete:^(NSDictionary *dic) {
         !completion ? : completion(dic);
