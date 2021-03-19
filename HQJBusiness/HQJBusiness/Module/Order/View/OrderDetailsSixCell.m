@@ -24,8 +24,8 @@
     }
     return self;
 }
-- (void)setTimerStr:(NSInteger)timerStr {
-    self.timerLabel.text = [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",timerStr]];
+- (void)setTitle:(NSString *)title value:(NSInteger)value {
+    self.timerLabel.text = [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",value]];
 }
 - (void)updateConstraints {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderDetailsSixCell : OrderDetailsBaseCell
-@property (nonatomic, assign) NSInteger timerStr;
+- (void)setTitle:(NSString *)title value:(NSInteger)value ;
 @end
 
 NS_ASSUME_NONNULL_END

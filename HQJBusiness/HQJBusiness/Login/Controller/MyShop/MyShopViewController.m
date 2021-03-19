@@ -236,8 +236,15 @@
 }
 
 - (void)clickState:(UITapGestureRecognizer *)tap {
-    if ( self.code != 6666 &&  self.roleValue == 7) {
-        [self handleXDState];
+    if ( self.code != 6666 ) {
+        if ( self.roleValue == 7) {
+            [self handleXDState:NO];
+
+        }
+        if ( self.roleValue == 8) {
+            [self handleXDState:YES];
+
+        }
 
     } else {
         HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
@@ -318,11 +325,11 @@
         self.stateValueLabel.text = [self getButtonString];
     }];
 }
-- (void)handleXDState{
+- (void)handleXDState:(BOOL)isShortcut{
     
     //1生成订单
     //2代付款
-    //3付款成功(生成第一份合同)
+    //3付款成功(1.生成第一份合同2.去完善信息（快捷入驻）)
     //4第一份合同待签署(去签属合同)
     //5第-份合同签署成功(去生成第二-份合同)
     //6第一份合同签署失败(跳3)
@@ -345,6 +352,15 @@
                 break;
                 
             case 3://1 付款成功，去生成第一份合同
+                if (isShortcut) {
+                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude]];
+
+                } else {
+                    [self createContract:1];
+
+                }
+                
+                break;
             case 6://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
                 //去生成第一份合同
                 [self createContract:1];
@@ -397,7 +413,11 @@
                 
                
                 
-            } break;
+            }
+                break;
+            case 12://12 去生成第一份合同
+                [self createContract:1];
+                break;
         }
     }
     if ([self.stateValueLabel.text isEqualToString:@"待实名认证"]) {
@@ -454,7 +474,7 @@
             
             //1生成订单
             //2代付款
-            //3付款成功(生成第一份合同)
+            //3付款成功(1.生成第一份合同2.去完善信息（快捷入驻）)
             //4第一份合同待签署(去签属合同)
             //5第-份合同签署成功(去生成第二-份合同)
             //6第一份合同签署失败(跳3)
@@ -470,6 +490,13 @@
             return @"立即加入";
             
         case 3://1 信息已完善，去生成第一份合同
+            if ( self.roleValue == 7) {
+                return @"签署新商业合同";
+            }
+            if ( self.roleValue == 8) {
+                return @"立即加入";
+            }
+            
         case 6:
             return @"签署新商业合同";
         case 2:
@@ -490,6 +517,8 @@
             
         case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
             return @"审核失败";
+        case 12://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
+            return @"签署新商业合同";
     }
     return @"";
 }

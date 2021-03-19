@@ -99,12 +99,14 @@
     }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 || section == 2 ||section == 3) {
+    if (section == 0 ||section == 3) {
         return 2;
+    } else if (section == 2 ){
+        return 4;
+        
     } else {
-        
         return self.dataModel.goodslist.count + 2;
-        
+
     }
     
 }
@@ -169,11 +171,19 @@
             OrderDetailsFiveCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
             cell.orderNumberStr = self.dataModel.nid;
             return cell;
-        } else {
+        } else if (indexPath.row == 1){
             OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
-            cell.timerStr = self.dataModel.date;
+            [cell setTitle:@"下单时间" value:self.dataModel.date];
             return cell;
             
+        } else if (indexPath.row == 2) {
+            OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
+            [cell setTitle:@"桌号" value:self.dataModel.tables];
+            return cell;
+        } else {
+            OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
+            [cell setTitle:@"人数" value:self.dataModel.people];
+            return cell;
         }
         
     } else {
@@ -275,6 +285,9 @@
     [printer appendText:str3 alignment:HLTextAlignmentCenter fontSize:HLFontSizeTitleMiddle];
     [printer appendSeperatorLine];
     
+    [printer appendTitle:@"桌    号" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.tables]];
+    [printer appendTitle:@"人    数" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.people]];
+    [printer appendSeperatorLine];
     [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendText:[self.mobileStr stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendSeperatorLine];

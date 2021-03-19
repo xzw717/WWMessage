@@ -62,7 +62,6 @@ static AFHTTPSessionManager *httpManager = nil;
             //            [SVProgressHUD showErrorWithStatus:@""];
             
         } else {
-            [SVProgressHUD showErrorWithStatus:@"没有找到服务器,请稍候重试"];
             
         }
         
@@ -168,7 +167,6 @@ static AFHTTPSessionManager *httpManager = nil;
             //            [SVProgressHUD showErrorWithStatus:@""];
             
         } else {
-            [SVProgressHUD showErrorWithStatus:@"没有找到服务器,请稍候重试"];
             
         }
         
