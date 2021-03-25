@@ -35,6 +35,7 @@
 @property (nonatomic,strong)UIView *bonusView;
 @property (nonatomic,strong)UILabel *bonusLabel;
 @property (nonatomic,strong)UILabel *bonusValueLabel;
+@property (nonatomic,strong)UIView *boBottomView;
 
 @property (nonatomic,strong)UIView *stateView;
 @property (nonatomic,strong)UILabel *stateLabel;
@@ -272,6 +273,16 @@
     
     return _bonusValueLabel;
 }
+- (UIView *)boBottomView{
+    if ( _boBottomView  == nil ) {
+        _boBottomView = [[UIView alloc]init];
+        _boBottomView.backgroundColor = [ManagerEngine getColor:@"e7e5e5"];
+        [self.bonusView addSubview:_boBottomView];
+    }
+    return _boBottomView;
+}
+
+
 - (void)clickState:(UITapGestureRecognizer *)tap {
     if ( self.code != 6666 && self.roleValue == 7) {
             [self handleXDState:NO];
@@ -320,12 +331,12 @@
     [super viewWillAppear:animated];
 
      [self requstState];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
-    [self layoutTheSubViews];
     [SVProgressHUD showWithStatus:@"获取定位中"];
     self.viewControllerName = @"LoginViewController";
     self.fd_interactivePopDisabled = YES;
@@ -356,7 +367,13 @@
 - (void)requstXD {
     [XDDetailViewModel getXDShopState:self.shopidString andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
-        self.stateValueLabel.text = [self getButtonString];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
+            self.stateValueLabel.text = [self getButtonString];
+
+            [self layoutTheSubViews];
+
+        });
+
     }];
 }
 - (void)handleXDState:(BOOL)isShortcut{
@@ -512,7 +529,8 @@
     [self.navigationController pushViewController:payVC animated:YES];
 }
 - (NSString *)getButtonString{
-    switch ([self.resultDict[@"state"] integerValue]) {
+    if (self.code != 6666) {
+      switch ([self.resultDict[@"state"] integerValue]) {
             
             //1生成订单
             //2代付款
@@ -529,7 +547,7 @@
             return @"不可申请";
             
         case 0://0 信息未完善
-            return @"立即加入";
+              return self.code == 0 ? @"待审核" : @"立即加入";
             
         case 3://1 信息已完善，去生成第一份合同
             if ( self.roleValue == 7) {
@@ -560,7 +578,18 @@
         case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
             return @"审核失败";
         case 12://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
-            return @"签署新商业合同";
+            if ( self.code  == 0 || self.code == 6666 ) {
+                return  @"待实名认证";
+
+            } else {
+                return @"签署新商业合同";
+
+            }
+
+    }
+        
+    } else {
+        return  self.stateValueLabel.text;
     }
     return @"";
 }
@@ -584,15 +613,19 @@
             self.roleValue = [dic[@"resultMsg"][@"role"] integerValue];
             self.price = [dic[@"resultMsg"][@"price"] floatValue];
             self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
+                [self layoutTheSubViews];
 
+            });
             if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
                   [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
             }
             
-            if (self.code != 6666 &&  self.roleValue == 7) {
+            if (self.code != 6666 && self.roleValue == 7 ) {
                 [self requstXD];
 
-            } else   if (self.code != 6666 &&  self.roleValue == 8) {
+             
+            } else if (self.code != 6666 && self.roleValue == 8) {
                 [self requstXD];
 
             } else {
@@ -604,6 +637,10 @@
                 } else if ( self.code == 1001 ) {
                     self.stateValueLabel.text = @"审核失败";
                 } else if ( self.code  == 6666 ) {
+                    if ( self.roleValue == 8) {
+                        [self requstXD];
+
+                    }
                     self.stateValueLabel.text = @"待实名认证";
 
                 } else if ( self.code == 8888 ) {
@@ -616,6 +653,12 @@
                     self.stateValueLabel.text = @"待审核";
 
                 }
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
+//                    self.stateValueLabel.text = [self getButtonString];
+
+                    [self layoutTheSubViews];
+
+                });
             }
 
         } else {
@@ -629,43 +672,58 @@
 #pragma private method
 - (void)layoutTheSubViews{
     self.shopNameView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.view, TopSpace + NavigationControllerHeight).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
-    
     self.shopNameLabel.sd_layout.leftSpaceToView(self.shopNameView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
-    
     self.shopNameValueLabel.sd_layout.leftSpaceToView(self.shopNameLabel, 10).rightSpaceToView(self.shopNameView, 70.f/3).heightIs(S_XRatioH(130.0f/3));
-    
     self.snBottomView.sd_layout.leftEqualToView(self.shopNameLabel).bottomEqualToView(self.shopNameView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
     
     self.mobileView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.shopNameView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
-    
     self.mobileLabel.sd_layout.leftSpaceToView(self.mobileView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
-    
     self.mobileValueLabel.sd_layout.leftSpaceToView(self.mobileLabel, 10).rightSpaceToView(self.mobileView,70.f/3).heightIs(S_XRatioH(130.0f/3));
-    
     self.mbBottomView.sd_layout.leftEqualToView(self.mobileLabel).bottomEqualToView(self.mobileView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
     
     
     self.applyTimeView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.mobileView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
-    
     self.applyTimeLabel.sd_layout.leftSpaceToView(self.applyTimeView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
-    
     self.applyTimeValueLabel.sd_layout.leftSpaceToView(self.applyTimeLabel, 10).rightSpaceToView(self.applyTimeView,70.f/3).heightIs(S_XRatioH(130.0f/3));
-    
     self.tmBottomView.sd_layout.leftEqualToView(self.applyTimeLabel).bottomEqualToView(self.applyTimeView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+//    if (self.resultDict[@"state"] &&  self.roleValue) {
+    self.bonusView.hidden = [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
+    self.bonusLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
+    self.bonusValueLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
+    self.boBottomView.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
 
+    if ( [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ) {
+        self.bonusView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.applyTimeView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+        self.bonusLabel.sd_layout.leftSpaceToView(self.bonusView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
+        self.bonusValueLabel.sd_layout.leftSpaceToView(self.bonusLabel, 10).rightSpaceToView(self.bonusView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+        self.boBottomView.sd_layout.leftEqualToView(self.bonusLabel).bottomEqualToView(self.bonusView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
+        
+        self.stateView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.bonusView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+        self.stateLabel.sd_layout.leftSpaceToView(self.stateView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
+        self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+        [self.stateView updateLayout];
 
-    self.stateView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.applyTimeView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+    } else {
+        self.stateView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.applyTimeView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
+        self.stateLabel.sd_layout.leftSpaceToView(self.stateView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
+        self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+        [self.stateView updateLayout];
 
-    self.stateLabel.sd_layout.leftSpaceToView(self.stateView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
+    }
+        
+//    }
+
     
-    self.stateValueLabel.sd_layout.leftSpaceToView(self.stateLabel, 10).rightSpaceToView(self.stateView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+    
+    
+  
    
-    self.bonusView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.stateView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
-    self.bonusLabel.sd_layout.leftSpaceToView(self.bonusView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
-    self.bonusValueLabel.sd_layout.leftSpaceToView(self.bonusLabel, 10).rightSpaceToView(self.bonusView,70.f/3).heightIs(S_XRatioH(130.0f/3));
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
+        self.phoneLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.view, ToolBarHeight - 20).heightIs(20).widthIs(WIDTH);
+
+    });
     
-    self.phoneLabel.sd_layout.centerXEqualToView(self.view).bottomSpaceToView(self.view, ToolBarHeight - 20).heightIs(20).widthIs(WIDTH);
     
     
 
