@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OrderDetailsFourCell : OrderDetailsBaseCell
 @property (nonatomic, assign) CGFloat priceStr;
 @property (nonatomic, strong) NSString *couponString;
+@property (nonatomic, strong) NSString *titleStr;
 
 @end
 
