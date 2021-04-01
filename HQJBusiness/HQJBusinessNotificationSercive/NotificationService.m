@@ -27,12 +27,15 @@ typedef void(^PlayVoiceBlock)(void);
     NSMutableArray *goodsArray;
     NSString *orderid;
     NSString *mobile;
-    NSString *totalmoney;
+    NSString *totalmoney; /// 实付金额
     NSString *ordertime;
     NSString *totalquantity;
     NSString *remark;
     NSString *tables;   ///桌号
     NSString *people;   ///人数
+    NSString *amount;  /// 总金额
+  
+    
     /**************** 打印内容*************/
 
     
@@ -96,7 +99,7 @@ typedef void(^PlayVoiceBlock)(void);
     remark = dict[@"remark"];
     tables = dict[@"tables"];
     people = dict[@"people"];
-    
+    amount = dict[@"amount"];
 }
 
 - (void)pushNotification{
@@ -305,9 +308,12 @@ typedef void(^PlayVoiceBlock)(void);
     [printer appendText:str2 alignment:HLTextAlignmentCenter];
     [printer appendText:str3 alignment:HLTextAlignmentCenter fontSize:HLFontSizeTitleMiddle];
     [printer appendSeperatorLine];
-    [printer appendTitle:@"桌    号" value:[NSString stringWithFormat:@"%@",tables]];
-    [printer appendTitle:@"人    数" value:[NSString stringWithFormat:@"%@",people]];
-    [printer appendSeperatorLine];
+    if (tables > 0) {
+        [printer appendTitle:@"桌号" value:[NSString stringWithFormat:@"%@",tables]];
+        [printer appendTitle:@"人数" value:[NSString stringWithFormat:@"%@",people]];
+        [printer appendSeperatorLine];
+    }
+  
     [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendText:[mobile  stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendSeperatorLine];
@@ -323,8 +329,9 @@ typedef void(^PlayVoiceBlock)(void);
     [printer appendSeperatorLine];
     
     [printer appendTitle:@"总计商品数" value:totalquantity];
-    [printer appendTitle:@"金    额" value:totalmoney];
-    
+    [printer appendTitle:@"总金额" value:amount];
+    [printer appendTitle:@"用户实付" value:totalmoney];
+
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:orderid];
     [printer appendTitle:@"下单时间" value:ordertime];

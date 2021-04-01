@@ -105,7 +105,7 @@
         return 4;
         
     } else {
-        return self.dataModel.goodslist.count + 2;
+        return self.dataModel.goodslist.count + 4;
 
     }
     
@@ -145,9 +145,26 @@
             OrderDetailsOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsOneCell class])];
             cell.statess = @"订单信息";
             return cell;
+        } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 3) {
+            OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
+            cell.priceStr = self.dataModel.price;
+            cell.titleStr = @"订单总额：";
+            if (self.couponTypeNam) {
+                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+            }
+            return cell;
+        } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 2) {
+            OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
+            cell.priceStr = self.dataModel.shoppaidin;
+            cell.titleStr = @"实际支付：";
+            if (self.couponTypeNam) {
+                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+            }
+            return cell;
         } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
             OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
             cell.priceStr = self.dataModel.shoppaidin;
+            cell.titleStr = @"商家实收：";
             if (self.couponTypeNam) {
                 cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
             }
@@ -284,10 +301,11 @@
     [printer appendText:str2 alignment:HLTextAlignmentCenter];
     [printer appendText:str3 alignment:HLTextAlignmentCenter fontSize:HLFontSizeTitleMiddle];
     [printer appendSeperatorLine];
-    
-    [printer appendTitle:@"桌    号" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.tables]];
-    [printer appendTitle:@"人    数" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.people]];
-    [printer appendSeperatorLine];
+    if (self.dataModel.tables > 0) {
+        [printer appendTitle:@"桌号:" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.tables]];
+        [printer appendTitle:@"人数:" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.people]];
+    }
+
     [printer appendText:@"用户信息" alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendText:[self.mobileStr stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"]  alignment:HLTextAlignmentLeft fontSize:HLFontSizeTitleSmalle];
     [printer appendSeperatorLine];
@@ -303,8 +321,9 @@
     [printer appendSeperatorLine];
     
     [printer appendTitle:@"总计商品数" value:[NSString stringWithFormat:@"%ld",icount]];
-    [printer appendTitle:@"金    额" value:[NSString stringWithFormat:@"%.2f",self.dataModel.price]];
-    
+    [printer appendTitle:@"金    额" value:[NSString stringWithFormat:@"%.2f",self.dataModel.actualpayment]];
+//    [printer appendTitle:@"总金额" value:[NSString stringWithFormat:@"%.2f",self.dataModel.amount]];
+//    [printer appendTitle:@"用户实付" value:totalmoney];
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:[NSString stringWithFormat:@"%@",self.dataModel.nid]];
     [printer appendTitle:@"下单时间" value:[ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",self.dataModel.date]]];

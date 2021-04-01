@@ -130,11 +130,12 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0 || indexPath.row == 3) {
+    NSString *titleStr =  self.cellTitleArray[indexPath.row];
+    if ([titleStr isEqualToString:@"基本信息"] ||[titleStr isEqualToString:@"商品发布"] ) {
         BasicInformationViewController *BIVC = [[BasicInformationViewController alloc]initWithTitle:self.cellTitleArray[indexPath.row]];
         [self.navigationController pushViewController:BIVC animated:YES];
     }
-    if (indexPath.row == 2) {
+    if ([titleStr isEqualToString:@"升级规则"] ) {
         HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
         webvc.webTitleString = @"升级规则";
         webvc.zwNavView.hidden = YES;
@@ -142,11 +143,11 @@
                            ,HQJBUpgradeRuleInterface,Shopid];
         [self.navigationController pushViewController:webvc animated:YES];
     }
-    if (indexPath.row == 1) {
+    if ([titleStr isEqualToString:@"合同管理"]) {
         ContactManagerViewController *cMVC = [[ContactManagerViewController alloc]initWithContactType:NO];
         [self.navigationController pushViewController:cMVC animated:YES];
     }
-    if (indexPath.row == 4) {
+    if ([titleStr isEqualToString:@"员工管理"]) {
         StaffManageViewController *sMvc = [[StaffManageViewController alloc]init];
         [self.navigationController pushViewController:sMvc animated:YES];
     }
