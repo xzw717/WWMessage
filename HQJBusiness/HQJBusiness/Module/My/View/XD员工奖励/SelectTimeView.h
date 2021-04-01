@@ -11,6 +11,7 @@ typedef void (^TimerClickBlock)(NSString * _Nonnull timer);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectTimeView : UIView
+@property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, copy  ) TimerClickBlock finish;
 @end
 

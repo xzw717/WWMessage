@@ -18,7 +18,7 @@
 #import "CertificationViewController.h"
 #import "StoreManagementViewController.h"
 #import "XDShopViewController.h"
-
+#import "UnionActivityViewController.h"
 @implementation MyViewModel
 
 - (void)myRequst {
@@ -146,9 +146,9 @@
             [xzw_self.navigationController pushViewController:mnVC animated:YES];
         }  else if (xzw_indexPath.row == 6){
             // 优惠券
-            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
-                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
-            } else {
+//            if ([[NameSingle shareInstance].role containsString:@"物联"] || [[NameSingle shareInstance].role containsString:@"联盟"] ) {
+//                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
+//            } else {
                 HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
                 webvc.zwNavView.hidden = YES;
                 //            webvc.webTitleString = @"优惠券";
@@ -157,9 +157,12 @@
                                    ,MmberidStr,HashCode];
                 webvc.fd_interactivePopDisabled = YES;
                 [xzw_self.navigationController pushViewController:webvc animated:YES];
-            }
+//            }
             
             
+        }else if (xzw_indexPath.row == 7){
+            UnionActivityViewController *uaVC = [[UnionActivityViewController alloc]init];
+            [xzw_self.navigationController pushViewController:uaVC animated:YES];
         }
         
     }
@@ -227,7 +230,8 @@
                                @"消费码核销",
                                @"待审核申请",
                                @"消息通知",
-                               @"优惠券"],/*,
+                               @"优惠券",
+                               @"联盟活动"],/*,
                                */
                              @[@"台卡下载",
                                @"设置"]];
@@ -244,7 +248,8 @@
                                    @"icon_xfm",
                                    @"icon_unverify",
                                    @"icon_notice",
-                                   @"icon_my_coupon"],/*,
+                                   @"icon_my_coupon",
+                                 @"icon_allianceactivities"],/*,
                                    */
                                  @[@"mine_icon_download",
                                    @"icon_setting"]];
@@ -261,7 +266,8 @@
                                    @"icon_XD_xfm",
                                    @"icon_XD_unverify",
                                    @"icon_XD_notice",
-                                   @"icon_XD_coupon"],/*,
+                                   @"icon_XD_coupon",
+                                 @"icon_XD_allianceactivities"],/*,
                                    */
                                  @[@"icon_XD_download",
                                    @"icon_XD_set"]];

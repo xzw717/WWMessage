@@ -16,26 +16,26 @@ NSString *const HQJBDomainName = @"http://shoptest.heqijia.net/";
 NSString *const HQJBFeedbackDomainName = @"http://subtest.heqijia.net/";
 NSString *const HQJBversionInformationDomainName = @"http://apptest.heqijia.net/";
 NSString *const HQJBUpdataAPPDomainName = @"http://apptest.heqijia.net/";
-NSString *const HQJBBonusDomainName = @"http://47.98.45.218/";
+NSString *const HQJBBonusDomainName = @"http://test.hqjplatform.com/";
 NSString *const HQJBBounsOrder  = @"http://shoptest.heqijia.net/";
 /// 台卡域名   XD 商家奖励通用
-NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+NSString *const HQJBBonusDomainDeccaName = @"http://test.hqjplatform.com:80/";
 /// 优惠券
-NSString *const WWMCouponDomain = @"http://47.98.45.218:8080/";
+NSString *const WWMCouponDomain = @"http://test.hqjplatform.com:8080/";
 /// 直播域名
 NSString *const WWMLiveDomain = @"106.13.213.51";
 
 /// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
-NSString *const HQJBH5UpDataDomain = @"http://47.98.45.218:8080/";
+NSString *const HQJBH5UpDataDomain = @"http://test.hqjplatform.com:8080/";
 /// 商家奖励
-NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 
 /// XDH5域名
 NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 /// H5域名
-NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
-
-
+NSString *const HQJBXDDownloadPactDomain = @"http://test.hqjplatform.com:8080/";
+///联盟券
+NSString *const HQJBUnionCouponDomain = @"http://test.hqjplatform.com/";
 #pragma mark ---培训使用的域名
 
 //NSString *const HQJBDomainName = @"http://shop.wuwuditu.cn/";
@@ -45,20 +45,21 @@ NSString *const HQJBXDDownloadPactDomain = @"http://47.98.45.218:8080/";
 //NSString *const HQJBBonusDomainName = @"http://www.wuwuditu.cn/";
 //NSString *const HQJBBounsOrder  = @"http://shop.wuwuditu.cn/";
 ///// 台卡域名   XD 商家奖励通用
-////NSString *const HQJBBonusDomainDeccaName = @"http://47.98.45.218:80/";
+////NSString *const HQJBBonusDomainDeccaName = @"http://test.hqjplatform.com:80/";
 ///// 优惠券
 //NSString *const WWMCouponDomain = @"http://h5.wuwuditu.cn/";
 //
 ///// 商家注册 . 商家升级. 已经签合同 .入驻协议 域名
 //NSString *const HQJBH5UpDataDomain = @"http://h5.wuwuditu.cn/";
 ///// 商家奖励
-////NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+////NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 //
 ///// XDH5域名
 ////NSString *const HQJBXDH5Domain = @"http://shoptest.heqijia.net/assets/xdESign/index.html#/xdshopmsg?";
 ///// H5域名
 //NSString *const HQJBXDDownloadPactDomain = @"http://h5.wuwuditu.cn/";
-
+/////联盟券
+//NSString *const HQJBUnionCouponDomain = @"http://www.wuwuditu.cn/";
 
 
 
@@ -84,9 +85,11 @@ NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/";
 //NSString *const HQJBXDH5Domain = @"http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg?";
 /// H5域名
 NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
+///联盟券
+NSString *const HQJBUnionCouponDomain = @"http://47.97.229.170:8080/";
 
 /// 商家奖励
-//NSString *const HQJBRewardDomainName = @"http://47.98.45.218/";
+//NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
 #endif
 
 
@@ -372,8 +375,35 @@ NSString *const HQJBMerchantAwardToConsumerInterface = @"merchantAwardToConsumer
 ///商家预约积分列表
 NSString *const HQJBMerchantBookingListInterface = @"merchantBookingList";
 
-
-
+/*   联盟券接口  */
+///联盟活动记录
+NSString *const HQJBGetActivityByMidListInterface = @"coupon/activity/getActivityByMid";
+///上传图片（商家APP，添加或编辑联盟活动时上传图片）
+NSString *const HQJBUploadImageInterface = @"coupon/activity/uploadImage";
+///获取区域
+NSString *const HQJBGetAreaInterface = @"coupon/activity/getArea";
+///查询商家行业接口
+NSString *const HQJBGetIndustryInterface = @"coupon/activity/industry";
+///查询商家分类接口
+NSString *const HQJBGetMerchantTypeInterface = @"coupon/activity/merchantType";
+///根据手机号查询商家信息接口
+NSString *const HQJBGetMerchantByMobileInterface = @"coupon/app/getMerchantByMobile";
+///根据id删除联盟记录
+NSString *const HQJBModifyCurstateInterface = @"coupon/activity/modifyCurstate";
+///新增联盟活动记录接口（商家APP，新增或编辑联盟活动页面使用）
+NSString *const HQJBAddActivityInterface = @"coupon/activity/addActivity";
+///根据id查询联盟活动详细接口
+NSString *const HQJBGetActivityByIdInterface = @"coupon/activity/getActivityById";
+///根据id查询联盟活动记录接口
+NSString *const HQJBGetActivityInfoByIdInterface = @"coupon/activity/getActivityInfoById";
+///添加或编辑联盟活动券（商家APP，添加或编辑联盟券页面）
+NSString *const HQJBAddCouponInterface = @"coupon/activity/addCoupon";
+///商家报名参加联盟活动接口（页面：商家APP，用于商家报名）
+NSString *const HQJBSignUpInterface = @"coupon/activity/signUp";
+///根据id查询优惠券信息接口（商家APP，在报名后跳转到新增联盟券的页面时使用的接口，或编辑联盟券时使用
+NSString *const HQJBGetUnionCouponByIdInterface = @"coupon/activity/getCouponById";
+///查询商家优惠券类型接口
+NSString *const HQJBGetTypesInterface = @"coupon/activity/getTypes";
 @implementation HQJBAPIManage
 
 @end

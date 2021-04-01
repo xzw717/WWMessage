@@ -56,11 +56,12 @@
     
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//
+////
 //    MyShopViewController *loginVC =[[MyShopViewController alloc]init];
 //       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
 //       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //       delegate.window.rootViewController = Nav;
+//    return YES;
     if ( MmberidStr == nil) {
         //
 

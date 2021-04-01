@@ -25,7 +25,8 @@
     return self;
 }
 - (void)setTitle:(NSString *)title value:(NSInteger)value {
-    self.timerLabel.text = [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",value]];
+    self.titleLabel.text = title;
+    self.timerLabel.text = [title isEqualToString:@"下单时间"] ? [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",value]] : [NSString stringWithFormat:@"%ld",value];
 }
 - (void)updateConstraints {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -44,7 +45,6 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"下单时间";
         _titleLabel.font = [UIFont systemFontOfSize:14.f];
         _titleLabel.textColor = [ManagerEngine getColor:@"323232"];
     }
@@ -53,7 +53,6 @@
 - (UILabel *)timerLabel {
     if (!_timerLabel) {
         _timerLabel = [[UILabel alloc]init];
-        _timerLabel.text = @"2019-05-17 10:19";
         _timerLabel.font = [UIFont systemFontOfSize:14.f];
         _timerLabel.textColor = [ManagerEngine getColor:@"323232"];
     }

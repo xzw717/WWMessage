@@ -50,7 +50,7 @@
 
 - (ContactManagerHeadView *)headView{
     if (_headView == nil) {
-        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"已签合同",@"待签合同"]];
+        _headView = [[ContactManagerHeadView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HeadHeight) andTitleArray:@[@"已签合同",@"待签合同"] andIsBlue:NO];
         _headView.selectIndex = 0;
         @weakify(self);
         [_headView setItemBlock:^(NSInteger selectedIndex) {
@@ -87,9 +87,9 @@
     }
     [ContactManagerViewModel getContactManagerList:Shopid ? Shopid :@"" xdList:self.isxd andSignResul:type completion:^(NSArray<ContactModel *> * _Nonnull list) {
         self.dataArray = list;
-           [self.tableView reloadData];
+        [self.tableView reloadData];
     }];
-  
+    
 }
 #pragma mark --- UITableViewDataSource
 
@@ -158,11 +158,11 @@
                 [result appendString:@"(生态企业)"];
                 break;
         }
-
+        
     } else {
         [result appendString:model.rolename];
     }
-
+    
     
     [result appendString:@"合同"];
     [cell setTitle:result];
@@ -173,15 +173,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactModel *model = self.dataArray[indexPath.row];
     if (self.topTag == 0) {
-            HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
-            if (self.isxd) {
-                webVC.webUrlStr = [NSString stringWithFormat:@"%@%@?docId=%@&shopid=%@",HQJBXDDownloadPactDomain,HQJBDownloadPactInterface,model.docid,Shopid];
-
-            } else {
-                webVC.webUrlStr = [NSString stringWithFormat:@"%@%@?docId=%@&shopid=%@",HQJBXDDownloadPactDomain,HQJBDownloadUpdateInterface,model.docId,Shopid];
-
-            }
-            [self.navigationController pushViewController:webVC animated:YES];
+        HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
+        if (self.isxd) {
+            webVC.webUrlStr = [NSString stringWithFormat:@"%@%@?docId=%@&shopid=%@",HQJBXDDownloadPactDomain,HQJBDownloadPactInterface,model.docid,Shopid];
+            
+        } else {
+            webVC.webUrlStr = [NSString stringWithFormat:@"%@%@?docId=%@&shopid=%@",HQJBXDDownloadPactDomain,HQJBDownloadUpdateInterface,model.docId,Shopid];
+            
+        }
+        [self.navigationController pushViewController:webVC animated:YES];
     }else{
         if (model.signUrl) {
             HQJWebViewController *webVC = [[HQJWebViewController alloc]init];

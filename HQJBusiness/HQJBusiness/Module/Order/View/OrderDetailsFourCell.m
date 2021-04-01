@@ -11,7 +11,7 @@
 @interface OrderDetailsFourCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
-@property (nonatomic,strong) UILabel *couponLabel;
+@property (nonatomic, strong) UILabel *couponLabel;
 
 @end
 @implementation OrderDetailsFourCell
@@ -33,15 +33,12 @@
 }
 - (void)setCouponString:(NSString *)couponString {
     self.couponLabel.text = couponString;
-//    [self.priceLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.mas_equalTo(-10);
-//    }];
-    
-//    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.centerY.mas_equalTo(self.priceLabel);
-//    }];
 
  
+}
+- (void)setTitleStr:(NSString *)titleStr {
+    _titleStr = titleStr;
+    self.titleLabel.text = titleStr;
 }
 - (void)updateConstraints {
     
@@ -65,7 +62,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"实付";
+        _titleLabel.text = @"实收";
         _titleLabel.font = [UIFont systemFontOfSize:14.f];
         _titleLabel.textColor = [ManagerEngine getColor:@"323232"];
     }

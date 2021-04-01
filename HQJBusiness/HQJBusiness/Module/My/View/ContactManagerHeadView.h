@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^itemClickBlock)(NSInteger selectedIndex);
 
 @interface ContactManagerHeadView : UIView
-- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray;
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray andIsBlue:(BOOL)isBlue;
 
 @property(nonatomic,assign)NSInteger selectIndex;//初始选中的index
 @property(nonatomic,copy)itemClickBlock itemBlock;

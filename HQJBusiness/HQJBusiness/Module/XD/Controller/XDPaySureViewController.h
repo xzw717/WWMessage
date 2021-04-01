@@ -12,6 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XDPaySureViewController : ZW_ViewController
 /// 支付宝支付状态
 @property (nonatomic, assign) BOOL isAlipaySuccess;
+
+@property (nonatomic,strong)NSString *xdPaySureshopidString;
+/// 纬度
+@property (nonatomic, assign) CGFloat xdPaySurelatitude ;
+/// 经度
+@property (nonatomic, assign) CGFloat xdPaySurelongitude ;
+
+@property (nonatomic, assign) NSInteger xdPaySureroleValue;
+
 - (instancetype)initWithOrderid:(NSString *)orderid;
 
 @end
