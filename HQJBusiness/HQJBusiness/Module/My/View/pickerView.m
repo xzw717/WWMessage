@@ -21,14 +21,14 @@
         _ListArray = ary;
         _backCGRct = frame;
         self.backgroundColor = [UIColor clearColor];
-
-       self.backgroudView = [[UIView alloc]initWithFrame:frame];
+        
+        self.backgroudView = [[UIView alloc]initWithFrame:frame];
         self.backgroudView.layer.masksToBounds = YES;
         self.backgroudView.layer.cornerRadius = 5;
-       self.backgroudView.backgroundColor = [UIColor whiteColor];
+        self.backgroudView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.backgroudView];
         [self.backgroudView addSubview:self.pickTableView];
-
+        
     }
     
     return self;
@@ -36,16 +36,17 @@
 -(UITableView *)pickTableView {
     if (!_pickTableView) {
         _pickTableView = [[UITableView alloc]init];
-//        _pickTableView.backgroundColor = [UIColor redColor];
+        //        _pickTableView.backgroundColor = [UIColor redColor];
         _pickTableView.frame = CGRectMake(0, 0, _backCGRct.size.width, _ListArray.count * 45 > HEIGHT/2 ?HEIGHT/2 : _ListArray.count * 45);
         _pickTableView.delegate = self;
         _pickTableView.dataSource = self;
         _pickTableView.rowHeight = 45;
+        _pickTableView.bounces = NO;
         [_pickTableView setTableFooterView:[UIView new]];
         [_pickTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
         _pickTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         
-
+        
     }
     
     
@@ -103,7 +104,7 @@
     
 }
 -(void)showView {
-
+    
     UIWindow *windowView = [UIApplication sharedApplication].keyWindow;
     [windowView addSubview:self];
     
@@ -124,8 +125,8 @@
     [UIView animateWithDuration:0.25 animations:^{
         //
         self.backgroudView.frame = CGRectMake(_backCGRct.origin.x, _backCGRct.origin.y, _backCGRct.size.width, 0);
-//        self.pickTableView.frame =CGRectMake(_backCGRct.origin.x, _backCGRct.origin.y, _backCGRct.size.width, 0);
-
+        //        self.pickTableView.frame =CGRectMake(_backCGRct.origin.x, _backCGRct.origin.y, _backCGRct.size.width, 0);
+        
     } completion:^(BOOL finished) {
         //
         [self removeFromSuperview];

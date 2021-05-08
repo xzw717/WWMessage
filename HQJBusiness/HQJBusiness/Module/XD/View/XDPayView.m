@@ -12,8 +12,6 @@
 @property (nonatomic,strong) UILabel *payTypeLabel;
 @property (nonatomic,strong) UIImageView *zfbImageView;
 @property (nonatomic,strong) UILabel *zfbLabel;
-
-
 @end
 
 

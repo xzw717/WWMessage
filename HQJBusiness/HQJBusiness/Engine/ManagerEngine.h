@@ -338,4 +338,20 @@ typedef NS_ENUM(NSInteger,listStyle) {
 /// 时间转时间戳   eg type：YYYY-MM-dd
 + (NSString *_Nonnull)getTimeStrWithString:(NSString *)str;
 + (NSString *_Nonnull)getTimeStrWithString:(NSString *)str timeType:(NSString *)type;
+/**
+ *  调整图片尺寸和大小
+ *
+ *  @param sourceImage  原始图片
+ *  @param maxImageSize 新图片最大尺寸
+ *  @param maxSize      新图片最大存储大小
+ *
+ *  @return 新图片imageData
+ */
++ (NSData *_Nullable)reSizeImageData:(UIImage *_Nullable)sourceImage maxImageSize:(CGFloat)maxImageSize maxSizeWithKB:(CGFloat) maxSize;
+/// 是否是纯数字
++ (BOOL)isNumber:(NSString *_Nullable)string;
+/// 获取非空字符
++ (NSString *)getTrueField:(NSString *)field;
+/// view转image
++ (UIImage *_Nullable)convertViewToImage:(UIView *_Nullable)view;
 @end
