@@ -229,7 +229,12 @@
         NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
 
         if (x.mobile) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
+            if ([[NameSingle shareInstance].role containsString:@"利益"]) {
+                [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(利益共同体)",nameStr] andisNav:YES andColor:DefaultAPPColor];
+            }else{
+                [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
+            }
+            
         }
         
         
