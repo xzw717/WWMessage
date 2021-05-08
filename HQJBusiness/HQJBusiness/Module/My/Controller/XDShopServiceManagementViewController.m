@@ -26,7 +26,7 @@ DZNEmptyDataSetDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zwTitLabel.text = @"XD商家服务费订单";
+    self.zwTitLabel.text = @"XD商企服务费订单";
     HQJSelectToolView *view = [[HQJSelectToolView alloc]initWithTitleAry:@[@"支付成功",@"待付款"]];
       @weakify(self);
      [view setIndex:^(NSInteger indx) {

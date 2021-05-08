@@ -78,7 +78,7 @@
     self.orderNoteLabel.text = [NSString stringWithFormat:@"备注：%@",model.remark];
     self.countPriceLabel.text = count  ? [NSString stringWithFormat:@"数量：%ld  订单金额：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"订单金额：¥%.2f",model.price];
     self.realAmountLabel.text = [NSString stringWithFormat:@"商家实收：¥%.2f",model.shoppaidin];
-    self.tableWithPeopleLabel.text =  [NSString stringWithFormat:@"桌号：%ld  人数：%ld",(long)model.tables,(long)model.people];
+    self.tableWithPeopleLabel.text =  [NSString stringWithFormat:@"桌号：%@  人数：%ld",model.tables && ![model.tables isEqualToString:@""] ? model.tables : @"0" ,(long)model.people];
 
 }
 
@@ -111,7 +111,7 @@
  
     self.contactBuyerButton.sd_layout.rightSpaceToView(self.contentView, 15).topEqualToView(self.timerLabel).widthIs(60).heightIs(30);
     if (self.isRemake) {
-        self.orderNotelineView.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contentView,0).topSpaceToView(self.realAmountLabel, 10).heightIs(0.5);
+        self.orderNotelineView.sd_layout.leftEqualToView(self.timerLabel).rightSpaceToView(self.contentView,0).topSpaceToView(self.tableWithPeopleLabel, 10).heightIs(0.5);
         self.orderNoteLabel.sd_layout.leftEqualToView(self.timerLabel).rightEqualToView(self.contactBuyerButton).topSpaceToView(self.orderNotelineView, 0).bottomSpaceToView(self.contentView, 0);
         
     }

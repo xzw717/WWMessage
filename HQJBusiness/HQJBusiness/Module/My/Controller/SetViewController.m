@@ -107,9 +107,9 @@
             }];
         } else if (indexPath.row == 2) {
             if ([userDefaults objectForKey:@"newOrder"] == nil) {
-                cell.setSwitch.on = YES;
+                cell.setSwitch.on = NO;
 
-                [self setUserDefaults:YES userKey:@"newOrder"];
+                [self setUserDefaults:NO userKey:@"newOrder"];
             } else {
                 BOOL a = [[userDefaults objectForKey:@"newOrder"] isEqualToString:@"开"] ?YES : NO;
                 cell.setSwitch.on = a;
@@ -121,9 +121,9 @@
             }];
         } else if (indexPath.row == 3) {
             if ([userDefaults objectForKey:@"CollectMoney"] == nil) {
-                cell.setSwitch.on = YES;
+                cell.setSwitch.on = NO;
 
-                [self setUserDefaults:YES userKey:@"CollectMoney"];
+                [self setUserDefaults:NO userKey:@"CollectMoney"];
             } else {
                 BOOL a = [[userDefaults objectForKey:@"CollectMoney"] isEqualToString:@"开"] ? YES : NO;
                 cell.setSwitch.on = a;

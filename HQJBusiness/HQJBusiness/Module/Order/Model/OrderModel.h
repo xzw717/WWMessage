@@ -50,7 +50,7 @@
 
 @property (nonatomic, strong) NSString *remark;
 /// 订单实付金额
-@property (nonatomic, strong) NSString *actualpayment;
+@property (nonatomic, assign) CGFloat actualpayment;
 /// 优惠金额
 @property (nonatomic, strong) NSString *couponsprice;
 /// 优惠券id
@@ -58,7 +58,9 @@
 ///实收金额
 @property (nonatomic, assign) CGFloat shoppaidin;
 /// 桌号
-@property (nonatomic, assign) NSInteger tables;
+@property (nonatomic, strong) NSString *tables;
 /// 人数
 @property (nonatomic, assign) NSInteger people;
+///  加1 购买物物豆
+@property (nonatomic, assign) NSInteger share;
 @end

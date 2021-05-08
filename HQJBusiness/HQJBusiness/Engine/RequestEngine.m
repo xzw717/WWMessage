@@ -47,6 +47,7 @@ static AFHTTPSessionManager *httpManager = nil;
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"错误内容：%@",error.userInfo[@"NSLocalizedDescription"]);
         [SVProgressHUD dismiss];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (errors) {
@@ -55,7 +56,7 @@ static AFHTTPSessionManager *httpManager = nil;
         if ([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"似乎已断开与互联网的连接。"]) {
             [SVProgressHUD showErrorWithStatus:@"没网了，请检查网络连接后重试"];
             
-        } else  if([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"The request timed out."]) {
+        } else  if([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"请求超时。"]) {
             [SVProgressHUD showErrorWithStatus:@"请求超时,请稍候重试"];
             
         } else if ([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"JSON text did not start with array or object and option to allow fragments not set."]){
@@ -160,7 +161,7 @@ static AFHTTPSessionManager *httpManager = nil;
         if ([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"似乎已断开与互联网的连接。"]) {
             [SVProgressHUD showErrorWithStatus:@"没网了，请检查网络连接后重试"];
             
-        } else  if([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"The request timed out."]) {
+        } else  if([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"请求超时。"]) {
             [SVProgressHUD showErrorWithStatus:@"请求超时,请稍候重试"];
             
         } else if ([error.userInfo[@"NSLocalizedDescription"]isEqualToString:@"JSON text did not start with array or object and option to allow fragments not set."]){

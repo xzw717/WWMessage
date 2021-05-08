@@ -172,7 +172,7 @@ DZNEmptyDataSetDelegate>
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     OrderModel *model = self.listArray[section];
     if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
-        return 65 + [self orderNoteHeight:model.remark] + 20;
+        return 65 + [self orderNoteHeight:model.remark] + 20 + 20;
     } else if (model.usedate) {
         return 65.f + 20 ;
     } else {

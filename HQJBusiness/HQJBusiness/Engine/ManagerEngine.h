@@ -354,4 +354,8 @@ typedef NS_ENUM(NSInteger,listStyle) {
 + (NSString *)getTrueField:(NSString *)field;
 /// view转image
 + (UIImage *_Nullable)convertViewToImage:(UIView *_Nullable)view;
+
+/// 店铺管理相关的跳转
+/// @param isStoreInformation 是否是店铺信息
++ (void)jumpShopManageH5:(BOOL)isStoreInformation ;
 @end

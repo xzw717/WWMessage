@@ -94,10 +94,9 @@
 }
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    [self.locationmanager stopUpdatingHeading]; //旧址
+    [self.locationmanager stopUpdatingHeading];
     CLLocation *currentLocation = [locations lastObject];
-    CLGeocoder *geoCoder = [[CLGeocoder alloc]init]; //打印当前的经度与纬度
-//    NSLog(@"%f,%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude); //反地理编码
+    CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
     @weakify(self);
     [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         @strongify(self);
@@ -108,15 +107,12 @@
             }
             CLLocationCoordinate2D locationNow = [HQJLocationManager wgs84ToGcj02:currentLocation.coordinate];
             !self.location ? :self.location(locationNow.latitude,locationNow.longitude,self.currentCity);
-
-//            if (currentLocation.coordinate.latitude && currentLocation.coordinate.longitude && ![self.currentCity isEqualToString:@"无法定位当前城市"]) {
-//                [self.locationmanager stopUpdatingLocation];
-//            }
-            //            NSLog(@"%@",self.currentCity);//当前的城市 // NSLog(@"%@",placeMark.subLocality);//当前的位置 // NSLog(@"%@",placeMark.thoroughfare);//当前街道 // NSLog(@"%@",placeMark.name);//具体地址
             
         }
     }];
-    
+    [manager stopUpdatingLocation];
+    self.locationmanager.delegate = nil;
+
 }
 
 + (CLLocationCoordinate2D)wgs84ToGcj02:(CLLocationCoordinate2D)location

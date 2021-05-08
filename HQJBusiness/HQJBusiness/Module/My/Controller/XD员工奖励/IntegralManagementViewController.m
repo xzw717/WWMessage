@@ -35,7 +35,7 @@
             cell.textLabel.text = @"会员消费奖励积分";
             break;
         case 1:
-            cell.textLabel.text = @"XD商家活动积分";
+            cell.textLabel.text = @"XD商企活动积分";
             break;
         case 2:
             cell.textLabel.text = @"预约积分";

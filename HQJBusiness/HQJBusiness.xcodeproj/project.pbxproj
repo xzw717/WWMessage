@@ -784,6 +784,9 @@
 		1F40293A229FBDAF0014769B /* RemotePushApsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushApsModel.m; sourceTree = "<group>"; };
 		1F40293B229FBDAF0014769B /* RemotePushListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePushListModel.m; sourceTree = "<group>"; };
 		1F40293C229FBDAF0014769B /* RemotePushOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePushOrderModel.h; sourceTree = "<group>"; };
+		1F41BF8C2616026600C56809 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		1F41BF8D2616026600C56809 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		1F41BF8F2616026600C56809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F4FFBDE1F6634AD00FF3C39 /* CashOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashOnlineCell.h; sourceTree = "<group>"; };
 		1F4FFBDF1F6634AD00FF3C39 /* CashOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashOnlineCell.m; sourceTree = "<group>"; };
 		1F52A90224EA7AE400FF8110 /* SelectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectTimeView.h; sourceTree = "<group>"; };
@@ -1715,6 +1718,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1F41BF8B2616026600C56809 /* push */ = {
+			isa = PBXGroup;
+			children = (
+				1F41BF8C2616026600C56809 /* NotificationService.h */,
+				1F41BF8D2616026600C56809 /* NotificationService.m */,
+				1F41BF8F2616026600C56809 /* Info.plist */,
+			);
+			path = push;
+			sourceTree = "<group>";
+		};
 		1F5DEFBD1E121D4A00AC1DF6 /* Trading */ = {
 			isa = PBXGroup;
 			children = (
@@ -2637,6 +2650,7 @@
 				1F63CCB6229536870061CF09 /* HQJBusinessNotificationSercive */,
 				1FBE91EC1DEC1E59001977A6 /* HQJBusinessTests */,
 				1FBE91F71DEC1E59001977A6 /* HQJBusinessUITests */,
+				1F41BF8B2616026600C56809 /* push */,
 				1FBE91D11DEC1E59001977A6 /* Products */,
 				07B203E5119CDF40E49B4861 /* Pods */,
 				917148EDC51052C71EE920C9 /* Frameworks */,
@@ -3736,7 +3750,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1.4;
+				CURRENT_PROJECT_VERSION = 4.3.9;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -3764,7 +3778,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1.4;
+				CURRENT_PROJECT_VERSION = 4.3.9;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -3900,7 +3914,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1.5;
+				CURRENT_PROJECT_VERSION = 4.3.9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;
@@ -3949,7 +3963,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.1.5;
+				CURRENT_PROJECT_VERSION = 4.3.9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;

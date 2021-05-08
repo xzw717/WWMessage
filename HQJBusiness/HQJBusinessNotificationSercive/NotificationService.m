@@ -329,8 +329,8 @@ typedef void(^PlayVoiceBlock)(void);
     [printer appendSeperatorLine];
     
     [printer appendTitle:@"总计商品数" value:totalquantity];
-    [printer appendTitle:@"总金额" value:amount];
-    [printer appendTitle:@"用户实付" value:totalmoney];
+    [printer appendTitle:@"订单金额" value:amount];
+    [printer appendTitle:@"应付金额" value:totalmoney];
 
     [printer appendSeperatorLine];
     [printer appendTitle:@"订单编号" value:orderid];

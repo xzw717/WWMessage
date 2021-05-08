@@ -24,9 +24,9 @@
     }
     return self;
 }
-- (void)setTitle:(NSString *)title value:(NSInteger)value {
+- (void)setTitle:(NSString *)title value:(id)value {
     self.titleLabel.text = title;
-    self.timerLabel.text = [title isEqualToString:@"下单时间"] ? [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",value]] : [NSString stringWithFormat:@"%ld",value];
+    self.timerLabel.text = [title isEqualToString:@"下单时间"] ? [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%@",value]] : [NSString stringWithFormat:@"%@",value];
 }
 - (void)updateConstraints {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -43,6 +43,7 @@
 @property (nonatomic, strong) MessageNotificationViewModel *myMessageViewModel;
 @property (nonatomic, strong) NSString *reward;
 @property (nonatomic, strong) HQJLocationManager *hqjManage;
+
 @end
 
 @implementation MyViewController
@@ -201,6 +202,7 @@
 #pragma mark ---
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
     self.view.backgroundColor = DefaultBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _viewModel = [[MyViewModel alloc]init];
@@ -214,8 +216,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
 
     
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             [self.viewModel jumpAlert];
+         });
+
     
 }
+
+
+
+
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -236,6 +246,7 @@
     }];
     if (MmberidStr) {
         [self requst];
+   
     }
 }
 
@@ -251,7 +262,7 @@
     }  else if ([Ttypeid integerValue] == 17){
         return @"命运共同体";
     }  else if ([Ttypeid integerValue] == 113){
-        return @"XD商家";
+        return @"XD商企";
     } else {
         return @"未认证商家";
     }

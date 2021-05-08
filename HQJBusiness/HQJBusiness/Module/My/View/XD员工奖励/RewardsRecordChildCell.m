@@ -29,7 +29,7 @@
 }
 - (void)setModelWithModel:(RewardsRecordModel *)cellModel type:(NSString *)type {
     if ([type isEqualToString:@"奖励记录"] ) {
-        self.recordTitleLabel.text = @"XD商家活动积分";
+        self.recordTitleLabel.text = @"XD商企活动积分";
         self.numberLabel.text = [NSString stringWithFormat:@"+%.5f",cellModel.score];
                   self.timerLabel.text = [ManagerEngine zzReverseSwitchTimer:cellModel.createTime dateFormat:@"YYYY-MM-dd HH:mm:ss"];
     } else if ([type isEqualToString:@"赠送记录"]) {

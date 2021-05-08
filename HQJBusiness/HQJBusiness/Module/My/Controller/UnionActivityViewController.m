@@ -146,7 +146,7 @@
         AddUnionActivityViewController *vc = [[AddUnionActivityViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"XD商家专享权限\n是否申请成为XD商家？" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"XD商企专享权限\n是否申请成为XD商企？" message:self.zw_title preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

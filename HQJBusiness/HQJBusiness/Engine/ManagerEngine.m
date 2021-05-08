@@ -14,6 +14,8 @@
 #import "UINavigationBar+Awesome.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "HQJLocationManager.h"
+#import "HQJWebViewController.h"
 static UILabel *alertLabel ;
 @class HomeViewController;
 @class NearViewController;
@@ -1116,5 +1118,22 @@ static const CGFloat  sAlertTimer = 3.0;
     
     return imageRet;
     
+}
++ (void)jumpShopManageH5:(BOOL)isStoreInformation {
+    
+    @weakify(self);
+    [[[HQJLocationManager shareInstance]getLocation] setLocation:^(CGFloat lat, CGFloat lon, NSString * _Nonnull cityName) {
+        [SVProgressHUD dismiss];
+        @strongify(self);
+        HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
+        if (isStoreInformation) {
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f&replenish=1",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid,lat,lon];
+            
+        } else {
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid,lat,lon];
+            
+        }
+        [[self currentViewControll].navigationController pushViewController:pvc animated:YES];
+    }];
 }
 @end

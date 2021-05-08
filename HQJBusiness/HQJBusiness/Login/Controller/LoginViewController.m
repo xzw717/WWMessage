@@ -712,7 +712,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 //                    [self.loginBtn setTitle:@"登录成功" forState:UIControlStateNormal];
 
                     [JPUSHService setAlias:MmberidStr completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
-
+                 
                     } seq:1];
 //                    [JPUSHService findNotification:nil];
                 } completion:^(BOOL finished) {

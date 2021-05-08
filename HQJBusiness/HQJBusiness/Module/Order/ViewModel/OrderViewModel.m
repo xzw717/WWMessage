@@ -22,6 +22,7 @@
     
     HQJLog(@"-%@",urlStr);
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr complete:^(NSDictionary *dic) {
+        NSLog(@"dic:%@",dic);
         if([dic[@"resultCode"]integerValue] == 2700 ) {
             
             NSArray *resultArray = (NSArray *)dic[@"resultMsg"][@"orderList"];

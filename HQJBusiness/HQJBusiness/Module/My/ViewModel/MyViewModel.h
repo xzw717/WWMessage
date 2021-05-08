@@ -32,4 +32,7 @@
 ///  是否可以使用预约积分
 + (void)getUseBookingInfo;
 
+/// 补签合同基础信息弹窗
+- (void)jumpAlert ;
+
 @end

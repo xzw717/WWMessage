@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderDetailsSixCell : OrderDetailsBaseCell
-- (void)setTitle:(NSString *)title value:(NSInteger)value ;
+- (void)setTitle:(NSString *)title value:(id)value ;
 @end
 
 NS_ASSUME_NONNULL_END

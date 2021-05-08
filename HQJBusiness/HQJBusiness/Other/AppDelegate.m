@@ -61,6 +61,9 @@
 //       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
 //       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 //       delegate.window.rootViewController = Nav;
+    
+   
+
 //    return YES;
     if ( MmberidStr == nil) {
         //
@@ -181,8 +184,9 @@
     
     
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+
     [JPUSHService setupWithOption:launchOptions appKey:@"13c8038285777340293529d0"
                           channel:nil
                  apsForProduction:0
@@ -195,6 +199,9 @@
 
 
 
+}
+- (void)networkDidReceiveMessage:(NSNotification *)noti {
+    NSLog(@"noti:%@",noti.userInfo);
 }
 - (void)goLogin {
     

@@ -122,7 +122,7 @@ static NSString *const totalHeightKey = @"totalHeightKey";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title =  self.isMembersRewards ? @"消费奖励记录" : @"XD商家活动积分";
+    self.zw_title =  self.isMembersRewards ? @"消费奖励记录" : @"XD商企活动积分";
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setTitle:@"赠送" forState:UIControlStateNormal];
     [rightBtn setTitleColor:DefaultAPPColor forState:UIControlStateNormal];

@@ -19,9 +19,67 @@
 #import "StoreManagementViewController.h"
 #import "XDShopViewController.h"
 #import "UnionActivityViewController.h"
-@implementation MyViewModel
+#import "StoreInfoViewModel.h"
+#import "StoreInfoModel.h"
 
-- (void)myRequst {
+@interface MyViewModel ()
+@property (nonatomic, strong) StoreInfoModel *infoModel;
+@property (nonatomic, assign) NSInteger rolecheckstate;
+@end
+@implementation MyViewModel
+- (void)jumpAlert {
+//    @weakify(self);
+   
+    RACSignal *signalOne = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [StoreInfoViewModel requstStoreInfoWithModel:^(StoreInfoModel * _Nonnull model) {
+//            @strongify(self);
+            [subscriber sendNext:model];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+
+    }];
+    RACSignal *signalTwo = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
+        [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":Shopid} complete:^(NSDictionary *dic) {
+            [subscriber sendNext:dic];
+            [subscriber sendCompleted];
+        } andError:^(NSError *error) {
+            
+        } ShowHUD:YES];
+        return  nil;
+    }];
+ 
+    RACSignal *zipSignal = [signalOne zipWith:signalTwo];
+    [zipSignal subscribeNext:^(id  _Nullable x) {
+       //解元组：合并信号得到的是一个元组,里面存放的是两个信号发送的消息
+       RACTupleUnpack(StoreInfoModel *model,NSDictionary *dict) = x;
+        self.infoModel = model;
+        self.rolecheckstate = [dict[@"resultMsg"][@"rolecheckstate"] integerValue];
+        if (self.infoModel.pactCount == 0 ) {
+            if (self.rolecheckstate == 1000 || self.rolecheckstate == 6666) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"签订【物物地图】商家入驻电子协议，实现在线交易，享受商家权益\n\n可前往  店铺管理>>更新资料  补签合同" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"立即签署" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [ManagerEngine jumpShopManageH5:YES];
+
+                }]];
+
+                [[ManagerEngine currentViewControll] presentViewController:alert animated:YES completion:nil];
+            }
+        }
+    }];
+    [signalOne subscribeNext:^(id x) {
+
+    }];
+    [signalTwo subscribeNext:^(id x) {
+
+    }];
+
+
+}- (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"hash":HashCode}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantInfoInterface];
 
@@ -224,7 +282,7 @@
 -(NSArray *)titleLabelArray {
     if ( _titleLabelArray == nil ) {
         _titleLabelArray = @[@[@""],
-                             @[@"XD商家",
+                             @[@"XD商企",
                                @"店铺管理",
                                @"交易",
                                @"消费码核销",
