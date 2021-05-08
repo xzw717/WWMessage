@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UILabel *realAmountLabel;
 
+@property (nonatomic, strong) UILabel *tableWithPeopleLabel;
+
 @end
 @implementation OrderTableViewFooterView
 
@@ -35,6 +37,7 @@
     [self.contentView addSubview:self.orderNoteLabel];
     [self.contentView addSubview:self.orderNotelineView];
     [self.contentView addSubview:self.realAmountLabel];
+    [self.contentView addSubview:self.tableWithPeopleLabel];
 
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self setLayout];
@@ -75,6 +78,8 @@
     self.orderNoteLabel.text = [NSString stringWithFormat:@"备注：%@",model.remark];
     self.countPriceLabel.text = count  ? [NSString stringWithFormat:@"数量：%ld  订单金额：¥%.2f",(long)count,model.price] : [NSString stringWithFormat:@"订单金额：¥%.2f",model.price];
     self.realAmountLabel.text = [NSString stringWithFormat:@"商家实收：¥%.2f",model.shoppaidin];
+    self.tableWithPeopleLabel.text =  [NSString stringWithFormat:@"桌号：%ld  人数：¥%ld",(long)model.tables,(long)model.people];
+
 }
 
 
@@ -86,6 +91,7 @@
 //    [self.timerLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
     [self.countPriceLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
     [self.realAmountLabel setSingleLineAutoResizeWithMaxWidth:WIDTH /2];
+
     self.timerLabel.sd_layout.leftSpaceToView(self.contentView, 15).rightSpaceToView(self.contactBuyerButton, kEDGE).topSpaceToView(self.contentView, 5).heightIs(15);
     
     if (self.isUseDate) {
@@ -98,6 +104,8 @@
     } else {
          self.countPriceLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.timerLabel, 5).heightIs(15);
         self.realAmountLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.countPriceLabel, 5).heightIs(15);
+        self.tableWithPeopleLabel.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.realAmountLabel, 5).heightIs(15).widthIs(WIDTH - 20);
+
     }
   
  
@@ -178,5 +186,14 @@
         
     }
     return _realAmountLabel;
+}
+- (UILabel *)tableWithPeopleLabel{
+    if (!_tableWithPeopleLabel) {
+        _tableWithPeopleLabel = [[UILabel alloc]init];
+        _tableWithPeopleLabel.font = [UIFont systemFontOfSize:11.f];
+        _tableWithPeopleLabel.textColor = [ManagerEngine getColor:@"999999"];
+        
+    }
+    return _tableWithPeopleLabel;
 }
 @end

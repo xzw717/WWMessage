@@ -57,5 +57,8 @@
 @property (nonatomic, strong) NSString *couponsid;
 ///实收金额
 @property (nonatomic, assign) CGFloat shoppaidin;
-
+/// 桌号
+@property (nonatomic, assign) NSInteger tables;
+/// 人数
+@property (nonatomic, assign) NSInteger people;
 @end
