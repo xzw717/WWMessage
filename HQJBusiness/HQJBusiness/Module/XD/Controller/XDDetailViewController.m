@@ -320,13 +320,13 @@
     [super viewWillAppear:animated];
     [XDDetailViewModel getXDShopState:Shopid andPeugeotid:self.model.nid completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
-        if ([[NameSingle shareInstance].role containsString:@"股份"]) {
-            [self.bottomView.payButton setTitle:@"不可申请" forState:UIControlStateNormal];
-            self.bottomView.payButton.userInteractionEnabled = NO;
-        }else{
+//        if ([[NameSingle shareInstance].role containsString:@"股份"]) {
+//            [self.bottomView.payButton setTitle:@"不可申请" forState:UIControlStateNormal];
+//            self.bottomView.payButton.userInteractionEnabled = NO;
+//        }else{
             self.bottomView.payButton.userInteractionEnabled = YES;
             [self.bottomView.payButton setTitle:[self getButtonString] forState:UIControlStateNormal];
-        }
+//        }
         
     }];
 }

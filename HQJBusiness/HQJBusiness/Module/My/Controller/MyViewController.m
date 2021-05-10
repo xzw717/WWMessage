@@ -43,7 +43,6 @@
 @property (nonatomic, strong) MessageNotificationViewModel *myMessageViewModel;
 @property (nonatomic, strong) NSString *reward;
 @property (nonatomic, strong) HQJLocationManager *hqjManage;
-
 @end
 
 @implementation MyViewController
@@ -202,7 +201,6 @@
 #pragma mark ---
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
     self.view.backgroundColor = DefaultBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _viewModel = [[MyViewModel alloc]init];
@@ -216,16 +214,11 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
 
     
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             [self.viewModel jumpAlert];
-         });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.viewModel jumpAlert];
+    });
 
-    
 }
-
-
-
-
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -239,14 +232,18 @@
         NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
 
         if (x.mobile) {
-            [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
+            if ([[NameSingle shareInstance].role containsString:@"利益"]) {
+                [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(利益共同体)",nameStr] andisNav:YES andColor:DefaultAPPColor];
+            }else{
+                [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
+            }
+            
         }
         
         
     }];
     if (MmberidStr) {
         [self requst];
-   
     }
 }
 
