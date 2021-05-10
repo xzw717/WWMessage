@@ -175,7 +175,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
         _userNameText.autocorrectionType = UITextAutocorrectionTypeNo;
         _userNameText.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _userNameText.delegate = self;
-        _userNameText.clearsOnBeginEditing = YES;
 //        _userNameText.clearButtonMode = UITextFieldViewModeAlways;
         _userNameText.keyboardType = UIKeyboardTypeASCIICapable;
         _userNameText.placeholder = @"请输入手机号码/用户名";
@@ -199,7 +198,6 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 -(UITextField *)pswText {
     if ( _pswText == nil ) {
         _pswText = [[UITextField alloc]init];
-        _pswText.clearsOnBeginEditing = YES;
         _pswText.placeholder = @"请输入登录密码";
         _pswText.delegate = self;
         _pswText.font = [UIFont systemFontOfSize:16];
