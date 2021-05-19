@@ -7,11 +7,14 @@
 //
 
 #import "ScoreGiftView.h"
+#import "ChangeTradePswViewController.h"
 #define DEF_MAIL @"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @interface ScoreGiftView ()<UITextFieldDelegate>
 @property(nonatomic,strong)UILabel  *nameTipLabel;
 @property(nonatomic,strong)UILabel  *numberTipLabel;
 @property(nonatomic,strong)UILabel  *scoreTipLabel;
+@property(nonatomic,strong)UILabel  *psdTipLabel;
+@property(nonatomic,strong)UIButton  *forgetPswBtn;
 @end
 @implementation ScoreGiftView
 - (UILabel *)nameTipLabel{
@@ -32,6 +35,15 @@
     }
     return _numberTipLabel;
 }
+- (UILabel *)psdTipLabel{
+    if (_psdTipLabel == nil) {
+        _psdTipLabel = [[UILabel alloc]init];
+        _psdTipLabel.textColor = [UIColor blackColor];
+        _psdTipLabel.text = @"*请输入商家交易密码";
+        _psdTipLabel.font = [UIFont systemFontOfSize:16];
+    }
+    return _psdTipLabel;
+}
 - (UILabel *)scoreTipLabel{
     if (_scoreTipLabel == nil) {
         _scoreTipLabel = [[UILabel alloc]init];
@@ -49,7 +61,7 @@
         _userNameTextfield.layer.cornerRadius = 5;
         _userNameTextfield.layer.borderWidth = 0.5;
         _userNameTextfield.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        
+        _userNameTextfield.placeholder = @"积分接收方";
         _userNameTextfield.backgroundColor = [UIColor whiteColor];
         _userNameTextfield.font = [UIFont systemFontOfSize:16];
         _userNameTextfield.delegate = self;
@@ -89,30 +101,48 @@
         _authCodeTextfield.backgroundColor = [UIColor whiteColor];
         _authCodeTextfield.font = [UIFont systemFontOfSize:16];
         _authCodeTextfield.delegate = self;
-        _authCodeTextfield.placeholder = @"请输入验证码";
+        _authCodeTextfield.placeholder = @"请输入交易密码";
         _authCodeTextfield.tintColor = [ManagerEngine getColor:@"bfbfbf"];
         _authCodeTextfield.returnKeyType = UIReturnKeyDone;
         _authCodeTextfield.keyboardType = UIKeyboardTypeNumberPad;
+        _authCodeTextfield.secureTextEntry = YES;
         _authCodeTextfield.clearButtonMode = UITextAutocorrectionTypeNo;
     }
     return _authCodeTextfield;
 }
-
-- (UIButton *)getCodeBtn{
-    if (_getCodeBtn == nil) {
-        _getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _getCodeBtn.layer.masksToBounds = YES;
-        _getCodeBtn.layer.cornerRadius = 5;
+-(UIButton *)forgetPswBtn{
+    if ( _forgetPswBtn == nil ) {
+        _forgetPswBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        _getCodeBtn.backgroundColor = DefaultAPPColor;
-        [_getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [_getCodeBtn setTitleColor:[ManagerEngine getColor:@"555555"] forState:UIControlStateNormal];
-        _getCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:48/3];
+        [_forgetPswBtn setTitle:@"忘记交易密码" forState:UIControlStateNormal];
         
+        [_forgetPswBtn setTitleColor:[ManagerEngine getColor:@"20a0ff"] forState:UIControlStateNormal];
+        _forgetPswBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_forgetPswBtn bk_addEventHandler:^(id  _Nonnull sender) {
+            ChangeTradePswViewController *vc = [[ChangeTradePswViewController alloc]initWithPasswordType:[ManagerEngine pswType:NO]];
+            [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
     }
-    return _getCodeBtn;
     
+    
+    return _forgetPswBtn;
 }
+//- (UIButton *)getCodeBtn{
+//    if (_getCodeBtn == nil) {
+//        _getCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _getCodeBtn.layer.masksToBounds = YES;
+//        _getCodeBtn.layer.cornerRadius = 5;
+//
+//        _getCodeBtn.backgroundColor = DefaultAPPColor;
+//        [_getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+//        [_getCodeBtn setTitleColor:[ManagerEngine getColor:@"555555"] forState:UIControlStateNormal];
+//        _getCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:48/3];
+//
+//    }
+//    return _getCodeBtn;
+//
+//}
 - (UIButton *)submitButton {
     if (_submitButton == nil) {
         _submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -131,10 +161,11 @@
         [self addSubview:self.nameTipLabel];
         [self addSubview:self.numberTipLabel];
         [self addSubview:self.scoreTipLabel];
+        [self addSubview:self.psdTipLabel];
         [self addSubview:self.userNameTextfield];
         [self addSubview:self.authCodeTextfield];
         [self addSubview:self.scoreNumTextfield];
-        [self addSubview:self.getCodeBtn];
+        [self addSubview:self.forgetPswBtn];
         [self addSubview:self.submitButton];
         [self addSubview:self.authCodeTextfield];
         
@@ -171,19 +202,32 @@
         make.right.mas_equalTo(-28);
         make.size.mas_equalTo(CGSizeMake(20, 50));
     }];
-    [self.getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
-        make.right.mas_equalTo(-28);
-        make.size.mas_equalTo(CGSizeMake(100, 50));
+    [self.scoreNumTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.numberTipLabel.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.userNameTextfield);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2 - 30, 50));
+    }];
+//    [self.getCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
+//        make.right.mas_equalTo(-28);
+//        make.size.mas_equalTo(CGSizeMake(100, 50));
+//    }];
+    [self.psdTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(10);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 20));
     }];
     [self.authCodeTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.scoreNumTextfield.mas_bottom).offset(20);
-        make.right.mas_equalTo(self.getCodeBtn.mas_left).offset(-5);
-        make.left.height.mas_equalTo(self.userNameTextfield);
+        make.top.mas_equalTo(self.psdTipLabel.mas_bottom).offset(10);
+        make.left.right.height.mas_equalTo(self.userNameTextfield);
     }];
-
+    [self.forgetPswBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.authCodeTextfield.mas_bottom).offset(NewProportion(30));
+        make.right.mas_equalTo(self.userNameTextfield);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
+    }];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.authCodeTextfield.mas_bottom).offset(NewProportion(100));
+        make.top.mas_equalTo(self.authCodeTextfield.mas_bottom).offset(NewProportion(150));
         make.centerX.mas_equalTo(self);
         make.size.mas_equalTo(CGSizeMake(WIDTH - 28 * 2, 50));
     }];

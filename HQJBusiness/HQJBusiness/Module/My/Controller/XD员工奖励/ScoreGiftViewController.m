@@ -49,32 +49,32 @@
 
     
     self.contentView.submitButton.rac_command = self.viewModel.summitBtnCommand;
-    self.contentView.getCodeBtn.rac_command = self.viewModel.codeBtnCommand;
+//    self.contentView.getCodeBtn.rac_command = self.viewModel.codeBtnCommand;
     
     RAC(self.contentView.submitButton,backgroundColor) = [self.viewModel.summitBtnEnable map:^id(NSNumber *value) {
         return [value boolValue] ? DefaultAPPColor:GrayColor;
     }];
-    RAC(self.contentView.getCodeBtn,backgroundColor) = [self.viewModel.codeBtnEnable map:^id(NSNumber *value) {
-        return [value boolValue] ? DefaultAPPColor:GrayColor;
-    }];
-
-    [self.viewModel.codeBtnEnable subscribeNext:^(NSNumber *value) {
-        self.contentView.getCodeBtn.enabled = [value boolValue];
-    }];
+//    RAC(self.contentView.getCodeBtn,backgroundColor) = [self.viewModel.codeBtnEnable map:^id(NSNumber *value) {
+//        return [value boolValue] ? DefaultAPPColor:GrayColor;
+//    }];
+//
+//    [self.viewModel.codeBtnEnable subscribeNext:^(NSNumber *value) {
+//        self.contentView.getCodeBtn.enabled = [value boolValue];
+//    }];
     
     [self.viewModel.summitBtnEnable subscribeNext:^(NSNumber *value) {
         self.contentView.submitButton.enabled = [value boolValue];
     }];
     
     
-    [[self.viewModel.codeBtnCommand executionSignals]subscribeNext:^(id x) {
-        @strongify(self);
-        [x subscribeNext:^(NSDictionary *value) {
-            if ([value[@"code"] integerValue] == 49000) {
-                [self openCountdown];
-            }
-        }];
-    }];
+//    [[self.viewModel.codeBtnCommand executionSignals]subscribeNext:^(id x) {
+//        @strongify(self);
+//        [x subscribeNext:^(NSDictionary *value) {
+//            if ([value[@"code"] integerValue] == 49000) {
+//                [self openCountdown];
+//            }
+//        }];
+//    }];
 
     
     [[self.viewModel.summitBtnCommand executionSignals]subscribeNext:^(id x) {
@@ -109,10 +109,10 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //设置按钮的样式
-                self.contentView.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-                [self.contentView.getCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
+//                self.contentView.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+//                [self.contentView.getCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
                 
-                [self codeButtonState:YES];
+//                [self codeButtonState:YES];
             });
             
         }else{
@@ -121,9 +121,9 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //设置按钮显示读秒效果
-                self.contentView.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-                [self.contentView.getCodeBtn setTitle:[NSString stringWithFormat:@"重新发送(%.2d)", seconds] forState:UIControlStateNormal];
-                [self codeButtonState:NO];
+//                self.contentView.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+//                [self.contentView.getCodeBtn setTitle:[NSString stringWithFormat:@"重新发送(%.2d)", seconds] forState:UIControlStateNormal];
+//                [self codeButtonState:NO];
                 
             });
             time--;
@@ -132,10 +132,10 @@
     dispatch_resume(_timer);
 }
 
-- (void)codeButtonState:(BOOL)enabled {
-    self.contentView.getCodeBtn.enabled = enabled;
-    
-}
+//- (void)codeButtonState:(BOOL)enabled {
+//    self.contentView.getCodeBtn.enabled = enabled;
+//
+//}
 /*
 #pragma mark - Navigation
 

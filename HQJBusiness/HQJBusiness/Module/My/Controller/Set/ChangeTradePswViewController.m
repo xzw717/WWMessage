@@ -225,12 +225,12 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     NSMutableDictionary *dict;
     if (self.pswType == SetDealPassWordType || self.pswType == ChangeDealPassWordType) {
         dict = @{@"newpwd":self.newsPswTextField.text,
-                       @"pwdtype":[NSNumber numberWithInteger:self.pswType],
+                       @"pwdtype":@2,
                        @"mobile":[NameSingle shareInstance].mobile,
                        @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
     }else{
         dict = @{@"newpwd":self.newsPswTextField.text,
-                  @"pwdtype":[NSNumber numberWithInteger:self.pswType],
+                  @"pwdtype":@1,
                   @"mobile":self.modelTextField.text,
                   @"inputcode":self.verificationCodeTextField.text}.mutableCopy;
     }

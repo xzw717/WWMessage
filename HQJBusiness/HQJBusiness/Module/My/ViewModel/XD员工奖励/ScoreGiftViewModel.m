@@ -67,19 +67,19 @@
 //            [SVProgressHUD showErrorWithStatus:@"提现积分数量超出范围"];
 //        }
         
-        _codeBtnEnable = [RACSignal combineLatest:@[phoneSignal,scoreSignal] reduce:^id(NSNumber *phoneNumer,NSNumber *scoreSignal){
-            return @([phoneNumer boolValue] && [scoreSignal boolValue]);
-        }];
-        
-        _codeBtnCommand =  [[RACCommand alloc]initWithEnabled:_codeBtnEnable signalBlock:^RACSignal *(id input) {
-            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-                [self senderCodePhone:self.phoneNumer completion:^(id responsObject) {
-                    [subscriber sendNext:responsObject];
-                    [subscriber sendCompleted];
-                }];
-                return nil;
-            }];
-        }];
+//        _codeBtnEnable = [RACSignal combineLatest:@[phoneSignal,scoreSignal] reduce:^id(NSNumber *phoneNumer,NSNumber *scoreSignal){
+//            return @([phoneNumer boolValue] && [scoreSignal boolValue]);
+//        }];
+//        
+//        _codeBtnCommand =  [[RACCommand alloc]initWithEnabled:_codeBtnEnable signalBlock:^RACSignal *(id input) {
+//            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//                [self senderCodePhone:self.phoneNumer completion:^(id responsObject) {
+//                    [subscriber sendNext:responsObject];
+//                    [subscriber sendCompleted];
+//                }];
+//                return nil;
+//            }];
+//        }];
         
         _summitBtnEnable = [RACSignal combineLatest:@[phoneSignal,authCodeSignal,scoreSignal] reduce:^id(NSNumber *phoneNumer,NSNumber *authCodeNumber,NSNumber *scoreNumber){
             return @([phoneNumer boolValue] && [authCodeNumber boolValue] && [scoreNumber boolValue]);
@@ -138,7 +138,7 @@
     NSDictionary *parameterDict = @{@"myid":MmberidStr,
                                     @"merchantId":MmberidStr,
                                     @"mobile":mobile,
-                                    @"verifyCode":smsCode,
+                                    @"tradePass":smsCode,
                                     @"amount":score,
                                     @"orderNo":[NSString stringWithFormat:@"%@%@",MmberidStr,[ManagerEngine currentTimeStr]],
                                     @"hash":HashCode};

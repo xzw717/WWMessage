@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)  UITextField  * userNameTextfield;
 @property(nonatomic,strong)  UITextField  * scoreNumTextfield;
 @property(nonatomic,strong)  UITextField  * authCodeTextfield;
-@property(nonatomic,strong)  UIButton    * getCodeBtn;
+//@property(nonatomic,strong)  UIButton    * getCodeBtn;
 
 
 @property(nonatomic,strong) UIButton      * submitButton;
