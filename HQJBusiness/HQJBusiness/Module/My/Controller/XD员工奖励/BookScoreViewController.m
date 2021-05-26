@@ -44,7 +44,7 @@
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = NewProportion(184) + 20;
+        _tableView.rowHeight = NewProportion(184);
         _tableView.emptyDataSetSource = self;
         _tableView.emptyDataSetDelegate = self;
         _tableView.tableFooterView = [UIView new];

@@ -17,16 +17,16 @@
 
 @implementation BookScoreCell
 
-
-- (UILabel *)orderLabel {
-    if (!_orderLabel) {
-        _orderLabel = [[UILabel alloc]init];
-        _orderLabel.font = [UIFont systemFontOfSize:16];
-        _orderLabel.textColor = [ManagerEngine getColor:@"777777"];
-        _orderLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _orderLabel;
-}
+/// 2021-5-25 许峰说把订单号隐藏
+//- (UILabel *)orderLabel {
+//    if (!_orderLabel) {
+//        _orderLabel = [[UILabel alloc]init];
+//        _orderLabel.font = [UIFont systemFontOfSize:16];
+//        _orderLabel.textColor = [ManagerEngine getColor:@"777777"];
+//        _orderLabel.textAlignment = NSTextAlignmentLeft;
+//    }
+//    return _orderLabel;
+//}
 //- (UIView *)lineView{
 //    if (!_lineView) {
 //        _lineView = [[UIView alloc]init];
@@ -66,7 +66,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        [self.contentView addSubview:self.orderLabel];
+//        [self.contentView addSubview:self.orderLabel];
 //        [self.contentView addSubview:self.lineView];
         [self.contentView addSubview:self.typeLabel];
         [self.contentView addSubview:self.amountLabel];
@@ -82,12 +82,12 @@
 
 
 - (void)layoutTheSubviews {
-    [self.orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.top.mas_equalTo(5);
-        make.width.mas_equalTo(WIDTH - 15);
-        make.height.mas_equalTo(20);
-    }];
+//    [self.orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(15);
+//        make.top.mas_equalTo(5);
+//        make.width.mas_equalTo(WIDTH - 15);
+//        make.height.mas_equalTo(20);
+//    }];
 //    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_equalTo(15);
 //        make.top.mas_equalTo(self.orderLabel.mas_bottom);
@@ -96,7 +96,7 @@
 //    }];
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
-        make.top.mas_equalTo(self.orderLabel.mas_bottom).offset(5);
+        make.top.mas_equalTo(5);
         make.width.mas_equalTo(WIDTH/2);
         make.height.mas_equalTo(20);
     }];
@@ -115,7 +115,7 @@
     }];
 }
 - (void)setModel:(BooKScoreModel *)model{
-    self.orderLabel.text = [NSString stringWithFormat:@"订单号：%@",model.orderNo];
+//    self.orderLabel.text = [NSString stringWithFormat:@"订单号：%@",model.orderNo];
     self.typeLabel.text = model.uname;
     self.amountLabel.text = model.activityScore;
     self.timeLabel.text = [ManagerEngine zzReverseSwitchTimer:model.createTime];

@@ -209,8 +209,8 @@
     self.zwBackButton.hidden = YES;
     [self.view addSubview:self.myTableView];
     
-    HQJLog(@"NavigationControllerHeight: %f",NavigationControllerHeight);
-    
+ 
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
 
     
