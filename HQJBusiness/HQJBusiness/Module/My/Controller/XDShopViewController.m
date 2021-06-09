@@ -98,11 +98,6 @@
             [self jumpH5];
             
         }
-        
-        
-        
-        
-        
     } else if (indexPath.row == 1) {
         ContactManagerViewController *cmvc = [[ContactManagerViewController alloc]initWithContactType:YES];
         [self.navigationController pushViewController:cmvc animated:YES];
