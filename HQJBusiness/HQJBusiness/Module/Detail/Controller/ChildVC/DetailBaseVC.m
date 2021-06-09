@@ -26,7 +26,7 @@ DZNEmptyDataSetDelegate>
         _tableView = [[UITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource =self;
-        _tableView.frame = CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49);
+        _tableView.frame = CGRectMake(0, 0, WIDTH, HEIGHT - NavigationControllerHeight - 44);
         _tableView.tableFooterView = [UIView new];
         [_tableView registerClass:[DetailCell class] forCellReuseIdentifier:NSStringFromClass([DetailCell class])];
     }
@@ -57,7 +57,7 @@ DZNEmptyDataSetDelegate>
     [super viewDidLoad];
     self.zwNavView.backgroundColor = DefaultAPPColor;
     self.zwBackButton.hidden = YES;
-    self.zw_title = @"明细";
+//    self.zw_title = @"明细";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     

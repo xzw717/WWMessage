@@ -65,18 +65,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
-        /***右侧小箭头***/
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        if (indexPath.row == 3) {
-             CellLine(cell);
-        }
-        return cell;
-
-    } else if (indexPath.section == 1) {
+//    if (indexPath.section == 0) {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
+//        /***右侧小箭头***/
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        if (indexPath.row == 3) {
+//             CellLine(cell);
+//        }
+//        return cell;
+//
+//    } else
+        if (indexPath.section == 0) {
       
         SetCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SetCell class]) forIndexPath:indexPath];
         cell.textLabel.text = [self setindexAry:indexPath.section][indexPath.row];
@@ -134,7 +135,7 @@
             }];
         }
         return cell;
-    }  else if (indexPath.section ==2){
+    }  else if (indexPath.section == 1){
         static NSString *cellID = @"cellID";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
@@ -174,42 +175,43 @@
     [userDefaults synchronize];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-
-        if (indexPath.row == 0) {
-
-            InformationViewController *IFVC =[[InformationViewController alloc]init];
-            [self.navigationController pushViewController:IFVC animated:YES];
-
-        }else if (indexPath.row == 1)  {
-            if ([[ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]] isEqualToString:@"设置登录密码"]) {
-                ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
-                fpVC.isForget = NO;
-                [self.navigationController pushViewController:fpVC animated:YES];
-            } else {
-                ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:[ManagerEngine pswType:YES]];
-                [self.navigationController pushViewController:ChangePswVC animated:YES];
-            }
-         
-
-        } else if (indexPath.row == 2){
-        
-            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:[ManagerEngine pswType:NO]];
-            [self.navigationController pushViewController:CTVC animated:YES];
-        } else {
-            PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];
-            [self.navigationController pushViewController:PCVC animated:YES];
-
-        }
-
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
+//    if (indexPath.section == 0) {
+//
+//        if (indexPath.row == 0) {
+//
+//            InformationViewController *IFVC =[[InformationViewController alloc]init];
+//            [self.navigationController pushViewController:IFVC animated:YES];
+//
+//        }else if (indexPath.row == 1)  {
+//            if ([[ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]] isEqualToString:@"设置登录密码"]) {
+//                ForgetPswViewController *fpVC = [[ForgetPswViewController alloc]init];
+//                fpVC.isForget = NO;
+//                [self.navigationController pushViewController:fpVC animated:YES];
+//            } else {
+//                ChangePswViewController *ChangePswVC =[[ChangePswViewController alloc]initWithLoginPassWordType:[ManagerEngine pswType:YES]];
+//                [self.navigationController pushViewController:ChangePswVC animated:YES];
+//            }
+//
+//
+//        } else if (indexPath.row == 2){
+//
+//            ChangeTradePswViewController *CTVC = [[ChangeTradePswViewController alloc]initWithPasswordType:[ManagerEngine pswType:NO]];
+//            [self.navigationController pushViewController:CTVC animated:YES];
+//        } else {
+//            PaymentCodeViewController * PCVC = [[PaymentCodeViewController alloc]init];
+//            [self.navigationController pushViewController:PCVC animated:YES];
+//
+//        }
+//
+//    } else
+    if (indexPath.section == 0 && indexPath.row == 0) {
 //        if (![BindingEquipment isEqualToString:@"连接成功"]) {
 
             BlueToothVC * vc =[[BlueToothVC alloc]init];
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
             [self presentViewController:nav animated:YES completion:nil];
 //        }
-    } else if (indexPath.section== 2) {
+    } else if (indexPath.section== 1) {
 
         if (indexPath.row != 2) {
             HelpMeViewController *Hvc = [[HelpMeViewController alloc]init];
@@ -298,24 +300,25 @@
 }
 
 - (NSArray *)setindexAry:(NSInteger)index {
+//    if (index == 0) {
+//        if ([[NameSingle shareInstance].role containsString:@"股份"] || [[NameSingle shareInstance].role containsString:@"合作商家"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]) {
+//            return @[@"个人信息",
+//                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]],
+//                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:NO]],
+//                     @"收款码设置"];
+//        } else {
+//            return @[@"个人信息",
+//                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]],
+//                    [ManagerEngine pswTitleWithType:[ManagerEngine pswType:NO]]];
+//        }
+//
+//    } else
     if (index == 0) {
-        if ([[NameSingle shareInstance].role containsString:@"股份"] || [[NameSingle shareInstance].role containsString:@"合作商家"]||[[NameSingle shareInstance].role containsString:@"命运共同体"]) {
-            return @[@"个人信息",
-                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]],
-                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:NO]],
-                     @"收款码设置"];
-        } else {
-            return @[@"个人信息",
-                     [ManagerEngine pswTitleWithType:[ManagerEngine pswType:YES]],
-                    [ManagerEngine pswTitleWithType:[ManagerEngine pswType:NO]]];
-        }
-     
-    } else if (index == 1) {
         return @[@"绑定打印设备",
                  @"自动打印订单",
                  @"新订单语音提醒",
                  @"收钱到账语音提醒"];
-    } else if (index == 2) {
+    } else if (index == 1) {
         return @[@"系统通知",
                  @"帮助与反馈",
                  @"版本"];

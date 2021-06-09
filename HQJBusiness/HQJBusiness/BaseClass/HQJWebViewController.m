@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     self.zw_title = self.webTitleString;
+    self.zwNavView.hidden = self.isHiddenNav;
 //    self.zwNavView.backgroundColor = DefaultAPPColor;
 //    NSString *oldAgent = [[[UIWebView alloc] init] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 //       NSString *customUserAgent = [NSString stringWithFormat:@"%@  hqj-sj", oldAgent];

@@ -7,28 +7,19 @@
 //
 
 #import "MyTableViewCell.h"
-#import "IntegralManagementViewController.h"
 @interface MyTableViewCell()
 
 
 
-@property (nonatomic,strong) UILabel * todayBonusLabel;
+@property (nonatomic,strong) UILabel * titleLabel;
 
-@property (nonatomic,strong) UILabel * todayBonusLabelS;
+@property (nonatomic,strong) UIImageView * titleImageView;
 
-@property (nonatomic,strong) UILabel * todayCashLabel;
-
-@property (nonatomic,strong) UILabel * todayCashLabelS;
-
-@property (nonatomic,strong) UILabel * allZHLabel;
-
-@property (nonatomic,strong) UILabel * allZHLabelS;
-
-@property (nonatomic, strong) UILabel * moreLabel;
+@property (nonatomic,strong) UIImageView * arrowImageView;
 
 @property (nonatomic, strong) UIView * linkView;
 
-
+@property (nonatomic, strong) UILabel *customerServiceLabel;
 @end
 
 @implementation MyTableViewCell
@@ -36,203 +27,105 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.titleImageView];
+        [self.contentView addSubview:self.arrowImageView];
+        [self.contentView addSubview:self.linkView];
+        [self.contentView addSubview:self.customerServiceLabel];
         
+        [self setViewFrame];
         
-        [RACObserve(self, model)subscribeNext:^(MyModel *model) {
-//            if ([Peugeotid integerValue] == 6) {
-//                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//                    make.width.mas_equalTo(WIDTH / 4);
-//                }];
-//            } else {
-//                [self.moreLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//                    make.width.mas_equalTo(0);
-//                }];
-//            }
-            if (model.incomeBToday) {
-                self.todayBonusLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomeBToday afterPoint:2]];
-                self.todayCashLabel.text = [NSString stringWithFormat:@"+%@",[ManagerEngine retainScale:model.incomCToday afterPoint:2]];
-                self.allZHLabel.text = [NSString stringWithFormat:@"%@",[ManagerEngine retainScale:[NSString stringWithFormat:@"%f",model.zh] afterPoint:2]];
-                
-            } else {
-                
-                self.todayBonusLabel.text = @"+0.00";
-                self.todayCashLabel.text = @"+0.00";
-                self.allZHLabel.text = @"0.00";
-                
-            }
-        }];
-        //        [self updateConstraintsIfNeeded];
+
         
     }
     
     return self;
 }
-- (void)setCellReward:(NSString *)cellReward {
-    _cellReward = cellReward;
-    //    self.rewardIncomeLabel.text = cellReward ? [ManagerEngine retainScale:cellReward afterPoint:2] : @"0.00";
-    //    [self.rewardIncomeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-    //        make.width.mas_equalTo(WIDTH / 4);
-    //    }];
+
+- (void)setMy_model:(ShopModel *)my_model {
+    _my_model = my_model;
+    self.titleImageView.image = [UIImage imageNamed:my_model.sp_image];
+    self.titleLabel.text = my_model.sp_title;
+    self.customerServiceLabel.hidden = [my_model.sp_title isEqualToString:@"联系客服"] ? NO : YES;
+    self.arrowImageView.hidden = !self.customerServiceLabel.hidden ;
+    self.linkView.hidden = [my_model.sp_title isEqualToString:@"设置"] ? YES : NO;
+    self.customerServiceLabel.text = my_model.sp_subTitle;
 }
 
-- (void)clickReward {
-    IntegralManagementViewController *rewardsRecordVC = [[IntegralManagementViewController alloc]init];
-    [[ManagerEngine currentViewControll].navigationController pushViewController:rewardsRecordVC animated:YES];
-}
-
-- (UILabel *)todayBonusLabel {
-    if ( _todayBonusLabel == nil ) {
-        _todayBonusLabel = [[UILabel alloc]init];
-        _todayBonusLabel.font = [UIFont systemFontOfSize:17.f];
-        _todayBonusLabel.textAlignment = NSTextAlignmentCenter;
-        _todayBonusLabel.textColor = [ManagerEngine getColor:@"12b312"];
-        [self.contentView addSubview:_todayBonusLabel];
+- (UILabel *)titleLabel {
+    if ( _titleLabel == nil ) {
+        _titleLabel = [[UILabel alloc]init];
+        _titleLabel.font = [UIFont systemFontOfSize:13.f];
+        _titleLabel.textColor = [ManagerEngine getColor:@"333333"];
         
     }
-    return _todayBonusLabel;
+    return _titleLabel;
 }
-- (UILabel *)todayCashLabel {
-    if ( _todayCashLabel == nil ) {
-        _todayCashLabel = [[UILabel alloc]init];
-        _todayCashLabel.font = [UIFont systemFontOfSize:17.f];
-        _todayCashLabel.textAlignment = NSTextAlignmentCenter;
-        _todayCashLabel.textColor = [ManagerEngine getColor:@"12b312"];
-        [self.contentView addSubview:_todayCashLabel];
+- (UIImageView *)titleImageView {
+    if ( _titleImageView == nil ) {
+        _titleImageView = [[UIImageView alloc]init];
+   
     }
-    return _todayCashLabel;
+    return _titleImageView;
 }
 
-- (UILabel *)allZHLabel {
-    if ( _allZHLabel == nil ) {
-        _allZHLabel = [[UILabel alloc]init];
-        _allZHLabel.font = [UIFont systemFontOfSize:17.f];
-        _allZHLabel.textAlignment = NSTextAlignmentCenter;
-        _allZHLabel.textColor = [ManagerEngine getColor:@"18abf5"];
-        [self.contentView addSubview:_allZHLabel];
+- (UIImageView *)arrowImageView {
+    if ( _arrowImageView == nil ) {
+        _arrowImageView = [[UIImageView alloc]init];
+        _arrowImageView.image = [UIImage imageNamed:@"iocn_Select-right"];
     }
-    return _allZHLabel;
-}
-
-- (UILabel *)todayBonusLabelS {
-    if ( _todayBonusLabelS == nil ) {
-        _todayBonusLabelS = [[UILabel alloc]init];
-        _todayBonusLabelS.font = [UIFont systemFontOfSize:15.f];
-        _todayBonusLabelS.text = @"当日积分收入";
-        _todayBonusLabelS.textAlignment = NSTextAlignmentCenter;
-        _todayBonusLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self.contentView addSubview:_todayBonusLabelS];
-    }
-    return _todayBonusLabelS;
-}
-
-- (UILabel *)todayCashLabelS {
-    if ( _todayCashLabelS == nil ) {
-        _todayCashLabelS = [[UILabel alloc]init];
-        _todayCashLabelS.font = [UIFont systemFontOfSize:15.f];
-        _todayCashLabelS.textAlignment = NSTextAlignmentCenter;
-        _todayCashLabelS.text = @"当日现金收入";
-        _todayCashLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self.contentView addSubview:_todayCashLabelS];
-    }
-    return _todayCashLabelS;
-}
-
-- (UILabel *)allZHLabelS {
-    if ( _allZHLabelS == nil ) {
-        _allZHLabelS = [[UILabel alloc]init];
-        _allZHLabelS.font = [UIFont systemFontOfSize:15.f];
-        _allZHLabelS.textAlignment = NSTextAlignmentCenter;
-        _allZHLabelS.text = [NSString stringWithFormat:@"%@值余额",HQJValue];
-        _allZHLabelS.textColor = [ManagerEngine getColor:@"323232"];
-        [self.contentView addSubview:_allZHLabelS];
-        
-    }
-    return _allZHLabelS;
-}
-- (UILabel *)moreLabel {
-    if ( _moreLabel == nil ) {
-        _moreLabel = [[UILabel alloc]init];
-        _moreLabel.font = [UIFont systemFontOfSize:16.f];
-        _moreLabel.textAlignment = NSTextAlignmentCenter;
-        _moreLabel.text = @"更多";
-        _moreLabel.textColor = [UIColor blackColor];
-        _moreLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickReward)];
-        [_moreLabel addGestureRecognizer:tap];
-        [self.contentView addSubview:_moreLabel];
-    }
-    return _moreLabel;
+    return _arrowImageView;
 }
 
 - (UIView *)linkView {
     if (!_linkView){
         _linkView = [[UIView alloc]init];
         _linkView.backgroundColor = [ManagerEngine getColor:@"cccccc"];
-        [self.contentView addSubview:_linkView];
     }
     return _linkView;;
 }
-
+- (UILabel *)customerServiceLabel {
+    if ( _customerServiceLabel == nil ) {
+        _customerServiceLabel = [[UILabel alloc]init];
+        _customerServiceLabel.font = [UIFont systemFontOfSize:13.f];
+        _customerServiceLabel.textColor = [ManagerEngine getColor:@"000000"];
+        
+    }
+    return _customerServiceLabel;
+}
 
 -(void)layoutSubviews {
-    [self setViewFrame];
+//    [self setViewFrame];
     [super layoutSubviews];
 }
-//- (void)updateConstraints {
-//
-////    [self setViewFrame];
-//
-//    [super updateConstraints];
-//}
+
 - (void)setViewFrame {
-    
-//    CGFloat oneLabelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : 0;
-//    CGFloat labelWith = [Peugeotid integerValue] == 6 ? WIDTH / 4 : WIDTH /3;
-    CGFloat oneLabelWith = WIDTH / 4 ,labelWith =  WIDTH / 4;
-    
-//    self.moreLabel.hidden = self.linkView.hidden =  [Peugeotid integerValue] == 6 ? NO : YES;
-    
-    [self.moreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+    [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(20.f);
         make.centerY.mas_equalTo(self.contentView);
-        make.width.mas_equalTo(oneLabelWith);
-        make.right.mas_equalTo(0);
+        make.width.height.mas_equalTo(23.f);
+    }];
+    [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(self.titleImageView.mas_right).mas_offset(10.f);
+    }];
+  
+    [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-18.f);
+        make.centerY.mas_equalTo(self.contentView);
+        make.width.height.mas_equalTo(18.f);
     }];
     [self.linkView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.moreLabel.mas_left);
-        make.centerY.mas_equalTo(self.contentView);
-        make.top.mas_equalTo(16);
-        make.bottom.mas_equalTo(-16);
-        make.width.mas_equalTo(.5f);
+        make.left.mas_equalTo(self.titleLabel);
+        make.bottom.mas_equalTo(-0.5f);
+        make.right.mas_equalTo(0);
+        make.height.mas_equalTo(0.5f);
     }];
-    
-    [self.allZHLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(16);
-        make.right.mas_equalTo(self.moreLabel.mas_left);
-        make.width.mas_equalTo(labelWith);
+   
+    [self.customerServiceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.right.mas_equalTo(self.arrowImageView);
     }];
-    [self.allZHLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.allZHLabel.mas_bottom).mas_offset(10);
-        make.left.right.mas_equalTo(self.allZHLabel);
-    }];
-    [self.todayCashLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.allZHLabel.mas_left);
-        make.width.top.mas_equalTo(self.allZHLabel);
-    }];
-    [self.todayCashLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.todayCashLabel.mas_bottom).mas_offset(10);
-        make.left.right.mas_equalTo(self.todayCashLabel);
-    }];
-    [self.todayBonusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.todayCashLabel.mas_left);
-        make.width.top.mas_equalTo(self.todayCashLabel);
-        
-    }];
-    [self.todayBonusLabelS mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.todayBonusLabel.mas_bottom).mas_offset(10);
-        make.left.right.mas_equalTo(self.todayBonusLabel);
-    }];
-    //
-    
     
     
     
@@ -240,16 +133,5 @@
 
 
 
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
 
 @end

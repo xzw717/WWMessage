@@ -27,16 +27,20 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [self.zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
+
 }
 
-
+- (UIStatusBarStyle)preferredStatusBarStyle {
+ 
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     self.zwNavView.backgroundColor = DefaultAPPColor;
-    self.zwBackButton.hidden = YES;
+//    self.zwBackButton.hidden = YES;
     self.zw_title = @"明细";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -67,7 +71,7 @@
     
     NSArray *title_arr = @[@"积分交易",@"现金交易",@"积分兑现",@"现金提现",[NSString stringWithFormat:@"积分购买%@值",HQJValue],[NSString stringWithFormat:@"现金购买%@值",HQJValue],[NSString stringWithFormat:@"手动赠送%@值",HQJValue]];
 
-    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44 , WIDTH, HEIGHT- NavigationControllerHeight - 44)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];
     _bottomSView.delegate = self;

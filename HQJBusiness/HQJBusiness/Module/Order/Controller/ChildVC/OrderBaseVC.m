@@ -56,7 +56,7 @@ DZNEmptyDataSetDelegate>
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44 + NavigationControllerHeight, WIDTH, HEIGHT - NavigationControllerHeight - 44 - 49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - NavigationControllerHeight - 44) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource =self;

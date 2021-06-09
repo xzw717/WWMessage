@@ -91,6 +91,10 @@
     [super viewWillAppear:animated];
     [self requsetData];
 }
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    
+    return UIStatusBarStyleLightContent;
+}
 - (void)initUI{
     self.zwNavView.backgroundColor = DefaultAPPColor;
     self.zwTitLabel.textColor = [UIColor whiteColor];
@@ -151,7 +155,7 @@
         [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
-            [tabViewController setSelectedIndex:3];
+            [tabViewController setSelectedIndex:2];
             
         }]];
         [self presentViewController:alert animated:YES completion:nil];

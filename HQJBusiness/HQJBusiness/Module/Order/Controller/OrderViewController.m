@@ -20,8 +20,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
     
 }
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -31,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zwNavView.backgroundColor = DefaultAPPColor;
-    self.zwBackButton.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.zwTitLabel.textColor = [UIColor whiteColor];
@@ -54,14 +51,15 @@
     NSArray *title_arr = @[@"全部",@"商品订单",@"收款订单",@"已核销订单"];
     
 
-    
-    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, 0 , WIDTH, HEIGHT)];
+    [self.zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
+
+    self.bottomSView = [[SGSegmentedControlBottomView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight + 44, WIDTH, HEIGHT - NavigationControllerHeight - 44)];
     _bottomSView.childViewController = childVC;
     _bottomSView.backgroundColor = [UIColor clearColor];
     _bottomSView.delegate = self;
     [self.view addSubview:_bottomSView];
     
-    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , self.view.frame.size.width, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
+    self.topSView = [SGSegmentedControlStatic segmentedControlWithFrame:CGRectMake(0, NavigationControllerHeight , WIDTH, 44) delegate:self childVcTitle:title_arr indicatorIsFull:NO];
     
     // 必须实现的方法
     [self.topSView SG_setUpSegmentedControlType:nil];

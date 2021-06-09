@@ -79,7 +79,7 @@
             [self.navigationController popToRootViewControllerAnimated:NO];
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             UITabBarController *tabViewController = (UITabBarController *) appDelegate.window.rootViewController;
-            [tabViewController setSelectedIndex:3];
+            [tabViewController setSelectedIndex:2];
         }  else if (self.state == 2) {
             [self jumpH5];
         }  else if (self.state == 3) {

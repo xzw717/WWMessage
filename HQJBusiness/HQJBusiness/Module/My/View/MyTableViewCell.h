@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyModel.h"
-
+#import "ShopModel.h"
 @interface MyTableViewCell : ZW_TableViewCell
-@property (nonatomic,strong)MyModel *model;
+@property (nonatomic,strong)ShopModel *my_model;
 @property (nonatomic, strong) NSString *cellReward;
 @end

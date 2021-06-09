@@ -17,9 +17,12 @@
 #import "TabBarBannerViewModel.h"
 #import "TabBarBannerModel.h"
 #import "XDViewController.h"
+#import "ShopViewController.h"
+#import "ToolsViewController.h"
 
 @interface ZWTabBarViewController ()
-/*********** <#注释#>  ************/
+
+
 @property (nonatomic,weak)  UIView *tabberOldViews ;
 @end
 
@@ -27,16 +30,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MyViewController *myVc = [[MyViewController alloc]init];
-    ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
-    DetailViewController *detailVc = [[DetailViewController alloc]init];
-    ZWNavigationController *detailNav = [[ZWNavigationController alloc]initWithRootViewController:detailVc];
+//    MyViewController *myVc = [[MyViewController alloc]init];
+//    ZWNavigationController *myNav = [[ZWNavigationController alloc]initWithRootViewController:myVc];
+    
+    
+    ShopViewController *shopVC = [[ShopViewController alloc]init];
+    ZWNavigationController *shopNav = [[ZWNavigationController alloc]initWithRootViewController:shopVC];
+
+    ToolsViewController *toolsVc = [[ToolsViewController alloc]init];
+    ZWNavigationController *toolsNav = [[ZWNavigationController alloc]initWithRootViewController:toolsVc];
     CommodityViewController *commodityVc = [[CommodityViewController alloc]init];
 //    ZWNavigationController *CommodityNav = [[ZWNavigationController alloc]initWithRootViewController:CommodityVc];
-    OrderViewController *orderVc = [[OrderViewController alloc]init];//--个人信息
-    ZWNavigationController *orderNvc =[[ZWNavigationController alloc]initWithRootViewController:orderVc];
     XDViewController *xdVc = [[XDViewController alloc]init];//--个人信息
-      ZWNavigationController *xdNvc =[[ZWNavigationController alloc]initWithRootViewController:xdVc];
+    ZWNavigationController *xdNvc =[[ZWNavigationController alloc]initWithRootViewController:xdVc];
+    MyViewController *myVc = [[MyViewController alloc]init];//--个人信息
+      ZWNavigationController *myNvc =[[ZWNavigationController alloc]initWithRootViewController:myVc];
 
     [[UITabBar appearance]setTintColor:[ManagerEngine getColor:@"18abf5"]];
     UITabBar *tabBar = self.tabBar;
@@ -45,27 +53,29 @@
         item.imageInsets = UIEdgeInsetsMake(2, 2, 2,2);
     }
     
-    UIImage *mainImage      = [UIImage imageNamed:@"icon_mine_normal"];
-    UIImage *mainImageS     = [[UIImage imageNamed:@"icon_mine_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *mainImage      = [UIImage imageNamed:@"icon_home"];
+    UIImage *mainImageS     = [[UIImage imageNamed:@"icon_home_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-   UIImage *NearImage      = [UIImage imageNamed:@"icon_details_normal"];
-    UIImage *NearImageS     = [[UIImage imageNamed:@"icon_details_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   UIImage *NearImage      = [UIImage imageNamed:@"icon_tool"];
+    UIImage *NearImageS     = [[UIImage imageNamed:@"icon_tool_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UIImage *BusinessImage  = [UIImage imageNamed:@"icon_order_normal"];
-    UIImage *BusinessImageS = [[UIImage imageNamed:@"icon_order_selected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+ 
     
-    UIImage *xdImage        = [UIImage imageNamed:@"icon_XD_noselect"];
-    UIImage *xdImageS       = [[UIImage imageNamed:@"icon_XD_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *xdImage        = [UIImage imageNamed:@"icon_xd"];
+    UIImage *xdImageS       = [[UIImage imageNamed:@"icon_xd_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
    
+    
+    UIImage *myImage  = [UIImage imageNamed:@"icon_user-1"];
+    UIImage *myImageS = [[UIImage imageNamed:@"icon_user_select"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:xdImage selectedImage:xdImageS];
+
+    shopNav.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"店铺" image:mainImage selectedImage:mainImageS];
+    toolsVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"工具" image:NearImage selectedImage:NearImageS];
     xdVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"XD" image:xdImage selectedImage:xdImageS];
-
-    myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:mainImage selectedImage:mainImageS];
-    detailVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"明细" image:NearImage selectedImage:NearImageS];
-    commodityVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商品" image:NearImage selectedImage:NearImageS];
-    orderVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:BusinessImage selectedImage:BusinessImageS];
+    myVc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:myImage selectedImage:myImageS];
 
 
-    self.viewControllers = @[myNav,detailNav,orderNvc,xdNvc];
+    self.viewControllers = @[shopNav,toolsNav,xdNvc,myNvc];
     self.view.backgroundColor = [UIColor clearColor];
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 420, 49)];

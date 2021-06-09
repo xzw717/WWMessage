@@ -16,4 +16,6 @@
 @property (nonatomic, strong) WKWebView *webView;
 
 @property (nonatomic, strong) NSString *webTitleString;
+
+@property (nonatomic, assign) BOOL isHiddenNav;
 @end

@@ -208,7 +208,7 @@
 //                [SVProgressHUD showErrorWithStatus:@"暂无权限"];
 //            } else {
                 HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
-                webvc.zwNavView.hidden = YES;
+                webvc.isHiddenNav = YES;
                 //            webvc.webTitleString = @"优惠券";
                 //            webvc.webUrlStr = @"http://192.168.16.182:8080/wuwumapH5/index.html#/autonym?userid=23266&mobile=16621048929";
                 webvc.webUrlStr = [NSString  stringWithFormat:@"%@shopappH5/index.html#/couponlist?id=%@&hash=%@",WWMCouponDomain
