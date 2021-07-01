@@ -20,6 +20,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = DefaultAPPColor;
+        self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickInformation)];
+        [self addGestureRecognizer:tap];
         [self addSubview:self.headerImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.qualificationLabel];
@@ -49,6 +52,10 @@
         
     }
     return self;
+}
+- (void)clickInformation {
+    UIViewController *vc = [[NSClassFromString(@"StoreInformationViewController") alloc]init];
+    [[ManagerEngine currentViewControll].navigationController pushViewController:vc animated:YES];
 }
 - (void)shopName:(NSString *)name shopRole:(NSString *)role {
     self.titleLabel.text = name;

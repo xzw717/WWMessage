@@ -7,6 +7,7 @@
 //
 
 #import "TransferOrderVC.h"
+#import "OrderDetailPageViewController.h"
 
 @interface TransferOrderVC ()
 
@@ -18,7 +19,14 @@
     [super viewDidLoad];
     self.type = @"2";
     [self requstType:@"2" andPage:@"0"];
-
+    @weakify(self);
+    [self setSelectRowBlock:^(OrderModel *model) {
+        @strongify(self);
+        OrderDetailPageViewController *vc = [[OrderDetailPageViewController alloc]init];
+        vc.orderDetailModel = model;
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:YES completion:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

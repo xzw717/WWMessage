@@ -15,6 +15,7 @@
 #import "OrderTableViewCell.h"
 #import "OrderTableViewFooterView.h"
 #import "HQJBusinessAlertView.h"
+#import "OrderListTableViewFootView.h"
 @interface OrderBaseVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,
 DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) OrderViewModel *viewModel;
@@ -139,9 +140,9 @@ DZNEmptyDataSetDelegate>
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    OrderModel *model = self.listArray[section];
+//    OrderModel *model = self.listArray[section];
   
-    return ! model.goodslist.count ? 1 : model.goodslist.count;
+    return 1 ;
 
 }
 
@@ -154,12 +155,13 @@ DZNEmptyDataSetDelegate>
     }
     OrderModel *model = self.listArray[indexPath.section];
     cell.orderDate = [NSString stringWithFormat:@"%ld",(long)model.date];
-    if (model.type == 1) {
-        cell.orderGoodsModel = model.goodslist[indexPath.row];
-
-    } else {
+//    if (model.type == 1) {
+//        cell.orderGoodsModel = model.goodslist[indexPath.row];
+//
+//    } else {
         cell.orderModel = model;
-    }
+//    }
+
     return cell;
 
     
@@ -170,14 +172,14 @@ DZNEmptyDataSetDelegate>
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    OrderModel *model = self.listArray[section];
-    if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
-        return 65 + [self orderNoteHeight:model.remark] + 20 + 20;
-    } else if (model.usedate) {
-        return 65.f + 20 ;
-    } else {
-        return 44.f + 20 + 20;
-    }
+//    OrderModel *model = self.listArray[section];
+//    if ( model.remark && ![model.remark isEqualToString:@"(null)"]) {
+//        return 65 + [self orderNoteHeight:model.remark] + 20 + 20;
+//    } else if (model.usedate) {
+//        return 65.f + 20 ;
+//    } else {
+        return 44.f + 20.f;
+//    }
 //    if (model.usedate) return 65.f +[self orderNoteHeight:@"备注：撒奇偶的分红阿斯顿发哈就开始对伐啦撒京东方了困就阿里斯顿会计分录静安寺大佛普恶趣味埃里克多少积分克拉斯酒店分类卡撒京东方拉开决胜巅峰"];
 //
 //    return 44.f;
@@ -201,25 +203,26 @@ DZNEmptyDataSetDelegate>
     static NSString *footerViewID = @"OrderTableViewFooterView%ld";
     OrderModel *model = self.listArray[section];
     
-    OrderTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerViewID];
+    OrderListTableViewFootView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerViewID];
     if (!footerView) {
-        footerView = [[OrderTableViewFooterView alloc]initWithReuseIdentifier:footerViewID];
+        footerView = [[OrderListTableViewFootView alloc]initWithReuseIdentifier:footerViewID];
     }
-   __block NSInteger allCount = 0;
-    [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        allCount = allCount + obj.goodscount;
-    }];
-    footerView.contactBuyerBlock = ^{
-        [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
-            HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
-            //    [alertView zw_showAlertWithContent];
-            [alertView zw_showAlertWithName:realname mobile:mobile];
-        }];
-      
-       
-    };
-    [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
+//   __block NSInteger allCount = 0;
+//    [model.goodslist enumerateObjectsUsingBlock:^(GoodsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        allCount = allCount + obj.goodscount;
+//    }];
+//    footerView.contactBuyerBlock = ^{
+//        [OrderViewModel requestCustomerInformationWith:model.userid complete:^(NSString *mobile, NSString *realname) {
+//            HQJBusinessAlertView * alertView = [[HQJBusinessAlertView alloc]initWithisWarning:NO];
+//            //    [alertView zw_showAlertWithContent];
+//            [alertView zw_showAlertWithName:realname mobile:mobile];
+//        }];
+//      
+//       
+//    };
+//    [footerView setfootOrderModel:model count:allCount  isUseDate:model.usedate ? YES : NO];
 //    [footerView setTimer:model.date usedate:model.usedate count:allCount allPrice:model.price];
+    footerView.model = model;
     return footerView;
 }
 
@@ -242,9 +245,9 @@ DZNEmptyDataSetDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    
     OrderModel *model = self.listArray[indexPath.section];
-    if (model.type == 1) {
+//    if (model.type == 1) {
         !self.selectRowBlock ? : self.selectRowBlock(model);
-    }
+//    }
 }
 
 

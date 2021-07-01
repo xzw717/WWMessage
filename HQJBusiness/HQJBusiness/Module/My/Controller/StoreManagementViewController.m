@@ -68,6 +68,7 @@
 }
 /// 设置数据源
 - (void)setdataSource {
+
     if ([NameSingle shareInstance].peugeotid == 6) {
         if ([LlockedDuration integerValue] == 7 ||([Ttypeid integerValue] == 15 && [LlockedDuration integerValue] == 6)) {
             self.cellTitleArray = [NSMutableArray arrayWithArray:@[@"基本信息",

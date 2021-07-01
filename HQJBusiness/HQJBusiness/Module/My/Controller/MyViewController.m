@@ -23,7 +23,7 @@
 @property (nonatomic, strong) MyModel *model;
 @property (nonatomic, strong) MyViewModel *my_viewModel;
 @property (nonatomic, strong) ShopViewModel *sp_viewModel;
-/// 失败原因
+/// 失败原因 
 @property (nonatomic, strong) NSString *reason;
 /// 合同地址
 @property (nonatomic, strong) NSString *signUrl;
@@ -71,8 +71,8 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //    NSArray *ary = self.viewModel.titleLabelArray[section];
-    return 6;
+    NSArray *ary = self.dataSourceAry[section];
+    return ary.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -162,7 +162,7 @@
                 if ([[NameSingle shareInstance].role containsString:@"利益"]) {
                     [self.my_headerView shopName:nameStr shopRole:[NSString stringWithFormat:@"%@(利益共同体)",nameStr]];
 //                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(利益共同体)",nameStr] andisNav:YES andColor:DefaultAPPColor];
-                }else{
+                } else {
 //                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
                     [self.my_headerView shopName:nameStr shopRole:[self setShopTitle:[self roleStr]]];
 
@@ -287,6 +287,9 @@
                                               @{@"sp_image":@"icon_StoreActivate",
                                                 @"sp_title":@"激活店铺",
                                                 @"sp_action":@""},
+                                              @{@"sp_image":@"icon-Messagenotification",
+                                                @"sp_title":@"消息通知",
+                                                @"sp_action":@"MessageNotificationViewController"},
                                               @{@"sp_image":@"icon_Contactcustomerservice",
                                                 @"sp_title":@"联系客服",
                                                 @"sp_subTitle":@"400591081",

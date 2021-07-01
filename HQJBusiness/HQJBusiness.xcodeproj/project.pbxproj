@@ -132,6 +132,11 @@
 		1F276FA724DB9B040049E227 /* AddStaffViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA624DB9B040049E227 /* AddStaffViewModel.m */; };
 		1F276FAA24DBA2940049E227 /* RoleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FA924DBA2940049E227 /* RoleListModel.m */; };
 		1F276FAD24DBFE4F0049E227 /* InvitedRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */; };
+		1F27BE3126841D4600249FF4 /* OrderDetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27BE3026841D4600249FF4 /* OrderDetailPageViewController.m */; };
+		1F27BE3826841DB700249FF4 /* OrderDetailGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27BE3226841DB600249FF4 /* OrderDetailGoodsCell.m */; };
+		1F27BE3926841DB700249FF4 /* OrderDeatilBigTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27BE3326841DB600249FF4 /* OrderDeatilBigTitleCell.m */; };
+		1F27BE3A26841DB700249FF4 /* OrderDetailDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27BE3526841DB700249FF4 /* OrderDetailDefaultCell.m */; };
+		1F27BE3D2684318900249FF4 /* OrderListTableViewFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27BE3C2684318900249FF4 /* OrderListTableViewFootView.m */; };
 		1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AB29A1F62894800D296F3 /* SelectButtonView.m */; };
 		1F2E0B4B1EC99EED0072FDDD /* LoginSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E0B4A1EC99EED0072FDDD /* LoginSingleton.m */; };
 		1F2E0B4E1EC9A7AD0072FDDD /* AppVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E0B4C1EC9A7AD0072FDDD /* AppVersionManager.m */; };
@@ -300,6 +305,8 @@
 		1F967B221E01470900F1DD7C /* BonusExchangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B211E01470900F1DD7C /* BonusExchangeViewModel.m */; };
 		1F967B251E0147B900F1DD7C /* BonusExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */; };
 		1F9710A921F1C02F00F788A6 /* ManualGiftRYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */; };
+		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
+		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
 		1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BF24CE849A0097E02E /* MemberStaffListViewController.m */; };
 		1FA611C324CE87230097E02E /* NewXDChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611C224CE87230097E02E /* NewXDChildViewController.m */; };
@@ -741,6 +748,16 @@
 		1F276FA924DBA2940049E227 /* RoleListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoleListModel.m; sourceTree = "<group>"; };
 		1F276FAB24DBFE4F0049E227 /* InvitedRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitedRecordModel.h; sourceTree = "<group>"; };
 		1F276FAC24DBFE4F0049E227 /* InvitedRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitedRecordModel.m; sourceTree = "<group>"; };
+		1F27BE2F26841D4600249FF4 /* OrderDetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailPageViewController.h; sourceTree = "<group>"; };
+		1F27BE3026841D4600249FF4 /* OrderDetailPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailPageViewController.m; sourceTree = "<group>"; };
+		1F27BE3226841DB600249FF4 /* OrderDetailGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailGoodsCell.m; sourceTree = "<group>"; };
+		1F27BE3326841DB600249FF4 /* OrderDeatilBigTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDeatilBigTitleCell.m; sourceTree = "<group>"; };
+		1F27BE3426841DB600249FF4 /* OrderDetailDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailDefaultCell.h; sourceTree = "<group>"; };
+		1F27BE3526841DB700249FF4 /* OrderDetailDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailDefaultCell.m; sourceTree = "<group>"; };
+		1F27BE3626841DB700249FF4 /* OrderDeatilBigTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDeatilBigTitleCell.h; sourceTree = "<group>"; };
+		1F27BE3726841DB700249FF4 /* OrderDetailGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailGoodsCell.h; sourceTree = "<group>"; };
+		1F27BE3B2684318900249FF4 /* OrderListTableViewFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewFootView.h; sourceTree = "<group>"; };
+		1F27BE3C2684318900249FF4 /* OrderListTableViewFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewFootView.m; sourceTree = "<group>"; };
 		1F2AB2991F62894800D296F3 /* SelectButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButtonView.h; sourceTree = "<group>"; };
 		1F2AB29A1F62894800D296F3 /* SelectButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButtonView.m; sourceTree = "<group>"; };
 		1F2E0B491EC99EED0072FDDD /* LoginSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSingleton.h; sourceTree = "<group>"; };
@@ -1075,6 +1092,10 @@
 		1F967B241E0147B900F1DD7C /* BonusExchangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonusExchangeModel.m; sourceTree = "<group>"; };
 		1F9710A721F1C02F00F788A6 /* ManualGiftRYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ManualGiftRYViewController.h; path = ChildVC/ManualGiftRYViewController.h; sourceTree = "<group>"; };
 		1F9710A821F1C02F00F788A6 /* ManualGiftRYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ManualGiftRYViewController.m; path = ChildVC/ManualGiftRYViewController.m; sourceTree = "<group>"; };
+		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
+		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
+		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
+		1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationCell.m; sourceTree = "<group>"; };
 		1FA611BB24CE79900097E02E /* StaffManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffManageViewController.h; sourceTree = "<group>"; };
 		1FA611BC24CE79900097E02E /* StaffManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffManageViewController.m; sourceTree = "<group>"; };
 		1FA611BE24CE849A0097E02E /* MemberStaffListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberStaffListViewController.h; sourceTree = "<group>"; };
@@ -1926,6 +1947,14 @@
 		1F6C85B223CEBE78005F3DB8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F27BE3B2684318900249FF4 /* OrderListTableViewFootView.h */,
+				1F27BE3C2684318900249FF4 /* OrderListTableViewFootView.m */,
+				1F27BE3626841DB700249FF4 /* OrderDeatilBigTitleCell.h */,
+				1F27BE3326841DB600249FF4 /* OrderDeatilBigTitleCell.m */,
+				1F27BE3426841DB600249FF4 /* OrderDetailDefaultCell.h */,
+				1F27BE3526841DB700249FF4 /* OrderDetailDefaultCell.m */,
+				1F27BE3726841DB700249FF4 /* OrderDetailGoodsCell.h */,
+				1F27BE3226841DB600249FF4 /* OrderDetailGoodsCell.m */,
 				1F6C85B323CEBE78005F3DB8 /* OrderTableViewCell.h */,
 				1F6C85B423CEBE78005F3DB8 /* HQJBusinessAlertView.m */,
 				1F6C85B523CEBE78005F3DB8 /* OrderDetailsFourCell.h */,
@@ -2148,6 +2177,8 @@
 				1FB2E8FF26678041005EE3F1 /* ShopViewController.m */,
 				1FB2E92426709126005EE3F1 /* AccountSecurityViewController.h */,
 				1FB2E92526709126005EE3F1 /* AccountSecurityViewController.m */,
+				1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */,
+				1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2288,6 +2319,8 @@
 				1FB2E90E2669F9EB005EE3F1 /* ShopFirstHeaderCollectionReusableView.m */,
 				1FB2E921266F4C14005EE3F1 /* MyHeaderView.h */,
 				1FB2E922266F4C14005EE3F1 /* MyHeaderView.m */,
+				1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */,
+				1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2351,6 +2384,8 @@
 		1F960C911DFE3D06003E3D17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F27BE2F26841D4600249FF4 /* OrderDetailPageViewController.h */,
+				1F27BE3026841D4600249FF4 /* OrderDetailPageViewController.m */,
 				1F40291A229FBC520014769B /* OrderDetailsViewController.h */,
 				1F402919229FBC520014769B /* OrderDetailsViewController.m */,
 				1F960C921DFE3D06003E3D17 /* OrderViewController.h */,
@@ -3509,6 +3544,7 @@
 				1F960D441DFE3E51003E3D17 /* ZWNavigationController.m in Sources */,
 				1FBBD81A1E343A300077B124 /* TabBarBannerViewModel.m in Sources */,
 				1F607E0224AB23C20011915E /* XDPaySureViewController.m in Sources */,
+				1F27BE3126841D4600249FF4 /* OrderDetailPageViewController.m in Sources */,
 				1F276F9824D8F9EB0049E227 /* RewardSetModel.m in Sources */,
 				1FC9F88A24AD82BB0037352A /* BonusViewController.m in Sources */,
 				1FFA99C81E233F3000E9FB1D /* UIButton+touch.m in Sources */,
@@ -3530,6 +3566,7 @@
 				1F3949DC1E0C1A9A00A3662D /* UINavigationBar+Awesome.m in Sources */,
 				1F63CC4F2293AA7D0061CF09 /* SetCell.m in Sources */,
 				1F1B21EB1E00EE6000021AB2 /* NameSingle.m in Sources */,
+				1F27BE3926841DB700249FF4 /* OrderDeatilBigTitleCell.m in Sources */,
 				1F046D201E090DAA006D6EB2 /* SGImageButton_Horizontal.m in Sources */,
 				1F5A78551EA457A00060E9EE /* MessageNotificationViewController.m in Sources */,
 				1F046D421E092E07006D6EB2 /* MyListTableViewCell.m in Sources */,
@@ -3624,6 +3661,7 @@
 				1F12C9EA1E0B705C00CF6CB7 /* InformationViewModel.m in Sources */,
 				1F6C85E123CEBE78005F3DB8 /* OrderDetailsOneCell.m in Sources */,
 				054DDE4F2589B184006EFB39 /* BookScoreViewModel.m in Sources */,
+				1F27BE3A26841DB700249FF4 /* OrderDetailDefaultCell.m in Sources */,
 				1FB2E920266E09FA005EE3F1 /* ToolsViewController.m in Sources */,
 				1FF2F9F124D2BA2E003A2996 /* HQJShareView.m in Sources */,
 				1F607E0524AB23C20011915E /* XDPayViewController.m in Sources */,
@@ -3718,6 +3756,7 @@
 				0577A74225C8F39E002C44D7 /* AddUnionActivityCell.m in Sources */,
 				0577A75A25CD2CD5002C44D7 /* AddUnionSectionView.m in Sources */,
 				0577A76F25E5FCB3002C44D7 /* AddUnionCoponViewModel.m in Sources */,
+				1F27BE3D2684318900249FF4 /* OrderListTableViewFootView.m in Sources */,
 				1F2AB29B1F62894800D296F3 /* SelectButtonView.m in Sources */,
 				1F960C9E1DFE3D06003E3D17 /* OrderViewController.m in Sources */,
 				1FF2F9D624D003BC003A2996 /* InvitedRecordTableViewCell.m in Sources */,
@@ -3743,6 +3782,7 @@
 				1F4013371E1257F0004E30B1 /* SelectBankCell.m in Sources */,
 				1F25DC091E10FD0D004DC19F /* OrderModel.m in Sources */,
 				1FB795B624ADDC5800D4CC40 /* ButtonGroupView.m in Sources */,
+				1F27BE3826841DB700249FF4 /* OrderDetailGoodsCell.m in Sources */,
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
 				0577A75125CA800E002C44D7 /* AddUnionSelectCell.m in Sources */,
 				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
@@ -3798,6 +3838,7 @@
 				1F960D3D1DFE3E51003E3D17 /* UIImage+BlocksKit.m in Sources */,
 				1FB795B024ADDC5800D4CC40 /* HanyuPinyinOutputFormat.m in Sources */,
 				1F960D2D1DFE3E51003E3D17 /* NSTimer+BlocksKit.m in Sources */,
+				1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */,
 				1FF2F9F724D3A98B003A2996 /* StaffRoleViewController.m in Sources */,
 				054DDE522589B1E4006EFB39 /* BooKScoreModel.m in Sources */,
 				1F046CB31E08E04D006D6EB2 /* ToAuditViewController.m in Sources */,
@@ -3806,6 +3847,7 @@
 				1FB795B124ADDC5800D4CC40 /* ZYPinYinSearch.m in Sources */,
 				201BE3F2229F73EB00326500 /* ZGAudioManager.m in Sources */,
 				1F607DC124AB22A20011915E /* XDBaseViewController.m in Sources */,
+				1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */,
 				1FF2F9D924D00C3C003A2996 /* MemberStaffListHeaderView.m in Sources */,
 				1F960D251DFE3E51003E3D17 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				0577A76C25E5F9C7002C44D7 /* AddUnionCoponViewController.m in Sources */,
@@ -3862,13 +3904,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4.6;
+				CURRENT_PROJECT_VERSION = 4.5.7;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
@@ -3890,13 +3932,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4.6;
+				CURRENT_PROJECT_VERSION = 4.5.7;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness.HQJBusinessNotificationSercive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4026,7 +4068,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4.6;
+				CURRENT_PROJECT_VERSION = 4.5.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;
@@ -4056,7 +4098,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4075,7 +4117,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.4.6;
+				CURRENT_PROJECT_VERSION = 4.5.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;
@@ -4105,7 +4147,7 @@
 					"$(PROJECT_DIR)/HQJBusiness/Library/YinLianPay",
 					"$(PROJECT_DIR)/HQJBusiness/Library/AliPay",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.HQJBusiness;
 				PRODUCT_NAME = "$(TARGET_NAME)";

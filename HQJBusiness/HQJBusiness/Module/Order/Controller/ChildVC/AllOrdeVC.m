@@ -9,6 +9,8 @@
 #import "AllOrdeVC.h"
 #import "OrderModel.h"
 #import "OrderDetailsViewController.h"
+#import "OrderDetailPageViewController.h"
+
 @interface AllOrdeVC ()
 
 @end
@@ -22,9 +24,10 @@
     @weakify(self);
     [self setSelectRowBlock:^(OrderModel *model) {
         @strongify(self);
-        OrderDetailsViewController *vc = [[OrderDetailsViewController alloc]initWithModel:model];
-        vc.note = model.remark;
-        [self.navigationController pushViewController:vc animated:YES];
+        OrderDetailPageViewController *vc = [[OrderDetailPageViewController alloc]init];
+        vc.orderDetailModel = model;
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:YES completion:nil];
     }];
     
 }

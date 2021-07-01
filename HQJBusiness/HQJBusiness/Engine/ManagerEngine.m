@@ -1136,7 +1136,42 @@ static const CGFloat  sAlertTimer = 3.0;
         [[self currentViewControll].navigationController pushViewController:pvc animated:YES];
     }];
 }
++(NSString *)switchTimer:(NSInteger)timer {
 
+    return  [ManagerEngine reverseSwitchTimer:[NSString stringWithFormat:@"%ld",timer] timeStyle:TimeTransformationStlyeDateMonthYearHourMinutesSeconds];
 
+}
+#pragma mark --
+#pragma mark --- 时间戳转时间
++ (NSString *)reverseSwitchTimer:(NSString *)str timeStyle:(TimeTransformationStlye)style {
+    NSInteger timer =  [str integerValue];
+    
+    if ([[NSString stringWithFormat:@"%ld",timer] length] == 13) {
+        timer/=1000;
+    }
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:timer];
+    
+    //实例化一个NSDateFormatter对象
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    //设定时间格式,这里可以设置成自己需要的格式
+    switch (style) {
+        case TimeTransformationStlyeDateMonthYear:
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+            break;
+        case TimeTransformationStlyeDateMonthYearHourMinutesSeconds:
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            break;
+        default:
+            break;
+    }
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    return currentDateStr;
+    
+   
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AlreadyVerificationVC.h"
+#import "OrderDetailPageViewController.h"
 
 @interface AlreadyVerificationVC ()
 
@@ -18,7 +19,14 @@
     [super viewDidLoad];
     self.type = @"10086";
     [self requstType:@"10086" andPage:@"0"];
-    
+    @weakify(self);
+    [self setSelectRowBlock:^(OrderModel *model) {
+        @strongify(self);
+        OrderDetailPageViewController *vc = [[OrderDetailPageViewController alloc]init];
+        vc.orderDetailModel = model;
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:YES completion:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

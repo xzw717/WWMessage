@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSString *mobileStr;
 @property (nonatomic, strong) NSString *nameStr;
 @property (nonatomic, strong)  NSString *couponTypeNam;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @end
 
 @implementation OrderDetailsViewController
@@ -162,37 +164,39 @@
             OrderDetailsOneCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsOneCell class])];
             cell.statess = @"订单信息";
             return cell;
-        } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 3) {
-            OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = self.dataModel.price;
-            cell.titleStr = @"订单总额：";
-            [cell hiddenLiane:YES];
-            if (self.couponTypeNam) {
-                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
-            }
-            return cell;
-        } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 2) {
-            OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = self.dataModel.actualpayment;
-            cell.titleStr = @"实际支付：";
-            [cell hiddenLiane:YES];
-
-            if (self.couponTypeNam) {
-                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
-            }
-            return cell;
-        } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
-            OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
-            cell.priceStr = self.dataModel.shoppaidin;
-            cell.titleStr = @"商家实收：";
-            [cell hiddenLiane:YES];
-
-            if (self.couponTypeNam) {
-                cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
-            }
-            return cell;
         } else {
-            
+            /*
+             if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 3) {
+                 OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
+                 cell.priceStr = self.dataModel.price;
+                 cell.titleStr = @"订单总额：";
+                 [cell hiddenLiane:YES];
+                 if (self.couponTypeNam) {
+                     cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+                 }
+                 return cell;
+             } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 2) {
+                 OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
+                 cell.priceStr = self.dataModel.actualpayment;
+                 cell.titleStr = @"实际支付：";
+                 [cell hiddenLiane:YES];
+
+                 if (self.couponTypeNam) {
+                     cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+                 }
+                 return cell;
+             } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+                 OrderDetailsFourCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFourCell class])];
+                 cell.priceStr = self.dataModel.shoppaidin;
+                 cell.titleStr = @"商家实收：";
+                 [cell hiddenLiane:YES];
+
+                 if (self.couponTypeNam) {
+                     cell.couponString = [NSString stringWithFormat:@"%@:-¥%@",self.couponTypeNam,self.dataModel.couponsprice];
+                 }
+                 return cell;
+             } else
+             */
             OrderDetailsThreeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsThreeCell class])];
             GoodsModel *d_mdoel = self.dataModel.goodslist [indexPath.row - 1];
             
@@ -207,22 +211,30 @@
         }
     } else if (indexPath.section == 2 ) {
         if (indexPath.row == 0) {
-            OrderDetailsFiveCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
-            cell.orderNumberStr = self.dataModel.nid;
+            OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
+            [cell setTitle:@"商品数量" value:[NSString stringWithFormat:@"%ld份",(long)self.dataModel.count]];
+//            OrderDetailsFiveCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsFiveCell class])];
+//            cell.orderNumberStr = self.dataModel.nid;
             return cell;
         } else if (indexPath.row == 1){
             OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
-            [cell setTitle:@"下单时间" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.date]];
+            [cell setTitle:@"商品总额" value:[NSString stringWithFormat:@"￥%.2f",self.dataModel.price]];
             return cell;
             
         } else if (indexPath.row == 2) {
             OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
-            [cell setTitle:@"桌号" value:self.dataModel.tables];
+            [cell setTitle:@"商家折扣" value:[NSString stringWithFormat:@"%.1f折(-￥%.2f)",self.dataModel.saleoff * 10.f,self.dataModel.price - self.dataModel.price * self.dataModel.saleoff]];
+            return cell;
+        } else if (indexPath.row == 3) {
+            OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
+                NSString *couponDiscount   = [NSString stringWithFormat:@"-￥%.2f",self.dataModel.price - self.dataModel.actualpayment + self.dataModel.share];
+            [cell setTitle:self.dataModel.couponname value:couponDiscount];
             return cell;
         } else {
             OrderDetailsSixCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailsSixCell class])];
-            [cell setTitle:@"人数" value:[NSString stringWithFormat:@"%ld",(long)self.dataModel.people]];
+            [cell setTitle:@"应收金额" value:[NSString stringWithFormat:@"￥%@",self.dataModel.couponsprice]];
             return cell;
+
         }
         
     } else {
@@ -240,7 +252,7 @@
     
     
     
-    //    return nil;
+        return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -365,6 +377,81 @@
         }
     }];
 }
-
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        
+        
+        double changeTime = self.dataModel.date  / 1000;
+        NSString *payType ;
+        if (self.dataModel.payway == 1) {
+            payType = @"积分兑换";
+        } else if (self.dataModel.payway == 2) {
+            payType = @"支付宝支付";
+            
+        } else if (self.dataModel.payway == 3) {
+            payType = @"微信支付";
+            
+        } else if (self.dataModel.payway == 4){
+            payType = @"银联支付";
+            
+        }
+        
+        _dataArray = [NSMutableArray arrayWithArray:@[@[@{},
+                                                        @{self.dataModel.shopname ? self.dataModel.shopname : @"" :@"联系商家"}],
+                                                      @[@{}],
+                                                      @[@{@"商品数量":[NSString stringWithFormat:@"%ld",(long)self.dataModel.count]},
+                                                        @{@"商品总额":[NSString stringWithFormat:@"￥%.2f",self.dataModel.price]},
+                                                        @{@"+1元购买物物豆":self.dataModel.share == 0 ? @"0":[NSString stringWithFormat:@"￥%.0f",self.dataModel.share]},
+                                                        @{@"物物豆抵扣":[NSString stringWithFormat:@"-￥%.2f",self.dataModel.price - self.dataModel.actualpayment + self.dataModel.share]},
+                                                        @{@"实付金额":[NSString stringWithFormat:@"￥%.2f", self.dataModel.actualpayment]}],
+                                                      @[@{@"RY值奖励":[NSString stringWithFormat:@"%.3f个",self.dataModel.zhValue]}],
+                                                      @[@{@"订单号":self.dataModel.nid},
+                                                        @{@"下单时间":[NSString stringWithFormat:@"%@",[ManagerEngine switchTimer:changeTime]]},
+                                                        @{@"支付方式":payType},
+                                                        @{@"订单备注":self.dataModel.remark ?  self.dataModel.remark : @""}]]];
+        NSInteger minusIndex;
+        if (!self.dataModel.goodslist || self.dataModel.goodslist.count == 0) {
+            [_dataArray removeObjectAtIndex:1];
+            minusIndex = 1;
+        } else {
+            minusIndex = 0;
+        }
+        
+        if (self.dataModel.couponsid) {
+            NSString *couponDiscount   = [NSString stringWithFormat:@"-￥%.2f",self.dataModel.price - self.dataModel.actualpayment + self.dataModel.share];
+            NSMutableArray *aryCoupon =  [NSMutableArray arrayWithArray:_dataArray[2 - minusIndex]];
+            [aryCoupon insertObject:@{self.dataModel.couponname :couponDiscount}atIndex:4];//在指定下标处插入元素
+            [aryCoupon removeObjectAtIndex:3];
+            [_dataArray replaceObjectAtIndex:2 - minusIndex withObject:aryCoupon];
+        }
+        NSString *orderType ;
+        NSMutableArray *arypeople = [NSMutableArray arrayWithArray:_dataArray[4 - minusIndex]];
+        
+        if (self.dataModel.people) {
+            orderType = @"扫码点餐";
+            [arypeople insertObject: @{@"用餐人数": [NSString stringWithFormat:@"%ld人",(long)self.dataModel.people]}atIndex:4];
+            [arypeople insertObject: @{@"用餐桌号":self.dataModel.tables}atIndex:5];
+            [arypeople insertObject: @{@"订单类型":orderType}atIndex:3];
+            
+            [_dataArray replaceObjectAtIndex:4 - minusIndex withObject:arypeople];
+        } else if (self.dataModel.type == 1) {
+            orderType = @"购物车订单";
+            [arypeople insertObject: @{@"订单类型":orderType}atIndex:3];
+            [_dataArray replaceObjectAtIndex:4 - minusIndex withObject:arypeople];
+            
+        } else if (self.dataModel.type == 2) {
+            orderType = @"付款订单";
+            [arypeople insertObject: @{@"订单类型":orderType}atIndex:3];
+            [_dataArray replaceObjectAtIndex:4 - minusIndex withObject:arypeople];
+            
+        } else {
+            orderType = @"其他订单";
+            [arypeople insertObject: @{@"订单类型":orderType}atIndex:3];
+            [_dataArray replaceObjectAtIndex:4 - minusIndex withObject:arypeople];
+            
+        }
+    }
+    return _dataArray;
+}
 
 @end

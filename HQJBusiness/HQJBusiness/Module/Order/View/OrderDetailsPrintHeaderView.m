@@ -47,11 +47,12 @@
         
         self.stateLabel.textColor = [ManagerEngine getColor:@"ff0000"];
         
-    } else {
+    } else if ([states isEqualToString:@"待付款"]){
         
         self.stateLabel.textColor = [ManagerEngine getColor:@"29cc29"];
         
     }
+    self.printButton.hidden = [states isEqualToString:@"待付款"] ? YES : NO;
 }
 
 - (UILabel *)stateLabel {

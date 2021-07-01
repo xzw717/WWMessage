@@ -28,7 +28,16 @@ typedef NS_ENUM(NSInteger,listStyle) {
     /// 会员
     memberListStle
 };
-
+/// 时间转换
+typedef NS_OPTIONS(NSInteger , TimeTransformationStlye) {
+    
+   /// 年月日
+    TimeTransformationStlyeDateMonthYear      = 0,
+    
+    /// 年月日 时分秒
+    TimeTransformationStlyeDateMonthYearHourMinutesSeconds   = 1,
+    
+};
 ///**
 // *  提示框按钮数量
 // */
@@ -358,4 +367,7 @@ typedef NS_ENUM(NSInteger,listStyle) {
 /// 店铺管理相关的跳转
 /// @param isStoreInformation 是否是店铺信息
 + (void)jumpShopManageH5:(BOOL)isStoreInformation ;
+
+/// 时间转换
++ (NSString *)switchTimer:(NSInteger)timer;
 @end

@@ -52,15 +52,27 @@
 /// 订单实付金额
 @property (nonatomic, assign) CGFloat actualpayment;
 /// 优惠金额
-@property (nonatomic, strong) NSString *couponsprice;
+@property (nonatomic, assign) double couponsprice;
 /// 优惠券id
 @property (nonatomic, strong) NSString *couponsid;
-///实收金额
-@property (nonatomic, assign) CGFloat shoppaidin;
+/// 优惠券名称
+@property (nonatomic, strong) NSString *couponname;
+///应收金额
+@property (nonatomic, assign) double shoppaidin;
 /// 桌号
 @property (nonatomic, strong) NSString *tables;
 /// 人数
 @property (nonatomic, assign) NSInteger people;
 ///  加1 购买物物豆
 @property (nonatomic, assign) NSInteger share;
+/// ry值赠送比例
+@property (nonatomic, assign) double ratiory;
+/// ry值赠送数
+@property (nonatomic, assign) double zhValue;
+/// 支付类型 1积分 2支付宝 3微信 4银联
+@property (nonatomic, assign) NSInteger payway;
+
+/// 折扣比例
+@property (nonatomic, assign) double saleoff;
+
 @end
