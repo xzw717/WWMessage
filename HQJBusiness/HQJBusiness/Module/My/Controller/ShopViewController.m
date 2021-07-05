@@ -104,7 +104,7 @@
                 model.sp_number =  [NSString stringWithFormat:@"+%.2f",xzw_model.incomeBToday.doubleValue];
                 model.sp_title = @"当日积分";
             } else if (i == 1) {
-                model.sp_number =  [NSString stringWithFormat:@"+%.2f",xzw_model.incomCToday.doubleValue];
+                model.sp_number =  [NSString stringWithFormat:@"+%.2f",fabs(xzw_model.incomCToday.doubleValue)];
                 model.sp_title = @"当日现金";
             } else {
                 model.sp_number =  [NSString stringWithFormat:@"+%.2f",xzw_model.zh];

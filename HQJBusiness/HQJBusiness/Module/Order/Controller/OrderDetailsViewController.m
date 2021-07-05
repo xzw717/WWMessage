@@ -45,10 +45,7 @@
     return self;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    @weakify(self);
     [super viewWillAppear:animated];
-   
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -415,7 +415,7 @@
                                                         @{@"商家折扣":[NSString stringWithFormat:@"%.1f折(-￥%.2f)",self.orderDetailModel.saleoff * 10.f,self.orderDetailModel.saleoff == 0 ? 0.f : self.orderDetailModel.price *(1.f - self.orderDetailModel.saleoff)]},
                                                         @{@"应收金额":[NSString stringWithFormat:@"￥%.2f", self.orderDetailModel.price * self.orderDetailModel.saleoff]}],
                                                       @[@{@"赠送RY值":[NSString stringWithFormat:@"%.f%%(-￥%.2f)",self.orderDetailModel.ratiory * 100,ryValue]},
-                                                        @{@"商家实收":[NSString stringWithFormat:@"￥%.2f",self.orderDetailModel.actualpayment - ryValue]}],
+                                                        @{@"商家实收":[NSString stringWithFormat:@"￥%.2f",self.orderDetailModel.shoppaidin - ryValue]}],
                                                       @[@{@"订单号":self.orderDetailModel.nid},
                                                         @{@"下单时间":[NSString stringWithFormat:@"%@",[ManagerEngine switchTimer:changeTime]]},
                                                         @{@"支付方式":payType},
