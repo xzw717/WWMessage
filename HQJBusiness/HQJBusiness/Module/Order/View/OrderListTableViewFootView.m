@@ -110,8 +110,13 @@
         self.numerLabl.text = @"实收金额：";
 //    }
     double ryValue = model.zhValue *  2.f ;
+    if ([model.state isEqualToString:@"待付款"]) {
+        self.allPriceLabel.text = @"";
+    }else{
+        self.allPriceLabel.text = [NSString stringWithFormat:@"￥%.2f",model.shoppaidin && model.shoppaidin > 0 ? model.shoppaidin -  ryValue   : model.price];
+    }
 
-    self.allPriceLabel.text = [NSString stringWithFormat:@"￥%.2f",model.actualpayment && model.actualpayment > 0 ? model.actualpayment -  ryValue   : model.price];
+    
     
 //    self.cancelOrdearButton.hidden = ![model.state isEqualToString:@"待付款"] ? YES : NO;
 //    if ([model.state isEqualToString:@"待付款"]) {
