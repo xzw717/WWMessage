@@ -449,9 +449,9 @@
             NSString *couponDiscount   = [NSString stringWithFormat:@"-￥%.2f",self.orderDetailModel.couponsprice];
             NSMutableArray *aryCoupon =  [NSMutableArray arrayWithArray:_dataArray[2 - minusIndex]];
             [aryCoupon insertObject:@{self.orderDetailModel.couponname :couponDiscount}atIndex:2];
-            [aryCoupon replaceObjectAtIndex:aryCoupon.count - 1 withObject:@{@"应收金额":[NSString stringWithFormat:@"%.2f",self.orderDetailModel.actualpayment]}];
+            [aryCoupon replaceObjectAtIndex:aryCoupon.count - 1 withObject:@{@"应收金额":[NSString stringWithFormat:@"%.2f",self.orderDetailModel.shoppaidin]}];
 
-            [aryCoupon removeObjectAtIndex:3];
+//            [aryCoupon removeObjectAtIndex:3];
            [_dataArray replaceObjectAtIndex:2 - minusIndex withObject:aryCoupon];
         }
         NSString *orderType ;
