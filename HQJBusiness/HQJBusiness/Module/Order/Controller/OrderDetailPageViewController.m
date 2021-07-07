@@ -122,11 +122,11 @@
                     
                 } else {
                     return 60.f;
-
+                    
                 }
             } else {
                 return 60.f;
-
+                
             }
         } else {
             return 60.f;
@@ -389,7 +389,7 @@
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
-       
+        
         
         double changeTime = self.orderDetailModel.date  / 1000;
         NSString *payType ;
@@ -406,7 +406,7 @@
             
         }
         double ryValue = self.orderDetailModel.zhValue * 2.f ;
-     
+        
         _dataArray = [NSMutableArray arrayWithArray:@[@[@{},
                                                         @{self.orderDetailModel.shopname ? self.orderDetailModel.shopname : @"" :@"联系买家"}],
                                                       @[@{}],
@@ -437,22 +437,23 @@
             NSMutableArray *aryStateOne =  [NSMutableArray arrayWithArray:_dataArray[2 - minusIndex]];
             [aryStateOne replaceObjectAtIndex:aryStateOne.count - 1 withObject:@{@"应收金额":@""}];
             [_dataArray replaceObjectAtIndex:2 - minusIndex withObject:aryStateOne];
-
+            
             NSMutableArray *aryStateTwo =  [NSMutableArray arrayWithArray:_dataArray[3 - minusIndex]];
             [aryStateTwo replaceObjectAtIndex:0 withObject:@{@"赠送RY值":@""}];
             [aryStateTwo replaceObjectAtIndex:1 withObject:@{@"商家实收":@""}];
             [_dataArray replaceObjectAtIndex:3 - minusIndex withObject:aryStateTwo];
-
+            
         }
         
         if (self.orderDetailModel.couponsid) {
             NSString *couponDiscount   = [NSString stringWithFormat:@"-￥%.2f",self.orderDetailModel.couponsprice];
             NSMutableArray *aryCoupon =  [NSMutableArray arrayWithArray:_dataArray[2 - minusIndex]];
             [aryCoupon insertObject:@{self.orderDetailModel.couponname :couponDiscount}atIndex:2];
+            
+            [aryCoupon replaceObjectAtIndex:aryCoupon.count - 2 withObject:@{@"商家折扣":[NSString stringWithFormat:@"%.1f折(-￥%.2f)",self.orderDetailModel.saleoff * 10.f,self.orderDetailModel.saleoff == 0 ? 0.f : (self.orderDetailModel.price - self.orderDetailModel.couponsprice)  *(1.f - self.orderDetailModel.saleoff)]}];
             [aryCoupon replaceObjectAtIndex:aryCoupon.count - 1 withObject:@{@"应收金额":[NSString stringWithFormat:@"%.2f",self.orderDetailModel.shoppaidin]}];
-
-//            [aryCoupon removeObjectAtIndex:3];
-           [_dataArray replaceObjectAtIndex:2 - minusIndex withObject:aryCoupon];
+            //            [aryCoupon removeObjectAtIndex:3];
+            [_dataArray replaceObjectAtIndex:2 - minusIndex withObject:aryCoupon];
         }
         NSString *orderType ;
         NSMutableArray *arypeople = [NSMutableArray arrayWithArray:_dataArray[4 - minusIndex]];
@@ -508,16 +509,16 @@
         [_orderDetailTableView registerClass:[OrderDetailDefaultCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailDefaultCell class])];
         [_orderDetailTableView registerClass:[OrderDetailGoodsCell class] forCellReuseIdentifier:NSStringFromClass([OrderDetailGoodsCell class])];
         _orderDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        UILabel *headLabel = [[UILabel alloc]initWithFrame:CGRectMake(NewProportion(60.f), NewProportion(42.f), WIDTH - NewProportion(60.f) , NewProportion(54.f))];
-//        headLabel.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
-//        headLabel.textColor = DefaultAPPColor;
-//        headLabel.font = [UIFont systemFontOfSize:NewProportion(54.f) weight:UIFontWeightBold];
-//        headLabel.text = self.orderDetailModel.state;
-//        UIButton *printBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-//
-//        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,NewProportion(100.f))];
-//        headView.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
-//        [headView addSubview:headLabel];
+        //        UILabel *headLabel = [[UILabel alloc]initWithFrame:CGRectMake(NewProportion(60.f), NewProportion(42.f), WIDTH - NewProportion(60.f) , NewProportion(54.f))];
+        //        headLabel.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
+        //        headLabel.textColor = DefaultAPPColor;
+        //        headLabel.font = [UIFont systemFontOfSize:NewProportion(54.f) weight:UIFontWeightBold];
+        //        headLabel.text = self.orderDetailModel.state;
+        //        UIButton *printBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+        //
+        //        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,NewProportion(100.f))];
+        //        headView.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
+        //        [headView addSubview:headLabel];
         _orderDetailTableView.tableHeaderView = self.headerView;
         UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, NewProportion(40.f))];
         footView.backgroundColor = [ManagerEngine getColor:@"f2f2f2"];
