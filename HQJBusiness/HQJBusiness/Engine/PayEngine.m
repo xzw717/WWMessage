@@ -18,10 +18,6 @@
 #pragma mark   ==============配置支付宝支付==============
 
 +(void)payActionOutTradeNOStr:(NSString *)OutTrade
-                andSubjectStr:(NSString *)Subject
-                   andNameStr:(NSString *)nameStr
-                andTotalFeeSt:(NSString *)pice
-                 andNotifyUrl:(NSString *)notify_url
                       buytype:(buyType)type
 {
     

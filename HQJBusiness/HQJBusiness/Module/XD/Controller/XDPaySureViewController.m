@@ -49,8 +49,23 @@
         make.centerX.equalTo(self.view);
         make.size.mas_equalTo(CGSizeMake(812/3, 115/3));
     }];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
+
     // Do any additional setup after loading the view.
+}
+#pragma mark --- 支付宝支付结果
+-(void)alipayResults:(NSNotification *)infos {
+    NSString *stateStr = infos.userInfo[@"strMsg"];
+    if ([stateStr isEqualToString:@"支付成功"]) {
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showSuccessWithStatus:stateStr];
+        [SVProgressHUD dismissWithDelay:1.f completion:^{
+           
+        }];
+    } else {
+
+        [SVProgressHUD showErrorWithStatus:stateStr];
+    }
 }
 - (void)requsetOrderDetail{
     [XDPayViewModel getOrderInfoById:self.orderid completion:^(XDDetailModel * _Nonnull model) {

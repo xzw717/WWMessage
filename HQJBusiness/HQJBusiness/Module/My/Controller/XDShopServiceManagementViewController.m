@@ -93,6 +93,7 @@ DZNEmptyDataSetDelegate>
         model.proname = ssmModel.proname;
         XDPayViewController *xdVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         xdVC.payType = buyXD;
+        xdVC.isMyShopPay = NO;
         [self.navigationController pushViewController:xdVC animated:YES];
     }];
     return cell;

@@ -248,6 +248,7 @@
 		1F7ADB8524E27422009079F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CF1E1631D00056DF9A /* CoreGraphics.framework */; };
 		1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADB8724E3733F009079F2 /* UMShareManager.m */; };
 		1F7ADBD524E516F4009079F2 /* SetProportionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */; };
+		1F86EB6526984AB5004A23D5 /* JumpH5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F86EB6426984AB5004A23D5 /* JumpH5ViewController.m */; };
 		1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E47081E02709900D61C92 /* BuyZHViewController.m */; };
 		1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470B1E02738B00D61C92 /* BuyZHViewModel.m */; };
 		1F8E470F1E027CF200D61C92 /* OkBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E470E1E027CF200D61C92 /* OkBuyViewController.m */; };
@@ -382,6 +383,7 @@
 		1FD45B0324347C9400608675 /* CertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD45B0224347C9400608675 /* CertificationViewController.m */; };
 		1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FA91E0A78E9005D43F2 /* SetViewController.m */; };
 		1FD64FB11E0A8006005D43F2 /* ZW_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD64FB01E0A8006005D43F2 /* ZW_TableViewCell.m */; };
+		1FDB968426A7EC8200E2D74B /* InLogicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB968326A7EC8200E2D74B /* InLogicManager.m */; };
 		1FDF4CD223B1E7420060F485 /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF4CC823B1E7410060F485 /* APOrderInfo.m */; };
 		1FDF4CD323B1E7420060F485 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF4CCA23B1E7420060F485 /* openssl_wrapper.m */; };
 		1FDF4CD423B1E7420060F485 /* APRSASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF4CCD23B1E7420060F485 /* APRSASigner.m */; };
@@ -970,6 +972,8 @@
 		1F7ADB8724E3733F009079F2 /* UMShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMShareManager.m; sourceTree = "<group>"; };
 		1F7ADBD324E516F4009079F2 /* SetProportionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetProportionViewModel.h; sourceTree = "<group>"; };
 		1F7ADBD424E516F4009079F2 /* SetProportionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetProportionViewModel.m; sourceTree = "<group>"; };
+		1F86EB6326984AB5004A23D5 /* JumpH5ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JumpH5ViewController.h; sourceTree = "<group>"; };
+		1F86EB6426984AB5004A23D5 /* JumpH5ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JumpH5ViewController.m; sourceTree = "<group>"; };
 		1F8E47071E02709900D61C92 /* BuyZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewController.h; sourceTree = "<group>"; };
 		1F8E47081E02709900D61C92 /* BuyZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyZHViewController.m; sourceTree = "<group>"; };
 		1F8E470A1E02738B00D61C92 /* BuyZHViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyZHViewModel.h; sourceTree = "<group>"; };
@@ -1250,6 +1254,8 @@
 		1FD64FA91E0A78E9005D43F2 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		1FD64FAF1E0A8006005D43F2 /* ZW_TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZW_TableViewCell.h; path = BaseClass/ZW_TableViewCell.h; sourceTree = "<group>"; };
 		1FD64FB01E0A8006005D43F2 /* ZW_TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZW_TableViewCell.m; path = BaseClass/ZW_TableViewCell.m; sourceTree = "<group>"; };
+		1FDB968226A7EC8200E2D74B /* InLogicManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InLogicManager.h; sourceTree = "<group>"; };
+		1FDB968326A7EC8200E2D74B /* InLogicManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InLogicManager.m; sourceTree = "<group>"; };
 		1FDF4C7C23B1E7400060F485 /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
 		1FDF4C7D23B1E7400060F485 /* pem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
 		1FDF4C7E23B1E7400060F485 /* ssl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl3.h; sourceTree = "<group>"; };
@@ -2179,6 +2185,8 @@
 				1FB2E92526709126005EE3F1 /* AccountSecurityViewController.m */,
 				1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */,
 				1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */,
+				1F86EB6326984AB5004A23D5 /* JumpH5ViewController.h */,
+				1F86EB6426984AB5004A23D5 /* JumpH5ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2460,6 +2468,8 @@
 				1F2E0B4A1EC99EED0072FDDD /* LoginSingleton.m */,
 				1FB904FE24EF62E100FB848D /* HQJLocationManager.h */,
 				1FB904FF24EF62E100FB848D /* HQJLocationManager.m */,
+				1FDB968226A7EC8200E2D74B /* InLogicManager.h */,
+				1FDB968326A7EC8200E2D74B /* InLogicManager.m */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -3746,6 +3756,7 @@
 				1F607E0824AB25B00011915E /* XDOrderDetailsTableViewCell.m in Sources */,
 				0577A75D25CFD84E002C44D7 /* AddUnionSubCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
+				1FDB968426A7EC8200E2D74B /* InLogicManager.m in Sources */,
 				1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */,
 				0577A73C25C3FFBE002C44D7 /* AddUnionActivityViewController.m in Sources */,
 				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
@@ -3806,6 +3817,7 @@
 				0522C0C8268DAFA800CADAF1 /* OrderDeatilBigTitleCell.m in Sources */,
 				1F276FAA24DBA2940049E227 /* RoleListModel.m in Sources */,
 				1FB2E923266F4C14005EE3F1 /* MyHeaderView.m in Sources */,
+				1F86EB6526984AB5004A23D5 /* JumpH5ViewController.m in Sources */,
 				1F3949E91E0D14F200A3662D /* DetailModel.m in Sources */,
 				1F276FAD24DBFE4F0049E227 /* InvitedRecordModel.m in Sources */,
 				1F8E470C1E02738B00D61C92 /* BuyZHViewModel.m in Sources */,
@@ -3904,7 +3916,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.5.7;
+				CURRENT_PROJECT_VERSION = 4.7.7;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -3932,7 +3944,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.5.7;
+				CURRENT_PROJECT_VERSION = 4.7.7;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
@@ -4068,7 +4080,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.5.7;
+				CURRENT_PROJECT_VERSION = 4.7.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;
@@ -4117,7 +4129,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.5.7;
+				CURRENT_PROJECT_VERSION = 4.7.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				ENABLE_BITCODE = YES;

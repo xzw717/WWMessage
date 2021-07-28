@@ -54,9 +54,9 @@
     if (!self.payView.selectBtn.selected) {
          [SVProgressHUD showErrorWithStatus:@"请选择支付方式"];
     }else{
-        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:self.payType];
+//        [PayEngine payActionOutTradeNOStr:self.model.orderid andSubjectStr:self.model.proname  andNameStr:self.model.proname  andTotalFeeSt:[NSString stringWithFormat:@"%@",self.model.ordermoney] andNotifyUrl:[NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBAlipayServiceInterface] buytype:self.payType];
 
-
+        [PayEngine payActionOutTradeNOStr:self.model.orderid buytype:self.payType];
     }
     
     
@@ -68,14 +68,21 @@
     if ([stateStr isEqualToString:@"支付成功"]) {
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         [SVProgressHUD showSuccessWithStatus:stateStr];
-        [ManagerEngine SVPAfter:stateStr complete:^{
-            XDPaySureViewController *psvc = [[XDPaySureViewController alloc]initWithOrderid:self.model.orderid];
-            psvc.xdPaySureroleValue = self.xdPayroleValue;
-            psvc.xdPaySureshopidString = self.xdPayshopidString;
-            psvc.xdPaySurelatitude = self.xdPaylatitude;
-            psvc.xdPaySurelongitude = self.xdPaylongitude;
-            [self.navigationController pushViewController:psvc animated:YES];
+        @weakify(self);
+        [SVProgressHUD dismissWithDelay:1.f completion:^{
+            @strongify(self);
+            if (self.isMyShopPay) {
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                XDPaySureViewController *psvc = [[XDPaySureViewController alloc]initWithOrderid:self.model.orderid];
+                psvc.xdPaySureroleValue = self.xdPayroleValue;
+                psvc.xdPaySureshopidString = self.xdPayshopidString;
+                psvc.xdPaySurelatitude = self.xdPaylatitude;
+                psvc.xdPaySurelongitude = self.xdPaylongitude;
+                [self.navigationController pushViewController:psvc animated:YES];
+            }
         }];
+      
     } else {
 
         [SVProgressHUD showErrorWithStatus:stateStr];

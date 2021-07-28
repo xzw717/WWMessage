@@ -14,13 +14,15 @@
 #import "XDPayViewController.h"
 #import "HQJWebViewController.h"
 #import "PayEngine.h"
+#import "HintView.h"
 @interface XDDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
 }
 @property (nonatomic,strong) UITableView *xdTableView;
 @property (nonatomic,strong) XDDetailBottomView *bottomView;
 @property (nonatomic,strong) XDModel *model;
 @property (nonatomic,strong) NSDictionary *resultDict;
-
+@property (nonatomic, strong) NSString *reason;
+@property (nonatomic, strong) NSString *proid;
 @end
 
 @implementation XDDetailViewController
@@ -40,7 +42,6 @@
     if (self) {
         
         self.model = model;
-        
     }
     return self;
 }
@@ -147,47 +148,53 @@
 }
 
 - (NSString *)getButtonString{
-    switch ([self.resultDict[@"state"] integerValue]) {
-            
-            //1生成订单
-            //2代付款
-            //3付款成功(生成第一份合同)
-            //4第一份合同待签署(去签属合同)
-            //5第-份合同签署成功(去生成第二-份合同)
-            //6第一份合同签署失败(跳3)
-            //7待签署(去签署第二份合同)
-            //8签署成功(等待待审核)
-            //9签署失败(跳5 )
-            //10审核成功
-            //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
-        case -1://-1 不可用
-            return @"不可申请";
-            
-        case 0://0 信息未完善
-            return @"立即加入";
-            
-        case 3://1 信息已完善，去生成第一份合同
-        case 6:
-            return @"签署新商业合同";
-        case 2:
-        case 1://3 第一份合同签署完成，去生成订单
-            return @"立即支付";
-            
-        case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
-            return @"签署新商业合同";
-            
-        case 8://8 第二份合同签署完成，等待审核
-            return @"审核中";
-        case 5:
-        case 7:
-        case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
-            return @"签署国物溯源协议";
-        case 10://10审核成功，流程结束
-            return @"审核成功";
-            
-        case 11://11 审核失败，修改信息
-            return @"修改信息";
+    
+    if ([Ttypeid integerValue] == 19 ||[Ttypeid integerValue] == 20) {
+        return @"不可申请";
+    } else {
+        switch ([self.resultDict[@"state"] integerValue]) {
+                
+                //1生成订单
+                //2代付款
+                //3付款成功(生成第一份合同)
+                //4第一份合同待签署(去签属合同)
+                //5第-份合同签署成功(去生成第二-份合同)
+                //6第一份合同签署失败(跳3)
+                //7待签署(去签署第二份合同)
+                //8签署成功(等待待审核)
+                //9签署失败(跳5 )
+                //10审核成功
+                //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
+            case -1://-1 不可用
+                return @"不可申请";
+                
+            case 0://0 信息未完善
+                return @"立即加入";
+                
+            case 3://1 信息已完善，去生成第一份合同
+            case 6:
+                return @"签署新商业合同";
+            case 2:
+            case 1://3 第一份合同签署完成，去生成订单
+                return @"立即支付";
+                
+            case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
+                return @"签署新商业合同";
+                
+            case 8://8 第二份合同签署完成，等待审核
+                return @"审核中";
+            case 5:
+            case 7:
+            case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
+                return @"签署国物溯源协议";
+            case 10://10审核成功，流程结束
+                return @"审核成功";
+                
+            case 11://11 审核失败，修改信息
+                return @"修改信息";
+        }
     }
+   
     return @"";
 }
 
@@ -204,7 +211,10 @@
     //9签署失败(跳5 )
     //10审核成功
     //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
-    
+    if ([Ttypeid integerValue] == 19 ||[Ttypeid integerValue] == 20) {
+        [SVProgressHUD showErrorWithStatus:@"当前状态暂不支持申请"];
+    } else {
+   
     if (self.resultDict) {
         switch ([self.resultDict[@"state"] integerValue]) {
             case -1://-1 不可用
@@ -230,6 +240,7 @@
                 break;
                 
             case 1://3 第一份合同签署完成，去生成订单
+                self.proid = @"6";
                 [self createOreder];
                 break;
                 
@@ -253,16 +264,36 @@
                 break;
                 
             case 11://11 审核失败，修改信息
-                [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
-                    // 跳转信息填写H5页
-                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                @weakify(self);
+                [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
+                    @strongify(self);
+                    [SVProgressHUD showWithStatus:@"加载中"];
+                    [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
+                        [SVProgressHUD dismiss];
+                        // 跳转信息填写H5页
+                        [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=%@",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,[NameSingle shareInstance].mobile,self.model.nid]];
+                    }];
                 }];
+                
                 
                 break;
         }
     }
-    
+        
+    }
 }
+- (void)requstState {
+    NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
+    [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":Shopid} complete:^(NSDictionary *dic) {
+        if([dic[@"resultCode"]integerValue] == 2100){
+
+            self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
+        }
+    } andError:^(NSError *error) {
+        
+    } ShowHUD:YES];
+}
+
 - (void)jumpH5:(NSString *)url{
     
     HQJWebViewController *webVC = [[HQJWebViewController alloc]init];
@@ -278,9 +309,10 @@
     }];
 }
 - (void)createOreder{
-    [XDDetailViewModel submitXDOrder:Shopid andProid:self.model.nid andPrice:self.model.price completion:^(XDPayModel *model) {
+    [XDDetailViewModel submitXDOrder:Shopid andType:@"0"  andProid:self.proid  completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         payVC.payType = buyXD;
+        payVC.isMyShopPay = NO;
         [self.navigationController pushViewController:payVC animated:YES];
         
     }];
@@ -310,7 +342,7 @@
     [self.zwBackButton setImage:[UIImage imageNamed:@"icon_back_arrow_white"] forState:UIControlStateNormal];
     [self.view addSubview:self.xdTableView];
     [self.view addSubview:self.bottomView];
-    
+    [self requstState];
 }
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -320,6 +352,8 @@
     [super viewWillAppear:animated];
     [XDDetailViewModel getXDShopState:Shopid andPeugeotid:self.model.nid completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
+        self.proid  = dict[@"orderdata"][@"proid"];
+
 //        if ([[NameSingle shareInstance].role containsString:@"股份"]) {
 //            [self.bottomView.payButton setTitle:@"不可申请" forState:UIControlStateNormal];
 //            self.bottomView.payButton.userInteractionEnabled = NO;

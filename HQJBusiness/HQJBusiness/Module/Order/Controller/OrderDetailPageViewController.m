@@ -153,158 +153,87 @@
     return ceil(size.height);
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!self.orderDetailModel.goodslist || self.orderDetailModel.goodslist.count == 0) {
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                OrderDeatilBigTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDeatilBigTitleCell class]) forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.titleStr = @"商家信息";
-                
-                return cell;
-            } else {
-                OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                [cell cellWithtype:isCallShop];
-                [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-                
-                return cell;
-            }
-        } else if (indexPath.section == self.dataArray.count - 3){
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            OrderDeatilBigTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDeatilBigTitleCell class]) forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.titleStr = @"商家信息";
             
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            
-            if (indexPath.row == [self.dataArray[indexPath.section] count] - 1) {
-                [cell cellWithtype:isPrice];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
-            return cell;
-            
-        } else if (indexPath.section == self.dataArray.count - 1) {
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            NSLog(@"%@---%ld",self.dataArray[indexPath.section],indexPath.row);
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            [cell setOrderCopy:^{
-                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                pasteboard.string = self.orderDetailModel.nid;
-                [SVProgressHUD showSuccessWithStatus:@"复制成功"];
-            }];
-            if (indexPath.row == 0) {
-                [cell cellWithtype:isOrderid];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
-            
-            return cell;
-        } else  if (indexPath.section == self.dataArray.count - 2){
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            if (indexPath.row == 1) {
-                [cell cellWithtype:isPrice];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
             return cell;
         } else {
             OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            [cell cellWithtype:isDefault];
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            
-            return cell;
-        }
-    } else {
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                OrderDeatilBigTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDeatilBigTitleCell class]) forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.titleStr = @"商家信息";
-                
-                return cell;
-            } else {
-                OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                [cell cellWithtype:isCallShop];
-                [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-                
-                return cell;
-            }
-        } else if (indexPath.section == 1) {
-            
-            if (indexPath.row == 0) {
-                OrderDeatilBigTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDeatilBigTitleCell class]) forIndexPath:indexPath];
-                cell.titleStr = @"订单信息";
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            } else {
-                OrderDetailGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailGoodsCell class]) forIndexPath:indexPath];
-                cell.orderGoodsModel = self.orderDetailModel.goodslist[indexPath.row - 1];
-                return cell;
-            }
-        } else if (indexPath.section == self.dataArray.count - 3){
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            
-            if (indexPath.row == [self.dataArray[indexPath.section] count] - 1) {
-                [cell cellWithtype:isPrice];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
-            return cell;
-            
-        } else if (indexPath.section == self.dataArray.count - 1) {
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            [cell setOrderCopy:^{
-                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                pasteboard.string = self.orderDetailModel.nid;
-                [SVProgressHUD showSuccessWithStatus:@"复制成功"];
-            }];
-            if (indexPath.row == 0) {
-                [cell cellWithtype:isOrderid];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
-            
-            return cell;
-        }  else  if (indexPath.section == self.dataArray.count - 2){
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
-            if (indexPath.row == 1) {
-                [cell cellWithtype:isPrice];
-                
-            } else {
-                [cell cellWithtype:isDefault];
-                
-            }
-            return cell;
-        } else  {
-            OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
-            
-            [cell cellWithtype:isDefault];
+            [cell cellWithtype:isCallShop];
             [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
             
             return cell;
         }
+    } else if (indexPath.section == 1) {
+        
+        if (indexPath.row == 0) {
+            OrderDeatilBigTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDeatilBigTitleCell class]) forIndexPath:indexPath];
+            cell.titleStr = @"订单信息";
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        } else {
+            OrderDetailGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailGoodsCell class]) forIndexPath:indexPath];
+            cell.orderGoodsModel = self.orderDetailModel.goodslist[indexPath.row - 1];
+            return cell;
+        }
+    } else if (indexPath.section == self.dataArray.count - 3){
+        OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        
+        if (indexPath.row == [self.dataArray[indexPath.section] count] - 1) {
+            [cell cellWithtype:isPrice];
+            
+        } else {
+            [cell cellWithtype:isDefault];
+            
+        }
+        return cell;
+        
+    } else if (indexPath.section == self.dataArray.count - 1) {
+        OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
+        
+        [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        [cell setOrderCopy:^{
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = self.orderDetailModel.nid;
+            [SVProgressHUD showSuccessWithStatus:@"复制成功"];
+        }];
+        if (indexPath.row == 0) {
+            [cell cellWithtype:isOrderid];
+            
+        } else {
+            [cell cellWithtype:isDefault];
+            
+        }
+        
+        return cell;
+    }  else  if (indexPath.section == self.dataArray.count - 2){
+        OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
+        
+        [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        if (indexPath.row == 1) {
+            [cell cellWithtype:isPrice];
+            
+        } else {
+            [cell cellWithtype:isDefault];
+            
+        }
+        return cell;
+    } else  {
+        OrderDetailDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([OrderDetailDefaultCell class]) forIndexPath:indexPath];
+        
+        [cell cellWithtype:isDefault];
+        [cell dataWithDictionary:self.dataArray[indexPath.section][indexPath.row]];
+        
+        return cell;
     }
+    
     
     
     
@@ -413,7 +342,7 @@
                                                       @[@{@"商品数量":[NSString stringWithFormat:@"%ld份",(long)self.orderDetailModel.count]},
                                                         @{@"商品总额":[NSString stringWithFormat:@"￥%.2f",self.orderDetailModel.price]},
                                                         @{@"商家折扣":[NSString stringWithFormat:@"%.1f折(-￥%.2f)",self.orderDetailModel.saleoff * 10.f,self.orderDetailModel.saleoff == 0 ? 0.f : self.orderDetailModel.price *(1.f - self.orderDetailModel.saleoff)]},
-                                                        @{@"应收金额":[NSString stringWithFormat:@"￥%.2f", self.orderDetailModel.price * self.orderDetailModel.saleoff]}],
+                                                        @{@"应收金额":[NSString stringWithFormat:@"￥%.2f", self.orderDetailModel.price * (self.orderDetailModel.saleoff <= 0 ? 1 : self.orderDetailModel.saleoff)]}],
                                                       @[@{@"赠送RY值":[NSString stringWithFormat:@"%.f%%(-￥%.2f)",self.orderDetailModel.ratiory * 100,ryValue]},
                                                         @{@"商家实收":[NSString stringWithFormat:@"￥%.2f",self.orderDetailModel.shoppaidin - ryValue]}],
                                                       @[@{@"订单号":self.orderDetailModel.nid},

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat xdPaylongitude ;
 
 @property (nonatomic, assign) NSInteger xdPayroleValue;
+/// 是否是我的店铺界面支付
+@property (nonatomic, assign) BOOL isMyShopPay;
 - (instancetype)initWithXDPayModel:(XDPayModel *)model;
 @end
 

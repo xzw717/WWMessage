@@ -159,14 +159,16 @@
             NSString *nameStr = !x.realname ||[x.realname isEqualToString:@"null"] ? @"" : x.realname;
     
             if (x.mobile) {
-                if ([[NameSingle shareInstance].role containsString:@"利益"]) {
-                    [self.my_headerView shopName:nameStr shopRole:[NSString stringWithFormat:@"%@(利益共同体)",nameStr]];
-//                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(利益共同体)",nameStr] andisNav:YES andColor:DefaultAPPColor];
-                } else {
-//                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
-                    [self.my_headerView shopName:nameStr shopRole:[self setShopTitle:[self roleStr]]];
+                [self.my_headerView shopName:nameStr shopRole:x.role];
 
-                }
+//                if ([[NameSingle shareInstance].role containsString:@"利益"]) {
+//                    [self.my_headerView shopName:nameStr shopRole:[NSString stringWithFormat:@"%@(利益共同体)",nameStr]];
+////                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(利益共同体)",nameStr] andisNav:YES andColor:DefaultAPPColor];
+//                } else {
+////                    [self.titleView setTitleStr:[NSString stringWithFormat:@"%@(%@)",nameStr,[self setShopTitle:[self roleStr]]] andisNav:YES andColor:DefaultAPPColor];
+//                    [self.my_headerView shopName:nameStr shopRole:[self setShopTitle:[self roleStr]]];
+//
+//                }
     
             }
     
@@ -178,8 +180,10 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
     
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":Shopid} complete:^(NSDictionary *dic) {
+     
         self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
         self.rolecheckstate = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
+     
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
         [self.myTableView reloadData];
     } andError:^(NSError *error) {
@@ -275,30 +279,35 @@
 - (NSMutableArray *)dataSourceAry {
     if (!_dataSourceAry) {
         _dataSourceAry = [NSMutableArray array];
-        NSArray *rowTitleWithImageArray = @[@[@{@"sp_image":@"icon_Accountsecurity",
-                                                @"sp_title":@"账号安全",
-                                                @"sp_action":@"AccountSecurityViewController"},
-                                              @{@"sp_image":@"icon_Basicinformation",
-                                                @"sp_title":@"基础信息",
-                                                @"sp_action":@"InformationViewController"},
-                                              @{@"sp_image":@"icon_contractmanagement",
-                                                @"sp_title":@"合同管理",
-                                                @"sp_action":@"ContactManagerViewController"},
-                                              @{@"sp_image":@"icon_StoreActivate",
-                                                @"sp_title":@"激活店铺",
-                                                @"sp_action":@""},
-                                              @{@"sp_image":@"icon-Messagenotification",
-                                                @"sp_title":@"消息通知",
-                                                @"sp_action":@"MessageNotificationViewController"},
-                                              @{@"sp_image":@"icon_Contactcustomerservice",
-                                                @"sp_title":@"联系客服",
-                                                @"sp_subTitle":@"400591081",
-                                                @"sp_action":@""},
-                                              @{@"sp_image":@"icon_setup",
-                                                @"sp_title":@"设置",
-                                                @"sp_action":@"SetViewController"}],
-        ];
-
+        NSMutableArray *rowAry = [NSMutableArray arrayWithArray:@[@{@"sp_image":@"icon_Accountsecurity",
+                                                                    @"sp_title":@"账号安全",
+                                                                    @"sp_action":@"AccountSecurityViewController"},
+                                                                  @{@"sp_image":@"icon_Basicinformation",
+                                                                    @"sp_title":@"基础信息",
+                                                                    @"sp_action":@"InformationViewController"},
+                                                                  @{@"sp_image":@"icon_contractmanagement",
+                                                                    @"sp_title":@"合同管理",
+                                                                    @"sp_action":@"ContactManagerViewController"},
+                                                                  @{@"sp_image":@"icon_StoreActivate",
+                                                                    @"sp_title":@"激活店铺",
+                                                                    @"sp_action":@""},
+                                                                  @{@"sp_image":@"icon-Messagenotification",
+                                                                    @"sp_title":@"消息通知",
+                                                                    @"sp_action":@"MessageNotificationViewController"},
+                                                                  @{@"sp_image":@"icon_Contactcustomerservice",
+                                                                    @"sp_title":@"联系客服",
+                                                                    @"sp_subTitle":@"400591081",
+                                                                    @"sp_action":@""},
+                                                                  @{@"sp_image":@"icon_setup",
+                                                                    @"sp_title":@"设置",
+                                                                    @"sp_action":@"SetViewController"}]];
+        if (self.rolecheckstate != 1000 && self.rolecheckstate != 6666) {
+            [rowAry removeObject:@{@"sp_image":@"icon_StoreActivate",
+                                                              @"sp_title":@"激活店铺",
+                                                   @"sp_action":@""}];
+        }
+        NSMutableArray *rowTitleWithImageArray =[NSMutableArray arrayWithArray:@[rowAry]];
+      
         [rowTitleWithImageArray enumerateObjectsUsingBlock:^(NSArray * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableArray *allData = [NSMutableArray array];
             allData = [ShopModel mj_objectArrayWithKeyValuesArray:obj];

@@ -63,7 +63,13 @@
 @property (nonatomic, assign) NSInteger code;
 
 @property (nonatomic, assign) CGFloat price;
+@property (nonatomic, strong) NSString *coisorderid;
+/// 利益命运共同体
+@property (nonatomic, assign) NSInteger coisrole;
 
+@property (nonatomic, assign) NSInteger xdstate;
+
+@property (nonatomic, strong) NSString *proid;
 @end
 
 @implementation MyShopViewController
@@ -315,6 +321,16 @@
               pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,self.shopidString,self.latitude,self.longitude];
           } else if ([self.stateValueLabel.text isEqualToString:@"发起合同"]) {
               
+          } else if ([self.stateValueLabel.text isEqualToString:@"立即支付"]) {
+              if (self.code == 1003) {
+                  [self createOreder:@"1"];
+                  return;
+
+              } else {
+                  [PayEngine payActionOutTradeNOStr:self.coisorderid buytype:registerXD];
+                  return;
+
+              }
           } else if ([self.stateValueLabel.text isEqualToString:@"签署合同"]) {
               pvc.webUrlStr = self.signUrl;
           } else {
@@ -338,7 +354,7 @@
     self.zw_title = @"我的店铺";
     [self.view setBackgroundColor:[ManagerEngine getColor:@"f7f7f7"]];
     [SVProgressHUD showWithStatus:@"获取定位中"];
-    self.viewControllerName = @"LoginViewController";
+//    self.viewControllerName = @"LoginViewController";
     self.fd_interactivePopDisabled = YES;
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:self.phoneLabel.text];
     [attri addAttributes:@{NSForegroundColorAttributeName:DefaultAPPColor} range:NSMakeRange(5, self.phoneLabel.text.length - 5)];
@@ -353,7 +369,28 @@
        self.longitude = lon;
      
    }];
-   
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
+    [self.zwBackButton addTarget:self action:@selector(myShopBack) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)myShopBack {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark --- 支付宝支付结果
+-(void)alipayResults:(NSNotification *)infos {
+    NSString *stateStr = infos.userInfo[@"strMsg"];
+    if ([stateStr isEqualToString:@"支付成功"]) {
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showSuccessWithStatus:stateStr];
+        [SVProgressHUD dismissWithDelay:1.f completion:^{
+            [self requstState];
+        }];
+        
+    } else {
+
+        [SVProgressHUD showErrorWithStatus:stateStr];
+    }
+    
+    
     
 }
 - (instancetype)initWithShopid:(NSString *)shopid {
@@ -367,6 +404,7 @@
 - (void)requstXD {
     [XDDetailViewModel getXDShopState:self.shopidString andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
+        self.proid  = dict[@"orderdata"][@"proid"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
             self.stateValueLabel.text = [self getButtonString];
 
@@ -423,8 +461,9 @@
                 [self jumpH5:self.resultDict[@"data"]];
                 break;
                 
-            case 1://3 第一份合同签署完成，去生成订单
-                [self createOreder];
+            case 1://3 信息未完善，去生成订单
+                self.proid = @"6";
+                [self createOreder:@"0"];
                 break;
                 
             case 2://5 订单已生成，待付款，跳支付页准备付款
@@ -490,15 +529,16 @@
     
 }
 - (void)createContract:(NSInteger)type{
-    [XDDetailViewModel initiateESign:self.shopidString andType:[NSString stringWithFormat:@"%ld",type] andState:@"1" andPeugeotid:@"6" completion:^(id  _Nonnull result) {
+    [XDDetailViewModel initiateESign:self.shopidString andType:[NSString stringWithFormat:@"%ld",(long)type] andState:@"1" andPeugeotid:@"6" completion:^(id  _Nonnull result) {
         [self jumpH5:(NSString *)result];
         
     }];
 }
-- (void)createOreder{
-    [XDDetailViewModel submitXDOrder:self.shopidString andProid:@"6" andPrice:[NSString stringWithFormat:@"%f",self.price] completion:^(XDPayModel *model) {
+- (void)createOreder:(NSString *)type{
+    [XDDetailViewModel submitXDOrder:self.shopidString andType:type  andProid:self.proid  completion:^(XDPayModel *model) {
         XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
         payVC.payType = registerXD;
+        payVC.isMyShopPay = YES;
         payVC.xdPayroleValue = self.roleValue;
         payVC.xdPayshopidString = self.shopidString;
         payVC.xdPaylatitude = self.latitude;
@@ -606,10 +646,12 @@
         if([dic[@"resultCode"]integerValue] == 2100){
           
             self.code = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
+            self.xdstate = [dic[@"resultMsg"][@"xdstate"] integerValue];
             self.signUrl = dic[@"resultMsg"][@"signUrl"];
             self.shopNameValueLabel.text = dic[@"resultMsg"][@"shopname"];
             self.mobileValueLabel.text = dic[@"resultMsg"][@"mobile"];
             self.applyTimeValueLabel.text = dic[@"resultMsg"][@"upgraderoletime"];
+            self.coisorderid = dic[@"resultMsg"][@"coisorderid"];
             self.roleValue = [dic[@"resultMsg"][@"role"] integerValue];
             self.price = [dic[@"resultMsg"][@"price"] floatValue];
             self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
@@ -645,6 +687,10 @@
 
                 } else if ( self.code == 8888 ) {
                     self.stateValueLabel.text = @"发起合同";
+
+                    
+                } else if ( self.code == 1003 || self.code == 1004 ) {
+                    self.stateValueLabel.text = @"立即支付";
 
                 } else if ( self.code == 9999 ) {
                     self.stateValueLabel.text = @"签署合同";

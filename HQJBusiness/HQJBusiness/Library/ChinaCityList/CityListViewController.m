@@ -59,7 +59,7 @@
 @implementation CityListViewController
 - (UIView *)searchView {
     if (_searchView == nil) {
-        _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 40 * (HEIGHT / 568))];
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, NavigationControllerHeight, WIDTH, 40 * (HEIGHT / 568))];
         _searchView.backgroundColor = [UIColor clearColor];
         
        

@@ -79,7 +79,8 @@
     }];
 
 
-}- (void)myRequst {
+}
+- (void)myRequst {
     NSMutableDictionary *dict = @{@"memberid":MmberidStr,@"hash":HashCode}.mutableCopy;
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",HQJBBonusDomainName,HQJBMerchantInterface,HQJBGetMerchantInfoInterface];
 
@@ -143,14 +144,24 @@
 - (void)getshopidWithMemberid:(NSString *)memberid completion:(void(^)(NSString *shopid))completion {
     NSString *shopidUrlStr = [NSString stringWithFormat:@"%@%@",HQJBFeedbackDomainName,HQJBRetrunShopIdInterface];
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:shopidUrlStr parameters:@{@"memberid":MmberidStr} complete:^(NSDictionary *dic) {
-        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
-              [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
+        if ([dic[@"resultCode"] integerValue] == 2102) { /// 商家不存在
+            [ManagerEngine login];
+        } else {
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
+                  [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
+            }
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"peugeotid"];
+            if ([dic[@"resultMsg"][@"peugeotid"] isEqual:[NSNull null]] || dic[@"resultMsg"][@"peugeotid"] == nil) {
+                [[NSUserDefaults standardUserDefaults]  setObject:@"" forKey:@"peugeotid"];
+            } else {
+                [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] forKey:@"peugeotid"];
+
+            }
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
+            [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"];
+            !completion ? : completion(dic[@"resultMsg"][@"shopid"]);
         }
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"peugeotid"];
-        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"peugeotid"] ? dic[@"resultMsg"][@"peugeotid"] : @"" forKey:@"peugeotid"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"classify"];
-        [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"classify"] ? dic[@"resultMsg"][@"classify"] : @"" forKey:@"classify"]; 
-        !completion ? : completion(dic[@"resultMsg"][@"shopid"]);
+      
 
     } andError:^(NSError *error) {
         if (self.myrequstErrorBlock) {

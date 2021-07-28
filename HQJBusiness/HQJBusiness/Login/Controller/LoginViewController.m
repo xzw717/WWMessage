@@ -425,6 +425,11 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.userNameText.text = @"";
      self.pswText.text = @"";
+    [self.getAuthCodeBtn stopCountDown];
+    [self.getAuthCodeBtn countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+        countDownButton.enabled = YES;
+        return @"获取验证码";
+    }];
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -665,7 +670,9 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
                    [SVProgressHUD showErrorWithStatus:dic[@"msg"]];
             } else {
                 MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:dic[@"result"][@"shopid"]];
-                [self.navigationController pushViewController:shopVC animated:YES];
+                ZWNavigationController *shopNav = [[ZWNavigationController alloc]initWithRootViewController:shopVC];
+                shopNav.modalPresentationStyle = UIModalPresentationFullScreen;
+                [self presentViewController:shopNav animated:YES completion:nil];
             }
       
 
@@ -684,6 +691,7 @@ static NSString * kAlphaNum = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
             [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"typecname"] forKey:@"typecname"];
             [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"typeename"] forKey:@"typeename"];
             [[NSUserDefaults standardUserDefaults] setObject:dic[@"result"][@"hashCode"] forKey:@"hashCode"];
+
             [self dismissViewControllerAnimated:YES completion:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changeBonus" object:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"loginSuccess" object:nil];

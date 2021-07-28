@@ -86,7 +86,7 @@ NSString *const HQJBH5UpDataDomain = @"http://statics.wuwuditu.com/";
 /// H5域名
 NSString *const HQJBXDDownloadPactDomain = @"http://statics.wuwuditu.com/";
 ///联盟券
-NSString *const HQJBUnionCouponDomain = @"http://47.97.229.170:8080/";
+NSString *const HQJBUnionCouponDomain = @"http://coupon.wuwuditu.com:8080/";
 
 /// 商家奖励
 //NSString *const HQJBRewardDomainName = @"http://test.hqjplatform.com/";
@@ -239,7 +239,8 @@ NSString *const HQJBFindShopEsignListInterface = @"shopapi/findShopEsign.action"
 NSString *const HQJBRegisterAgreementListInterface = @"shopappH5/index.html#/registerAgreement";
 ///商家注册完成后跳转的H5
 NSString *const HQJBNewstoreListInterface = @"shopappH5/#/newstore";
-
+///商家升级利益命运共同体
+NSString *const HQJBShopInformationInterface =  @"shopappH5/index.html#/shopInformation";
 /// 根据城市名获取地区列表
 NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
 /// 商家手机号注册

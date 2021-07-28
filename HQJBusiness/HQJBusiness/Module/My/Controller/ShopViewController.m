@@ -169,6 +169,10 @@
         [self.collectionView reloadData];
 
     }];
+    [self.myViewModel getshopidWithMemberid:MmberidStr completion:^(NSString *shopid) {
+        [self.collectionView reloadData];
+
+    }];
     [_myViewModel myRequst];
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

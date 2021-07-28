@@ -26,10 +26,6 @@ typedef NS_ENUM(NSInteger,buyType) {
 */
 
 +(void)payActionOutTradeNOStr:(NSString *)OutTrade
-                andSubjectStr:(NSString *)Subject
-                   andNameStr:(NSString *)nameStr
-                andTotalFeeSt:(NSString *)pice
-                andNotifyUrl:(NSString *)notify_url
                       buytype:(buyType)type;
 
 

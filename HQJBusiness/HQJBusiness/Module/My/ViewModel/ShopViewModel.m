@@ -55,7 +55,7 @@
                                                 @"sp_action":@"DetailViewController"},
                                               @{@"sp_image":@"icon_home_transaction",
                                                 @"sp_title":@"交易管理",
-                                                @"sp_action":@""},
+                                                @"sp_action":@"DealViewController"},
                                               @{@"sp_image":@"icon_home_order",
                                                 @"sp_title":@"订单管理",
                                                 @"sp_action":@"OrderViewController"},
@@ -70,7 +70,7 @@
                                                 @"sp_action":@""},
                                               @{@"sp_image":@"icon_home_community",
                                                 @"sp_title":@"利益命运共同体",
-                                                @"sp_action":@""},
+                                                @"sp_action":@"JumpH5ViewController"},
                                               @{},
                                               @{}]];
         NSLog(@"rowTitleWithImageArray:%@",rowTitleWithImageArray);
@@ -102,8 +102,18 @@
     }
     if ([vcTitle isEqualToString:@""] || vcTitle == nil) {
         [SVProgressHUD showInfoWithStatus:@"暂未开放"];
+        [SVProgressHUD dismissWithDelay:1.f];
+
         return;
     }
+//    if ([ary[index.section][index.row].sp_title containsString:@"利益命运共同体"]) {
+//        if ([Ttypeid integerValue] != 19 && [Ttypeid integerValue] != 20 ) {
+//            [SVProgressHUD showInfoWithStatus:@"暂无权限"];
+//            [SVProgressHUD dismissWithDelay:1.f];
+//            return;
+//
+//        }
+//    }
     if (vcTitle && ![vcTitle isEqualToString:@""]) {
         UIViewController *vc = [[NSClassFromString(vcTitle) alloc]init];
         NSDictionary *dict = ary[index.section][index.row].sp_parameter;

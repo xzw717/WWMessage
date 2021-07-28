@@ -20,7 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///生成合同
 + (void)initiateESign:(NSString *)shopid andType:(NSString *)type andState:(NSString *)state andPeugeotid:(NSString *)peugeotid completion:(void(^)(id result))completion;
 ///生成订单
-+ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion;
++ (void)submitXDOrder:(NSString *)shopid
+              andType:(NSString *)type
+             andProid:(NSString *)proidv
+           completion:(void(^)(XDPayModel *model))completion;
 @end
 
 NS_ASSUME_NONNULL_END

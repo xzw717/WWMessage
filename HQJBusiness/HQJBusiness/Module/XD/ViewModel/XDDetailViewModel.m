@@ -41,7 +41,7 @@
 + (void)getXDShopState:(NSString *)shopid andPeugeotid:(NSString *)peugeotid completion:(void(^)(id dict))completion{
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdFlowInterface];
     NSDictionary *dict = @{@"shopid":shopid,
-                           @"peugeotid":peugeotid};
+                           @"peugeotid":(peugeotid ? peugeotid : @"")};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"] integerValue] == 1800) {
@@ -55,14 +55,14 @@
         
     } andError:^(NSError *error) {
         
-    } ShowHUD:NO];
+    } ShowHUD:YES];
 }
 + (void)initiateESign:(NSString *)shopid andType:(NSString *)type andState:(NSString *)state andPeugeotid:(NSString *)peugeotid completion:(void(^)(id result))completion{
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBInitiateESignInterface];
     NSDictionary *dict = @{@"shopid":shopid,
                            @"type":type,
                            @"state":@"1",
-                           @"peugeotid":peugeotid};
+                           @"peugeotid":(peugeotid ? peugeotid : @"")};
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"] integerValue] == 1800) {
@@ -78,12 +78,22 @@
         
     } ShowHUD:NO];
 }
-+ (void)submitXDOrder:(NSString *)shopid andProid:(NSString *)proid andPrice:(NSString *)price completion:(void(^)(XDPayModel *model))completion{
++ (void)submitXDOrder:(NSString *)shopid
+              andType:(NSString *)type
+             andProid:(NSString *)proid
+           completion:(void(^)(XDPayModel *model))completion {
     
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBXdorderInterface];
-    NSDictionary *dict = @{@"shopid":shopid,
-                           @"proid":proid,
-                           @"price":price};
+    NSDictionary *dict ;
+    if ([type integerValue] == 1) {
+     dict   = @{@"shopid":shopid,
+                              @"type":type};
+    } else {
+        dict   = @{@"shopid":shopid,
+                                 
+                   @"proid":proid};
+    }
+   
     
     [RequestEngine HQJBusinessPOSTRequestDetailsUrl:urlStr parameters:dict complete:^(NSDictionary *dic) {
         if ([dic[@"resultCode"] integerValue] == 2000) {

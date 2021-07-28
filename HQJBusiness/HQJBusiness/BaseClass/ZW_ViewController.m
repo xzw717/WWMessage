@@ -90,7 +90,7 @@
             
         
         } else {
-            if (self.navigationController.viewControllers && self.navigationController.viewControllers.count > 0) {
+            if (self.navigationController.viewControllers && self.navigationController.viewControllers.count > 1) {
                 [self.navigationController popViewControllerAnimated:YES];
 
             } else {
