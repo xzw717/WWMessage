@@ -267,11 +267,11 @@
             [self handleXDState];
             return;
 
-        }
-        if ([Ttypeid integerValue] == 20) {
+        } else {
             pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
 
         }
+  
     } else if ([self.stateButton.currentTitle isEqualToString:@"审核失败"] && self.coisrole == 9) {
         @weakify(self);
         [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
