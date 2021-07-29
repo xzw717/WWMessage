@@ -263,9 +263,15 @@
 
         return;
     }  else if ([self.stateButton.currentTitle isEqualToString:@"立即加入"]) {
-        
-        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
+        if ([Ttypeid integerValue] == 19) {
+            [self handleXDState];
+            return;
 
+        }
+        if ([Ttypeid integerValue] == 20) {
+            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
+
+        }
     } else if ([self.stateButton.currentTitle isEqualToString:@"审核失败"] && self.coisrole == 9) {
         @weakify(self);
         [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
