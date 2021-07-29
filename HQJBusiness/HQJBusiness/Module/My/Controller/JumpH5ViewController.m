@@ -384,12 +384,13 @@
         [self.stateButton setTitle:@"待审核" forState:UIControlStateNormal];
 
     }
-    if ( self.code == 1004 ) {
+    if ( self.code == 1004 || self.code == 1003 ) {
         [self.stateButton setTitle:@"去支付" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
         self.coisorderid= dic[@"resultMsg"][@"coisorderid"];
 
     }
+    
     if ( self.code == 9999 ) {
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
         [self.stateButton setTitle:@"签署合同" forState:UIControlStateNormal];
