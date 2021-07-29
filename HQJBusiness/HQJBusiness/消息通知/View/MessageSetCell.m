@@ -7,11 +7,20 @@
 //
 
 #import "MessageSetCell.h"
+
 @interface MessageSetCell ()
 @property (nonatomic, strong) UILabel *setTitleLabel;
+@property (nonatomic, strong) MessageBubbleView *titleImageView;
+
 @end
 @implementation MessageSetCell
-
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
 
 
 @end

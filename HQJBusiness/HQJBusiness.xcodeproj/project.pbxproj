@@ -90,7 +90,6 @@
 		1F12F6CA1E16319F0056DF9A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6C91E16319F0056DF9A /* CoreTelephony.framework */; };
 		1F12F6CC1E1631AB0056DF9A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CB1E1631AB0056DF9A /* QuartzCore.framework */; };
 		1F12F6CE1E1631C40056DF9A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CD1E1631C40056DF9A /* CoreText.framework */; };
-		1F12F6D01E1631D00056DF9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6CF1E1631D00056DF9A /* CoreGraphics.framework */; };
 		1F12F6D21E1631D90056DF9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6D11E1631D90056DF9A /* UIKit.framework */; };
 		1F12F6D41E1631E40056DF9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6D31E1631E40056DF9A /* Foundation.framework */; };
 		1F12F6D61E1631EB0056DF9A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F12F6D51E1631EB0056DF9A /* CFNetwork.framework */; };
@@ -309,6 +308,7 @@
 		1F9C1C5726B23AAF007E0067 /* MessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5626B23AAF007E0067 /* MessageListVC.m */; };
 		1F9C1C5A26B23DA1007E0067 /* UIColor+ColorConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5926B23DA1007E0067 /* UIColor+ColorConversion.m */; };
 		1F9C1C5D26B23E3F007E0067 /* MessageBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */; };
+		1F9C1C6026B2462A007E0067 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5F26B2462A007E0067 /* MessageListCell.m */; };
 		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
 		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
@@ -1107,6 +1107,8 @@
 		1F9C1C5926B23DA1007E0067 /* UIColor+ColorConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorConversion.m"; sourceTree = "<group>"; };
 		1F9C1C5B26B23E3F007E0067 /* MessageBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBubbleView.h; sourceTree = "<group>"; };
 		1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleView.m; sourceTree = "<group>"; };
+		1F9C1C5E26B2462A007E0067 /* MessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
+		1F9C1C5F26B2462A007E0067 /* MessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
 		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
 		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
 		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
@@ -1474,7 +1476,6 @@
 				1F12F6D61E1631EB0056DF9A /* CFNetwork.framework in Frameworks */,
 				1F12F6D41E1631E40056DF9A /* Foundation.framework in Frameworks */,
 				1F12F6D21E1631D90056DF9A /* UIKit.framework in Frameworks */,
-				1F12F6D01E1631D00056DF9A /* CoreGraphics.framework in Frameworks */,
 				1FFA03ED23B1FE6C00D35FF2 /* libcrypto.a in Frameworks */,
 				1F12F6CE1E1631C40056DF9A /* CoreText.framework in Frameworks */,
 				1F12F6CC1E1631AB0056DF9A /* QuartzCore.framework in Frameworks */,
@@ -2680,6 +2681,8 @@
 				1FAD11B626B1379E00579E64 /* MessageSetCell.m */,
 				1F9C1C5B26B23E3F007E0067 /* MessageBubbleView.h */,
 				1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */,
+				1F9C1C5E26B2462A007E0067 /* MessageListCell.h */,
+				1F9C1C5F26B2462A007E0067 /* MessageListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3285,7 +3288,7 @@
 		1FBE91C81DEC1E59001977A6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Fujian first time iot technology investment co., LTD";
 				TargetAttributes = {
 					1F63CCB4229536870061CF09 = {
@@ -3809,6 +3812,7 @@
 				1F960D1E1DFE3E51003E3D17 /* NSDictionary+BlocksKit.m in Sources */,
 				1FC9F88D24AD82BB0037352A /* ZHViewController.m in Sources */,
 				1F960D271DFE3E51003E3D17 /* NSNumber+BlocksKit.m in Sources */,
+				1F9C1C6026B2462A007E0067 /* MessageListCell.m in Sources */,
 				1FB3DEB11E02C9C200F670EC /* ModeOfPayCell.m in Sources */,
 				1F276F8C24D7A70C0049E227 /* RewardsRecordChildCell.m in Sources */,
 				1FC50B6A1F6926F10081B728 /* OrderDetailFootView.m in Sources */,
@@ -3982,7 +3986,7 @@
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.3.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -4010,7 +4014,7 @@
 				DEVELOPMENT_TEAM = Y28K2L3GRG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HQJBusinessNotificationSercive/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.3.4;
 				MTL_FAST_MATH = YES;
@@ -4047,6 +4051,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -4072,7 +4077,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -4105,6 +4110,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -4124,7 +4130,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4162,7 +4168,7 @@
 					"$(SRCROOT)/HQJBusiness/Library/AliPay",
 				);
 				INFOPLIST_FILE = HQJBusiness/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4211,7 +4217,7 @@
 					"$(SRCROOT)/HQJBusiness/Library/AliPay",
 				);
 				INFOPLIST_FILE = HQJBusiness/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

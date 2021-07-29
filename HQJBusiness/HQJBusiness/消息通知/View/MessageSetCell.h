@@ -7,11 +7,9 @@
 //
 
 #import "ZW_TableViewCell.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageSetCell : ZW_TableViewCell
-
 @end
 
 NS_ASSUME_NONNULL_END
