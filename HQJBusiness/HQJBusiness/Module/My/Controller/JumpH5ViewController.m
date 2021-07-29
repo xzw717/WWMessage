@@ -69,7 +69,29 @@
         self.longitude = lon;
       
     }];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
 
+}
+#pragma mark --- 支付宝支付结果
+-(void)alipayResults:(NSNotification *)infos {
+    NSString *stateStr = infos.userInfo[@"strMsg"];
+    if ([stateStr isEqualToString:@"支付成功"]) {
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showSuccessWithStatus:stateStr];
+        [SVProgressHUD dismissWithDelay:1.f completion:^{
+            [self requstState];
+        }];
+        
+    } else {
+
+        [SVProgressHUD showErrorWithStatus:stateStr];
+    }
+    
+    
+    
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -81,10 +103,13 @@
 - (void)requstXD {
     [XDDetailViewModel getXDShopState:Shopid andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
         self.resultDict = dict;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
-            [self.stateButton setTitle:[self getButtonString] forState:UIControlStateNormal];
+        if (self.code != 1004) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
+                [self.stateButton setTitle:[self getButtonString] forState:UIControlStateNormal];
 
-        });
+            });
+        }
+    
 
     }];
 }
@@ -227,7 +252,7 @@
     
 }
 - (void)createOreder{
-    [XDDetailViewModel submitXDOrder:Shopid andType:@"0" andProid:@"6"  completion:^(XDPayModel *model) {
+    [XDDetailViewModel submitXDOrder:Shopid andType:@"1" andProid:@"6"  completion:^(XDPayModel *model) {
 
         [self jumpPay:model.orderid];
 
@@ -262,7 +287,7 @@
         if (self.code == 1003) {
             [self createOreder];
         } else {
-            [self jumpPay:self.resultDict[@"orderdata"][@"orderid"]];
+            [self jumpPay:self.coisorderid];
 
         }
         return;
@@ -396,7 +421,7 @@
     if ( self.code == 1004 || self.code == 1003 ) {
         [self.stateButton setTitle:@"去支付" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
-        self.coisorderid= dic[@"resultMsg"][@"coisorderid"];
+        self.coisorderid = dic[@"resultMsg"][@"coisorderid"];
 
     }
     
