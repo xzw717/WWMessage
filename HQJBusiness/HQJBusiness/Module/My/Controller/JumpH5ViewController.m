@@ -314,7 +314,12 @@
                 [SVProgressHUD dismiss];
                 // 跳转信息填写H5页
             http://subtest.heqijia.net/XdShopAudit/getDetailByShopId.action?shopid=0f53ec90-e7ff-443d-9d82-2000fdb34f0a
-                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=6",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,Mmobile]];
+                if ([Ttypeid integerValue] == 19) {
+                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=6",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,Mmobile]];
+                } else {
+                    [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid,self.latitude,self.longitude]];
+                }
+                
             }];
         }];
 
