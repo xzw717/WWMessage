@@ -163,7 +163,7 @@
         case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
             return @"审核失败";
         case 12://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
-            if ( self.code  == 0 || self.code == 6666 ) {
+            if ( self.code  == 0 ) {
                 return  @"待实名认证";
 
             } else {
@@ -174,7 +174,7 @@
     }
         
     } else {
-        return  @"";
+        return  @"待实名认证";
     }
     return @"";
 }
@@ -278,11 +278,10 @@
     
 }
 - (void)clickBtn {
-    HQJWebViewController *pvc = [[HQJWebViewController alloc]init];
-    pvc.zwNavView.hidden = YES;
+  
     if ([self.stateButton.currentTitle isEqualToString:@"签署合同"]) {
-        pvc.webUrlStr = self.signUrl;
 
+        [self jumpH5:self.signUrl];
     } else if ([self.stateButton.currentTitle isEqualToString:@"去支付"]) {
         if (self.code == 1003) {
             [self createOreder];
@@ -301,7 +300,7 @@
             return;
 
         } else {
-            pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
+            [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude]];
 
         }
   
@@ -328,13 +327,18 @@
     } else if ([self.stateButton.currentTitle isEqualToString:@"当前有其他流程未完成"]){
         [self. navigationController popViewControllerAnimated:YES];
         return;
+    } else if ([self.stateButton.currentTitle isEqualToString:@"待实名认证"] && self.coisrole == 9) {
+        [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid,self.latitude,self.longitude]];
+
     } else {
+      
+         
         [self handleXDState];
 
-        return;
+    
+
 
     }
-    [self.navigationController pushViewController:pvc animated:YES];
 
 }
 - (void)jumpPay:(NSString *)orderid{
@@ -433,6 +437,11 @@
     if ( self.code == 9999 ) {
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
         [self.stateButton setTitle:@"签署合同" forState:UIControlStateNormal];
+        self.stateButton.backgroundColor = DefaultAPPColor;
+
+    }
+    if ( self.code == 6666 ) {
+        [self.stateButton setTitle:@"待实名认证" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
 
     }
