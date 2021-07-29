@@ -45,6 +45,7 @@
 
 #import "ZGProgressHUD+NJ.h"
 #import "HQJBaseSubVC.h"
+#import "UIColor+ColorConversion.h"
 //#import "Manager.h"
 //#import "JKCountDownButton.h"
 //#import <MBProgressHUD/MBProgressHUD.h>
