@@ -274,6 +274,9 @@
         _bonusValueLabel.font = [UIFont systemFontOfSize:16];
         _bonusValueLabel.textAlignment = NSTextAlignmentRight;
         _bonusValueLabel.text = @"20000.00000     个";
+        NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:_bonusValueLabel.text];
+        [attri addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, _bonusValueLabel.text.length - 1)];
+        _bonusValueLabel.attributedText = attri;
         [self.bonusView addSubview:_bonusValueLabel];
     }
     
@@ -733,13 +736,13 @@
     self.applyTimeLabel.sd_layout.leftSpaceToView(self.applyTimeView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
     self.applyTimeValueLabel.sd_layout.leftSpaceToView(self.applyTimeLabel, 10).rightSpaceToView(self.applyTimeView,70.f/3).heightIs(S_XRatioH(130.0f/3));
     self.tmBottomView.sd_layout.leftEqualToView(self.applyTimeLabel).bottomEqualToView(self.applyTimeView).heightIs(.5f).widthIs(WIDTH-S_XRatioW(110.0f/3));
-//    if (self.resultDict[@"state"] &&  self.roleValue) {
-    self.bonusView.hidden = [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
-    self.bonusLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
-    self.bonusValueLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
-    self.boBottomView.hidden =  [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ? NO : YES;
+//    if (self.resultDict[@"state"] &&  self.roleValue) { && self.roleValue == 8
+    self.bonusView.hidden = [self.resultDict[@"state"] integerValue] >= 3 ? NO : YES;
+    self.bonusLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3  ? NO : YES;
+    self.bonusValueLabel.hidden =  [self.resultDict[@"state"] integerValue] >= 3  ? NO : YES;
+    self.boBottomView.hidden =  [self.resultDict[@"state"] integerValue] >= 3 ? NO : YES;
 
-    if ( [self.resultDict[@"state"] integerValue] >= 3 && self.roleValue == 8 ) {
+    if ( [self.resultDict[@"state"] integerValue] >= 3 ) {
         self.bonusView.sd_layout.leftEqualToView(self.view).topSpaceToView(self.applyTimeView,0).heightIs(S_XRatioH(130.0f/3)).widthIs(WIDTH);
         self.bonusLabel.sd_layout.leftSpaceToView(self.bonusView, 70.0f/3).heightIs(S_XRatioH(130.0f/3)).widthIs(70.0f);
         self.bonusValueLabel.sd_layout.leftSpaceToView(self.bonusLabel, 10).rightSpaceToView(self.bonusView,70.f/3).heightIs(S_XRatioH(130.0f/3));

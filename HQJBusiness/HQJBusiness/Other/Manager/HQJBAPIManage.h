@@ -208,6 +208,8 @@ extern NSString *const HQJBBuinessSignInterface;
 extern NSString *const HQJBXdshopmsgInterface;
 ///商家升级利益命运共同体
 extern NSString *const HQJBShopInformationInterface;
+///企业基础信息
+extern NSString *const HQJBGetDetailByShopIdInterface;
 /// XD合同下载
 extern NSString *const HQJBDownloadPactInterface;
 /*_____________________________ XD商家奖励 接口________________________________________*/

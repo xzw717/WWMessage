@@ -608,8 +608,10 @@
             [RequestEngine HQJBusinessPOSTRequestDetailsUrl:url parameters:paraDict complete:^(NSDictionary *dic) {
                 @strongify(self);
                 if ([dic[@"resultCode"]integerValue] == 2100) {
+                    [self.navigationController popViewControllerAnimated:YES];
                     MyShopViewController *shopVC = [[MyShopViewController alloc]initWithShopid:dic[@"resultMsg"][@"id"]];
                     [self.navigationController pushViewController:shopVC animated:YES];
+                    
                 } else {
                     [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
 

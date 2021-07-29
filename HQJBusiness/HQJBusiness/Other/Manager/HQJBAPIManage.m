@@ -241,6 +241,8 @@ NSString *const HQJBRegisterAgreementListInterface = @"shopappH5/index.html#/reg
 NSString *const HQJBNewstoreListInterface = @"shopappH5/#/newstore";
 ///商家升级利益命运共同体
 NSString *const HQJBShopInformationInterface =  @"shopappH5/index.html#/shopInformation";
+///企业基础信息
+NSString *const HQJBGetDetailByShopIdInterface = @"XdShopAudit/getDetailByShopId.action";
 /// 根据城市名获取地区列表
 NSString *const HQJBQueryCityAreaInterface = @"shop/queryCityArea.action";
 /// 商家手机号注册

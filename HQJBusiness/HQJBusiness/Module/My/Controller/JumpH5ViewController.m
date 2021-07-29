@@ -274,7 +274,8 @@
             [ManagerEngine SVPAfter:self.resultDict[@"errdata"] complete:^{
                 [SVProgressHUD dismiss];
                 // 跳转信息填写H5页
-                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude]];
+            http://subtest.heqijia.net/XdShopAudit/getDetailByShopId.action?shopid=0f53ec90-e7ff-443d-9d82-2000fdb34f0a
+                [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=3&peugeotid=6",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,Mmobile]];
             }];
         }];
 
@@ -387,6 +388,11 @@
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
         [self.stateButton setTitle:@"签署合同" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
+
+    }
+    if (self.code == 1001){
+        [self.stateButton setTitle:@"审核失败" forState:UIControlStateNormal];
+        self.stateButton.backgroundColor = [UIColor grayColor];
 
     }
     if (self.code == 1001){
