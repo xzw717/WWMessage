@@ -7,10 +7,10 @@
 //
 
 #import "MessageListVC.h"
-
+#import "MessageListViewModel.h"
 @interface MessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *messageListTableView;
-
+@property (nonatomic, strong) MessageListViewModel *name;
 @end
 
 @implementation MessageListVC
