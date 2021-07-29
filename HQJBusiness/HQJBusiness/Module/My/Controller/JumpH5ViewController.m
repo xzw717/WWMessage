@@ -198,8 +198,8 @@
                 
             case 2://5 订单已生成，待付款，跳支付页准备付款
                 //跳转支付页
-                [self jumpPay];
-                
+                [self jumpPay:self.resultDict[@"orderdata"][@"orderid"]];
+
                 break;
                 
             case 5://第1份合同签署成功(去生成第2份合同)
@@ -228,10 +228,13 @@
 }
 - (void)createOreder{
     [XDDetailViewModel submitXDOrder:Shopid andType:@"0" andProid:@"6"  completion:^(XDPayModel *model) {
-        XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
-        payVC.payType = buyXD;
-        payVC.isMyShopPay = NO;
-        [self.navigationController pushViewController:payVC animated:YES];
+
+        [self jumpPay:model.orderid];
+
+//        XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+//        payVC.payType = buyXD;
+//        payVC.isMyShopPay = NO;
+//        [self.navigationController pushViewController:payVC animated:YES];
         
     }];
 }
@@ -256,7 +259,12 @@
         pvc.webUrlStr = self.signUrl;
 
     } else if ([self.stateButton.currentTitle isEqualToString:@"去支付"]) {
-        [self jumpPay];
+        if (self.code == 1003) {
+            [self createOreder];
+        } else {
+            [self jumpPay:self.resultDict[@"orderdata"][@"orderid"]];
+
+        }
         return;
     } else if ([self.stateButton.currentTitle isEqualToString:@"申请溯源"]) {
         [self handleXDState];
@@ -299,21 +307,22 @@
     [self.navigationController pushViewController:pvc animated:YES];
 
 }
-- (void)jumpPay{
+- (void)jumpPay:(NSString *)orderid{
+    [PayEngine payActionOutTradeNOStr:orderid buytype:registerXD];
 
-    XDPayModel *model = [[XDPayModel alloc]init];
-    model.orderid = self.resultDict[@"orderdata"][@"orderid"];
-    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
-    model.proid = self.resultDict[@"orderdata"][@"proid"];
-    model.proname = self.resultDict[@"orderdata"][@"proname"];
-    XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
-    payVC.payType = registerXD;
-    payVC.isMyShopPay = YES;
-    payVC.xdPayshopidString = Shopid;
-    payVC.xdPaylatitude = self.latitude;
-    payVC.xdPaylongitude = self.longitude;
-    payVC.xdPayroleValue = self.roleValue;
-    [self.navigationController pushViewController:payVC animated:YES];
+//    XDPayModel *model = [[XDPayModel alloc]init];
+//    model.orderid = self.resultDict[@"orderdata"][@"orderid"];
+//    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
+//    model.proid = self.resultDict[@"orderdata"][@"proid"];
+//    model.proname = self.resultDict[@"orderdata"][@"proname"];
+//    XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+//    payVC.payType = registerXD;
+//    payVC.isMyShopPay = YES;
+//    payVC.xdPayshopidString = Shopid;
+//    payVC.xdPaylatitude = self.latitude;
+//    payVC.xdPaylongitude = self.longitude;
+//    payVC.xdPayroleValue = self.roleValue;
+//    [self.navigationController pushViewController:payVC animated:YES];
 }
 - (void)requstState {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
