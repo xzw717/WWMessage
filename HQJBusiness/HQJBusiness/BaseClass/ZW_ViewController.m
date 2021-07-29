@@ -112,7 +112,7 @@
     
     [self.zwNavView addSubview:zw_rightOneButton];
     
-    zw_rightOneButton.sd_layout.rightSpaceToView(self.zwNavView, kEDGE).centerYIs(self.zwNavView.centerY_sd + 20 /2).heightIs(40).widthIs(40);
+    zw_rightOneButton.sd_layout.rightSpaceToView(self.zwNavView, kEDGE).centerYEqualToView(self.zwTitLabel).heightIs(40).widthIs(40);
     
     
 }
