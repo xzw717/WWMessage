@@ -46,14 +46,13 @@
 
 - (void)updateConstraints {
     [self.messageImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(NewProportion(42));
-        make.centerX.mas_equalTo(self);
+        make.center.mas_equalTo(self);
 //        make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
 
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.messageImageView.mas_right);
-        make.top.mas_equalTo(self.messageImageView.mas_top);
+        make.top.mas_equalTo(self.messageImageView.mas_top).mas_offset(-5);
         make.height.mas_equalTo(NewProportion(50));
     }];
     [super updateConstraints];
@@ -93,13 +92,13 @@
     if (!_messageLabel) {
         _messageLabel = [[MessageLabel alloc]init];
         _messageLabel.hidden = YES;
-        _messageLabel.textColor = [UIColor colorWithHexString:@"ff4949"];
+        _messageLabel.textColor = [UIColor whiteColor];
         _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.backgroundColor = [UIColor whiteColor];
+        _messageLabel.backgroundColor = [UIColor colorWithHexString:@"ff4949"];
         _messageLabel.layer.masksToBounds = YES;
         _messageLabel.font = [UIFont systemFontOfSize:NewProportion(36)];
         _messageLabel.layer.borderWidth = NewProportion(4); // 给图层添加背景色
-        _messageLabel.layer.borderColor = [UIColor colorWithHexString:@"ff4949"].CGColor;
+        _messageLabel.layer.borderColor = [UIColor whiteColor].CGColor;
         _messageLabel.layer.cornerRadius = NewProportion(25); // 将图层的边框设置为圆脚
         _messageLabel.layer.masksToBounds = YES; // 隐藏边界
     }

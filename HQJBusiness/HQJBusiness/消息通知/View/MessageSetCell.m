@@ -10,8 +10,6 @@
 
 @interface MessageSetCell ()
 @property (nonatomic, strong) UILabel *setTitleLabel;
-@property (nonatomic, strong) MessageBubbleView *titleImageView;
-
 @end
 @implementation MessageSetCell
 - (instancetype)initWithFrame:(CGRect)frame {

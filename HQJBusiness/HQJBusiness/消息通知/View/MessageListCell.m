@@ -18,14 +18,15 @@
 @property (nonatomic, strong) UIView *lineView;
 @end
 @implementation MessageListCell
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self messageListCell_addSubView];
         [self updateConstraintsIfNeeded];
     }
     return self;
 }
+
 - (void)setMessageListCellModel:(MessageListModel *)messageListCellModel {
     _messageListCellModel = messageListCellModel;
     self.subTitleLabel.text = messageListCellModel.subTitle;

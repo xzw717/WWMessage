@@ -27,7 +27,7 @@
 #import <AdSupport/AdSupport.h>
 #import "RewardSetViewController.h"
 #import "UMShareManager.h"
-#import "MyShopViewController.h"
+#import "MessageListVC.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
@@ -57,14 +57,14 @@
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 ////
-//    MyShopViewController *loginVC =[[MyShopViewController alloc]init];
-//       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
-//       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//       delegate.window.rootViewController = Nav;
+    MessageListVC *loginVC =[[MessageListVC alloc]init];
+       ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
+//       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApp lication].delegate;
+       delegate.window.rootViewController = Nav;
     
    
 
-//    return YES;
+    return YES;
     if ( MmberidStr == nil) {
         //
 

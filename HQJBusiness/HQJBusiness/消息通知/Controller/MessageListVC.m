@@ -8,9 +8,11 @@
 
 #import "MessageListVC.h"
 #import "MessageListViewModel.h"
+#import "MessageListCell.h"
+
 @interface MessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *messageListTableView;
-@property (nonatomic, strong) MessageListViewModel *name;
+@property (nonatomic, strong) MessageListViewModel *viewModel;
 @end
 
 @implementation MessageListVC
@@ -18,21 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.zw_title  = @"消息";
-    
+    [self.view addSubview:self.messageListTableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 4;
+        return self.viewModel.messageListModelArray.count;
  
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
-    
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
+ 
+    MessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MessageListCell class]) forIndexPath:indexPath];
+    cell.messageListCellModel = self.viewModel.messageListModelArray[indexPath.row];
     return cell;
     
     
@@ -48,12 +47,17 @@
         _messageListTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _messageListTableView.delegate = self;
         _messageListTableView.dataSource = self;
-        [_messageListTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_messageListTableView registerClass:[MessageListCell class] forCellReuseIdentifier:NSStringFromClass([MessageListCell class])];
         _messageListTableView.tableFooterView = [UIView new];
-        
+        _messageListTableView.rowHeight = NewProportion(230);
     }
     return _messageListTableView;
 }
 
-
+- (MessageListViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MessageListViewModel alloc]init];
+    }
+    return _viewModel;
+}
 @end
