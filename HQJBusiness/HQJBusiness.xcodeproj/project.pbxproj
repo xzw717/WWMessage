@@ -309,6 +309,8 @@
 		1F9C1C5A26B23DA1007E0067 /* UIColor+ColorConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5926B23DA1007E0067 /* UIColor+ColorConversion.m */; };
 		1F9C1C5D26B23E3F007E0067 /* MessageBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */; };
 		1F9C1C6026B2462A007E0067 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C5F26B2462A007E0067 /* MessageListCell.m */; };
+		1F9C1C6326B24DFD007E0067 /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6226B24DFD007E0067 /* MessageListModel.m */; };
+		1F9C1C6A26B24FE9007E0067 /* MessageListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6826B24FE9007E0067 /* MessageListViewModel.m */; };
 		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
 		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
@@ -1109,6 +1111,10 @@
 		1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleView.m; sourceTree = "<group>"; };
 		1F9C1C5E26B2462A007E0067 /* MessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
 		1F9C1C5F26B2462A007E0067 /* MessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
+		1F9C1C6126B24DFD007E0067 /* MessageListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListModel.h; sourceTree = "<group>"; };
+		1F9C1C6226B24DFD007E0067 /* MessageListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListModel.m; sourceTree = "<group>"; };
+		1F9C1C6826B24FE9007E0067 /* MessageListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListViewModel.m; sourceTree = "<group>"; };
+		1F9C1C6926B24FE9007E0067 /* MessageListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListViewModel.h; sourceTree = "<group>"; };
 		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
 		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
 		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
@@ -2664,9 +2670,19 @@
 			path = CustomNav;
 			sourceTree = "<group>";
 		};
+		1F9C1C6726B24FE9007E0067 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F9C1C6926B24FE9007E0067 /* MessageListViewModel.h */,
+				1F9C1C6826B24FE9007E0067 /* MessageListViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1FAD11AE26B1348200579E64 /* 消息通知 */ = {
 			isa = PBXGroup;
 			children = (
+				1F9C1C6726B24FE9007E0067 /* ViewModel */,
 				1FAD11B126B1363300579E64 /* Model */,
 				1FAD11B026B1349700579E64 /* Controller */,
 				1FAD11AF26B1348F00579E64 /* View */,
@@ -2701,6 +2717,8 @@
 		1FAD11B126B1363300579E64 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F9C1C6126B24DFD007E0067 /* MessageListModel.h */,
+				1F9C1C6226B24DFD007E0067 /* MessageListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3579,6 +3597,7 @@
 				1FB795B924ADDC5800D4CC40 /* CityListViewController.m in Sources */,
 				0585FE8C249712E600CD7280 /* ZGProgressHUD+NJ.m in Sources */,
 				1F034A64249879A800214E26 /* UpgradeManagementViewController.m in Sources */,
+				1F9C1C6A26B24FE9007E0067 /* MessageListViewModel.m in Sources */,
 				1F6798931DFE863000455561 /* MyTableViewCell.m in Sources */,
 				1FF2F9E524D161D5003A2996 /* UITextField+IndexPath.m in Sources */,
 				1FB795B324ADDC5800D4CC40 /* PinyinFormatter.m in Sources */,
@@ -3897,6 +3916,7 @@
 				1FD64FAA1E0A78E9005D43F2 /* SetViewController.m in Sources */,
 				1F960D401DFE3E51003E3D17 /* UITextField+BlocksKit.m in Sources */,
 				1FC9F89124AD82BB0037352A /* ChangePswViewController.m in Sources */,
+				1F9C1C6326B24DFD007E0067 /* MessageListModel.m in Sources */,
 				1F967B1F1E0133DF00F1DD7C /* BonusExchangeViewController.m in Sources */,
 				1FF2F9E824D1738E003A2996 /* RoleSelectView.m in Sources */,
 				1F7ADBD524E516F4009079F2 /* SetProportionViewModel.m in Sources */,

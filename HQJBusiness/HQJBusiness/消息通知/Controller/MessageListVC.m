@@ -10,6 +10,7 @@
 
 @interface MessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *messageListTableView;
+
 @end
 
 @implementation MessageListVC

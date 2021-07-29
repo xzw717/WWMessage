@@ -7,11 +7,12 @@
 //
 
 #import "ZW_TableViewCell.h"
+#import "MessageListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageListCell : ZW_TableViewCell
-
+@property (nonatomic, strong) MessageListModel *messageListCellModel;
 @end
 
 NS_ASSUME_NONNULL_END
