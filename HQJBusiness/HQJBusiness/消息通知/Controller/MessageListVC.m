@@ -32,28 +32,29 @@
 }
 - (void)more:(UIButton *)btn {
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
-        configuration.menuWidth = 120.f;
-        configuration.menuIconMargin = 10.f;
-        configuration.menuTextMargin = 10.f;
-        configuration.textAlignment = NSTextAlignmentLeft;
-        @weakify(self);
-        [FTPopOverMenu showForSender:btn withMenuArray:@[@"标记已读",
-                                                            @"消息设置"] imageArray:@[@"icon_markread",
-                                                                                @"icon_setup"] doneBlock:^(NSInteger selectedIndex) {
+    configuration.menuWidth = NewProportion(385.f);
+    configuration.imageSize = CGSizeMake(19.5f, 19.5f);
+    configuration.menuTextMargin = NewProportion(28.f);
+    configuration.menuIconMargin = NewProportion(54.f);
+    configuration.textAlignment = NSTextAlignmentLeft;
+    @weakify(self);
+    [FTPopOverMenu showForSender:btn withMenuArray:@[@"标记已读",
+                                                     @"消息设置"] imageArray:@[@"icon_markread",
+                                                                           @"icon_message_setup"] configuration:configuration doneBlock:^(NSInteger selectedIndex) {
+        
+    } dismissBlock:^{
+        
+    }];
     
-    
-        } dismissBlock:^{
-    
-        }];
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return self.viewModel.messageListModelArray.count;
- 
+    return self.viewModel.messageListModelArray.count;
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
+    
     MessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MessageListCell class]) forIndexPath:indexPath];
     cell.messageListCellModel = self.viewModel.messageListModelArray[indexPath.row];
     return cell;
