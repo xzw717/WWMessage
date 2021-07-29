@@ -6,11 +6,11 @@
 //  Copyright © 2021 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ZW_ViewController.h"
+#import "MessageBasisVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MessageListVC : ZW_ViewController
+@interface MessageListVC : MessageBasisVC
 
 @end
 

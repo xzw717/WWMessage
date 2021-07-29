@@ -20,10 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic,copy)NSString *messageTitle;
-/**
- 导航及返回时的风格
- */
-@property (nonatomic,assign) NavBackStyle backStyle;
+
 
 
 
@@ -48,28 +45,18 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  右边第一个按钮
  */
-@property (nonatomic,strong) UIButton *messageTightOneButton;
+@property (nonatomic,strong) UIButton *messageRightOneButton;
 
 
 /**
  右边第二个按钮
  */
-@property (nonatomic,strong) UIButton *zw_rightTwoButton;
+@property (nonatomic,strong) UIButton *messageRightTwoButton;
 /**
  底部线条
 */
 @property (nonatomic, strong) UIView *bottomLineView;
 
-/**
- 直接 pop 到某个控制器
- */
--(void)popViews;
-
-
-
-/// 设置导航栏背景色
-- (void)setNavBackgroundColor:(UIColor *)color ;
-- (void)setNavBackgroundColor:(UIColor *)color alpha:(CGFloat)apl;
 @end
 
 NS_ASSUME_NONNULL_END

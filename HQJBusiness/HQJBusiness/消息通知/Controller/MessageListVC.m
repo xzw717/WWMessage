@@ -20,14 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.zw_title  = @"消息";
-    self.zwNavView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
-    [self.zwBackButton setImage:[UIImage imageNamed:@"return_black"] forState:UIControlStateNormal];
+    self.messageTitle  = @"消息";
+ 
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setImage:[UIImage imageNamed:@"icon_more"] forState:UIControlStateNormal];
     rightBtn.bounds = CGRectMake(0, 0, 60, 44);
     [rightBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
-    self.zw_rightOneButton = rightBtn;
+    self.messageRightOneButton = rightBtn;
     [self.view addSubview:self.messageListTableView];
 }
 - (void)more:(UIButton *)btn {
