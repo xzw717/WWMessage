@@ -64,13 +64,13 @@
     [[[HQJLocationManager shareInstance]getLocation] setLocation:^(CGFloat lat, CGFloat lon, NSString * _Nonnull cityName) {
         @strongify(self);
         [SVProgressHUD dismiss];
-
+        
         self.latitude = lat;
         self.longitude = lon;
-      
+        
     }];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
-
+    
 }
 #pragma mark --- 支付宝支付结果
 -(void)alipayResults:(NSNotification *)infos {
@@ -83,7 +83,7 @@
         }];
         
     } else {
-
+        
         [SVProgressHUD showErrorWithStatus:stateStr];
     }
     
@@ -96,8 +96,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self requstState];
-
-
+    
+    
 }
 /// XD 商家独立入驻
 - (void)requstXD {
@@ -106,72 +106,72 @@
         if (self.code != 1004) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
                 [self.stateButton setTitle:[self getButtonString] forState:UIControlStateNormal];
-
+                
             });
         }
-    
-
+        
+        
     }];
 }
 - (NSString *)getButtonString{
     if (self.code != 6666) {
-      switch ([self.resultDict[@"state"] integerValue]) {
-            
-            //1生成订单
-            //2代付款
-            //3付款成功(1.生成第一份合同2.去完善信息（快捷入驻）)
-            //4第一份合同待签署(去签属合同)
-            //5第-份合同签署成功(去生成第二-份合同)
-            //6第一份合同签署失败(跳3)
-            //7待签署(去签署第二份合同)
-            //8签署成功(等待待审核)
-            //9签署失败(跳5 )
-            //10审核成功
-            //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
-        case -1://-1 不可用
-            return @"不可申请";
-            
-        case 0://0 信息未完善
-              return self.code == 0 ? @"待审核" : @"立即加入";
-            
-        case 3://1 信息已完善，去生成第一份合同
-            if ( self.roleValue == 7) {
+        switch ([self.resultDict[@"state"] integerValue]) {
+                
+                //1生成订单
+                //2代付款
+                //3付款成功(1.生成第一份合同2.去完善信息（快捷入驻）)
+                //4第一份合同待签署(去签属合同)
+                //5第-份合同签署成功(去生成第二-份合同)
+                //6第一份合同签署失败(跳3)
+                //7待签署(去签署第二份合同)
+                //8签署成功(等待待审核)
+                //9签署失败(跳5 )
+                //10审核成功
+                //11审核失败(修改信息,需要修改合同就跳5 ,或者跳8 )
+            case -1://-1 不可用
+                return @"不可申请";
+                
+            case 0://0 信息未完善
+                return self.code == 0 ? @"待审核" : @"立即加入";
+                
+            case 3://1 信息已完善，去生成第一份合同
+                if ( self.roleValue == 7) {
+                    return @"签署新商业合同";
+                }
+                if ( self.roleValue == 8) {
+                    return @"立即加入";
+                }
+                
+            case 6:
                 return @"签署新商业合同";
-            }
-            if ( self.roleValue == 8) {
-                return @"立即加入";
-            }
-            
-        case 6:
-            return @"签署新商业合同";
-        case 2:
-        case 1://3 第一份合同签署完成，去生成订单
-            return @"立即支付";
-            
-        case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
-            return @"签署新商业合同";
-            
-        case 8://8 第二份合同签署完成，等待审核
-            return @"审核中";
-        case 5:
-        case 7:
-        case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
-            return @"签署国物溯源协议";
-        case 10://10审核成功，流程结束
-            return @"审核成功";
-            
-        case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
-            return @"审核失败";
-        case 12://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
-            if ( self.code  == 0 ) {
-                return  @"待实名认证";
-
-            } else {
+            case 2:
+            case 1://3 第一份合同签署完成，去生成订单
+                return @"立即支付";
+                
+            case 4://4 第一份合同签署失败，重新生成第一份合同（同步骤1）
                 return @"签署新商业合同";
-
-            }
-
-    }
+                
+            case 8://8 第二份合同签署完成，等待审核
+                return @"审核中";
+            case 5:
+            case 7:
+            case 9://9 第二份合同签署失败，重新生成第二份合同（同步骤6）
+                return @"签署国物溯源协议";
+            case 10://10审核成功，流程结束
+                return @"审核成功";
+                
+            case 11://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
+                return @"审核失败";
+            case 12://11 审核失败，修改信息 宗海兰：修改成审核失败，跳出原因
+                if ( self.code  == 0 ) {
+                    return  @"待实名认证";
+                    
+                } else {
+                    return @"签署新商业合同";
+                    
+                }
+                
+        }
         
     } else {
         return  @"待实名认证";
@@ -201,7 +201,7 @@
             case 0://0 信息未完善
                 //跳转信息填写H5页
                 [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&mobile=%@&type=1&peugeotid=6",HQJBH5UpDataDomain,HQJBXdshopmsgInterface,Shopid,Mmobile]];
-//                http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg
+                //                http://statics.wuwuditu.com/shopappH5/index.html#/xdshopmsg
                 break;
                 
             case 3://1 付款成功，去生成第一份合同
@@ -224,7 +224,7 @@
             case 2://5 订单已生成，待付款，跳支付页准备付款
                 //跳转支付页
                 [self jumpPay:self.resultDict[@"orderdata"][@"orderid"]];
-
+                
                 break;
                 
             case 5://第1份合同签署成功(去生成第2份合同)
@@ -253,13 +253,13 @@
 }
 - (void)createOreder{
     [XDDetailViewModel submitXDOrder:Shopid andType:@"1" andProid:@"6"  completion:^(XDPayModel *model) {
-
+        
         [self jumpPay:model.orderid];
-
-//        XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
-//        payVC.payType = buyXD;
-//        payVC.isMyShopPay = NO;
-//        [self.navigationController pushViewController:payVC animated:YES];
+        
+        //        XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+        //        payVC.payType = buyXD;
+        //        payVC.isMyShopPay = NO;
+        //        [self.navigationController pushViewController:payVC animated:YES];
         
     }];
 }
@@ -278,32 +278,35 @@
     
 }
 - (void)clickBtn {
-  
+    
     if ([self.stateButton.currentTitle isEqualToString:@"签署合同"]) {
-
+        
         [self jumpH5:self.signUrl];
     } else if ([self.stateButton.currentTitle isEqualToString:@"去支付"]) {
         if (self.code == 1003) {
             [self createOreder];
         } else {
             [self jumpPay:self.coisorderid];
-
+            
         }
         return;
     } else if ([self.stateButton.currentTitle isEqualToString:@"申请溯源"]) {
-        [self handleXDState];
-
+        [XDDetailViewModel getXDShopState:Shopid andPeugeotid:@"6" completion:^(id  _Nonnull dict) {
+            self.resultDict = dict;
+            [self handleXDState];
+            
+        }];
         return;
     }  else if ([self.stateButton.currentTitle isEqualToString:@"立即加入"]) {
         if ([Ttypeid integerValue] == 19) {
             [self handleXDState];
             return;
-
+            
         } else {
             [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude]];
-
+            
         }
-  
+        
     } else if ([self.stateButton.currentTitle isEqualToString:@"审核失败"] && self.coisrole == 9) {
         @weakify(self);
         [HintView enrichSubviews:[NSString stringWithFormat:@"%@",self.reason] andSureTitle:@"修改" cancelTitle:@"取消" sureAction:^{
@@ -321,42 +324,42 @@
                 
             }];
         }];
-
-//        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
+        
+        //        pvc.webUrlStr = [NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBShopInformationInterface,Shopid,self.latitude,self.longitude];
         return;
     } else if ([self.stateButton.currentTitle isEqualToString:@"当前有其他流程未完成"]){
         [self. navigationController popViewControllerAnimated:YES];
         return;
     } else if ([self.stateButton.currentTitle isEqualToString:@"待实名认证"] && self.coisrole == 9) {
         [self jumpH5:[NSString stringWithFormat:@"%@%@?shopid=%@&lat=%f&lng=%f",HQJBH5UpDataDomain,HQJBNewstoreListInterface,Shopid,self.latitude,self.longitude]];
-
+        
     } else {
-      
-         
+        
+        
         [self handleXDState];
-
-    
-
-
+        
+        
+        
+        
     }
-
+    
 }
 - (void)jumpPay:(NSString *)orderid{
     [PayEngine payActionOutTradeNOStr:orderid buytype:registerXD];
-
-//    XDPayModel *model = [[XDPayModel alloc]init];
-//    model.orderid = self.resultDict[@"orderdata"][@"orderid"];
-//    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
-//    model.proid = self.resultDict[@"orderdata"][@"proid"];
-//    model.proname = self.resultDict[@"orderdata"][@"proname"];
-//    XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
-//    payVC.payType = registerXD;
-//    payVC.isMyShopPay = YES;
-//    payVC.xdPayshopidString = Shopid;
-//    payVC.xdPaylatitude = self.latitude;
-//    payVC.xdPaylongitude = self.longitude;
-//    payVC.xdPayroleValue = self.roleValue;
-//    [self.navigationController pushViewController:payVC animated:YES];
+    
+    //    XDPayModel *model = [[XDPayModel alloc]init];
+    //    model.orderid = self.resultDict[@"orderdata"][@"orderid"];
+    //    model.ordermoney = self.resultDict[@"orderdata"][@"ordermoney"];
+    //    model.proid = self.resultDict[@"orderdata"][@"proid"];
+    //    model.proname = self.resultDict[@"orderdata"][@"proname"];
+    //    XDPayViewController *payVC = [[XDPayViewController alloc]initWithXDPayModel:model];
+    //    payVC.payType = registerXD;
+    //    payVC.isMyShopPay = YES;
+    //    payVC.xdPayshopidString = Shopid;
+    //    payVC.xdPaylatitude = self.latitude;
+    //    payVC.xdPaylongitude = self.longitude;
+    //    payVC.xdPayroleValue = self.roleValue;
+    //    [self.navigationController pushViewController:payVC animated:YES];
 }
 - (void)requstState {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
@@ -369,39 +372,39 @@
             self.price = [dic[@"resultMsg"][@"price"] floatValue];
             self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)) ,dispatch_get_main_queue() , ^{
-//                [self layoutTheSubViews];
-
+                //                [self layoutTheSubViews];
+                
             });
             if (![[NSUserDefaults standardUserDefaults] objectForKey:@"shopid"]) {
-                  [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
+                [[NSUserDefaults standardUserDefaults]  setObject:dic[@"resultMsg"][@"shopid"] ? dic[@"resultMsg"][@"shopid"] : @"" forKey:@"shopid"];
             }
             if (self.coisrole == 9) {
-                if (self.code == 1000) {
+                if ([Ttypeid integerValue] == 19) {
                     [self requstXD];
-
-                } else {
+                    
+                }  else {
                     [self setState:dic];
-
+                    
                 }
                 
             } else if (self.code == 1000 && self.xdstate == 0 ) {
                 [self.stateButton setTitle:@"立即加入" forState:UIControlStateNormal];
                 self.stateButton.backgroundColor = DefaultAPPColor;
             } else {
-                                
+                
                 self.stateButton.enabled = NO;
                 self.stateButton.backgroundColor = [UIColor grayColor];
                 [self.stateButton setTitle:@"当前有其他流程未完成" forState:UIControlStateNormal];
             }
-               
+            
             self.introduceLabel.hidden = [Ttypeid integerValue] == 19  ? YES : NO;
             self.introduceImageView.hidden = !self.introduceLabel.hidden;
-                
-//            if (self.code == -1 || self.code == 1000) {
-//
-//
-//            }
-          
+            
+            //            if (self.code == -1 || self.code == 1000) {
+            //
+            //
+            //            }
+            
         } else {
             [SVProgressHUD showErrorWithStatus:@"加载失败，请稍候重试"];
         }
@@ -415,63 +418,63 @@
     if (self.code == 1000) {
         if ([Ttypeid integerValue] == 19) {
             [self.stateButton setTitle:@"申请溯源" forState:UIControlStateNormal];
-
+            
         }
         if ([Ttypeid integerValue] == 20) {
             [self.stateButton setTitle:@"已完成" forState:UIControlStateNormal];
-
+            
         }
         self.stateButton.backgroundColor = DefaultAPPColor;
     }
     if ( self.code == 0 ) {
         [self.stateButton setTitle:@"待审核" forState:UIControlStateNormal];
-
+        
     }
     if ( self.code == 1004 || self.code == 1003 ) {
         [self.stateButton setTitle:@"去支付" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
         self.coisorderid = dic[@"resultMsg"][@"coisorderid"];
-
+        
     }
     
     if ( self.code == 9999 ) {
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
         [self.stateButton setTitle:@"签署合同" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
-
+        
     }
     if ( self.code == 6666 ) {
         [self.stateButton setTitle:@"待实名认证" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = DefaultAPPColor;
-
+        
     }
     if (self.code == 1001){
         [self.stateButton setTitle:@"审核失败" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = [UIColor grayColor];
-
+        
     }
     if (self.code == 1001){
         [self.stateButton setTitle:@"审核失败" forState:UIControlStateNormal];
         self.stateButton.backgroundColor = [UIColor grayColor];
-
+        
     }
 }
 
 - (void)addviews {
     [self.view addSubview:self.bgView];
     [self.bgView addSubview:self.introduceLabel];
-
+    
     [self.bgView addSubview:self.introduceImageView];
     [self.view addSubview:self.stateButton];
-
-
+    
+    
 }
 - (void)layoutViews {
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(NavigationControllerHeight);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.stateButton.mas_top).mas_offset(-20);
-
+        
     }];
     [self.introduceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(WIDTH - 30.f);
@@ -490,7 +493,7 @@
         make.height.mas_equalTo(44.f);
     }];
     
- 
+    
 }
 - (UIButton *)stateButton {
     if (!_stateButton) {
