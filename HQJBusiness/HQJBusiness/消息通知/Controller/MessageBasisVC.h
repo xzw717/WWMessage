@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define  Message_WIDTH   [[UIScreen mainScreen] bounds].size.width
+#define  Message_HEIGHT  [[UIScreen mainScreen] bounds].size.height
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageBasisVC : UIViewController

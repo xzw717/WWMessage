@@ -6,10 +6,19 @@
 //  Copyright © 2021 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ZW_TableViewCell.h"
+#import "MessageBasisCell.h"
 NS_ASSUME_NONNULL_BEGIN
+@protocol MessageSetDelegate <NSObject>
 
-@interface MessageSetCell : ZW_TableViewCell
+- (void)returnTitle:(NSString *)title
+        switchState:(BOOL)state;
+
+@end
+@interface MessageSetCell : MessageBasisCell
+@property (nonatomic, strong) id <MessageSetDelegate>delegate;
+
+- (void)titleContent:(NSString *)str
+         switchState:(BOOL)state;
 @end
 
 NS_ASSUME_NONNULL_END

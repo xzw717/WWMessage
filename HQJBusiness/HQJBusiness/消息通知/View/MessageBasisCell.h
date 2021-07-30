@@ -1,16 +1,16 @@
 //
-//  MessageSetViewController.h
+//  MessageBasisCell.h
 //  HQJBusiness
 //
-//  Created by Ethan on 2021/7/28.
+//  Created by Ethan on 2021/7/30.
 //  Copyright © 2021 Fujian first time iot technology investment co., LTD. All rights reserved.
 //
 
-#import "ZW_ViewController.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MessageSetViewController : ZW_ViewController
+@interface MessageBasisCell : UITableViewCell
 
 @end
 

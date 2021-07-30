@@ -312,6 +312,10 @@
 		1F9C1C6326B24DFD007E0067 /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6226B24DFD007E0067 /* MessageListModel.m */; };
 		1F9C1C6A26B24FE9007E0067 /* MessageListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6826B24FE9007E0067 /* MessageListViewModel.m */; };
 		1F9C1C6D26B29A2E007E0067 /* MessageBasisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6C26B29A2E007E0067 /* MessageBasisVC.m */; };
+		1F9C1C7026B3914E007E0067 /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C6F26B3914E007E0067 /* MessageVC.m */; };
+		1F9C1C7326B39AD8007E0067 /* MessageSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7226B39AD8007E0067 /* MessageSetVC.m */; };
+		1F9C1C7626B39BD4007E0067 /* MessageBasisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */; };
+		1F9C1C7926B3A7E2007E0067 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7826B3A7E2007E0067 /* MessageCell.m */; };
 		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
 		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
@@ -321,7 +325,6 @@
 		1FA6D5A41F99949E0083E0A6 /* PaymentCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A31F99949E0083E0A6 /* PaymentCodeModel.m */; };
 		1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */; };
 		1FA8915C1FD15077003D2AD0 /* AlreadyVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8915B1FD15077003D2AD0 /* AlreadyVerificationVC.m */; };
-		1FAD11B426B136B200579E64 /* MessageSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD11B326B136B200579E64 /* MessageSetViewController.m */; };
 		1FAD11B726B1379E00579E64 /* MessageSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD11B626B1379E00579E64 /* MessageSetCell.m */; };
 		1FAF236624BDA22B0042394B /* StoreInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAF236524BDA22B0042394B /* StoreInfoModel.m */; };
 		1FAF236924BDA2830042394B /* StoreInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAF236824BDA2830042394B /* StoreInfoViewModel.m */; };
@@ -1118,6 +1121,14 @@
 		1F9C1C6926B24FE9007E0067 /* MessageListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListViewModel.h; sourceTree = "<group>"; };
 		1F9C1C6B26B29A2E007E0067 /* MessageBasisVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBasisVC.h; sourceTree = "<group>"; };
 		1F9C1C6C26B29A2E007E0067 /* MessageBasisVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBasisVC.m; sourceTree = "<group>"; };
+		1F9C1C6E26B3914E007E0067 /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
+		1F9C1C6F26B3914E007E0067 /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
+		1F9C1C7126B39AD8007E0067 /* MessageSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSetVC.h; sourceTree = "<group>"; };
+		1F9C1C7226B39AD8007E0067 /* MessageSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageSetVC.m; sourceTree = "<group>"; };
+		1F9C1C7426B39BD4007E0067 /* MessageBasisCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBasisCell.h; sourceTree = "<group>"; };
+		1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBasisCell.m; sourceTree = "<group>"; };
+		1F9C1C7726B3A7E2007E0067 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		1F9C1C7826B3A7E2007E0067 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
 		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
 		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
@@ -1136,8 +1147,6 @@
 		1FA6D5A61F99971D0083E0A6 /* PaymentCodeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentCodeViewModel.m; sourceTree = "<group>"; };
 		1FA8915A1FD15077003D2AD0 /* AlreadyVerificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AlreadyVerificationVC.h; path = ChildVC/AlreadyVerificationVC.h; sourceTree = "<group>"; };
 		1FA8915B1FD15077003D2AD0 /* AlreadyVerificationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AlreadyVerificationVC.m; path = ChildVC/AlreadyVerificationVC.m; sourceTree = "<group>"; };
-		1FAD11B226B136B200579E64 /* MessageSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSetViewController.h; sourceTree = "<group>"; };
-		1FAD11B326B136B200579E64 /* MessageSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageSetViewController.m; sourceTree = "<group>"; };
 		1FAD11B526B1379E00579E64 /* MessageSetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageSetCell.h; sourceTree = "<group>"; };
 		1FAD11B626B1379E00579E64 /* MessageSetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageSetCell.m; sourceTree = "<group>"; };
 		1FAF236424BDA22B0042394B /* StoreInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInfoModel.h; sourceTree = "<group>"; };
@@ -2702,6 +2711,10 @@
 				1F9C1C5C26B23E3F007E0067 /* MessageBubbleView.m */,
 				1F9C1C5E26B2462A007E0067 /* MessageListCell.h */,
 				1F9C1C5F26B2462A007E0067 /* MessageListCell.m */,
+				1F9C1C7426B39BD4007E0067 /* MessageBasisCell.h */,
+				1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */,
+				1F9C1C7726B3A7E2007E0067 /* MessageCell.h */,
+				1F9C1C7826B3A7E2007E0067 /* MessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2709,12 +2722,14 @@
 		1FAD11B026B1349700579E64 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1FAD11B226B136B200579E64 /* MessageSetViewController.h */,
-				1FAD11B326B136B200579E64 /* MessageSetViewController.m */,
 				1F9C1C5526B23AAF007E0067 /* MessageListVC.h */,
 				1F9C1C5626B23AAF007E0067 /* MessageListVC.m */,
 				1F9C1C6B26B29A2E007E0067 /* MessageBasisVC.h */,
 				1F9C1C6C26B29A2E007E0067 /* MessageBasisVC.m */,
+				1F9C1C6E26B3914E007E0067 /* MessageVC.h */,
+				1F9C1C6F26B3914E007E0067 /* MessageVC.m */,
+				1F9C1C7126B39AD8007E0067 /* MessageSetVC.h */,
+				1F9C1C7226B39AD8007E0067 /* MessageSetVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3678,6 +3693,7 @@
 				1F960D2F1DFE3E51003E3D17 /* A2DynamicDelegate.m in Sources */,
 				1F8E47091E02709900D61C92 /* BuyZHViewController.m in Sources */,
 				1F960D2A1DFE3E51003E3D17 /* NSObject+BKBlockObservation.m in Sources */,
+				1F9C1C7026B3914E007E0067 /* MessageVC.m in Sources */,
 				1FB2E90F2669F9EB005EE3F1 /* ShopFirstHeaderCollectionReusableView.m in Sources */,
 				1F6DA2DE1F6BB4E900BF8476 /* DeccaView.m in Sources */,
 				0577A77225E73905002C44D7 /* EditUnionActivityViewController.m in Sources */,
@@ -3706,6 +3722,7 @@
 				1F6DA2DB1F6BB2C700BF8476 /* DeccaDownloadViewController.m in Sources */,
 				1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */,
 				1F6C85D623CEBE78005F3DB8 /* OrderDetailsTwoCell.m in Sources */,
+				1F9C1C7926B3A7E2007E0067 /* MessageCell.m in Sources */,
 				1FF2F9C224CFC1EB003A2996 /* StaffdetailsListView.m in Sources */,
 				1F1B21C31DFF9D6E00021AB2 /* NoticeView.m in Sources */,
 				055996BA2510BAD8006C9716 /* ScoreGiftViewModel.m in Sources */,
@@ -3810,6 +3827,7 @@
 				1F960C9C1DFE3D06003E3D17 /* DetailViewController.m in Sources */,
 				1FF2F9CB24CFC542003A2996 /* RewardsRecordViewController.m in Sources */,
 				1F046D261E090DAA006D6EB2 /* UIView+SGExtension.m in Sources */,
+				1F9C1C7326B39AD8007E0067 /* MessageSetVC.m in Sources */,
 				1FF2F9E224D114D8003A2996 /* SelectMenuView.m in Sources */,
 				1F9C1C5726B23AAF007E0067 /* MessageListVC.m in Sources */,
 				1FDF4CD623B1E7420060F485 /* APAuthInfo.m in Sources */,
@@ -3848,6 +3866,7 @@
 				0577A75D25CFD84E002C44D7 /* AddUnionSubCell.m in Sources */,
 				1F20CB351E07876000FC91B3 /* CALScanQRCodeViewController.m in Sources */,
 				1FDB968426A7EC8200E2D74B /* InLogicManager.m in Sources */,
+				1F9C1C7626B39BD4007E0067 /* MessageBasisCell.m in Sources */,
 				1F7ADB8824E3733F009079F2 /* UMShareManager.m in Sources */,
 				0577A73C25C3FFBE002C44D7 /* AddUnionActivityViewController.m in Sources */,
 				1FF2F9DC24D016D4003A2996 /* AddStaffViewController.m in Sources */,
@@ -3899,7 +3918,6 @@
 				1F52A90424EA7AE400FF8110 /* SelectTimeView.m in Sources */,
 				1FBD3FCE246BE4E5000650EB /* BasicInformationViewController.m in Sources */,
 				0577A73925C3A740002C44D7 /* UnionActivityListModel.m in Sources */,
-				1FAD11B426B136B200579E64 /* MessageSetViewController.m in Sources */,
 				1FE83D821F6A309B008F0ED6 /* OrderVerificationModel.m in Sources */,
 				1F1B21CF1DFFD6E700021AB2 /* DealViewController.m in Sources */,
 				1F12C9DA1E0B5AA100CF6CB7 /* ZW_imageView.m in Sources */,
