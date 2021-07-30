@@ -316,6 +316,8 @@
 		1F9C1C7326B39AD8007E0067 /* MessageSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7226B39AD8007E0067 /* MessageSetVC.m */; };
 		1F9C1C7626B39BD4007E0067 /* MessageBasisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */; };
 		1F9C1C7926B3A7E2007E0067 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7826B3A7E2007E0067 /* MessageCell.m */; };
+		1F9C1C7C26B3CE54007E0067 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7B26B3CE54007E0067 /* MessageModel.m */; };
+		1F9C1C7F26B3CED6007E0067 /* MessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7E26B3CED6007E0067 /* MessageViewModel.m */; };
 		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
 		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
@@ -1129,6 +1131,10 @@
 		1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageBasisCell.m; sourceTree = "<group>"; };
 		1F9C1C7726B3A7E2007E0067 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		1F9C1C7826B3A7E2007E0067 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		1F9C1C7A26B3CE54007E0067 /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		1F9C1C7B26B3CE54007E0067 /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		1F9C1C7D26B3CED6007E0067 /* MessageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewModel.h; sourceTree = "<group>"; };
+		1F9C1C7E26B3CED6007E0067 /* MessageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewModel.m; sourceTree = "<group>"; };
 		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
 		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
 		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
@@ -2687,6 +2693,8 @@
 			children = (
 				1F9C1C6926B24FE9007E0067 /* MessageListViewModel.h */,
 				1F9C1C6826B24FE9007E0067 /* MessageListViewModel.m */,
+				1F9C1C7D26B3CED6007E0067 /* MessageViewModel.h */,
+				1F9C1C7E26B3CED6007E0067 /* MessageViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2739,6 +2747,8 @@
 			children = (
 				1F9C1C6126B24DFD007E0067 /* MessageListModel.h */,
 				1F9C1C6226B24DFD007E0067 /* MessageListModel.m */,
+				1F9C1C7A26B3CE54007E0067 /* MessageModel.h */,
+				1F9C1C7B26B3CE54007E0067 /* MessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3745,6 +3755,7 @@
 				1F607DF824AB23C20011915E /* XDPayModel.m in Sources */,
 				1F402914229FBA2E0014769B /* ProgressShow.m in Sources */,
 				1FB2E92626709126005EE3F1 /* AccountSecurityViewController.m in Sources */,
+				1F9C1C7C26B3CE54007E0067 /* MessageModel.m in Sources */,
 				1FA6D5A71F99971D0083E0A6 /* PaymentCodeViewModel.m in Sources */,
 				1F607E1A24AB2B7E0011915E /* ContactModel.m in Sources */,
 				1F960D371DFE3E51003E3D17 /* QLPreviewController+BlocksKit.m in Sources */,
@@ -3906,6 +3917,7 @@
 				1F402912229FBA260014769B /* BlueToothVC.m in Sources */,
 				0577A75125CA800E002C44D7 /* AddUnionSelectCell.m in Sources */,
 				1F6E10E9249B100000BEDB72 /* NewWithdrawTableViewCell.m in Sources */,
+				1F9C1C7F26B3CED6007E0067 /* MessageViewModel.m in Sources */,
 				1FA611C024CE849A0097E02E /* MemberStaffListViewController.m in Sources */,
 				1F960D3E1DFE3E51003E3D17 /* UIImagePickerController+BlocksKit.m in Sources */,
 				1FB9050024EF62E100FB848D /* HQJLocationManager.m in Sources */,

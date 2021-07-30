@@ -28,6 +28,7 @@
 #import "RewardSetViewController.h"
 #import "UMShareManager.h"
 #import "MessageSetVC.h"
+#import "MessageVC.h"
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
 @property (nonatomic, strong) RemotePushOrderModel *pushModel;
@@ -57,7 +58,7 @@
     [[AppVersionManager sharedInstance] isUpdataApp];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 ////
-    MessageSetVC *loginVC =[[MessageSetVC alloc]init];
+    MessageVC *loginVC =[[MessageVC alloc]init];
        ZWNavigationController *Nav= [[ZWNavigationController alloc]initWithRootViewController:loginVC];
 //       AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApp lication].delegate;
        delegate.window.rootViewController = Nav;

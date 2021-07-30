@@ -7,9 +7,11 @@
 //
 
 #import "MessageVC.h"
-
+#import "MessageViewModel.h"
+#import "MessageCell.h"
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *messageTableView;
+@property (nonatomic, strong) MessageViewModel *viewModel;
 @end
 
 @implementation MessageVC
@@ -23,22 +25,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return 3;
+        return self.viewModel.messageModelArray.count;
   
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
-    
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MessageCell class]) forIndexPath:indexPath];
+    cell.model = self.viewModel.messageModelArray[indexPath.row];
     return cell;
-    
-    
-    
-    
-    
+   
 }
 
 - (UITableView *)messageTableView {
@@ -48,12 +42,19 @@
         _messageTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _messageTableView.delegate = self;
         _messageTableView.dataSource = self;
-        [_messageTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        [_messageTableView registerClass:[MessageCell class] forCellReuseIdentifier:NSStringFromClass([MessageCell class])];
         _messageTableView.tableFooterView = [UIView new];
-        
+        _messageTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _messageTableView.rowHeight = NewProportion(480.f);
     }
     return _messageTableView;
 }
 
+- (MessageViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[MessageViewModel alloc]init];
+    }
+    return _viewModel;
+}
 
 @end
