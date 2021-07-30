@@ -318,6 +318,7 @@
 		1F9C1C7926B3A7E2007E0067 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7826B3A7E2007E0067 /* MessageCell.m */; };
 		1F9C1C7C26B3CE54007E0067 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7B26B3CE54007E0067 /* MessageModel.m */; };
 		1F9C1C7F26B3CED6007E0067 /* MessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C7E26B3CED6007E0067 /* MessageViewModel.m */; };
+		1F9C1C8226B3DCAF007E0067 /* MessageNotDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C1C8126B3DCAF007E0067 /* MessageNotDataView.m */; };
 		1F9E449E2671B8C8001E8E15 /* StoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */; };
 		1F9E44A12671DFA0001E8E15 /* StoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E44A02671DFA0001E8E15 /* StoreInformationCell.m */; };
 		1FA611BD24CE79900097E02E /* StaffManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA611BC24CE79900097E02E /* StaffManageViewController.m */; };
@@ -1135,6 +1136,8 @@
 		1F9C1C7B26B3CE54007E0067 /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		1F9C1C7D26B3CED6007E0067 /* MessageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewModel.h; sourceTree = "<group>"; };
 		1F9C1C7E26B3CED6007E0067 /* MessageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewModel.m; sourceTree = "<group>"; };
+		1F9C1C8026B3DCAF007E0067 /* MessageNotDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageNotDataView.h; sourceTree = "<group>"; };
+		1F9C1C8126B3DCAF007E0067 /* MessageNotDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageNotDataView.m; sourceTree = "<group>"; };
 		1F9E449C2671B8C8001E8E15 /* StoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationViewController.h; sourceTree = "<group>"; };
 		1F9E449D2671B8C8001E8E15 /* StoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreInformationViewController.m; sourceTree = "<group>"; };
 		1F9E449F2671DFA0001E8E15 /* StoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreInformationCell.h; sourceTree = "<group>"; };
@@ -2723,6 +2726,8 @@
 				1F9C1C7526B39BD4007E0067 /* MessageBasisCell.m */,
 				1F9C1C7726B3A7E2007E0067 /* MessageCell.h */,
 				1F9C1C7826B3A7E2007E0067 /* MessageCell.m */,
+				1F9C1C8026B3DCAF007E0067 /* MessageNotDataView.h */,
+				1F9C1C8126B3DCAF007E0067 /* MessageNotDataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3640,6 +3645,7 @@
 				1FF2F9D324CFD7B6003A2996 /* StaffDetailsModel.m in Sources */,
 				1F960D3B1DFE3E51003E3D17 /* UIControl+BlocksKit.m in Sources */,
 				1FF2F9DF24D017C0003A2996 /* AddStaffTableViewCell.m in Sources */,
+				1F9C1C8226B3DCAF007E0067 /* MessageNotDataView.m in Sources */,
 				1FB2E9062668B036005EE3F1 /* ShopCollectionViewCell.m in Sources */,
 				1F960D2C1DFE3E51003E3D17 /* NSSet+BlocksKit.m in Sources */,
 				1FFC1A53214B5A73006F5BDB /* SavePhotosTool.m in Sources */,

@@ -9,18 +9,21 @@
 #import "MessageVC.h"
 #import "MessageViewModel.h"
 #import "MessageCell.h"
+#import "MessageNotDataView.h"
+
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *messageTableView;
 @property (nonatomic, strong) MessageViewModel *viewModel;
+@property (nonatomic, strong) MessageNotDataView *notDataView;
 @end
 
 @implementation MessageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.messageTableView];
+//    [self.view addSubview:self.messageTableView];
 
-
+    [self.view addSubview:self.notDataView];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -57,4 +60,12 @@
     return _viewModel;
 }
 
+- (MessageNotDataView *)notDataView {
+    if (!_notDataView) {
+        _notDataView = [[MessageNotDataView alloc]init];
+        _notDataView.frame = CGRectMake(0, NavigationControllerHeight, Message_WIDTH, Message_HEIGHT - NavigationControllerHeight);
+
+    }
+    return _notDataView;
+}
 @end
