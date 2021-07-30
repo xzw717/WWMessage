@@ -50,7 +50,27 @@
         make.size.mas_equalTo(CGSizeMake(812/3, 115/3));
     }];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
+    for (UIViewController* v in self.navigationController.viewControllers) {
+        
+        if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:@"MyShopViewController"]) {
+            self.viewControllerName = @"MyShopViewController";
+            return;
+        }
+        if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:@"XDDetailViewController"]) {
+            self.viewControllerName = @"XDDetailViewController";
+            return;
+        }
+        if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:@"XDShopServiceManagementViewController"]) {
+            self.viewControllerName = @"XDShopServiceManagementViewController";
+            return;
+        }
+        if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:@"JumpH5ViewController"]) {
+            self.viewControllerName = @"JumpH5ViewController";
+            return;
+        }
 
+    }
+    
     // Do any additional setup after loading the view.
 }
 #pragma mark --- 支付宝支付结果

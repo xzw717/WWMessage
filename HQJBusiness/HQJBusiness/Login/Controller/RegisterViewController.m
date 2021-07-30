@@ -564,7 +564,7 @@
         if([dic[@"resultCode"]integerValue] != 2000) {
             self.getAuthCodeBtn.enabled = YES;
             
-            [SVProgressHUD showErrorWithStatus:dic[@"resultHint"]];
+            [SVProgressHUD showErrorWithStatus:dic[@"resultMsg"]];
         } else {
             [self.getAuthCodeBtn startCountDownWithSecond:60];
             
