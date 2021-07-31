@@ -50,6 +50,7 @@
         make.size.mas_equalTo(CGSizeMake(812/3, 115/3));
     }];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(alipayResults:) name:kNoticationPayResults object:nil];
+    self.fd_interactivePopDisabled = YES;
     for (UIViewController* v in self.navigationController.viewControllers) {
         
         if ([[NSString stringWithFormat:@"%@",[v class]] isEqualToString:@"MyShopViewController"]) {

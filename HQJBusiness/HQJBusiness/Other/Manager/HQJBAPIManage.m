@@ -37,6 +37,7 @@ NSString *const HQJBXDDownloadPactDomain = @"http://test.hqjplatform.com:8080/";
 ///联盟券
 NSString *const HQJBUnionCouponDomain = @"http://test.hqjplatform.com/";
 #pragma mark ---培训使用的域名
+/// 培训：http://h5.wuwuditu.cn/shopappH5/index.html#/shopContractBack
 
 //NSString *const HQJBDomainName = @"http://shop.wuwuditu.cn/";
 //NSString *const HQJBFeedbackDomainName = @"http://sub.wuwuditu.cn/";

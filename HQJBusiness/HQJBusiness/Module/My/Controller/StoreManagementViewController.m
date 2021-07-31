@@ -27,6 +27,8 @@
 /// 合同地址
 @property (nonatomic, strong) NSString *signUrl;
 
+@property (nonatomic, assign) NSInteger xdstate;
+
 @end
 
 @implementation StoreManagementViewController
@@ -59,6 +61,7 @@
         self.reason = [dic[@"resultMsg"][@"rolecheckremark"] stringByReplacingOccurrencesOfString:@"_&_" withString:@"\n"];
         self.rolecheckstate = [dic[@"resultMsg"][@"rolecheckstate"] integerValue];
         self.signUrl = dic[@"resultMsg"][@"signUrl"];
+        self.xdstate = [dic[@"resultMsg"][@"xdstate"] integerValue];
         [self.storeManagementTableView reloadData];
     } andError:^(NSError *error) {
         
@@ -181,12 +184,18 @@
         [self.navigationController pushViewController:BIVC animated:YES];
     }
     if ([titleStr isEqualToString:@"升级管理"] ) {
-        HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
-        webvc.webTitleString = @"升级管理";
-        webvc.zwNavView.hidden = YES;
-        webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
-                           ,HQJBUpgradeRuleInterface,Shopid];
-        [self.navigationController pushViewController:webvc animated:YES];
+        if (self.xdstate != -1) {
+            HQJWebViewController *webvc = [[HQJWebViewController alloc]init];
+            webvc.webTitleString = @"升级管理";
+            webvc.zwNavView.hidden = YES;
+            webvc.webUrlStr = [NSString  stringWithFormat:@"%@%@?shopid=%@",HQJBH5UpDataDomain
+                               ,HQJBUpgradeRuleInterface,Shopid];
+            [self.navigationController pushViewController:webvc animated:YES];
+        } else {
+            [SVProgressHUD showWithStatus:@"有未完成的流程"];
+            [SVProgressHUD dismissWithDelay:1.5f];
+        }
+      
     }
     if ([titleStr isEqualToString:@"合同管理"]) {
         ContactManagerViewController *cMVC = [[ContactManagerViewController alloc]initWithContactType:NO];

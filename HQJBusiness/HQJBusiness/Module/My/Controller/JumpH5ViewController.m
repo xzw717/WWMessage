@@ -12,6 +12,7 @@
 #import "HQJLocationManager.h"
 #import "XDDetailViewModel.h"
 #import "HintView.h"
+#import "MyViewModel.h"
 @interface JumpH5ViewController()
 
 
@@ -47,7 +48,7 @@
 @property (nonatomic, strong) NSString *coisorderid;
 
 @property (nonatomic, assign) NSInteger xdstate;
-
+@property (nonatomic, strong) MyViewModel *myViewModel;
 @end
 
 @implementation JumpH5ViewController
@@ -95,8 +96,10 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [SVProgressHUD showWithStatus:@"加载中"];
+    [self.myViewModel myRequst];
+
     [self requstState];
-    
     
 }
 /// XD 商家独立入驻
@@ -364,6 +367,7 @@
 - (void)requstState {
     NSString *url = [NSString stringWithFormat:@"%@%@",HQJBDomainName,HQJBGetShopUpgradeStateInterface];
     [RequestEngine HQJBusinessGETRequestDetailsUrl:url parameters:@{@"shopid":Shopid} complete:^(NSDictionary *dic) {
+        [SVProgressHUD dismiss];
         if([dic[@"resultCode"]integerValue] == 2100){
             self.coisrole = [dic[@"resultMsg"][@"coisrole"]integerValue];
             self.xdstate = [dic[@"resultMsg"][@"xdstate"] integerValue];
@@ -408,8 +412,10 @@
         } else {
             [SVProgressHUD showErrorWithStatus:@"加载失败，请稍候重试"];
         }
-    } andError:^(NSError *error) {
         
+    } andError:^(NSError *error) {
+        [SVProgressHUD dismiss];
+
     } ShowHUD:YES];
 }
 
@@ -498,7 +504,7 @@
 - (UIButton *)stateButton {
     if (!_stateButton) {
         _stateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_stateButton setTitle:@"未知状态" forState:UIControlStateNormal];
+//        [_stateButton setTitle:@"未知状态" forState:UIControlStateNormal];
         _stateButton.backgroundColor = DefaultAPPColor;
         _stateButton.layer.cornerRadius = 22.f;
         _stateButton.layer.masksToBounds = YES;
@@ -531,5 +537,12 @@
         _introduceLabel.numberOfLines = 0;
     }
     return _introduceLabel;
+}
+- (MyViewModel *)myViewModel {
+    if (!_myViewModel) {
+        _myViewModel = [[MyViewModel alloc]init];
+        
+    }
+    return _myViewModel;
 }
 @end
